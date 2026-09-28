@@ -16,7 +16,7 @@ for invoice in data["invoices"]:
     width, height = A4
     left, right = 48, width - 48
     pdf.setTitle(f"{invoice['id']} - sample invoice")
-    pdf.setAuthor("Forma demo")
+    pdf.setAuthor("Tandem demo")
 
     def text(x, y, value, size=11, bold=False, color="#202126"):
         pdf.setFillColor(HexColor(color))
@@ -28,7 +28,7 @@ for invoice in data["invoices"]:
         pdf.setLineWidth(0.75)
         pdf.line(left, height - y, right, height - y)
 
-    text(left, 67, "forma.", 26, True)
+    text(left, 67, "tandem.", 26, True)
     text(left, 121, "Sample invoice", 23, True)
     text(left, 147, "Demonstration only. No payment is due.", 11, color="#656975")
     rule(170)
@@ -50,9 +50,9 @@ for invoice in data["invoices"]:
     rule(391)
     text(left, 430, "Sample total", 13, True)
     text(421, 430, f"USD {amount:.2f}", 13, True)
-    text(left, 482, "This file demonstrates invoice downloads in the Forma template.", 10, color="#656975")
+    text(left, 482, "This file demonstrates invoice downloads in the Groundwork template.", 10, color="#656975")
     text(left, 501, "It is not a tax invoice or evidence of a payment or subscription.", 10, color="#656975")
     rule(754)
-    text(left, 780, "FORMA DEMO  /  SAMPLE DOCUMENT", 9, True, "#656975")
+    text(left, 780, "TANDEM DEMO  /  SAMPLE DOCUMENT", 9, True, "#656975")
     pdf.save()
     print(path.relative_to(root))

@@ -10,7 +10,7 @@ export interface ThemePreviewFrame extends HTMLIFrameElement {
   ) => void
 }
 
-export const previewEvent = "forma-theme-preview"
+export const previewEvent = "groundwork-theme-preview"
 
 export function previewFrame(): ThemePreviewFrame | null {
   const element = window.frameElement

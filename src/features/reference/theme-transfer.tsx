@@ -53,7 +53,7 @@ export function ThemeTransfer({
 
     const link = document.createElement("a")
     link.href = url
-    link.download = `forma-theme.${format}`
+    link.download = `groundwork-theme.${format}`
     link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
@@ -82,7 +82,7 @@ export function ThemeTransfer({
           <DialogTitle>Import / export</DialogTitle>
           <DialogDescription>
             JSON preserves both color modes and appearance choices. CSS supplies
-            resolved color tokens for the existing Forma styles; its header
+            resolved color tokens for the existing Tandem styles; its header
             lists the root attributes to apply.
           </DialogDescription>
         </DialogHeader>

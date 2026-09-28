@@ -65,11 +65,11 @@ export function HomePage({
             aria-label="Open the workspace shown in the preview"
           >
             <img
-              src="/images/forma-overview.png"
+              src="/images/tandem-overview.png"
               width={1280}
               height={860}
               fetchPriority="high"
-              alt="Forma overview with project totals, completed tasks, and recent team activity."
+              alt="Tandem overview with project totals, completed tasks, and recent team activity."
             />
           </LinkComponent>
           <figcaption>Studio North · Sample workspace</figcaption>

@@ -7,7 +7,7 @@
       "label": "Overview",
       "title": "Know where the work stands.",
       "description": "Project totals, completed tasks and recent activity bring the workspace into focus.",
-      "image": "/images/forma-overview.png",
+      "image": "/images/tandem-overview.png",
       "alt": "Workspace overview with project metrics, task completion chart and recent activity.",
       "action": "Explore the overview"
     },
@@ -16,7 +16,7 @@
       "label": "Board",
       "title": "Keep work moving.",
       "description": "Move projects from In progress to In review to Completed. Filters and ownership stay connected across views.",
-      "image": "/images/forma-board.png",
+      "image": "/images/tandem-board.png",
       "alt": "Project board with In progress, In review and Completed columns.",
       "action": "Try the board"
     },
@@ -25,7 +25,7 @@
       "label": "Details",
       "title": "Get the context. Take the next step.",
       "description": "Find the owner, due date, progress and project activity together, with editing one step away.",
-      "image": "/images/forma-project.png",
+      "image": "/images/tandem-project.png",
       "alt": "Brand refresh project details with owner, due date, task progress and activity.",
       "action": "Open project details"
     }

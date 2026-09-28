@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { Link, useLocation } from "@tanstack/react-router"
-import { FormaPublicLayout } from "@/components/forma-public-layout"
+import { TandemPublicLayout } from "@/components/tandem-public-layout"
 import type { PublicLinkProps } from "@/components/public-link"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { useDemoState } from "./demo-state"
@@ -90,13 +90,13 @@ export function PublicPage({
 
   return (
     <>
-      <title>{title} · Forma</title>
-      <FormaPublicLayout
+      <title>{title} · Tandem</title>
+      <TandemPublicLayout
         LinkComponent={PublicLink}
         onAppearance={() => setThemeOpen(true)}
       >
         {children}
-      </FormaPublicLayout>
+      </TandemPublicLayout>
       <ThemePanel
         open={themeOpen}
         onOpenChange={setThemeOpen}

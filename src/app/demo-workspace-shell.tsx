@@ -23,7 +23,7 @@ import { useNavigationCollapsed } from "@/kit/shell/navigation-collapsed"
 import type { AccountMenuItem } from "@/kit/shell/account-menu"
 import type { WorkspaceNavigationAction } from "@/kit/shell/workspace-navigation"
 import { WorkspaceShell } from "@/kit/shell/workspace-shell"
-import { formaBrand } from "@/components/forma-brand"
+import { tandemBrand } from "@/components/tandem-brand"
 import type { WorkspaceDestination } from "@/components/workspace-link"
 import { roleLabels } from "@/demo/team"
 import { useDemoState } from "./demo-state"
@@ -134,15 +134,15 @@ export function DemoWorkspaceShell({
       id: "source",
       label: "Template source",
       icon: Layers2,
-      href: "https://github.com/ossianravn/awesome-web-template",
+      href: "https://github.com/ossianravn/groundwork",
     },
   ]
 
   return (
     <WorkspaceShell
       LinkComponent={WorkspaceLink}
-      brand={formaBrand}
-      home={{ destination: "overview", label: "Forma overview" }}
+      brand={tandemBrand}
+      home={{ destination: "overview", label: "Tandem overview" }}
       workspace={{
         name: demo.workspace.name,
         detail: demo.workspace.plan,

@@ -39,7 +39,7 @@ export default tseslint.config(
     },
   },
   {
-    // The kit must be adoptable without the Forma demo or its router.
+    // The kit must be adoptable without the Tandem demo or its router.
     files: ["src/kit/**/*.{ts,tsx}"],
     rules: {
       "@typescript-eslint/no-restricted-imports": [

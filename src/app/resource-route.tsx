@@ -43,7 +43,7 @@ export function ArticleRoute() {
           sections={article.sections}
           meta={
             <>
-              <span>Forma team</span>
+              <span>Tandem team</span>
               <time dateTime={article.date}>{contentDate(article.date)}</time>
             </>
           }

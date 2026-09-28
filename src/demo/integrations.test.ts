@@ -9,7 +9,7 @@ describe("local integration contracts", () => {
       "sample-1234",
     )
 
-    expect(secret).toBe("forma_demo_not_a_real_key_sample-1234")
+    expect(secret).toBe("tandem_demo_not_a_real_key_sample-1234")
     expect(record.name).toBe("Reporting")
     expect(record.suffix).toBe("demo_1234")
     expect(JSON.stringify(record)).not.toContain(secret)

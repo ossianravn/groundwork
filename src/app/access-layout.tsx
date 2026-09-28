@@ -2,7 +2,7 @@ import type { ComponentProps } from "react"
 import { Link } from "@tanstack/react-router"
 import { AccessLayout } from "@/features/auth/access-layout"
 import { BrandMark } from "@/kit/shell/brand-mark"
-import { formaBrand } from "@/components/forma-brand"
+import { tandemBrand } from "@/components/tandem-brand"
 
 export function AccessPage(
   props: Omit<ComponentProps<typeof AccessLayout>, "demoLink" | "homeLink">,
@@ -11,8 +11,8 @@ export function AccessPage(
     <AccessLayout
       {...props}
       homeLink={
-        <Link to="/" className="brand" aria-label="Forma home">
-          <BrandMark brand={formaBrand} />
+        <Link to="/" className="brand" aria-label="Tandem home">
+          <BrandMark brand={tandemBrand} />
         </Link>
       }
       demoLink={

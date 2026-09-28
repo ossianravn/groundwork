@@ -34,7 +34,7 @@ export function presetCSS(preset: ThemePreset) {
   }
 
   return [
-    "/* Forma preset v1. Load after the shared Forma styles; keep their responsive rules.",
+    "/* Groundwork preset v1. Load after the Groundwork kit styles; keep their responsive rules.",
     `   Root attributes: ${attributes}`,
     `   Color mode: ${settings.appearance}. Toggle .dark for dark mode; resolve system with prefers-color-scheme.`,
     "   Font faces must be installed. Import the JSON to reopen the complete editable preset. */",

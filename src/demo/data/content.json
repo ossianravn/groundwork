@@ -6,7 +6,7 @@
       "summary": "Start with what changed, find the work that needs a decision, and leave with a clear next step.",
       "topic": "Project practice",
       "date": "2026-09-24",
-      "image": "/images/forma-overview.png",
+      "image": "/images/tandem-overview.png",
       "alt": "The Studio North overview, with completion history, recent activity and project results.",
       "caption": "The overview brings project health and recent changes into one view.",
       "sections": [
@@ -15,7 +15,7 @@
           "title": "Start with what changed",
           "paragraphs": [
             "A project review is most useful when it helps the team decide what to do next. Reading every status aloud leaves little room for that conversation. Begin with the changes since your last review instead.",
-            "In Forma, the overview pairs completed tasks with recent activity. Choose the same reporting period each time you meet, then use the activity list to find the projects behind those changes. A busy chart tells you that work happened; the project details tell you what still needs attention."
+            "In Tandem, the overview pairs completed tasks with recent activity. Choose the same reporting period each time you meet, then use the activity list to find the projects behind those changes. A busy chart tells you that work happened; the project details tell you what still needs attention."
           ]
         },
         {
@@ -46,10 +46,10 @@
       "slug": "choose-your-project-view",
       "title": "Table, cards or board? Start with the question.",
       "summary": "Three views of the same projects, each suited to a different kind of decision.",
-      "topic": "Using Forma",
+      "topic": "Using Tandem",
       "date": "2026-09-22",
-      "image": "/images/forma-board.png",
-      "alt": "Projects arranged into In progress, In review and Completed columns in Forma.",
+      "image": "/images/tandem-board.png",
+      "alt": "Projects arranged into In progress, In review and Completed columns in Tandem.",
       "caption": "The board groups the same project records by their current status.",
       "sections": [
         {
@@ -85,7 +85,7 @@
       "summary": "A named owner, a useful description and a realistic date make the next person's job easier.",
       "topic": "Teamwork",
       "date": "2026-09-18",
-      "image": "/images/forma-project.png",
+      "image": "/images/tandem-project.png",
       "alt": "Brand refresh project details showing its owner, due date, progress and recent activity.",
       "caption": "A project record keeps the essentials together for its next owner.",
       "sections": [
@@ -102,7 +102,7 @@
           "title": "Choose an owner",
           "paragraphs": [
             "Ownership gives the team a person to turn to for the next decision. It does not mean that person has to do every task. Pick the person who can keep the work moving and coordinate a review when it is ready.",
-            "When several projects move to a new owner, select them in Projects and use Assign owner. If a member is removed from the team, Forma asks for a replacement owner for their projects so the work remains assigned."
+            "When several projects move to a new owner, select them in Projects and use Assign owner. If a member is removed from the team, Tandem asks for a replacement owner for their projects so the work remains assigned."
           ]
         },
         {
@@ -264,7 +264,7 @@
     },
     {
       "slug": "change-appearance",
-      "title": "Change the look and density of Forma",
+      "title": "Change the look and density of Tandem",
       "summary": "Choose a theme, accent, font and layout that work for you.",
       "topic": "Workspace",
       "date": "2026-09-27",
@@ -390,7 +390,7 @@
           "id": "information-you-enter",
           "title": "Information you enter",
           "paragraphs": [
-            "Forma is an interactive example with fictional workspace data. Project edits, profile details, team changes and form drafts are kept in memory for the current browser session. Reloading restores the sample workspace and clears those drafts.",
+            "Tandem is an interactive example with fictional workspace data. Project edits, profile details, team changes and form drafts are kept in memory for the current browser session. Reloading restores the sample workspace and clears those drafts.",
             "Use sample details when exploring the forms. Contact messages are kept in memory while you navigate, then cleared when the demo submission completes or the demo is reset or reloaded. No contact message is sent to a recipient."
           ]
         },
@@ -423,13 +423,13 @@
     "terms": {
       "title": "Terms",
       "date": "2026-09-27",
-      "summary": "Sample terms page for the Forma demo. Replace this specimen with terms suited to your organisation and service before launch.",
+      "summary": "Sample terms page for the Tandem demo. Replace this specimen with terms suited to your organisation and service before launch.",
       "sections": [
         {
           "id": "about-the-demo",
           "title": "About this demo",
           "paragraphs": [
-            "Forma demonstrates public pages and a project workspace using fictional records. It is a place to explore interface patterns, not a live project-management service or a support channel.",
+            "Tandem demonstrates public pages and a project workspace using fictional records. It is a place to explore interface patterns, not a live project-management service or a support channel.",
             "These sample terms describe that example. They do not identify a commercial operator or establish a production service agreement."
           ]
         },

@@ -190,7 +190,7 @@ function capture(name) {
       browser(
         "eval",
         "--stdin",
-        `localStorage.setItem("awesome-web-template.theme.v1", ${JSON.stringify(
+        `localStorage.setItem("groundwork.theme.v1", ${JSON.stringify(
           JSON.stringify(setting.theme),
         )})`,
       )

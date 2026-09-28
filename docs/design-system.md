@@ -31,7 +31,7 @@ Use Lucide for interface actions and objects. Recognizable provider choices use 
 
 ## Code boundaries
 
-The code is split into a reusable **kit** and the **Forma demo** that exercises it (user decision, 2026-09-28). Another project adopts `src/kit/`; everything else is demonstration.
+The code is split into a reusable **kit** and the **Tandem demo** that exercises it (user decision, 2026-09-28). Another project adopts `src/kit/`; everything else is demonstration.
 
     src/kit/
       ui/                  # owned shadcn primitives and their variants
@@ -41,7 +41,7 @@ The code is split into a reusable **kit** and the **Forma demo** that exercises 
       theme/               # preference application, persistence, presets, fonts
       lib/                 # utilities
       styles/kit.css       # Tailwind entry: tokens (theme.css), mappings and kit styles
-    src/components/        # Forma-domain components, brand and shell content
+    src/components/        # Tandem-domain components, brand and shell content
     src/features/          # page views and domain composition
     src/demo/              # fixtures and local state
     src/app/               # routes and host bindings
@@ -51,7 +51,7 @@ Rules, each enforced by a check:
 
 - Kit code imports nothing from `@/app`, `@/features`, `@/demo`, `@/components` or `@/styles`, and never imports the router (ESLint, `src/kit/**`).
 - Kit stylesheets style only classes that kit components render and import no demo stylesheet (`src/kit/kit-boundary.test.ts`). A demo class in a kit stylesheet belongs in the matching `src/styles/` file.
-- Shells contain no product content. The host supplies brand (`ShellBrand`), destinations through its own `LinkComponent`, navigation items and actions, account menu items, breadcrumbs, search and footer content. [`demo-workspace-shell.tsx`](../src/app/demo-workspace-shell.tsx) and [`forma-public-layout.tsx`](../src/components/forma-public-layout.tsx) show the demo's configuration; [`forma-brand.tsx`](../src/components/forma-brand.tsx) is the one place to rebrand.
+- Shells contain no product content. The host supplies brand (`ShellBrand`), destinations through its own `LinkComponent`, navigation items and actions, account menu items, breadcrumbs, search and footer content. [`demo-workspace-shell.tsx`](../src/app/demo-workspace-shell.tsx) and [`tandem-public-layout.tsx`](../src/components/tandem-public-layout.tsx) show the demo's configuration; [`tandem-brand.tsx`](../src/components/tandem-brand.tsx) is the one place to rebrand.
 - Demo styles load after kit styles, so equal-specificity demo rules refine kit defaults. Page-level patterns (`page-heading`, `page-content`) and feature views remain demo-owned until they are promoted with a kit component.
 
 One stylesheet entry can import cohesive files. It does not imply duplicating token definitions across them.
@@ -173,7 +173,7 @@ The Appearance panel edits site preferences. The implemented [theme playground](
 
 Applying a preview across demo pages keeps the preference in a demo-specific namespace. In a server-rendered implementation, initial rendering must resolve that preference early enough to avoid a mismatched first paint and hydration. Do not spread theme-reading logic into individual components.
 
-Version 1 JSON contains the preset name, all appearance choices and both resolved color palettes. Import validates supported settings and absolute CSS colors through Culori before changing the draft; saving is explicit. CSS exports the same color values and font family for integration after the existing Forma styles. Its header specifies the root attributes and mode class; responsive geometry remains owned by the shared styles. CSS is not an independent replacement stylesheet or an import format. Shipped `themes.json` stores names/accent identifiers only; CSS remains the palette-value owner.
+Version 1 JSON contains the preset name, all appearance choices and both resolved color palettes. Import validates supported settings and absolute CSS colors through Culori before changing the draft; saving is explicit. CSS exports the same color values and font family for integration after the existing Tandem styles. Its header specifies the root attributes and mode class; responsive geometry remains owned by the shared styles. CSS is not an independent replacement stylesheet or an import format. Shipped `themes.json` stores names/accent identifiers only; CSS remains the palette-value owner.
 
 
 ## Narrow-screen composition

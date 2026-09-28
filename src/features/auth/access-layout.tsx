@@ -27,7 +27,7 @@ export function AccessLayout({
 
   return (
     <main className="access-page">
-      <title>{title} · forma</title>
+      <title>{title} · tandem</title>
       <div className="access-column" data-width={width}>
         <div className="access-brand-row">
           {homeLink}

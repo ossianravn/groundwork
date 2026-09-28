@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { buttonVariants } from "@/kit/ui/button"
 import { PublicLayout, type PublicMenuLink } from "@/kit/shell/public-layout"
-import { formaBrand } from "./forma-brand"
+import { tandemBrand } from "./tandem-brand"
 import type { PublicDestination, PublicLinkComponent } from "./public-link"
 import { PublicResources } from "./public-resources"
 
@@ -18,7 +18,7 @@ const menuLinks: PublicMenuLink<PublicDestination>[] = [
   { destination: "sign-in", label: "Sign in" },
 ]
 
-export function FormaPublicLayout({
+export function TandemPublicLayout({
   children,
   LinkComponent,
   onAppearance,
@@ -30,8 +30,8 @@ export function FormaPublicLayout({
   return (
     <PublicLayout
       LinkComponent={LinkComponent}
-      brand={formaBrand}
-      home={{ destination: "home", label: "Forma home" }}
+      brand={tandemBrand}
+      home={{ destination: "home", label: "Tandem home" }}
       navigation={
         <>
           <LinkComponent destination="product">Product</LinkComponent>
@@ -63,7 +63,7 @@ export function FormaPublicLayout({
             Reference library
           </LinkComponent>
           <a
-            href="https://github.com/ossianravn/awesome-web-template"
+            href="https://github.com/ossianravn/groundwork"
             target="_blank"
             rel="noreferrer"
           >
@@ -72,7 +72,7 @@ export function FormaPublicLayout({
           </a>
         </>
       }
-      footerNote="Forma · Interactive demo"
+      footerNote="Tandem · Interactive demo"
       legalNavigation={
         <>
           <LinkComponent destination="privacy">Privacy</LinkComponent>

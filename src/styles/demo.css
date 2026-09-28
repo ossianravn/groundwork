@@ -1,4 +1,4 @@
-/* Forma demo styles. The kit entry supplies tokens, primitives and shells. */
+/* Tandem demo styles. The kit entry supplies tokens, primitives and shells. */
 @import "../kit/styles/kit.css";
 @import "./shell-demo.css";
 @import "./overview.css";

@@ -13,7 +13,7 @@ npm run dev
 
 ## What a change should respect
 
-- **The kit stays independent.** Code in `src/kit/` must not import demo routes, features, fixtures, Forma components or the router. Shells receive brand, navigation and links from the host.
+- **The kit stays independent.** Code in `src/kit/` must not import demo routes, features, fixtures, Tandem components or the router. Shells receive brand, navigation and links from the host.
 - **Primitives style themselves.** A shadcn primitive's appearance lives in its component, expressed with tokens. Kit stylesheets hold tokens, shells and patterns, not global overrides of primitives.
 - **Tokens have one home.** Token values are defined only in `src/kit/styles/theme.css`; `responsive.css` may reassign them by media query. The shadcn CLI writes generated tokens into `kit.css`: move them.
 - **Examples demonstrate workflows.** Every demo addition should show a coherent user task, with its meaningful states, rather than an isolated component.

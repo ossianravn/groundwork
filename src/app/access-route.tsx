@@ -21,7 +21,7 @@ export function SignInRoute() {
       description="Choose a method to enter the demo."
       footer={
         <p>
-          New to forma?{" "}
+          New to tandem?{" "}
           <Link
             to="/auth/sign-up"
             search={search}

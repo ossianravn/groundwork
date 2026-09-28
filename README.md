@@ -1,15 +1,15 @@
-# Awesome Web Template
+# Groundwork
 
 A reusable [shadcn/ui](https://ui.shadcn.com) kit for public websites and admin interfaces, with centralized design tokens, content-free shells and a complete reference demo that shows every pattern working in context.
 
-![Forma demo workspace overview](public/images/forma-overview.png)
+![Tandem demo workspace overview](public/images/tandem-overview.png)
 
 The repository has two parts:
 
 - **The kit** (`src/kit/`) is what you copy into your own projects: shadcn primitives with Base UI, data-table controls, a rich-text editor, public and workspace shells, the theme runtime and one token file.
-- **Forma** (everything else) is a fictional product that exercises the kit end to end. It covers public pages, a project workspace, access flows, settings and a reference library.
+- **Tandem** (everything else) is a fictional product that exercises the kit end to end. It covers public pages, a project workspace, access flows, settings and a reference library.
 
-Forma's data, authentication, billing, email and integrations are local demonstrations with no production services. Changes survive navigation but reset on reload.
+Tandem's data, authentication, billing, email and integrations are local demonstrations with no production services. Changes survive navigation but reset on reload.
 
 ## What the demo covers
 
@@ -53,7 +53,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
    // render your app inside <TooltipProvider>
    ```
 
-5. Render a shell with your own brand, navigation and router link. `src/app/demo-workspace-shell.tsx` and `src/components/forma-public-layout.tsx` show complete examples. Shells never import a router: you pass a `LinkComponent` that resolves the destinations you name.
+5. Render a shell with your own brand, navigation and router link. `src/app/demo-workspace-shell.tsx` and `src/components/tandem-public-layout.tsx` show complete examples. Shells never import a router: you pass a `LinkComponent` that resolves the destinations you name.
 
 ## Customize
 
@@ -63,7 +63,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
 | Responsive and pointer-specific token values | `src/kit/styles/responsive.css` |
 | A primitive's appearance | Its component in `src/kit/ui/`; primitives style themselves with token-based classes |
 | Interface fonts | `src/kit/theme/fonts.ts` and `src/kit/styles/fonts.css`; keep each font's license in `public/font-licenses/` |
-| Brand in every shell | `src/components/forma-brand.tsx` (demo) or your own `ShellBrand` |
+| Brand in every shell | `src/components/tandem-brand.tsx` (demo) or your own `ShellBrand` |
 
 The theme playground at `/reference/themes` previews these tokens on real pages and exports presets.
 
@@ -72,7 +72,7 @@ The theme playground at `/reference/themes` previews these tokens on real pages 
 | Path | Contents |
 | --- | --- |
 | `src/kit/` | The reusable kit: `ui/`, `data-table/`, `rich-text/`, `shell/`, `theme/`, `lib/`, `styles/` |
-| `src/components/` | Forma's brand, shell content and domain components |
+| `src/components/` | Tandem's brand, shell content and domain components |
 | `src/features/` | Page views, which receive data and callbacks |
 | `src/demo/` | Fixtures and local demo state |
 | `src/app/` | Routes and host bindings (TanStack Router) |
@@ -103,4 +103,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Coding agents also follow [AGENTS.md](AG
 
 ## License
 
-[MIT](LICENSE). Bundled fonts and provider marks keep their own licenses: see `public/font-licenses/` and `src/assets/brands/README.md`. Forma, its workspace and its people are fictional.
+[MIT](LICENSE). Bundled fonts and provider marks keep their own licenses: see `public/font-licenses/` and `src/assets/brands/README.md`. Tandem, its workspace and its people are fictional.

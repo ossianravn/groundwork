@@ -1,12 +1,12 @@
 {
-  "name": "awesome-web-template",
+  "name": "groundwork",
   "private": true,
   "version": "0.1.0",
   "description": "A reusable shadcn/ui kit and reference demo for public websites and admin interfaces, with centralized, customizable design tokens.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ossianravn/awesome-web-template.git"
+    "url": "https://github.com/ossianravn/groundwork.git"
   },
   "type": "module",
   "packageManager": "npm@11.17.0",

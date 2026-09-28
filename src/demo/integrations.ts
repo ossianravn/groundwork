@@ -18,7 +18,7 @@ export const webhookEvents = [
 export const keyAccess = ["Read projects", "Read and write projects"]
 
 export function createDemoKey(name: string, access: string, id: string) {
-  const secret = `forma_demo_not_a_real_key_${id}`
+  const secret = `tandem_demo_not_a_real_key_${id}`
 
   return {
     secret,

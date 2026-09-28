@@ -18,7 +18,7 @@ export function ReferenceHome({
       <header className="reference-heading">
         <h1>Built here. Ready to reuse.</h1>
         <p>
-          Explore the components and patterns behind Forma, try their
+          Explore the components and patterns behind Tandem, try their
           interactions, and take the example code into your own project.
         </p>
         <LinkComponent destination="patterns" className={buttonVariants()}>

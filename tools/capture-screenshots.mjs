@@ -8,9 +8,9 @@ import { createBrowser } from "./verification/browser-driver.mjs"
 const base = process.env.VERIFY_URL || "http://127.0.0.1:5173"
 
 const shots = [
-  ["forma-overview", "/app/demo/overview"],
-  ["forma-board", "/app/demo/projects?view=board"],
-  ["forma-project", "/app/demo/projects/brand"],
+  ["tandem-overview", "/app/demo/overview"],
+  ["tandem-board", "/app/demo/projects?view=board"],
+  ["tandem-project", "/app/demo/projects/brand"],
 ]
 
 // Hide native scrollbars, as marketing captures should not show them.
@@ -19,11 +19,7 @@ const browser = createBrowser("hidden-scrollbars")
 try {
   browser("set", "viewport", "1280", "860")
   browser("open", base)
-  browser(
-    "eval",
-    "--stdin",
-    'localStorage.removeItem("awesome-web-template.theme.v1")',
-  )
+  browser("eval", "--stdin", 'localStorage.removeItem("groundwork.theme.v1")')
 
   for (const [name, route] of shots) {
     const file = resolve("public/images", `${name}.png`)

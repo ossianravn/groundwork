@@ -34,7 +34,7 @@ export function ProductPage({
       </header>
       <section
         className="public-container product-showcase"
-        aria-label="Explore Forma"
+        aria-label="Explore Tandem"
       >
         <Tabs defaultValue="overview">
           <TabsList aria-label="Product previews" variant="line">

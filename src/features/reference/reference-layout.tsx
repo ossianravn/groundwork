@@ -2,7 +2,7 @@ import { useRef, useState, type ReactNode } from "react"
 import { Menu, SlidersHorizontal, X, ArrowUpRight } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { BrandMark } from "@/kit/shell/brand-mark"
-import { formaBrand } from "@/components/forma-brand"
+import { tandemBrand } from "@/components/tandem-brand"
 import {
   Sheet,
   SheetTrigger,
@@ -90,9 +90,9 @@ export function ReferenceLayout({
           <LinkComponent
             destination="home"
             className="brand"
-            aria-label="Forma reference"
+            aria-label="Tandem reference"
           >
-            <BrandMark brand={formaBrand} />
+            <BrandMark brand={tandemBrand} />
           </LinkComponent>
           <span className="reference-header-label">Reference</span>
           <nav aria-label="Examples" className="reference-header-links">

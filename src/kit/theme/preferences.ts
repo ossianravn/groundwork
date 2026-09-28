@@ -35,7 +35,7 @@ export const defaultTheme: ThemeSettings = {
   font: defaultInterfaceFont.value,
 }
 
-const storageKey = "awesome-web-template.theme.v1"
+const storageKey = "groundwork.theme.v1"
 
 export function readTheme(): ThemeSettings {
   if (typeof window !== "undefined") {

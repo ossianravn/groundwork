@@ -1,6 +1,6 @@
 {
   "title": "Your projects. A clearer picture.",
-  "description": "Keep ownership, progress, and next steps together. Forma gives your team one place to see the work and move it forward.",
+  "description": "Keep ownership, progress, and next steps together. Tandem gives your team one place to see the work and move it forward.",
   "features": [
     {
       "title": "See where things stand",
@@ -20,7 +20,7 @@
   ],
   "questions": [
     {
-      "question": "Can I try Forma without signing up?",
+      "question": "Can I try Tandem without signing up?",
       "answer": "Yes. Open demo takes you straight into a sample workspace with projects, people, and activity. No account or payment details are needed."
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "question": "Is this a live project-management service?",
-      "answer": "Forma is an interactive reference built with shadcn/ui. Project data is local to this demo; sign-in, invitations, and newsletter forms do not create real accounts or send email. The template source is linked in the footer."
+      "answer": "Tandem is an interactive reference built with shadcn/ui. Project data is local to this demo; sign-in, invitations, and newsletter forms do not create real accounts or send email. The template source is linked in the footer."
     }
   ],
   "newsletter": {

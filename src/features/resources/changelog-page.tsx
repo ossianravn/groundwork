@@ -17,7 +17,7 @@ export function ChangelogPage({
     >
       <header className="resource-heading">
         <h1>Changelog</h1>
-        <p>What's new in Forma.</p>
+        <p>What's new in Tandem.</p>
         <p className="resource-note">
           Sample release notes for this interactive demo.
         </p>

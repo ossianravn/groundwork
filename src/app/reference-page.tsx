@@ -127,7 +127,7 @@ export function ReferencePage({
 
   return (
     <>
-      <title>{title} · Forma Reference</title>
+      <title>{title} · Tandem Reference</title>
       <ReferenceLayout
         active={active}
         LinkComponent={ReferenceLink}

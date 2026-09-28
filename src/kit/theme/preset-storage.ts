@@ -1,6 +1,6 @@
 import { decodePreset, type ThemePreset } from "./preset"
 
-const key = "awesome-web-template.presets.v1"
+const key = "groundwork.presets.v1"
 
 export function readPresets() {
   try {
