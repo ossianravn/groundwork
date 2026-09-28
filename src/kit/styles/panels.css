@@ -1,0 +1,66 @@
+[data-sheet-viewport] {
+  /* The page keeps its gutter below; the overlay must paint to the outer edge. */
+  scrollbar-gutter: auto !important;
+}
+[data-sheet-viewport] body {
+  /* Preserve the viewport scroller itself so Base UI's scroll lock measures
+     stable geometry. Subtracting again inside #root doubles its compensation. */
+  width: calc(100vw - var(--sheet-page-gutter));
+}
+
+[data-slot="sheet-header"].panel-header {
+  flex-shrink: 0;
+  gap: 0.5rem;
+  padding: var(--panel-padding);
+}
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.panel-heading [data-slot="sheet-title"] {
+  min-width: 0;
+  align-self: center;
+  overflow-wrap: anywhere;
+}
+.panel-heading [data-slot="sheet-close"] {
+  /* Align the icon to the content edge while retaining the full hit target. */
+  margin-inline-end: calc((1rem - var(--control-height)) / 2);
+  outline-offset: 0;
+}
+.panel-header [data-slot="sheet-description"] {
+  overflow-wrap: anywhere;
+}
+[data-slot="sheet-content"].panel-sheet {
+  gap: 0;
+  overflow: hidden;
+}
+.panel-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.panel-body {
+  padding: 0 var(--panel-padding) var(--panel-padding);
+}
+[data-slot="sheet-footer"].panel-footer {
+  flex-shrink: 0;
+  gap: var(--item-padding);
+  padding: var(--panel-padding);
+  border-top: 1px solid var(--border);
+}
+.panel-feedback {
+  color: var(--muted-foreground);
+  font-size: var(--text-body);
+}
+.panel-footer > .ui-button {
+  white-space: normal;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  [data-slot="sheet-header"].panel-header {
+    padding-block: var(--control-gap);
+  }
+}

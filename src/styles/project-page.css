@@ -1,0 +1,98 @@
+.project-page-heading {
+  display: grid;
+  justify-items: start;
+  gap: var(--content-gap);
+}
+.project-page-heading > .ui-button {
+  padding-inline: 0;
+}
+.project-page-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--content-gap);
+}
+.project-page-title h1 {
+  font-size: var(--text-page);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.project-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+  gap: var(--section-gap);
+  align-items: start;
+}
+.project-summary-content {
+  display: grid;
+  gap: var(--stack-gap);
+}
+.project-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 70ch;
+}
+.project-properties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--content-gap) var(--section-gap);
+}
+.project-properties > div {
+  display: grid;
+  gap: var(--control-gap);
+}
+.project-properties dt,
+.project-event-list time {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.project-properties dd {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.project-page-grid > .project-progress {
+  border: 0;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.project-activity {
+  grid-column: 1;
+}
+.project-event-list {
+  display: grid;
+}
+.project-event-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: var(--content-gap);
+  row-gap: var(--control-gap);
+  padding-block: var(--item-padding);
+}
+.project-event-list li + li {
+  border-top: 1px solid var(--border);
+}
+.project-event-list p {
+  overflow-wrap: anywhere;
+}
+.project-event-list strong {
+  font-weight: 500;
+}
+@media (max-width: 767px) {
+  .project-page-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project-page-grid > .project-progress {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .project-event-list li {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .project-event-list time {
+    grid-column: 2;
+  }
+}

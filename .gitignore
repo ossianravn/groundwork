@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.artifacts/
+*.tsbuildinfo
+*.local
+
+# Maintainer-local material, kept on disk but not published:
+# working notes, agent configuration and tools without a distributable license.
+.dev-docs/
+.codex/
+.oxlintrc.json
+tools/oxlint/anti-slop/
+tools/verification/catalog.mjs
+tools/verification/cli.mjs
+tools/verification/hook.mjs
+tools/verification/state.mjs
+tools/verification/protocol.test.ts

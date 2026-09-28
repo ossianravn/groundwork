@@ -1,0 +1,31 @@
+.provider-options {
+  display: grid;
+  gap: var(--content-gap);
+  margin-bottom: var(--stack-gap);
+}
+.provider-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--control-gap);
+}
+.provider-options [data-slot="field-separator-content"] {
+  background: var(--card);
+}
+.provider-continuation {
+  display: grid;
+  gap: var(--stack-gap);
+}
+.provider-account {
+  display: flex;
+  align-items: center;
+  gap: var(--content-gap);
+  padding: var(--content-gap);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.provider-account p {
+  overflow-wrap: anywhere;
+}
+.provider-account > div:last-child {
+  min-width: 0;
+}

@@ -1,0 +1,60 @@
+import type { ReactNode } from "react"
+import { cn } from "cn"
+import { Link, useLocation, useSearch } from "@tanstack/react-router"
+import { useDemoWorkspace } from "./workspace-context"
+import { projectReturnTo } from "./project-return"
+
+interface ProjectLinkProps {
+  projectId: string
+  children: ReactNode
+  className: string
+  id?: string
+  title?: string
+}
+
+export function ProjectDetailLink(props: ProjectLinkProps) {
+  return <ProjectRouteLink {...props} to="/app/demo/projects/$projectId" />
+}
+
+export function ProjectEditLink(props: ProjectLinkProps) {
+  return <ProjectRouteLink {...props} to="/app/demo/projects/$projectId/edit" />
+}
+
+function ProjectRouteLink({
+  projectId,
+  children,
+  className,
+  id,
+  title,
+  to,
+}: ProjectLinkProps & {
+  to: "/app/demo/projects/$projectId" | "/app/demo/projects/$projectId/edit"
+}) {
+  const href = useLocation({ select: (location) => location.href })
+  const { returnTo } = useSearch({ strict: false })
+  const { onOpenDetail } = useDemoWorkspace()
+  const origin = projectReturnTo(returnTo ?? href)
+
+  return (
+    <Link
+      to={to}
+      params={{ projectId }}
+      search={{ returnTo: origin }}
+      onClick={(event) => {
+        if (
+          !event.metaKey &&
+          !event.ctrlKey &&
+          !event.shiftKey &&
+          !event.altKey
+        ) {
+          onOpenDetail(origin)
+        }
+      }}
+      className={cn(className)}
+      id={id}
+      title={title}
+    >
+      {children}
+    </Link>
+  )
+}

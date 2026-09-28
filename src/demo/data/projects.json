@@ -1,0 +1,91 @@
+[
+  {
+    "id": "brand",
+    "name": "Brand refresh",
+    "code": "BR",
+    "description": "A refreshed identity and brand guidelines for Studio North.",
+    "status": "in-progress",
+    "ownerId": "ava",
+    "dueDate": "2026-09-28",
+    "tasks": 32,
+    "completedTasks": 24,
+    "tags": ["Design", "Marketing"],
+    "links": []
+  },
+  {
+    "id": "website",
+    "name": "Website redesign",
+    "code": "WR",
+    "description": "A clearer website experience, from the first visit to the contact form.",
+    "status": "in-progress",
+    "ownerId": "leo",
+    "dueDate": "2026-10-08",
+    "tasks": 48,
+    "completedTasks": 21,
+    "tags": ["Design", "Web"],
+    "links": []
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile app",
+    "code": "MA",
+    "description": "Core mobile flows for the next product release.",
+    "status": "in-review",
+    "ownerId": "mia",
+    "dueDate": "2026-09-30",
+    "tasks": 40,
+    "completedTasks": 36,
+    "tags": ["Product"],
+    "links": []
+  },
+  {
+    "id": "design-system",
+    "name": "Design system",
+    "code": "DS",
+    "description": "Shared components, tokens and interaction patterns for our product team.",
+    "status": "in-progress",
+    "ownerId": "noah",
+    "dueDate": "2026-10-16",
+    "tasks": 56,
+    "completedTasks": 18,
+    "tags": ["Design", "Engineering"],
+    "links": [
+      {
+        "id": "shadcn-docs",
+        "label": "shadcn/ui components",
+        "url": "https://ui.shadcn.com/docs/components"
+      },
+      {
+        "id": "base-ui-docs",
+        "label": "Base UI documentation",
+        "url": "https://base-ui.com/react/overview/quick-start"
+      }
+    ]
+  },
+  {
+    "id": "onboarding",
+    "name": "Customer onboarding",
+    "code": "CO",
+    "description": "A focused first-run experience for new customers.",
+    "status": "completed",
+    "ownerId": "ava",
+    "dueDate": "2026-09-20",
+    "tasks": 24,
+    "completedTasks": 24,
+    "tags": ["Product"],
+    "links": []
+  },
+  {
+    "id": "launch",
+    "name": "Launch campaign",
+    "code": "LC",
+    "description": "The creative assets and landing page for our autumn launch.",
+    "status": "completed",
+    "ownerId": "leo",
+    "dueDate": "2026-09-18",
+    "tasks": 18,
+    "completedTasks": 18,
+    "tags": ["Marketing", "Web"],
+    "links": []
+  }
+]

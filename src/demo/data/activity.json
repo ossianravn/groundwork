@@ -1,0 +1,200 @@
+[
+  {
+    "id": "a01",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-08-26",
+    "action": "completed discovery tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "a02",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-08-28",
+    "action": "completed research tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "a03",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-08-31",
+    "action": "completed wireframes in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "a04",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-09-02",
+    "action": "completed token tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "a05",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-09-04",
+    "action": "completed concept tasks in",
+    "tasksCompleted": 5,
+    "kind": "tasks"
+  },
+  {
+    "id": "a06",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-09-06",
+    "action": "completed sitemap tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "a07",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-09-08",
+    "action": "completed prototype tasks in",
+    "tasksCompleted": 6,
+    "kind": "tasks"
+  },
+  {
+    "id": "a08",
+    "projectId": "launch",
+    "memberId": "leo",
+    "date": "2026-09-10",
+    "action": "completed campaign tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "a09",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-09-11",
+    "action": "completed identity tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "a10",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-09-12",
+    "action": "completed component tasks in",
+    "tasksCompleted": 5,
+    "kind": "tasks"
+  },
+  {
+    "id": "a11",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-09-13",
+    "action": "completed navigation tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "a12",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-09-14",
+    "action": "completed interaction tasks in",
+    "tasksCompleted": 6,
+    "kind": "tasks"
+  },
+  {
+    "id": "a13",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-09-15",
+    "action": "completed typography tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "a14",
+    "projectId": "onboarding",
+    "memberId": "ava",
+    "date": "2026-09-16",
+    "action": "completed onboarding tasks in",
+    "tasksCompleted": 7,
+    "kind": "tasks"
+  },
+  {
+    "id": "a15",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-09-17",
+    "action": "completed content tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "a16",
+    "projectId": "launch",
+    "memberId": "leo",
+    "date": "2026-09-18",
+    "action": "finished",
+    "tasksCompleted": 5,
+    "kind": "status"
+  },
+  {
+    "id": "a17",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-09-19",
+    "action": "completed accessibility tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "a18",
+    "projectId": "onboarding",
+    "memberId": "ava",
+    "date": "2026-09-20",
+    "action": "finished",
+    "tasksCompleted": 8,
+    "kind": "status"
+  },
+  {
+    "id": "a19",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-09-21",
+    "action": "completed documentation tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "a20",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-09-22",
+    "action": "completed page layouts in",
+    "tasksCompleted": 5,
+    "kind": "tasks"
+  },
+  {
+    "id": "a21",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-09-23",
+    "action": "requested a review of",
+    "tasksCompleted": 6,
+    "kind": "status"
+  },
+  {
+    "id": "a22",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-09-24",
+    "action": "completed the visual guidelines in",
+    "tasksCompleted": 7,
+    "kind": "tasks"
+  }
+]

@@ -1,0 +1,6 @@
+# Check out text as LF everywhere; Prettier and the tests expect LF, and
+# Windows clones would otherwise receive CRLF under core.autocrlf.
+* text=auto eol=lf
+
+# Preserve generated document bytes, including PDF cross-reference offsets.
+*.pdf binary

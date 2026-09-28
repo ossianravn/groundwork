@@ -1,0 +1,13 @@
+{
+  "email": "ava@example.com",
+  "profile": {
+    "name": "Ava Morgan",
+    "bio": "Designing thoughtful products with the team at Studio North.",
+    "avatar": ""
+  },
+  "notifications": {
+    "assignments": { "inApp": true, "email": true },
+    "mentions": { "inApp": true, "email": true },
+    "reviews": { "inApp": true, "email": false }
+  }
+}

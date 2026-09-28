@@ -1,0 +1,116 @@
+{
+  "webhook-failure": {
+    "label": "First webhook test fails; retry succeeds",
+    "status": 500,
+    "response": "{\"error\":\"Sample endpoint unavailable\"}"
+  },
+  "inbox-failure": {
+    "label": "First read-status update fails; retry succeeds",
+    "message": "Your messages are unchanged. Try again."
+  },
+  "save-failure": {
+    "label": "First project save rejected; retry succeeds",
+    "message": "Changes could not be saved. Your draft is still here. Try again."
+  },
+  "contact-failure": {
+    "label": "First contact submission fails; retry completes the demo",
+    "message": "This demo submission could not be completed. Your message is still here. Try again."
+  },
+  "bulk-partial-failure": {
+    "label": "Website redesign rejects a bulk change; retry succeeds",
+    "projectIds": ["website"]
+  },
+  "gallery": {
+    "loading": {
+      "label": "Loading",
+      "group": "Results",
+      "description": "A pending project request. Resolve it when you are ready to inspect the results.",
+      "boundary": "The request is held deliberately. Resolve request is a gallery control, not part of the product. No network delay or repeated announcement is generated.",
+      "source": "src/kit/ui/skeleton.tsx"
+    },
+    "first-use": {
+      "label": "First use",
+      "group": "Results",
+      "description": "An empty workspace with a direct path to its first project.",
+      "boundary": "Create a project to populate this example. The form and save validation are shared with Projects; only this fixture starts empty.",
+      "source": "src/features/overview/projects-table.tsx"
+    },
+    "no-results": {
+      "label": "No results",
+      "group": "Results",
+      "description": "Existing projects hidden by a search with no matches.",
+      "boundary": "Clear filters restores existing records; it does not create data. Search, filters and pagination use the live results component.",
+      "source": "src/features/overview/projects-table.tsx"
+    },
+    "forbidden": {
+      "label": "Access denied",
+      "group": "Results",
+      "description": "An unavailable resource with a route back to permitted work.",
+      "boundary": "Access is a fixed specimen, not a permission service. Back to projects returns to the accessible collection; it does not grant access. The reference route does not return HTTP 403.",
+      "source": "src/features/overview/projects-table.tsx"
+    },
+    "not-found": {
+      "label": "Not found",
+      "group": "Results",
+      "description": "A missing project with a useful destination.",
+      "boundary": "The missing record is simulated. Back to projects restores the collection. The reference route does not return HTTP 404.",
+      "source": "src/features/overview/projects-table.tsx"
+    },
+    "server-error": {
+      "label": "Server error",
+      "group": "Results",
+      "description": "A project request fails, then succeeds on retry.",
+      "boundary": "Try again resolves a local failure fixture. This example makes no server request and the reference route does not return HTTP 500.",
+      "source": "src/features/overview/projects-table.tsx"
+    },
+    "offline": {
+      "label": "Offline",
+      "group": "Connectivity",
+      "description": "A connection loss leaves an editable project draft in place.",
+      "boundary": "Reconnect simulates restored connectivity. Save while offline retains the draft and explains why it cannot finish. No browser connection or offline storage is changed.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "reconnecting": {
+      "label": "Reconnecting",
+      "group": "Connectivity",
+      "description": "A retained draft while a connection is being restored.",
+      "boundary": "Restore connection is a gallery control. There is no timer, automatic retry loop or real connection detection.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "session-expired": {
+      "label": "Session expired",
+      "group": "Connectivity",
+      "description": "Resume a local session without losing the edit in progress.",
+      "boundary": "The sign-in dialog uses the fixture account, collects no credentials and does not change the demo session. It illustrates draft retention, not production authentication.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "update-available": {
+      "label": "Update available",
+      "group": "Connectivity",
+      "description": "A new version can be applied without interrupting a draft.",
+      "boundary": "Update now advances a local version fixture and retains the draft. No service worker, deployment detection or browser reload is implemented.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "dirty-form": {
+      "label": "Unsaved changes",
+      "group": "Editing",
+      "description": "Leave and resume an edit, or Cancel to discard it.",
+      "boundary": "Navigating within this example retains the draft. Cancel restores saved values. Reset, switching scenarios and reload intentionally reset the fixture.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "save-failed": {
+      "label": "Save failed",
+      "group": "Editing",
+      "description": "A rejected save keeps the entered values available for retry.",
+      "boundary": "Starts with the named save-failure fixture. Retry save uses the normal shared project mutation and validation; no network request is made.",
+      "source": "src/features/projects/project-form.tsx"
+    },
+    "destructive-action": {
+      "label": "Destructive action",
+      "group": "Editing",
+      "description": "Remove a member only after reassigning their projects.",
+      "boundary": "The real member-removal dialog and atomic team mutation run in this isolated workspace. Cancel preserves the member and projects; the sole-owner protection remains in the shared domain rule.",
+      "source": "src/features/settings/member-dialog.tsx"
+    }
+  }
+}

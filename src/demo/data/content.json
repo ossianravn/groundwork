@@ -1,0 +1,483 @@
+{
+  "articles": [
+    {
+      "slug": "a-useful-project-review",
+      "title": "Make the weekly project review worth your time",
+      "summary": "Start with what changed, find the work that needs a decision, and leave with a clear next step.",
+      "topic": "Project practice",
+      "date": "2026-09-24",
+      "image": "/images/forma-overview.png",
+      "alt": "The Studio North overview, with completion history, recent activity and project results.",
+      "caption": "The overview brings project health and recent changes into one view.",
+      "sections": [
+        {
+          "id": "start-with-change",
+          "title": "Start with what changed",
+          "paragraphs": [
+            "A project review is most useful when it helps the team decide what to do next. Reading every status aloud leaves little room for that conversation. Begin with the changes since your last review instead.",
+            "In Forma, the overview pairs completed tasks with recent activity. Choose the same reporting period each time you meet, then use the activity list to find the projects behind those changes. A busy chart tells you that work happened; the project details tell you what still needs attention."
+          ]
+        },
+        {
+          "id": "find-decisions",
+          "title": "Find the decisions hiding in the list",
+          "paragraphs": [
+            "Switch to the project table when you need to compare owners, due dates and progress. Filter to work in review, or sort by due date to bring approaching commitments together. Open a project when its summary raises a question.",
+            "Progress and status answer different questions. A project can have most of its tasks finished and still need a review. Treat the percentage as context, then ask what would let the project move forward."
+          ],
+          "bullets": [
+            "Does the owner have what they need to finish?",
+            "Is the due date still realistic?",
+            "Who needs to review the work before it can be completed?"
+          ]
+        },
+        {
+          "id": "leave-with-a-next-step",
+          "title": "Leave with a next step",
+          "paragraphs": [
+            "Update the owner or due date while the decision is fresh. Move a project into review when it is ready for that conversation. Mark it complete only when the team agrees the work is finished: in the demo, that also completes its remaining tasks.",
+            "For your next review, return to the same view and filters. A useful routine makes changes easy to spot without turning the meeting into another reporting exercise."
+          ]
+        }
+      ],
+      "related": ["choose-your-project-view", "one-owner-clear-handoff"]
+    },
+    {
+      "slug": "choose-your-project-view",
+      "title": "Table, cards or board? Start with the question.",
+      "summary": "Three views of the same projects, each suited to a different kind of decision.",
+      "topic": "Using Forma",
+      "date": "2026-09-22",
+      "image": "/images/forma-board.png",
+      "alt": "Projects arranged into In progress, In review and Completed columns in Forma.",
+      "caption": "The board groups the same project records by their current status.",
+      "sections": [
+        {
+          "id": "compare-in-a-table",
+          "title": "Compare details in a table",
+          "paragraphs": [
+            "Use the table when you have a specific question: which projects are due soon, who owns them, or how far along they are. Columns line up the answers so you can scan across several projects without opening each one.",
+            "Keep the columns you need for the decision. Search, owner and status filters reduce the list; sorting changes its order. Hiding a column does not change which projects match."
+          ]
+        },
+        {
+          "id": "browse-with-cards",
+          "title": "Browse the work with cards",
+          "paragraphs": [
+            "Cards give each project room for its description. They work well when you are getting familiar with a workspace or looking for a project whose name you do not quite remember.",
+            "The owner, due date and progress remain visible, while the description supplies context. Open the project for the full details rather than trying to make every card carry the entire record."
+          ]
+        },
+        {
+          "id": "move-work-on-a-board",
+          "title": "Move work forward on a board",
+          "paragraphs": [
+            "The board answers a different question: where is work waiting? Projects sit in In progress, In review or Completed. Drag a card to another column, or use its menu to change status without dragging.",
+            "Moving into Completed finishes any remaining tasks. Moving a completed project back reopens its status and preserves its completed tasks. The table, cards and overview all reflect the same change."
+          ]
+        }
+      ],
+      "related": ["a-useful-project-review", "one-owner-clear-handoff"]
+    },
+    {
+      "slug": "one-owner-clear-handoff",
+      "title": "Give every project a clear handoff",
+      "summary": "A named owner, a useful description and a realistic date make the next person's job easier.",
+      "topic": "Teamwork",
+      "date": "2026-09-18",
+      "image": "/images/forma-project.png",
+      "alt": "Brand refresh project details showing its owner, due date, progress and recent activity.",
+      "caption": "A project record keeps the essentials together for its next owner.",
+      "sections": [
+        {
+          "id": "name-the-outcome",
+          "title": "Name the outcome",
+          "paragraphs": [
+            "A short project name should help someone recognize the work in a list. Use the description to explain the outcome and the boundaries: what will be different when this is finished, and what is outside this project?",
+            "The next person should be able to open the record and understand why the work exists. A paragraph of useful context is more valuable than a long description that repeats the title."
+          ]
+        },
+        {
+          "id": "choose-an-owner",
+          "title": "Choose an owner",
+          "paragraphs": [
+            "Ownership gives the team a person to turn to for the next decision. It does not mean that person has to do every task. Pick the person who can keep the work moving and coordinate a review when it is ready.",
+            "When several projects move to a new owner, select them in Projects and use Assign owner. If a member is removed from the team, Forma asks for a replacement owner for their projects so the work remains assigned."
+          ]
+        },
+        {
+          "id": "make-the-date-useful",
+          "title": "Make the date useful",
+          "paragraphs": [
+            "Set a due date that represents the team's current commitment. If that commitment changes, update the record so everyone sees the same expectation. A date that nobody believes is less useful than an honest adjustment.",
+            "Before handing the project over, check the description, owner and date together. Then leave the record in the status that reflects the work still to do."
+          ]
+        }
+      ],
+      "related": ["choose-your-project-view", "a-useful-project-review"]
+    }
+  ],
+  "guides": [
+    {
+      "slug": "explore-and-reset",
+      "title": "Explore the demo and reset your changes",
+      "summary": "What you can change, what stays on this device, and how to start again.",
+      "topic": "Getting started",
+      "date": "2026-09-27",
+      "sections": [
+        {
+          "id": "try-the-workspace",
+          "title": "Try the sample workspace",
+          "paragraphs": [
+            "Open demo to enter Studio North. You can create and edit projects, move work on the board, update your profile and manage the sample team. These changes apply to your current browser session.",
+            "The sample workspace uses a fixed snapshot date. Its charts, deadlines and activity demonstrate a workflow rather than reporting live work."
+          ]
+        },
+        {
+          "id": "what-is-saved",
+          "title": "Know what is saved",
+          "paragraphs": [
+            "Project, profile, team and workspace changes reset when you reload. Navigating between pages keeps those changes, including unfinished form drafts. Appearance preferences are different: theme, font, density and accent choices are saved on this device when browser storage is available.",
+            "Sign-up and password recovery are local examples. They do not create a real account or send email. Sample pricing does not charge you or restrict the demo's features."
+          ]
+        },
+        {
+          "id": "reset-the-demo",
+          "title": "Start again",
+          "paragraphs": [
+            "Choose Reset demo data in the workspace sidebar to restore the sample workspace and clear its drafts. On a narrow screen, open the navigation menu to find that action.",
+            "To reset the look of the interface as well, open Appearance and choose Restore defaults. Resetting the workspace does not change your appearance preferences."
+          ]
+        }
+      ],
+      "related": ["create-and-edit-projects", "change-appearance"]
+    },
+    {
+      "slug": "create-and-edit-projects",
+      "title": "Create and edit a project",
+      "summary": "Set a name, owner and due date, and understand how drafts behave.",
+      "topic": "Projects",
+      "date": "2026-09-27",
+      "sections": [
+        {
+          "id": "create-a-project",
+          "title": "Create a project",
+          "paragraphs": [
+            "Choose New project from Overview or Projects. Give the project a recognizable name, select its owner and choose a due date. The description is optional."
+          ],
+          "steps": [
+            "Enter the project's name and, if useful, a short description of the intended outcome.",
+            "Choose an owner from the workspace members and set the due date.",
+            "Choose Create project. The new project is available in the shared project views."
+          ]
+        },
+        {
+          "id": "edit-details",
+          "title": "Edit the details",
+          "paragraphs": [
+            "Open a project's name to see its full page, then choose Edit project. You can also open the inspector and choose Edit project there. Saving updates the same record in the list, board, inspector and activity.",
+            "If a required field is missing or a value needs attention, the form identifies the field. Correct it and save again; the other entered values stay in place."
+          ]
+        },
+        {
+          "id": "keep-or-discard",
+          "title": "Keep or discard a draft",
+          "paragraphs": [
+            "Navigating away keeps an unfinished draft for the current session. Return to the create or edit page to continue. Cancel explicitly discards that form's draft, and a successful save clears it.",
+            "Reloading or using Reset demo data clears all demo drafts. Save any information you need outside the demo before reloading; it has no permanent project storage."
+          ]
+        }
+      ],
+      "related": ["move-projects", "explore-and-reset"]
+    },
+    {
+      "slug": "move-projects",
+      "title": "Change a project's status",
+      "summary": "Move work on the board, complete projects and reopen them when needed.",
+      "topic": "Projects",
+      "date": "2026-09-27",
+      "sections": [
+        {
+          "id": "use-the-board",
+          "title": "Use the board",
+          "paragraphs": [
+            "Open Projects and choose Board. Each column represents a status: In progress, In review or Completed. Search and filters still apply, so a filtered board may show only part of the workspace."
+          ],
+          "steps": [
+            "Find the project you want to move.",
+            "Drag its card into the destination column, or open the card's dot menu and choose the destination status.",
+            "The project moves to that status and the other project views update with it."
+          ]
+        },
+        {
+          "id": "complete-or-reopen",
+          "title": "Complete or reopen work",
+          "paragraphs": [
+            "Moving into Completed also completes the project's remaining tasks. The same rule applies to Mark complete in the details and bulk actions.",
+            "Moving a completed project back to In progress or In review changes its status while keeping its completed tasks. Its progress can therefore remain at 100% while its status is open."
+          ]
+        },
+        {
+          "id": "when-a-card-disappears",
+          "title": "When a card leaves your results",
+          "paragraphs": [
+            "If your view is filtered to one status, a project moved to another status no longer matches. Clear the status filter or choose the new status to see it again. The project has not been deleted.",
+            "Use the Table or Cards view whenever comparing dates, owners or descriptions is more useful than grouping work by status."
+          ]
+        }
+      ],
+      "related": ["create-and-edit-projects", "manage-the-team"]
+    },
+    {
+      "slug": "manage-the-team",
+      "title": "Manage members and project ownership",
+      "summary": "Invite a sample member, change a role or reassign projects before removing someone.",
+      "topic": "Workspace",
+      "date": "2026-09-27",
+      "sections": [
+        {
+          "id": "find-team-settings",
+          "title": "Find team settings",
+          "paragraphs": [
+            "Open the account menu at the bottom of the workspace navigation, choose Workspace settings, then Team. Members and pending invitations appear separately.",
+            "Choose Invite member to add a local pending invitation. Enter an email address, then choose a role. The demo checks for duplicate email addresses but does not send an invitation or provide an acceptance flow."
+          ]
+        },
+        {
+          "id": "change-a-role",
+          "title": "Change a role",
+          "paragraphs": [
+            "Use a member's row menu to change their role. At least one workspace owner must remain, so the sole owner cannot be demoted or removed.",
+            "These roles demonstrate the team-management workflow. They are not a production access-control system."
+          ]
+        },
+        {
+          "id": "remove-a-member",
+          "title": "Remove a member",
+          "paragraphs": [
+            "Choose Remove member from the member's row menu. If they own projects, select a replacement owner before confirming. Reassignment and removal happen together, so their projects remain assigned.",
+            "Historical activity keeps the original person's name. Removing a member does not rewrite who performed earlier work. Leaving the workspace as the current account is outside this demo."
+          ]
+        }
+      ],
+      "related": ["create-and-edit-projects", "explore-and-reset"]
+    },
+    {
+      "slug": "change-appearance",
+      "title": "Change the look and density of Forma",
+      "summary": "Choose a theme, accent, font and layout that work for you.",
+      "topic": "Workspace",
+      "date": "2026-09-27",
+      "sections": [
+        {
+          "id": "open-appearance",
+          "title": "Open Appearance",
+          "paragraphs": [
+            "In the workspace, choose Appearance in the sidebar or use the appearance control in the header. On public pages, the same control appears in the footer. You can also open the Appearance page from the account settings.",
+            "Changes apply immediately. There is no separate Save button for appearance preferences."
+          ]
+        },
+        {
+          "id": "choose-your-settings",
+          "title": "Choose your settings",
+          "paragraphs": [
+            "Use Light, Dark or System to choose how the interface follows your device's color scheme. Accent and font choices apply across the workspace and its overlays.",
+            "Comfortable and Compact change the spacing of supported controls and layouts. They do not change the project's data. Corners and header surface offer additional visual choices without changing the available actions."
+          ]
+        },
+        {
+          "id": "restore-defaults",
+          "title": "Restore defaults",
+          "paragraphs": [
+            "Choose Restore defaults in Appearance to return to the initial visual settings. These preferences are stored on this device when browser storage is available.",
+            "Reset demo data restores projects and workspace data but preserves appearance. If preferences cannot be saved, Appearance reports that the change applies only to the current session."
+          ]
+        }
+      ],
+      "related": ["explore-and-reset", "manage-the-team"]
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.3.0",
+      "date": "2026-09-27",
+      "title": "A public front door for the workspace",
+      "summary": "Explore the product, compare sample plans and get help with the demo.",
+      "sections": [
+        {
+          "id": "added",
+          "title": "Added",
+          "paragraphs": [],
+          "bullets": [
+            "Product previews link directly to the overview, board and project details.",
+            "Sample pricing offers monthly and annual periods, with the selected plan carried through local sign-up.",
+            "Articles, release notes and searchable help share the public navigation and appearance settings."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Plan selection is illustrative. No checkout, payment or feature restriction is applied. Help search uses the included guides, and the release numbers on this page are sample content for the template."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-09-26",
+      "title": "A workspace that feels like your team's",
+      "summary": "Profile, workspace and team settings, with drafts that stay with you while navigating.",
+      "sections": [
+        {
+          "id": "added",
+          "title": "Added",
+          "paragraphs": [],
+          "bullets": [
+            "Profile name, bio and local photo selection.",
+            "Workspace name and logo, with explicit Save and Cancel actions.",
+            "Member roles, local pending invitations and project reassignment during member removal.",
+            "Local sign-up, workspace setup and password-recovery examples."
+          ]
+        },
+        {
+          "id": "behavior",
+          "title": "Behavior",
+          "paragraphs": [
+            "The sole workspace owner cannot be removed or demoted. Removing a project owner requires a replacement, while historical activity keeps its original actor.",
+            "All workspace and account changes reset on reload. Invitations and recovery do not send email, and the example does not authenticate against an external service."
+          ]
+        }
+      ],
+      "guide": "manage-the-team"
+    },
+    {
+      "version": "0.1.0",
+      "date": "2026-09-25",
+      "title": "Projects, from a quick scan to the full picture",
+      "summary": "A shared project workflow across the overview, table, cards and board.",
+      "sections": [
+        {
+          "id": "added",
+          "title": "Added",
+          "paragraphs": [],
+          "bullets": [
+            "Search, status and owner filters across project views.",
+            "Project details, creation and editing, with retained in-session drafts.",
+            "Bulk owner assignment and project completion.",
+            "Board status movement by dragging or using the project menu."
+          ]
+        },
+        {
+          "id": "behavior",
+          "title": "Behavior",
+          "paragraphs": [
+            "Completing a project also finishes its remaining tasks. Reopening it preserves completed tasks. Cancel discards the current form draft; navigating away keeps it until save, cancellation or reload."
+          ]
+        }
+      ],
+      "guide": "move-projects"
+    }
+  ],
+  "policies": {
+    "privacy": {
+      "title": "Privacy",
+      "date": "2026-09-27",
+      "summary": "Sample notice for this interactive demo. Replace it with a notice for your organisation and services before publishing a real product.",
+      "sections": [
+        {
+          "id": "information-you-enter",
+          "title": "Information you enter",
+          "paragraphs": [
+            "Forma is an interactive example with fictional workspace data. Project edits, profile details, team changes and form drafts are kept in memory for the current browser session. Reloading restores the sample workspace and clears those drafts.",
+            "Use sample details when exploring the forms. Contact messages are kept in memory while you navigate, then cleared when the demo submission completes or the demo is reset or reloaded. No contact message is sent to a recipient."
+          ]
+        },
+        {
+          "id": "device-preferences",
+          "title": "Preferences on this device",
+          "paragraphs": [
+            "Appearance preferences, including theme, font, accent and density, are saved in this browser's local storage when it is available. They allow the interface to keep your chosen appearance when you return.",
+            "You can use Restore defaults in Appearance to reset the settings. Clearing this site's browser storage removes the saved preferences. Reset demo data restores the sample workspace but leaves appearance preferences in place."
+          ]
+        },
+        {
+          "id": "forms-and-services",
+          "title": "Forms and external services",
+          "paragraphs": [
+            "The included contact, newsletter, invitation and account flows run locally. They do not send messages, subscribe you to a mailing list, charge a payment method or create an account with an external service. Password fields are not saved by the application.",
+            "The included application does not load analytics or advertising integrations. Fonts and demo images are served with the site. Links to external sites take you to services with their own practices."
+          ]
+        },
+        {
+          "id": "deployment-notice",
+          "title": "A notice for a live service",
+          "paragraphs": [
+            "This sample does not identify a real data controller, hosting provider or support team. A deployed site's hosting and any services added to it may process data separately from this browser demo.",
+            "Before launch, replace this sample with an accurate notice identifying the responsible organisation, its contact details, the information it uses and why, the applicable legal basis, recipients, retention periods, relevant transfers and people's rights. Confirm the notice against the actual deployment and applicable requirements."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "date": "2026-09-27",
+      "summary": "Sample terms page for the Forma demo. Replace this specimen with terms suited to your organisation and service before launch.",
+      "sections": [
+        {
+          "id": "about-the-demo",
+          "title": "About this demo",
+          "paragraphs": [
+            "Forma demonstrates public pages and a project workspace using fictional records. It is a place to explore interface patterns, not a live project-management service or a support channel.",
+            "These sample terms describe that example. They do not identify a commercial operator or establish a production service agreement."
+          ]
+        },
+        {
+          "id": "using-the-workspace",
+          "title": "Using the workspace",
+          "paragraphs": [
+            "You can create projects, edit sample records and explore team and account settings. Changes remain in the current session and reset when you reload. The demo is not intended to store work you need to keep.",
+            "Reset demo data restores the sample records. Appearance settings are saved separately on this device and can be restored through Appearance."
+          ]
+        },
+        {
+          "id": "accounts-and-plans",
+          "title": "Accounts, plans and messages",
+          "paragraphs": [
+            "Sign-up and recovery flows are local demonstrations. They do not create an authenticated account with a service provider. Team invitations and contact forms do not deliver messages.",
+            "Prices and plan descriptions illustrate a pricing page and selection flow. Selecting a plan does not start a subscription, create a charge or restrict the features available in the demo."
+          ]
+        },
+        {
+          "id": "live-service-terms",
+          "title": "Terms for a live service",
+          "paragraphs": [
+            "A real product needs terms that reflect its operator, audience and service. Before launch, decide and document the service being offered, account responsibilities, any payment and cancellation arrangements, acceptable use, support and how disputes are handled.",
+            "Do not treat this specimen as legal advice or a ready-to-use agreement. Review the final terms against the product's actual commitments and applicable law."
+          ]
+        }
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "saved-changes",
+      "question": "Will my changes be here after I reload?",
+      "answer": "Projects, account settings and team changes reset on reload. Appearance preferences are saved on this device when browser storage is available.",
+      "guide": "explore-and-reset"
+    },
+    {
+      "id": "unfinished-drafts",
+      "question": "What happens to an unfinished project form?",
+      "answer": "Navigation keeps the draft in the current session. Saving or choosing Cancel clears that form's draft. Reload and Reset demo data clear all drafts.",
+      "guide": "create-and-edit-projects"
+    },
+    {
+      "id": "completed-tasks",
+      "question": "Why does an open project show 100% progress?",
+      "answer": "Reopening a completed project changes its status but keeps its completed tasks. Status describes where the project is in the workflow; progress counts completed tasks.",
+      "guide": "move-projects"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "demo",
+  "name": "Studio North",
+  "plan": "Design workspace",
+  "referenceDate": "2026-09-24",
+  "currentUserId": "ava",
+  "members": [
+    { "id": "ava", "name": "Ava Morgan", "initials": "AM" },
+    { "id": "leo", "name": "Leo Chen", "initials": "LC" },
+    { "id": "mia", "name": "Mia Davis", "initials": "MD" },
+    { "id": "noah", "name": "Noah Williams", "initials": "NW" }
+  ]
+}

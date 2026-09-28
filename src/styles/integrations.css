@@ -1,0 +1,113 @@
+.integration-settings {
+  display: grid;
+  gap: var(--content-gap);
+}
+.integration-heading,
+.integration-record-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.integration-heading {
+  justify-content: space-between;
+}
+.integration-list > li + li {
+  border-top: 1px solid var(--border);
+}
+.integration-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--control-gap);
+  row-gap: 0.25rem;
+  padding-block: var(--item-padding);
+}
+.integration-record {
+  display: contents;
+}
+.integration-row > [data-slot="button"] {
+  grid-column: 2;
+  grid-row: 1;
+}
+.integration-record-heading {
+  grid-column: 1;
+}
+.integration-record h3 {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.integration-record p {
+  grid-column: 1 / -1;
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.integration-url,
+.integration-meta {
+  overflow-wrap: anywhere;
+}
+.integration-event-choices {
+  gap: var(--control-gap);
+}
+.webhook-history {
+  padding-bottom: var(--item-padding);
+}
+.webhook-history > summary {
+  width: fit-content;
+  cursor: pointer;
+  font-size: var(--text-meta);
+  padding-block: var(--control-gap);
+}
+.webhook-history > summary > span {
+  color: var(--muted-foreground);
+  margin-left: var(--control-gap);
+}
+.webhook-history-content {
+  display: grid;
+  gap: var(--item-padding);
+  padding-top: var(--control-gap);
+}
+.delivery-list {
+  max-height: 22rem;
+  overflow: auto;
+}
+.delivery-detail {
+  border-top: 1px solid var(--border);
+  padding-block: var(--item-padding);
+  font-size: var(--text-meta);
+}
+.delivery-detail > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  cursor: pointer;
+}
+.delivery-detail > summary > .delivery-chevron + span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.delivery-chevron {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.delivery-detail[open] .delivery-chevron {
+  transform: rotate(90deg);
+}
+.delivery-detail time {
+  display: block;
+  color: var(--muted-foreground);
+}
+.delivery-detail > p {
+  margin-top: var(--control-gap);
+  color: var(--muted-foreground);
+}
+.delivery-detail pre {
+  background: var(--muted);
+  padding: var(--item-padding);
+  margin-top: var(--control-gap);
+  border-radius: var(--radius);
+  overflow: auto;
+}

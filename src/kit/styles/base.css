@@ -1,0 +1,34 @@
+html {
+  scrollbar-gutter: stable;
+  scroll-padding-top: calc(var(--header-offset, var(--header-height)) + 1rem);
+}
+body {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+@layer base {
+  /* Primitives own their ring; this is the fallback for plain links/regions. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+[tabindex="-1"]:focus {
+  outline: none;
+}
+.recharts-surface:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+svg {
+  flex-shrink: 0;
+}

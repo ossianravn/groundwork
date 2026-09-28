@@ -1,0 +1,121 @@
+.project-query-dialog[data-slot="dialog-content"] {
+  width: 44rem;
+  max-width: calc(100% - 32px);
+  max-height: calc(100dvh - 32px);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+@container project-views (max-width: 20rem) {
+  .project-filter-options:has(.advanced-filter-trigger):has(
+      .project-grid-controls
+    ) {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) auto;
+  }
+  .project-filter-options:has(.advanced-filter-trigger):has(
+      .project-grid-controls
+    )
+    > .facet-trigger {
+    justify-self: start;
+  }
+  .project-filter-options:has(.advanced-filter-trigger) .filter-reset {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .project-filter-options:has(.project-grid-controls) .advanced-filter-trigger {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .project-filter-options:has(.advanced-filter-trigger) .project-grid-controls {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .project-filter-options:has(.advanced-filter-trigger) .project-grid-sort {
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+  .project-filter-options:has(.advanced-filter-trigger)
+    .project-grid-sort
+    [data-slot="select-trigger"] {
+    min-width: 0;
+  }
+  .project-filter-options:has(.advanced-filter-trigger)
+    .project-grid-sort
+    [data-slot="select-value"] {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+.project-query-form {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: var(--content-gap);
+  min-height: 0;
+}
+.project-query-body {
+  overflow-y: auto;
+  min-height: 0;
+  padding: 2px;
+  margin: -2px;
+  display: grid;
+  align-content: start;
+  gap: var(--content-gap);
+}
+.query-match,
+.query-add-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.query-conditions {
+  gap: var(--content-gap);
+}
+.query-condition[data-slot="field"] {
+  display: grid;
+  grid-template-columns: 9.25rem 10.25rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--control-gap);
+}
+.query-condition [data-slot="select-trigger"] {
+  width: 100%;
+}
+.query-condition [data-slot="field-error"] {
+  grid-column: 1 / -1;
+}
+.query-value {
+  min-width: 0;
+}
+.query-condition[data-field="progress"] .query-value {
+  max-width: 7rem;
+}
+.query-condition[data-field="dueDate"] input {
+  padding-inline: 10px;
+}
+.query-remove {
+  grid-column: 4;
+  grid-row: 1;
+}
+@media (max-width: 767px) {
+  .query-condition[data-slot="field"] {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-bottom: var(--content-gap);
+    border-bottom: 1px solid var(--border);
+  }
+  .query-condition > [data-slot="select-trigger"],
+  .query-value {
+    grid-column: 1;
+  }
+  .query-remove {
+    grid-column: 2;
+  }
+  .project-query-dialog .query-add-actions .ui-button {
+    white-space: normal;
+  }
+  .advanced-filter-trigger > svg {
+    display: none;
+  }
+}

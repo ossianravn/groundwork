@@ -1,0 +1,52 @@
+@media (max-width: 1199px) {
+  .overview-middle {
+    grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .page-heading {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--control-gap);
+  }
+  .page-heading h1 {
+    flex-basis: 100%;
+    font-size: var(--text-page);
+  }
+  .page-heading > .ui-button {
+    flex: 0 1 auto;
+  }
+  .page-heading p {
+    flex: 1 1 7rem;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.25rem;
+    font-size: var(--text-meta);
+    line-height: 1.5;
+  }
+  .snapshot-separator {
+    display: none;
+  }
+  .chart-period {
+    width: 100%;
+  }
+  .chart-date {
+    flex: 1 1 6rem;
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+    gap: var(--content-gap);
+  }
+  .metric-card h2 {
+    font-size: var(--text-body);
+  }
+  .overview-middle {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .activity-card {
+    order: 1;
+  }
+  .page-footer {
+    font-size: var(--text-meta);
+  }
+}

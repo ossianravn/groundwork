@@ -1,0 +1,128 @@
+.public-site {
+  --public-section-space: clamp(3rem, 6vw, 5rem);
+  background: var(--card);
+}
+.public-site .brand {
+  padding-inline: 0;
+}
+@media (width < 21rem) {
+  .public-header .brand > span:last-child {
+    display: none;
+  }
+}
+.public-container {
+  width: min(100%, 78rem);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+.public-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+.public-header-row,
+.public-header-actions,
+.public-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.public-header-row {
+  min-height: var(--header-height);
+}
+.public-header-actions {
+  margin-left: auto;
+}
+.public-desktop-nav {
+  margin-left: 2rem;
+}
+.public-menu-trigger {
+  display: none;
+}
+.public-menu-heading {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--panel-padding);
+}
+.public-menu-links {
+  display: grid;
+  padding-inline: var(--panel-padding);
+}
+.public-menu-links a {
+  padding-block: 0.75rem;
+}
+.public-site h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.public-footer nav svg {
+  width: 1rem;
+  height: 1rem;
+}
+.public-footer {
+  border-top: 1px solid var(--border);
+  padding-block: 2rem 1rem;
+}
+.public-footer-main,
+.public-footer-meta,
+.public-footer nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.public-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.public-footer-meta {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+@media (width < 48rem) {
+  .public-desktop-nav {
+    display: none;
+  }
+  .public-header-row,
+  .public-header-actions {
+    gap: 0.5rem;
+  }
+  .public-menu-trigger {
+    display: inline-flex;
+  }
+  .public-footer-main {
+    display: block;
+  }
+  .public-footer nav {
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 1rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
+.public-footer-meta nav {
+  margin: 0 auto 0 0;
+  gap: 1rem;
+}
+@media (width < 48rem) {
+  .public-footer-meta {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  .public-footer-meta > span {
+    flex-basis: 100%;
+  }
+}
+.public-footer nav {
+  flex-wrap: wrap;
+}

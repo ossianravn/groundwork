@@ -1,0 +1,34 @@
+@media (min-width: 1024px) {
+  .app-shell[data-sidebar-collapsed="true"] {
+    --sidebar-width: var(--sidebar-rail-width);
+  }
+  [data-sidebar-collapsed="true"] .desktop-sidebar .navigation-label {
+    display: none;
+  }
+  [data-sidebar-collapsed="true"] .workspace-navigation {
+    align-items: center;
+    padding-inline: 0.5rem;
+  }
+  [data-sidebar-collapsed="true"] .brand {
+    padding: 0;
+    min-height: var(--control-height);
+  }
+  [data-sidebar-collapsed="true"] .workspace-identity {
+    border: 0;
+    padding: 0;
+    background: transparent;
+  }
+  [data-sidebar-collapsed="true"] .nav-section {
+    width: 100%;
+  }
+  [data-sidebar-collapsed="true"] .nav-link,
+  [data-sidebar-collapsed="true"] .nav-action {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  [data-sidebar-collapsed="true"] .profile-row {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 0;
+  }
+}

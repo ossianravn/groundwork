@@ -1,0 +1,61 @@
+{
+  "title": "From the big picture to the next task.",
+  "description": "See what’s moving, find what needs attention, and keep everyone working from the same view of the project.",
+  "previews": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "title": "Know where the work stands.",
+      "description": "Project totals, completed tasks and recent activity bring the workspace into focus.",
+      "image": "/images/forma-overview.png",
+      "alt": "Workspace overview with project metrics, task completion chart and recent activity.",
+      "action": "Explore the overview"
+    },
+    {
+      "id": "board",
+      "label": "Board",
+      "title": "Keep work moving.",
+      "description": "Move projects from In progress to In review to Completed. Filters and ownership stay connected across views.",
+      "image": "/images/forma-board.png",
+      "alt": "Project board with In progress, In review and Completed columns.",
+      "action": "Try the board"
+    },
+    {
+      "id": "details",
+      "label": "Details",
+      "title": "Get the context. Take the next step.",
+      "description": "Find the owner, due date, progress and project activity together, with editing one step away.",
+      "image": "/images/forma-project.png",
+      "alt": "Brand refresh project details with owner, due date, task progress and activity.",
+      "action": "Open project details"
+    }
+  ],
+  "features": [
+    {
+      "title": "One project, three views",
+      "description": "Use a table for detail, cards for scanning, or the board for status. Your projects stay in sync."
+    },
+    {
+      "title": "Clear ownership",
+      "description": "Assign a person, set a due date and review progress without piecing together separate screens."
+    },
+    {
+      "title": "Make it feel like yours",
+      "description": "Choose a theme, accent, typeface and density. The same preferences reach every page and panel."
+    }
+  ],
+  "questions": [
+    {
+      "question": "Can I try these workflows?",
+      "answer": "Yes. Every preview links directly to the matching demo page. You can create and edit projects, move cards and change settings without signing up."
+    },
+    {
+      "question": "What happens when I complete a project?",
+      "answer": "Completing a project finishes its remaining tasks and records the change in activity. Reopening the project preserves those completed tasks."
+    },
+    {
+      "question": "Are my changes saved?",
+      "answer": "Demo changes and drafts stay in memory while you navigate. Reload or Reset demo restores the sample data. Appearance preferences are saved on this device."
+    }
+  ]
+}

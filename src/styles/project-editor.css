@@ -1,0 +1,77 @@
+.project-editor-card {
+  width: min(100%, calc(60ch + 2 * var(--card-padding)));
+  container-type: inline-size;
+  padding: 0;
+}
+.project-editor-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: start;
+  padding: var(--card-padding);
+  gap: var(--stack-gap) var(--content-gap);
+}
+.project-editor-fields [data-slot="select-trigger"] {
+  width: 100%;
+}
+.project-editor-fields [data-slot="field-label"] {
+  flex-wrap: wrap;
+  row-gap: 0;
+}
+.project-editor-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+  padding: var(--content-gap) var(--card-padding);
+  border-top: 1px solid var(--border);
+}
+.project-editor-actions > span {
+  margin-inline-end: auto;
+}
+.project-editor-actions > .ui-button {
+  max-width: 100%;
+  white-space: normal;
+}
+.project-save-error {
+  flex-basis: 100%;
+  color: var(--destructive);
+}
+.project-sheet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.project-sheet-actions > a {
+  flex: 1;
+}
+.project-page-title {
+  width: 100%;
+}
+.project-page-title > .ui-button {
+  margin-inline-start: auto;
+}
+.project-save-notice {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+}
+@container (max-width: 28rem) {
+  .project-editor-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .project-editor-page {
+    --page-padding: 16px;
+    --card-padding: 16px;
+  }
+  .project-editor-fields input[type="date"] {
+    padding-inline: 10px;
+  }
+  .project-editor-actions > span {
+    flex-basis: 100%;
+  }
+  .project-editor-actions {
+    justify-content: flex-end;
+  }
+}

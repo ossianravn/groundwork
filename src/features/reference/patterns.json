@@ -1,0 +1,1635 @@
+[
+  {
+    "id": "AUTH-01",
+    "title": "Sign in and registration",
+    "originalName": "Unified Auth Form (Sign In / Up)",
+    "category": "Access",
+    "surface": "Shared",
+    "summary": "Enter an existing workspace or start a new one.",
+    "implemented": "Required-field validation, password visibility, autofill and return routing use the same access flow.",
+    "deferred": "Credentials and sessions are simulated; no identity provider.",
+    "examples": [
+      {
+        "label": "Sign in",
+        "href": "/auth/sign-in",
+        "instruction": "Submit the form or follow Create an account."
+      },
+      {
+        "label": "Register",
+        "href": "/auth/sign-up",
+        "instruction": "Choose account details, then name the workspace."
+      }
+    ],
+    "sources": ["src/features/auth/access-forms.tsx", "src/demo/use-access.ts"]
+  },
+  {
+    "id": "AUTH-02",
+    "title": "Social / OAuth Provider Buttons",
+    "originalName": "Social / OAuth Provider Buttons",
+    "category": "Access",
+    "surface": "Shared",
+    "summary": "Choose a provider, continue with a sample identity and return to the intended workflow.",
+    "implemented": "Google and GitHub local demos share the password and email-link handoff: enabled MFA for sign-in, onboarding and selected-plan retention for registration. Cancellation, unavailable attempts, retry and single-use callbacks have recovery paths.",
+    "deferred": "Local simulation only. No OAuth exchange, provider connection, credentials, account linking or production authorization.",
+    "examples": [
+      {
+        "label": "Provider sign-in",
+        "href": "/auth/sign-in",
+        "instruction": "Choose Google or GitHub, then Continue with the sample account. Cancel returns to the available methods. Enabled two-step verification is retained."
+      },
+      {
+        "label": "Register with a plan",
+        "href": "/auth/sign-up?plan=business&billing=annual",
+        "instruction": "Choose a provider and continue into workspace setup. The selected Business yearly plan is carried through onboarding."
+      },
+      {
+        "label": "Provider unavailable",
+        "href": "/auth/provider/github?scenario=provider-unavailable",
+        "instruction": "Continue to the unavailable result, then try again or use another sign-in method."
+      }
+    ],
+    "sources": [
+      "src/features/auth/provider-buttons.tsx",
+      "src/features/auth/provider-continuation.tsx",
+      "src/demo/provider-access.ts",
+      "src/demo/use-provider-access.ts",
+      "src/app/provider-route.tsx",
+      "src/app/provider-callback-route.tsx"
+    ]
+  },
+  {
+    "id": "AUTH-03",
+    "title": "Passwordless Magic Link Flow",
+    "originalName": "Passwordless Magic Link Flow",
+    "category": "Access",
+    "surface": "Shared",
+    "summary": "Let people sign in through a single-use email link.",
+    "implemented": "Email request, receipt, replacement link and callback return to the intended local page. Missing, replaced, used and reload-lost links offer recovery; sign-in links remain separate from password resets.",
+    "deferred": "Local simulation only: no email delivery or authentication provider, timed expiry, rate limiting or cross-device sign-in.",
+    "examples": [
+      {
+        "label": "Request a sign-in link",
+        "href": "/auth/magic-link",
+        "instruction": "Enter a sample email, request a link and follow Open demo sign-in link. Request another link to replace the first."
+      }
+    ],
+    "sources": [
+      "src/features/auth/email-link-form.tsx",
+      "src/demo/use-sign-in-link.ts",
+      "src/app/email-link-route.tsx"
+    ]
+  },
+  {
+    "id": "AUTH-04",
+    "title": "2FA / TOTP 6-Digit Input",
+    "originalName": "2FA / TOTP 6-Digit Input",
+    "category": "Access",
+    "surface": "Shared",
+    "summary": "Complete a second-factor challenge with a clear recovery path.",
+    "implemented": "Six-digit entry, paste, explicit verification and single-use recovery codes. Security settings supports setup, replacement and disabling; password, email-link and provider demos use the enabled second step and retain the intended destination.",
+    "deferred": "Local simulation with a disclosed fixed code. No TOTP secret, QR enrollment, real identity provider, authorization, lockout or device trust.",
+    "examples": [
+      {
+        "label": "Set up and try verification",
+        "href": "/app/demo/settings/security",
+        "instruction": "Enable two-step verification with demo code 123456, save the recovery codes, then use Try sign-in. Every sign-in method continues to verification."
+      }
+    ],
+    "sources": [
+      "src/features/settings/security-settings.tsx",
+      "src/features/settings/mfa-settings.tsx",
+      "src/features/auth/verification-form.tsx",
+      "src/kit/ui/input-otp.tsx",
+      "src/demo/security.ts",
+      "src/demo/use-security.ts",
+      "src/app/verification-route.tsx"
+    ]
+  },
+  {
+    "id": "AUTH-05",
+    "title": "Multi-Step Onboarding Stepper",
+    "originalName": "Multi-Step Onboarding Stepper",
+    "category": "Access",
+    "surface": "Workspace",
+    "summary": "Show progress through a multi-step workspace setup.",
+    "implemented": "Named Workspace, Team and Ready steps retain drafts on Back, allow invitations to be skipped and focus the new heading.",
+    "deferred": "Progress is local to the current demo session; no server-backed resume.",
+    "examples": [
+      {
+        "label": "Set up a workspace",
+        "href": "/auth/sign-up",
+        "instruction": "Register, name the workspace, then invite colleagues or skip to the summary."
+      }
+    ],
+    "sources": [
+      "src/features/auth/setup-progress.tsx",
+      "src/app/onboarding-route.tsx"
+    ]
+  },
+  {
+    "id": "AUTH-06",
+    "title": "Workspace setup",
+    "originalName": "Workspace Setup Wizard",
+    "category": "Access",
+    "surface": "Workspace",
+    "summary": "Give a new workspace its identity before starting work.",
+    "implemented": "Workspace details and optional invitation rows remain drafts until setup finishes. Completion creates the workspace and pending invitations together, then offers Projects and Team settings.",
+    "deferred": "Slug availability, setup avatar, real invitation delivery and a guided tour remain planned.",
+    "examples": [
+      {
+        "label": "Create a workspace",
+        "href": "/auth/sign-up",
+        "instruction": "Register, enter a workspace name, and try invitation roles, Back navigation or Skip for now."
+      }
+    ],
+    "sources": [
+      "src/features/auth/setup-invitations.tsx",
+      "src/features/auth/setup-complete.tsx",
+      "src/app/onboarding-route.tsx"
+    ]
+  },
+  {
+    "id": "AUTH-07",
+    "title": "Password recovery",
+    "originalName": "Password Reset / Recovery Flow",
+    "category": "Access",
+    "surface": "Shared",
+    "summary": "Recover access without losing the intended destination.",
+    "implemented": "Local request, receipt, single-use reset link and sign-in return.",
+    "deferred": "Email delivery and stored passwords are not implemented.",
+    "examples": [
+      {
+        "label": "Request a reset",
+        "href": "/auth/forgot-password",
+        "instruction": "Submit an email, then use the local link on the receipt page."
+      },
+      {
+        "label": "Unavailable link",
+        "href": "/auth/reset-password?token=unavailable",
+        "instruction": "Request a fresh link from the recovery state."
+      }
+    ],
+    "sources": ["src/app/recovery-route.tsx", "src/demo/use-access.ts"]
+  },
+  {
+    "id": "AUTH-08",
+    "title": "Inactivity / Session Expiry Modal",
+    "originalName": "Inactivity / Session Expiry Modal",
+    "category": "Access",
+    "surface": "Workspace",
+    "summary": "Recover from an expired session without losing current work.",
+    "implemented": "A session-expiry specimen resumes the fixture account through a dialog while preserving the current draft.",
+    "deferred": "No inactivity timer, production session expiry or credential exchange is implemented.",
+    "examples": [
+      {
+        "label": "Resume a session",
+        "href": "/reference/states/session-expired",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": ["src/features/reference/state-editor.tsx"]
+  },
+  {
+    "id": "DVIZ-01",
+    "title": "Workspace metrics",
+    "originalName": "Metric Stat Card (KPI)",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Summarize the current state of project work.",
+    "implemented": "Four totals derive from the same projects used by the table and board.",
+    "deferred": "Historical comparisons and asynchronous loading remain planned.",
+    "examples": [
+      {
+        "label": "Workspace snapshot",
+        "href": "/app/demo/overview",
+        "instruction": "Compare active projects, tasks remaining, near-term due dates and completions."
+      }
+    ],
+    "sources": ["src/features/overview/metrics.tsx", "src/demo/selectors.ts"]
+  },
+  {
+    "id": "DVIZ-02",
+    "title": "Completion time series",
+    "originalName": "Area / Line Time-Series Chart",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "See how completed work changes over time.",
+    "implemented": "Shared preset period, a line/area chart and an accessible data table.",
+    "deferred": "Custom ranges and previous-period comparisons remain planned.",
+    "examples": [
+      {
+        "label": "Last 30 days",
+        "href": "/app/demo/overview?period=30",
+        "instruction": "Change the period or choose Show data."
+      },
+      {
+        "label": "Last 7 days",
+        "href": "/app/demo/overview?period=7",
+        "instruction": "The chart and total use the same seven-day scope."
+      }
+    ],
+    "sources": [
+      "src/features/overview/completion-chart.tsx",
+      "src/features/overview/completion-period.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-03",
+    "title": "Project completion bars",
+    "originalName": "Segmented Bar Chart",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Compare completed work across projects.",
+    "implemented": "Single-series horizontal bars with labels and a linked data alternative.",
+    "deferred": "Grouped/stacked bars and legend filtering remain planned.",
+    "examples": [
+      {
+        "label": "Project breakdown",
+        "href": "/app/demo/analytics",
+        "instruction": "Use the project breakdown or switch to its data view."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/project-breakdown.tsx",
+      "src/demo/analytics.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-04",
+    "title": "Contributor breakdown",
+    "originalName": "Donut / Breakdown Chart",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Understand the share of work completed by each contributor.",
+    "implemented": "Donut chart, stable member colors, visible values and a data table.",
+    "deferred": "No hover-only data or historical comparison is supplied.",
+    "examples": [
+      {
+        "label": "Contributor breakdown",
+        "href": "/app/demo/analytics",
+        "instruction": "Inspect the contributor breakdown and its table alternative."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/contributor-breakdown.tsx",
+      "src/demo/analytics.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-05",
+    "title": "Reporting scope",
+    "originalName": "Date Range & Filter Picker",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Keep several views aligned to one reporting period.",
+    "implemented": "Analytics uses a shared 7/14/30-day period and project filter in the URL.",
+    "deferred": "Custom ranges and comparison periods remain planned.",
+    "examples": [
+      {
+        "label": "Reporting filters",
+        "href": "/app/demo/analytics",
+        "instruction": "Change the period and project; charts and totals update together."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/analytics-page.tsx",
+      "src/app/analytics-search.ts"
+    ]
+  },
+  {
+    "id": "EDGE-01",
+    "title": "Content-Geometry Skeleton Loaders",
+    "originalName": "Content-Geometry Skeleton Loaders",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Represent the geometry of content while a real asynchronous load is pending.",
+    "implemented": "An inspectable project-list skeleton resolves to the shared results table.",
+    "deferred": "Request completion is controlled by the gallery; application network loading and exact row geometry remain outside this specimen.",
+    "examples": [
+      {
+        "label": "Loading projects",
+        "href": "/reference/states/loading",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": ["src/features/reference/state-projects.tsx"]
+  },
+  {
+    "id": "EDGE-02",
+    "title": "No-results recovery",
+    "originalName": "Zero-Data Empty States",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Recover from a filter that matches no records.",
+    "implemented": "Projects distinguishes an empty workspace from a query with no matches, with working creation and clear-filter recovery.",
+    "deferred": "Additional empty-account compositions belong to their owning workflows.",
+    "examples": [
+      {
+        "label": "No matching projects",
+        "href": "/app/demo/projects?q=unmatched",
+        "instruction": "Clear the filter to return to the project list."
+      },
+      {
+        "label": "First project",
+        "href": "/reference/states/first-use",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      },
+      {
+        "label": "No matching results",
+        "href": "/reference/states/no-results",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": [
+      "src/features/projects/empty-projects.tsx",
+      "src/features/reference/state-projects.tsx"
+    ]
+  },
+  {
+    "id": "EDGE-03",
+    "title": "Destructive Action Dialog (Guarded)",
+    "originalName": "Destructive Action Dialog (Guarded)",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Confirm a consequential destructive action with proportionate recovery.",
+    "implemented": "The shared team-removal dialog requires project reassignment; Cancel preserves data and confirmation updates membership and ownership together.",
+    "deferred": "No deletion recovery or undo is promised. Sole-owner protection remains in the shared domain rule.",
+    "examples": [
+      {
+        "label": "Member removal",
+        "href": "/reference/states/destructive-action",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": ["src/features/reference/state-team.tsx"]
+  },
+  {
+    "id": "EDGE-04",
+    "title": "Inline project editing",
+    "originalName": "Inline Click-to-Edit Field",
+    "category": "Feedback & recovery",
+    "surface": "Workspace",
+    "summary": "Edit a single value in place with explicit save and cancel.",
+    "implemented": "Edit a project name, owner or due date in context with Save/Cancel, validation, retained navigation drafts and rejected-save retry. Saving one field preserves other unfinished edits and records its actual change in Activity.",
+    "deferred": "Description, tags and links use the full editor. No production concurrency or conflict-resolution service.",
+    "examples": [
+      {
+        "label": "Edit project details",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Use a pencil action beside the project name, owner or due date. Save that field, or cancel with Escape; navigating to the full editor retains unfinished input."
+      },
+      {
+        "label": "Rejected inline save",
+        "href": "/app/demo/projects/brand?scenario=save-failure",
+        "instruction": "In a fresh draft, change a value and save. The local simulation rejects the first save; retry retains and saves the value."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-inline-field.tsx",
+      "src/features/projects/project-inline-editing.ts",
+      "src/demo/project-draft.ts"
+    ]
+  },
+  {
+    "id": "EDGE-05",
+    "title": "Unavailable content and recovery",
+    "originalName": "System Error Boundaries (404/403/500)",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Give a useful next action when content cannot be shown.",
+    "implemented": "Missing-project and route boundaries plus isolated access-denied, not-found and failed-request specimens with working recovery.",
+    "deferred": "Gallery specimens are local state transitions, not HTTP responses or a production permission service.",
+    "examples": [
+      {
+        "label": "Missing project",
+        "href": "/app/demo/projects/unavailable",
+        "instruction": "Return to the project list from the missing-record state."
+      },
+      {
+        "label": "Access denied",
+        "href": "/reference/states/forbidden",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      },
+      {
+        "label": "Missing content",
+        "href": "/reference/states/not-found",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      },
+      {
+        "label": "Request retry",
+        "href": "/reference/states/server-error",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": [
+      "src/features/projects/missing-project.tsx",
+      "src/app/root-route.tsx",
+      "src/features/reference/state-projects.tsx"
+    ]
+  },
+  {
+    "id": "EDGE-06",
+    "title": "Offline / Reconnecting Banner",
+    "originalName": "Offline / Reconnecting Banner",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Explain service connectivity and recovery when it affects current work.",
+    "implemented": "Offline and reconnecting specimens retain editable drafts and restore saving on reconnection.",
+    "deferred": "Browser connectivity detection, durable offline storage and network retries are not implemented.",
+    "examples": [
+      {
+        "label": "Offline editing",
+        "href": "/reference/states/offline",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      },
+      {
+        "label": "Reconnecting",
+        "href": "/reference/states/reconnecting",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": ["src/features/reference/state-editor.tsx"]
+  },
+  {
+    "id": "EDGE-07",
+    "title": "Button Loading State Geometry Lock",
+    "originalName": "Button Loading State Geometry Lock",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Keep an action stable while its asynchronous result is pending.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "EDGE-08",
+    "title": "Route Loading Progress Bar",
+    "originalName": "Route Loading Progress Bar",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Show meaningful route-loading progress without arbitrary delays.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "EDGE-09",
+    "title": "App Update / Version Mismatch",
+    "originalName": "App Update / Version Mismatch",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Handle incompatible app versions without losing work.",
+    "implemented": "A local version-update notice applies its fixture update without losing a project draft.",
+    "deferred": "Deployment detection, service workers and actual application reload/update behavior remain planned.",
+    "examples": [
+      {
+        "label": "Apply an update",
+        "href": "/reference/states/update-available",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": ["src/features/reference/state-editor.tsx"]
+  },
+  {
+    "id": "MKT-01",
+    "title": "Public navigation",
+    "originalName": "Sticky Glassmorphism Header",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Move between product, pricing and resource pages.",
+    "implemented": "Sticky solid header, grouped resource menu and a mobile navigation sheet.",
+    "deferred": "Public glass and authenticated-menu variants remain planned.",
+    "examples": [
+      {
+        "label": "Website header",
+        "href": "/",
+        "instruction": "Use the Resources menu or narrow-screen navigation."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/public-layout.tsx",
+      "src/components/public-resources.tsx"
+    ]
+  },
+  {
+    "id": "MKT-02",
+    "title": "Product hero",
+    "originalName": "Hero Section (Split & Centered)",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Make the product and its next action immediately clear.",
+    "implemented": "Split hero with a real demo image and working calls to action.",
+    "deferred": "Centered and motion variants remain planned.",
+    "examples": [
+      {
+        "label": "Home hero",
+        "href": "/",
+        "instruction": "Open the workspace preview or explore the features."
+      }
+    ],
+    "sources": ["src/features/public/home-page.tsx"]
+  },
+  {
+    "id": "MKT-03",
+    "title": "Infinite Logo Marquee",
+    "originalName": "Infinite Logo Marquee",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Present real customer or partner logos with a suitable motion policy.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-04",
+    "title": "Feature overview",
+    "originalName": "Bento Grid Feature Showcase",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Connect product capabilities to useful workflows.",
+    "implemented": "Product summaries link into shipped workspace features.",
+    "deferred": "A bento-layout variant remains planned.",
+    "examples": [
+      {
+        "label": "Product features",
+        "href": "/product",
+        "instruction": "Follow a feature into the working demo."
+      }
+    ],
+    "sources": ["src/features/public/product-page.tsx"]
+  },
+  {
+    "id": "MKT-05",
+    "title": "Product preview tabs",
+    "originalName": "Interactive Product Showcase Tabs",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Explore related product views without leaving the page.",
+    "implemented": "Manually activated tabs show real preview assets with matching destinations.",
+    "deferred": "Autoplay, video and automatic rotation remain planned.",
+    "examples": [
+      {
+        "label": "Product previews",
+        "href": "/product",
+        "instruction": "Switch preview tabs, then open the associated workflow."
+      }
+    ],
+    "sources": ["src/features/public/product-page.tsx"]
+  },
+  {
+    "id": "MKT-06",
+    "title": "Testimonial Wall / Grid",
+    "originalName": "Testimonial Wall / Grid",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Present attributable customer feedback in a readable composition.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-07",
+    "title": "Pricing and billing periods",
+    "originalName": "Pricing Matrix & Toggle",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Compare sample plans and carry a choice into registration.",
+    "implemented": "Monthly/yearly pricing, explicit totals and plan selection through local sign-up.",
+    "deferred": "No checkout, charges or feature restrictions.",
+    "examples": [
+      {
+        "label": "Monthly plans",
+        "href": "/pricing",
+        "instruction": "Choose a plan to carry it into registration."
+      },
+      {
+        "label": "Yearly plans",
+        "href": "/pricing?billing=yearly",
+        "instruction": "Compare the displayed yearly billing totals."
+      }
+    ],
+    "sources": ["src/features/public/pricing-page.tsx", "src/demo/billing.ts"]
+  },
+  {
+    "id": "MKT-08",
+    "title": "Plan comparison",
+    "originalName": "Detailed Feature Comparison Table",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Compare structured plan features at a glance.",
+    "implemented": "Disclosed comparison table with row/column headers and contained mobile scrolling.",
+    "deferred": "Currency and unavailable-plan variants remain planned.",
+    "examples": [
+      {
+        "label": "Plan comparison",
+        "href": "/pricing",
+        "instruction": "Expand the plan comparison beneath the pricing cards."
+      }
+    ],
+    "sources": ["src/features/public/pricing-page.tsx"]
+  },
+  {
+    "id": "MKT-09",
+    "title": "Searchable help and FAQ",
+    "originalName": "Searchable FAQ Accordion",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Find an answer by topic or question.",
+    "implemented": "Help searches guide content; product/pricing use the shared FAQ accordion.",
+    "deferred": "In-app contextual support and service-backed search remain planned.",
+    "examples": [
+      {
+        "label": "Help search",
+        "href": "/help",
+        "instruction": "Search for a topic and open its guide."
+      },
+      {
+        "label": "No help matches",
+        "href": "/help?q=unmatched",
+        "instruction": "Clear or change the query."
+      }
+    ],
+    "sources": [
+      "src/features/resources/help-page.tsx",
+      "src/features/public/public-faq.tsx"
+    ]
+  },
+  {
+    "id": "MKT-10",
+    "title": "Newsletter signup",
+    "originalName": "Newsletter / Lead Capture",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Collect an email with a clear completion state.",
+    "implemented": "Local required/email validation and focused completion.",
+    "deferred": "No mailing service, rate limits or delivery.",
+    "examples": [
+      {
+        "label": "Newsletter",
+        "href": "/",
+        "instruction": "Find the newsletter form near the bottom of the page."
+      }
+    ],
+    "sources": ["src/features/public/newsletter.tsx"]
+  },
+  {
+    "id": "MKT-11",
+    "title": "Public footer",
+    "originalName": "Multi-column Global Footer",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Offer secondary destinations without crowding the main navigation.",
+    "implemented": "Real product, resource, reference, legal and appearance destinations.",
+    "deferred": "Larger multi-column and authenticated footer variants remain planned.",
+    "examples": [
+      {
+        "label": "Website footer",
+        "href": "/",
+        "instruction": "Scroll to the footer and follow a resource or reference link."
+      }
+    ],
+    "sources": ["src/kit/shell/public-layout.tsx"]
+  },
+  {
+    "id": "MKT-12",
+    "title": "Cookie Consent Banner",
+    "originalName": "Cookie Consent Banner",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Collect consent when deployed optional services require a choice.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-13",
+    "title": "Article and guide reader",
+    "originalName": "Blog / Prose Typography Layout",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Read long-form content with a clear structure.",
+    "implemented": "Authored local articles/guides, responsive contents navigation, media captions and related links.",
+    "deferred": "Code-copy blocks, pagination and richer media states remain planned.",
+    "examples": [
+      {
+        "label": "Article",
+        "href": "/blog/a-useful-project-review",
+        "instruction": "Use the section navigation and related articles."
+      }
+    ],
+    "sources": [
+      "src/features/resources/content-reader.tsx",
+      "src/features/resources/content.ts"
+    ]
+  },
+  {
+    "id": "MKT-14",
+    "title": "Contact form",
+    "originalName": "Contact Sales / Inbound Form",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Send a structured request and recover from a rejected submission.",
+    "implemented": "Retained navigation draft, field validation and named local failure/retry.",
+    "deferred": "Delivery and service-backed pending/rate-limit states are not implemented.",
+    "examples": [
+      {
+        "label": "Contact",
+        "href": "/contact",
+        "instruction": "Complete the fields and submit the local example."
+      },
+      {
+        "label": "Save failure",
+        "href": "/contact?scenario=contact-failure",
+        "instruction": "Submit valid values, then retry without re-entering them."
+      }
+    ],
+    "sources": [
+      "src/features/public/contact-form.tsx",
+      "src/demo/use-contact.ts"
+    ]
+  },
+  {
+    "id": "MKT-15",
+    "title": "Changelog",
+    "originalName": "Changelog / Release Notes",
+    "category": "Public website",
+    "surface": "Shared",
+    "summary": "Browse releases and understand what changed.",
+    "implemented": "Release timeline, categorized details, adjacent-release and help links.",
+    "deferred": "Release versions are illustrative content.",
+    "examples": [
+      {
+        "label": "Release history",
+        "href": "/changelog",
+        "instruction": "Open a release for its changes and related guidance."
+      }
+    ],
+    "sources": ["src/features/resources/changelog-page.tsx"]
+  },
+  {
+    "id": "NAV-01",
+    "title": "Workspace navigation",
+    "originalName": "Collapsible Sidebar (Multi-Level)",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Keep workspace destinations available across screen sizes.",
+    "implemented": "Collapsible desktop sidebar, icon rail and mobile navigation sheet.",
+    "deferred": "Multi-level product navigation remains planned.",
+    "examples": [
+      {
+        "label": "Workspace shell",
+        "href": "/app/demo/overview",
+        "instruction": "Toggle the sidebar; narrow screens use a navigation sheet."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/workspace-shell.tsx",
+      "src/kit/shell/workspace-navigation.tsx"
+    ]
+  },
+  {
+    "id": "NAV-02",
+    "title": "Breadcrumb trail",
+    "originalName": "Breadcrumb Trail with Dropdowns",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Show where a page sits in the workspace hierarchy.",
+    "implemented": "Route-aware breadcrumb links, page title and explicit return destination.",
+    "deferred": "Breadcrumb dropdown variants remain planned.",
+    "examples": [
+      {
+        "label": "Project hierarchy",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Follow the breadcrumb or Back to projects link."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/workspace-shell.tsx",
+      "src/features/projects/project-page.tsx"
+    ]
+  },
+  {
+    "id": "NAV-03",
+    "title": "Workspace / Tenant Switcher",
+    "originalName": "Workspace / Tenant Switcher",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Switch between available workspaces while preserving useful context.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "NAV-04",
+    "title": "Account menu",
+    "originalName": "User Profile Menu Dropdown",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Keep account destinations and secondary actions together.",
+    "implemented": "Member-menu links to settings, help and local sign-out.",
+    "deferred": "Production sessions and permission variants remain planned.",
+    "examples": [
+      {
+        "label": "Member menu",
+        "href": "/app/demo/overview",
+        "instruction": "Open the member control at the bottom of the sidebar."
+      }
+    ],
+    "sources": ["src/kit/shell/account-menu.tsx"]
+  },
+  {
+    "id": "NAV-05",
+    "title": "Workspace top bar",
+    "originalName": "Global App Top Bar",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Combine location and frequently used workspace tools.",
+    "implemented": "Breadcrumbs, project search, notifications and appearance use shared controls.",
+    "deferred": "Other command categories remain planned.",
+    "examples": [
+      {
+        "label": "Top bar",
+        "href": "/app/demo/overview",
+        "instruction": "Use search or appearance while keeping the current workspace context."
+      }
+    ],
+    "sources": ["src/kit/shell/workspace-shell.tsx"]
+  },
+  {
+    "id": "NAV-06",
+    "title": "Contextual Help & Support Widget",
+    "originalName": "Contextual Help & Support Widget",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Offer contextual support without taking over the current task.",
+    "implemented": "A sidebar Help dialog recommends existing guides for the current page, with expandable summaries and links to Help center and Contact.",
+    "deferred": "No live chat, remote search or support service.",
+    "examples": [
+      {
+        "label": "Workspace help",
+        "href": "/app/demo/projects",
+        "instruction": "Open Help in the sidebar, expand a guide, or visit the Help center."
+      }
+    ],
+    "sources": [
+      "src/features/help/workspace-help.tsx",
+      "src/app/workspace-help-link.tsx"
+    ]
+  },
+  {
+    "id": "NAV-07",
+    "title": "Mobile Bottom Tab Navigation",
+    "originalName": "Mobile Bottom Tab Navigation",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Demonstrate an alternative mobile shell with stable labelled destinations.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "NAV-08",
+    "title": "Return to results",
+    "originalName": "Return to results with preserved context",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Resume a list exactly where you left it after inspecting or editing a record.",
+    "implemented": "Query, sort, page, session column visibility, scroll and useful focus survive the round trip.",
+    "deferred": "Persistent cross-session view state is not implemented.",
+    "examples": [
+      {
+        "label": "Filtered projects",
+        "href": "/app/demo/projects?q=brand",
+        "instruction": "Open Brand refresh, then use Back to projects."
+      }
+    ],
+    "sources": ["src/app/project-return.ts", "src/app/use-results-memory.ts"]
+  },
+  {
+    "id": "SETT-01",
+    "title": "Settings navigation",
+    "originalName": "Vertical Tab Settings Layout",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Group account and workspace preferences into clear destinations.",
+    "implemented": "Routed settings sections with desktop local navigation and narrow links.",
+    "deferred": "The shell contains only implemented settings routes.",
+    "examples": [
+      {
+        "label": "Settings",
+        "href": "/app/demo/settings/profile",
+        "instruction": "Switch between account and workspace settings."
+      }
+    ],
+    "sources": ["src/features/settings/settings-layout.tsx"]
+  },
+  {
+    "id": "SETT-02",
+    "title": "Retained form drafts",
+    "originalName": "Floating Unsaved Changes Warning",
+    "category": "Settings & forms",
+    "surface": "Shared",
+    "summary": "Navigate away from an unfinished form without losing your work.",
+    "implemented": "Drafts stay in memory during navigation. Save commits; Cancel discards; reload/reset clears.",
+    "deferred": "No blocking leave prompt or persisted draft storage.",
+    "examples": [
+      {
+        "label": "Edit project",
+        "href": "/app/demo/projects/brand/edit",
+        "instruction": "Change a value, leave via navigation, and return before saving or cancelling."
+      },
+      {
+        "label": "Retain or discard a draft",
+        "href": "/reference/states/dirty-form",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-form.tsx",
+      "src/app/use-project-drafts.ts",
+      "src/features/reference/state-editor.tsx"
+    ]
+  },
+  {
+    "id": "SETT-03",
+    "title": "Profile image picker",
+    "originalName": "Drag-and-Drop File / Avatar Uploader",
+    "category": "Settings & forms",
+    "surface": "Shared",
+    "summary": "Choose, preview or remove a profile image.",
+    "implemented": "Local file picker, preview, removal and invalid-image recovery.",
+    "deferred": "Drag-and-drop, cropping, upload progress and remote storage remain planned.",
+    "examples": [
+      {
+        "label": "Profile image",
+        "href": "/app/demo/settings/profile",
+        "instruction": "Choose a photo, inspect the preview, then save or cancel."
+      }
+    ],
+    "sources": [
+      "src/features/settings/identity-image.tsx",
+      "src/features/settings/profile-settings.tsx"
+    ]
+  },
+  {
+    "id": "SETT-04",
+    "title": "Team management",
+    "originalName": "Team Members & RBAC Manager",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Manage members and their project responsibilities coherently.",
+    "implemented": "Searchable roster, role changes, sole-owner protection and removal with atomic reassignment.",
+    "deferred": "Production permissions, self-removal and remote membership services remain planned.",
+    "examples": [
+      {
+        "label": "Team members",
+        "href": "/app/demo/settings/team",
+        "instruction": "Use a member menu to change role or remove with reassignment."
+      }
+    ],
+    "sources": ["src/features/settings/team-settings.tsx", "src/demo/team.ts"]
+  },
+  {
+    "id": "SETT-05",
+    "title": "Team invitations",
+    "originalName": "Invite Member Dialog",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Invite a member without leaving the team context.",
+    "implemented": "Local pending invitations, duplicate feedback and cancellation.",
+    "deferred": "Acceptance, expiry and real email delivery remain planned.",
+    "examples": [
+      {
+        "label": "Invite a member",
+        "href": "/app/demo/settings/team",
+        "instruction": "Open Invite member and complete the dialog."
+      }
+    ],
+    "sources": ["src/features/settings/invite-dialog.tsx", "src/demo/team.ts"]
+  },
+  {
+    "id": "SETT-06",
+    "title": "API key management",
+    "originalName": "API Key Generator & Manager",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Create and revoke example credentials with a one-time reveal.",
+    "implemented": "Local dummy key creation, copy/manual-copy recovery and revocation.",
+    "deferred": "Keys are nonfunctional; expiry, scopes and service states remain planned.",
+    "examples": [
+      {
+        "label": "API keys",
+        "href": "/app/demo/settings/api-keys",
+        "instruction": "Create a key and copy it before dismissing the reveal."
+      }
+    ],
+    "sources": [
+      "src/features/settings/api-key-settings.tsx",
+      "src/features/settings/create-key-dialog.tsx"
+    ]
+  },
+  {
+    "id": "SETT-07",
+    "title": "Webhooks and delivery history",
+    "originalName": "Webhook Manager & Test Ping",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Configure event destinations and inspect a test result.",
+    "implemented": "Local endpoint editing, event selection and simulated delivery/response disclosure.",
+    "deferred": "No endpoint request or signing takes place.",
+    "examples": [
+      {
+        "label": "Webhooks",
+        "href": "/app/demo/settings/webhooks",
+        "instruction": "Expand a delivery to inspect its response."
+      },
+      {
+        "label": "Delivery failure",
+        "href": "/app/demo/settings/webhooks?scenario=webhook-failure",
+        "instruction": "Send a test, then retry to retain both results."
+      }
+    ],
+    "sources": [
+      "src/features/settings/webhook-settings.tsx",
+      "src/demo/use-integrations.ts"
+    ]
+  },
+  {
+    "id": "SETT-08",
+    "title": "Plan management",
+    "originalName": "Plan Usage Meter & Stripe Bridge",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Review the sample subscription and choose another plan.",
+    "implemented": "Member/project counts, billing totals and local plan selection in a dialog.",
+    "deferred": "No quotas, charges, proration or payment-provider portal.",
+    "examples": [
+      {
+        "label": "Billing plan",
+        "href": "/app/demo/settings/billing",
+        "instruction": "Open Manage plan, choose a plan and billing period, then save or cancel."
+      }
+    ],
+    "sources": [
+      "src/features/settings/billing-settings.tsx",
+      "src/features/settings/plan-dialog.tsx"
+    ]
+  },
+  {
+    "id": "SETT-09",
+    "title": "Invoice history",
+    "originalName": "Invoice History & PDF Download",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Find past invoices and download a readable record.",
+    "implemented": "Paid invoice list, empty history and three actual sample PDFs.",
+    "deferred": "Other invoice statuses and service states remain planned; native saving was limited by the automation harness.",
+    "examples": [
+      {
+        "label": "Invoices",
+        "href": "/app/demo/settings/billing",
+        "instruction": "Use an invoice download in the history section."
+      }
+    ],
+    "sources": [
+      "src/features/settings/invoice-history.tsx",
+      "src/demo/billing.ts"
+    ]
+  },
+  {
+    "id": "SETT-10",
+    "title": "Rich Text / Markdown Editor",
+    "originalName": "Rich Text / Markdown Editor",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Compose longer formatted content with editing and reading states.",
+    "implemented": "Tiptap description editing with bold, italic, lists, links and undo/redo; JSON drafts, formatted details and activity changes, plus plain-text card previews.",
+    "deferred": "Markdown source mode, images, collaborative editing and uploads remain outside this delivery.",
+    "examples": [
+      {
+        "label": "Project description",
+        "href": "/app/demo/projects/brand/edit",
+        "instruction": "Format the description, save it and view the project details."
+      },
+      {
+        "label": "Editor example",
+        "href": "/reference/components/rich-text",
+        "instruction": "Edit, save or cancel a description inside the isolated preview."
+      }
+    ],
+    "sources": [
+      "src/kit/rich-text/rich-text-editor.tsx",
+      "src/kit/rich-text/editor-toolbar.tsx",
+      "src/kit/rich-text/editor-link.tsx",
+      "src/kit/rich-text/document.ts",
+      "src/kit/rich-text/rich-text.tsx",
+      "src/features/projects/project-form.tsx"
+    ]
+  },
+  {
+    "id": "SETT-11",
+    "title": "Tag / Multi-select Input",
+    "originalName": "Tag / Multi-select Input",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Choose several known values or tags in a bounded field.",
+    "implemented": "Search, select or create project tags inline with removable chips. Names are trimmed and reused case-insensitively; drafts, save/reset and before/after Activity share the same values.",
+    "deferred": "A separate tag-management service, global renaming and remote suggestions are not demonstrated.",
+    "examples": [
+      {
+        "label": "Project tags",
+        "href": "/app/demo/projects/design-system/edit",
+        "instruction": "Search Tags, select an existing name or create a new one, then save. Other project editors can reuse the saved tag."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-tag-field.tsx",
+      "src/demo/project-tags.ts",
+      "src/features/projects/project-extra-fields.tsx",
+      "src/kit/ui/combobox.tsx",
+      "src/kit/ui/combobox-chips.tsx"
+    ]
+  },
+  {
+    "id": "SETT-12",
+    "title": "Dynamic Field Arrays",
+    "originalName": "Dynamic Field Arrays",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Add and remove related form rows without losing validation context.",
+    "implemented": "Add and remove URL/optional-label rows with stable identity, associated errors and focus. Empty rows are omitted from saves; details and Activity show saved links.",
+    "deferred": "Reordering, nested arrays and remote link-availability checks are not demonstrated.",
+    "examples": [
+      {
+        "label": "Related project links",
+        "href": "/app/demo/projects/design-system/edit",
+        "instruction": "Add or remove a link under Tags and links. Save an incomplete URL to see its error, correct it and save."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-link-fields.tsx",
+      "src/features/projects/project-extra-fields.tsx",
+      "src/features/projects/project-resources.tsx",
+      "src/demo/project-links.ts",
+      "src/demo/project-form.ts",
+      "src/demo/project-save.ts"
+    ]
+  },
+  {
+    "id": "SETT-13",
+    "title": "Validated form submission",
+    "originalName": "Validated form submission and recovery",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Correct errors and recover a failed save without rebuilding a draft.",
+    "implemented": "Associated field errors, focused invalid field and local retry that commits once.",
+    "deferred": "Network timing, concurrency and conflict handling remain planned.",
+    "examples": [
+      {
+        "label": "Create project",
+        "href": "/app/demo/projects/new",
+        "instruction": "Submit empty fields, correct the errors and save."
+      },
+      {
+        "label": "Save failure",
+        "href": "/app/demo/projects/new?scenario=save-failure",
+        "instruction": "Submit valid values, then use Retry after the local rejection."
+      },
+      {
+        "label": "Retry a rejected save",
+        "href": "/reference/states/save-failed",
+        "instruction": "Try the recovery action, then Reset to restore the starting fixture."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-form.tsx",
+      "src/demo/project-save.ts",
+      "src/features/reference/state-editor.tsx"
+    ]
+  },
+  {
+    "id": "SYS-01",
+    "title": "Appearance preferences",
+    "originalName": "Theme Provider & Toggle",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Customize the shared visual system across pages and overlays.",
+    "implemented": "Shared appearance preferences plus an isolated theme playground with semantic colors, saved presets, JSON import/export, CSS export and selected contrast pairs.",
+    "deferred": "Additional high-contrast presets and exhaustive state contrast inspection remain planned.",
+    "examples": [
+      {
+        "label": "Appearance",
+        "href": "/app/demo/settings/appearance",
+        "instruction": "Change a setting and inspect it across the workspace."
+      },
+      {
+        "label": "Theme playground",
+        "href": "/reference/themes",
+        "instruction": "Customize a preview, save a named preset or export its colors and appearance choices."
+      }
+    ],
+    "sources": [
+      "src/kit/theme/appearance-settings.tsx",
+      "src/kit/theme/use-theme.ts",
+      "src/features/reference/theme-playground.tsx",
+      "src/kit/theme/preset.ts"
+    ]
+  },
+  {
+    "id": "SYS-02",
+    "title": "Project command search",
+    "originalName": "Global Command Menu (Cmd+K)",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Find and open a project from anywhere in the workspace.",
+    "implemented": "Keyboard-operable project results with command shortcut and empty recovery.",
+    "deferred": "Broader command categories and recent-search history remain planned.",
+    "examples": [
+      {
+        "label": "Project search",
+        "href": "/app/demo/overview",
+        "instruction": "Open Find a project or use the command shortcut, then choose a result."
+      }
+    ],
+    "sources": ["src/features/projects/project-search.tsx"]
+  },
+  {
+    "id": "SYS-03",
+    "title": "Toast Notification System",
+    "originalName": "Toast Notification System",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Surface transient, actionable feedback without moving page content.",
+    "implemented": "",
+    "deferred": "This composition is planned; no live example is provided yet.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "SYS-04",
+    "title": "Notifications and inbox",
+    "originalName": "Notification Drawer / Popover",
+    "category": "System",
+    "surface": "Workspace",
+    "summary": "Review unread messages and open the underlying work.",
+    "implemented": "Notification sheet, unread state, Mark all read and an Inbox reading pane share data.",
+    "deferred": "No push/email service or pagination.",
+    "examples": [
+      {
+        "label": "Notifications",
+        "href": "/app/demo/overview",
+        "instruction": "Open the notification control in the header."
+      },
+      {
+        "label": "Inbox",
+        "href": "/app/demo/inbox",
+        "instruction": "Select a message and follow its project link."
+      }
+    ],
+    "sources": ["src/app/notifications.tsx", "src/demo/use-inbox.ts"]
+  },
+  {
+    "id": "SYS-05",
+    "title": "Keyboard Shortcut Overlay (?)",
+    "originalName": "Keyboard Shortcut Overlay (?)",
+    "category": "System",
+    "surface": "Workspace",
+    "summary": "Discover available keyboard commands in a focused overlay.",
+    "implemented": "Discover Ctrl/Command+K project search, ? shortcut help and Escape dismissal through the Help dialog. Global commands yield to editing and overlays.",
+    "deferred": "No custom bindings or navigation key sequences.",
+    "examples": [
+      {
+        "label": "Keyboard shortcuts",
+        "href": "/app/demo/overview",
+        "instruction": "Press ? outside an input, or open Help then Keyboard shortcuts. Ctrl/Command+K opens project search."
+      }
+    ],
+    "sources": [
+      "src/features/help/shortcuts.ts",
+      "src/app/use-workspace-help.tsx",
+      "src/features/help/workspace-help.tsx"
+    ]
+  },
+  {
+    "id": "SYS-06",
+    "title": "Skip to content",
+    "originalName": "Skip to Content Anchor",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Let keyboard users bypass repeated navigation.",
+    "implemented": "Shared shells have a skip link targeting focusable main content.",
+    "deferred": "Full assistive-technology conformance has not been certified.",
+    "examples": [
+      {
+        "label": "Workspace skip link",
+        "href": "/app/demo/overview",
+        "instruction": "Press Tab from the beginning of the page to reveal Skip to content."
+      }
+    ],
+    "sources": ["src/kit/shell/workspace-shell.tsx"]
+  },
+  {
+    "id": "TABL-01",
+    "title": "Project data table",
+    "originalName": "Standard App Data Table",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Compare projects and act on the relevant records.",
+    "implemented": "Shared controlled table with sorting, filters, pagination and detail links.",
+    "deferred": "Asynchronous loading and extra field types remain planned.",
+    "examples": [
+      {
+        "label": "Projects table",
+        "href": "/app/demo/projects",
+        "instruction": "Sort a column or open a project name."
+      }
+    ],
+    "sources": [
+      "src/features/overview/projects-table.tsx",
+      "src/features/overview/project-columns.tsx"
+    ]
+  },
+  {
+    "id": "TABL-02",
+    "title": "Faceted filters",
+    "originalName": "Faceted Filter Toolbar",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Combine text and known-value filters without losing context.",
+    "implemented": "URL-backed search, multi-value Status/Owner facets, counts and clearing.",
+    "deferred": "An advanced query builder remains planned.",
+    "examples": [
+      {
+        "label": "Filter projects",
+        "href": "/app/demo/projects",
+        "instruction": "Combine a name query with Status or Owner."
+      },
+      {
+        "label": "No matches",
+        "href": "/app/demo/projects?q=unmatched",
+        "instruction": "Clear the query to recover the list."
+      }
+    ],
+    "sources": [
+      "src/features/overview/project-toolbar.tsx",
+      "src/kit/data-table/faceted-filter.tsx"
+    ]
+  },
+  {
+    "id": "TABL-03",
+    "title": "Column visibility",
+    "originalName": "Column Visibility Menu",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Choose which fields are useful for the current view.",
+    "implemented": "Table column visibility survives inspection and navigation within the session.",
+    "deferred": "Column reordering remains planned.",
+    "examples": [
+      {
+        "label": "Table columns",
+        "href": "/app/demo/projects",
+        "instruction": "Open Columns and change the visible fields."
+      }
+    ],
+    "sources": ["src/kit/data-table/table-view-options.tsx"]
+  },
+  {
+    "id": "TABL-04",
+    "title": "Bulk project actions",
+    "originalName": "Floating Bulk Action Bar",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Apply one action to a deliberate selection of records.",
+    "implemented": "Page/all-matching selection, owner assignment, completion and partial-failure retry.",
+    "deferred": "No artificial pending delay or remote bulk service.",
+    "examples": [
+      {
+        "label": "Bulk actions",
+        "href": "/app/demo/projects",
+        "instruction": "Select projects, then open the contextual actions."
+      },
+      {
+        "label": "Partial failure",
+        "href": "/app/demo/projects?bulkScenario=partial-failure",
+        "instruction": "Select several projects, perform an action, then retry the failed subset."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-bulk-actions.tsx",
+      "src/demo/project-bulk.ts"
+    ]
+  },
+  {
+    "id": "TABL-05",
+    "title": "Pagination",
+    "originalName": "Pagination & Page-Size Controls",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Navigate a bounded set of results without losing filters.",
+    "implemented": "URL-backed page size, page navigation and valid-page correction.",
+    "deferred": "Remote paging and unknown totals remain planned.",
+    "examples": [
+      {
+        "label": "Project pages",
+        "href": "/app/demo/projects",
+        "instruction": "Use page controls or change Rows per page."
+      }
+    ],
+    "sources": ["src/kit/data-table/table-pagination.tsx"]
+  },
+  {
+    "id": "TABL-06",
+    "title": "Project inspector",
+    "originalName": "Slide-Over Inspection Drawer",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Inspect one record while retaining the surrounding results.",
+    "implemented": "B panel shows progress, metadata, completion and full-detail/edit links with focus return.",
+    "deferred": "Additional inspector variants remain planned.",
+    "examples": [
+      {
+        "label": "Inspect projects",
+        "href": "/app/demo/projects",
+        "instruction": "Use a project rowï¿½s inspect arrow to open the side panel."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-details.tsx",
+      "src/features/projects/project-progress.tsx"
+    ]
+  },
+  {
+    "id": "TABL-07",
+    "title": "Conversation inbox",
+    "originalName": "Split-Pane / Master-Detail View",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Browse a list and read the current item in context.",
+    "implemented": "Resizable panes, narrow list/detail navigation, Compose and Reply, retained drafts, explicit read state and recovery.",
+    "deferred": "Pane collapse and asynchronous loading remain planned.",
+    "examples": [
+      {
+        "label": "Inbox",
+        "href": "/app/demo/inbox",
+        "instruction": "Start a conversation or reply to a message; resize the desktop reading pane."
+      },
+      {
+        "label": "Read-action failure",
+        "href": "/app/demo/inbox?scenario=inbox-failure",
+        "instruction": "Try changing read state, then retry."
+      }
+    ],
+    "sources": [
+      "src/features/inbox/inbox-layout.tsx",
+      "src/features/inbox/inbox-detail.tsx",
+      "src/features/inbox/message-composer.tsx",
+      "src/features/inbox/message-thread.tsx",
+      "src/demo/inbox.ts"
+    ]
+  },
+  {
+    "id": "TABL-08",
+    "title": "Activity timeline",
+    "originalName": "Activity Feed & Audit Timeline",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Understand recent changes and reach the related project.",
+    "implemented": "Recent activity and full date-grouped workspace history share live events. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
+    "deferred": "Historical fixture events contain no invented before/after values. No remote pagination or trusted audit service.",
+    "examples": [
+      {
+        "label": "Recent activity",
+        "href": "/app/demo/overview#activity",
+        "instruction": "Follow an activity link or expand the timeline."
+      },
+      {
+        "label": "Workspace activity",
+        "href": "/app/demo/activity",
+        "instruction": "Filter events, open Details, and follow a project link. New project changes appear in history."
+      }
+    ],
+    "sources": [
+      "src/features/overview/activity-list.tsx",
+      "src/features/activity/activity-timeline.tsx",
+      "src/features/activity/activity-detail.tsx",
+      "src/demo/activity.ts"
+    ]
+  },
+  {
+    "id": "TABL-09",
+    "title": "Project board",
+    "originalName": "Kanban / Pipeline Board",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Move work through status columns while keeping all views consistent.",
+    "implemented": "Pointer/keyboard dragging, menu moves, empty columns and retry; reopening preserves tasks.",
+    "deferred": "Lane customization and alternative pipelines remain planned.",
+    "examples": [
+      {
+        "label": "Board",
+        "href": "/app/demo/projects?view=board",
+        "instruction": "Move a card by drag, keyboard or its menu."
+      },
+      {
+        "label": "Move failure",
+        "href": "/app/demo/projects?view=board&bulkScenario=partial-failure",
+        "instruction": "Try a status move and retry the rejected change."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-board.tsx",
+      "src/features/projects/project-board-drag.tsx"
+    ]
+  },
+  {
+    "id": "TABL-10",
+    "title": "Table, cards and board",
+    "originalName": "View Toggle (List vs Grid)",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Choose a view that suits the task without changing the results.",
+    "implemented": "URL-backed views share filters, sorting and project actions.",
+    "deferred": "Additional layout variants and asynchronous skeletons remain planned.",
+    "examples": [
+      {
+        "label": "Cards",
+        "href": "/app/demo/projects?view=grid",
+        "instruction": "Change the view; filters and records stay consistent."
+      },
+      {
+        "label": "Table",
+        "href": "/app/demo/projects",
+        "instruction": "Compare fields across rows."
+      },
+      {
+        "label": "Board",
+        "href": "/app/demo/projects?view=board",
+        "instruction": "Compare work by status."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-view-toggle.tsx",
+      "src/features/projects/project-grid.tsx"
+    ]
+  },
+  {
+    "id": "TABL-11",
+    "title": "Advanced Query Builder",
+    "originalName": "Advanced Query Builder",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Build advanced combinations of conditions when simple facets are insufficient.",
+    "implemented": "On-demand Match all/any conditions for name, status, owner, due date and progress. Apply commits the draft; Cancel discards it. Validated URL filters share result membership, counts and selection across Table, Cards and Board.",
+    "deferred": "Nested condition groups, saved queries and server-side querying remain separate work.",
+    "examples": [
+      {
+        "label": "Advanced project filters",
+        "href": "/app/demo/projects",
+        "instruction": "Open Advanced, add conditions and apply them. Switch views or visit a project; the applied filters remain in the URL."
+      }
+    ],
+    "sources": [
+      "src/features/projects/advanced-project-filters.tsx",
+      "src/features/projects/project-query-form.tsx",
+      "src/features/projects/query-condition.tsx",
+      "src/features/projects/query-select.tsx",
+      "src/features/projects/project-query.ts",
+      "src/features/overview/project-filtering.ts",
+      "src/app/projects-search.ts"
+    ]
+  },
+  {
+    "id": "SYS-07",
+    "title": "Tooltips and dotted text hints",
+    "originalName": "Tooltips and dotted text hints",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Reveal supplementary explanations without clutter or layout shift.",
+    "implemented": "Shared dotted-underlined TextHint uses a hoverable, tappable Popover. Icon tooltips supplement accessible button names. Includes a live Overview term and reference specimen.",
+    "deferred": "Important instructions stay visible. Physical touch-device and screen-reader verification remain separate.",
+    "examples": [
+      {
+        "label": "Text hints and icon tooltips",
+        "href": "/reference/components/tooltip",
+        "instruction": "Hover or activate Active projects; dismiss with Escape or outside interaction. Try the labelled bookmark action."
+      },
+      {
+        "label": "Due date definition",
+        "href": "/app/demo/overview",
+        "instruction": "Hover or activate the dotted-underlined Due in 7 days label."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/text-hint.tsx",
+      "src/kit/ui/tooltip.tsx",
+      "src/features/reference/examples/tooltip-example.tsx"
+    ]
+  }
+]

@@ -1,0 +1,116 @@
+.analytics-heading .analytics-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--control-gap);
+  min-width: 0;
+}
+.analytics-filters [data-slot="select-trigger"] {
+  max-width: min(24ch, 100%);
+}
+.analytics-page > .completion-card .chart-body {
+  height: 20rem;
+  flex: none;
+}
+.analytics-breakdowns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--section-gap);
+}
+.analytics-breakdown {
+  min-width: 0;
+  gap: var(--card-padding);
+}
+.analytics-breakdown > [data-slot="card-content"] {
+  flex: 1;
+  min-width: 0;
+}
+.analytics-data {
+  max-height: 22rem;
+  min-height: 16rem;
+  overflow: auto;
+}
+.analytics-project-link {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.analytics-bars {
+  overflow-x: auto;
+}
+.analytics-bar-plot {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: auto;
+}
+.analytics-contributors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--content-gap);
+}
+.analytics-donut {
+  position: relative;
+  flex: 0 1 13rem;
+  width: 13rem;
+  max-width: 100%;
+}
+.analytics-donut-plot {
+  aspect-ratio: 1;
+}
+.analytics-donut-total {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.analytics-donut-total strong {
+  font-size: var(--text-metric);
+  line-height: 1.2;
+}
+.analytics-donut-total span {
+  color: var(--muted-foreground);
+}
+.analytics-legend {
+  flex: 1 1 10rem;
+  display: grid;
+  gap: var(--item-padding);
+}
+.analytics-legend li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.analytics-legend strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.analytics-swatch {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+@media (width < 64rem) {
+  .analytics-breakdowns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (width < 40rem) {
+  .analytics-page {
+    padding-inline: 1rem;
+  }
+  .analytics-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .analytics-heading .analytics-filters {
+    justify-content: flex-start;
+  }
+  .analytics-page > .completion-card .chart-body {
+    height: 16rem;
+  }
+}

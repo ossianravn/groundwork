@@ -1,0 +1,31 @@
+{
+  "memberships": [
+    {
+      "memberId": "ava",
+      "email": "ava@example.com",
+      "role": "owner",
+      "active": true
+    },
+    {
+      "memberId": "leo",
+      "email": "leo@example.com",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "memberId": "mia",
+      "email": "mia@example.com",
+      "role": "member",
+      "active": true
+    },
+    {
+      "memberId": "noah",
+      "email": "noah@example.com",
+      "role": "viewer",
+      "active": true
+    }
+  ],
+  "invitations": [
+    { "id": "invite-sophie", "email": "sophie@example.com", "role": "member" }
+  ]
+}

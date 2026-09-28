@@ -1,0 +1,84 @@
+@import "./onboarding.css";
+@import "./providers.css";
+
+.access-page {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: clamp(1rem, 5vh, 3rem) var(--page-padding);
+  background: var(--background);
+}
+.access-column {
+  width: min(100%, 26rem);
+  margin-inline: auto;
+}
+.access-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  margin-bottom: var(--section-gap);
+}
+.access-brand-row .brand {
+  padding: 0;
+}
+.access-card {
+  gap: var(--section-gap);
+}
+.access-card h1 {
+  font-size: var(--text-page);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: var(--leading-heading);
+}
+.access-card [data-slot="field-group"] {
+  gap: var(--stack-gap);
+}
+.access-card form > .ui-button {
+  width: 100%;
+  margin-top: var(--section-gap);
+}
+.access-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.access-link {
+  text-underline-offset: 3px;
+}
+.access-link:hover {
+  text-decoration: underline;
+}
+.access-footer {
+  padding: var(--content-gap) var(--card-padding);
+  justify-content: center;
+  text-align: center;
+}
+.access-disclosure {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  margin-top: var(--section-gap);
+  line-height: var(--leading-body);
+}
+.access-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+.access-alternative {
+  width: 100%;
+  margin-top: var(--control-gap);
+}
+.access-email {
+  overflow-wrap: anywhere;
+}
+@media (width < 640px) {
+  .access-page {
+    align-items: start;
+    padding-top: 1.5rem;
+  }
+  .access-card input {
+    font-size: max(1rem, var(--text-body));
+  }
+}

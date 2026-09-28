@@ -1,0 +1,182 @@
+.projects-card {
+  min-width: 0;
+  padding-bottom: 0;
+  gap: 0;
+  --project-row-height: calc(
+    var(--control-height) + 2 * var(--row-padding) + 1px
+  );
+}
+.project-card-header {
+  padding-bottom: var(--card-padding);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap);
+}
+.count-chip {
+  font-size: var(--text-meta);
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--muted-foreground);
+}
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+  max-width: 100%;
+  flex-basis: 100%;
+}
+.project-search {
+  width: 14rem;
+}
+.project-results {
+  display: flex;
+  flex-direction: column;
+  /* Reserve the unfiltered rows without exposing empty rows to assistive tech. */
+  min-height: calc(
+    max(var(--navigation-height), var(--control-height-sm)) +
+      var(--project-row-height) * var(--project-row-count)
+  );
+}
+.project-table {
+  table-layout: fixed;
+}
+.project-table tbody tr {
+  height: var(--project-row-height);
+}
+.project-table th {
+  height: max(var(--navigation-height), var(--control-height-sm));
+  font-size: var(--text-meta);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: var(--muted);
+}
+.project-table th,
+.project-table td {
+  padding-inline: 1rem;
+}
+.project-table th:first-child,
+.project-table td:first-child {
+  padding-left: var(--card-padding);
+}
+.project-table td {
+  padding-block: var(--row-padding);
+  font-size: var(--text-body);
+}
+.project-monogram {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-weight: 500;
+}
+.project-name {
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+  padding: 0.15rem 0.25rem;
+  margin-left: -0.25rem;
+  font-size: var(--text-body);
+}
+.status-badge {
+  border: 1px solid transparent;
+  font-size: var(--text-meta);
+  font-weight: 400;
+  padding: 0.25rem 0.45rem;
+}
+.status-badge[data-status="in-progress"] {
+  background: var(--in-progress-soft);
+  color: var(--in-progress);
+}
+.status-badge[data-status="in-review"] {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.status-badge[data-status="completed"] {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+  min-width: 7rem;
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.progress-cell span {
+  min-width: 2rem;
+  text-align: right;
+  color: var(--muted-foreground);
+}
+progress {
+  appearance: none;
+  border: 0;
+  width: 4.5rem;
+  height: 0.3rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--muted);
+}
+progress::-webkit-progress-bar {
+  background: var(--muted);
+  border-radius: 1rem;
+}
+progress::-webkit-progress-value {
+  background: var(--primary);
+  border-radius: 1rem;
+}
+progress::-moz-progress-bar {
+  background: var(--primary);
+  border-radius: 1rem;
+}
+.owner-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.125rem 0 0.25rem;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+@media (max-width: 767px) {
+  .project-filters,
+  .project-search {
+    width: 100%;
+  }
+  .filter-reset {
+    min-width: var(--control-height);
+    padding-inline: var(--control-padding-block);
+  }
+  .filter-reset > span {
+    display: none;
+  }
+  .project-filters .facet-trigger:has(.facet-count) > svg {
+    display: none;
+  }
+  .project-filters .facet-count {
+    order: -1;
+  }
+}
+.table-sort svg {
+  color: var(--muted-foreground);
+}
+.table-sort {
+  padding-inline: 0.25rem;
+  margin-left: -0.25rem;
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}

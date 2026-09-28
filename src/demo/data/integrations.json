@@ -1,0 +1,56 @@
+{
+  "keys": [
+    {
+      "id": "reporting",
+      "name": "Reporting",
+      "suffix": "demo_8f2a",
+      "access": "Read projects",
+      "created": "2026-09-12",
+      "lastUsed": "2026-09-24",
+      "revoked": false
+    },
+    {
+      "id": "archive",
+      "name": "Archive export",
+      "suffix": "demo_3c91",
+      "access": "Read projects",
+      "created": "2026-08-20",
+      "lastUsed": "2026-09-01",
+      "revoked": true
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "project-sync",
+      "name": "Project sync",
+      "url": "https://example.com/hooks/projects",
+      "events": ["project.created", "project.updated", "project.completed"]
+    },
+    {
+      "id": "reporting-hook",
+      "name": "Reporting",
+      "url": "https://example.com/hooks/reporting",
+      "events": ["project.completed"]
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "delivery-1",
+      "webhookId": "project-sync",
+      "event": "project.updated",
+      "url": "https://example.com/hooks/projects",
+      "date": "2026-09-24T10:30:00Z",
+      "status": 200,
+      "response": "{\"received\":true}"
+    },
+    {
+      "id": "delivery-2",
+      "webhookId": "reporting-hook",
+      "event": "project.completed",
+      "url": "https://example.com/hooks/reporting",
+      "date": "2026-09-24T09:15:00Z",
+      "status": 500,
+      "response": "{\"error\":\"Sample endpoint unavailable\"}"
+    }
+  ]
+}

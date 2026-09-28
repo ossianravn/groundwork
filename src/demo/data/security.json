@@ -1,0 +1,32 @@
+{
+  "sessions": [
+    {
+      "id": "current",
+      "device": "Current browser",
+      "lastActive": "Now",
+      "current": true,
+      "revoked": false
+    },
+    {
+      "id": "desktop",
+      "device": "Chrome on macOS",
+      "lastActive": "24 Sept 2026, 09:15",
+      "current": false,
+      "revoked": false
+    },
+    {
+      "id": "phone",
+      "device": "Safari on iPhone",
+      "lastActive": "23 Sept 2026, 18:42",
+      "current": false,
+      "revoked": false
+    }
+  ],
+  "events": [
+    {
+      "id": "initial-sign-in",
+      "label": "Signed in with a password",
+      "at": "2026-09-24T09:15:00Z"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "mobile-review",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "title": "Ready for a review",
+    "preview": "The core mobile flows are ready for your feedback.",
+    "body": [
+      "The core mobile flows are ready for a review. Please take a look at the navigation, onboarding and project screens before we finish the remaining tasks.",
+      "The project is in review. You can check its current progress and owner from the project page."
+    ],
+    "date": "2026-09-24",
+    "read": false
+  },
+  {
+    "id": "brand-guidelines",
+    "projectId": "brand",
+    "memberId": "leo",
+    "title": "Brand guidelines are ready",
+    "preview": "The visual guidelines are complete; the project has a few tasks left.",
+    "body": [
+      "The visual guidelines are complete and ready for the team to use. The remaining project tasks cover the rollout and final handoff.",
+      "Please check the project before the September handoff to see what is still outstanding."
+    ],
+    "date": "2026-09-24",
+    "read": false
+  },
+  {
+    "id": "website-layouts",
+    "projectId": "website",
+    "memberId": "leo",
+    "title": "Page layouts updated",
+    "preview": "The main page layouts are complete and the next stage is underway.",
+    "body": [
+      "The main page layouts are complete. We are moving on to the remaining responsive and content work.",
+      "The project page has the current task totals and due date if you need to plan the next review."
+    ],
+    "date": "2026-09-22",
+    "read": false
+  },
+  {
+    "id": "design-documentation",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "title": "Documentation progress",
+    "preview": "The first group of shared component notes is complete.",
+    "body": [
+      "The first group of shared component notes is complete. The remaining work covers interaction patterns and the next set of components.",
+      "The project stays in progress while those tasks are completed."
+    ],
+    "date": "2026-09-21",
+    "read": true
+  },
+  {
+    "id": "onboarding-handoff",
+    "projectId": "onboarding",
+    "memberId": "mia",
+    "title": "Onboarding is complete",
+    "preview": "All 24 tasks are complete and the project is ready for handoff.",
+    "body": [
+      "Customer onboarding is complete. The first-run flow and supporting guidance are ready for handoff.",
+      "You can revisit the completed project and its activity whenever you need the context."
+    ],
+    "date": "2026-09-20",
+    "read": true
+  }
+]

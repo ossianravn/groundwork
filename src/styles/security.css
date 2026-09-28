@@ -1,0 +1,71 @@
+.security-settings {
+  display: grid;
+  gap: var(--section-gap);
+}
+.security-section + .security-section,
+.security-activity {
+  border-top: 1px solid var(--border);
+  padding-top: var(--content-gap);
+}
+.security-method {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  padding-block: var(--item-padding);
+}
+.security-method h3 {
+  font-weight: 500;
+}
+.security-method > .ui-button {
+  flex-shrink: 0;
+}
+.security-method .settings-note {
+  margin-top: 0.25rem;
+}
+.security-activity > summary {
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 500;
+}
+.security-activity li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+  padding-block: var(--item-padding);
+  font-size: var(--text-meta);
+}
+.security-activity time {
+  color: var(--muted-foreground);
+}
+.verification-form > .ui-button[type="submit"] {
+  margin-top: var(--content-gap);
+}
+.verification-form [data-slot="input-otp-slot"] {
+  width: var(--control-height);
+  height: var(--control-height);
+  font-size: var(--text-body);
+}
+.verification-form [data-slot="input-otp"]:focus-visible {
+  outline: none;
+}
+.recovery-code-input {
+  max-width: 16ch;
+  font-family: ui-monospace, monospace;
+}
+.recovery-codes {
+  display: grid;
+  justify-items: start;
+  gap: var(--control-gap);
+}
+.recovery-code-list {
+  font-family: ui-monospace, monospace;
+  width: 100%;
+  resize: none;
+  line-height: 1.8;
+}
+.security-dialog [data-slot="dialog-title"] {
+  padding-right: var(--control-height);
+}

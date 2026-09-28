@@ -1,0 +1,122 @@
+{
+  "currency": "USD",
+  "subscription": { "plan": "team", "billing": "monthly" },
+  "plans": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "description": "A place to organize your own work.",
+      "monthly": 0,
+      "annual": 0,
+      "highlights": [
+        "Project overview",
+        "Table, cards and board",
+        "Project ownership and due dates"
+      ]
+    },
+    {
+      "id": "team",
+      "name": "Team",
+      "description": "A shared workspace for your team.",
+      "monthly": 12,
+      "annual": 120,
+      "highlights": [
+        "Everything in Starter",
+        "Team directory and invitations",
+        "Shared workspace settings"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "description": "More control as your team grows.",
+      "monthly": 24,
+      "annual": 240,
+      "highlights": [
+        "Everything in Team",
+        "Member roles and administration",
+        "Ownership reassignment"
+      ]
+    }
+  ],
+  "comparison": [
+    {
+      "label": "Workspace",
+      "features": [
+        {
+          "label": "Overview and activity",
+          "plans": ["starter", "team", "business"]
+        },
+        {
+          "label": "Table, cards and board",
+          "plans": ["starter", "team", "business"]
+        },
+        {
+          "label": "Project owners and due dates",
+          "plans": ["starter", "team", "business"]
+        },
+        {
+          "label": "Appearance customization",
+          "plans": ["starter", "team", "business"]
+        }
+      ]
+    },
+    {
+      "label": "Team management",
+      "features": [
+        {
+          "label": "Team directory and invitations",
+          "plans": ["team", "business"]
+        },
+        { "label": "Member roles and administration", "plans": ["business"] },
+        { "label": "Ownership reassignment", "plans": ["business"] }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "question": "Will I be charged?",
+      "answer": "No. These are sample prices and feature packages for this interactive template. Choosing a plan opens local sign-up; no payment details are requested and no subscription is purchased."
+    },
+    {
+      "question": "How does annual pricing work?",
+      "answer": "Team is $120 per member per year, equivalent to $10 per month. Business is $240 per member per year, equivalent to $20 per month. The full annual amount is shown alongside each price. All amounts are illustrative USD prices."
+    },
+    {
+      "question": "Does my plan limit the demo?",
+      "answer": "No. Every sample plan gives access to the full demo. Your choice labels the workspace you create; feature restrictions and billing are not enforced. Reload or Reset demo restores the sample workspace."
+    }
+  ],
+  "invoices": [
+    {
+      "id": "SAMPLE-2026-09",
+      "date": "2026-09-01",
+      "customer": "Studio North",
+      "description": "Team plan - monthly",
+      "members": 4,
+      "unitAmount": 12,
+      "status": "Paid",
+      "file": "/invoices/sample-2026-09.pdf"
+    },
+    {
+      "id": "SAMPLE-2026-08",
+      "date": "2026-08-01",
+      "customer": "Studio North",
+      "description": "Team plan - monthly",
+      "members": 4,
+      "unitAmount": 12,
+      "status": "Paid",
+      "file": "/invoices/sample-2026-08.pdf"
+    },
+    {
+      "id": "SAMPLE-2026-07",
+      "date": "2026-07-01",
+      "customer": "Studio North",
+      "description": "Team plan - monthly",
+      "members": 4,
+      "unitAmount": 12,
+      "status": "Paid",
+      "file": "/invoices/sample-2026-07.pdf"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+/* Abstract previews explain theme and row density; they are not additional UI. */
+.appearance-miniature {
+  --preview-bg: var(--muted);
+  --preview-surface: var(--card);
+  --preview-ink: var(--muted-foreground);
+  display: grid;
+  grid-template-columns: 22% 1fr;
+  gap: 6px;
+  padding: 8px;
+  height: 64px;
+  border-radius: 0;
+  background: var(--preview-bg);
+  color: var(--preview-ink);
+  overflow: hidden;
+}
+.appearance-miniature[data-mode="light"] {
+  --preview-bg: #f3f3f5;
+  --preview-surface: white;
+  --preview-ink: #686a72;
+}
+.appearance-miniature[data-mode="dark"] {
+  --preview-bg: #24252a;
+  --preview-surface: #393b43;
+  --preview-ink: #b0b2bd;
+}
+.appearance-miniature[data-mode="system"] {
+  --preview-bg: linear-gradient(115deg, #f3f3f5 50%, #24252a 50%);
+  --preview-surface: #b0b2bd;
+  --preview-ink: #747680;
+}
+.appearance-mini-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+.appearance-mini-nav i {
+  height: 3px;
+  width: 100%;
+  background: currentColor;
+  opacity: 0.55;
+  border-radius: 2px;
+}
+.appearance-mini-nav i:first-child {
+  width: 60%;
+  background: var(--primary);
+  opacity: 1;
+}
+.appearance-mini-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.appearance-mini-heading {
+  height: 4px;
+  width: 60%;
+  border-radius: 2px;
+  background: currentColor;
+}
+.appearance-mini-cards {
+  display: flex;
+  gap: 3px;
+  height: 13px;
+}
+.appearance-mini-cards i {
+  flex: 1;
+  background: var(--preview-surface);
+  border-radius: 2px;
+}
+.appearance-mini-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px;
+  background: var(--preview-surface);
+  border-radius: 2px;
+}
+.appearance-mini-lines i {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.45;
+}
+.appearance-miniature[data-mode="comfortable"],
+.appearance-miniature[data-mode="compact"] {
+  grid-template-columns: 1fr;
+  height: 56px;
+}
+.appearance-miniature[data-mode="comfortable"] .appearance-mini-nav,
+.appearance-miniature[data-mode="compact"] .appearance-mini-nav,
+.appearance-miniature[data-mode="comfortable"] .appearance-mini-cards,
+.appearance-miniature[data-mode="compact"] .appearance-mini-cards {
+  display: none;
+}
+.appearance-miniature[data-mode="comfortable"] .appearance-mini-lines {
+  gap: 8px;
+  padding: 6px;
+}
+.appearance-miniature[data-mode="compact"] .appearance-mini-lines {
+  gap: 4px;
+  padding: 4px;
+}

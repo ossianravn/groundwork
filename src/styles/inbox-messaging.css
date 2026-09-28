@@ -1,0 +1,100 @@
+.inbox-detail-scroll {
+  overflow: hidden;
+}
+.inbox-thread {
+  flex: 1;
+  min-height: 6rem;
+}
+.inbox-thread [data-slot="message-scroller-content"] {
+  padding: var(--card-padding);
+  gap: var(--section-gap);
+}
+.inbox-thread
+  [data-slot="message-scroller-item"]
+  + [data-slot="message-scroller-item"] {
+  border-top: 1px solid var(--border);
+  padding-top: var(--section-gap);
+}
+.inbox-post {
+  gap: var(--content-gap);
+}
+.inbox-post [data-slot="message-avatar"] {
+  align-self: flex-start;
+}
+.inbox-post [data-slot="message-header"] {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  flex-wrap: wrap;
+  color: var(--muted-foreground);
+  padding: 0;
+}
+.inbox-post strong {
+  color: var(--foreground);
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+.inbox-post p {
+  max-width: 65ch;
+  white-space: pre-wrap;
+  line-height: 1.65;
+  font-size: var(--text-body);
+}
+.inbox-reply {
+  padding: var(--card-padding);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.inbox-reply textarea {
+  min-height: 5rem;
+  max-height: 12rem;
+}
+.inbox-reply-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--control-gap);
+  margin-top: var(--control-gap);
+}
+[data-slot="dialog-content"].message-compose-dialog {
+  width: 36rem;
+  max-width: calc(100% - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+}
+.message-compose-fields {
+  padding-block: var(--control-gap) var(--panel-padding);
+}
+.message-compose-address {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--content-gap);
+}
+.message-compose-address [data-slot="select-trigger"] {
+  width: 100%;
+}
+.message-compose-fields textarea {
+  min-height: 9rem;
+}
+@media (width < 64rem) {
+  .inbox-detail {
+    height: auto;
+  }
+  .inbox-thread {
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+  }
+  .inbox-thread [data-slot="message-scroller-viewport"] {
+    height: auto;
+    overflow: visible;
+    contain: none;
+  }
+  .inbox-thread [data-slot="message-scroller-button"] {
+    display: none;
+  }
+}
+@media (width < 30rem) {
+  .message-compose-address {
+    grid-template-columns: 1fr;
+  }
+}

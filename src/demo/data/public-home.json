@@ -1,0 +1,43 @@
+{
+  "title": "Your projects. A clearer picture.",
+  "description": "Keep ownership, progress, and next steps together. Forma gives your team one place to see the work and move it forward.",
+  "features": [
+    {
+      "title": "See where things stand",
+      "description": "Start with the overview. Follow completed tasks, upcoming deadlines, and the latest activity without opening every project.",
+      "linkLabel": "Explore the overview"
+    },
+    {
+      "title": "Work in the view that fits",
+      "description": "Compare details in a table, scan project cards, or move work across the board. The same projects stay in sync across every view.",
+      "linkLabel": "Try the project board"
+    },
+    {
+      "title": "Keep ownership clear",
+      "description": "Give each project an owner and a due date. Review the details, make a change, and return to the work in context.",
+      "linkLabel": "Browse projects"
+    }
+  ],
+  "questions": [
+    {
+      "question": "Can I try Forma without signing up?",
+      "answer": "Yes. Open demo takes you straight into a sample workspace with projects, people, and activity. No account or payment details are needed."
+    },
+    {
+      "question": "What can I change in the demo?",
+      "answer": "Create and edit projects, assign owners, move work on the board, and explore team settings. Changes stay with you as you navigate and reset when you reload or choose Reset demo data."
+    },
+    {
+      "question": "Can I customize the interface?",
+      "answer": "Appearance settings include light and dark themes, accent colors, fonts, density, and corners. Your choices apply across the site and are saved on this device."
+    },
+    {
+      "question": "Is this a live project-management service?",
+      "answer": "Forma is an interactive reference built with shadcn/ui. Project data is local to this demo; sign-in, invitations, and newsletter forms do not create real accounts or send email. The template source is linked in the footer."
+    }
+  ],
+  "newsletter": {
+    "title": "Keep up with what’s next.",
+    "description": "Product notes, new workflows, and a little inspiration for your next project."
+  }
+}

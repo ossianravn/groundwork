@@ -1,0 +1,39 @@
+.demo-note button {
+  max-width: 100%;
+  white-space: normal;
+}
+.demo-note {
+  margin: var(--stack-gap) 0.3rem;
+  padding: var(--item-padding);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  font-size: var(--text-meta);
+}
+.demo-indicator {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--success);
+}
+.demo-note p {
+  margin: 0.3rem 0 0.5rem;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.demo-note button {
+  margin-left: -0.5rem;
+}
+@media (min-width: 1024px) {
+  [data-sidebar-collapsed="true"] .demo-note {
+    border: 0;
+    padding: 0;
+    margin: var(--content-gap) 0;
+  }
+  [data-sidebar-collapsed="true"] .demo-note button {
+    margin: 0;
+    width: var(--control-height);
+    padding: 0;
+  }
+}

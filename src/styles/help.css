@@ -1,0 +1,62 @@
+[data-slot="dialog-content"].workspace-help {
+  max-width: min(30rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+}
+.help-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--control-gap);
+  margin-top: var(--control-gap);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.help-guide-link svg,
+.help-action svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.help-actions {
+  display: grid;
+  gap: 0.25rem;
+}
+.help-action {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+  min-height: var(--control-height);
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--radius-md);
+  width: 100%;
+  justify-content: start;
+}
+.help-action:hover {
+  background: var(--muted);
+}
+.help-action > :last-child {
+  margin-left: auto;
+}
+.shortcut-list {
+  display: grid;
+  gap: var(--item-padding);
+}
+.shortcut-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--item-padding);
+}
+.shortcut-list dd {
+  display: flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+.workspace-help kbd {
+  font-family: inherit;
+  font-size: var(--text-meta);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+}

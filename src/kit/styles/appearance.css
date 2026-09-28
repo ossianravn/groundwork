@@ -1,0 +1,137 @@
+@import "./appearance-previews.css";
+
+.appearance-sheet {
+  container-type: inline-size;
+}
+.appearance-section + .appearance-section {
+  margin-top: var(--panel-padding);
+  padding-top: var(--panel-padding);
+  border-top: 1px solid var(--border);
+}
+.appearance-field [data-slot="field-legend"] {
+  font-size: var(--text-body);
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+.appearance-options {
+  display: flex;
+  gap: 12px;
+  padding-top: 6px;
+}
+.appearance-choice {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+.appearance-choice input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.appearance-choice-frame {
+  display: block;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.appearance-choice:hover .appearance-choice-frame {
+  background: var(--muted);
+}
+.appearance-choice:has(input:checked) .appearance-choice-frame {
+  border-color: var(--foreground);
+}
+.appearance-choice:has(input:focus-visible) .appearance-choice-frame {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+.appearance-choice-label {
+  display: block;
+  padding-top: 8px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.appearance-choice-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--control-height) - 2px);
+  padding: var(--control-padding-block) 8px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.appearance-choice-check {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--card);
+  box-shadow: 0 0 0 3px var(--card);
+  pointer-events: none;
+}
+.appearance-choice-check svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 3;
+}
+.appearance-accent-preview {
+  display: grid;
+  place-items: center;
+  min-height: max(48px, var(--control-height));
+}
+.appearance-accent-preview > span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--muted-foreground);
+}
+.appearance-settings [data-slot="field"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.appearance-settings [data-slot="select-trigger"] {
+  width: 100%;
+}
+[data-slot="sheet-footer"].appearance-footer {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-block: var(--item-padding);
+}
+.appearance-footer .panel-feedback {
+  flex: 1 1 120px;
+  font-size: var(--text-meta);
+}
+.appearance-footer .ui-button {
+  margin-left: auto;
+}
+@container (max-width: 330px) {
+  .appearance-settings [data-slot="field"] {
+    grid-template-columns: 1fr;
+  }
+  .appearance-options {
+    gap: 8px;
+  }
+  .appearance-choice-caption {
+    padding-inline: 4px;
+  }
+}
+@media (forced-colors: active) {
+  .appearance-choice-check {
+    background: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+  .appearance-choice:has(input:checked) .appearance-choice-frame {
+    border-color: Highlight;
+  }
+}

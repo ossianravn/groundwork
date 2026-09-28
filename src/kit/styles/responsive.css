@@ -1,0 +1,131 @@
+@media (max-width: 1199px) {
+  :root {
+    --sidebar-width: 13.5rem;
+    --page-padding: 1.5rem;
+  }
+  :root[data-density="compact"] {
+    --page-padding: 1.25rem;
+  }
+}
+@media (max-width: 1023px) {
+  .desktop-sidebar {
+    display: none;
+  }
+  .desktop-menu-button {
+    display: none;
+  }
+  .workspace-content {
+    margin-left: 0;
+  }
+  .mobile-menu-button {
+    display: inline-flex;
+  }
+  .mobile-sidebar {
+    width: min(20rem, 88vw);
+    max-width: none;
+    gap: 0;
+  }
+  .mobile-sidebar .workspace-navigation {
+    padding-top: var(--section-gap);
+  }
+}
+@media (max-width: 767px) {
+  :root,
+  :root[data-density="compact"] {
+    --page-padding: 1rem;
+    --header-height: 3.5rem;
+    --text-page: 1.5rem;
+    --card-padding: 1rem;
+    --panel-padding: 1rem;
+  }
+  :root {
+    --section-gap: 1.25rem;
+  }
+  :root[data-density="compact"] {
+    --section-gap: 1rem;
+  }
+  .topbar {
+    gap: var(--control-gap);
+  }
+  .mobile-menu-button {
+    margin-inline-start: max(
+      calc(4px - var(--page-padding)),
+      calc((1rem - var(--control-height)) / 2)
+    );
+  }
+  .topbar-actions {
+    margin-inline-end: max(
+      calc(4px - var(--page-padding)),
+      calc((1rem - var(--control-height)) / 2)
+    );
+  }
+  .breadcrumb {
+    font-size: var(--text-section);
+    font-weight: 500;
+  }
+  .breadcrumb > span:first-child,
+  .breadcrumb-parent,
+  .breadcrumb svg {
+    display: none;
+  }
+  .search-trigger span {
+    display: none;
+  }
+  .topbar .search-trigger,
+  .topbar .appearance-trigger,
+  .topbar .mobile-menu-button {
+    width: var(--control-height);
+    height: var(--control-height);
+    padding: 0;
+  }
+}
+@media (min-width: 48rem) {
+  :root {
+    --control-font-size: var(--text-body);
+  }
+}
+/* Pointer rules follow the width rule so they take precedence. Touch input
+   stays at 1rem so mobile browsers do not zoom focused fields. */
+@media (pointer: fine) {
+  :root {
+    --control-font-size: var(--text-body);
+  }
+}
+@media (pointer: coarse) {
+  :root,
+  :root[data-density="compact"] {
+    --control-height: 2.75rem;
+    --control-height-sm: 2.75rem;
+    --control-font-size: 1rem;
+  }
+  .nav-link {
+    min-height: 2.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (forced-colors: active) {
+  :focus-visible,
+  [data-slot="input-group"]:has(:focus-visible) {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  [data-slot="input-group-control"]:focus-visible {
+    outline: none;
+  }
+  [data-slot="command-item"][data-selected="true"],
+  [data-slot="select-item"]:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+  progress {
+    border: 1px solid CanvasText;
+  }
+}

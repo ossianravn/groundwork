@@ -1,0 +1,164 @@
+[
+  {
+    "id": "rich-text",
+    "name": "Rich text editor",
+    "category": "Forms",
+    "purpose": "Write a formatted project description and read the saved result.",
+    "notes": [
+      "A compact toolbar supports bold, italic, lists, links and undo/redo. Keyboard shortcuts and pasted content use the same Tiptap schema.",
+      "The JSON document is the source of truth. Cards derive plain-text previews; details render the supported formatting.",
+      "Save keeps this example’s content; Cancel discards edits. Project forms also retain drafts during navigation."
+    ],
+    "context": "Project editing",
+    "href": "/app/demo/projects/brand/edit",
+    "patterns": ["SETT-10"],
+    "documentation": {
+      "href": "https://tiptap.dev/docs/editor/getting-started/install/react",
+      "label": "Tiptap documentation"
+    },
+    "implementation": "src/kit/rich-text/rich-text-editor.tsx"
+  },
+  {
+    "id": "button",
+    "name": "Button",
+    "category": "Actions",
+    "purpose": "Give the primary action clear emphasis and keep secondary actions quieter.",
+    "notes": [
+      "Use a button for an action and a link for navigation.",
+      "Label icon-only actions. Disabled controls cannot receive normal keyboard focus."
+    ],
+    "context": "Projects",
+    "href": "/app/demo/projects",
+    "patterns": ["TABL-04", "SETT-13"]
+  },
+  {
+    "id": "input",
+    "name": "Input",
+    "category": "Forms",
+    "purpose": "Collect a short value with a visible label and an associated validation message.",
+    "notes": [
+      "Size the field for its expected content, not the entire available surface.",
+      "This example uses native email validation on submit and focuses the invalid field. It saves only inside this preview."
+    ],
+    "context": "Profile settings",
+    "href": "/app/demo/settings/profile",
+    "patterns": ["SETT-02", "SETT-13"]
+  },
+  {
+    "id": "select",
+    "name": "Select",
+    "category": "Forms",
+    "purpose": "Choose one value from a list of known options.",
+    "notes": [
+      "Arrow keys move through options; Enter selects and Escape dismisses.",
+      "Pass the items to Base UI so the trigger shows the label rather than an internal ID."
+    ],
+    "context": "Project editor",
+    "href": "/app/demo/projects/brand/edit",
+    "patterns": ["SETT-13"]
+  },
+  {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "Forms",
+    "purpose": "Choose independent options or select records for a shared action.",
+    "notes": [
+      "Each checkbox has its own visible label; Space changes its checked state.",
+      "Related choices belong in a fieldset with a legend. Table selection may also use an indeterminate state."
+    ],
+    "context": "Project selection",
+    "href": "/app/demo/projects",
+    "patterns": ["TABL-04"]
+  },
+  {
+    "id": "radio-group",
+    "name": "Radio Group",
+    "category": "Forms",
+    "purpose": "Choose exactly one option from a small visible set.",
+    "notes": [
+      "Use a group label and keep every option's label clickable.",
+      "Arrow keys move the selection; Tab leaves the group."
+    ],
+    "context": "Billing plan selection",
+    "href": "/app/demo/settings/billing",
+    "patterns": ["SETT-08"]
+  },
+  {
+    "id": "dialog",
+    "name": "Dialog",
+    "category": "Overlays",
+    "purpose": "Complete a focused task while preserving the surrounding page.",
+    "notes": [
+      "Provide a title, a visible close control and a clear completion action.",
+      "Cancel and Escape discard this preview's rename draft. Saving updates its title; closing returns focus to Rename."
+    ],
+    "context": "Team invitations",
+    "href": "/app/demo/settings/team",
+    "patterns": ["SETT-05"]
+  },
+  {
+    "id": "tabs",
+    "name": "Tabs",
+    "category": "Navigation",
+    "purpose": "Switch between related panels within one page.",
+    "notes": [
+      "Use route links for destinations, and tabs for related content panels.",
+      "This example uses manual activation: arrow keys move focus, then Enter or Space activates a panel."
+    ],
+    "context": "Product previews",
+    "href": "/product",
+    "patterns": ["MKT-05"]
+  },
+  {
+    "id": "alert",
+    "name": "Alert",
+    "category": "Feedback",
+    "purpose": "Explain a consequential problem and offer an action that resolves it.",
+    "notes": [
+      "Use assertive announcements for errors that need attention; routine completion can use a polite status.",
+      "Retry here resolves a local example. It does not contact a service."
+    ],
+    "context": "Inbox recovery",
+    "href": "/app/demo/inbox?scenario=inbox-failure",
+    "patterns": ["EDGE-05"]
+  },
+  {
+    "id": "empty",
+    "name": "Empty",
+    "category": "Feedback",
+    "purpose": "Distinguish no results from an empty account and provide the right next action.",
+    "notes": [
+      "A no-results state should let the person change or clear the filter.",
+      "This preview starts with a nonmatching query against the same project fixture used by the demo."
+    ],
+    "context": "Project search",
+    "href": "/app/demo/projects?q=unmatched",
+    "patterns": ["EDGE-02"]
+  },
+  {
+    "id": "table",
+    "name": "Table",
+    "category": "Data",
+    "purpose": "Compare structured records with aligned headers and values.",
+    "notes": [
+      "The primitive supplies table semantics. Sorting, filters and pagination belong to the composed data view.",
+      "Numeric values align to the end. Narrow tables scroll inside their own container."
+    ],
+    "context": "Projects data view",
+    "href": "/app/demo/projects",
+    "patterns": ["TABL-01", "TABL-02"]
+  },
+  {
+    "id": "tooltip",
+    "name": "Tooltip & text hint",
+    "category": "Feedback",
+    "purpose": "Reveal a brief explanation on demand without shifting the surrounding layout.",
+    "notes": [
+      "Dotted-underlined text opens a hoverable popover; activate it by tap, Enter or Space. Escape and outside interaction dismiss it.",
+      "Icon tooltips supplement accessible labels. Required instructions and errors stay visible."
+    ],
+    "context": "Overview metrics",
+    "href": "/app/demo/overview",
+    "patterns": ["SYS-07"]
+  }
+]

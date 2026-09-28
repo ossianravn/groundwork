@@ -1,0 +1,105 @@
+.settings-layout[data-section="team"] {
+  grid-template-columns: 11rem minmax(0, 48rem);
+}
+.settings-layout[data-section="workspace"] {
+  grid-template-columns: 11rem minmax(0, 28rem);
+}
+.workspace-name-field {
+  max-width: 26rem;
+}
+.team-settings {
+  display: grid;
+  gap: var(--content-gap);
+}
+.team-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.team-count,
+.team-you {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  margin-inline-start: var(--control-gap);
+}
+.team-search {
+  max-width: 20rem;
+}
+.team-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 4.5rem auto;
+  align-items: center;
+  column-gap: var(--control-gap);
+  padding-block: var(--item-padding);
+  border-bottom: 1px solid var(--border);
+}
+.team-row:last-child {
+  border-bottom: 0;
+}
+.team-person p {
+  font-weight: 500;
+}
+.team-person,
+.team-invite-email {
+  overflow-wrap: anywhere;
+}
+.team-person > span,
+.team-role {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.team-role-select {
+  width: 10rem;
+}
+.team-pending {
+  border-top: 1px solid var(--border);
+  padding-top: var(--content-gap);
+}
+.team-pending h3 {
+  font-weight: 500;
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.team-invitation {
+  grid-template-columns: minmax(0, 1fr) 4.5rem auto;
+}
+.team-empty {
+  text-align: center;
+  padding-block: var(--stack-gap);
+  color: var(--muted-foreground);
+}
+@media (max-width: 1023px) {
+  .settings-layout[data-section="workspace"] {
+    grid-template-columns: minmax(0, 28rem);
+  }
+  .settings-layout[data-section="team"] {
+    grid-template-columns: minmax(0, 48rem);
+  }
+}
+@container (max-width: 18rem) {
+  .team-row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    row-gap: 2px;
+  }
+  .team-row > [data-slot="avatar"] {
+    grid-row: 1 / 3;
+  }
+  .team-row > .team-role {
+    grid-column: 2;
+  }
+  .team-row > button {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+  .team-invitation {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .team-invitation > .team-role {
+    grid-column: 1;
+  }
+  .team-invitation > button {
+    grid-column: 2;
+  }
+}

@@ -1,0 +1,118 @@
+.projects-card {
+  container: project-views / inline-size;
+}
+.project-view-controls,
+.project-grid-controls,
+.project-grid-sort {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.project-view-controls {
+  margin-inline-start: auto;
+}
+.project-view-select {
+  display: none;
+}
+.project-results[data-view="grid"] {
+  min-height: 0;
+}
+.project-grid-content {
+  padding: 0 var(--card-padding) var(--card-padding);
+}
+.project-grid-controls {
+  margin-inline-start: auto;
+  font-size: var(--text-meta);
+}
+.project-grid-sort {
+  min-width: 0;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: var(--content-gap);
+}
+.project-grid > li {
+  min-width: 0;
+  display: flex;
+}
+.project-grid-card {
+  container: project-card / inline-size;
+  width: 100%;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.project-grid-card[data-selected="true"] {
+  background: var(--muted);
+}
+.project-grid-status,
+.project-grid-progress > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.project-grid-status {
+  margin-bottom: var(--control-gap);
+}
+.project-grid-card .project-name {
+  display: inline;
+  white-space: normal;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.project-grid-card .project-name .truncate {
+  white-space: normal;
+}
+.project-grid-progress {
+  display: grid;
+  gap: var(--control-gap);
+  margin-top: auto;
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.project-grid-progress progress {
+  width: 100%;
+}
+.project-grid-footer {
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+  padding-block: var(--control-gap);
+  font-size: var(--text-meta);
+}
+.project-grid-footer .owner-cell {
+  margin-inline-end: auto;
+}
+.project-grid-due {
+  color: var(--muted-foreground);
+}
+@container project-views (max-width: 26rem) {
+  .project-view-toggle {
+    display: none;
+  }
+  .project-view-select {
+    display: flex;
+  }
+}
+@container project-views (max-width: 22rem) {
+  .project-view-current {
+    display: none;
+  }
+}
+@container project-card (max-width: 17.5rem) {
+  .project-grid-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .project-grid-footer .owner-cell {
+    grid-column: 1;
+  }
+  .project-grid-due {
+    grid-column: 1;
+  }
+  .project-grid-footer .ui-button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}

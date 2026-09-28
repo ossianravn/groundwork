@@ -1,0 +1,7 @@
+{
+  "providers": {
+    "google": { "name": "Google" },
+    "github": { "name": "GitHub" }
+  },
+  "registrationProfile": { "name": "Alex Morgan", "email": "alex@example.com" }
+}

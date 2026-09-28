@@ -1,0 +1,39 @@
+.project-inline-field {
+  min-width: 0;
+  max-width: 100%;
+}
+.project-inline-value {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.project-inline-value > .ui-button {
+  color: var(--muted-foreground);
+}
+.project-inline-draft {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.project-inline-form {
+  display: grid;
+  gap: var(--control-gap);
+  width: min(100%, 22ch);
+}
+.project-inline-field[data-field="name"] .project-inline-form {
+  width: min(100%, 36ch);
+}
+.project-inline-form [data-slot="select-trigger"] {
+  width: 100%;
+}
+.project-inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.project-properties {
+  align-items: start;
+}
+.project-properties > div {
+  max-width: 100%;
+}

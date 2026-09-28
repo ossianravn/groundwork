@@ -1,0 +1,23 @@
+.text-hint {
+  font: inherit;
+  color: inherit;
+  cursor: help;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--muted-foreground);
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+  border-radius: 0.125rem;
+  text-align: inherit;
+}
+.text-hint:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.text-hint-content {
+  max-width: min(18rem, calc(100vw - 2rem));
+  padding: var(--item-padding);
+}
+.text-hint-content [data-slot="popover-description"] {
+  color: var(--popover-foreground);
+}

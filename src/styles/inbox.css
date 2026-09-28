@@ -1,0 +1,201 @@
+.inbox-page {
+  background: var(--card);
+  min-height: calc(100dvh - var(--header-offset, 4rem));
+}
+.inbox-surface {
+  overflow: hidden;
+  background: var(--card);
+  min-height: inherit;
+}
+.inbox-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  padding: var(--item-padding) var(--card-padding);
+  border-bottom: 1px solid var(--border);
+}
+.inbox-toolbar > [data-slot="toggle-group"] {
+  flex-shrink: 0;
+}
+.inbox-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.inbox-panes {
+  flex: 1;
+  min-height: 0;
+}
+.inbox-list-scroll,
+.inbox-detail-scroll {
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+.inbox-list {
+  padding: 0;
+}
+.inbox-list li + li {
+  border-top: 1px solid var(--border);
+}
+.inbox-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--item-padding);
+  padding: var(--item-padding) var(--card-padding);
+  border-inline-start: 2px solid transparent;
+  overflow-wrap: anywhere;
+  scroll-margin-block: var(--item-padding);
+}
+.inbox-row-content {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
+}
+.inbox-row-content .project-badge {
+  margin-top: 0.125rem;
+  justify-self: start;
+}
+.inbox-row-unread {
+  background: color-mix(in srgb, var(--primary) 3%, var(--card));
+}
+.inbox-row:hover {
+  background: var(--muted);
+}
+.inbox-row[aria-current] {
+  background: var(--accent);
+  border-inline-start-color: var(--primary);
+}
+.inbox-row:focus-visible {
+  outline-offset: -3px;
+}
+.inbox-row-meta,
+.inbox-row-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--control-gap);
+}
+.inbox-row-meta,
+.inbox-row-project {
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.inbox-row-meta time {
+  flex-shrink: 0;
+}
+.inbox-row-meta > span {
+  color: var(--foreground);
+  font-weight: 500;
+}
+.inbox-row-title {
+  font-weight: 500;
+}
+.inbox-row-unread .inbox-row-title {
+  font-weight: 650;
+}
+.inbox-unread-dot,
+.notification-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+.inbox-row-preview {
+  font-size: var(--text-meta);
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.inbox-detail {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.inbox-detail-empty {
+  justify-content: center;
+}
+.inbox-back {
+  margin: 0 0 var(--control-gap) -0.5rem;
+}
+.inbox-message-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--content-gap);
+}
+.inbox-message-heading > .ui-button {
+  flex-shrink: 0;
+}
+.inbox-message-header {
+  padding: var(--card-padding);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.inbox-message-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  scroll-margin-block-start: calc(var(--header-offset, 4rem) + 1rem);
+}
+.inbox-project-context {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+  flex-wrap: wrap;
+  margin-top: var(--control-gap);
+}
+.inbox-failure {
+  border-radius: 0;
+  border-inline: 0;
+}
+.inbox-failure [data-slot="alert-description"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.notification-trigger {
+  position: relative;
+}
+.notification-dot {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+}
+.notification-sheet .notification-list {
+  padding: 0;
+}
+@media (width >= 64rem) {
+  .inbox-surface {
+    display: flex;
+    flex-direction: column;
+    height: calc(100dvh - var(--header-offset, 4rem));
+    min-height: 0;
+  }
+  .inbox-back {
+    display: none;
+  }
+}
+@media (width < 30rem) {
+  .inbox-read-label {
+    display: none;
+  }
+}
+@media (width < 24rem) {
+  .inbox-compose-label {
+    display: none;
+  }
+  #inbox-compose {
+    padding-inline: var(--control-gap);
+  }
+}
