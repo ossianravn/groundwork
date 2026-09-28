@@ -11,14 +11,28 @@
   display: grid;
   gap: var(--section-gap);
 }
+/* Direction A: the snapshot is one strip on the canvas, not four tiles. */
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--content-gap);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--section-gap);
+}
+.metric-card {
+  --card-spacing: 0px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding-inline: var(--section-gap);
+  border-inline-start: 1px solid var(--border);
+}
+.metric-card:first-child {
+  padding-inline-start: 0;
+  border-inline-start: 0;
 }
 .metric-value {
-  margin: var(--item-padding) 0 0.5rem;
-  font-size: var(--text-metric);
+  margin: var(--control-gap) 0 0.25rem;
+  font-size: calc(var(--text-metric) * 1.25);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: var(--leading-metric);
@@ -27,8 +41,23 @@
 .overview-middle {
   display: grid;
   grid-template-columns: minmax(0, 1.85fr) minmax(17rem, 1fr);
-  gap: var(--section-gap);
   align-items: stretch;
+}
+/* Chart and activity are open sections divided by one hairline. */
+.overview-middle > .completion-card,
+.overview-middle > .activity-card {
+  --card-spacing: 0px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.overview-middle > .completion-card {
+  padding-inline-end: var(--section-gap);
+}
+.overview-middle > .activity-card {
+  padding-inline-start: var(--section-gap);
+  border-inline-start: 1px solid var(--border);
 }
 .completion-card,
 .activity-card {

@@ -11,16 +11,25 @@
     flex: 1 1 6rem;
   }
   .metrics-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
-    gap: var(--content-gap);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--section-gap);
   }
-  .metric-card h2 {
-    font-size: var(--text-body);
+  .metric-card:nth-child(odd) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
   }
   .overview-middle {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--section-gap);
   }
-  .activity-card {
+  .overview-middle > .completion-card {
+    padding-inline-end: 0;
+  }
+  .overview-middle > .activity-card {
     order: 1;
+    padding-inline-start: 0;
+    padding-block-start: var(--section-gap);
+    border-inline-start: 0;
+    border-block-start: 1px solid var(--border);
   }
 }
