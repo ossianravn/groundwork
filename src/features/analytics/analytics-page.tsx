@@ -122,6 +122,11 @@ export function AnalyticsPage({
           <div className="analytics-breakdowns">
             <ProjectBreakdown
               rows={data.projects}
+              colorFor={(row) => {
+                const color = projects.find((item) => item.id === row.id)?.color
+
+                return color ? `var(--hue-${color})` : "var(--chart-1)"
+              }}
               renderName={renderProject}
               showData={projectView === "data"}
               onShowDataChange={(show) =>

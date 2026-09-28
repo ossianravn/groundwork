@@ -129,7 +129,7 @@ export function CompletionChart({
                   <stop
                     offset="0%"
                     stopColor="var(--color-completed)"
-                    stopOpacity={0.18}
+                    stopOpacity={0.24}
                   />
                   <stop
                     offset="100%"
@@ -162,11 +162,18 @@ export function CompletionChart({
                 }
               />
               <Area
-                type="linear"
+                type="monotone"
                 dataKey="completed"
                 stroke="var(--color-completed)"
                 fill={`url(#${gradientId})`}
                 strokeWidth={2}
+                dot={(dot) => (
+                  <LatestPoint
+                    key={dot.index}
+                    {...dot}
+                    last={series.length - 1}
+                  />
+                )}
                 isAnimationActive={false}
               />
             </AreaChart>
@@ -188,5 +195,31 @@ export function CompletionChart({
         </Button>
       </CardFooter>
     </Card>
+  )
+}
+
+/** Marks the most recent day; earlier days stay part of the line. */
+function LatestPoint({
+  cx,
+  cy,
+  index,
+  last,
+}: {
+  cx?: number
+  cy?: number
+  index?: number
+  last: number
+}) {
+  if (index !== last || cx === undefined || cy === undefined) return <g />
+
+  return (
+    <circle
+      cx={cx}
+      cy={cy}
+      r={4}
+      fill="var(--color-completed)"
+      stroke="var(--card)"
+      strokeWidth={2}
+    />
   )
 }

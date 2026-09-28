@@ -177,3 +177,15 @@ progress::-moz-progress-bar {
 .projects-card[data-surface="plain"] .project-board-content {
   padding-inline: 0;
 }
+/* Switching Table, Cards and Board fades the new view in. */
+@media (prefers-reduced-motion: no-preference) {
+  .project-results > :first-child {
+    animation: project-view-in var(--motion-fast) var(--ease-standard);
+  }
+}
+@keyframes project-view-in {
+  from {
+    opacity: 0;
+    translate: 0 4px;
+  }
+}

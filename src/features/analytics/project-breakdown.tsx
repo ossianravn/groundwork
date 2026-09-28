@@ -1,5 +1,13 @@
 import { useMemo, type ReactNode } from "react"
-import { Bar, BarChart, XAxis, YAxis, CartesianGrid, LabelList } from "recharts"
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  LabelList,
+  XAxis,
+  YAxis,
+} from "recharts"
 import {
   ChartContainer,
   ChartTooltip,
@@ -11,11 +19,14 @@ import { BreakdownCard } from "./breakdown-card"
 
 export function ProjectBreakdown({
   rows,
+  colorFor,
   renderName,
   showData,
   onShowDataChange,
 }: {
   rows: CompletionGroup[]
+  /** Each bar takes its project's own hue. */
+  colorFor: (row: CompletionGroup) => string
   renderName: (row: CompletionGroup) => ReactNode
   showData: boolean
   onShowDataChange: (show: boolean) => void
@@ -69,10 +80,13 @@ export function ProjectBreakdown({
             <Bar
               dataKey="completed"
               fill="var(--color-completed)"
-              radius={3}
-              maxBarSize={24}
+              radius={999}
+              maxBarSize={14}
               isAnimationActive={false}
             >
+              {rows.map((row) => (
+                <Cell key={row.id} fill={colorFor(row)} />
+              ))}
               <LabelList
                 dataKey="completed"
                 position="right"

@@ -14,6 +14,9 @@
   /* Text-entry size; responsive.css adjusts it by width and pointer. */
   --control-font-size: var(--text-section);
   --control-gap: 0.5rem;
+  /* Motion: brief and consistent; responsive.css removes it for reduced motion. */
+  --motion-fast: 150ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --content-gap: 1rem;
   --stack-gap: 1.25rem;
   --item-padding: 0.75rem;
@@ -40,10 +43,10 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-2: var(--hue-teal);
+  --chart-3: var(--hue-amber);
+  --chart-4: var(--hue-rose);
+  --chart-5: var(--hue-green);
   /* Categorical hues identify records (projects, people, chart series). */
   --hue-violet: oklch(0.56 0.19 285);
   --hue-teal: oklch(0.6 0.1 190);

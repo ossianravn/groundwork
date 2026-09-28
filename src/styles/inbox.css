@@ -59,6 +59,9 @@
   justify-self: start;
 }
 /* Unread is the dot and title weight; the open conversation is a quiet surface. */
+.inbox-row {
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
 .inbox-row:hover {
   background: color-mix(in oklch, var(--muted) 55%, transparent);
 }
