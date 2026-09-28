@@ -70,7 +70,16 @@ export function InboxList({
             </span>
             <div className="inbox-row-content">
               <div className="inbox-row-meta">
-                <span>{message.sender?.name ?? "Former member"}</span>
+                <span className="inbox-row-from">
+                  <span>{message.sender?.name ?? "Former member"}</span>
+                  {message.project ? (
+                    <ProjectBadge project={message.project} />
+                  ) : message.projectId ? (
+                    <span className="inbox-row-project">
+                      Project unavailable
+                    </span>
+                  ) : null}
+                </span>
                 <time dateTime={message.date}>
                   {formatDate(message.date.slice(0, 10))}
                 </time>
@@ -87,11 +96,6 @@ export function InboxList({
                 {message.fromSelf && <span>You: </span>}
                 {message.preview}
               </p>
-              {message.project ? (
-                <ProjectBadge project={message.project} />
-              ) : message.projectId ? (
-                <span className="inbox-row-project">Project unavailable</span>
-              ) : null}
             </div>
           </LinkComponent>
         </li>

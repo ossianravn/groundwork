@@ -44,14 +44,6 @@
   align-items: stretch;
 }
 /* Chart and activity are open sections divided by one hairline. */
-.overview-middle > .completion-card,
-.overview-middle > .activity-card {
-  --card-spacing: 0px;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  overflow: visible;
-}
 .overview-middle > .completion-card {
   padding-inline-end: var(--section-gap);
 }
@@ -207,7 +199,7 @@
 .chart-legend span {
   width: 0.4rem;
   height: 0.4rem;
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--brand);
 }
 .activity-list {

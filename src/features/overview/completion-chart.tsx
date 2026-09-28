@@ -1,5 +1,5 @@
 import { useId, useMemo, useState, type ReactNode } from "react"
-import { Area, AreaChart, CartesianGrid, YAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, YAxis } from "recharts"
 import { CompletionDateAxis } from "./completion-date-axis"
 import {
   ChartContainer,
@@ -57,7 +57,6 @@ export function CompletionChart({
     labelWidth,
   } = useChartTypography(labels)
 
-  const gradientId = `completion-${useId().replace(/:/g, "")}`
   const periodDescriptionId = useId()
   const total = series.reduce((sum, day) => sum + day.completed, 0)
 
@@ -119,25 +118,12 @@ export function CompletionChart({
             }}
             aria-label={`${total} tasks completed over the last ${period} days. Use Show data for daily values.`}
           >
-            <AreaChart
+            <BarChart
               accessibilityLayer
               data={series}
+              barCategoryGap="28%"
               margin={{ left: 0, right: 8, top: 8, bottom: 0 }}
             >
-              <defs>
-                <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stopColor="var(--color-completed)"
-                    stopOpacity={0.24}
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--color-completed)"
-                    stopOpacity={0.01}
-                  />
-                </linearGradient>
-              </defs>
               <CartesianGrid vertical={false} strokeDasharray="3 4" />
               <CompletionDateAxis
                 dates={dates}
@@ -155,28 +141,29 @@ export function CompletionChart({
                 allowDecimals={false}
               />
               <ChartTooltip
+                cursor={{ fill: "var(--muted)" }}
                 content={
                   <ChartTooltipContent
                     labelFormatter={(value) => formatDate(String(value))}
                   />
                 }
               />
-              <Area
-                type="monotone"
+              <Bar
                 dataKey="completed"
-                stroke="var(--color-completed)"
-                fill={`url(#${gradientId})`}
-                strokeWidth={2}
-                dot={(dot) => (
-                  <LatestPoint
-                    key={dot.index}
-                    {...dot}
-                    last={series.length - 1}
-                  />
-                )}
+                fill="var(--color-completed)"
+                radius={[3, 3, 0, 0]}
+                maxBarSize={24}
                 isAnimationActive={false}
-              />
-            </AreaChart>
+              >
+                {/* Earlier days recede so the snapshot day reads first. */}
+                {series.map((day, index) => (
+                  <Cell
+                    key={day.date}
+                    fillOpacity={index === series.length - 1 ? 1 : 0.5}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
           </ChartContainer>
         )}
       </CardContent>
@@ -195,31 +182,5 @@ export function CompletionChart({
         </Button>
       </CardFooter>
     </Card>
-  )
-}
-
-/** Marks the most recent day; earlier days stay part of the line. */
-function LatestPoint({
-  cx,
-  cy,
-  index,
-  last,
-}: {
-  cx?: number
-  cy?: number
-  index?: number
-  last: number
-}) {
-  if (index !== last || cx === undefined || cy === undefined) return <g />
-
-  return (
-    <circle
-      cx={cx}
-      cy={cy}
-      r={4}
-      fill="var(--color-completed)"
-      stroke="var(--card)"
-      strokeWidth={2}
-    />
   )
 }

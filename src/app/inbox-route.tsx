@@ -157,7 +157,6 @@ export function InboxRoute() {
         }
         detail={
           <InboxDetail
-            onCompose={compose}
             members={demo.workspace.people}
             currentUserId={demo.workspace.currentUserId}
             reply={

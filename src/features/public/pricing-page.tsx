@@ -71,7 +71,11 @@ export function PricingPage({
             const price = planPrice(plan, billing)
 
             return (
-              <Card key={plan.id} className="pricing-card">
+              <Card
+                key={plan.id}
+                className="pricing-card"
+                data-featured={plan.id === "team" || undefined}
+              >
                 <CardHeader>
                   <CardTitle role="heading" aria-level={2}>
                     {plan.name}
