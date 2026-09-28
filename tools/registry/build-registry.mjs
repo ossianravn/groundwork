@@ -5,6 +5,7 @@
 //
 //   node tools/registry/build-registry.mjs              committed registry
 //   node tools/registry/build-registry.mjs --ref <ref>  pin item deps to a ref
+//   node tools/registry/build-registry.mjs --release    pin to v<package version>
 //   node tools/registry/build-registry.mjs --local      deps as ./<name>.json
 import fs from "node:fs"
 import path from "node:path"
@@ -236,12 +237,23 @@ export function buildRegistry({ ref, local } = {}) {
   }
 }
 
+/** The tag a release commit pins its item dependencies to. */
+export function releaseRef() {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(root, "package.json"), "utf8"),
+  )
+
+  return `v${manifest.version}`
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2)
 
-  const ref = args.includes("--ref")
-    ? args[args.indexOf("--ref") + 1]
-    : undefined
+  const ref = args.includes("--release")
+    ? releaseRef()
+    : args.includes("--ref")
+      ? args[args.indexOf("--ref") + 1]
+      : undefined
 
   const registry = buildRegistry({ ref, local: args.includes("--local") })
 
