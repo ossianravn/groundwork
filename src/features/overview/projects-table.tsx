@@ -79,6 +79,7 @@ export function ProjectsTableView({
   renderBoard,
   allowViewSwitch = false,
   allowAdvanced = false,
+  surface = "card",
 }: ProjectsTableProps & {
   state: ProjectTableState
   onChange: (state: ProjectTableState) => void
@@ -88,6 +89,8 @@ export function ProjectsTableView({
   renderBoard?: (table: DataTable<Project>) => ReactNode
   allowViewSwitch?: boolean
   allowAdvanced?: boolean
+  /** A plain view sits on the page canvas; its heading is for assistive tech. */
+  surface?: "card" | "plain"
 }) {
   const { filters } = state
   const filterKey = JSON.stringify(filters)
@@ -190,14 +193,21 @@ export function ProjectsTableView({
       aria-labelledby="projects-heading"
       tabIndex={-1}
       className="projects-card"
+      data-surface={surface}
     >
       <CardHeader className="project-card-header">
-        <div className="flex items-center gap-2.5">
-          <CardTitle>
-            <h2 id="projects-heading">{heading}</h2>
-          </CardTitle>
-          <span className="count-chip">{projects.length}</span>
-        </div>
+        {surface === "plain" ? (
+          <h2 id="projects-heading" className="sr-only">
+            {heading}
+          </h2>
+        ) : (
+          <div className="flex items-center gap-2.5">
+            <CardTitle>
+              <h2 id="projects-heading">{heading}</h2>
+            </CardTitle>
+            <span className="count-chip">{projects.length}</span>
+          </div>
+        )}
         <div className="project-view-controls">
           {allowViewSwitch && (
             <ProjectViewToggle

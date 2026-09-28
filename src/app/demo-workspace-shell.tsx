@@ -230,17 +230,20 @@ function DemoNotice({
 
   return (
     <div className="demo-note">
-      <span className="demo-indicator navigation-label" />
-      <span className="font-medium navigation-label">Demo workspace</span>
-      <p role="status" className={collapsed ? "sr-only" : undefined}>
-        {resetDone ? "Demo data reset." : "Changes reset when you reload."}
-      </p>
+      <span className="demo-indicator navigation-label" aria-hidden="true" />
+      <span role="status" className={collapsed ? "sr-only" : undefined}>
+        {resetDone ? "Demo data reset" : "Demo data"}
+      </span>
       <NavigationHint
-        label={resetDone ? "Demo data reset. Reset again" : "Reset demo data"}
+        label={
+          resetDone
+            ? "Demo data reset. Reset again"
+            : "Reset demo data. Changes also reset when you reload."
+        }
       >
         <Button
           variant="ghost"
-          size="sm"
+          size="xs"
           onClick={onReset}
           aria-label="Reset demo data"
         >
@@ -249,7 +252,7 @@ function DemoNotice({
           ) : (
             <RotateCcw data-icon="inline-start" aria-hidden="true" />
           )}
-          <span className="navigation-label">Reset demo data</span>
+          <span className="navigation-label">Reset</span>
         </Button>
       </NavigationHint>
     </div>

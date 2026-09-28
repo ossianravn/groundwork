@@ -2,7 +2,8 @@ import { useCallback, useEffect } from "react"
 import { getRouteApi } from "@tanstack/react-router"
 import { Plus } from "lucide-react"
 import type { Project } from "@/demo/model"
-import { Button, buttonVariants } from "@/kit/ui/button"
+import { buttonVariants } from "@/kit/ui/button"
+import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { ProjectsTableView } from "@/features/overview/projects-table"
 import { filterProjects } from "@/features/overview/project-filtering"
 import { boundedProjectPage } from "@/features/overview/project-table-state"
@@ -69,14 +70,15 @@ export function ProjectsRoute() {
   return (
     <main id="main-content" className="page-content" tabIndex={-1}>
       <title>{`Projects · ${demo.workspace.name}`}</title>
-      <div className="page-heading">
-        <h1>Projects</h1>
-        <p>{demo.workspace.name}</p>
-        <Button id="new-project" onClick={onNewProject}>
-          <Plus data-icon="inline-start" aria-hidden="true" />
-          New project
-        </Button>
-      </div>
+      <h1 className="sr-only">Projects</h1>
+      <PageActions>
+        <PageAction
+          id="new-project"
+          icon={Plus}
+          label="New project"
+          onClick={onNewProject}
+        />
+      </PageActions>
       <ProjectsTableView
         onNewProject={onNewProject}
         projects={demo.projects}
@@ -84,6 +86,7 @@ export function ProjectsRoute() {
         onSelect={onSelectProject}
         state={state}
         heading="All projects"
+        surface="plain"
         allowViewSwitch
         allowAdvanced
         renderBoard={(table) => (
@@ -127,10 +130,6 @@ export function ProjectsRoute() {
         }}
         renderName={renderName}
       />
-      <footer className="page-footer">
-        <span>{demo.workspace.name} · Demo data</span>
-        <span>Built with shadcn/ui</span>
-      </footer>
     </main>
   )
 }

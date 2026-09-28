@@ -14,9 +14,7 @@
     min-height: var(--control-height);
   }
   [data-sidebar-collapsed="true"] .workspace-identity {
-    border: 0;
     padding: 0;
-    background: transparent;
   }
   [data-sidebar-collapsed="true"] .nav-section {
     width: 100%;

@@ -62,6 +62,8 @@ One stylesheet entry can import cohesive files. It does not imply duplicating to
 
 Keep every new or enlarged hand-maintained code file within the user's 300-line limit; split by responsibility, not arbitrary line counts.
 
+**Workspace page frame (2026-09-28).** The top bar's current breadcrumb item is the visible page title. Section pages (Overview, Projects, Inbox, Analytics, Activity, Settings) keep an equivalent screen-reader `h1` and add no visible heading or subtitle row. A page's primary action and short context go into the top bar through the kit's `PageActions`/`PageAction`; `PageAction` shows only its icon on narrow screens while keeping its label as the accessible name. Controls that scope the whole page (Analytics filters) stay in the content. Record pages (project detail and editor) keep their content heading because it carries editing and status. Primary data views sit on the canvas (`ProjectsTableView surface="plain"`); dashboard compositions such as Overview keep their cards. The sidebar shows the workspace as a plain row and the demo notice as one line with Reset.
+
 ## Token scope
 
 - Preserve shadcn roles for background/foreground, cards, popovers, primary/secondary, muted/accent, destructive, borders, inputs, rings, charts and sidebar.

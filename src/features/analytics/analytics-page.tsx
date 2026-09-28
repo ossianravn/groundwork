@@ -71,8 +71,8 @@ export function AnalyticsPage({
       id="main-content"
       tabIndex={-1}
     >
-      <div className="page-heading analytics-heading">
-        <h1>Analytics</h1>
+      <h1 className="sr-only">Analytics</h1>
+      <div className="analytics-heading">
         <div className="analytics-filters">
           <Select
             items={options}

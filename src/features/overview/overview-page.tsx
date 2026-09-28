@@ -1,6 +1,6 @@
 import { lazy, Suspense, type ReactNode } from "react"
 import { Plus } from "lucide-react"
-import { Button } from "@/kit/ui/button"
+import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import {
   formatDate,
   type Activity,
@@ -53,23 +53,24 @@ export function OverviewPage({
 }: OverviewPageProps) {
   return (
     <main id="main-content" className="page-content" tabIndex={-1}>
-      <div className="page-heading">
-        <h1>Overview</h1>
-        <p>
-          <span>Workspace snapshot</span>
-          <span className="snapshot-separator" aria-hidden="true">
-            {" "}
-            ·{" "}
-          </span>
-          <time dateTime={referenceDate}>
-            {formatDate(referenceDate, { year: "numeric" })}
-          </time>
-        </p>
-        <Button id="new-project" onClick={onNewProject}>
-          <Plus data-icon="inline-start" aria-hidden="true" />
-          New project
-        </Button>
-      </div>
+      <h1 className="sr-only">Overview</h1>
+      <PageActions
+        meta={
+          <>
+            Snapshot{" "}
+            <time dateTime={referenceDate}>
+              {formatDate(referenceDate, { year: "numeric" })}
+            </time>
+          </>
+        }
+      >
+        <PageAction
+          id="new-project"
+          icon={Plus}
+          label="New project"
+          onClick={onNewProject}
+        />
+      </PageActions>
       <Metrics projects={projects} referenceDate={referenceDate} />
       <div className="overview-middle">
         <Suspense
@@ -105,10 +106,6 @@ export function OverviewPage({
         members={members}
         onSelect={onSelectProject}
       />
-      <footer className="page-footer">
-        <span>Demo data</span>
-        <span>Built with shadcn/ui</span>
-      </footer>
     </main>
   )
 }

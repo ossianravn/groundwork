@@ -72,19 +72,15 @@
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  margin: var(--page-padding) 0 var(--section-gap);
-  padding: var(--item-padding);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--card);
+  margin: var(--section-gap) 0 var(--stack-gap);
+  padding-inline: 0.45rem;
 }
 .workspace-monogram {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid var(--border);
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: var(--radius-md);
   font-size: var(--text-meta);
   font-weight: 600;
@@ -198,6 +194,11 @@
 .breadcrumb-parent {
   flex-shrink: 0;
 }
+/* The current page is the page title; section pages keep an equivalent h1. */
+.breadcrumb [aria-current="page"] {
+  color: var(--foreground);
+  font-weight: 600;
+}
 .breadcrumb-detail {
   /* Long record names use remaining space; enlarged text may wrap the header. */
   flex: 1 1 6rem;
@@ -234,11 +235,27 @@
   min-width: var(--control-height);
   min-height: var(--control-height);
 }
-.topbar-actions button {
+/* Utility controls are quiet; a page's own actions keep their variant. */
+.topbar-actions button:not(.topbar-page-actions *) {
   color: var(--muted-foreground);
 }
-.topbar-actions button:hover {
+.topbar-actions button:not(.topbar-page-actions *):hover {
   color: var(--foreground);
+}
+.topbar-page-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--control-gap);
+  margin-inline-end: var(--control-gap);
+}
+.topbar-page-actions:empty {
+  display: none;
+}
+.page-meta {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  white-space: nowrap;
+  margin-inline-end: var(--control-gap);
 }
 .account-menu-trigger {
   width: 100%;

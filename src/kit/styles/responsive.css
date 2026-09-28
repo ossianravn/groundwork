@@ -71,6 +71,22 @@
   .search-trigger span {
     display: none;
   }
+  .page-meta {
+    display: none;
+  }
+  .topbar-page-actions {
+    margin-inline-end: 0;
+  }
+  /* Keep the label as the accessible name while showing only the icon. */
+  .page-action-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .topbar .page-action,
   .topbar .search-trigger,
   .topbar .appearance-trigger,
   .topbar .mobile-menu-button {

@@ -1,6 +1,12 @@
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Button, buttonVariants } from "@/kit/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/kit/ui/card"
 import {
   Empty,
   EmptyHeader,
@@ -52,12 +58,7 @@ export function ActivityRoute() {
       className="page-content activity-page"
     >
       <title>{`Activity · ${demo.workspace.name}`}</title>
-      <div className="page-heading activity-page-heading">
-        <h1>Activity</h1>
-        <span className="count-chip" role="status">
-          {events.length} {events.length === 1 ? "event" : "events"}
-        </span>
-      </div>
+      <h1 className="sr-only">Activity</h1>
       <Card className="activity-feed-card">
         <CardHeader className="activity-feed-toolbar">
           <ActivityFilters
@@ -72,6 +73,11 @@ export function ActivityRoute() {
               })
             }}
           />
+          <CardAction>
+            <span className="count-chip" role="status">
+              {events.length} {events.length === 1 ? "event" : "events"}
+            </span>
+          </CardAction>
         </CardHeader>
         <CardContent>
           {events.length ? (

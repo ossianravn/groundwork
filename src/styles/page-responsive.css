@@ -4,29 +4,6 @@
   }
 }
 @media (max-width: 767px) {
-  .page-heading {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--control-gap);
-  }
-  .page-heading h1 {
-    flex-basis: 100%;
-    font-size: var(--text-page);
-  }
-  .page-heading > .ui-button {
-    flex: 0 1 auto;
-  }
-  .page-heading p {
-    flex: 1 1 7rem;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 0.25rem;
-    font-size: var(--text-meta);
-    line-height: 1.5;
-  }
-  .snapshot-separator {
-    display: none;
-  }
   .chart-period {
     width: 100%;
   }
@@ -45,8 +22,5 @@
   }
   .activity-card {
     order: 1;
-  }
-  .page-footer {
-    font-size: var(--text-meta);
   }
 }

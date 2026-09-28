@@ -56,9 +56,7 @@ export function SettingsLayout({
       tabIndex={-1}
       className="page-content settings-page"
     >
-      <header className="page-heading">
-        <h1>Settings</h1>
-      </header>
+      <h1 className="sr-only">Settings</h1>
       <div className="settings-layout" data-section={section}>
         <nav aria-label="Settings" className="settings-navigation">
           <div className="settings-mobile-navigation">

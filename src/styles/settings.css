@@ -6,8 +6,6 @@
   grid-template-columns: 11rem minmax(0, 36rem);
   align-items: start;
   gap: var(--section-gap);
-  border-top: 1px solid var(--border);
-  padding-top: var(--section-gap);
 }
 .settings-navigation {
   display: grid;

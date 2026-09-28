@@ -144,14 +144,6 @@ progress::-moz-progress-bar {
   align-items: center;
   gap: 0.5rem;
 }
-.page-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.125rem 0 0.25rem;
-  color: var(--muted-foreground);
-  font-size: var(--text-meta);
-}
 @media (max-width: 767px) {
   .project-filters,
   .project-search {
@@ -179,4 +171,18 @@ progress::-moz-progress-bar {
   margin-left: -0.25rem;
   font-size: var(--text-meta);
   color: var(--muted-foreground);
+}
+/* On the Projects page the data view sits on the canvas, not in a card. */
+.projects-card[data-surface="plain"] {
+  --card-spacing: 0px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.projects-card[data-surface="plain"] .project-results-toolbar {
+  flex: 1 1 30rem;
+}
+.projects-card[data-surface="plain"] .project-view-controls {
+  order: 2;
 }

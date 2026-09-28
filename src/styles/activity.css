@@ -1,13 +1,8 @@
-.activity-page-heading {
-  display: flex;
-  justify-content: flex-start;
-  gap: var(--item-padding);
-}
-.activity-page .activity-page-heading h1 {
-  flex: 0 1 auto;
-}
 .activity-feed-card {
   gap: 0;
+}
+.activity-feed-toolbar [data-slot="card-action"] {
+  align-self: center;
 }
 .activity-feed-toolbar {
   padding-bottom: var(--card-padding);

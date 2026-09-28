@@ -21,6 +21,7 @@ import {
   WorkspaceNavigation,
   type WorkspaceNavigationProps,
 } from "./workspace-navigation"
+import { PageActionsSlotContext } from "./page-actions-slot"
 import { useHeaderOffset } from "./use-header-offset"
 
 export interface Breadcrumb<Destination extends string> {
@@ -54,6 +55,7 @@ export function WorkspaceShell<Destination extends string>({
 }: WorkspaceShellProps<Destination>) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
+  const [actionsSlot, setActionsSlot] = useState<HTMLDivElement | null>(null)
   const navigatedFromMenu = useRef(false)
   const header = useHeaderOffset()
   const [root, ...trail] = breadcrumbs
@@ -183,6 +185,7 @@ export function WorkspaceShell<Destination extends string>({
             ))}
           </nav>
           <div className="topbar-actions">
+            <div className="topbar-page-actions" ref={setActionsSlot} />
             {search && (
               <Button
                 variant="ghost"
@@ -214,7 +217,9 @@ export function WorkspaceShell<Destination extends string>({
             </Tooltip>
           </div>
         </header>
-        {children}
+        <PageActionsSlotContext value={actionsSlot}>
+          {children}
+        </PageActionsSlotContext>
       </div>
     </div>
   )
