@@ -65,6 +65,32 @@ export function AnalyticsPage({
     ...(missing ? [{ value: projectId, label: "Project unavailable" }] : []),
   ]
 
+  const filters = (
+    <div className="analytics-filters">
+      <Select
+        items={options}
+        value={projectId}
+        onValueChange={(value) => {
+          if (value !== null) onProjectChange(value)
+        }}
+      >
+        <SelectTrigger aria-label="Analytics project">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {options.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <CompletionPeriod period={period} onChange={onPeriodChange} />
+    </div>
+  )
+
   return (
     <main
       className="page-content analytics-page"
@@ -72,52 +98,30 @@ export function AnalyticsPage({
       tabIndex={-1}
     >
       <h1 className="sr-only">Analytics</h1>
-      <div className="analytics-heading">
-        <div className="analytics-filters">
-          <Select
-            items={options}
-            value={projectId}
-            onValueChange={(value) => {
-              if (value !== null) onProjectChange(value)
-            }}
-          >
-            <SelectTrigger aria-label="Analytics project">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <CompletionPeriod period={period} onChange={onPeriodChange} />
-        </div>
-      </div>
       {missing ? (
-        <Empty>
-          <EmptyHeader>
-            <EmptyTitle>Project unavailable</EmptyTitle>
-            <EmptyDescription>
-              Choose another project to view its completed work.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button variant="outline" onClick={() => onProjectChange("")}>
-              All projects
-            </Button>
-          </EmptyContent>
-        </Empty>
+        <>
+          <div className="analytics-heading">{filters}</div>
+          <Empty>
+            <EmptyHeader>
+              <EmptyTitle>Project unavailable</EmptyTitle>
+              <EmptyDescription>
+                Choose another project to view its completed work.
+              </EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <Button variant="outline" onClick={() => onProjectChange("")}>
+                All projects
+              </Button>
+            </EmptyContent>
+          </Empty>
+        </>
       ) : (
         <>
           <CompletionChart
             activity={data.activity}
             referenceDate={referenceDate}
             period={period}
-            periodControl={null}
+            periodControl={filters}
           />
           <div className="analytics-breakdowns">
             <ProjectBreakdown

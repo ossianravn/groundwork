@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { ArrowLeft, Mail, MailOpen, MessagesSquare } from "lucide-react"
+import { ArrowLeft, Mail, MailOpen } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { ProjectBadge } from "@/components/project-identity"
 import {
@@ -7,7 +7,7 @@ import {
   EmptyHeader,
   EmptyTitle,
   EmptyDescription,
-  EmptyMedia,
+  EmptyContent,
 } from "@/kit/ui/empty"
 import type { Member } from "@/demo/model"
 import type { InboxMessage } from "@/demo/use-inbox"
@@ -22,7 +22,6 @@ export function InboxDetail({
   members,
   currentUserId,
   reply,
-  onCompose,
 }: {
   message: InboxMessage | undefined
   missing: boolean
@@ -32,22 +31,12 @@ export function InboxDetail({
   members: Member[]
   currentUserId: string
   reply: ReactNode
-  onCompose: () => void
 }) {
   if (!message)
     return (
       <div className="inbox-detail inbox-detail-empty">
-        {missing && (
-          <Button variant="ghost" onClick={onBack}>
-            <ArrowLeft aria-hidden="true" />
-            Back to inbox
-          </Button>
-        )}
         <Empty>
           <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <MessagesSquare aria-hidden="true" />
-            </EmptyMedia>
             <EmptyTitle>
               {missing
                 ? "Conversation unavailable"
@@ -56,13 +45,16 @@ export function InboxDetail({
             <EmptyDescription>
               {missing
                 ? "It may belong to a previous demo session."
-                : "Select a conversation or start a new one."}
+                : "Select a conversation to read it here."}
             </EmptyDescription>
           </EmptyHeader>
-          {!missing && (
-            <Button variant="outline" onClick={onCompose}>
-              New message
-            </Button>
+          {missing && (
+            <EmptyContent>
+              <Button variant="outline" onClick={onBack}>
+                <ArrowLeft aria-hidden="true" />
+                Back to inbox
+              </Button>
+            </EmptyContent>
           )}
         </Empty>
       </div>

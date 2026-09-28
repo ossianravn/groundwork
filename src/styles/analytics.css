@@ -1,12 +1,18 @@
-.analytics-heading .analytics-filters {
+.analytics-filters {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: var(--control-gap);
   min-width: 0;
 }
+.analytics-heading .analytics-filters {
+  justify-content: flex-end;
+}
 .analytics-filters [data-slot="select-trigger"] {
   max-width: min(24ch, 100%);
+}
+.analytics-page > .completion-card {
+  padding-bottom: var(--section-gap);
+  border-bottom: 1px solid var(--border);
 }
 .analytics-page > .completion-card .chart-body {
   height: 20rem;
@@ -15,7 +21,13 @@
 .analytics-breakdowns {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--section-gap);
+}
+.analytics-breakdown:first-child {
+  padding-inline-end: var(--section-gap);
+}
+.analytics-breakdown + .analytics-breakdown {
+  padding-inline-start: var(--section-gap);
+  border-inline-start: 1px solid var(--border);
 }
 .analytics-breakdown {
   min-width: 0;
@@ -98,6 +110,16 @@
 @media (width < 64rem) {
   .analytics-breakdowns {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--section-gap);
+  }
+  .analytics-breakdown:first-child {
+    padding-inline-end: 0;
+  }
+  .analytics-breakdown + .analytics-breakdown {
+    padding-inline-start: 0;
+    padding-top: var(--section-gap);
+    border-inline-start: 0;
+    border-top: 1px solid var(--border);
   }
 }
 @media (width < 40rem) {

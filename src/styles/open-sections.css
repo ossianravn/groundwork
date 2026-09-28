@@ -1,0 +1,12 @@
+/* Dashboard regions sit on the canvas rather than in cards. Neighbours are
+   divided by one hairline (set by each page); the page's primary data view,
+   such as the Overview projects table, stays the only framed surface. */
+.overview-middle > :is(.completion-card, .activity-card),
+.analytics-page > .completion-card,
+.analytics-breakdowns > .analytics-breakdown {
+  --card-spacing: 0px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}

@@ -2,6 +2,7 @@
 @import "../kit/styles/kit.css";
 @import "./shell-demo.css";
 @import "./overview.css";
+@import "./open-sections.css";
 @import "./activity.css";
 @import "./help.css";
 @import "./projects.css";
@@ -22,12 +23,12 @@
 @import "./team-settings.css";
 @import "./access.css";
 @import "./public.css";
-@import "./public-brand.css";
 @import "./public-pages.css";
 @import "./product-features.css";
 @import "./resources.css";
 @import "./resource-reader.css";
 @import "./public-info.css";
+@import "./public-brand.css";
 @import "./inbox.css";
 @import "./inbox-messaging.css";
 @import "./analytics.css";
