@@ -33,6 +33,8 @@ npm run format:check
 
 For visual or interaction changes, check the affected pages at a wide and a narrow width, in light and dark appearance and both densities where they matter. For refactors that should not change appearance, the [style snapshot](tools/verification/README.md#style-snapshot) compares computed styles before and after.
 
+If a change visibly alters the workspace, refresh the product screenshots used by the public pages and README with `node tools/capture-screenshots.mjs` while the dev server runs.
+
 Describe the behavior you changed and the checks you ran, so a reviewer who has not followed the discussion can verify it.
 
 ## License

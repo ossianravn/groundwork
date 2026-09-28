@@ -2,7 +2,7 @@
 
 A reusable [shadcn/ui](https://ui.shadcn.com) kit for public websites and admin interfaces, with centralized design tokens, content-free shells and a complete reference demo that shows every pattern working in context.
 
-![Forma demo workspace overview](docs/images/overview.png)
+![Forma demo workspace overview](public/images/forma-overview.png)
 
 The repository has two parts:
 
