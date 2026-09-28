@@ -1,0 +1,154 @@
+/* Tandem's brand layer for the public site: a display face and one colour
+   field behind the product. The workspace keeps the kit's quieter voice. */
+@import "@fontsource-variable/bricolage-grotesque/wght.css";
+
+.public-hero,
+.public-section-heading {
+  --tandem-display: "Bricolage Grotesque Variable", var(--font-sans);
+  --tandem-field: oklch(0.5 0.24 264);
+  --tandem-field-deep: oklch(0.34 0.2 268);
+  --tandem-lime: oklch(0.92 0.2 125);
+  --tandem-lime-foreground: oklch(0.25 0.06 130);
+}
+.dark :is(.public-hero, .public-section-heading) {
+  --tandem-field: oklch(0.42 0.21 264);
+  --tandem-field-deep: oklch(0.24 0.14 268);
+}
+
+.public-hero h1,
+.public-section-heading h2 {
+  font-family: var(--tandem-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+/* A two-line headline above copy and actions, then a full-width stage. */
+.public-hero {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+.public-hero-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+.public-hero-copy > h1 {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(2.75rem, 7.4vw, 6.75rem);
+  line-height: 0.95;
+}
+.public-hero-copy > h1 > span {
+  display: block;
+}
+.public-hero-copy > p:not(.public-note) {
+  grid-row: 2 / span 2;
+  margin-top: 0;
+}
+.public-hero-copy > .public-hero-actions {
+  grid-column: 2;
+  justify-content: end;
+  margin-top: 0;
+}
+.public-hero-copy > .public-note {
+  grid-column: 2;
+  text-align: right;
+}
+.public-product-preview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.25rem, 6vw, 5.5rem) clamp(1.25rem, 7vw, 7rem) 0;
+  border-radius: calc(var(--radius-xl) * 2);
+  background:
+    radial-gradient(
+      120% 90% at 50% 110%,
+      var(--tandem-field-deep),
+      transparent 70%
+    ),
+    var(--tandem-field);
+}
+/* The colour sculpture: two soft conic forms behind the screenshot. */
+.public-product-preview::before,
+.public-product-preview::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(48px);
+}
+.public-product-preview::before {
+  top: -30%;
+  right: -8%;
+  width: 46%;
+  background: conic-gradient(
+    from 210deg,
+    var(--tandem-lime),
+    oklch(0.8 0.15 195),
+    oklch(0.62 0.24 300),
+    var(--tandem-lime)
+  );
+  opacity: 0.75;
+}
+.public-product-preview::after {
+  bottom: -40%;
+  left: -12%;
+  width: 40%;
+  background: conic-gradient(
+    from 30deg,
+    oklch(0.7 0.2 320),
+    var(--tandem-field),
+    oklch(0.78 0.16 200),
+    oklch(0.7 0.2 320)
+  );
+  opacity: 0.6;
+}
+.public-product-preview a {
+  margin-bottom: -9%;
+  border: 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, white 22%, transparent),
+    0 40px 80px -20px oklch(0.15 0.1 268 / 55%);
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+.public-product-preview a:hover {
+  transform: translateY(-4px);
+}
+.public-product-preview figcaption {
+  position: absolute;
+  top: clamp(0.875rem, 2vw, 1.5rem);
+  left: clamp(0.875rem, 2vw, 1.5rem);
+  margin: 0;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: var(--tandem-lime);
+  color: var(--tandem-lime-foreground);
+  font-weight: 600;
+}
+
+@media (width < 48rem) {
+  .public-hero-copy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .public-hero-copy > p:not(.public-note) {
+    grid-row: auto;
+  }
+  .public-hero-copy > .public-hero-actions {
+    grid-column: 1;
+    justify-content: start;
+    margin-top: 1.5rem;
+  }
+  .public-hero-copy > .public-note {
+    grid-column: 1;
+    text-align: left;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-product-preview a {
+    transition: none;
+  }
+}

@@ -96,8 +96,8 @@
 }
 .resource-desktop-toc a[aria-current="location"],
 .resource-mobile-toc a[aria-current="location"] {
-  color: var(--primary);
-  border-left-color: var(--primary);
+  color: var(--brand);
+  border-left-color: var(--brand);
   font-weight: 500;
 }
 .resource-desktop-toc a:hover,

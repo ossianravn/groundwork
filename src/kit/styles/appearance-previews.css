@@ -43,7 +43,7 @@
 }
 .appearance-mini-nav i:first-child {
   width: 60%;
-  background: var(--primary);
+  background: var(--brand);
   opacity: 1;
 }
 .appearance-mini-content {

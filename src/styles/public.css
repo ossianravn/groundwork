@@ -78,7 +78,7 @@
 .public-feature-grid article > svg {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--primary);
+  color: var(--brand);
 }
 .public-feature-grid h3 {
   margin-top: 1rem;

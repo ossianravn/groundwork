@@ -73,7 +73,7 @@
 }
 .activity-project-link {
   font-weight: 500;
-  color: var(--primary);
+  color: var(--brand);
   text-decoration: none;
 }
 .activity-project-link:hover {

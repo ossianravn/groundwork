@@ -58,7 +58,7 @@
 .rich-text-content a {
   text-decoration: underline;
   text-underline-offset: 0.2em;
-  color: var(--primary);
+  color: var(--brand);
 }
 .editor-link-popover {
   width: min(22rem, calc(100vw - 2rem));

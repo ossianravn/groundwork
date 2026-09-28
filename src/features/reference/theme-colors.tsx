@@ -201,6 +201,12 @@ const pairs: {
     surface: "popover",
     minimum: 4.5,
   },
+  {
+    label: "Link on background",
+    text: "brand",
+    surface: "background",
+    minimum: 4.5,
+  },
   { label: "Focus color on card", text: "ring", surface: "card", minimum: 3 },
 ]
 

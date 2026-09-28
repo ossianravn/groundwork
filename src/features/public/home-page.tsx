@@ -37,7 +37,11 @@ export function HomePage({
         aria-labelledby="home-title"
       >
         <div className="public-hero-copy">
-          <h1 id="home-title">{content.title}</h1>
+          <h1 id="home-title">
+            {content.title.split(/(?<=\.)\s+/u).map((sentence) => (
+              <span key={sentence}>{sentence}</span>
+            ))}
+          </h1>
           <p>{content.description}</p>
           <div className="public-hero-actions">
             <LinkComponent

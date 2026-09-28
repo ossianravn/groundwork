@@ -115,7 +115,7 @@ export function CompletionChart({
             role="figure"
             className="completion-chart"
             config={{
-              completed: { label: "Completed tasks", color: "var(--primary)" },
+              completed: { label: "Completed tasks", color: "var(--brand)" },
             }}
             aria-label={`${total} tasks completed over the last ${period} days. Use Show data for daily values.`}
           >
