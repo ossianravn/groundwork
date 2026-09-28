@@ -12,6 +12,7 @@ const project: Project = {
   id: "website",
   name: "Website",
   code: "WE",
+  color: "violet",
   description: textDocument(""),
   tags: [],
   links: [],

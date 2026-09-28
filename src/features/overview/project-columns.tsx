@@ -1,4 +1,5 @@
 import { dataTableFeatures } from "@/kit/data-table/table-features"
+import { projectColorStyle } from "@/components/project-color"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
@@ -53,7 +54,7 @@ export function projectColumns(
       enableHiding: false,
       cell: ({ row: { original: project } }) => (
         <div className="flex items-center gap-3">
-          <ProjectMark code={project.code} />
+          <ProjectMark color={project.color} />
           {renderName ? (
             renderName(project)
           ) : (
@@ -92,6 +93,7 @@ export function projectColumns(
         return (
           <div className="progress-cell">
             <progress
+              style={projectColorStyle(project.color)}
               value={percent}
               max={100}
               aria-label={`${project.name}: ${percent}% complete`}

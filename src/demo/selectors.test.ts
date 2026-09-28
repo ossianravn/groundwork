@@ -65,6 +65,7 @@ describe("overview data", () => {
     const project: Project = {
       id: "p",
       code: "P",
+      color: "violet",
       name: "Project",
       description: textDocument(""),
       tags: [],

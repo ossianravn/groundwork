@@ -44,6 +44,13 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+  /* Categorical hues identify records (projects, people, chart series). */
+  --hue-violet: oklch(0.56 0.19 285);
+  --hue-teal: oklch(0.6 0.1 190);
+  --hue-amber: oklch(0.72 0.15 68);
+  --hue-rose: oklch(0.62 0.18 12);
+  --hue-green: oklch(0.62 0.13 155);
+  --hue-sky: oklch(0.64 0.12 235);
   --success: oklch(0.43 0.09 161);
   --success-soft: oklch(0.966 0.02 161);
   --warning: oklch(0.46 0.1 70);
@@ -82,6 +89,12 @@
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
+  --hue-violet: oklch(0.72 0.14 285);
+  --hue-teal: oklch(0.76 0.1 190);
+  --hue-amber: oklch(0.8 0.13 72);
+  --hue-rose: oklch(0.74 0.14 12);
+  --hue-green: oklch(0.76 0.12 155);
+  --hue-sky: oklch(0.76 0.1 235);
   --success: oklch(0.8 0.11 161);
   --success-soft: oklch(0.26 0.033 161);
   --warning: oklch(0.82 0.11 80);

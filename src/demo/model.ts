@@ -3,6 +3,10 @@ import type { ActivityChange, ActivityKind } from "./activity"
 
 export type ProjectStatus = "in-progress" | "in-review" | "completed"
 
+/** A categorical hue token from the kit theme (`--hue-*`). */
+export type ProjectColor =
+  "violet" | "teal" | "amber" | "rose" | "green" | "sky"
+
 export const projectStatuses: ProjectStatus[] = [
   "in-progress",
   "in-review",
@@ -22,6 +26,7 @@ export interface Project {
   id: string
   name: string
   code: string
+  color: ProjectColor
   description: RichTextDocument
   status: ProjectStatus
   ownerId: string

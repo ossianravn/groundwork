@@ -46,7 +46,6 @@
   align-items: start;
   gap: var(--item-padding);
   padding: var(--item-padding) var(--card-padding);
-  border-inline-start: 2px solid transparent;
   overflow-wrap: anywhere;
   scroll-margin-block: var(--item-padding);
 }
@@ -59,15 +58,12 @@
   margin-top: 0.125rem;
   justify-self: start;
 }
-.inbox-row-unread {
-  background: color-mix(in srgb, var(--primary) 3%, var(--card));
-}
+/* Unread is the dot and title weight; the open conversation is a quiet surface. */
 .inbox-row:hover {
-  background: var(--muted);
+  background: color-mix(in oklch, var(--muted) 55%, transparent);
 }
 .inbox-row[aria-current] {
-  background: var(--accent);
-  border-inline-start-color: var(--primary);
+  background: var(--muted);
 }
 .inbox-row:focus-visible {
   outline-offset: -3px;
@@ -191,11 +187,9 @@
     display: none;
   }
 }
-@media (width < 24rem) {
-  .inbox-compose-label {
-    display: none;
-  }
-  #inbox-compose {
-    padding-inline: var(--control-gap);
+@media (forced-colors: active) {
+  .inbox-row[aria-current] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
   }
 }

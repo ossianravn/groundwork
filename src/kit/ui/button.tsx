@@ -2,7 +2,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
-const buttonVariants = cva(
+const buttonClasses = cva(
   "ui-button group/button inline-flex min-h-(--control-height) shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding py-(--control-padding-block) text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
@@ -44,7 +44,7 @@ function Button({
   variant = "default",
   size = "default",
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonClasses>) {
   return (
     <ButtonPrimitive
       data-slot="button"
@@ -53,6 +53,12 @@ function Button({
       {...props}
     />
   )
+}
+
+// Merged so a link styled as a button resolves variant conflicts the same way
+// Button does (for example the outline border over the base transparent one).
+function buttonVariants(options?: Parameters<typeof buttonClasses>[0]) {
+  return cn(buttonClasses(options))
 }
 
 export { Button, buttonVariants }

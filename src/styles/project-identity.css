@@ -1,15 +1,18 @@
-.project-badge[data-slot="badge"] {
-  height: auto;
+.project-dot {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.15rem;
+  background: var(--project-color, var(--muted-foreground));
+}
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   max-width: 100%;
-  justify-content: start;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-md);
-  border-color: var(--border);
-  background: transparent;
   color: var(--muted-foreground);
   font-size: var(--text-meta);
-  font-weight: 400;
-  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .project-due-date {
   display: inline-flex;

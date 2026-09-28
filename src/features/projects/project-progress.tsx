@@ -1,4 +1,5 @@
 import { Check } from "lucide-react"
+import { projectColorStyle } from "@/components/project-color"
 import { Button } from "@/kit/ui/button"
 import { Card } from "@/kit/ui/card"
 import type { Project } from "@/demo/model"
@@ -37,7 +38,12 @@ export function ProjectProgress({
         </span>
       </div>
       {project.tasks > 0 && (
-        <progress value={percent} max={100} aria-label="Completed tasks" />
+        <progress
+          value={percent}
+          max={100}
+          aria-label="Completed tasks"
+          style={projectColorStyle(project.color)}
+        />
       )}
       <div className="project-completion">
         <p role="status" className="panel-feedback">

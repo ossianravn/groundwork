@@ -1,18 +1,27 @@
-import { Badge } from "@/kit/ui/badge"
-import type { Project } from "@/demo/model"
+import type { Project, ProjectColor } from "@/demo/model"
+import { projectColorStyle } from "./project-color"
 
-export function ProjectMark({ code }: { code: string }) {
+/** The project's colour, beside its name wherever the project appears. */
+export function ProjectMark({ color }: { color: ProjectColor }) {
   return (
-    <span className="project-monogram" aria-hidden="true">
-      {code}
-    </span>
+    <span
+      className="project-dot"
+      style={projectColorStyle(color)}
+      aria-hidden="true"
+    />
   )
 }
 
-export function ProjectBadge({ project }: { project: Pick<Project, "name"> }) {
+/** Names a related project in context, as coloured text rather than a pill. */
+export function ProjectBadge({
+  project,
+}: {
+  project: Pick<Project, "name" | "color">
+}) {
   return (
-    <Badge variant="outline" className="project-badge">
-      <span>{project.name}</span>
-    </Badge>
+    <span className="project-badge">
+      <ProjectMark color={project.color} />
+      {project.name}
+    </span>
   )
 }

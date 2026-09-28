@@ -2,6 +2,7 @@ import { useRef, useSyncExternalStore, type ReactNode } from "react"
 import type { GroupImperativeHandle } from "react-resizable-panels"
 import { MoreHorizontal, RotateCcw, CheckCheck, SquarePen } from "lucide-react"
 import { Button } from "@/kit/ui/button"
+import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { ToggleGroup, ToggleGroupItem } from "@/kit/ui/toggle-group"
 import {
   DropdownMenu,
@@ -57,6 +58,14 @@ export function InboxLayout({
   return (
     <main id="main-content" tabIndex={-1} className="inbox-page">
       <h1 className="sr-only">Inbox</h1>
+      <PageActions>
+        <PageAction
+          id="inbox-compose"
+          icon={SquarePen}
+          label="New message"
+          onClick={onCompose}
+        />
+      </PageActions>
       <section className="inbox-surface" aria-label="Inbox messages">
         <div className="inbox-toolbar">
           <ToggleGroup
@@ -74,14 +83,6 @@ export function InboxLayout({
             </ToggleGroupItem>
           </ToggleGroup>
           <div className="inbox-toolbar-actions">
-            <Button
-              id="inbox-compose"
-              aria-label="New message"
-              onClick={onCompose}
-            >
-              <SquarePen data-icon="inline-start" aria-hidden="true" />
-              <span className="inbox-compose-label">New message</span>
-            </Button>
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={

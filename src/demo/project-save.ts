@@ -3,6 +3,7 @@ import type { ProjectTarget, ProjectValues } from "./project-form"
 import { projectChanges } from "./activity"
 import { savedProjectLinks } from "./project-links"
 import { canonicalProjectTags } from "./project-tags"
+import { nextProjectColor } from "./project-colors"
 
 export interface ProjectRecords {
   projects: Project[]
@@ -46,6 +47,7 @@ export function applyProjectSave(
             ...fields,
             id: event.projectId,
             code,
+            color: nextProjectColor(records.projects.length),
             status: "in-progress" as const,
             tasks: 0,
             completedTasks: 0,

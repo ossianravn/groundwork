@@ -9,6 +9,7 @@ const projects: Project[] = [
     id: "p",
     name: "Project",
     code: "P",
+    color: "violet",
     description: textDocument(""),
     tags: [],
     links: [],

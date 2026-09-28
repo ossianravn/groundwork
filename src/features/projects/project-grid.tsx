@@ -1,4 +1,5 @@
 import { documentText } from "@/kit/rich-text/document"
+import { projectColorStyle } from "@/components/project-color"
 import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import type { DataTable } from "@/kit/data-table/table-features"
@@ -91,6 +92,7 @@ export function ProjectGrid({
                     <span>{percent}%</span>
                   </div>
                   <progress
+                    style={projectColorStyle(project.color)}
                     value={percent}
                     max={100}
                     aria-label={`${project.name}: ${percent}% complete`}

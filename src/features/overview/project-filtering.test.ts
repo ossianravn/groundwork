@@ -7,6 +7,7 @@ const base: Project = {
   id: "a",
   name: "Brand refresh",
   code: "BR",
+  color: "violet",
   description: textDocument(""),
   tags: [],
   links: [],

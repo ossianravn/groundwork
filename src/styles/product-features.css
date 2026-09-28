@@ -62,11 +62,6 @@
   align-items: center;
   gap: 0.625rem;
 }
-.product-example-project .project-monogram {
-  width: 1.75rem;
-  height: 1.75rem;
-  font-size: 0.6875rem;
-}
 .product-view-labels {
   display: flex;
   justify-content: center;

@@ -1,4 +1,5 @@
 import { Columns3, LayoutGrid, Table2 } from "lucide-react"
+import { projectColorStyle } from "@/components/project-color"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectDueDate } from "@/components/project-due-date"
 import { ProjectMark } from "@/components/project-identity"
@@ -36,7 +37,7 @@ function ViewsExample() {
               <TableRow key={item.id}>
                 <TableCell>
                   <span className="product-example-project">
-                    <ProjectMark code={item.code} />
+                    <ProjectMark color={item.color} />
                     {item.name}
                   </span>
                 </TableCell>
@@ -71,7 +72,7 @@ function OwnershipExample() {
     <div className="product-example">
       <div className="product-example-surface product-owner-example">
         <div className="product-example-project">
-          <ProjectMark code={project.code} />
+          <ProjectMark color={project.color} />
           <strong>{project.name}</strong>
         </div>
         <ProjectStatus status={project.status} />
@@ -98,6 +99,7 @@ function OwnershipExample() {
             {Math.round((project.completedTasks / project.tasks) * 100)}%
           </span>
           <progress
+            style={projectColorStyle(project.color)}
             value={project.completedTasks}
             max={project.tasks}
             aria-label="Brand refresh completed tasks"

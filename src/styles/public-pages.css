@@ -151,7 +151,6 @@
 .pricing-comparison thead th {
   padding-block: var(--card-padding);
   vertical-align: top;
-  background: var(--muted);
 }
 .pricing-comparison thead th:not(:first-child),
 .pricing-comparison td {
@@ -183,10 +182,12 @@
   color: var(--muted-foreground);
 }
 .pricing-comparison-group th {
-  padding-block: var(--control-gap);
-  background: var(--muted);
+  padding-block: var(--section-gap) var(--control-gap);
+  color: var(--muted-foreground);
   font-size: var(--text-meta);
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 .pricing-comparison th[scope="row"] {
   position: sticky;
