@@ -4,6 +4,7 @@ import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectDueDate } from "@/components/project-due-date"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectStatus } from "@/components/project-status"
+import { accents } from "@/kit/theme/accents"
 import {
   Table,
   TableBody,
@@ -133,11 +134,11 @@ function AppearanceExample() {
         <div
           className="product-accent-samples"
           role="img"
-          aria-label="Indigo, teal and neutral accents"
+          aria-label={`${accents.map((accent) => accent.label).join(", ")} accents`}
         >
-          <span data-swatch="indigo" />
-          <span data-swatch="teal" />
-          <span data-swatch="neutral" />
+          {accents.map((accent) => (
+            <span key={accent.value} data-accent={accent.value} />
+          ))}
         </div>
       </div>
     </div>

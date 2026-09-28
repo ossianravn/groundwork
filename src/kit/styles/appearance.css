@@ -86,6 +86,7 @@
   min-height: max(48px, var(--control-height));
 }
 .appearance-accent-preview > span {
+  background: var(--brand);
   width: 24px;
   height: 24px;
   border-radius: 50%;

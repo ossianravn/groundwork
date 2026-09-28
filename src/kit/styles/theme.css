@@ -118,40 +118,45 @@
   --in-progress-soft: oklch(0.285 0.048 278);
 }
 
-/* Accent presets set the brand colour: focus, links, charts and brand marks. */
+/* Accents set the brand colour: links, focus, the trend and brand marks.
+   Each entry in theme/accents.ts has a light and a dark block here. Blocks
+   match any element, so a swatch with data-accent shows that accent. */
 :root,
-:root[data-accent="indigo"] {
+[data-accent="indigo"] {
   --brand: oklch(0.51 0.195 278);
   --brand-foreground: oklch(0.99 0 0);
   --brand-soft: oklch(0.951 0.025 278);
   --brand-soft-foreground: oklch(0.45 0.17 278);
 }
-:root[data-accent="teal"] {
+[data-accent="teal"] {
   --brand: oklch(0.46 0.09 186);
   --brand-foreground: oklch(0.99 0 0);
   --brand-soft: oklch(0.95 0.024 186);
   --brand-soft-foreground: oklch(0.4 0.09 186);
 }
-:root[data-accent="neutral"] {
+[data-accent="neutral"] {
   --brand: oklch(0.28 0.01 270);
   --brand-foreground: oklch(0.99 0 0);
   --brand-soft: oklch(0.935 0.005 270);
   --brand-soft-foreground: oklch(0.25 0.01 270);
 }
 :root.dark,
-:root.dark[data-accent="indigo"] {
+.dark[data-accent="indigo"],
+.dark [data-accent="indigo"] {
   --brand: oklch(0.76 0.12 278);
   --brand-foreground: oklch(0.2 0.02 278);
   --brand-soft: oklch(0.285 0.048 278);
   --brand-soft-foreground: oklch(0.84 0.09 278);
 }
-:root.dark[data-accent="teal"] {
+.dark[data-accent="teal"],
+.dark [data-accent="teal"] {
   --brand: oklch(0.76 0.095 186);
   --brand-foreground: oklch(0.19 0.025 186);
   --brand-soft: oklch(0.28 0.035 186);
   --brand-soft-foreground: oklch(0.82 0.08 186);
 }
-:root.dark[data-accent="neutral"] {
+.dark[data-accent="neutral"],
+.dark [data-accent="neutral"] {
   --brand: oklch(0.91 0.005 270);
   --brand-foreground: oklch(0.2 0.01 270);
   --brand-soft: oklch(0.29 0.01 270);
@@ -183,14 +188,4 @@
   --page-padding: 1.5rem;
   --section-gap: 1rem;
   --row-padding: 0.5rem;
-}
-
-[data-swatch="indigo"] {
-  background: oklch(0.51 0.195 278);
-}
-[data-swatch="teal"] {
-  background: oklch(0.46 0.09 186);
-}
-[data-swatch="neutral"] {
-  background: oklch(0.28 0.01 270);
 }

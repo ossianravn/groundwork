@@ -5,11 +5,12 @@ import {
   type InterfaceFont,
 } from "./fonts"
 import { previewFrame } from "./preview-frame"
+import { accents, defaultAccent, type Accent } from "./accents"
 import { colorTokens, type ThemeColors } from "./color-tokens"
 
 export type Appearance = "light" | "dark" | "system"
 
-export type Accent = "indigo" | "teal" | "neutral"
+export type { Accent }
 
 export type Radius = "subtle" | "rounded"
 
@@ -28,7 +29,7 @@ export interface ThemeSettings {
 
 export const defaultTheme: ThemeSettings = {
   appearance: "light",
-  accent: "indigo",
+  accent: defaultAccent,
   radius: "rounded",
   density: "comfortable",
   headerSurface: "glass",
@@ -55,11 +56,8 @@ export function readTheme(): ThemeSettings {
             ? "system"
             : "light",
       accent:
-        saved.accent === "teal"
-          ? "teal"
-          : saved.accent === "neutral"
-            ? "neutral"
-            : "indigo",
+        accents.find((accent) => accent.value === saved.accent)?.value ??
+        defaultAccent,
       radius: saved.radius === "subtle" ? "subtle" : "rounded",
       density: saved.density === "compact" ? "compact" : "comfortable",
       headerSurface:
