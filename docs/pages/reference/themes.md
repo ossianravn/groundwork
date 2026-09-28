@@ -4,13 +4,14 @@ Status: implemented, awaiting review (2026-09-27). Shell: Reference. Inventory o
 
 ## User workflow
 
-At `/reference/themes`, choose a shipped or saved preset, compare Light/Dark/System, and open Customize for appearance choices, semantic colors or contrast pairs. The preview switches between the actual public product page, dashboard, project table and settings form. Its controls, navigation and portalled overlays work within a separate document and demo session.
+At `/reference/themes`, choose a shipped or saved preset, compare Light/Dark/System, and open Customize for appearance choices, a palette generated from one brand color, semantic colors or contrast pairs. The preview switches between the actual public product page, dashboard, project table and settings form. Its controls, navigation and portalled overlays work within a separate document and demo session.
 
 The outer editor retains the site's appearance. Edits made through an embedded Appearance panel update the draft and do not write site preferences. System mode follows the outer window's OS media preference, rather than the iframe's inherited color scheme. Reset preview restarts the embedded workflow without changing the draft.
 
 ## Editing and persistence
 
 - The shared controls select font, density, corners and header surface. Choosing an accent restores its shipped color values.
+- Generate derives the four brand tokens for light and dark from one brand color, and optionally tints the neutral greys toward its hue (None or Subtle). It regenerates as the color or tint changes and replaces only the tokens it owns; turning the tint off removes only the greys it set. Lightness moves until links on the background, text on brand fills and text on soft fills reach 4.5:1, and the status line names any pairing it adjusted (or any it could not fix). Light and dark samples show the result in both modes at once. The last seed and tint survive closing the panel; loading a preset without color edits starts afresh from that preset's brand. The logic lives in the kit (`src/kit/theme/palette.ts`), so hosts can generate palettes without this UI.
 - Colors exposes one semantic role at a time, with a labelled CSS value, native picker and paired foreground where available. Invalid input stays visible with an error and leaves the last valid preview in place. No arbitrary input-length restriction.
 - Save preset stores a named version on this device. Reusing a name explicitly offers “Replace saved preset.” Storage failure keeps the draft and offers export/retry. Discard changes restores the selected/saved baseline.
 - Drafts survive host navigation. Reload restores the last saved preset; ordinary site preferences and record fixtures are separate. No action writes repository files or changes another user's account.

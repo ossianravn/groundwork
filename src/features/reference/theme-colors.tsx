@@ -19,12 +19,15 @@ import {
 } from "@/kit/theme/color-tokens"
 import type { ThemePreset } from "@/kit/theme/preset"
 
-function ColorField({
-  token,
+/** A colour picker paired with a text field for any CSS colour. */
+export function ColorField({
+  id,
+  label,
   value,
   onChange,
 }: {
-  token: ColorToken
+  id: string
+  label: string
   value: string
   onChange: (value: string) => void
 }) {
@@ -33,11 +36,11 @@ function ColorField({
 
   return (
     <Field data-invalid={!valid}>
-      <FieldLabel htmlFor={`token-${token}`}>--{token}</FieldLabel>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <div className="theme-color-input">
         <input
           type="color"
-          aria-label={`Pick ${token}`}
+          aria-label={`Pick ${label}`}
           value={formatHex(value) ?? "#000000"}
           onChange={(event) => {
             setText(event.target.value)
@@ -45,10 +48,10 @@ function ColorField({
           }}
         />
         <Input
-          id={`token-${token}`}
+          id={id}
           value={text}
           aria-invalid={!valid}
-          aria-describedby={!valid ? `error-${token}` : undefined}
+          aria-describedby={!valid ? `${id}-error` : undefined}
           onChange={(event) => {
             setText(event.target.value)
 
@@ -57,7 +60,7 @@ function ColorField({
         />
       </div>
       {!valid && (
-        <FieldError id={`error-${token}`}>
+        <FieldError id={`${id}-error`}>
           Enter a CSS color, such as #5b4de0 or oklch(0.51 0.195 278).
         </FieldError>
       )}
@@ -144,7 +147,8 @@ export function ThemeColorsEditor({
       {value && (
         <ColorField
           key={`${mode}-${token}`}
-          token={token}
+          id={`token-${token}`}
+          label={`--${token}`}
           value={value}
           onChange={(color) => change(token, color)}
         />
@@ -152,7 +156,8 @@ export function ThemeColorsEditor({
       {paired && (
         <ColorField
           key={`${mode}-${paired}`}
-          token={paired}
+          id={`token-${paired}`}
+          label={`--${paired}`}
           value={preset.colors[mode][paired] ?? resolved[mode][paired] ?? ""}
           onChange={(color) => change(paired, color)}
         />
