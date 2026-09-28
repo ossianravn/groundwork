@@ -107,7 +107,7 @@ npm run format:check
 
 `registry.json` is generated from the kit: run `npm run registry` after adding, removing or re-importing kit files, and `npm test` fails while it is stale. `npm run release -- <version>` cuts a release: it tags a commit whose registry pins every dependency to that tag (shadcn does not pass a tag on to dependencies), then unpins `main` again.
 
-`npm run preview` serves the production build. Hosting must serve `index.html` for application routes. Optional browser checks, including a computed-style snapshot for refactors, are described in [tools/verification](tools/verification/README.md).
+`npm run preview` serves the production build. Hosting must serve `index.html` for application routes. The `Dockerfile` does this: it builds the site and serves it with nginx on port 80 (`deploy/nginx.conf`), so any Docker host, such as Dokploy or Coolify, can deploy the repository directly. Optional browser checks, including a computed-style snapshot for refactors, are described in [tools/verification](tools/verification/README.md).
 
 ## Documentation
 

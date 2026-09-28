@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+.dev-docs
+.artifacts
+.claude
+.codex
+*.log
