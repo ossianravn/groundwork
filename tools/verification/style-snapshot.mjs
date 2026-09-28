@@ -105,10 +105,10 @@ const states = [
 const settings = [
   { id: "light-comfortable-1440", width: 1440, height: 900, theme: {} },
   {
-    id: "dark-compact-390",
+    id: "dark-compact-neutral-390",
     width: 390,
     height: 844,
-    theme: { appearance: "dark", density: "compact" },
+    theme: { appearance: "dark", density: "compact", accent: "neutral" },
   },
 ]
 

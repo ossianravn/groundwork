@@ -43,6 +43,9 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
+  /* Categorical series never follow the accent, so every accent keeps them
+     distinct. A single primary series uses the accent explicitly instead. */
+  --chart-1: var(--hue-violet);
   --chart-2: var(--hue-teal);
   --chart-3: var(--hue-amber);
   --chart-4: var(--hue-rose);
@@ -145,7 +148,6 @@
   --accent-foreground: oklch(0.94 0.005 270);
 }
 :root {
-  --chart-1: var(--primary);
   --ring: var(--primary);
   --sidebar-accent: var(--accent);
   --sidebar-accent-foreground: var(--accent-foreground);
