@@ -47,9 +47,6 @@
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
-.analytics-bars {
-  overflow-x: auto;
-}
 .analytics-bar-plot {
   width: 100%;
   min-width: 0;

@@ -43,7 +43,7 @@ export function ProjectBreakdown({
       showData={showData}
       onShowDataChange={onShowDataChange}
     >
-      <div ref={ref} className="analytics-bars text-xs">
+      <div ref={ref} className="text-xs">
         <ChartContainer
           config={{
             completed: { label: "Completed tasks", color: "var(--chart-1)" },
@@ -51,7 +51,11 @@ export function ProjectBreakdown({
           className="analytics-bar-plot"
           role="figure"
           aria-label="Completed tasks by project. Show data provides values and project links."
-          style={{ height: Math.max(rows.length * lineHeight * 2.6, 200) }}
+          // Whole pixels: Recharts rounds its wrapper up, so a fractional
+          // height would overflow the plot by a sub-pixel.
+          style={{
+            height: Math.ceil(Math.max(rows.length * lineHeight * 2.6, 200)),
+          }}
         >
           <BarChart
             accessibilityLayer
