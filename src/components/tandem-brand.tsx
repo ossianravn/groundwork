@@ -6,7 +6,7 @@ export const tandemBrand: ShellBrand = {
   icon: <Layers2 aria-hidden="true" />,
   name: (
     <>
-      tandem<span className="text-primary">.</span>
+      tandem<span className="text-brand">.</span>
     </>
   ),
 }

@@ -118,11 +118,11 @@ progress::-webkit-progress-bar {
   border-radius: 1rem;
 }
 progress::-webkit-progress-value {
-  background: var(--project-color, var(--primary));
+  background: var(--project-color, var(--brand));
   border-radius: 1rem;
 }
 progress::-moz-progress-bar {
-  background: var(--project-color, var(--primary));
+  background: var(--project-color, var(--brand));
   border-radius: 1rem;
 }
 .owner-cell {
