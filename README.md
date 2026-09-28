@@ -66,7 +66,13 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
 | Interface fonts | `src/kit/theme/fonts.ts` and `src/kit/styles/fonts.css`; keep each font's license in `public/font-licenses/` |
 | Brand in every shell | `src/components/tandem-brand.tsx` (demo) or your own `ShellBrand` |
 
-The theme playground at `/reference/themes` previews these tokens on real pages and exports presets.
+The theme playground at `/reference/themes` previews these tokens on real pages, generates a palette from one brand color and exports presets. To move a theme into another Groundwork project, export it as a shadcn registry item (Import / export → shadcn), save the JSON in that project's root and run:
+
+```bash
+npx shadcn add ./your-theme.json
+```
+
+The CLI writes `src/kit/styles/themes/your-theme.css` and imports it from `kit.css`, after the kit tokens. Run your formatter afterwards: the CLI rewrites `kit.css` without its final newline. An installed theme sets the brand for every accent, so either drop the accent choice from Appearance or add the theme to `src/kit/theme/accents.ts` as an accent instead.
 
 ## Project layout
 
