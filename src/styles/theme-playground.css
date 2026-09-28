@@ -64,6 +64,40 @@
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
+/* Generated samples paint their own mode, whatever the page shows. */
+.theme-generate-samples {
+  display: grid;
+  gap: var(--control-gap);
+}
+.theme-generate-sample {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+  padding: var(--item-padding);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-meta);
+}
+.theme-generate-sample > span:first-child {
+  min-width: 3rem;
+}
+.theme-generate-sample > span:nth-child(2),
+.theme-generate-sample > span:nth-child(3) {
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.theme-generate-sample > span:last-child {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.theme-generate-status {
+  font-size: var(--text-meta);
+}
+.theme-generate-status:empty {
+  display: none;
+}
 .theme-contrast dl {
   margin-top: var(--content-gap);
 }
