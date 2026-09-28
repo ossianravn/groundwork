@@ -1,0 +1,1236 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "groundwork",
+  "homepage": "https://github.com/ossianravn/groundwork",
+  "items": [
+    {
+      "name": "base",
+      "type": "registry:item",
+      "title": "Base",
+      "description": "Tokens, stylesheets, the theme runtime and the cn utility. Every other item builds on it; import src/kit/styles/kit.css as the Tailwind entry.",
+      "dependencies": [
+        "@fontsource-variable/geist@^5.3.0",
+        "@fontsource-variable/inter@^5.3.0",
+        "@fontsource-variable/source-sans-3@^5.3.0",
+        "cn@^0.4.0",
+        "culori@^4.0.2",
+        "shadcn@^4.21.0",
+        "tw-animate-css@^1.4.0"
+      ],
+      "devDependencies": [
+        "@types/culori@^4.0.1"
+      ],
+      "files": [
+        {
+          "path": "src/kit/lib/utils.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/lib/utils.ts"
+        },
+        {
+          "path": "src/kit/styles/appearance-previews.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/appearance-previews.css"
+        },
+        {
+          "path": "src/kit/styles/appearance.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/appearance.css"
+        },
+        {
+          "path": "src/kit/styles/base.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/base.css"
+        },
+        {
+          "path": "src/kit/styles/data-table.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/data-table.css"
+        },
+        {
+          "path": "src/kit/styles/dropdown-menu.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/dropdown-menu.css"
+        },
+        {
+          "path": "src/kit/styles/fonts.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/fonts.css"
+        },
+        {
+          "path": "src/kit/styles/kit.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/kit.css"
+        },
+        {
+          "path": "src/kit/styles/navigation-rail.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/navigation-rail.css"
+        },
+        {
+          "path": "src/kit/styles/panels.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/panels.css"
+        },
+        {
+          "path": "src/kit/styles/public-shell.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/public-shell.css"
+        },
+        {
+          "path": "src/kit/styles/responsive.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/responsive.css"
+        },
+        {
+          "path": "src/kit/styles/rich-text.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/rich-text.css"
+        },
+        {
+          "path": "src/kit/styles/shell.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/shell.css"
+        },
+        {
+          "path": "src/kit/styles/text-hint.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/text-hint.css"
+        },
+        {
+          "path": "src/kit/styles/theme.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/theme.css"
+        },
+        {
+          "path": "src/kit/theme/accents.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/accents.ts"
+        },
+        {
+          "path": "src/kit/theme/color-tokens.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/color-tokens.ts"
+        },
+        {
+          "path": "src/kit/theme/fonts.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/fonts.ts"
+        },
+        {
+          "path": "src/kit/theme/palette.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/palette.ts"
+        },
+        {
+          "path": "src/kit/theme/preferences.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preferences.ts"
+        },
+        {
+          "path": "src/kit/theme/preset-document.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preset-document.ts"
+        },
+        {
+          "path": "src/kit/theme/preset-registry.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preset-registry.ts"
+        },
+        {
+          "path": "src/kit/theme/preset-storage.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preset-storage.ts"
+        },
+        {
+          "path": "src/kit/theme/preset.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preset.ts"
+        },
+        {
+          "path": "src/kit/theme/preview-frame.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/preview-frame.ts"
+        },
+        {
+          "path": "src/kit/theme/use-preset-library.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/use-preset-library.ts"
+        },
+        {
+          "path": "src/kit/theme/use-theme.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/use-theme.ts"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Accordion primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/accordion.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Alert primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/alert.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Avatar primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/avatar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Badge primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/badge.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "bubble",
+      "type": "registry:ui",
+      "title": "Bubble",
+      "description": "Bubble primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/bubble.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/bubble.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/button.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Card primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/card.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "Recharts wrapper with themed tooltip, legend and font-aware axes.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "recharts@^3.8.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/chart-context.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-context.ts"
+        },
+        {
+          "path": "src/kit/ui/chart-legend.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-legend.tsx"
+        },
+        {
+          "path": "src/kit/ui/chart-tooltip.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-tooltip.tsx"
+        },
+        {
+          "path": "src/kit/ui/chart.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart.tsx"
+        },
+        {
+          "path": "src/kit/ui/use-chart-typography.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/use-chart-typography.ts"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkbox primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/checkbox.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Collapsible primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/collapsible.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Combobox primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/input-group"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/combobox-chips.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/combobox-chips.tsx"
+        },
+        {
+          "path": "src/kit/ui/combobox.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Command primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cmdk@^1.1.1",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/dialog",
+        "ossianravn/groundwork/input-group"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/command.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/command.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Dialog primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/dialog.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Dropdown Menu primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/dropdown-menu.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/empty.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/empty.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Field primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/label",
+        "ossianravn/groundwork/separator"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/field.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Input primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/input.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Input Group primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/input",
+        "ossianravn/groundwork/textarea"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/input-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/input-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "description": "Input Otp primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "input-otp@^1.5.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/input-otp.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/input-otp.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Label primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/label.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "description": "Message primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/message.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/message.tsx"
+        }
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller",
+      "description": "Message Scroller primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@shadcn/react@^0.3.1",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/message-scroller.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/message-scroller.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Popover primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/popover.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Radio Group primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/radio-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Resizable primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "react-resizable-panels@^4.13.3"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/resizable.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Select primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/select.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Separator primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/separator.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Sheet primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/sheet-viewport.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/sheet-viewport.ts"
+        },
+        {
+          "path": "src/kit/ui/sheet.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Skeleton primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/skeleton.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Table primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/table.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabs primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/tabs.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "text-hint",
+      "type": "registry:ui",
+      "title": "Text Hint",
+      "description": "Text Hint primitive, styled with Groundwork tokens.",
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/popover"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/text-hint.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/text-hint.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Textarea primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/textarea.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Toggle primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/toggle-variants.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/toggle-variants.ts"
+        },
+        {
+          "path": "src/kit/ui/toggle.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Toggle Group primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/toggle-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Tooltip primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/tooltip.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "TanStack Table toolbar pieces: faceted filters, view options and pagination.",
+      "dependencies": [
+        "@tanstack/react-table@^9.2.4",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/badge",
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/checkbox",
+        "ossianravn/groundwork/field",
+        "ossianravn/groundwork/input-group",
+        "ossianravn/groundwork/popover",
+        "ossianravn/groundwork/select",
+        "ossianravn/groundwork/separator"
+      ],
+      "files": [
+        {
+          "path": "src/kit/data-table/faceted-filter.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/data-table/faceted-filter.tsx"
+        },
+        {
+          "path": "src/kit/data-table/table-features.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/data-table/table-features.ts"
+        },
+        {
+          "path": "src/kit/data-table/table-pagination.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/data-table/table-pagination.tsx"
+        },
+        {
+          "path": "src/kit/data-table/table-view-options.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/data-table/table-view-options.tsx"
+        }
+      ]
+    },
+    {
+      "name": "member-avatar",
+      "type": "registry:component",
+      "title": "Member Avatar",
+      "description": "Member Avatar component, styled with Groundwork tokens.",
+      "registryDependencies": [
+        "ossianravn/groundwork/avatar",
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/member-avatar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/member-avatar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "panel-header",
+      "type": "registry:component",
+      "title": "Panel Header",
+      "description": "Panel Header component, styled with Groundwork tokens.",
+      "dependencies": [
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/sheet"
+      ],
+      "files": [
+        {
+          "path": "src/kit/panel-header.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/panel-header.tsx"
+        }
+      ]
+    },
+    {
+      "name": "rich-text",
+      "type": "registry:block",
+      "title": "Rich Text",
+      "description": "Tiptap editor, toolbar and static renderer for stored documents.",
+      "dependencies": [
+        "@tiptap/core@^3.31.3",
+        "@tiptap/pm@^3.31.3",
+        "@tiptap/react@^3.31.3",
+        "@tiptap/starter-kit@^3.31.3",
+        "@tiptap/static-renderer@^3.31.3",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/field",
+        "ossianravn/groundwork/input",
+        "ossianravn/groundwork/popover",
+        "ossianravn/groundwork/toggle-group",
+        "ossianravn/groundwork/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/kit/rich-text/document.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/rich-text/document.ts"
+        },
+        {
+          "path": "src/kit/rich-text/editor-link.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/rich-text/editor-link.tsx"
+        },
+        {
+          "path": "src/kit/rich-text/editor-toolbar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/rich-text/editor-toolbar.tsx"
+        },
+        {
+          "path": "src/kit/rich-text/rich-text-editor.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/rich-text/rich-text-editor.tsx"
+        },
+        {
+          "path": "src/kit/rich-text/rich-text.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/rich-text/rich-text.tsx"
+        }
+      ]
+    },
+    {
+      "name": "shell",
+      "type": "registry:block",
+      "title": "Shell",
+      "description": "Workspace and public layouts: navigation, collapsible rail, account menu and page actions.",
+      "dependencies": [
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/dropdown-menu",
+        "ossianravn/groundwork/member-avatar",
+        "ossianravn/groundwork/sheet",
+        "ossianravn/groundwork/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/kit/shell/account-menu.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/account-menu.tsx"
+        },
+        {
+          "path": "src/kit/shell/brand-mark.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/brand-mark.tsx"
+        },
+        {
+          "path": "src/kit/shell/navigation-collapsed.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/navigation-collapsed.ts"
+        },
+        {
+          "path": "src/kit/shell/navigation-hint.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/navigation-hint.tsx"
+        },
+        {
+          "path": "src/kit/shell/page-actions-slot.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/page-actions-slot.ts"
+        },
+        {
+          "path": "src/kit/shell/page-actions.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/page-actions.tsx"
+        },
+        {
+          "path": "src/kit/shell/public-layout.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/public-layout.tsx"
+        },
+        {
+          "path": "src/kit/shell/shell-link.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/shell-link.ts"
+        },
+        {
+          "path": "src/kit/shell/use-header-offset.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/use-header-offset.ts"
+        },
+        {
+          "path": "src/kit/shell/workspace-navigation.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/workspace-navigation.tsx"
+        },
+        {
+          "path": "src/kit/shell/workspace-shell.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/workspace-shell.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-panel",
+      "type": "registry:block",
+      "title": "Theme Panel",
+      "description": "Appearance panel: theme, accent, font, density, corners and header surface.",
+      "dependencies": [
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/field",
+        "ossianravn/groundwork/panel-header",
+        "ossianravn/groundwork/select",
+        "ossianravn/groundwork/sheet"
+      ],
+      "files": [
+        {
+          "path": "src/kit/theme/appearance-choices.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/appearance-choices.tsx"
+        },
+        {
+          "path": "src/kit/theme/appearance-settings.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/appearance-settings.tsx"
+        },
+        {
+          "path": "src/kit/theme/font-selector.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/font-selector.tsx"
+        },
+        {
+          "path": "src/kit/theme/theme-panel.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/theme/theme-panel.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kit",
+      "type": "registry:item",
+      "title": "Kit",
+      "description": "The whole Groundwork kit in one install.",
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/accordion",
+        "ossianravn/groundwork/alert",
+        "ossianravn/groundwork/avatar",
+        "ossianravn/groundwork/badge",
+        "ossianravn/groundwork/bubble",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/card",
+        "ossianravn/groundwork/chart",
+        "ossianravn/groundwork/checkbox",
+        "ossianravn/groundwork/collapsible",
+        "ossianravn/groundwork/combobox",
+        "ossianravn/groundwork/command",
+        "ossianravn/groundwork/dialog",
+        "ossianravn/groundwork/dropdown-menu",
+        "ossianravn/groundwork/empty",
+        "ossianravn/groundwork/field",
+        "ossianravn/groundwork/input",
+        "ossianravn/groundwork/input-group",
+        "ossianravn/groundwork/input-otp",
+        "ossianravn/groundwork/label",
+        "ossianravn/groundwork/message",
+        "ossianravn/groundwork/message-scroller",
+        "ossianravn/groundwork/popover",
+        "ossianravn/groundwork/radio-group",
+        "ossianravn/groundwork/resizable",
+        "ossianravn/groundwork/select",
+        "ossianravn/groundwork/separator",
+        "ossianravn/groundwork/sheet",
+        "ossianravn/groundwork/skeleton",
+        "ossianravn/groundwork/table",
+        "ossianravn/groundwork/tabs",
+        "ossianravn/groundwork/text-hint",
+        "ossianravn/groundwork/textarea",
+        "ossianravn/groundwork/toggle",
+        "ossianravn/groundwork/toggle-group",
+        "ossianravn/groundwork/tooltip",
+        "ossianravn/groundwork/data-table",
+        "ossianravn/groundwork/member-avatar",
+        "ossianravn/groundwork/panel-header",
+        "ossianravn/groundwork/rich-text",
+        "ossianravn/groundwork/shell",
+        "ossianravn/groundwork/theme-panel"
+      ],
+      "files": []
+    }
+  ]
+}

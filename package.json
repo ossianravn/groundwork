@@ -20,7 +20,8 @@
     "typecheck": "tsc -b",
     "test": "vitest run",
     "format": "prettier --write src eslint.config.js vite.config.ts tsconfig*.json index.html package.json",
-    "format:check": "prettier --check src eslint.config.js vite.config.ts tsconfig*.json index.html package.json"
+    "format:check": "prettier --check src eslint.config.js vite.config.ts tsconfig*.json index.html package.json",
+    "registry": "node tools/registry/build-registry.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

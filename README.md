@@ -33,14 +33,21 @@ Open `http://127.0.0.1:5173`. The root opens the public site; **Open demo** ente
 
 The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source folder.
 
-1. Copy `src/kit/` into your project's source folder.
-2. Install what it imports:
+1. Install it with the shadcn CLI. The repository is a [GitHub registry](https://ui.shadcn.com/docs/registry/github), so no setup is needed:
 
-   ```sh
-   npm install @base-ui/react class-variance-authority cn lucide-react tw-animate-css shadcn @fontsource-variable/geist @fontsource-variable/inter @fontsource-variable/source-sans-3
+   ```bash
+   npx shadcn add ossianravn/groundwork/kit
    ```
 
-   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `cmdk` (command menu), `culori` (theme colors), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
+   That installs everything into `src/kit/`, the same layout as this repository, so the kit's own imports keep working, and adds its npm dependencies. To take only what you need, install `ossianravn/groundwork/base` (tokens, styles, theme runtime) plus parts such as `button`, `data-table`, `rich-text`, `shell` or `theme-panel`; each part brings the parts it uses. `npx shadcn list ossianravn/groundwork` shows them all. Pin a release with a tag, such as `ossianravn/groundwork/kit#v0.1.0`.
+
+2. Or copy `src/kit/` into your project's source folder and install what it imports:
+
+   ```sh
+   npm install @base-ui/react class-variance-authority cn culori lucide-react tw-animate-css shadcn @fontsource-variable/geist @fontsource-variable/inter @fontsource-variable/source-sans-3
+   ```
+
+   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `cmdk` (command menu), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
 
 3. Make `kit/styles/kit.css` your Tailwind entry (or `@import` it from yours), and point `components.json` at it so `npx shadcn add` installs into `kit/ui`.
 4. Apply saved appearance before rendering, and provide tooltips:
@@ -97,6 +104,8 @@ npm test
 npm run build
 npm run format:check
 ```
+
+`registry.json` is generated from the kit: run `npm run registry` after adding, removing or re-importing kit files, and `npm test` fails while it is stale.
 
 `npm run preview` serves the production build. Hosting must serve `index.html` for application routes. Optional browser checks, including a computed-style snapshot for refactors, are described in [tools/verification](tools/verification/README.md).
 
