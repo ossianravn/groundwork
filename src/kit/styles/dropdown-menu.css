@@ -22,9 +22,19 @@
   cursor: default;
   outline: none;
 }
+/* Icons match the navigation's 16px glyphs; without a size, Lucide draws 24px. */
+.dropdown-menu-item svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+}
 .dropdown-menu-item[data-highlighted] {
   background: var(--accent);
   color: var(--accent-foreground);
+}
+.dropdown-menu-item[data-highlighted] svg {
+  color: currentColor;
 }
 .dropdown-menu-item[data-disabled] {
   opacity: 0.5;
