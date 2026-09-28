@@ -12,7 +12,7 @@ export function AnalyticsRoute() {
 
   return (
     <>
-      <title>Analytics · {demo.workspace.name}</title>
+      <title>{`Analytics · ${demo.workspace.name}`}</title>
       <AnalyticsPage
         activity={demo.activity}
         projects={demo.projects}

@@ -31,7 +31,7 @@ export function ProjectDetailRoute() {
   return (
     <>
       <title>
-        {project?.name ?? "Project unavailable"} · {demo.workspace.name}
+        {`${project?.name ?? "Project unavailable"} · ${demo.workspace.name}`}
       </title>
       {project ? (
         <ProjectPage

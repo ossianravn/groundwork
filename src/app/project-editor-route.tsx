@@ -113,8 +113,7 @@ export function ProjectEditorRoute() {
       tabIndex={-1}
     >
       <title>
-        {project ? `Edit ${project.name}` : "New project"} ·{" "}
-        {demo.workspace.name}
+        {`${project ? `Edit ${project.name}` : "New project"} · ${demo.workspace.name}`}
       </title>
       <div className="project-page-heading">
         <Link {...destination} className={buttonVariants({ variant: "ghost" })}>

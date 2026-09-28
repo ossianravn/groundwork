@@ -10,7 +10,7 @@ import {
 export function ProjectUnavailable({ returnLink }: { returnLink: ReactNode }) {
   return (
     <main id="main-content" className="page-content" tabIndex={-1}>
-      <title>Project unavailable · tandem</title>
+      <title>Project unavailable · Tandem</title>
       <Empty>
         <EmptyHeader>
           <EmptyTitle>

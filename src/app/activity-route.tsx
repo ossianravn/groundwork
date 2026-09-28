@@ -51,7 +51,7 @@ export function ActivityRoute() {
       tabIndex={-1}
       className="page-content activity-page"
     >
-      <title>Activity · {demo.workspace.name}</title>
+      <title>{`Activity · ${demo.workspace.name}`}</title>
       <div className="page-heading activity-page-heading">
         <h1>Activity</h1>
         <span className="count-chip" role="status">

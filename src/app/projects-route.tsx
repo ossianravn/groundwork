@@ -68,7 +68,7 @@ export function ProjectsRoute() {
 
   return (
     <main id="main-content" className="page-content" tabIndex={-1}>
-      <title>Projects · {demo.workspace.name}</title>
+      <title>{`Projects · ${demo.workspace.name}`}</title>
       <div className="page-heading">
         <h1>Projects</h1>
         <p>{demo.workspace.name}</p>

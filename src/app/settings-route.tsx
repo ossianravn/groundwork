@@ -51,7 +51,7 @@ function SettingsRoute({ section }: { section: SettingsSection }) {
 
   return (
     <>
-      <title>{label} · Settings · Tandem</title>
+      <title>{`${label} · Settings · Tandem`}</title>
       <SettingsLayout section={section} LinkComponent={SettingsLink}>
         {section === "security" && (
           <SecuritySettings

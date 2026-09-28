@@ -27,7 +27,7 @@ export function AccessLayout({
 
   return (
     <main className="access-page">
-      <title>{title} · tandem</title>
+      <title>{`${title} · Tandem`}</title>
       <div className="access-column" data-width={width}>
         <div className="access-brand-row">
           {homeLink}

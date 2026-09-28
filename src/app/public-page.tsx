@@ -90,7 +90,7 @@ export function PublicPage({
 
   return (
     <>
-      <title>{title} · Tandem</title>
+      <title>{`${title} · Tandem`}</title>
       <TandemPublicLayout
         LinkComponent={PublicLink}
         onAppearance={() => setThemeOpen(true)}

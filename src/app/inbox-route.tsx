@@ -110,7 +110,7 @@ export function InboxRoute() {
 
   return (
     <>
-      <title>Inbox · {demo.workspace.name}</title>
+      <title>{`Inbox · ${demo.workspace.name}`}</title>
       <InboxLayout
         onCompose={compose}
         filter={search.filter}

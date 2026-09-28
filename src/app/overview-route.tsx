@@ -15,7 +15,7 @@ export function OverviewRoute() {
 
   return (
     <>
-      <title>Overview · {demo.workspace.name}</title>
+      <title>{`Overview · ${demo.workspace.name}`}</title>
       <OverviewPage
         activityLink={
           <Link
