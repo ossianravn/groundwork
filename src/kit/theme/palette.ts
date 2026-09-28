@@ -102,7 +102,7 @@ function reach(
 
 /** The more readable of near-white and a deep tone of the brand hue. */
 function foregroundOn(fill: Oklch) {
-  const light = oklch(0.99, 0, fill.h)
+  const light = oklch(0.99, 0, 0)
   const dark = oklch(0.2, Math.min(fill.c, 0.02), fill.h)
 
   return wcagContrast(css(light), css(fill)) >=

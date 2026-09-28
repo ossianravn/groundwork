@@ -13,6 +13,15 @@ import { Textarea } from "@/kit/ui/textarea"
 import { Field, FieldLabel, FieldError } from "@/kit/ui/field"
 import { decodePreset, type ThemePreset } from "@/kit/theme/preset"
 import { presetCSS } from "@/kit/theme/preset-document"
+import { presetRegistryItem } from "@/kit/theme/preset-registry"
+
+const formats = {
+  json: { label: "JSON preset", type: "application/json" },
+  css: { label: "CSS preset", type: "text/css" },
+  registry: { label: "shadcn registry item", type: "application/json" },
+} as const
+
+type ExportFormat = keyof typeof formats
 
 export function ThemeTransfer({
   preset,
@@ -24,14 +33,21 @@ export function ThemeTransfer({
   onImport: (preset: ThemePreset) => void
 }) {
   const [open, setOpen] = useState(false)
-  const [format, setFormat] = useState("json")
+  const [format, setFormat] = useState<ExportFormat | "import">("json")
   const [input, setInput] = useState("")
   const [error, setError] = useState("")
   const [feedback, setFeedback] = useState("")
   const output = useRef<HTMLTextAreaElement>(null)
 
+  const item = presetRegistryItem(preset)
+
   const source =
-    format === "css" ? presetCSS(preset) : JSON.stringify(preset, null, 2)
+    format === "css"
+      ? presetCSS(preset)
+      : JSON.stringify(format === "registry" ? item : preset, null, 2)
+
+  const filename =
+    format === "registry" ? `${item.name}.json` : `groundwork-theme.${format}`
 
   async function copy() {
     try {
@@ -47,13 +63,13 @@ export function ThemeTransfer({
   function download() {
     const url = URL.createObjectURL(
       new Blob([source], {
-        type: format === "css" ? "text/css" : "application/json",
+        type: format === "import" ? "text/plain" : formats[format].type,
       }),
     )
 
     const link = document.createElement("a")
     link.href = url
-    link.download = `groundwork-theme.${format}`
+    link.download = filename
     link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
@@ -83,13 +99,20 @@ export function ThemeTransfer({
           <DialogDescription>
             JSON preserves both color modes and appearance choices. CSS supplies
             resolved color tokens for the existing Tandem styles; its header
-            lists the root attributes to apply.
+            lists the root attributes to apply. The shadcn registry item
+            installs the same colors as a theme file in a project that uses the
+            Groundwork kit.
           </DialogDescription>
         </DialogHeader>
         <Tabs
           value={format}
           onValueChange={(value) => {
-            if (value === "json" || value === "css" || value === "import") {
+            if (
+              value === "import" ||
+              value === "json" ||
+              value === "css" ||
+              value === "registry"
+            ) {
               setFormat(value)
               setFeedback("")
             }
@@ -98,13 +121,14 @@ export function ThemeTransfer({
           <TabsList variant="line" aria-label="Preset transfer">
             <TabsTrigger value="json">JSON</TabsTrigger>
             <TabsTrigger value="css">CSS</TabsTrigger>
+            <TabsTrigger value="registry">shadcn</TabsTrigger>
             <TabsTrigger value="import">Import</TabsTrigger>
           </TabsList>
           {format !== "import" ? (
             <TabsContent value={format}>
               <Field>
                 <FieldLabel htmlFor="theme-export">
-                  {format.toUpperCase()} preset
+                  {formats[format].label}
                 </FieldLabel>
                 <Textarea
                   ref={output}
@@ -126,6 +150,14 @@ export function ThemeTransfer({
                   Download
                 </Button>
               </div>
+              {format === "registry" && (
+                <p className="theme-hint">
+                  Save it as <code>{filename}</code> in the project root and run{" "}
+                  <code>npx shadcn add ./{filename}</code>. The theme file lands
+                  in <code>{item.files[0].target}</code> and loads after the
+                  kit&apos;s tokens. Host the file to share it by URL.
+                </p>
+              )}
               <p role="status" className="theme-hint">
                 {feedback}
               </p>
