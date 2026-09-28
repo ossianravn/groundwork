@@ -174,7 +174,7 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -194,7 +194,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -214,7 +214,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -235,7 +235,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -256,7 +256,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -277,7 +277,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -296,7 +296,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -316,7 +316,7 @@
         "recharts@^3.8.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -357,7 +357,7 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -376,7 +376,7 @@
         "@base-ui/react@^1.8.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -397,9 +397,9 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/input-group"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/input-group#kit/registry"
       ],
       "files": [
         {
@@ -425,9 +425,9 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/dialog",
-        "ossianravn/groundwork/input-group"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/dialog#kit/registry",
+        "ossianravn/groundwork/input-group#kit/registry"
       ],
       "files": [
         {
@@ -448,8 +448,8 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry"
       ],
       "files": [
         {
@@ -469,7 +469,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -489,7 +489,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -509,9 +509,9 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/label",
-        "ossianravn/groundwork/separator"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/label#kit/registry",
+        "ossianravn/groundwork/separator#kit/registry"
       ],
       "files": [
         {
@@ -531,7 +531,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -551,10 +551,10 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/input",
-        "ossianravn/groundwork/textarea"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/input#kit/registry",
+        "ossianravn/groundwork/textarea#kit/registry"
       ],
       "files": [
         {
@@ -575,7 +575,7 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -594,7 +594,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -613,7 +613,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -634,8 +634,8 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry"
       ],
       "files": [
         {
@@ -655,7 +655,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -675,7 +675,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -695,7 +695,7 @@
         "react-resizable-panels@^4.13.3"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -716,7 +716,7 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -736,7 +736,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -757,8 +757,8 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry"
       ],
       "files": [
         {
@@ -782,7 +782,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -801,7 +801,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -822,7 +822,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -838,8 +838,8 @@
       "title": "Text Hint",
       "description": "Text Hint primitive, styled with Groundwork tokens.",
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/popover"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/popover#kit/registry"
       ],
       "files": [
         {
@@ -858,7 +858,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -879,7 +879,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -905,8 +905,8 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/toggle"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/toggle#kit/registry"
       ],
       "files": [
         {
@@ -926,7 +926,7 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -946,15 +946,15 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/badge",
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/checkbox",
-        "ossianravn/groundwork/field",
-        "ossianravn/groundwork/input-group",
-        "ossianravn/groundwork/popover",
-        "ossianravn/groundwork/select",
-        "ossianravn/groundwork/separator"
+        "ossianravn/groundwork/badge#kit/registry",
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/checkbox#kit/registry",
+        "ossianravn/groundwork/field#kit/registry",
+        "ossianravn/groundwork/input-group#kit/registry",
+        "ossianravn/groundwork/popover#kit/registry",
+        "ossianravn/groundwork/select#kit/registry",
+        "ossianravn/groundwork/separator#kit/registry"
       ],
       "files": [
         {
@@ -985,8 +985,8 @@
       "title": "Member Avatar",
       "description": "Member Avatar component, styled with Groundwork tokens.",
       "registryDependencies": [
-        "ossianravn/groundwork/avatar",
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/avatar#kit/registry",
+        "ossianravn/groundwork/base#kit/registry"
       ],
       "files": [
         {
@@ -1005,9 +1005,9 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/sheet"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/sheet#kit/registry"
       ],
       "files": [
         {
@@ -1031,13 +1031,13 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/field",
-        "ossianravn/groundwork/input",
-        "ossianravn/groundwork/popover",
-        "ossianravn/groundwork/toggle-group",
-        "ossianravn/groundwork/tooltip"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/field#kit/registry",
+        "ossianravn/groundwork/input#kit/registry",
+        "ossianravn/groundwork/popover#kit/registry",
+        "ossianravn/groundwork/toggle-group#kit/registry",
+        "ossianravn/groundwork/tooltip#kit/registry"
       ],
       "files": [
         {
@@ -1076,12 +1076,12 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/dropdown-menu",
-        "ossianravn/groundwork/member-avatar",
-        "ossianravn/groundwork/sheet",
-        "ossianravn/groundwork/tooltip"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/dropdown-menu#kit/registry",
+        "ossianravn/groundwork/member-avatar#kit/registry",
+        "ossianravn/groundwork/sheet#kit/registry",
+        "ossianravn/groundwork/tooltip#kit/registry"
       ],
       "files": [
         {
@@ -1150,12 +1150,12 @@
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/field",
-        "ossianravn/groundwork/panel-header",
-        "ossianravn/groundwork/select",
-        "ossianravn/groundwork/sheet"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/field#kit/registry",
+        "ossianravn/groundwork/panel-header#kit/registry",
+        "ossianravn/groundwork/select#kit/registry",
+        "ossianravn/groundwork/sheet#kit/registry"
       ],
       "files": [
         {
@@ -1186,49 +1186,49 @@
       "title": "Kit",
       "description": "The whole Groundwork kit in one install.",
       "registryDependencies": [
-        "ossianravn/groundwork/base",
-        "ossianravn/groundwork/accordion",
-        "ossianravn/groundwork/alert",
-        "ossianravn/groundwork/avatar",
-        "ossianravn/groundwork/badge",
-        "ossianravn/groundwork/bubble",
-        "ossianravn/groundwork/button",
-        "ossianravn/groundwork/card",
-        "ossianravn/groundwork/chart",
-        "ossianravn/groundwork/checkbox",
-        "ossianravn/groundwork/collapsible",
-        "ossianravn/groundwork/combobox",
-        "ossianravn/groundwork/command",
-        "ossianravn/groundwork/dialog",
-        "ossianravn/groundwork/dropdown-menu",
-        "ossianravn/groundwork/empty",
-        "ossianravn/groundwork/field",
-        "ossianravn/groundwork/input",
-        "ossianravn/groundwork/input-group",
-        "ossianravn/groundwork/input-otp",
-        "ossianravn/groundwork/label",
-        "ossianravn/groundwork/message",
-        "ossianravn/groundwork/message-scroller",
-        "ossianravn/groundwork/popover",
-        "ossianravn/groundwork/radio-group",
-        "ossianravn/groundwork/resizable",
-        "ossianravn/groundwork/select",
-        "ossianravn/groundwork/separator",
-        "ossianravn/groundwork/sheet",
-        "ossianravn/groundwork/skeleton",
-        "ossianravn/groundwork/table",
-        "ossianravn/groundwork/tabs",
-        "ossianravn/groundwork/text-hint",
-        "ossianravn/groundwork/textarea",
-        "ossianravn/groundwork/toggle",
-        "ossianravn/groundwork/toggle-group",
-        "ossianravn/groundwork/tooltip",
-        "ossianravn/groundwork/data-table",
-        "ossianravn/groundwork/member-avatar",
-        "ossianravn/groundwork/panel-header",
-        "ossianravn/groundwork/rich-text",
-        "ossianravn/groundwork/shell",
-        "ossianravn/groundwork/theme-panel"
+        "ossianravn/groundwork/base#kit/registry",
+        "ossianravn/groundwork/accordion#kit/registry",
+        "ossianravn/groundwork/alert#kit/registry",
+        "ossianravn/groundwork/avatar#kit/registry",
+        "ossianravn/groundwork/badge#kit/registry",
+        "ossianravn/groundwork/bubble#kit/registry",
+        "ossianravn/groundwork/button#kit/registry",
+        "ossianravn/groundwork/card#kit/registry",
+        "ossianravn/groundwork/chart#kit/registry",
+        "ossianravn/groundwork/checkbox#kit/registry",
+        "ossianravn/groundwork/collapsible#kit/registry",
+        "ossianravn/groundwork/combobox#kit/registry",
+        "ossianravn/groundwork/command#kit/registry",
+        "ossianravn/groundwork/dialog#kit/registry",
+        "ossianravn/groundwork/dropdown-menu#kit/registry",
+        "ossianravn/groundwork/empty#kit/registry",
+        "ossianravn/groundwork/field#kit/registry",
+        "ossianravn/groundwork/input#kit/registry",
+        "ossianravn/groundwork/input-group#kit/registry",
+        "ossianravn/groundwork/input-otp#kit/registry",
+        "ossianravn/groundwork/label#kit/registry",
+        "ossianravn/groundwork/message#kit/registry",
+        "ossianravn/groundwork/message-scroller#kit/registry",
+        "ossianravn/groundwork/popover#kit/registry",
+        "ossianravn/groundwork/radio-group#kit/registry",
+        "ossianravn/groundwork/resizable#kit/registry",
+        "ossianravn/groundwork/select#kit/registry",
+        "ossianravn/groundwork/separator#kit/registry",
+        "ossianravn/groundwork/sheet#kit/registry",
+        "ossianravn/groundwork/skeleton#kit/registry",
+        "ossianravn/groundwork/table#kit/registry",
+        "ossianravn/groundwork/tabs#kit/registry",
+        "ossianravn/groundwork/text-hint#kit/registry",
+        "ossianravn/groundwork/textarea#kit/registry",
+        "ossianravn/groundwork/toggle#kit/registry",
+        "ossianravn/groundwork/toggle-group#kit/registry",
+        "ossianravn/groundwork/tooltip#kit/registry",
+        "ossianravn/groundwork/data-table#kit/registry",
+        "ossianravn/groundwork/member-avatar#kit/registry",
+        "ossianravn/groundwork/panel-header#kit/registry",
+        "ossianravn/groundwork/rich-text#kit/registry",
+        "ossianravn/groundwork/shell#kit/registry",
+        "ossianravn/groundwork/theme-panel#kit/registry"
       ],
       "files": []
     }
