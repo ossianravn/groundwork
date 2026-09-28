@@ -270,6 +270,10 @@
 .account-menu-trigger[data-popup-open] {
   background: var(--muted);
 }
+/* The menu lines up with the account row it opens from, even when collapsed. */
+.dropdown-menu-content.account-menu-content {
+  min-width: max(12rem, var(--anchor-width));
+}
 .account-menu-trigger > svg {
   width: 1rem;
   height: 1rem;

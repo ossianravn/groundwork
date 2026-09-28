@@ -100,6 +100,7 @@ Allow compound labels such as Description (optional) to wrap. On narrow project-
 
 ### Controls, panels and action feedback
 
+- Menu item icons are 16px like the navigation's, muted at rest and foreground when highlighted; the dropdown primitive sizes them, so callers pass bare Lucide icons. A menu opened from a full-width row (the account menu) is at least as wide as that row, so the two align.
 - Contextual project badges show the project name with a quiet outline and transparent background; do not add an initials tile or avatar. Initials avatars identify people. Existing project-code marks in project tables are a separate pattern. Compact project dates in Cards and Board share a calendar icon plus the date; the accessible label retains Due.
 - Treat a section heading and its explanatory sentence as one reading group. Keep the sentence directly beneath the heading at a bounded measure unless it belongs to a separate, clearly structured column. Counts belong beside their heading or results control, not in a disconnected extra row. Analytics metric labels consistently use Completed tasks; prose may retain natural sentence grammar.
 

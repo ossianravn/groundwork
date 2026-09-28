@@ -51,7 +51,7 @@ export function AccountMenu<Destination extends string>({
           </span>
           <ChevronsUpDown aria-hidden="true" className="navigation-label" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        <DropdownMenuContent align="start" className="account-menu-content">
           {items.map(({ destination, label, icon: Icon, separated }) => (
             <Fragment key={destination}>
               {separated && <DropdownMenuSeparator />}
