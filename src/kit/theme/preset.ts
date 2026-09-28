@@ -2,6 +2,7 @@
 import { parse } from "culori"
 import { defaultTheme, type ThemeSettings } from "./preferences"
 import { interfaceFonts } from "./fonts"
+import { accents } from "./accents"
 
 import { colorTokens, type ThemeColors } from "./color-tokens"
 
@@ -28,7 +29,7 @@ export function newPreset(
 
 const settingsValues = {
   appearance: ["light", "dark", "system"],
-  accent: ["indigo", "teal", "neutral"],
+  accent: accents.map((accent) => accent.value),
   radius: ["subtle", "rounded"],
   density: ["comfortable", "compact"],
   headerSurface: ["glass", "solid", "system"],

@@ -2,6 +2,7 @@ import { FieldGroup } from "@/kit/ui/field"
 import { AppearanceChoices, AppearancePreview } from "./appearance-choices"
 import { FontSelector } from "./font-selector"
 import type { ThemeSettings } from "./preferences"
+import { accents } from "./accents"
 
 export function AppearanceSettings({
   theme,
@@ -31,17 +32,11 @@ export function AppearanceSettings({
         <AppearanceChoices
           label="Accent color"
           value={theme.accent}
-          options={(
-            [
-              { value: "indigo", label: "Indigo" },
-              { value: "teal", label: "Teal" },
-              { value: "neutral", label: "Neutral" },
-            ] as const
-          ).map((option) => ({
+          options={accents.map((option) => ({
             ...option,
             preview: (
               <span className="appearance-accent-preview" aria-hidden="true">
-                <span data-swatch={option.value} />
+                <span data-accent={option.value} />
               </span>
             ),
           }))}

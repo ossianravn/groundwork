@@ -19,9 +19,9 @@ The outer editor retains the site's appearance. Edits made through an embedded A
 
 Version 1 JSON contains a name, all six shared appearance settings and both color palettes. Imports validate supported fields, choices and absolute CSS colors before replacing the current draft; imports are not automatically saved. Errors remain in the dialog and preserve existing work.
 
-Exports resolve all 38 supported color tokens for both modes from the preview document. JSON reopens the full editable preset. CSS exports those same values and the font family, for loading after the shared Tandem stylesheet. Its header specifies the root attributes for accent/radius/density/header and the mode class; font assets must be installed. Shared responsive geometry stays in the existing stylesheet. CSS is not an import format or a standalone theme engine. Copy has a manual-selection fallback; Download offers the generated JSON/CSS file.
+Exports resolve all 42 supported color tokens for both modes from the preview document. JSON reopens the full editable preset. CSS exports those same values and the font family, for loading after the shared Tandem stylesheet. Its header specifies the root attributes for accent/radius/density/header and the mode class; font assets must be installed. Shared responsive geometry stays in the existing stylesheet. CSS is not an import format or a standalone theme engine. Copy has a manual-selection fallback; Download offers the generated JSON/CSS file.
 
-`src/features/reference/themes.json` contains shipped preset names/accent identifiers only. `src/styles/` remains the palette-value owner. `src/theme/preset.ts` owns the versioned import contract, `preset-document.ts` resolves/exports values, and `use-preset-library.ts` owns host draft/library state. Saved presets use `groundwork.presets.v1`; ordinary appearance keeps its existing namespace.
+Shipped presets come from the kit accent catalog (`src/kit/theme/accents.ts`), one per accent, in catalog order. `src/kit/styles/theme.css` remains the palette-value owner. `src/theme/preset.ts` owns the versioned import contract, `preset-document.ts` resolves/exports values, and `use-preset-library.ts` owns host draft/library state. Saved presets use `groundwork.presets.v1`; ordinary appearance keeps its existing namespace.
 
 ## Contrast and responsive behavior
 

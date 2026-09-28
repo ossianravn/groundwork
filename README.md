@@ -62,6 +62,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
 | Colors, type scale, spacing, radius and density | `src/kit/styles/theme.css`, the only file that defines token values |
 | Responsive and pointer-specific token values | `src/kit/styles/responsive.css` |
 | A primitive's appearance | Its component in `src/kit/ui/`; primitives style themselves with token-based classes |
+| Accents (the shipped color options) | `src/kit/theme/accents.ts` for the name and order, plus a light and a dark `[data-accent]` block in `theme.css`; a test fails if the two disagree |
 | Interface fonts | `src/kit/theme/fonts.ts` and `src/kit/styles/fonts.css`; keep each font's license in `public/font-licenses/` |
 | Brand in every shell | `src/components/tandem-brand.tsx` (demo) or your own `ShellBrand` |
 

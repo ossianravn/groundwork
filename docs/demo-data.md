@@ -30,7 +30,7 @@ Keep a central demo-data directory, divided by domain rather than page. The exac
 | billing.json | Plans, sample subscriptions, usage and invoices; public pricing and billing settings |
 | integrations.json | Nonfunctional key metadata, webhook endpoints and delivery examples; developer settings |
 | content.json | Marketing content, sample testimonials, FAQ, articles, releases and help content |
-| themes.json | Implemented in `src/features/reference/`: shipped names/accent identifiers only. CSS owns palette values; exports resolve both modes from that owner. |
+| Shipped theme presets | No data file: the playground derives one preset per entry in the kit accent catalog (`src/kit/theme/accents.ts`). CSS owns palette values; exports resolve both modes from that owner. |
 | scenarios.json | Named loading, empty, failure, permission and authentication fixtures; includes a stable reference date for date-sensitive examples |
 
 Split a domain file when its size or ownership warrants it. Do not duplicate a project, user or price just because it appears on another page. Referenced media and sample downloads remain ordinary asset files; JSON contains their paths and metadata.

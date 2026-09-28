@@ -17,21 +17,11 @@ import { ThemePreview, type ThemePreviewPage } from "./theme-preview"
 import { ThemeCustomize } from "./theme-customize"
 import { ThemeSave } from "./theme-save"
 import { ThemeTransfer } from "./theme-transfer"
-import shipped from "./themes.json"
+import { accents } from "@/kit/theme/accents"
 
-const builtIns = shipped.map((item) =>
-  newPreset(
-    {
-      ...defaultTheme,
-      accent:
-        item.accent === "teal"
-          ? "teal"
-          : item.accent === "neutral"
-            ? "neutral"
-            : "indigo",
-    },
-    item.name,
-  ),
+// Each shipped accent is a starting preset; the catalog sets names and order.
+const builtIns = accents.map((accent) =>
+  newPreset({ ...defaultTheme, accent: accent.value }, accent.label),
 )
 
 export function ThemePlayground({
