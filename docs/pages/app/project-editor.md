@@ -10,7 +10,7 @@ Understand a project, create one and make reliable edits without losing work.
 
 ## Current core form
 
-The form edits name, formatted description, owner and due date; description is optional. Validation is shared with the reusable quick-create fields. Editing preserves status and completed-task counts; completion remains an explicit detail/inspector action. Successful create/edit opens the saved detail with visible feedback and updates shared records/activity atomically.
+The form edits name, formatted description, owner and due date; description is optional. Name and due-date validation (`validateProjectFields`) is shared with inline editing. Editing preserves status and completed-task counts; completion remains an explicit detail/inspector action. Successful create/edit opens the saved detail with visible feedback and updates shared records/activity atomically.
 
 The Tiptap editor supports bold, italic, bullet/numbered lists, links and undo/redo through a compact shadcn toolbar with labelled icon tooltips. Link editing opens a contextual popover and returns focus to the editor. Pasted content uses the same limited schema. The accepted Name/Owner and Description/Due date composition remains bounded and stacks on narrow screens. Details and Activity changes render formatting; cards and the inspector derive plain-text previews. The [Reference editor](http://127.0.0.1:5173/reference/components/rich-text) provides isolated edit/read/Cancel behavior. Markdown source mode, media, uploads and collaboration are not implemented.
 
@@ -46,7 +46,7 @@ Creation and editing share the form pattern. Required fields reflect the illustr
 
 ## States to demonstrate
 
-**SETT-13 — validated submission and recovery:** compose labelled Field controls, explicit requiredness, field-associated repair messages and useful focus after an invalid submit. The same validation contract serves create/edit and the relevant quick-create fields. Retain input after a named rejected-save scenario; retry uses the retained values and creates one successful mutation. Show success where the person can see it and preserve result context. Initial, invalid, corrected, pending where applicable, rejected/retry and saved states are distinct. Pending feedback represents actual work, not an artificial delay in normal local saves. Error summaries are appropriate when the form's length makes offscreen errors difficult to find, not mandatory decoration for every short form.
+**SETT-13 — validated submission and recovery:** compose labelled Field controls, explicit requiredness, field-associated repair messages and useful focus after an invalid submit. The same validation contract serves create, edit and inline editing. Retain input after a named rejected-save scenario; retry uses the retained values and creates one successful mutation. Show success where the person can see it and preserve result context. Initial, invalid, corrected, pending where applicable, rejected/retry and saved states are distinct. Pending feedback represents actual work, not an artificial delay in normal local saves. Error summaries are appropriate when the form's length makes offscreen errors difficult to find, not mandatory decoration for every short form.
 
 New/loaded; loading; field errors; tags empty/selected/duplicate; editor empty/focused/selection; upload pending/failed; dirty/saving/saved; save rejected; concurrent update conflict; deleted record; read-only access; file/link unavailable.
 
@@ -56,7 +56,7 @@ Use FieldGroup/Field/FieldSet, Input, Select, Textarea or chosen rich editor, Co
 
 ## Data and persistence
 
-Plain-text project fixtures and quick-create values convert to a Tiptap JSON document at their entry boundary. That document is the canonical description in records, drafts and new before/after history; formatting-only edits count as changes. Read views use the same schema through Tiptap's React static renderer. Create/edit update shared local state and affected views; scenarios.json supplies the named first-save failure. Failed saves retain formatted input. Conflict and attachment examples remain planned; fixture files stay unchanged.
+Plain-text project fixtures convert to a Tiptap JSON document at their entry boundary. That document is the canonical description in records, drafts and new before/after history; formatting-only edits count as changes. Read views use the same schema through Tiptap's React static renderer. Create/edit update shared local state and affected views; scenarios.json supplies the named first-save failure. Failed saves retain formatted input. Conflict and attachment examples remain planned; fixture files stay unchanged.
 
 Follows the confirmed [static JSON demo-data contract](../../demo-data.md), including shared state, scenario selection and the proposed baseline-reset behavior.
 

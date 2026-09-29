@@ -1,5 +1,5 @@
 import { sameDocument } from "@/kit/rich-text/document"
-import type { Member, NewProject, Project } from "./model"
+import type { Member, Project } from "./model"
 import { projectLinkError, sameProjectLinks } from "./project-links"
 
 export type ProjectValues = Pick<
@@ -24,7 +24,7 @@ export type ProjectSaveResult =
   | { kind: "rejected"; message: string }
 
 export function validateProjectFields(
-  values: Pick<NewProject, "name" | "dueDate">,
+  values: Pick<ProjectValues, "name" | "dueDate">,
 ): ProjectFieldErrors {
   const date = new Date(`${values.dueDate}T00:00:00Z`)
 

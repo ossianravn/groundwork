@@ -54,12 +54,6 @@ export interface Activity {
   changes?: ActivityChange[]
 }
 
-export interface NewProject {
-  name: string
-  description: string
-  dueDate: string
-}
-
 export const statusLabels: Record<ProjectStatus, string> = {
   "in-progress": "In progress",
   "in-review": "In review",
