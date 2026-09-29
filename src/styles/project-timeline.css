@@ -1,0 +1,250 @@
+/* Timeline and month views (TABL-14). */
+.project-timeline-view {
+  display: grid;
+  justify-items: start;
+  gap: var(--content-gap);
+}
+.project-timeline-view > * {
+  justify-self: stretch;
+}
+.project-timeline-view > [data-slot="toggle-group"] {
+  justify-self: start;
+}
+.timeline-link {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+.timeline-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* The scroller is the containing block, so nothing inside widens the page. */
+.timeline-scroll {
+  position: relative;
+  overflow-x: auto;
+}
+.timeline {
+  --name-width: 13rem;
+  position: relative;
+  /* Grow with the date columns so the snapshot line is placed against the
+     full chart width, not the visible part. */
+  width: max-content;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: var(--name-width) minmax(
+      calc(var(--timeline-days) * 0.8rem),
+      1fr
+    );
+}
+.timeline-axis {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(calc(var(--timeline-days) / 7), 1fr);
+  padding-bottom: var(--control-gap);
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.timeline-axis span {
+  padding-inline-start: 0.25rem;
+  border-inline-start: 1px solid var(--border);
+}
+.timeline-rows {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+.timeline-row {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
+  min-height: 3.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.timeline-name {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 2;
+  display: grid;
+  gap: 0.125rem;
+  padding: var(--control-gap) var(--content-gap) var(--control-gap) 0;
+  background: var(--background);
+}
+.timeline-meta {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.timeline-meta[data-overdue] {
+  color: var(--destructive);
+}
+/* Weekly gridlines line up with the axis because the range starts Monday. */
+.timeline-track {
+  position: relative;
+  align-self: stretch;
+  background-image: linear-gradient(
+    to right,
+    var(--border) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / var(--timeline-days) * 7) 100%;
+}
+.timeline-bar {
+  position: absolute;
+  top: 50%;
+  left: calc(100% * var(--start) / var(--timeline-days));
+  width: calc(100% * var(--span) / var(--timeline-days));
+  height: 0.75rem;
+  translate: 0 -50%;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--project-color) 24%, transparent);
+}
+.timeline-fill {
+  display: block;
+  width: var(--done);
+  height: 100%;
+  background: var(--project-color);
+}
+.timeline-today {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(
+    var(--name-width) + (100% - var(--name-width)) * var(--timeline-today) /
+      var(--timeline-days)
+  );
+  z-index: 1;
+  border-inline-start: 1.5px solid var(--brand);
+  pointer-events: none;
+}
+.timeline-today span {
+  position: absolute;
+  top: -0.125rem;
+  translate: -50% -100%;
+  padding: 0 0.375rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  font-size: var(--text-meta);
+  white-space: nowrap;
+}
+.timeline-scroll:has(.timeline-today) {
+  padding-top: 1.5rem;
+}
+
+/* Month */
+.month-calendar {
+  display: grid;
+  gap: var(--control-gap);
+}
+.month-calendar-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.month-calendar-heading h3 {
+  min-width: 9rem;
+  text-align: center;
+  font-weight: 600;
+}
+.month-calendar-count {
+  margin-inline-start: auto;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.month-weekdays,
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.month-weekdays {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  padding-bottom: 0.25rem;
+}
+.month-weekdays span {
+  padding-inline: var(--control-gap);
+}
+.month-grid {
+  border-top: 1px solid var(--border);
+  border-inline-start: 1px solid var(--border);
+}
+.month-grid > li {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  min-height: 6rem;
+  padding: var(--control-gap);
+  border-inline-end: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-meta);
+}
+.month-grid > li[data-outside] {
+  background: color-mix(in oklab, var(--muted) 50%, transparent);
+  color: var(--muted-foreground);
+}
+.month-day {
+  font-variant-numeric: tabular-nums;
+}
+.month-grid > li[data-today] .month-day > span:first-child {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-foreground);
+}
+.month-grid ul {
+  display: grid;
+  gap: 0.25rem;
+}
+.month-grid ul li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+  min-width: 0;
+}
+.month-calendar-empty {
+  color: var(--muted-foreground);
+}
+@media (max-width: 767px) {
+  .timeline {
+    --name-width: 9.5rem;
+  }
+  /* The month becomes a list of days that have projects due. */
+  .month-weekdays {
+    display: none;
+  }
+  .month-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .month-grid > li[data-empty],
+  .month-grid > li[data-outside] {
+    display: none;
+  }
+  .month-grid > li {
+    min-height: 0;
+    grid-template-columns: 8rem minmax(0, 1fr);
+  }
+  .month-day .sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    white-space: normal;
+  }
+  .month-day > span:first-child {
+    display: none;
+  }
+}

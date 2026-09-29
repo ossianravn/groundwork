@@ -1,4 +1,4 @@
-import { Columns3, LayoutGrid, Table2 } from "lucide-react"
+import { ChartGantt, Columns3, LayoutGrid, Table2 } from "lucide-react"
 import { ToggleGroup, ToggleGroupItem } from "@/kit/ui/toggle-group"
 import {
   Select,
@@ -21,6 +21,7 @@ export function ProjectViewToggle({
     { value: "table", label: "Table", icon: Table2 },
     { value: "grid", label: "Cards", icon: LayoutGrid },
     { value: "board", label: "Board", icon: Columns3 },
+    { value: "timeline", label: "Timeline", icon: ChartGantt },
   ] as const
 
   const current = views.find((view) => view.value === value)!
@@ -36,8 +37,7 @@ export function ProjectViewToggle({
         onValueChange={(values) => {
           const next = values[0]
 
-          if (next === "table" || next === "grid" || next === "board")
-            onChange(next)
+          if (isView(next)) onChange(next)
         }}
       >
         <ToggleGroupItem value="table" aria-label="Table">
@@ -52,13 +52,16 @@ export function ProjectViewToggle({
           <Columns3 aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Board</span>
         </ToggleGroupItem>
+        <ToggleGroupItem value="timeline" aria-label="Timeline">
+          <ChartGantt aria-hidden="true" data-icon="inline-start" />
+          <span className="project-view-label">Timeline</span>
+        </ToggleGroupItem>
       </ToggleGroup>
       <Select
         items={views}
         value={value}
         onValueChange={(next) => {
-          if (next === "table" || next === "grid" || next === "board")
-            onChange(next)
+          if (isView(next)) onChange(next)
         }}
       >
         <SelectTrigger
@@ -83,5 +86,14 @@ export function ProjectViewToggle({
         </SelectContent>
       </Select>
     </>
+  )
+}
+
+function isView(value: unknown): value is ProjectTableState["view"] {
+  return (
+    value === "table" ||
+    value === "grid" ||
+    value === "board" ||
+    value === "timeline"
   )
 }
