@@ -43,3 +43,7 @@ Inherits [shared shells](../../shells.md), the [quality contract](../../quality.
 ## Showcase sections — 2026-09-29
 
 Below the hero stage, a row of sample team logos (MKT-03, static here; the Customers page uses the moving variant) is labelled as fictional. After the features, a stats band (MKT-23) shows figures computed from the Studio North fixtures in the display face, on the same three-column grid as the questions, with a link into the demo. All customer names, quotes and figures live in `src/demo/data/public-customers.json`, whose note states they are fictional.
+
+## Customers — 2026-09-29
+
+Home closes its showcase with a Customer stories carousel (KIT-11) before the questions: story cards with the team on its hue, the outcome and one figure, and an All stories link. `/customers` repeats the stories as a grid (four, two or one per row), shows the logo marquee and an In their words wall of six quotes (MKT-06). `/customers/:slug` (MKT-19) leads with the outcome, then three figures, the quote, what changed, and a way into the demo. The stories name real demo features (tasks, saved views, timeline, import) so each reads as a tour of the product. Everything is sample content and says so.

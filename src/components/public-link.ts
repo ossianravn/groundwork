@@ -1,3 +1,4 @@
+import type { ComponentProps, ComponentType } from "react"
 import type { ShellLinkComponent, ShellLinkProps } from "@/kit/shell/shell-link"
 
 export type PublicDestination =
@@ -7,6 +8,7 @@ export type PublicDestination =
   | "pricing"
   | "blog"
   | "changelog"
+  | "customers"
   | "latest-release"
   | "help"
   | "contact"
@@ -24,3 +26,8 @@ export type PublicDestination =
 export type PublicLinkProps = ShellLinkProps<PublicDestination>
 
 export type PublicLinkComponent = ShellLinkComponent<PublicDestination>
+
+/** Links to one customer story by its slug. */
+export type StoryLinkComponent = ComponentType<
+  Omit<ComponentProps<"a">, "href"> & { slug: string }
+>

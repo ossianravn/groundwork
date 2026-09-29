@@ -2,25 +2,12 @@ import { useState } from "react"
 import { Pause, Play } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import customers from "@/demo/data/public-customers.json"
+import { CustomerMark } from "./customer-mark"
 
-const marks = new Map([
-  ["circle", "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16Z"],
-  ["arch", "M5 20V11a7 7 0 0 1 14 0v9h-4v-9a3 3 0 0 0-6 0v9Z"],
-  ["path", "M4 18c4-10 12-2 16-12M4 12c4-6 8 0 12-6"],
-  ["square", "M5 5h14v14H5Z"],
-  [
-    "ring",
-    "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Zm0 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z",
-  ],
-  ["wave", "M3 14c3-4 6 4 9 0s6-4 9 0M3 9c3-4 6 4 9 0s6-4 9 0"],
-])
-
-function Logo({ name, mark }: { name: string; mark: string }) {
+function Logo({ slug, name }: { slug: string; name: string }) {
   return (
     <li className="customer-logo">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d={marks.get(mark)} />
-      </svg>
+      <CustomerMark slug={slug} />
       {name}
     </li>
   )
@@ -65,14 +52,14 @@ export function CustomerLogos({
       >
         <ul>
           {teams.map((team) => (
-            <Logo key={team.slug} name={team.name} mark={team.mark} />
+            <Logo key={team.slug} slug={team.slug} name={team.name} />
           ))}
         </ul>
         {motion === "marquee" && (
           // A second copy makes the loop seamless; it is decoration only.
           <ul aria-hidden="true">
             {teams.map((team) => (
-              <Logo key={team.slug} name={team.name} mark={team.mark} />
+              <Logo key={team.slug} slug={team.slug} name={team.name} />
             ))}
           </ul>
         )}

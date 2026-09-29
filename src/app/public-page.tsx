@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react"
+import { useEffect, useState, type ComponentProps, type ReactNode } from "react"
 import { Link, useLocation } from "@tanstack/react-router"
 import { TandemPublicLayout } from "@/components/tandem-public-layout"
 import type { PublicLinkProps } from "@/components/public-link"
@@ -21,6 +21,8 @@ export function PublicLink({ destination, ...props }: PublicLinkProps) {
       return <Link {...props} to="/blog" />
     case "changelog":
       return <Link {...props} to="/changelog" />
+    case "customers":
+      return <Link {...props} to="/customers" />
     case "latest-release":
       return (
         <Link
@@ -78,6 +80,13 @@ export function PublicLink({ destination, ...props }: PublicLinkProps) {
         />
       )
   }
+}
+
+export function StoryLink({
+  slug,
+  ...props
+}: Omit<ComponentProps<"a">, "href"> & { slug: string }) {
+  return <Link {...props} to="/customers/$slug" params={{ slug }} />
 }
 
 export function PublicPage({

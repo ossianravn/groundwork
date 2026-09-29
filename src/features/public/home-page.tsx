@@ -9,6 +9,7 @@ import {
 import type {
   PublicDestination,
   PublicLinkComponent,
+  StoryLinkComponent,
 } from "@/components/public-link"
 import content from "@/demo/data/public-home.json"
 import type { ProjectColor } from "@/demo/model"
@@ -16,6 +17,7 @@ import { projectColorStyle } from "@/components/project-color"
 import { Newsletter } from "./newsletter"
 import { CustomerLogos } from "./customer-logos"
 import { StatsBand } from "./stats-band"
+import { CustomerStories } from "./customer-stories"
 
 // Each feature shows a close-up of the real screen it describes, on a tile
 // tinted with a project colour.
@@ -31,8 +33,10 @@ const features: {
 
 export function HomePage({
   LinkComponent,
+  StoryLink,
 }: {
   LinkComponent: PublicLinkComponent
+  StoryLink: StoryLinkComponent
 }) {
   return (
     <main id="main-content" tabIndex={-1}>
@@ -130,6 +134,7 @@ export function HomePage({
         </div>
       </section>
       <StatsBand LinkComponent={LinkComponent} />
+      <CustomerStories LinkComponent={LinkComponent} StoryLink={StoryLink} />
       <section
         id="questions"
         tabIndex={-1}
