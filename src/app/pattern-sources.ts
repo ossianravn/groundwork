@@ -1,6 +1,11 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../kit/shell/consent-banner.tsx",
+    "../features/reference/specimens/consent-specimen.tsx",
+    "../app/specimen-route.tsx",
+    "../kit/shell/bottom-tab-bar.tsx",
+    "../features/reference/specimens/mobile-tabs-specimen.tsx",
     "../kit/ui/drawer.tsx",
     "../kit/data-table/facet-drawer.tsx",
     "../features/activity/activity-filters.tsx",

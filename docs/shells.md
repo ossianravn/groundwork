@@ -7,7 +7,7 @@ Status: proposed. Applies to every page through its shell assignment in the [sit
 | Shell | Shared elements, in reading order | Patterns |
 | --- | --- | --- |
 | Base | Skip link; route content with one main landmark; shared overlay/announcement host; local feedback | SYS-01, SYS-03, SYS-06, EDGE-01, EDGE-02, EDGE-05, EDGE-06, EDGE-07, EDGE-08, EDGE-09 |
-| Public | Base; public header and mobile navigation; main page; footer; consent preferences when relevant | MKT-01, MKT-11, MKT-12 |
+| Public | Base; public header and mobile navigation; main page; footer; consent preferences when relevant (kit `ConsentBanner`, specimen only) | MKT-01, MKT-11, MKT-12 |
 | Auth | Base; brand/home link; theme control; focused form or process; relevant help/legal links | SYS-01, SYS-06; form patterns supplied by route |
 | App | Base; workspace switcher; sidebar; top bar with breadcrumbs/search/notifications/profile; main page; help and shortcut overlays | NAV-01, NAV-02, NAV-03, NAV-04, NAV-05, NAV-06, SYS-02, SYS-04, SYS-05, AUTH-08 |
 | Settings | App; settings subnavigation; page heading; one settings section | SETT-01; form patterns supplied by route |
@@ -27,7 +27,7 @@ An optional announcement bar (MKT-25, kit `AnnouncementBar`) sits above the publ
 
 Primary: Overview, Projects, Inbox, Analytics. Secondary: Activity, Settings, Help. The workspace switcher owns the current workspace; the profile menu owns account settings, appearance and sign-out. Breadcrumbs reflect actual hierarchy and use links for ancestors.
 
-Desktop sidebar supports expanded and icon modes. Narrow layouts use a Sheet. NAV-07 is a separate mobile navigation variant demonstrated in the reference library; it is not layered on top of another primary navigation. If adopted, labels and destinations remain stable while scrolling.
+Desktop sidebar supports expanded and icon modes. Narrow layouts use a Sheet. NAV-07 is a separate mobile navigation variant (kit `BottomTabBar`) demonstrated at `/reference/specimens/mobile-tabs`; it is not layered on top of another primary navigation. If adopted, labels and destinations remain stable while scrolling.
 
 The App top bar stays sticky while the page scrolls, at a constant height. Its glass surface uses shared opacity/blur tokens with a solid fallback. Appearance offers Glass (the current demo default), Solid and System; System follows reduced-transparency preferences. Forced-colors mode always uses a solid surface. Anchor and keyboard scrolling must account for the header so destinations remain visible. This behavior is implemented in the overview's shared shell.
 

@@ -52,6 +52,16 @@
           "target": "~/src/kit/styles/base.css"
         },
         {
+          "path": "src/kit/styles/bottom-tab-bar.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/bottom-tab-bar.css"
+        },
+        {
+          "path": "src/kit/styles/consent-banner.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/consent-banner.css"
+        },
+        {
           "path": "src/kit/styles/data-table.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/data-table.css"
@@ -1422,9 +1432,19 @@
           "target": "~/src/kit/shell/announcement-bar.tsx"
         },
         {
+          "path": "src/kit/shell/bottom-tab-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/bottom-tab-bar.tsx"
+        },
+        {
           "path": "src/kit/shell/brand-mark.tsx",
           "type": "registry:file",
           "target": "~/src/kit/shell/brand-mark.tsx"
+        },
+        {
+          "path": "src/kit/shell/consent-banner.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/consent-banner.tsx"
         },
         {
           "path": "src/kit/shell/navigation-collapsed.ts",

@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 106 have linked examples and 3 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 108 have linked examples and 1 remains planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -39,7 +39,7 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | MKT-09 | Searchable FAQ Accordion | [Articles, changelog and help ](pages/public/resources.md) | /help | Default |
 | MKT-10 | Newsletter / Lead Capture | [Public home ](pages/public/home.md) | / | Default |
 | MKT-11 | Multi-column Global Footer | [Shared shells ](shells.md) | Public shell | Default |
-| MKT-12 | Cookie Consent Banner | [Privacy, terms and consent example ](pages/public/legal.md) | /privacy; public shell; /reference/patterns/MKT-12 | Conditional: Consent UI only for applicable deployed services; reference fixture remains available |
+| MKT-12 | Cookie Consent Banner | [Privacy, terms and consent example ](pages/public/legal.md) | /reference/specimens/cookie-consent (specimen only; the demo sets no optional cookies) | Example |
 | MKT-13 | Blog / Prose Typography Layout | [Articles, changelog and help ](pages/public/resources.md) | /blog/:slug; /help/:slug | Default |
 | MKT-14 | Contact Sales / Inbound Form | [Contact ](pages/public/contact.md) | /contact | Default |
 | MKT-15 | Changelog / Release Notes | [Articles, changelog and help ](pages/public/resources.md) | /changelog; /changelog/:version | Default |
@@ -49,7 +49,7 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | NAV-04 | User Profile Menu Dropdown | [Shared shells ](shells.md) | App shell | Default |
 | NAV-05 | Global App Top Bar | [Shared shells ](shells.md) | App shell | Default |
 | NAV-06 | Contextual Help & Support Widget | [Shared shells ](shells.md) | App shell | Default |
-| NAV-07 | Mobile Bottom Tab Navigation | [Pattern library ](pages/reference/patterns.md) | /reference/patterns/NAV-07 | Variant: Alternative mobile shell; not added alongside an existing primary nav |
+| NAV-07 | Mobile Bottom Tab Navigation | [Pattern library ](pages/reference/patterns.md) | /reference/specimens/mobile-tabs | Example |
 | SETT-01 | Vertical Tab Settings Layout | [Shared shells ](shells.md) | Settings shell | Default |
 | SETT-02 | Floating Unsaved Changes Warning | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
 | SETT-03 | Drag-and-Drop File / Avatar Uploader | [Account preferences and security ](pages/settings/account.md) | /app/:workspace/settings/profile | Default |
@@ -283,7 +283,7 @@ The [resource specification](pages/public/resources.md#implemented-composition-a
 
 - **MKT-14:** Contact form with native required/email validation, retained navigation draft, local completion and named failure/retry. Values clear on completion/reset/reload. Real delivery, service pending and rate-limit states remain outside the local example.
 - **MKT-13:** Privacy and Terms reuse the prose reader, section anchors and responsive contents disclosure. Content is explicitly sample/replacement-required.
-- **MKT-12:** No consent UI is needed for the current application without optional tracking services. The consent reference demonstration remains planned, not implemented.
+- **MKT-12:** No consent UI is needed for the current application without optional tracking services. (2026-09-29: the reference specimen now exists at /reference/specimens/cookie-consent; the demo still shows no banner.)
 
 The [Contact](pages/public/contact.md) and [legal](pages/public/legal.md) specifications own the scope and state contracts.
 

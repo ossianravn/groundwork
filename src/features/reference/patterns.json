@@ -750,10 +750,20 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Collect consent when deployed optional services require a choice.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: reference specimen with Accept/Reject/Customize and remembered choice; stays off in the demo, which sets no tracking.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit ConsentBanner and a specimen page: a non-blocking banner with equally weighted Reject optional and Accept all, plus Customize for per-category switches (Essential always on). The choice is remembered in this browser, shown with its date, changeable from Cookie settings and forgettable. Tandem sets no optional cookies, so the demo never shows it.",
+    "deferred": "No consent logging, region rules or gating of real scripts.",
+    "examples": [
+      {
+        "label": "Consent specimen",
+        "href": "/reference/specimens/cookie-consent",
+        "instruction": "Choose Customize, allow Analytics and save; reload."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/consent-banner.tsx",
+      "src/features/reference/specimens/consent-specimen.tsx",
+      "src/app/specimen-route.tsx"
+    ]
   },
   {
     "id": "MKT-13",
@@ -947,10 +957,19 @@
     "category": "Navigation",
     "surface": "Workspace",
     "summary": "Demonstrate an alternative mobile shell with stable labelled destinations.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: optional phone shell with a bottom tab bar for Overview, Projects, Inbox and Activity in the reference catalogue.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit BottomTabBar and a phone-shell specimen: Overview, Projects, Inbox (with an unread badge named for screen readers) and Activity as labelled icon tabs pinned to the bottom, clear of the home indicator. Tabs are links with aria-current, so Back and deep links work. The demo keeps its sidebar; the bar replaces rather than adds primary navigation.",
+    "deferred": "Not adopted in the demo shell; no scroll-hiding behaviour.",
+    "examples": [
+      {
+        "label": "Phone shell specimen",
+        "href": "/reference/specimens/mobile-tabs",
+        "instruction": "Switch tabs, then use Back."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/bottom-tab-bar.tsx",
+      "src/features/reference/specimens/mobile-tabs-specimen.tsx"
+    ]
   },
   {
     "id": "NAV-08",

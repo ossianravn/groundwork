@@ -1,6 +1,6 @@
 # Privacy, terms and consent example
 
-Status: Privacy and Terms specimens implemented, 2026-09-27; consent reference remains planned. Shell: Public. Primary inventory ownership: MKT-13; conditional MKT-12.
+Status: Privacy and Terms specimens implemented, 2026-09-27; consent specimen at `/reference/specimens/cookie-consent`, 2026-09-29 (the demo itself shows no banner). Shell: Public. Primary inventory ownership: MKT-13; conditional MKT-12.
 
 ## User goal
 
