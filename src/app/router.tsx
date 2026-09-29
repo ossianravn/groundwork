@@ -24,6 +24,7 @@ import { rootRoute } from "./root-route"
 import { publicRoutes } from "./public-routes"
 import { companyRoutes } from "./company-routes"
 import { referenceRoutes } from "./reference-routes"
+import { specimenRoutes } from "./specimen-routes"
 import {
   parseAnalyticsSearch,
   defaultAnalyticsSearch,
@@ -234,6 +235,7 @@ export const router = createRouter({
     ...publicRoutes,
     ...companyRoutes,
     ...referenceRoutes,
+    ...specimenRoutes,
     signInRoute,
     verificationRoute,
     signUpRoute,

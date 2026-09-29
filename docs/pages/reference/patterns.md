@@ -1,6 +1,6 @@
 # Pattern library
 
-Status: implemented, awaiting review (2026-09-27). Shell: Reference. Exposes all 75 living inventory IDs; it does not implement the planned NAV-07 mobile-navigation variant.
+Status: implemented, awaiting review (2026-09-27). Shell: Reference. Exposes every living inventory ID. Patterns that the demo does not adopt (NAV-07 bottom tabs, MKT-12 consent) are shown as standalone specimens under `/reference/specimens/`, outside the demo's navigation, and preview like any other example.
 
 ## User goal
 
@@ -23,7 +23,7 @@ Preview page opens the actual route in a labelled iframe. Reset preview reloads 
 
 ## States and limits
 
-Implemented: supported scenario selection, planned entry, no-results recovery, missing ID, preview reset, source loading/retry and copy. Simulation limits are stated in the relevant entry. Planned variants include alternative heroes, logo/testimonial treatments, mobile bottom navigation, advanced queries, column reordering and policies needing their own product decision.
+Implemented: supported scenario selection, planned entry, no-results recovery, missing ID, preview reset, source loading/retry and copy. Simulation limits are stated in the relevant entry. Planned variants include alternative heroes, column reordering and policies needing their own product decision.
 
 ## Responsive and accessible behavior
 
