@@ -2053,10 +2053,21 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "See projects across time by due date.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: Timeline view alongside Table, Cards and Board, with a month calendar variant.",
-    "examples": [],
-    "sources": []
+    "implemented": "view=timeline shows every matching project as a bar from its first activity to its due date, filled to the share of tasks done, with weekly gridlines, a snapshot-date line and a pinned name column. A Month layout places due dates on a Monday-first calendar and becomes a list of due days on phones.",
+    "deferred": "No dragging bars to reschedule and no start-date field.",
+    "examples": [
+      {
+        "label": "Timeline",
+        "href": "/app/demo/projects?view=timeline",
+        "instruction": "Compare bars with the snapshot line, then choose Month."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-timeline-view.tsx",
+      "src/features/projects/project-timeline.tsx",
+      "src/features/projects/project-calendar.tsx",
+      "src/demo/project-timeline.ts"
+    ]
   },
   {
     "id": "SETT-16",

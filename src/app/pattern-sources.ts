@@ -1,6 +1,10 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../features/projects/project-timeline-view.tsx",
+    "../features/projects/project-timeline.tsx",
+    "../features/projects/project-calendar.tsx",
+    "../demo/project-timeline.ts",
     "../features/projects/project-files.tsx",
     "../features/projects/project-file-upload.tsx",
     "../demo/project-files.ts",

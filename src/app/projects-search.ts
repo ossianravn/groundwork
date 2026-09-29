@@ -65,7 +65,10 @@ export function parseProjectsSearch(raw: ProjectSearchInput): ProjectsSearch {
     const selectedOwners = choices(raw.owner)
 
     const result: ProjectsSearch = {
-      view: raw.view === "grid" || raw.view === "board" ? raw.view : "table",
+      view:
+        raw.view === "grid" || raw.view === "board" || raw.view === "timeline"
+          ? raw.view
+          : "table",
       q: String(raw.q ?? ""),
       status: statuses.filter((id) => selectedStatuses.has(id)),
       owner: workspace.members.flatMap((member) =>

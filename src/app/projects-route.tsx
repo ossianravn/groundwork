@@ -13,6 +13,7 @@ import { useRouteFocus } from "./use-route-focus"
 import { ProjectDetailLink } from "./project-detail-link"
 import { ProjectBulkActions } from "@/features/projects/project-bulk-actions"
 import { ProjectBoard } from "@/features/projects/project-board"
+import { ProjectTimelineView } from "@/features/projects/project-timeline-view"
 import type { ProjectBulkHandler } from "@/demo/project-bulk"
 import { mergeBoardOrder } from "@/features/projects/board-order"
 
@@ -112,6 +113,23 @@ export function ProjectsRoute() {
                 ),
               )
             }
+          />
+        )}
+        renderTimeline={(table) => (
+          <ProjectTimelineView
+            projects={table
+              .getPrePaginatedRowModel()
+              .rows.map((row) => row.original)}
+            activity={demo.activity}
+            referenceDate={demo.workspace.referenceDate}
+            renderName={(project) => (
+              <ProjectDetailLink
+                projectId={project.id}
+                className="timeline-link"
+              >
+                {project.name}
+              </ProjectDetailLink>
+            )}
           />
         )}
         renderSelection={(table) => (

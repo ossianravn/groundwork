@@ -2,27 +2,13 @@ import {
   dataTableFeatures,
   type DataTable,
 } from "@/kit/data-table/table-features"
-import {
-  useMemo,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react"
+import { useMemo, useRef, useState, type ReactNode } from "react"
 import {
   functionalUpdate,
   useTable,
   type RowSelectionState,
 } from "@tanstack/react-table"
-import { Button } from "@/kit/ui/button"
 import { Card, CardHeader, CardTitle } from "@/kit/ui/card"
-import {
-  Empty,
-  EmptyHeader,
-  EmptyTitle,
-  EmptyDescription,
-  EmptyContent,
-} from "@/kit/ui/empty"
 import { TablePagination } from "@/kit/data-table/table-pagination"
 import { TableViewOptions } from "@/kit/data-table/table-view-options"
 import type { Member, Project } from "@/demo/model"
@@ -34,16 +20,12 @@ import {
   initialProjectTableState,
   type ProjectTableState,
 } from "./project-table-state"
-
-import { ProjectTableContent } from "./project-table-content"
+import { ProjectResults } from "./project-results"
 import { projectSelectionColumn } from "@/features/projects/project-selection-column"
 import { ProjectViewToggle } from "@/features/projects/project-view-toggle"
-import { ProjectGrid } from "@/features/projects/project-grid"
 import { ProjectGridControls } from "@/features/projects/project-grid-controls"
 import { ProjectSelectionMenu } from "@/features/projects/project-selection-menu"
 import { EmptyProjects } from "@/features/projects/empty-projects"
-
-type ProjectResultsStyle = CSSProperties & { "--project-row-count": number }
 
 interface ProjectsTableProps {
   projects: Project[]
@@ -77,6 +59,7 @@ export function ProjectsTableView({
   heading = "Projects",
   renderSelection,
   renderBoard,
+  renderTimeline,
   allowViewSwitch = false,
   allowAdvanced = false,
   surface = "card",
@@ -87,6 +70,8 @@ export function ProjectsTableView({
   heading?: string
   renderSelection?: (table: DataTable<Project>) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
+  /** Timeline and month views; the host supplies dates from its records. */
+  renderTimeline?: (table: DataTable<Project>) => ReactNode
   allowViewSwitch?: boolean
   allowAdvanced?: boolean
   /** A plain view sits on the page canvas; its heading is for assistive tech. */
@@ -172,17 +157,11 @@ export function ProjectsTableView({
         pagination: { ...pagination, pageIndex: 0 },
       }),
     autoResetPageIndex: false,
-    manualPagination: state.view === "board",
+    // Board and timeline show every matching project on one surface.
+    manualPagination: state.view === "board" || state.view === "timeline",
     enableMultiSort: false,
     sortDescFirst: false,
   })
-
-  const resultsStyle: ProjectResultsStyle = {
-    "--project-row-count": Math.min(
-      projects.length,
-      table.state.pagination.pageSize,
-    ),
-  }
 
   if (projects.length === 0) return <EmptyProjects onCreate={onNewProject} />
 
@@ -248,46 +227,21 @@ export function ProjectsTableView({
           {renderSelection?.(table)}
         </div>
       </CardHeader>
-      <div
-        className="project-results"
-        data-view={state.view}
-        style={resultsStyle}
-      >
-        {state.view === "board" && renderBoard ? (
-          renderBoard(table)
-        ) : state.view === "grid" ? (
-          <ProjectGrid
-            table={table}
-            members={members}
-            onInspect={onSelect}
-            renderName={renderName}
-          />
-        ) : (
-          <ProjectTableContent table={table} />
-        )}
-        {rows.length === 0 && (
-          <Empty>
-            <EmptyHeader>
-              <EmptyTitle>No matching projects</EmptyTitle>
-              <EmptyDescription>
-                Adjust your search or filters.
-              </EmptyDescription>
-            </EmptyHeader>
-            <EmptyContent>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setFilters(emptyProjectFilters)
-                  searchRef.current?.focus()
-                }}
-              >
-                Clear filters
-              </Button>
-            </EmptyContent>
-          </Empty>
-        )}
-      </div>
-      {state.view !== "board" && (
+      <ProjectResults
+        table={table}
+        view={state.view}
+        rowCount={projects.length}
+        members={members}
+        onSelect={onSelect}
+        renderName={renderName}
+        renderBoard={renderBoard}
+        renderTimeline={renderTimeline}
+        onClearFilters={() => {
+          setFilters(emptyProjectFilters)
+          searchRef.current?.focus()
+        }}
+      />
+      {(state.view === "table" || state.view === "grid") && (
         <TablePagination
           table={table}
           totalCount={projects.length}
