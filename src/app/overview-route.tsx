@@ -5,6 +5,7 @@ import { OverviewPage } from "@/features/overview/overview-page"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
 import { reportPeriodOf, reportPeriodSearch } from "./report-period-search"
+import { OverviewGettingStarted } from "./overview-getting-started"
 
 const route = getRouteApi("/app/demo/overview")
 
@@ -18,6 +19,7 @@ export function OverviewRoute() {
     <>
       <title>{`Overview · ${demo.workspace.name}`}</title>
       <OverviewPage
+        intro={<OverviewGettingStarted />}
         activityLink={
           <Link
             to="/app/demo/activity"

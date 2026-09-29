@@ -49,7 +49,10 @@ export interface ImportRow {
   dueDate: string
   description: string
   tags: string[]
+  /** Problems that skip the row. */
   errors: string[]
+  /** Changes made so the row can import, such as a default owner. */
+  notes: string[]
 }
 
 const normal = (value: string) => value.trim().toLowerCase()
@@ -120,6 +123,7 @@ export function reviewImport(
 
   return rows.map((row, index) => {
     const errors: string[] = []
+    const notes: string[] = []
     const name = cell(row, "name")
     const due = cell(row, "dueDate")
     const owner = cell(row, "owner")
@@ -136,7 +140,9 @@ export function reviewImport(
     if (!due) errors.push("Add a due date.")
     else if (!dueDate) errors.push(`“${due}” is not a date. Use YYYY-MM-DD.`)
 
-    if (owner && !member) errors.push(`No active member called “${owner}”.`)
+    // An unknown owner does not block the row; the importer owns it instead.
+    if (owner && !member)
+      notes.push(`No active member called “${owner}”; you will own it.`)
 
     if (name) taken.add(normal(name))
 
@@ -156,6 +162,7 @@ export function reviewImport(
         ),
       ],
       errors,
+      notes,
     }
   })
 }

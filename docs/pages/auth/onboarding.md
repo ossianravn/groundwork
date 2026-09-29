@@ -10,6 +10,10 @@ Create invitations validates the entire batch before creating the new workspace 
 
 `/onboarding` resumes the recorded step. Direct/reloaded setup entry without registration offers Create an account. Revisiting an earlier step after completion returns to the summary without reinitializing workspace data. Reset demo data and reload clear setup and restore Studio North. Slug availability, avatar upload, server-backed resume, real invitation delivery and a guided tour remain deferred.
 
+## Getting started — 2026-09-29
+
+After setup completes, Overview leads with a Get started list (AUTH-09) until the person hides it (session memory; reset clears it). Four steps read the workspace records rather than stored ticks: a project exists, a task exists, an invitation or second active member exists, and a comment exists. Each open step links to where it happens (New project, the first project's tasks, Team, the first project's comment field); done steps are struck through and announced as done. A progress bar counts them, and the heading changes once all are done. Hiding moves focus to the page. Importing the sample CSV satisfies the first step; its owners are unknown in a new workspace, so those rows import with the importer as owner and say so.
+
 ## User goal
 
 Create a usable workspace with minimal required setup and reach useful work.

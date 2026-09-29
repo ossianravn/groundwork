@@ -1,0 +1,66 @@
+/* Getting started (AUTH-09): the first section on a new workspace's
+   Overview; a quiet framed panel that steps aside once hidden. */
+.getting-started {
+  display: grid;
+  gap: var(--content-gap);
+  padding: var(--card-padding);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+}
+.getting-started-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.getting-started-heading h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.getting-started-heading p {
+  color: var(--muted-foreground);
+}
+.getting-started [data-slot="progress"] {
+  max-width: 24rem;
+}
+.getting-started-steps {
+  display: grid;
+}
+.getting-started-steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--content-gap);
+  padding-block: var(--item-padding);
+  border-top: 1px solid var(--border);
+}
+.getting-started-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--muted-foreground);
+}
+.getting-started-steps li[data-done] .getting-started-icon {
+  color: var(--success);
+}
+.getting-started-label {
+  font-weight: 500;
+}
+.getting-started-steps li[data-done] .getting-started-label {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
+}
+.getting-started-description {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+@media (max-width: 767px) {
+  .getting-started-steps li {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .getting-started-steps li > a {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

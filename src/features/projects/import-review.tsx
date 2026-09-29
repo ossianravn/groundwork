@@ -47,7 +47,15 @@ export function ImportReview({
                 {row.errors.length === 0 ? (
                   <span className="import-result" data-status="ready">
                     <CircleCheck aria-hidden="true" />
-                    Ready
+                    <span>
+                      Ready
+                      {row.notes.length > 0 && (
+                        <span className="import-note">
+                          {" "}
+                          {row.notes.join(" ")}
+                        </span>
+                      )}
+                    </span>
                   </span>
                 ) : (
                   <span className="import-result" data-status="skipped">
@@ -76,7 +84,7 @@ function ownerLabel(row: ImportRow, members: Member[]) {
 
   if (!row.ownerText) return `${member?.name ?? "You"} (default)`
 
-  return row.errors.some((error) => error.startsWith("No active member"))
-    ? row.ownerText
+  return row.notes.length > 0
+    ? `${member?.name ?? "You"} (for ${row.ownerText})`
     : (member?.name ?? row.ownerText)
 }

@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 89 have linked examples and 20 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 90 have linked examples and 19 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -138,7 +138,7 @@ Workflows that make the sample workspace feel real; they reuse the kit component
 | TABL-14 | Timeline and calendar view | [Projects data view](pages/app/projects.md) | /app/demo/projects?view=timeline | Example |
 | SETT-16 | CSV import with column mapping | [Projects data view](pages/app/projects.md) | /app/demo/projects/import | Example |
 | TABL-15 | Saved views | [Projects data view](pages/app/projects.md) | /app/demo/projects | Example |
-| AUTH-09 | Getting-started checklist | [Workspace onboarding](pages/auth/onboarding.md) | dismissible checklist on Overview after onboarding, ticking off as steps happen. | Planned |
+| AUTH-09 | Getting-started checklist | [Workspace onboarding](pages/auth/onboarding.md) | /auth/sign-up → Overview | Example |
 | EDGE-10 | Undo after destructive actions | [Shared shells](shells.md) | /app/demo/projects (bulk and board); Mark complete | Example |
 | SYS-10 | Search results page | [Shared shells](shells.md) | /app/demo/search?q=brand | Example |
 

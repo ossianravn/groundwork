@@ -63,8 +63,11 @@ it("reviews each row with its line, owner match and problems", () => {
   expect(rows[2].errors).toEqual([
     "Add a project name.",
     "“soon” is not a date. Use YYYY-MM-DD.",
-    "No active member called “Zoe”.",
   ])
+  expect(rows[2]).toMatchObject({
+    ownerId: "ava",
+    notes: ["No active member called “Zoe”; you will own it."],
+  })
   expect(rows[3]).toMatchObject({ ownerId: "ava", line: 5 })
   expect(rows[3].errors).toEqual([
     "A project called “Press kit” already exists.",

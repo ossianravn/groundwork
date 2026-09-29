@@ -124,6 +124,12 @@
 .import-result[data-status="ready"] {
   color: var(--success);
 }
+.import-note {
+  display: block;
+  min-width: 16rem;
+  max-width: 28rem;
+  color: var(--muted-foreground);
+}
 /* Messages keep a readable width; the table scrolls on narrow screens. */
 .import-result[data-status="skipped"] {
   color: var(--destructive);

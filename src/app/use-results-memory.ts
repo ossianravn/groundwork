@@ -9,6 +9,7 @@ export function useResultsMemory() {
   const [activityExpanded, setActivityExpanded] = useState(false)
   const [boardOrder, setBoardOrder] = useState<string[]>([])
   const [savedViews, setSavedViews] = useState(builtInViews)
+  const [gettingStartedHidden, setGettingStartedHidden] = useState(false)
 
   const [projectColumns, setProjectColumns] = useState<ColumnVisibilityState>(
     {},
@@ -43,6 +44,8 @@ export function useResultsMemory() {
     setProjectColumns,
     savedViews,
     setSavedViews,
+    gettingStartedHidden,
+    setGettingStartedHidden,
     rememberFocus,
     getFocus,
     reset: () => {
@@ -51,6 +54,7 @@ export function useResultsMemory() {
       setBoardOrder([])
       setProjectColumns({})
       setSavedViews(builtInViews)
+      setGettingStartedHidden(false)
       focus.current.clear()
     },
   }
