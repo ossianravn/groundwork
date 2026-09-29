@@ -92,7 +92,7 @@
    stage is its own element so the blurred shapes stay clipped to it while the
    screenshot is not. */
 .public-product-preview {
-  --stage-hang: clamp(2.5rem, 7vw, 6rem);
+  --stage-hang: clamp(1.25rem, 3.5vw, 3rem);
 
   position: relative;
   isolation: isolate;
@@ -155,7 +155,7 @@
   border-radius: var(--radius-xl);
   box-shadow:
     0 0 0 1px color-mix(in oklch, var(--foreground) 10%, transparent),
-    0 40px 80px -24px oklch(0.15 0.1 268 / 45%);
+    0 24px 48px -20px oklch(0.15 0.1 268 / 28%);
 }
 .public-product-preview > a {
   transition: transform var(--motion-fast) var(--ease-standard);
