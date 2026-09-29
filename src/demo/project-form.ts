@@ -4,7 +4,7 @@ import { projectLinkError, sameProjectLinks } from "./project-links"
 
 export type ProjectValues = Pick<
   Project,
-  "name" | "description" | "ownerId" | "dueDate" | "tags" | "links"
+  "name" | "description" | "ownerId" | "dueDate" | "color" | "tags" | "links"
 >
 
 export interface ProjectFieldErrors {
@@ -65,6 +65,7 @@ export function projectValues(project: Project): ProjectValues {
     description: project.description,
     dueDate: project.dueDate,
     ownerId: project.ownerId,
+    color: project.color,
     tags: project.tags,
     links: project.links,
   }
@@ -76,6 +77,7 @@ export function projectValuesChanged(a: ProjectValues, b: ProjectValues) {
     !sameDocument(a.description, b.description) ||
     a.ownerId !== b.ownerId ||
     a.dueDate !== b.dueDate ||
+    a.color !== b.color ||
     JSON.stringify(a.tags) !== JSON.stringify(b.tags) ||
     !sameProjectLinks(a.links, b.links)
   )

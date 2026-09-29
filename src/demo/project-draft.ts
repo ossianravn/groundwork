@@ -55,6 +55,7 @@ export function refreshProjectDraft(
       description: value("description"),
       ownerId: value("ownerId"),
       dueDate: value("dueDate"),
+      color: value("color"),
       tags: value("tags"),
       links: value("links"),
     },

@@ -5,7 +5,7 @@
   align-self: center;
 }
 .activity-feed-toolbar {
-  padding-bottom: var(--card-padding);
+  padding-bottom: var(--content-gap);
   border-bottom: 1px solid var(--border);
 }
 .activity-filters {
@@ -71,14 +71,42 @@
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
-.activity-project-link {
+/* Projects are named in ink after their colour mark, as in Inbox; a quiet
+   underline keeps them recognisable as links. */
+.activity-project-link,
+.activity-copy .activity-project {
+  position: relative;
+  margin-inline-start: 0.875rem;
   font-weight: 500;
-  color: var(--brand);
-  text-decoration: none;
-}
-.activity-project-link:hover {
+  color: var(--foreground);
   text-decoration: underline;
+  text-decoration-color: color-mix(
+    in oklch,
+    var(--foreground) 25%,
+    transparent
+  );
   text-underline-offset: 0.2em;
+}
+.activity-project-link:hover,
+.activity-copy .activity-project:hover {
+  text-decoration-color: currentColor;
+}
+/* The mark sits just outside the underlined name. */
+.activity-project-link::before,
+.activity-copy .activity-project::before {
+  content: "";
+  position: absolute;
+  left: -0.75rem;
+  top: 0.75em;
+  width: 0.5rem;
+  height: 0.5rem;
+  translate: 0 -50%;
+  border-radius: 0.15rem;
+  background: var(--project-color);
+}
+/* The feed sits on the canvas at a reading width. */
+.activity-feed-card {
+  max-width: 60rem;
 }
 [data-slot="dialog-content"].activity-detail {
   max-width: min(36rem, calc(100% - 2rem));

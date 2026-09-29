@@ -10,6 +10,56 @@
   padding: var(--card-padding);
   gap: var(--stack-gap) var(--content-gap);
 }
+/* Due date and colour stack beside the taller description. */
+.project-description-field {
+  grid-row: span 2;
+}
+.project-color-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+  min-height: var(--control-height);
+}
+.project-color-option {
+  position: relative;
+  cursor: pointer;
+}
+.project-color-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.project-color-swatch {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.375rem;
+  background: var(--project-color);
+  color: oklch(0.99 0 0);
+  transition: box-shadow var(--motion-fast) var(--ease-standard);
+}
+.project-color-swatch svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  stroke-width: 3;
+}
+.project-color-option:hover .project-color-swatch {
+  box-shadow:
+    0 0 0 2px var(--card),
+    0 0 0 4px var(--input);
+}
+.project-color-option:has(input:checked) .project-color-swatch {
+  box-shadow:
+    0 0 0 2px var(--card),
+    0 0 0 4px var(--foreground);
+}
+.project-color-option:has(input:focus-visible) .project-color-swatch {
+  outline: 2px solid var(--ring);
+  outline-offset: 5px;
+}
 .project-editor-fields [data-slot="select-trigger"] {
   width: 100%;
 }
@@ -41,8 +91,9 @@
   flex-wrap: wrap;
   gap: var(--control-gap);
 }
-.project-sheet-actions > a {
-  flex: 1;
+.project-sheet-actions {
+  padding-top: var(--panel-padding);
+  border-top: 1px solid var(--border);
 }
 .project-page-title {
   width: 100%;
@@ -58,6 +109,9 @@
 @container (max-width: 28rem) {
   .project-editor-fields {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .project-description-field {
+    grid-row: auto;
   }
 }
 @media (max-width: 767px) {

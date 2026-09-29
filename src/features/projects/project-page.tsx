@@ -11,6 +11,7 @@ import {
   type Project,
 } from "@/demo/model"
 import { ProjectProgress } from "./project-progress"
+import { ProjectMark } from "@/components/project-identity"
 import { ProjectResources } from "./project-resources"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
@@ -49,6 +50,7 @@ export function ProjectPage({
       <div className="project-page-heading">
         {returnLink}
         <div className="project-page-title">
+          <ProjectMark color={project.color} />
           <ProjectInlineField field="name" editing={editing} members={members}>
             {project.name}
           </ProjectInlineField>

@@ -5,6 +5,7 @@ import { Sheet, SheetContent } from "@/kit/ui/sheet"
 import { PanelHeader } from "@/kit/panel-header"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectStatus } from "@/components/project-status"
+import { ProjectMark } from "@/components/project-identity"
 import { formatDate, type Member, type Project } from "@/demo/model"
 
 export function ProjectDetails({
@@ -44,6 +45,7 @@ export function ProjectDetails({
         <div className="panel-scroll">
           <PanelHeader
             title={project.name}
+            leading={<ProjectMark color={project.color} />}
             description={[
               created && "Project created.",
               documentText(project.description) || "No description added.",

@@ -12,6 +12,11 @@
   flex-wrap: wrap;
   gap: var(--content-gap);
 }
+.project-page-title > .project-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.2rem;
+}
 .project-page-title h1 {
   font-size: var(--text-page);
   font-weight: 600;
@@ -58,8 +63,15 @@
   grid-column: 2;
   grid-row: 1 / span 2;
 }
+/* Details and activity sit open on the canvas; progress is the framed panel. */
+.project-summary,
+.project-activity {
+  gap: var(--content-gap);
+}
 .project-activity {
   grid-column: 1;
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
 }
 .project-event-list {
   display: grid;

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import type { CSSProperties, ReactNode } from "react"
 import { cn } from "cn"
 import { Link, useLocation, useSearch } from "@tanstack/react-router"
 import { useDemoWorkspace } from "./workspace-context"
@@ -10,6 +10,7 @@ interface ProjectLinkProps {
   className: string
   id?: string
   title?: string
+  style?: CSSProperties
 }
 
 export function ProjectDetailLink(props: ProjectLinkProps) {
@@ -26,6 +27,7 @@ function ProjectRouteLink({
   className,
   id,
   title,
+  style,
   to,
 }: ProjectLinkProps & {
   to: "/app/demo/projects/$projectId" | "/app/demo/projects/$projectId/edit"
@@ -53,6 +55,7 @@ function ProjectRouteLink({
       className={cn(className)}
       id={id}
       title={title}
+      style={style}
     >
       {children}
     </Link>

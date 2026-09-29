@@ -19,32 +19,39 @@ export function AppearanceChoices<T extends string>({
     <FieldSet className="appearance-field">
       <FieldLegend>{label}</FieldLegend>
       <div className="appearance-options">
-        {options.map((option) => (
-          <label className="appearance-choice" key={option.value}>
-            <input
-              type="radio"
-              name={name}
-              value={option.value}
-              checked={value === option.value}
-              onChange={() => onChange(option.value)}
-            />
-            <span className="appearance-choice-frame">
-              {option.preview ?? (
-                <span className="appearance-choice-caption">
-                  {option.label}
-                </span>
-              )}
-            </span>
-            {option.preview && (
-              <span className="appearance-choice-label">{option.label}</span>
-            )}
-            {value === option.value && (
-              <span className="appearance-choice-check" aria-hidden="true">
-                <Check />
+        {options.map((option) => {
+          const checked = value === option.value
+
+          // The check sits inside the choice: over a preview, or before a
+          // text-only label.
+          return (
+            <label className="appearance-choice" key={option.value}>
+              <input
+                type="radio"
+                name={name}
+                value={option.value}
+                checked={checked}
+                onChange={() => onChange(option.value)}
+              />
+              <span className="appearance-choice-frame">
+                {option.preview ?? (
+                  <span className="appearance-choice-caption">
+                    {checked && <Check aria-hidden="true" />}
+                    {option.label}
+                  </span>
+                )}
+                {option.preview && checked && (
+                  <span className="appearance-choice-check" aria-hidden="true">
+                    <Check />
+                  </span>
+                )}
               </span>
-            )}
-          </label>
-        ))}
+              {option.preview && (
+                <span className="appearance-choice-label">{option.label}</span>
+              )}
+            </label>
+          )
+        })}
       </div>
     </FieldSet>
   )
