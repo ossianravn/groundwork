@@ -2,11 +2,13 @@ import { useCallback, useRef, useState } from "react"
 import type { ColumnVisibilityState } from "@tanstack/react-table"
 import { initialProjectTableState } from "@/features/overview/project-table-state"
 import { resultsLocationKey } from "./project-return"
+import { builtInViews } from "./saved-views"
 
 export function useResultsMemory() {
   const [overviewTable, setOverviewTable] = useState(initialProjectTableState)
   const [activityExpanded, setActivityExpanded] = useState(false)
   const [boardOrder, setBoardOrder] = useState<string[]>([])
+  const [savedViews, setSavedViews] = useState(builtInViews)
 
   const [projectColumns, setProjectColumns] = useState<ColumnVisibilityState>(
     {},
@@ -39,6 +41,8 @@ export function useResultsMemory() {
     boardOrder,
     setBoardOrder,
     setProjectColumns,
+    savedViews,
+    setSavedViews,
     rememberFocus,
     getFocus,
     reset: () => {
@@ -46,6 +50,7 @@ export function useResultsMemory() {
       setActivityExpanded(false)
       setBoardOrder([])
       setProjectColumns({})
+      setSavedViews(builtInViews)
       focus.current.clear()
     },
   }

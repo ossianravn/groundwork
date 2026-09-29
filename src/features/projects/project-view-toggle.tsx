@@ -40,19 +40,23 @@ export function ProjectViewToggle({
           if (isView(next)) onChange(next)
         }}
       >
-        <ToggleGroupItem value="table" aria-label="Table">
+        <ToggleGroupItem value="table" aria-label="Table" title="Table">
           <Table2 aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Table</span>
         </ToggleGroupItem>
-        <ToggleGroupItem value="grid" aria-label="Cards">
+        <ToggleGroupItem value="grid" aria-label="Cards" title="Cards">
           <LayoutGrid aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Cards</span>
         </ToggleGroupItem>
-        <ToggleGroupItem value="board" aria-label="Board">
+        <ToggleGroupItem value="board" aria-label="Board" title="Board">
           <Columns3 aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Board</span>
         </ToggleGroupItem>
-        <ToggleGroupItem value="timeline" aria-label="Timeline">
+        <ToggleGroupItem
+          value="timeline"
+          aria-label="Timeline"
+          title="Timeline"
+        >
           <ChartGantt aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Timeline</span>
         </ToggleGroupItem>

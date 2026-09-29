@@ -60,6 +60,7 @@ export function ProjectsTableView({
   renderSelection,
   renderBoard,
   renderTimeline,
+  savedViews,
   allowViewSwitch = false,
   allowAdvanced = false,
   surface = "card",
@@ -72,6 +73,8 @@ export function ProjectsTableView({
   renderBoard?: (table: DataTable<Project>) => ReactNode
   /** Timeline and month views; the host supplies dates from its records. */
   renderTimeline?: (table: DataTable<Project>) => ReactNode
+  /** Saved views control, shown before the view switch. */
+  savedViews?: ReactNode
   allowViewSwitch?: boolean
   allowAdvanced?: boolean
   /** A plain view sits on the page canvas; its heading is for assistive tech. */
@@ -188,6 +191,7 @@ export function ProjectsTableView({
           </div>
         )}
         <div className="project-view-controls">
+          {savedViews}
           {allowViewSwitch && (
             <ProjectViewToggle
               value={state.view}
