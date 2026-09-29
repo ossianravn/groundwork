@@ -86,6 +86,7 @@ function currentLocation(
     "/app/demo/analytics": "Analytics",
     "/app/demo/inbox": "Inbox",
     "/app/demo/activity": "Activity",
+    "/app/demo/search": "Search",
   }[pathname]
 
   return { page: page ?? "Overview", item: undefined }

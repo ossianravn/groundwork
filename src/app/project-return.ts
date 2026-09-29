@@ -3,6 +3,8 @@ import { parseProjectsSearch } from "./projects-search"
 import { parseAnalyticsSearch } from "./analytics-search"
 import { parseInboxSearch } from "./inbox-search"
 import { parseActivitySearch } from "./activity-search"
+import { parseReportPeriodSearch } from "./report-period-search"
+import { parseWorkspaceSearch } from "./workspace-search-params"
 
 const projectsPath = "/app/demo/projects"
 
@@ -29,7 +31,8 @@ export function projectReturnTo(value: string): string {
     path !== overviewPath &&
     path !== "/app/demo/inbox" &&
     path !== "/app/demo/analytics" &&
-    path !== "/app/demo/activity"
+    path !== "/app/demo/activity" &&
+    path !== "/app/demo/search"
   )
     return projectsPath
   const url = new URL(value, "https://workspace.local")
@@ -69,11 +72,21 @@ export function projectReturnDestination(value: string) {
     } as const
   }
 
-  if (url.pathname === overviewPath) {
-    const value = url.searchParams.get("period")
-    const period = value === "7" ? 7 : value === "30" ? 30 : 14
+  if (url.pathname === "/app/demo/search") {
+    return {
+      to: "/app/demo/search",
+      search: parseWorkspaceSearch(search),
+      hash,
+    } as const
+  }
 
-    return { to: overviewPath, search: { period }, hash } as const
+  if (url.pathname === overviewPath) {
+    // Custom from/to ranges return intact, like the preset period.
+    return {
+      to: overviewPath,
+      search: parseReportPeriodSearch(search, 14),
+      hash,
+    } as const
   }
 
   return {

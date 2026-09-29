@@ -2,6 +2,7 @@ import { onboardingRoutes } from "./onboarding-routes"
 import { emailLinkRoutes } from "./email-link-routes"
 import { providerRoutes } from "./provider-routes"
 import { activityRoute } from "./activity-routes"
+import { searchRoute } from "./search-routes"
 import { securityRoute, verificationRoute } from "./security-routes"
 import { parseWebhookSearch, defaultWebhookSearch } from "./webhook-search"
 import { workspaceRoute } from "./workspace-route"
@@ -246,6 +247,7 @@ export const router = createRouter({
       inboxRoute,
       analyticsRoute,
       activityRoute,
+      searchRoute,
       projectDetailRoute,
       projectCreateRoute,
       projectEditRoute,

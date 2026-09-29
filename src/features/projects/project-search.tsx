@@ -1,5 +1,5 @@
-import type { ComponentProps } from "react"
-import { FolderKanban, X } from "lucide-react"
+import { useState, type ComponentProps } from "react"
+import { FolderKanban, Search, X } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { DialogClose } from "@/kit/ui/dialog"
 import {
@@ -18,18 +18,26 @@ export function ProjectSearch({
   onOpenChange,
   projects,
   onSelect,
+  onSearchAll,
   finalFocus,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
   projects: Project[]
   onSelect: (id: string) => void
+  /** Opens full results; offered first once something is typed (SYS-10). */
+  onSearchAll?: (query: string) => void
   finalFocus?: ComponentProps<typeof CommandDialog>["finalFocus"]
 }) {
+  const [query, setQuery] = useState("")
+
   return (
     <CommandDialog
       open={open}
-      onOpenChange={onOpenChange}
+      onOpenChange={(next) => {
+        if (!next) setQuery("")
+        onOpenChange(next)
+      }}
       finalFocus={finalFocus}
       title="Find a project"
       description="Search this workspace's projects."
@@ -38,6 +46,8 @@ export function ProjectSearch({
         <CommandInput
           placeholder="Find a project…"
           aria-label="Find a project"
+          value={query}
+          onValueChange={setQuery}
           trailingAction={
             <DialogClose render={<Button variant="ghost" size="icon" />}>
               <X aria-hidden="true" />
@@ -47,6 +57,22 @@ export function ProjectSearch({
         />
         <CommandList>
           <CommandEmpty>No matching projects.</CommandEmpty>
+          {onSearchAll && query.trim() && (
+            <CommandGroup heading="Search">
+              <CommandItem
+                value={`search-all ${query}`}
+                forceMount
+                onSelect={() => {
+                  onOpenChange(false)
+                  onSearchAll(query.trim())
+                  setQuery("")
+                }}
+              >
+                <Search aria-hidden="true" />
+                Search everything for “{query.trim()}”
+              </CommandItem>
+            </CommandGroup>
+          )}
           <CommandGroup heading="Projects">
             {projects.map((project) => (
               <CommandItem

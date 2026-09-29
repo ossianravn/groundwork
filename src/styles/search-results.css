@@ -1,0 +1,88 @@
+/* Search results (SYS-10): a reading column of grouped results. */
+.search-page > .search-results {
+  display: grid;
+  gap: var(--content-gap);
+  width: 100%;
+  max-width: 52rem;
+}
+.search-results-field {
+  position: relative;
+}
+.search-results-field > svg {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  translate: 0 -50%;
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+.search-results-field [data-slot="input"] {
+  padding-inline-start: 2.25rem;
+  font-size: var(--text-section);
+  min-height: calc(var(--control-height) + 0.5rem);
+}
+.search-results-kinds {
+  flex-wrap: wrap;
+  justify-self: start;
+}
+.search-results-summary {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.search-group {
+  display: grid;
+  gap: var(--control-gap);
+  padding-top: var(--content-gap);
+  border-top: 1px solid var(--border);
+}
+.search-group h2 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--control-gap);
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.search-group-count {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.search-group ul {
+  display: grid;
+}
+.search-group li {
+  display: grid;
+  gap: 0.125rem;
+  padding-block: var(--control-gap);
+}
+.search-result-title {
+  justify-self: start;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+  text-underline-offset: 0.2em;
+}
+.search-result-title:hover {
+  text-decoration-color: currentColor;
+}
+.search-result-detail {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.search-result-detail mark,
+.search-results mark {
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--brand) 18%, transparent);
+  color: inherit;
+}
+.search-group-more {
+  justify-self: start;
+  margin-inline-start: -0.375rem;
+}

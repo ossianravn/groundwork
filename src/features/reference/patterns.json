@@ -2150,10 +2150,20 @@
     "category": "System",
     "surface": "Workspace",
     "summary": "Show grouped results across projects, people, messages and help.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: Enter in command search opens grouped results with filters.",
-    "examples": [],
-    "sources": []
+    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; opening a project offers Back to search.",
+    "deferred": "No ranking beyond title-first, fuzzy matching or recent searches.",
+    "examples": [
+      {
+        "label": "Search results",
+        "href": "/app/demo/search?q=brand",
+        "instruction": "Press Ctrl or ⌘ K, type a word and press Enter."
+      }
+    ],
+    "sources": [
+      "src/features/search/search-results.tsx",
+      "src/app/search-route.tsx",
+      "src/demo/workspace-search.ts"
+    ]
   },
   {
     "id": "MKT-18",
