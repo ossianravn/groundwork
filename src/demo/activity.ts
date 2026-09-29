@@ -114,3 +114,14 @@ export function filterActivity(
     })
     .sort((a, b) => b.date.localeCompare(a.date))
 }
+
+/**
+ * An event's action read on the project's own page, where naming the project
+ * again is redundant: "completed wireframes in" becomes "completed
+ * wireframes", and a bare verb such as "finished" names the project instead.
+ */
+export function actionWithinProject(action: string) {
+  const trimmed = action.replace(/\s+(?:in|of)$/u, "")
+
+  return trimmed === action ? `${action} the project` : trimmed
+}

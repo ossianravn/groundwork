@@ -24,6 +24,10 @@
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
+/* A record page keeps a readable width instead of spanning wide screens. */
+.page-content.project-page {
+  max-width: 76rem;
+}
 .project-page-grid {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
@@ -76,13 +80,17 @@
 .project-event-list {
   display: grid;
 }
+/* Dates read as metadata under each event, as in Overview's recent activity. */
 .project-event-list li {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
   column-gap: var(--content-gap);
-  row-gap: var(--control-gap);
+  row-gap: 0.125rem;
   padding-block: var(--item-padding);
+}
+.project-event-list time {
+  grid-column: 2;
 }
 .project-event-list li + li {
   border-top: 1px solid var(--border);

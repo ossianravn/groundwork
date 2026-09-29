@@ -1,5 +1,5 @@
 import { expect, it } from "vitest"
-import { filterActivity } from "./activity"
+import { actionWithinProject, filterActivity } from "./activity"
 import { initialActivity } from "./activity-fixtures"
 import { parseActivitySearch } from "@/app/activity-search"
 import { projectReturnDestination, projectReturnTo } from "@/app/project-return"
@@ -52,4 +52,14 @@ it("returns from a project to filtered Activity without reopening the event dial
   expect(
     parseActivitySearch({ page: -1, period: 123, kind: "unknown", q: {} }),
   ).toEqual({ q: "", member: "", kind: "", period: 0, page: 1, event: "" })
+})
+
+it("drops the project from actions shown on the project's own page", () => {
+  expect(actionWithinProject("completed wireframes in")).toBe(
+    "completed wireframes",
+  )
+  expect(actionWithinProject("requested a review of")).toBe(
+    "requested a review",
+  )
+  expect(actionWithinProject("finished")).toBe("finished the project")
 })
