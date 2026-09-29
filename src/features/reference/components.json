@@ -303,5 +303,41 @@
       "label": "shadcn documentation"
     },
     "implementation": "src/kit/ui/context-menu.tsx"
+  },
+  {
+    "id": "scroll-area",
+    "name": "Scroll area",
+    "category": "Data",
+    "purpose": "Scroll a bounded list with a thin overlay scrollbar that takes no layout space.",
+    "notes": [
+      "Scrolling stays native (wheel, touch, keyboard); the viewport becomes focusable only when it overflows. Name it as a region when its content is a distinct list.",
+      "Base UI keeps the root relatively positioned, so place it with a wrapper. The viewport exposes --scroll-area-overflow-y-start/-end for edge fades."
+    ],
+    "context": "Inbox list",
+    "href": "/app/demo/inbox",
+    "patterns": ["KIT-10"],
+    "documentation": {
+      "href": "https://ui.shadcn.com/docs/components/base/scroll-area",
+      "label": "shadcn documentation"
+    },
+    "implementation": "src/kit/ui/scroll-area.tsx"
+  },
+  {
+    "id": "drawer",
+    "name": "Drawer",
+    "category": "Overlays",
+    "purpose": "Bring a short set of choices up from the screen edge on phones.",
+    "notes": [
+      "A modal panel with a title, a swipe handle and a clear close action; Escape, the overlay and a swipe down also close it, returning focus to the trigger.",
+      "Choices apply as they change; the close button can say what the result will be, such as Show 4 projects. Use a Sheet for longer side panels."
+    ],
+    "context": "Projects filters on phones",
+    "href": "/app/demo/projects",
+    "patterns": ["KIT-12"],
+    "documentation": {
+      "href": "https://ui.shadcn.com/docs/components/base/drawer",
+      "label": "shadcn documentation"
+    },
+    "implementation": "src/kit/ui/drawer.tsx"
   }
 ]

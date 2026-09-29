@@ -1,10 +1,13 @@
 import { Search, RotateCcw, ListFilter } from "lucide-react"
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverTitle,
-} from "@/kit/ui/popover"
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/kit/ui/drawer"
 import { Button } from "@/kit/ui/button"
 import {
   InputGroup,
@@ -25,10 +28,13 @@ import type { Member } from "@/demo/model"
 export function ActivityFilters({
   value,
   people,
+  count,
   onChange,
 }: {
   value: Filters
   people: Member[]
+  /** Matching events, for the phone drawer's close button. */
+  count: number
   onChange: (value: Filters) => void
 }) {
   const groups = [
@@ -119,25 +125,34 @@ export function ActivityFilters({
         />
       </InputGroup>
       <div className="activity-filter-options">{groups.map(renderSelect)}</div>
-      <Popover>
-        <PopoverTrigger
+      <Drawer>
+        <DrawerTrigger
           className="activity-mobile-filters"
           render={<Button variant="outline" />}
         >
           <ListFilter data-icon="inline-start" aria-hidden="true" />
           Filters
           {active > 0 && <span>({active})</span>}
-        </PopoverTrigger>
-        <PopoverContent align="end" className="activity-filter-popover">
-          <PopoverTitle>Filter activity</PopoverTitle>
-          {groups.map((group) => (
-            <div key={group.key} className="activity-filter-field">
-              <span>{group.label}</span>
-              {renderSelect(group)}
-            </div>
-          ))}
-        </PopoverContent>
-      </Popover>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Filter activity</DrawerTitle>
+          </DrawerHeader>
+          <div className="activity-filter-drawer">
+            {groups.map((group) => (
+              <div key={group.key} className="activity-filter-field">
+                <span>{group.label}</span>
+                {renderSelect(group)}
+              </div>
+            ))}
+          </div>
+          <DrawerFooter>
+            <DrawerClose render={<Button />}>
+              Show {count} {count === 1 ? "event" : "events"}
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
       {!!(value.q || value.member || value.kind || value.period) && (
         <Button
           variant="ghost"

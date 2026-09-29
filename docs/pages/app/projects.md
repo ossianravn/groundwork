@@ -56,7 +56,7 @@ Loading; refreshing with retained rows; first-use empty; no matches; load error;
 
 ## Responsive and accessible behavior
 
-Table, Checkbox, DropdownMenu, Popover, Command, Badge, Pagination, Select, ToggleGroup, Sheet and Card compose the view. Native table headers and sorting remain meaningful. Narrow mode retains key identity/status/actions and exposes other values in detail. Horizontal scrolling is contained; the bulk bar does not cover controls. Board movement includes a Move to menu, with announcements and recovery.
+Table, Checkbox, DropdownMenu, Popover, Command, Badge, Pagination, Select, ToggleGroup, Sheet and Card compose the view. Native table headers and sorting remain meaningful. Narrow mode retains key identity/status/actions and exposes other values in detail. Horizontal scrolling is contained; the bulk bar does not cover controls. Below 48rem, Status and Owner move into one Filters drawer (KIT-12): the same checkbox lists with counts, Clear filters, and a Show N projects close button; Advanced stays beside it. Board movement includes a Move to menu, with announcements and recovery.
 
 ## Data and persistence
 

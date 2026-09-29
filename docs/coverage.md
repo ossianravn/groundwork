@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 104 have linked examples and 5 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 106 have linked examples and 3 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -122,9 +122,9 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and Projects table rows | Example |
 | KIT-08 | Keyboard key | [Design system](design-system.md) | search hint and shortcut list in /app/demo | Example |
 | KIT-09 | Spinner | [Design system](design-system.md) | /reference/components/button | Example |
-| KIT-10 | Scroll area | [Design system](design-system.md) | inbox list and activity preview. | Planned |
+| KIT-10 | Scroll area | [Design system](design-system.md) | Inbox message list and Overview's Recent activity | Example |
 | KIT-11 | Carousel | [Design system](design-system.md) | / (customer stories); /reference/components/carousel | Example |
-| KIT-12 | Drawer | [Design system](design-system.md) | phone filters on Projects and Activity. | Planned |
+| KIT-12 | Drawer | [Design system](design-system.md) | phone filters on Projects and Activity | Example |
 
 ### App workflows
 

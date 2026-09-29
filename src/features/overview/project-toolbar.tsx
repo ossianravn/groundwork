@@ -1,6 +1,7 @@
 import type { ReactNode, RefObject } from "react"
 import { RotateCcw, Search, X } from "lucide-react"
-import { FacetedFilter } from "@/kit/data-table/faceted-filter"
+import { FacetedFilter, FacetOptions } from "@/kit/data-table/faceted-filter"
+import { FacetDrawer } from "@/kit/data-table/facet-drawer"
 import { Button } from "@/kit/ui/button"
 import {
   InputGroup,
@@ -21,6 +22,7 @@ export function ProjectToolbar({
   members,
   statusCounts,
   ownerCounts,
+  resultCount,
   children,
   allowAdvanced = false,
 }: {
@@ -30,6 +32,8 @@ export function ProjectToolbar({
   members: Member[]
   statusCounts: Map<ProjectStatus, number>
   ownerCounts: Map<string, number>
+  /** Projects matching the filters, for the phone drawer. */
+  resultCount: number
   children?: ReactNode
   allowAdvanced?: boolean
 }) {
@@ -39,6 +43,18 @@ export function ProjectToolbar({
     filters.owners.length ||
     filters.advanced?.conditions.length
   )
+
+  const statusOptions = statuses.map((value) => ({
+    value,
+    label: statusLabels[value],
+    count: statusCounts.get(value) ?? 0,
+  }))
+
+  const ownerOptions = members.map((member) => ({
+    value: member.id,
+    label: member.name,
+    count: ownerCounts.get(member.id) ?? 0,
+  }))
 
   return (
     <div className="project-filters" role="group" aria-label="Project controls">
@@ -73,23 +89,37 @@ export function ProjectToolbar({
         <FacetedFilter
           label="Status"
           selected={filters.statuses}
-          options={statuses.map((value) => ({
-            value,
-            label: statusLabels[value],
-            count: statusCounts.get(value) ?? 0,
-          }))}
+          options={statusOptions}
           onChange={(values) => onChange({ ...filters, statuses: values })}
         />
         <FacetedFilter
           label="Owner"
           selected={filters.owners}
-          options={members.map((member) => ({
-            value: member.id,
-            label: member.name,
-            count: ownerCounts.get(member.id) ?? 0,
-          }))}
+          options={ownerOptions}
           onChange={(values) => onChange({ ...filters, owners: values })}
         />
+        <FacetDrawer
+          className="project-facet-drawer"
+          title="Filter projects"
+          active={filters.statuses.length + filters.owners.length}
+          resultLabel={`Show ${resultCount} ${resultCount === 1 ? "project" : "projects"}`}
+          onClear={() => onChange({ ...filters, statuses: [], owners: [] })}
+        >
+          <FacetOptions
+            label="Status"
+            options={statusOptions}
+            selected={filters.statuses}
+            onChange={(values) => onChange({ ...filters, statuses: values })}
+            showLegend
+          />
+          <FacetOptions
+            label="Owner"
+            options={ownerOptions}
+            selected={filters.owners}
+            onChange={(values) => onChange({ ...filters, owners: values })}
+            showLegend
+          />
+        </FacetDrawer>
         {allowAdvanced && (
           <AdvancedProjectFilters
             value={filters.advanced}

@@ -40,6 +40,10 @@ import { HoverCardExample } from "@/features/reference/examples/hover-card-examp
 import hoverCardSource from "@/features/reference/examples/hover-card-example?raw"
 import { ContextMenuExample } from "@/features/reference/examples/context-menu-example"
 import contextMenuSource from "@/features/reference/examples/context-menu-example?raw"
+import { ScrollAreaExample } from "@/features/reference/examples/scroll-area-example"
+import scrollAreaSource from "@/features/reference/examples/scroll-area-example?raw"
+import { DrawerExample } from "@/features/reference/examples/drawer-example"
+import drawerSource from "@/features/reference/examples/drawer-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -71,4 +75,6 @@ export const referenceExamples = [
     Component: ContextMenuExample,
     source: contextMenuSource,
   },
+  { id: "scroll-area", Component: ScrollAreaExample, source: scrollAreaSource },
+  { id: "drawer", Component: DrawerExample, source: drawerSource },
 ]

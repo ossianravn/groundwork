@@ -27,7 +27,10 @@
   flex: 1;
   min-height: 0;
 }
-.inbox-list-scroll,
+/* The list uses the kit ScrollArea; the reading pane keeps native scrolling. */
+.inbox-list-scroll {
+  height: 100%;
+}
 .inbox-detail-scroll {
   height: 100%;
   overflow-y: auto;

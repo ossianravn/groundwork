@@ -148,47 +148,25 @@
   flex: 1;
   min-height: 24rem;
 }
+/* A kit ScrollArea. Its overflow variables fade an edge only while more
+   history lies past it; the overlay scrollbar sits outside the mask. */
 .activity-viewport {
-  --scroll-before: 0px;
-  --scroll-after: 0px;
-  --scroll-content-width: 100%;
+  position: absolute;
+  inset: 0 var(--control-gap) 0 var(--card-padding);
+  font-size: var(--text-meta);
+}
+.activity-scroller {
+  scroll-padding-block: 2rem;
+  padding-inline-end: calc(var(--card-padding) - var(--control-gap));
   --activity-edge-mask: linear-gradient(
     to bottom,
     transparent,
-    #000 min(2rem, var(--scroll-before)),
-    #000 calc(100% - min(2rem, var(--scroll-after))),
+    #000 min(2rem, var(--scroll-area-overflow-y-start, 0px)),
+    #000 calc(100% - min(2rem, var(--scroll-area-overflow-y-end, 0px))),
     transparent
   );
-  position: absolute;
-  inset: 0 var(--card-padding);
-  inset-inline-end: var(--control-gap);
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  scrollbar-width: thin;
-  scroll-padding-block: 2rem;
-  /* A second opaque mask keeps the native scrollbar outside the content fade. */
-  -webkit-mask-image: var(--activity-edge-mask), linear-gradient(#000, #000);
-  mask-image: var(--activity-edge-mask), linear-gradient(#000, #000);
-  mask-size:
-    var(--scroll-content-width) 100%,
-    calc(100% - var(--scroll-content-width)) 100%;
-  mask-position: left, right;
-  mask-repeat: no-repeat;
-}
-.activity-body:has(.activity-viewport:focus-visible) {
-  outline: 2px solid var(--ring);
-  outline-offset: -2px;
-}
-@media (forced-colors: active) {
-  .activity-viewport {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-}
-.activity-count {
-  margin-inline-start: auto;
-  font-size: var(--text-meta);
-  color: var(--muted-foreground);
+  -webkit-mask-image: var(--activity-edge-mask);
+  mask-image: var(--activity-edge-mask);
 }
 .activity-card > .overview-card-footer {
   justify-content: center;
@@ -260,8 +238,10 @@
   }
   .activity-card[data-expanded="false"] .activity-viewport {
     position: static;
-    overflow: visible;
-    scrollbar-gutter: auto;
+  }
+  .activity-card[data-expanded="false"] .activity-scroller {
+    padding-inline-end: 0;
+    -webkit-mask-image: none;
     mask-image: none;
   }
 }

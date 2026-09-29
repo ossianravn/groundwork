@@ -24,7 +24,7 @@ Read/unread is explicit. Opening an unread message does not remove it from the U
 
 Feature views accept data, actions and link adapters without importing the router. The host owns search parsing, shared state and navigation. The official Base UI/base-nova shadcn Resizable source wraps `react-resizable-panels`. Message, Bubble and Message Scroller compose the thread, with `@shadcn/react` owning scrolling. Existing Dialog, Field, Select, Input and Textarea compose authoring; Alert, Sheet, Toggle Group and Dropdown Menu retain their semantics.
 
-Desktop panels start at 38%/62%; the list can resize from 30% to 55% with the pointer or keyboard. Reset restores the starting proportions. The remaining viewport height contains the toolbar, list and reading pane; the thread owns scrolling above the reply form. Insets and controls use shared density tokens. Below 24rem the New message action uses its compose icon and retains its accessible name so the filter stays on one line.
+The message list scrolls in a kit ScrollArea with an overlay scrollbar (KIT-10); the viewport keeps the scroll-restoration id. Desktop panels start at 38%/62%; the list can resize from 30% to 55% with the pointer or keyboard. Reset restores the starting proportions. The remaining viewport height contains the toolbar, list and reading pane; the thread owns scrolling above the reply form. Insets and controls use shared density tokens. Below 24rem the New message action uses its compose icon and retains its accessible name so the filter stays on one line.
 
 ## Scope and limits
 
