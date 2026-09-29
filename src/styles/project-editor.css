@@ -1,13 +1,18 @@
+/* The form sits on the canvas: fields are the only framed things, and
+   hairlines divide the fields, optional extras and actions. */
 .project-editor-card {
-  width: min(100%, calc(60ch + 2 * var(--card-padding)));
+  width: min(100%, 60ch);
   container-type: inline-size;
   padding: 0;
 }
 .project-editor-fields {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  /* The description's extra height goes to the last row, so due date and
+     colour stay together beside it. */
+  grid-template-rows: auto auto 1fr;
   align-items: start;
-  padding: var(--card-padding);
+  padding: 0 0 var(--section-gap);
   gap: var(--stack-gap) var(--content-gap);
 }
 /* Due date and colour stack beside the taller description. */
@@ -72,7 +77,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--control-gap);
-  padding: var(--content-gap) var(--card-padding);
+  padding: var(--section-gap) 0 0;
   border-top: 1px solid var(--border);
 }
 .project-editor-actions > span {
@@ -109,6 +114,9 @@
 @container (max-width: 28rem) {
   .project-editor-fields {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .project-editor-fields {
+    grid-template-rows: none;
   }
   .project-description-field {
     grid-row: auto;
