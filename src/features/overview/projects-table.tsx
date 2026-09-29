@@ -229,6 +229,7 @@ export function ProjectsTableView({
               members={members}
               statusCounts={statusCounts}
               ownerCounts={ownerCounts}
+              resultCount={rows.length}
             >
               {state.view !== "table" && (
                 <ProjectGridControls

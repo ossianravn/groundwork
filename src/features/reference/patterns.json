@@ -2009,10 +2009,30 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Scroll a bounded region with themed, unobtrusive scrollbars.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: inbox list and activity preview.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit ScrollArea on Base UI: native scrolling with a thin overlay scrollbar. The Inbox message list uses it (keeping scroll restoration on the viewport), and Overview's Recent activity uses its overflow variables to fade only the edges with more history, replacing hand-written scroll measuring.",
+    "deferred": "No horizontal scroll areas yet; wide tables keep native scrolling.",
+    "examples": [
+      {
+        "label": "Inbox list",
+        "href": "/app/demo/inbox",
+        "instruction": "Make the window short and scroll the messages."
+      },
+      {
+        "label": "Recent activity",
+        "href": "/app/demo/overview",
+        "instruction": "Scroll the activity beside the chart."
+      },
+      {
+        "label": "Scroll area reference",
+        "href": "/reference/components/scroll-area",
+        "instruction": "Scroll the release history."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/scroll-area.tsx",
+      "src/features/inbox/inbox-layout.tsx",
+      "src/features/overview/activity-list.tsx"
+    ]
   },
   {
     "id": "KIT-11",
@@ -2047,10 +2067,31 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Bottom sheet for phone-sized actions and filters.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: phone filters on Projects and Activity.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Drawer on Base UI, and a kit FacetDrawer for data tables. On phones, Projects replaces its Status and Owner buttons with one Filters drawer of checkbox lists with counts, Clear filters and Show N projects; Activity's phone filters open in a drawer with Show N events.",
+    "deferred": "No snap points or nested drawers in the demo.",
+    "examples": [
+      {
+        "label": "Projects filters",
+        "href": "/app/demo/projects",
+        "instruction": "At phone width, open Filters."
+      },
+      {
+        "label": "Activity filters",
+        "href": "/app/demo/activity",
+        "instruction": "At phone width, open Filters."
+      },
+      {
+        "label": "Drawer reference",
+        "href": "/reference/components/drawer",
+        "instruction": "Open Sort and choose an order."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/drawer.tsx",
+      "src/kit/data-table/facet-drawer.tsx",
+      "src/features/overview/project-toolbar.tsx",
+      "src/features/activity/activity-filters.tsx"
+    ]
   },
   {
     "id": "TABL-12",

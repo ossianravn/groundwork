@@ -1,5 +1,6 @@
 import { useRef, useSyncExternalStore, type ReactNode } from "react"
 import type { GroupImperativeHandle } from "react-resizable-panels"
+import { ScrollArea } from "@/kit/ui/scroll-area"
 import { MoreHorizontal, RotateCcw, CheckCheck, SquarePen } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
@@ -124,13 +125,15 @@ export function InboxLayout({
                 minSize="30%"
                 maxSize="55%"
               >
-                <div
+                <ScrollArea
                   className="inbox-list-scroll"
-                  id="inbox-list"
-                  data-scroll-restoration-id="inbox-list"
+                  viewportProps={{
+                    id: "inbox-list",
+                    "data-scroll-restoration-id": "inbox-list",
+                  }}
                 >
                   {list}
-                </div>
+                </ScrollArea>
               </ResizablePanel>
               <ResizableHandle withHandle aria-label="Resize message list" />
               <ResizablePanel id="reading" minSize="45%">

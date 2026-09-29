@@ -1,5 +1,5 @@
 import { projectColorStyle } from "@/components/project-color"
-import { useEffect, useRef, useState, type ReactNode } from "react"
+import { useRef, useState, type ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import {
   Card,
@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/kit/ui/card"
 import { Button } from "@/kit/ui/button"
+import { ScrollArea } from "@/kit/ui/scroll-area"
 import { MemberAvatar } from "@/kit/member-avatar"
 import {
   formatDate,
@@ -40,42 +41,6 @@ export function ActivityList({
   const viewport = useRef<HTMLDivElement>(null)
   const events = (expanded ? activity.slice() : activity.slice(-6)).reverse()
 
-  useEffect(() => {
-    const region = viewport.current
-
-    if (!region) return
-
-    const updateFade = () => {
-      const remaining =
-        region.scrollHeight - region.clientHeight - region.scrollTop
-
-      region.style.setProperty(
-        "--scroll-before",
-        `${Math.max(0, region.scrollTop)}px`,
-      )
-      region.style.setProperty(
-        "--scroll-after",
-        `${Math.max(0, Math.round(remaining))}px`,
-      )
-      region.style.setProperty(
-        "--scroll-content-width",
-        `${region.clientWidth}px`,
-      )
-    }
-
-    const observer = new ResizeObserver(updateFade)
-    observer.observe(region)
-
-    if (region.firstElementChild) observer.observe(region.firstElementChild)
-    region.addEventListener("scroll", updateFade, { passive: true })
-    updateFade()
-
-    return () => {
-      observer.disconnect()
-      region.removeEventListener("scroll", updateFade)
-    }
-  }, [])
-
   return (
     <Card
       id="activity"
@@ -92,64 +57,71 @@ export function ActivityList({
         </span>
       </CardHeader>
       <CardContent className="activity-body">
-        <div
-          ref={viewport}
-          id="activity-history"
-          className="activity-viewport"
-          tabIndex={0}
-          role="region"
-          aria-label={
-            expanded ? "All workspace activity" : "Latest workspace activity"
-          }
-        >
-          <ol className="activity-list">
-            {events.map((event) => {
-              const member = members.find((item) => item.id === event.memberId)
-
-              const project = projects.find(
-                (item) => item.id === event.projectId,
-              )
-
-              if (!member || !project)
-                throw new Error(
-                  `Activity ${event.id} has an unknown member or project`,
+        <div className="activity-viewport">
+          <ScrollArea
+            className="size-full"
+            viewportProps={{
+              ref: viewport,
+              id: "activity-history",
+              className: "activity-scroller",
+              tabIndex: 0,
+              role: "region",
+              "aria-label": expanded
+                ? "All workspace activity"
+                : "Latest workspace activity",
+            }}
+          >
+            <ol className="activity-list">
+              {events.map((event) => {
+                const member = members.find(
+                  (item) => item.id === event.memberId,
                 )
 
-              return (
-                <li key={event.id}>
-                  <MemberAvatar member={member} size="sm" />
-                  <div className="min-w-0">
-                    <p className="activity-copy">
-                      <span className="font-medium text-foreground">
-                        {member.name}
-                      </span>{" "}
-                      {event.action}{" "}
-                      <Button
-                        variant="link"
-                        size="sm"
-                        className="activity-project"
-                        style={projectColorStyle(project.color)}
-                        onClick={() => onSelectProject(project.id)}
-                        id={`activity-project-${event.id}`}
+                const project = projects.find(
+                  (item) => item.id === event.projectId,
+                )
+
+                if (!member || !project)
+                  throw new Error(
+                    `Activity ${event.id} has an unknown member or project`,
+                  )
+
+                return (
+                  <li key={event.id}>
+                    <MemberAvatar member={member} size="sm" />
+                    <div className="min-w-0">
+                      <p className="activity-copy">
+                        <span className="font-medium text-foreground">
+                          {member.name}
+                        </span>{" "}
+                        {event.action}{" "}
+                        <Button
+                          variant="link"
+                          size="sm"
+                          className="activity-project"
+                          style={projectColorStyle(project.color)}
+                          onClick={() => onSelectProject(project.id)}
+                          id={`activity-project-${event.id}`}
+                        >
+                          {project.name}
+                          <ArrowUpRight
+                            data-icon="inline-end"
+                            aria-hidden="true"
+                          />
+                        </Button>
+                      </p>
+                      <time
+                        className="block text-xs text-muted-foreground"
+                        dateTime={event.date}
                       >
-                        {project.name}
-                        <ArrowUpRight
-                          data-icon="inline-end"
-                          aria-hidden="true"
-                        />
-                      </Button>
-                    </p>
-                    <time
-                      className="block text-xs text-muted-foreground"
-                      dateTime={event.date}
-                    >
-                      {formatDate(event.date)}
-                    </time>
-                  </div>
-                </li>
-              )
-            })}
-          </ol>
+                        {formatDate(event.date)}
+                      </time>
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          </ScrollArea>
         </div>
       </CardContent>
       <CardFooter className="overview-card-footer">

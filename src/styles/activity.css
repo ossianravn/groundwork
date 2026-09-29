@@ -25,10 +25,10 @@
 .activity-mobile-filters {
   display: none;
 }
-.activity-filter-popover {
-  width: min(18rem, calc(100vw - 2rem));
+.activity-filter-drawer {
+  display: grid;
   gap: var(--item-padding);
-  padding: var(--item-padding);
+  padding: var(--item-padding) 1rem 1rem;
 }
 .activity-filter-field {
   display: grid;

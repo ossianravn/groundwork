@@ -66,6 +66,7 @@ export function ActivityRoute() {
           <ActivityFilters
             value={search}
             people={demo.workspace.people}
+            count={events.length}
             onChange={(filters) => {
               void navigate({
                 to: "/app/demo/activity",

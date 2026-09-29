@@ -601,6 +601,27 @@
       ]
     },
     {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Drawer primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/sheet"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/drawer.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
@@ -902,6 +923,26 @@
           "path": "src/kit/ui/resizable.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/resizable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Scroll Area primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/scroll-area.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/scroll-area.tsx"
         }
       ]
     },
@@ -1229,6 +1270,7 @@
         "ossianravn/groundwork/base",
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/checkbox",
+        "ossianravn/groundwork/drawer",
         "ossianravn/groundwork/field",
         "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/popover",
@@ -1236,6 +1278,11 @@
         "ossianravn/groundwork/separator"
       ],
       "files": [
+        {
+          "path": "src/kit/data-table/facet-drawer.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/data-table/facet-drawer.tsx"
+        },
         {
           "path": "src/kit/data-table/faceted-filter.tsx",
           "type": "registry:file",
@@ -1505,6 +1552,7 @@
         "ossianravn/groundwork/date-picker",
         "ossianravn/groundwork/date-range-picker",
         "ossianravn/groundwork/dialog",
+        "ossianravn/groundwork/drawer",
         "ossianravn/groundwork/dropdown-menu",
         "ossianravn/groundwork/empty",
         "ossianravn/groundwork/field",
@@ -1520,6 +1568,7 @@
         "ossianravn/groundwork/progress",
         "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/resizable",
+        "ossianravn/groundwork/scroll-area",
         "ossianravn/groundwork/select",
         "ossianravn/groundwork/separator",
         "ossianravn/groundwork/sheet",

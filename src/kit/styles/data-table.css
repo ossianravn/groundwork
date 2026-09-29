@@ -117,3 +117,18 @@
     justify-self: end;
   }
 }
+/* FacetDrawer: every facet in one bottom drawer on phones. */
+.facet-drawer-body {
+  display: grid;
+  gap: 1.25rem;
+  min-height: 0;
+  padding: var(--item-padding) 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.facet-drawer-footer {
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: var(--item-padding);
+  border-top: 1px solid var(--border);
+}

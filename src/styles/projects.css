@@ -109,10 +109,20 @@
   align-items: center;
   gap: 0.5rem;
 }
+/* Phones swap the facet buttons for one Filters drawer (KIT-12). */
+.project-facet-drawer {
+  display: none;
+}
 @media (max-width: 767px) {
   .project-filters,
   .project-search {
     width: 100%;
+  }
+  .project-filter-options > .facet-trigger {
+    display: none;
+  }
+  .project-facet-drawer {
+    display: inline-flex;
   }
   .filter-reset {
     min-width: var(--control-height);
