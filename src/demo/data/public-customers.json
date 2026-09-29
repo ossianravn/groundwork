@@ -1,0 +1,202 @@
+{
+  "note": "Sample teams. These companies, people and figures are fictional.",
+  "teams": [
+    { "slug": "fieldnote", "name": "Fieldnote", "mark": "circle" },
+    { "slug": "kiln", "name": "Kiln Coffee", "mark": "arch" },
+    { "slug": "brightpath", "name": "Brightpath", "mark": "path" },
+    { "slug": "meridian", "name": "Meridian Build", "mark": "square" },
+    { "slug": "lumen", "name": "Lumen Labs", "mark": "ring" },
+    { "slug": "tidewater", "name": "Tidewater Events", "mark": "wave" }
+  ],
+  "stories": [
+    {
+      "slug": "fieldnote",
+      "company": "Fieldnote",
+      "industry": "Design studio",
+      "size": "24 people",
+      "color": "violet",
+      "headline": "Fieldnote runs forty client projects without a status meeting.",
+      "summary": "A brand and product studio replaced weekly status calls with a shared overview and project pages clients can follow.",
+      "metrics": [
+        { "value": "40", "label": "client projects a year" },
+        { "value": "0", "label": "weekly status meetings" },
+        { "value": "3 h", "label": "saved per lead each week" }
+      ],
+      "quote": {
+        "text": "Everyone opens the overview before they open their inbox. The question “where are we?” simply stopped coming up.",
+        "person": "Maya Okafor",
+        "role": "Studio director"
+      },
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "Fieldnote’s leads spent Monday mornings collecting updates from designers and turning them into client reports. By the time a report went out, half of it was out of date."
+          ]
+        },
+        {
+          "title": "What changed",
+          "paragraphs": [
+            "Every engagement became a Tandem project with an owner, a due date and a task list. Designers tick off tasks as they go, so progress and the activity feed stay current without anyone writing them up.",
+            "Leads share saved views with each client team: one for work in review, one for the delivery timeline."
+          ]
+        },
+        {
+          "title": "The result",
+          "paragraphs": [
+            "Status calls became review sessions about the work itself. Clients see the same timeline the studio sees."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kiln",
+      "company": "Kiln Coffee",
+      "industry": "Specialty roaster",
+      "size": "60 people",
+      "color": "amber",
+      "headline": "Kiln Coffee opened three cafés in one season.",
+      "summary": "A roaster and café group planned fit-outs, hiring and launches across three sites from one board.",
+      "metrics": [
+        { "value": "3", "label": "cafés opened on time" },
+        { "value": "212", "label": "launch tasks completed" },
+        { "value": "1", "label": "board for every site" }
+      ],
+      "quote": {
+        "text": "The board showed us which café was stuck before anyone had to say it out loud.",
+        "person": "Tomás Reyes",
+        "role": "Head of operations"
+      },
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "Each new café had its own spreadsheet, and the three spreadsheets never agreed. Contractors, suppliers and the hiring team all worked from different dates."
+          ]
+        },
+        {
+          "title": "What changed",
+          "paragraphs": [
+            "The operations team set up one project per café and moved them across the board as fit-out, hiring and soft launch finished. Comments with mentions replaced long email threads with suppliers’ contacts."
+          ]
+        },
+        {
+          "title": "The result",
+          "paragraphs": [
+            "All three sites opened within a week of their planned dates, and the playbook now starts every new site."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "brightpath",
+      "company": "Brightpath",
+      "industry": "Education nonprofit",
+      "size": "15 people",
+      "color": "teal",
+      "headline": "Brightpath keeps volunteers and staff on one plan.",
+      "summary": "A learning nonprofit coordinates a small staff and a rotating group of volunteers without extra tools.",
+      "metrics": [
+        { "value": "85", "label": "volunteers onboarded" },
+        { "value": "12", "label": "programmes planned" },
+        { "value": "2 days", "label": "to get a new volunteer started" }
+      ],
+      "quote": {
+        "text": "New volunteers find their tasks on the first day. That used to take a week of emails.",
+        "person": "Priya Nair",
+        "role": "Programme lead"
+      },
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "Volunteers came and went each term, and every handover lost context: who owned which session, what was left to prepare."
+          ]
+        },
+        {
+          "title": "What changed",
+          "paragraphs": [
+            "Each programme is a project with tasks assigned to named people. Files keep lesson plans next to the work, and the getting-started list guides new volunteers through their first steps."
+          ]
+        },
+        {
+          "title": "The result",
+          "paragraphs": [
+            "Handovers take an afternoon. The activity feed shows the next volunteer exactly what happened before them."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "meridian",
+      "company": "Meridian Build",
+      "industry": "Construction",
+      "size": "140 people",
+      "color": "rose",
+      "headline": "Meridian Build sees every site on one timeline.",
+      "summary": "A mid-sized builder tracks permits, trades and inspections across concurrent sites.",
+      "metrics": [
+        { "value": "18", "label": "sites in progress" },
+        { "value": "92%", "label": "inspections passed first time" },
+        { "value": "1 view", "label": "for the whole portfolio" }
+      ],
+      "quote": {
+        "text": "The timeline is the first thing our directors look at. Overlaps between trades are obvious weeks ahead.",
+        "person": "Grace Lindqvist",
+        "role": "Operations director"
+      },
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "Site managers reported progress in different formats, so directors could not see where two sites needed the same crew in the same week."
+          ]
+        },
+        {
+          "title": "What changed",
+          "paragraphs": [
+            "Meridian imported its open sites from a spreadsheet and gave each an owner and a due date. The Timeline view now shows every site side by side, and a saved view filters it to one region."
+          ]
+        },
+        {
+          "title": "The result",
+          "paragraphs": [
+            "Crew clashes are found in planning rather than on site, and inspections are booked with fewer surprises."
+          ]
+        }
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "Our weekly update wrote itself once tasks drove progress.",
+      "person": "Maya Okafor",
+      "role": "Studio director, Fieldnote"
+    },
+    {
+      "text": "I stopped asking for status. I just open the project.",
+      "person": "Jonah Fields",
+      "role": "Product lead, Lumen Labs"
+    },
+    {
+      "text": "Undo on everything means people actually try things.",
+      "person": "Tomás Reyes",
+      "role": "Head of operations, Kiln Coffee"
+    },
+    {
+      "text": "Saved views gave each client their own window into the work.",
+      "person": "Aiko Tanaka",
+      "role": "Account manager, Tidewater Events"
+    },
+    {
+      "text": "Mentions reach the right person, and nobody hunts through email.",
+      "person": "Priya Nair",
+      "role": "Programme lead, Brightpath"
+    },
+    {
+      "text": "Importing our spreadsheet took minutes, problems and all.",
+      "person": "Grace Lindqvist",
+      "role": "Operations director, Meridian Build"
+    }
+  ]
+}

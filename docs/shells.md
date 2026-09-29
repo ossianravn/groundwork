@@ -21,7 +21,7 @@ All shell data and session/permission scenarios use the shared [static JSON demo
 
 Header: Product, Pricing, Resources, Sign in, Open demo. Resources links to articles, changelog and help. The footer supplies Contact, Privacy, Terms and cookie preferences when that capability exists. Reference library is a clearly labelled template link. Mobile navigation uses a labelled Sheet with a title and visible close action.
 
-The header may be sticky; transparency is an optional visual variant. Readability must hold over every underlying surface. The signed-in state changes the account action to Open app. Public search is scoped to content/help; it does not expose private records or require a global command shortcut.
+An optional announcement bar (MKT-25, kit `AnnouncementBar`) sits above the public header and scrolls away with the page; Tandem uses it for the latest release and remembers dismissal per release in local storage. The header may be sticky; transparency is an optional visual variant. Readability must hold over every underlying surface. The signed-in state changes the account action to Open app. Public search is scoped to content/help; it does not expose private records or require a global command shortcut.
 
 ## App navigation
 

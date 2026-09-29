@@ -39,3 +39,7 @@ Load marketing sections, sample testimonials and newsletter outcome scenarios fr
 Follows the confirmed [static JSON demo-data contract](../../demo-data.md), including shared state, scenario selection and the proposed baseline-reset behavior.
 
 Inherits [shared shells](../../shells.md), the [quality contract](../../quality.md) and [proposed UX corrections](../../ux-decisions.md). Route authority: [sitemap](../../sitemap.md).
+
+## Showcase sections — 2026-09-29
+
+Below the hero stage, a row of sample team logos (MKT-03, static here; the Customers page uses the moving variant) is labelled as fictional. After the features, a stats band (MKT-23) shows figures computed from the Studio North fixtures in the display face, on the same three-column grid as the questions, with a link into the demo. All customer names, quotes and figures live in `src/demo/data/public-customers.json`, whose note states they are fictional.

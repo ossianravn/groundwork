@@ -5,6 +5,7 @@ import type { PublicLinkProps } from "@/components/public-link"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { useDemoState } from "./demo-state"
 import { defaultProjectsSearch } from "./projects-search"
+import { releases } from "@/features/resources/content"
 
 export function PublicLink({ destination, ...props }: PublicLinkProps) {
   switch (destination) {
@@ -20,6 +21,14 @@ export function PublicLink({ destination, ...props }: PublicLinkProps) {
       return <Link {...props} to="/blog" />
     case "changelog":
       return <Link {...props} to="/changelog" />
+    case "latest-release":
+      return (
+        <Link
+          {...props}
+          to="/changelog/$version"
+          params={{ version: releases[0].version }}
+        />
+      )
     case "help":
       return <Link {...props} to="/help" search={{ q: "" }} />
     case "product":

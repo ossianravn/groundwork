@@ -299,6 +299,42 @@
   ],
   "releases": [
     {
+      "version": "0.4.0",
+      "date": "2026-09-29",
+      "title": "Tasks, timelines and a search for everything",
+      "summary": "Projects gain real task lists, comments and files; a Timeline view, saved views and workspace-wide search help you find the work.",
+      "sections": [
+        {
+          "id": "added",
+          "title": "Added",
+          "paragraphs": [],
+          "bullets": [
+            "Task lists on every project: add, complete, assign and reorder, with progress that follows along.",
+            "Comments with @mentions that reach the inbox, and files with previews.",
+            "A Timeline view with a month calendar, and saved views you can share by link.",
+            "Search across projects, tasks, comments, messages, people and help.",
+            "Import projects from a CSV file, and a getting-started list for new workspaces."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Undo after completing, moving or deleting, and date pickers for due dates and custom report ranges."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything runs in your browser and resets on reload. Uploads and imports stay in memory, and mentions of teammates send nothing."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.3.0",
       "date": "2026-09-27",
       "title": "A public front door for the workspace",

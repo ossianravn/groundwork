@@ -1,0 +1,142 @@
+/* Home and company sections added with the public showcase (MKT-03, 23). */
+.customer-logos {
+  display: grid;
+  gap: 1.25rem;
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+.customer-logos-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}
+.customer-logos-heading h2 {
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.customer-logos-heading p {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.customer-logos-toggle {
+  margin-inline-start: auto;
+}
+.customer-logos-track {
+  display: flex;
+  overflow: hidden;
+}
+.customer-logos-track ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+}
+.customer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted-foreground);
+  font-family: var(--tandem-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.customer-logo svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* The marquee: two copies slide as one; hover, focus or Pause stop it. */
+.customer-logos-track[data-motion="marquee"] ul {
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  padding-inline-end: clamp(1.5rem, 4vw, 3.5rem);
+  animation: logo-marquee 40s linear infinite;
+}
+.customer-logos-track[data-motion="marquee"]:is(
+    :hover,
+    :focus-within,
+    [data-paused]
+  )
+  ul {
+  animation-play-state: paused;
+}
+@keyframes logo-marquee {
+  to {
+    translate: -100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .customer-logos-track[data-motion="marquee"] ul {
+    animation: none;
+    flex-wrap: wrap;
+  }
+  .customer-logos-track[data-motion="marquee"] ul[aria-hidden="true"],
+  .customer-logos-toggle {
+    display: none;
+  }
+}
+
+.stats-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.stats-band-heading h2 {
+  font-family: var(--tandem-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.stats-band-heading p {
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+}
+.stats-band-heading a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--foreground);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.stats-band-figures {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem clamp(1.5rem, 3vw, 2.5rem);
+}
+.stats-band-figures > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.stats-band-figures dd {
+  font-family: var(--tandem-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.stats-band-figures dt {
+  color: var(--muted-foreground);
+}
+@media (max-width: 767px) {
+  .stats-band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stats-band-figures {
+    grid-column: auto;
+  }
+}

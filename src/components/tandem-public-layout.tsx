@@ -5,6 +5,7 @@ import { PublicLayout, type PublicMenuLink } from "@/kit/shell/public-layout"
 import { tandemBrand } from "./tandem-brand"
 import type { PublicDestination, PublicLinkComponent } from "./public-link"
 import { PublicResources } from "./public-resources"
+import { TandemAnnouncement } from "./tandem-announcement"
 
 const menuLinks: PublicMenuLink<PublicDestination>[] = [
   { destination: "product", label: "Product" },
@@ -32,6 +33,7 @@ export function TandemPublicLayout({
       LinkComponent={LinkComponent}
       brand={tandemBrand}
       home={{ destination: "home", label: "Tandem home" }}
+      announcement={<TandemAnnouncement LinkComponent={LinkComponent} />}
       navigation={
         <>
           <LinkComponent destination="product">Product</LinkComponent>

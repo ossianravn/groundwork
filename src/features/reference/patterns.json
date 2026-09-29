@@ -2262,10 +2262,16 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Highlight a few numbers in the brand voice.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: Home band with display-face figures from the sample workspace.",
-    "examples": [],
-    "sources": []
+    "implemented": "A Home band in the display face: 218 tasks tracked, 68 completed in two weeks, 6 projects, 4 people, computed from the same fixtures the demo opens with, with a link into it.",
+    "deferred": "No animated counting or live figures.",
+    "examples": [
+      {
+        "label": "Stats band",
+        "href": "/",
+        "instruction": "Scroll past the features."
+      }
+    ],
+    "sources": ["src/features/public/stats-band.tsx"]
   },
   {
     "id": "MKT-24",
@@ -2286,9 +2292,18 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Promote one timely update above the header, dismissibly.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: public shell bar linking the latest changelog entry.",
-    "examples": [],
-    "sources": []
+    "implemented": "A slim bar above the public header (kit AnnouncementBar) names the latest release and links to its notes. Dismissing it is remembered per release in local storage, like other display preferences; a newer release shows again.",
+    "deferred": "One announcement at a time; no scheduling.",
+    "examples": [
+      {
+        "label": "Announcement",
+        "href": "/",
+        "instruction": "Read the bar at the top, then dismiss it."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/announcement-bar.tsx",
+      "src/components/tandem-announcement.tsx"
+    ]
   }
 ]
