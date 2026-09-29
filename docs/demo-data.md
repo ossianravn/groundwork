@@ -4,7 +4,7 @@ Access implementation (2026-09-26): root DemoStateProvider owns workspace/profil
 
 Status: static JSON data source confirmed by the user and implemented for Overview and the Projects list, inspector, detail and create/edit workflow. Broader datasets and scenario demonstrations below remain planned.
 
-The implemented fixtures include `src/demo/data/workspace.json` (identity/people), `team.json` (memberships/invitations), `account.json`, `projects.json` and `activity.json`. `src/demo/use-workspace.ts` owns shared in-memory mutations, `model.ts` owns shapes and date formatting, and `selectors.ts` derives summaries/filter results. Identity drafts are owned by `use-workspace-identity.ts`. Member removal deactivates membership and reassigns projects atomically; retained people identify historical activity and active members supply assignment choices. The workspace fixture owns the fixed reference date. Each project has a `color` naming a kit hue token (`--hue-violet` … `--hue-sky`); fixtures are validated on load and new projects take the next hue in rotation (`project-colors.ts`). Appearance preferences have a separate owner in `src/kit/theme/`; no runtime action writes fixture files.
+The implemented fixtures include `src/demo/data/workspace.json` (identity/people), `team.json` (memberships/invitations), `account.json`, `projects.json`, `tasks.json` and `activity.json`. `src/demo/use-workspace.ts` owns shared in-memory mutations, `model.ts` owns shapes and date formatting, and `selectors.ts` derives summaries/filter results. Identity drafts are owned by `use-workspace-identity.ts`. Member removal deactivates membership, reassigns projects and unassigns their open tasks atomically; retained people identify historical activity and active members supply assignment choices. The workspace fixture owns the fixed reference date. Each project has a `color` naming a kit hue token (`--hue-violet` … `--hue-sky`); fixtures are validated on load and new projects take the next hue in rotation (`project-colors.ts`). Appearance preferences have a separate owner in `src/kit/theme/`; no runtime action writes fixture files.
 
 Analytics derives all three completion views from the same period/project-scoped activity records in `src/demo/analytics.ts`; it has no separate fixture or stored totals. Contributor attribution uses the activity actor, not the current project owner. Its period, project and project-data view live in the URL.
 
@@ -25,6 +25,7 @@ Keep a central demo-data directory, divided by domain rather than page. The exac
 | workspaces.json | Workspace identity and setup state; switcher, onboarding and workspace settings |
 | users.json | Fictional profiles, memberships, roles and preferences; owner selectors, team and profile views |
 | projects.json | Project records, colours, tags, descriptions and related links; table, grid, board, inspector and editor |
+| tasks.json | Named project tasks in order; every project's task counts derive from them (`project-tasks.ts`) |
 | activity.json | Seeded project/workspace history; activity feed and historical analytics |
 | inbox.json | Requests and notifications linked to projects; inbox, drawer and unread counters |
 | billing.json | Plans, sample subscriptions, usage and invoices; public pricing and billing settings |

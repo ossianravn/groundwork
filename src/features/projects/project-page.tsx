@@ -9,13 +9,16 @@ import {
   type Activity,
   type Member,
   type Project,
+  type ProjectTask,
 } from "@/demo/model"
+import type { TaskChange } from "@/demo/project-tasks"
 import { ProjectProgress } from "./project-progress"
 import { actionWithinProject } from "@/demo/activity"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectResources } from "./project-resources"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
+import { ProjectTasks } from "./project-tasks"
 
 export function ProjectPage({
   project,
@@ -27,6 +30,8 @@ export function ProjectPage({
   notice,
   editing,
   onComplete,
+  tasks,
+  onTaskChange,
 }: {
   project: Project
   members: Member[]
@@ -37,6 +42,8 @@ export function ProjectPage({
   notice?: string
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
+  tasks: ProjectTask[]
+  onTaskChange: (change: TaskChange) => (() => void) | undefined
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -110,6 +117,13 @@ export function ProjectPage({
           </CardContent>
         </Card>
         <ProjectProgress project={project} onComplete={onComplete} standalone />
+        <ProjectTasks
+          project={project}
+          tasks={tasks}
+          members={assignableMembers}
+          people={members}
+          onChange={onTaskChange}
+        />
         <Card className="project-activity">
           <CardHeader>
             <CardTitle>

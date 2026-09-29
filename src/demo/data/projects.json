@@ -8,8 +8,6 @@
     "status": "in-progress",
     "ownerId": "ava",
     "dueDate": "2026-09-28",
-    "tasks": 32,
-    "completedTasks": 24,
     "tags": ["Design", "Marketing"],
     "links": []
   },
@@ -22,8 +20,6 @@
     "status": "in-progress",
     "ownerId": "leo",
     "dueDate": "2026-10-08",
-    "tasks": 48,
-    "completedTasks": 21,
     "tags": ["Design", "Web"],
     "links": []
   },
@@ -36,8 +32,6 @@
     "status": "in-review",
     "ownerId": "mia",
     "dueDate": "2026-09-30",
-    "tasks": 40,
-    "completedTasks": 36,
     "tags": ["Product"],
     "links": []
   },
@@ -50,8 +44,6 @@
     "status": "in-progress",
     "ownerId": "noah",
     "dueDate": "2026-10-16",
-    "tasks": 56,
-    "completedTasks": 18,
     "tags": ["Design", "Engineering"],
     "links": [
       {
@@ -75,8 +67,6 @@
     "status": "completed",
     "ownerId": "ava",
     "dueDate": "2026-09-20",
-    "tasks": 24,
-    "completedTasks": 24,
     "tags": ["Product"],
     "links": []
   },
@@ -89,8 +79,6 @@
     "status": "completed",
     "ownerId": "leo",
     "dueDate": "2026-09-18",
-    "tasks": 18,
-    "completedTasks": 18,
     "tags": ["Marketing", "Web"],
     "links": []
   }

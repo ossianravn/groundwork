@@ -1,6 +1,7 @@
 import { useState } from "react"
 import type { PlanSelection } from "./billing"
 import { initialProjects } from "./project-fixtures"
+import { applyTaskChange, initialTasks, type TaskChange } from "./project-tasks"
 import { initialActivity as activityData } from "./activity-fixtures"
 import workspaceData from "./data/workspace.json"
 import { useAccount } from "./use-account"
@@ -46,6 +47,7 @@ export function useWorkspace() {
   const [state, setState] = useState({
     projects: initialProjects,
     activity: activityData,
+    tasks: initialTasks,
     memberships: initialMemberships,
     invitations: initialInvitations,
     resetDone: false,
@@ -103,6 +105,7 @@ export function useWorkspace() {
     setState({
       projects: initialProjects,
       activity: activityData,
+      tasks: initialTasks,
       memberships: initialMemberships,
       invitations: initialInvitations,
       resetDone: true,
@@ -127,6 +130,20 @@ export function useWorkspace() {
     setState({ ...state, ...records, resetDone: false })
 
     return { result, undo: captureProjectUndo(state, records) }
+  }
+
+  // Task edits apply at once; the caller may offer Undo (removal does).
+  function changeTask(change: TaskChange) {
+    const records = applyTaskChange(state, change, {
+      id: () => crypto.randomUUID(),
+      memberId: workspace.currentUserId,
+      date: workspace.referenceDate,
+    })
+
+    setSaveNotice(null)
+    setState({ ...state, ...records, resetDone: false })
+
+    return captureProjectUndo(state, records)
   }
 
   function undoProjectChange(undo: ProjectUndo) {
@@ -217,6 +234,7 @@ export function useWorkspace() {
       setState({
         projects: [],
         activity: [],
+        tasks: [],
         invitations,
         memberships: [
           {
@@ -242,6 +260,7 @@ export function useWorkspace() {
         failPartially ? scenarios["bulk-partial-failure"].projectIds : [],
       ),
     undoProjectChange,
+    changeTask,
     reset,
     saveProject,
     saveNotice,

@@ -26,6 +26,7 @@ const project: Project = {
 const records: TeamRecords = {
   memberships: initialMemberships,
   projects: [project],
+  tasks: [],
 }
 
 describe("team changes", () => {

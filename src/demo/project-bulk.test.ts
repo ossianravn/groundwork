@@ -30,7 +30,7 @@ it("assigns only selected projects without changing progress or duplicating no-o
   const other = { ...project, id: "other" }
 
   const changed = applyProjectBulkChange(
-    { projects: [project, other], activity: [] },
+    { projects: [project, other], activity: [], tasks: [] },
     ["brand", "brand"],
     { kind: "assign", ownerId: "leo" },
     context,
@@ -65,6 +65,7 @@ it("commits successful completions and retries failures without counting tasks t
       { ...project, id: "website", name: "Website redesign" },
     ],
     activity: [],
+    tasks: [],
   }
 
   const partial = applyProjectBulkChange(
@@ -100,7 +101,7 @@ it("commits successful completions and retries failures without counting tasks t
 })
 
 it("reports unavailable projects and invalid owners without corrupting records", () => {
-  const records = { projects: [project], activity: [] }
+  const records = { projects: [project], activity: [], tasks: [] }
 
   const changed = applyProjectBulkChange(
     records,
@@ -118,7 +119,7 @@ it("reports unavailable projects and invalid owners without corrupting records",
 
 it("moves and reopens projects without undoing or recounting completed tasks", () => {
   const reviewed = applyProjectBulkChange(
-    { projects: [project], activity: [] },
+    { projects: [project], activity: [], tasks: [] },
     [project.id],
     { kind: "move", status: "in-review" },
     context,
@@ -170,7 +171,7 @@ it("moves and reopens projects without undoing or recounting completed tasks", (
 })
 
 it("keeps a rejected board move in its original column until retry succeeds", () => {
-  const records = { projects: [project], activity: [] }
+  const records = { projects: [project], activity: [], tasks: [] }
   const action = { kind: "move", status: "in-review" } as const
 
   const rejected = applyProjectBulkChange(records, [project.id], action, {

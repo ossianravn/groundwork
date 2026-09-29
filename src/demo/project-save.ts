@@ -1,4 +1,4 @@
-import type { Activity, Project } from "./model"
+import type { Activity, Project, ProjectTask } from "./model"
 import type { ProjectTarget, ProjectValues } from "./project-form"
 import { projectChanges } from "./activity"
 import { savedProjectLinks } from "./project-links"
@@ -7,6 +7,7 @@ import { canonicalProjectTags } from "./project-tags"
 export interface ProjectRecords {
   projects: Project[]
   activity: Activity[]
+  tasks: ProjectTask[]
 }
 
 export interface ProjectSaveEvent {
@@ -58,6 +59,7 @@ export function applyProjectSave(
 
   return {
     projects,
+    tasks: records.tasks,
     activity: [
       ...records.activity,
       {

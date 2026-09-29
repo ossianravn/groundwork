@@ -1,6 +1,7 @@
 import type { Member, ProjectStatus } from "./model"
 import type { ProjectRecords } from "./project-save"
 import { projectChanges } from "./activity"
+import { completeProjectTasks } from "./project-tasks"
 
 export type ProjectBulkAction =
   | { kind: "assign"; ownerId: string }
@@ -126,5 +127,14 @@ export function applyProjectBulkChange(
     return updated
   })
 
-  return { records: { projects, activity }, result }
+  // Completing a project completes its tasks; the counts already match.
+  const tasks = result.updated.reduce(
+    (current, id) =>
+      projects.find((project) => project.id === id)?.status === "completed"
+        ? completeProjectTasks(current, id)
+        : current,
+    records.tasks,
+  )
+
+  return { records: { projects, activity, tasks }, result }
 }

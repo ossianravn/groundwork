@@ -32,6 +32,16 @@ Inline and full editing share the same per-project draft. Navigation retains it 
 
 Validation errors stay beside the field and focus it. A fresh `?scenario=save-failure` detail draft rejects its first changed save, retains input and offers Retry save. The simulation applies to each newly created draft; normal local saves remain synchronous. Unchanged saves produce no Activity event. A successful change updates shared records/history, returns focus to its pencil action and announces the result to assistive technology; the changed value is the visible feedback, with no inserted success banner. Production concurrency/conflict handling is not implemented.
 
+## Tasks
+
+The project page lists the project's tasks between details and activity (TABL-12). Open tasks come first (eight, then Show all), followed by the add field and a collapsed Completed list. Each row has a checkbox labelled by the title, an assignee select (active members or Unassigned) and actions to move it up or down among tasks in the same state, or delete it.
+
+- Counts are derived. `tasks.json` holds 218 named tasks whose done/total match the original figures (Brand refresh 24/32); `withTaskCounts` recomputes a project's counts after every task change, so progress, tables, cards, board and Overview agree.
+- Completing a task records one completion in Activity for the snapshot date, so the Overview and Analytics charts include it. Reopening it the same day removes that record; earlier history stays.
+- Mark complete (and bulk or board completion) completes remaining tasks, and Undo restores them. Deleting a task offers Undo in a toast. Removing a workspace member returns their open tasks to Unassigned.
+- A completed project shows its tasks read-only, with a note to reopen it.
+- Keyboard: completing a task moves focus to the next open task (or the add field); reopening one focuses it in the open list. A polite status announces each change.
+
 ## Broader planned routes and composition
 
 | Route | Ordered page composition (in addition to shell) |

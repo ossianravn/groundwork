@@ -66,7 +66,7 @@ it("edits identity fields and adds one event while preserving task completion an
   const other = { ...project, id: "other" }
 
   const result = applyProjectSave(
-    { projects: [project, other], activity: [] },
+    { projects: [project, other], activity: [], tasks: [] },
     { kind: "edit", id: project.id },
     {
       name: "  New identity  ",
@@ -148,7 +148,7 @@ it("treats formatting-only edits as changes and preserves them in the saved reco
   expect(projectValuesChanged(before, after)).toBe(true)
 
   const result = applyProjectSave(
-    { projects: [project], activity: [] },
+    { projects: [project], activity: [], tasks: [] },
     { kind: "edit", id: project.id },
     after,
     {

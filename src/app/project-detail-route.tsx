@@ -63,6 +63,12 @@ export function ProjectDetailRoute() {
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
           onComplete={undo.completeProject}
+          tasks={demo.tasks.filter((task) => task.projectId === project.id)}
+          onTaskChange={(change) => {
+            const reversal = demo.changeTask(change)
+
+            return reversal ? () => demo.undoProjectChange(reversal) : undefined
+          }}
           returnLink={returnLink}
         />
       ) : (
