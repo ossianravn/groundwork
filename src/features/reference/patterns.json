@@ -1998,10 +1998,25 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Discuss a record in a thread and notify people with @mentions.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: project comments with @member suggestions feeding the inbox and notifications.",
-    "examples": [],
-    "sources": []
+    "implemented": "Project comments in a thread with a composer that suggests teammates after @ (arrow keys, Enter or Tab, Escape). Mentions are stored as member tokens and highlighted; posting records a Comment event in Activity. Teammates' comments that mention the current user appear in the inbox and notifications.",
+    "deferred": "No editing, deleting, reactions or threaded replies; mentioning someone else sends no notification in this single-user demo.",
+    "examples": [
+      {
+        "label": "Brand refresh comments",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Type @ in Add a comment, choose a teammate and post."
+      },
+      {
+        "label": "Mentions in the inbox",
+        "href": "/app/demo/inbox",
+        "instruction": "Open a Mentioned you in a comment message."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-comments.tsx",
+      "src/features/projects/mention-textarea.tsx",
+      "src/demo/project-comments.ts"
+    ]
   },
   {
     "id": "SETT-15",

@@ -1,6 +1,9 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../features/projects/project-comments.tsx",
+    "../features/projects/mention-textarea.tsx",
+    "../demo/project-comments.ts",
     "../features/projects/project-tasks.tsx",
     "../features/projects/project-task-row.tsx",
     "../demo/project-tasks.ts",

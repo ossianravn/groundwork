@@ -1,6 +1,11 @@
 import { useState } from "react"
 import type { PlanSelection } from "./billing"
 import { initialProjects } from "./project-fixtures"
+import {
+  addComment,
+  initialComments,
+  storedCommentBody,
+} from "./project-comments"
 import { applyTaskChange, initialTasks, type TaskChange } from "./project-tasks"
 import { initialActivity as activityData } from "./activity-fixtures"
 import workspaceData from "./data/workspace.json"
@@ -33,6 +38,15 @@ import {
   type ProjectUndo,
 } from "./project-undo"
 
+const initialRecords = {
+  projects: initialProjects,
+  activity: activityData,
+  tasks: initialTasks,
+  comments: initialComments,
+  memberships: initialMemberships,
+  invitations: initialInvitations,
+}
+
 export function useWorkspace() {
   const account = useAccount()
   const inbox = useInbox()
@@ -44,14 +58,7 @@ export function useWorkspace() {
     message: string
   } | null>(null)
 
-  const [state, setState] = useState({
-    projects: initialProjects,
-    activity: activityData,
-    tasks: initialTasks,
-    memberships: initialMemberships,
-    invitations: initialInvitations,
-    resetDone: false,
-  })
+  const [state, setState] = useState({ ...initialRecords, resetDone: false })
 
   const memberships = state.memberships.map((member) =>
     member.memberId === workspaceData.currentUserId
@@ -102,14 +109,7 @@ export function useWorkspace() {
     integrations.reset()
     identity.reset()
     setSaveNotice(null)
-    setState({
-      projects: initialProjects,
-      activity: activityData,
-      tasks: initialTasks,
-      memberships: initialMemberships,
-      invitations: initialInvitations,
-      resetDone: true,
-    })
+    setState({ ...initialRecords, resetDone: true })
   }
 
   // Status and owner changes share one path so each can offer Undo.
@@ -144,6 +144,28 @@ export function useWorkspace() {
     setState({ ...state, ...records, resetDone: false })
 
     return captureProjectUndo(state, records)
+  }
+
+  function postComment(projectId: string, text: string) {
+    const body = storedCommentBody(text, workspace.members)
+
+    if (!body) return false
+
+    const comment = {
+      id: crypto.randomUUID(),
+      projectId,
+      authorId: workspace.currentUserId,
+      date: workspace.referenceDate,
+      body,
+    }
+
+    setState((current) => ({
+      ...current,
+      ...addComment(current, comment, crypto.randomUUID()),
+      resetDone: false,
+    }))
+
+    return true
   }
 
   function undoProjectChange(undo: ProjectUndo) {
@@ -235,6 +257,7 @@ export function useWorkspace() {
         projects: [],
         activity: [],
         tasks: [],
+        comments: [],
         invitations,
         memberships: [
           {
@@ -261,6 +284,7 @@ export function useWorkspace() {
       ),
     undoProjectChange,
     changeTask,
+    postComment,
     reset,
     saveProject,
     saveNotice,

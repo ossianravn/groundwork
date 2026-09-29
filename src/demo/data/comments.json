@@ -1,0 +1,51 @@
+[
+  {
+    "id": "c-brand-1",
+    "projectId": "brand",
+    "authorId": "leo",
+    "date": "2026-09-22",
+    "body": "The guideline PDF reads well. @{ava} should the social templates live in the same file or in a separate kit?"
+  },
+  {
+    "id": "c-brand-2",
+    "projectId": "brand",
+    "authorId": "ava",
+    "date": "2026-09-23",
+    "body": "A separate kit, I think. @{mia} could you pick up the slide deck template next week?"
+  },
+  {
+    "id": "c-brand-3",
+    "projectId": "brand",
+    "authorId": "mia",
+    "date": "2026-09-24",
+    "body": "Yes, I'll start on Monday. @{ava} I'll need the final colour values before then."
+  },
+  {
+    "id": "c-website-1",
+    "projectId": "website",
+    "authorId": "noah",
+    "date": "2026-09-21",
+    "body": "The component handoff notes should follow the design system's documentation format. @{leo} happy to pair on it."
+  },
+  {
+    "id": "c-website-2",
+    "projectId": "website",
+    "authorId": "leo",
+    "date": "2026-09-22",
+    "body": "Thanks @{noah}, Thursday afternoon works for me."
+  },
+  {
+    "id": "c-mobile-1",
+    "projectId": "mobile",
+    "authorId": "leo",
+    "date": "2026-09-23",
+    "body": "@{ava} the review build is on TestFlight. The onboarding flow is the part we'd most like your eyes on."
+  },
+  {
+    "id": "c-design-system-1",
+    "projectId": "design-system",
+    "authorId": "mia",
+    "date": "2026-09-20",
+    "body": "Could Switch and Slider share the same thumb size? It would keep the settings pages consistent."
+  }
+]

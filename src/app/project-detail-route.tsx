@@ -64,6 +64,10 @@ export function ProjectDetailRoute() {
           activity={demo.activity}
           onComplete={undo.completeProject}
           tasks={demo.tasks.filter((task) => task.projectId === project.id)}
+          comments={demo.comments.filter(
+            (comment) => comment.projectId === project.id,
+          )}
+          onPostComment={(text) => demo.postComment(project.id, text)}
           onTaskChange={(change) => {
             const reversal = demo.changeTask(change)
 

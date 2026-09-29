@@ -34,7 +34,9 @@ it("starts a conversation atomically without adding an unread notification for i
     read: true,
     posts: [{ memberId: "ava", body: "Can we review this together?" }],
   })
-  expect(sent.entries.filter((entry) => !entry.read)).toHaveLength(3)
+  expect(sent.entries.filter((entry) => !entry.read)).toHaveLength(
+    inboxState().entries.filter((entry) => !entry.read).length,
+  )
   expect(sent.compose).toEqual(emptyMessageDraft)
   expect(sent.composeOpen).toBe(false)
   expect(sent.createdId).toBe(context.id)

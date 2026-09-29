@@ -8,6 +8,7 @@ export const activityKinds = {
   updated: "Project edited",
   status: "Status changed",
   owner: "Owner assigned",
+  comment: "Comment",
 }
 
 export type ActivityKind = keyof typeof activityKinds

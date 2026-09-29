@@ -1,5 +1,7 @@
 import data from "./data/inbox.json"
+import workspace from "./data/workspace.json"
 import type { Member, Project } from "./model"
+import { initialComments, mentionEntries } from "./project-comments"
 
 export type InboxFilter = "all" | "unread"
 
@@ -35,7 +37,7 @@ export const emptyMessageDraft: MessageDraft = {
   body: "",
 }
 
-export const initialInbox: InboxEntry[] = data.map(
+const messages: InboxEntry[] = data.map(
   ({ id, projectId, memberId, title, read, body, date }) => ({
     id,
     projectId,
@@ -44,6 +46,19 @@ export const initialInbox: InboxEntry[] = data.map(
     read,
     posts: [{ id, memberId, body: body.join("\n\n"), date }],
   }),
+)
+
+const mentions = mentionEntries(
+  initialComments,
+  workspace.members,
+  workspace.currentUserId,
+  workspace.referenceDate,
+)
+
+const latest = (entry: InboxEntry) => entry.posts[entry.posts.length - 1].date
+
+export const initialInbox = [...messages, ...mentions].sort((a, b) =>
+  latest(b).localeCompare(latest(a)),
 )
 
 export type InboxMessage = InboxEntry & {
