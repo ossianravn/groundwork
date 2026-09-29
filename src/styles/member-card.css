@@ -1,0 +1,44 @@
+/* A member's name as a link to the view filtered to them (KIT-06). It uses
+   the activity project link's quiet underline, so both read as links. */
+.member-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, currentColor 25%, transparent);
+  text-underline-offset: 0.2em;
+  border-radius: var(--radius-sm);
+}
+.member-link:hover {
+  text-decoration-color: currentColor;
+}
+.member-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.member-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+.member-card-identity {
+  display: grid;
+  min-width: 0;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.member-card-identity p {
+  overflow-wrap: anywhere;
+}
+.member-card-name {
+  color: var(--popover-foreground);
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.member-card-work {
+  grid-column: 1 / -1;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}

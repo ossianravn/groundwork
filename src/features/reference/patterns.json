@@ -1900,10 +1900,30 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Preview a person or record on hover or focus without navigating.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: member avatars in activity and the projects table.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit HoverCard on Base UI Preview Card. Owner names in the Projects table and people in Activity are links that filter the view to that person; hovering or focusing one previews their role, email, owned projects and open tasks from the shared demo state.",
+    "deferred": "No hover cards on avatars alone, which are not links.",
+    "examples": [
+      {
+        "label": "Project owners",
+        "href": "/app/demo/projects",
+        "instruction": "Hover or tab to an owner's name, then follow it."
+      },
+      {
+        "label": "Activity people",
+        "href": "/app/demo/activity",
+        "instruction": "Hover a person's name."
+      },
+      {
+        "label": "Hover card reference",
+        "href": "/reference/components/hover-card",
+        "instruction": "Hover the owner."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/hover-card.tsx",
+      "src/features/team/member-hover-card.tsx",
+      "src/app/member-link.tsx"
+    ]
   },
   {
     "id": "KIT-07",
@@ -1912,10 +1932,30 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Offer row or card actions on right-click and the keyboard menu key.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: board cards and table rows.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit ContextMenu sharing the dropdown menu's items. Board cards offer the same actions as their menu button (details, reorder, move to a status with Undo); Projects table rows offer View details, Open project and Select. The inspector returns focus to the item's inspect button.",
+    "deferred": "No submenus or multi-item context actions.",
+    "examples": [
+      {
+        "label": "Board cards",
+        "href": "/app/demo/projects?view=board",
+        "instruction": "Right-click or long-press a card."
+      },
+      {
+        "label": "Table rows",
+        "href": "/app/demo/projects",
+        "instruction": "Right-click a row and choose Select."
+      },
+      {
+        "label": "Context menu reference",
+        "href": "/reference/components/context-menu",
+        "instruction": "Right-click the file."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/context-menu.tsx",
+      "src/features/projects/project-board-menu.tsx",
+      "src/features/overview/project-row-menu.tsx"
+    ]
   },
   {
     "id": "KIT-08",

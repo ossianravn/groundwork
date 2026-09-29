@@ -8,7 +8,7 @@ import { ProjectDueDate } from "@/components/project-due-date"
 import { Button } from "@/kit/ui/button"
 import { Checkbox } from "@/kit/ui/checkbox"
 import type { Member, Project, ProjectStatus } from "@/demo/model"
-import { ProjectBoardMenu } from "./project-board-menu"
+import { ProjectBoardContextMenu, ProjectBoardMenu } from "./project-board-menu"
 
 function BoardCardContent({
   project,
@@ -91,13 +91,20 @@ export function ProjectBoardCard({
     transition,
   } = useSortable({ id: project.id })
 
+  const actions = { project, onInspect, onMove, onReorder, first, last }
+
   return (
-    <li
-      ref={setNodeRef}
-      className="project-board-card"
-      data-selected={selected}
-      data-dragging={isDragging}
-      style={{ transform: CSS.Transform.toString(transform), transition }}
+    <ProjectBoardContextMenu
+      {...actions}
+      card={
+        <li
+          ref={setNodeRef}
+          className="project-board-card"
+          data-selected={selected}
+          data-dragging={isDragging}
+          style={{ transform: CSS.Transform.toString(transform), transition }}
+        />
+      }
     >
       <BoardCardContent
         project={project}
@@ -125,18 +132,11 @@ export function ProjectBoardCard({
             >
               <GripVertical aria-hidden="true" />
             </Button>
-            <ProjectBoardMenu
-              project={project}
-              onInspect={onInspect}
-              onMove={onMove}
-              onReorder={onReorder}
-              first={first}
-              last={last}
-            />
+            <ProjectBoardMenu {...actions} />
           </>
         }
       />
-    </li>
+    </ProjectBoardContextMenu>
   )
 }
 

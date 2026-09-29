@@ -56,6 +56,8 @@ export function ProjectsTableView({
   state,
   onChange,
   renderName,
+  renderOwner,
+  onOpenProject,
   heading = "Projects",
   renderSelection,
   renderBoard,
@@ -68,6 +70,10 @@ export function ProjectsTableView({
   state: ProjectTableState
   onChange: (state: ProjectTableState) => void
   renderName?: (project: Project) => ReactNode
+  /** An owner's name in the table, such as a link with a hover card. */
+  renderOwner?: (owner: Member) => ReactNode
+  /** Opens a project page; enables the table rows' context menu. */
+  onOpenProject?: (id: string) => void
   heading?: string
   renderSelection?: (table: DataTable<Project>) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
@@ -110,12 +116,16 @@ export function ProjectsTableView({
     [projects, filters],
   )
 
+  // Cell renderers are component types to React: new columns remount every
+  // cell (and the inspector's return target), so depend only on stable inputs.
+  const selectable = !!renderSelection
+
   const columns = useMemo(
     () => [
-      ...(renderSelection ? [projectSelectionColumn] : []),
-      ...projectColumns(members, onSelect, renderName),
+      ...(selectable ? [projectSelectionColumn] : []),
+      ...projectColumns(members, onSelect, renderName, renderOwner),
     ],
-    [members, onSelect, renderName, renderSelection],
+    [members, onSelect, renderName, renderOwner, selectable],
   )
 
   const pagination = {
@@ -240,6 +250,13 @@ export function ProjectsTableView({
         renderName={renderName}
         renderBoard={renderBoard}
         renderTimeline={renderTimeline}
+        rowActions={
+          onOpenProject && {
+            onInspect: onSelect,
+            onOpen: onOpenProject,
+            selectable,
+          }
+        }
         onClearFilters={() => {
           setFilters(emptyProjectFilters)
           searchRef.current?.focus()

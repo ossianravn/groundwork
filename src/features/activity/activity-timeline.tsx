@@ -14,12 +14,15 @@ export function ActivityTimeline({
   people,
   projects,
   renderProject,
+  renderPerson = (person) => person.name,
   onDetails,
 }: {
   events: Activity[]
   people: Member[]
   projects: Project[]
   renderProject: (project: Project, eventId: string) => ReactNode
+  /** A known person's name, such as a link with a hover card. */
+  renderPerson?: (person: Member) => ReactNode
   onDetails: (event: Activity) => void
 }) {
   const dates = [...new Set(events.map((event) => event.date))]
@@ -61,7 +64,7 @@ export function ActivityTimeline({
                     />
                     <p>
                       <span className="font-medium">
-                        {person?.name ?? "Former member"}
+                        {person ? renderPerson(person) : "Former member"}
                       </span>{" "}
                       <span className="text-muted-foreground">
                         {event.action}

@@ -10,7 +10,10 @@ import {
 } from "@/kit/ui/empty"
 import type { Member, Project } from "@/demo/model"
 import { ProjectGrid } from "@/features/projects/project-grid"
-import { ProjectTableContent } from "./project-table-content"
+import {
+  ProjectTableContent,
+  type ProjectRowActions,
+} from "./project-table-content"
 import type { ProjectTableState } from "./project-table-state"
 
 type ProjectResultsStyle = CSSProperties & { "--project-row-count": number }
@@ -25,6 +28,7 @@ export function ProjectResults({
   renderName,
   renderBoard,
   renderTimeline,
+  rowActions,
   onClearFilters,
 }: {
   table: DataTable<Project>
@@ -36,6 +40,7 @@ export function ProjectResults({
   renderName?: (project: Project) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
   renderTimeline?: (table: DataTable<Project>) => ReactNode
+  rowActions?: ProjectRowActions
   onClearFilters: () => void
 }) {
   const style: ProjectResultsStyle = {
@@ -58,7 +63,7 @@ export function ProjectResults({
           renderName={renderName}
         />
       ) : (
-        <ProjectTableContent table={table} />
+        <ProjectTableContent table={table} rowActions={rowActions} />
       )}
       {empty && (
         <Empty>

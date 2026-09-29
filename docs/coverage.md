@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 102 have linked examples and 7 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 104 have linked examples and 5 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -118,8 +118,8 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
 | KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
-| KIT-06 | Hover card | [Design system](design-system.md) | member avatars in activity and the projects table. | Planned |
-| KIT-07 | Context menu | [Design system](design-system.md) | board cards and table rows. | Planned |
+| KIT-06 | Hover card | [Design system](design-system.md) | owner names in the Projects table and people in Activity | Example |
+| KIT-07 | Context menu | [Design system](design-system.md) | board cards and Projects table rows | Example |
 | KIT-08 | Keyboard key | [Design system](design-system.md) | search hint and shortcut list in /app/demo | Example |
 | KIT-09 | Spinner | [Design system](design-system.md) | /reference/components/button | Example |
 | KIT-10 | Scroll area | [Design system](design-system.md) | inbox list and activity preview. | Planned |

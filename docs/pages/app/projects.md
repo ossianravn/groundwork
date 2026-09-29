@@ -20,7 +20,7 @@ Find projects, inspect them in context and make changes to a precisely understoo
 
 ## Actions and outcomes
 
-Search, facets, sorting, page size/page, view and inspected record have explicit URL state. Filtering resets an invalid page; browser Back restores the prior view. Create opens the create page. Record names are links; an explicit Inspect control opens a Sheet without requiring a mouse-only row click. The inspector has summary/activity and an Edit link; it preserves list state when closed.
+Search, facets, sorting, page size/page, view and inspected record have explicit URL state. Filtering resets an invalid page; browser Back restores the prior view. Create opens the create page. Record names are links; an explicit Inspect control opens a Sheet without requiring a mouse-only row click. The inspector has summary/activity and an Edit link; it preserves list state when closed, and returns focus to the row's Inspect control. Owner names link to the list filtered to that owner, with a hover card of their role and work (KIT-06). A context menu (KIT-07) repeats row actions: View details, Open project and Select on table rows; on board cards, the same actions as the card's menu button.
 
 ## States to demonstrate
 
