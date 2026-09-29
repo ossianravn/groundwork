@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-27. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 76 IDs: 68 have linked examples and 8 remain planned. Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 72 have linked examples and 37 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -80,6 +80,82 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | TABL-09 | Kanban / Pipeline Board | [Projects data view ](pages/app/projects.md) | /app/:workspace/projects | Variant: Board view of the same project dataset |
 | TABL-10 | View Toggle (List vs Grid) | [Projects data view ](pages/app/projects.md) | /app/:workspace/projects | Default |
 | TABL-11 | Advanced Query Builder | [Projects data view ](pages/app/projects.md) | /app/:workspace/projects | Variant: Advanced filters revealed on demand |
+
+## Expansion — 2026-09-29
+
+The maintainer asked for a status and an expanded list, then chose all four proposed groups. The catalogue now holds 109 IDs: 72 with linked examples and 37 planned. Variants built on 2026-09-28/29 update their existing entries rather than adding IDs: MKT-02 (hero product stage), MKT-04 (screen-tile features), MKT-10 (closing newsletter panel) and DVIZ-01 (metric strip).
+
+### The original planned entries, now committed
+
+- **SYS-03 Toast Notification System:** save, undo and failure feedback across projects and settings, with an action slot (pairs with EDGE-10).
+- **NAV-03 Workspace / Tenant Switcher:** switch between two sample workspaces from the sidebar identity row, with the current workspace marked.
+- **EDGE-07 Button Loading State Geometry Lock:** Save and Create buttons keep their width while a simulated slow save runs (uses KIT-09 spinner).
+- **EDGE-08 Route Loading Progress Bar:** thin top progress bar during route loads that exceed a short threshold.
+- **NAV-07 Mobile Bottom Tab Navigation:** optional phone shell with a bottom tab bar for Overview, Projects, Inbox and Activity in the reference catalogue.
+- **MKT-12 Cookie Consent Banner:** reference specimen with Accept/Reject/Customize and remembered choice; stays off in the demo, which sets no tracking.
+- **MKT-03 Infinite Logo Marquee:** static logo row with an optional animated marquee that pauses on hover and honours reduced motion; logos are clearly fictional samples.
+- **MKT-06 Testimonial Wall / Grid:** testimonial grid on Home with clearly labelled sample quotes from fictional teams.
+
+### Built, now catalogued
+
+Implemented during the visual refinement and theme builder work; each has a live example.
+
+| ID | Pattern | Primary specification | Demonstration or target | Status |
+| --- | --- | --- | --- | --- |
+| NAV-09 | Page actions in the top bar | [Shared shells](shells.md) | /app/demo/overview | Example |
+| SETT-14 | Identity colour picker | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand/edit | Example |
+| SYS-08 | Palette generator | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
+| SYS-09 | Theme export to shadcn | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
+
+### Kit components
+
+Primitives the kit lacks compared with shadcn. Each is added through the kit's styling rules (token-based classes) and ships in the registry.
+
+| ID | Pattern | Primary specification | Demonstration or target | Status |
+| --- | --- | --- | --- | --- |
+| KIT-01 | Switch | [Design system](design-system.md) | notification preferences and workspace settings. | Planned |
+| KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
+| KIT-03 | Progress | [Design system](design-system.md) | replaces the native progress bars in projects and the inspector. | Planned |
+| KIT-04 | Calendar and date picker | [Design system](design-system.md) | project due date in the editor and inline editing. | Planned |
+| KIT-05 | Date-range picker | [Design system](design-system.md) | custom period on Overview and Analytics (DVIZ-05). | Planned |
+| KIT-06 | Hover card | [Design system](design-system.md) | member avatars in activity and the projects table. | Planned |
+| KIT-07 | Context menu | [Design system](design-system.md) | board cards and table rows. | Planned |
+| KIT-08 | Keyboard key | [Design system](design-system.md) | shortcut overlay (SYS-05) and command search hints. | Planned |
+| KIT-09 | Spinner | [Design system](design-system.md) | button loading geometry (EDGE-07). | Planned |
+| KIT-10 | Scroll area | [Design system](design-system.md) | inbox list and activity preview. | Planned |
+| KIT-11 | Carousel | [Design system](design-system.md) | customer stories on the public site. | Planned |
+| KIT-12 | Drawer | [Design system](design-system.md) | phone filters on Projects and Activity. | Planned |
+
+### App workflows
+
+Workflows that make the sample workspace feel real; they reuse the kit components above where noted.
+
+| ID | Pattern | Primary specification | Demonstration or target | Status |
+| --- | --- | --- | --- | --- |
+| TABL-12 | Project task list | [Project detail, creation and editing](pages/app/project-editor.md) | tasks on the project page with add, complete, assign and reorder; 24/32 becomes real. | Planned |
+| TABL-13 | Comments and mentions | [Project detail, creation and editing](pages/app/project-editor.md) | project comments with @member suggestions feeding the inbox and notifications. | Planned |
+| SETT-15 | File attachments | [Project detail, creation and editing](pages/app/project-editor.md) | project attachments with local previews and a simulated upload failure/retry. | Planned |
+| TABL-14 | Timeline and calendar view | [Projects data view](pages/app/projects.md) | Timeline view alongside Table, Cards and Board, with a month calendar variant. | Planned |
+| SETT-16 | CSV import with column mapping | [Projects data view](pages/app/projects.md) | import projects from a sample CSV: upload, map, validate, preview, import. | Planned |
+| TABL-15 | Saved views | [Projects data view](pages/app/projects.md) | saved project views next to the query builder (TABL-11), shareable by URL. | Planned |
+| AUTH-09 | Getting-started checklist | [Workspace onboarding](pages/auth/onboarding.md) | dismissible checklist on Overview after onboarding, ticking off as steps happen. | Planned |
+| EDGE-10 | Undo after destructive actions | [Shared shells](shells.md) | undo toast after removing a tag, link or bulk status change (uses SYS-03). | Planned |
+| SYS-10 | Search results page | [Shared shells](shells.md) | Enter in command search opens grouped results with filters. | Planned |
+
+### Public showcase
+
+New public pages and sections in the Tandem brand layer. Company, customer and integration content is clearly fictional sample content.
+
+| ID | Pattern | Primary specification | Demonstration or target | Status |
+| --- | --- | --- | --- | --- |
+| MKT-18 | Integrations directory | [Sitemap](sitemap.md) (page specification to write) | /integrations with sample, clearly fictional integrations. | Planned |
+| MKT-19 | Customer story | [Sitemap](sitemap.md) (page specification to write) | /customers/:slug with a fictional sample team. | Planned |
+| MKT-20 | About and careers | [Sitemap](sitemap.md) (page specification to write) | /about with a sample roles list. | Planned |
+| MKT-21 | Public roadmap | [Sitemap](sitemap.md) (page specification to write) | /roadmap with local votes and links to the changelog. | Planned |
+| MKT-22 | Status page | [Sitemap](sitemap.md) (page specification to write) | /status with sample components and incident history. | Planned |
+| MKT-23 | Stats band | [Public home](pages/public/home.md) | Home band with display-face figures from the sample workspace. | Planned |
+| MKT-24 | How it works | [Product overview](pages/public/product.md) | Product page steps linked to the demo. | Planned |
+| MKT-25 | Announcement bar | [Shared shells](shells.md) | public shell bar linking the latest changelog entry. | Planned |
 
 ## Inventory development
 

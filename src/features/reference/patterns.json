@@ -196,7 +196,7 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Summarize the current state of project work.",
-    "implemented": "Four totals derive from the same projects used by the table and board.",
+    "implemented": "Four totals shown as one metric strip with hairline dividers, derived from the same projects used by the table and board.",
     "deferred": "Historical comparisons and asynchronous loading remain planned.",
     "examples": [
       {
@@ -458,7 +458,7 @@
     "surface": "Shared",
     "summary": "Keep an action stable while its asynchronous result is pending.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: Save and Create buttons keep their width while a simulated slow save runs (uses KIT-09 spinner).",
     "examples": [],
     "sources": []
   },
@@ -470,7 +470,7 @@
     "surface": "Shared",
     "summary": "Show meaningful route-loading progress without arbitrary delays.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: thin top progress bar during route loads that exceed a short threshold.",
     "examples": [],
     "sources": []
   },
@@ -520,7 +520,7 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Make the product and its next action immediately clear.",
-    "implemented": "Split hero with a real demo image and working calls to action.",
+    "implemented": "Two-line display headline with copy and calls to action beneath, and the real product screenshot on a Tandem-blue stage that it hangs below; split layout remains on Product.",
     "deferred": "Centered and motion variants remain planned.",
     "examples": [
       {
@@ -539,7 +539,7 @@
     "surface": "Shared",
     "summary": "Present real customer or partner logos with a suitable motion policy.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: static logo row with an optional animated marquee that pauses on hover and honours reduced motion; logos are clearly fictional samples.",
     "examples": [],
     "sources": []
   },
@@ -550,8 +550,8 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Connect product capabilities to useful workflows.",
-    "implemented": "Product summaries link into shipped workspace features.",
-    "deferred": "A bento-layout variant remains planned.",
+    "implemented": "Three features on the shared home grid, each with a project-tinted tile showing a close-up of the real screen, linked into the matching workflow.",
+    "deferred": "A multi-size bento variant remains planned.",
     "examples": [
       {
         "label": "Product features",
@@ -587,7 +587,7 @@
     "surface": "Shared",
     "summary": "Present attributable customer feedback in a readable composition.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: testimonial grid on Home with clearly labelled sample quotes from fictional teams.",
     "examples": [],
     "sources": []
   },
@@ -665,7 +665,7 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Collect an email with a clear completion state.",
-    "implemented": "Local required/email validation and focused completion.",
+    "implemented": "Closing Tandem-field panel with required/email validation and focused completion; tokens are reassigned inside the panel so controls follow.",
     "deferred": "No mailing service, rate limits or delivery.",
     "examples": [
       {
@@ -702,7 +702,7 @@
     "surface": "Shared",
     "summary": "Collect consent when deployed optional services require a choice.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: reference specimen with Accept/Reject/Customize and remembered choice; stays off in the demo, which sets no tracking.",
     "examples": [],
     "sources": []
   },
@@ -821,7 +821,7 @@
     "surface": "Workspace",
     "summary": "Switch between available workspaces while preserving useful context.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: switch between two sample workspaces from the sidebar identity row, with the current workspace marked.",
     "examples": [],
     "sources": []
   },
@@ -890,7 +890,7 @@
     "surface": "Workspace",
     "summary": "Demonstrate an alternative mobile shell with stable labelled destinations.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: optional phone shell with a bottom tab bar for Overview, Projects, Inbox and Activity in the reference catalogue.",
     "examples": [],
     "sources": []
   },
@@ -1268,7 +1268,7 @@
     "surface": "Shared",
     "summary": "Surface transient, actionable feedback without moving page content.",
     "implemented": "",
-    "deferred": "This composition is planned; no live example is provided yet.",
+    "deferred": "Planned. Demo target: save, undo and failure feedback across projects and settings, with an action slot (pairs with EDGE-10).",
     "examples": [],
     "sources": []
   },
@@ -1631,5 +1631,437 @@
       "src/kit/ui/tooltip.tsx",
       "src/features/reference/examples/tooltip-example.tsx"
     ]
+  },
+  {
+    "id": "NAV-09",
+    "title": "Page actions in the top bar",
+    "originalName": "Page actions in the top bar",
+    "category": "Navigation",
+    "surface": "Workspace",
+    "summary": "Put a page's primary action and short context in the top bar instead of a heading row.",
+    "implemented": "PageActions/PageAction portal a page's action and metadata into the shell's top bar; the action shows only its icon on phones and keeps its label as the accessible name.",
+    "deferred": "Overflow menus for several actions remain planned.",
+    "examples": [
+      {
+        "label": "New project and snapshot date",
+        "href": "/app/demo/overview",
+        "instruction": "Use New project in the top bar; narrow the window to see the icon-only form."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/page-actions.tsx",
+      "src/kit/shell/page-actions-slot.ts"
+    ]
+  },
+  {
+    "id": "SETT-14",
+    "title": "Identity colour picker",
+    "originalName": "Identity colour picker",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Choose a record's identity colour from a small named palette, previewed live.",
+    "implemented": "Six named swatches as a radio group in the project editor; the heading mark updates live and the saved colour drives dots, progress bars and chart series.",
+    "deferred": "Custom colours are out of scope; colour changes are not written to activity.",
+    "examples": [
+      {
+        "label": "Project colour",
+        "href": "/app/demo/projects/brand/edit",
+        "instruction": "Pick a swatch, watch the heading mark change, then save and open the project."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-color-field.tsx",
+      "src/demo/project-colors.ts"
+    ]
+  },
+  {
+    "id": "SYS-08",
+    "title": "Palette generator",
+    "originalName": "Palette generator",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Derive a readable brand palette for light and dark from one colour.",
+    "implemented": "Seed colour and optional neutral tint generate brand tokens for both modes; lightness moves until links, fills and soft fills reach 4.5:1, and adjustments are named.",
+    "deferred": "Status and categorical hues are not generated.",
+    "examples": [
+      {
+        "label": "Generate tab",
+        "href": "/reference/themes",
+        "instruction": "Open Customize, choose Generate and try a light seed such as #facc15."
+      }
+    ],
+    "sources": [
+      "src/kit/theme/palette.ts",
+      "src/features/reference/theme-generate.tsx"
+    ]
+  },
+  {
+    "id": "SYS-09",
+    "title": "Theme export to shadcn",
+    "originalName": "Theme export to shadcn",
+    "category": "System",
+    "surface": "Shared",
+    "summary": "Export a theme as a registry item that installs into another project.",
+    "implemented": "Import / export offers a registry:theme item that installs its own override file after the kit tokens with `npx shadcn add`.",
+    "deferred": "Installing a theme as an extra accent remains planned.",
+    "examples": [
+      {
+        "label": "shadcn export",
+        "href": "/reference/themes",
+        "instruction": "Open Import / export and choose the shadcn tab."
+      }
+    ],
+    "sources": [
+      "src/kit/theme/preset-registry.ts",
+      "src/features/reference/theme-transfer.tsx"
+    ]
+  },
+  {
+    "id": "KIT-01",
+    "title": "Switch",
+    "originalName": "Switch",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Toggle a setting on or off with an immediate effect.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: notification preferences and workspace settings.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-02",
+    "title": "Slider",
+    "originalName": "Slider",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Pick a value or range along a track with keyboard steps.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: seat count in billing plan selection.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-03",
+    "title": "Progress",
+    "originalName": "Progress",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show completion as a labelled bar driven by tokens.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: replaces the native progress bars in projects and the inspector.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-04",
+    "title": "Calendar and date picker",
+    "originalName": "Calendar and date picker",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Choose a date from a calendar that follows density and theme.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: project due date in the editor and inline editing.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-05",
+    "title": "Date-range picker",
+    "originalName": "Date-range picker",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Choose a start and end date with presets.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: custom period on Overview and Analytics (DVIZ-05).",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-06",
+    "title": "Hover card",
+    "originalName": "Hover card",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Preview a person or record on hover or focus without navigating.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: member avatars in activity and the projects table.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-07",
+    "title": "Context menu",
+    "originalName": "Context menu",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Offer row or card actions on right-click and the keyboard menu key.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: board cards and table rows.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-08",
+    "title": "Keyboard key",
+    "originalName": "Keyboard key",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show a key or shortcut consistently.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: shortcut overlay (SYS-05) and command search hints.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-09",
+    "title": "Spinner",
+    "originalName": "Spinner",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Signal a short wait inside a control without layout shift.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: button loading geometry (EDGE-07).",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-10",
+    "title": "Scroll area",
+    "originalName": "Scroll area",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Scroll a bounded region with themed, unobtrusive scrollbars.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: inbox list and activity preview.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-11",
+    "title": "Carousel",
+    "originalName": "Carousel",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Browse a row of items with buttons, swipe and keys.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: customer stories on the public site.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "KIT-12",
+    "title": "Drawer",
+    "originalName": "Drawer",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Bottom sheet for phone-sized actions and filters.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: phone filters on Projects and Activity.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "TABL-12",
+    "title": "Project task list",
+    "originalName": "Project task list",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Break a project into tasks whose completion drives its progress.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: tasks on the project page with add, complete, assign and reorder; 24/32 becomes real.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "TABL-13",
+    "title": "Comments and mentions",
+    "originalName": "Comments and mentions",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Discuss a record in a thread and notify people with @mentions.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: project comments with @member suggestions feeding the inbox and notifications.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "SETT-15",
+    "title": "File attachments",
+    "originalName": "File attachments",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Attach files by drag and drop with progress, preview and removal.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: project attachments with local previews and a simulated upload failure/retry.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "TABL-14",
+    "title": "Timeline and calendar view",
+    "originalName": "Timeline and calendar view",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "See projects across time by due date.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: Timeline view alongside Table, Cards and Board, with a month calendar variant.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "SETT-16",
+    "title": "CSV import with column mapping",
+    "originalName": "CSV import with column mapping",
+    "category": "Settings & forms",
+    "surface": "Workspace",
+    "summary": "Bring records in from a spreadsheet by mapping columns and reviewing problems.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: import projects from a sample CSV: upload, map, validate, preview, import.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "TABL-15",
+    "title": "Saved views",
+    "originalName": "Saved views",
+    "category": "Data views",
+    "surface": "Workspace",
+    "summary": "Save and reopen a named combination of filters, sort and view.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: saved project views next to the query builder (TABL-11), shareable by URL.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "AUTH-09",
+    "title": "Getting-started checklist",
+    "originalName": "Getting-started checklist",
+    "category": "Access",
+    "surface": "Workspace",
+    "summary": "Guide a new workspace through its first useful steps.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: dismissible checklist on Overview after onboarding, ticking off as steps happen.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "EDGE-10",
+    "title": "Undo after destructive actions",
+    "originalName": "Undo after destructive actions",
+    "category": "Feedback & recovery",
+    "surface": "Shared",
+    "summary": "Let people reverse a removal for a short time instead of confirming up front.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: undo toast after removing a tag, link or bulk status change (uses SYS-03).",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "SYS-10",
+    "title": "Search results page",
+    "originalName": "Search results page",
+    "category": "System",
+    "surface": "Workspace",
+    "summary": "Show grouped results across projects, people, messages and help.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: Enter in command search opens grouped results with filters.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-18",
+    "title": "Integrations directory",
+    "originalName": "Integrations directory",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Browse integrations by category with search and detail pages.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: /integrations with sample, clearly fictional integrations.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-19",
+    "title": "Customer story",
+    "originalName": "Customer story",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Tell one team's story with results, quotes and product shots.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: /customers/:slug with a fictional sample team.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-20",
+    "title": "About and careers",
+    "originalName": "About and careers",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Present the company, values and open roles.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: /about with a sample roles list.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-21",
+    "title": "Public roadmap",
+    "originalName": "Public roadmap",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Show planned, in-progress and shipped work, with voting.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: /roadmap with local votes and links to the changelog.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-22",
+    "title": "Status page",
+    "originalName": "Status page",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Report service health, incidents and uptime history.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: /status with sample components and incident history.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-23",
+    "title": "Stats band",
+    "originalName": "Stats band",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Highlight a few numbers in the brand voice.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: Home band with display-face figures from the sample workspace.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-24",
+    "title": "How it works",
+    "originalName": "How it works",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Explain the product in three or four numbered steps.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: Product page steps linked to the demo.",
+    "examples": [],
+    "sources": []
+  },
+  {
+    "id": "MKT-25",
+    "title": "Announcement bar",
+    "originalName": "Announcement bar",
+    "category": "Public website",
+    "surface": "Public",
+    "summary": "Promote one timely update above the header, dismissibly.",
+    "implemented": "",
+    "deferred": "Planned. Demo target: public shell bar linking the latest changelog entry.",
+    "examples": [],
+    "sources": []
   }
 ]
