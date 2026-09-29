@@ -15,7 +15,7 @@ Understand workspace activity and investigate the numbers that need attention.
 
 ## Actions and outcomes
 
-Figures with a period filter share that scope and period. The first overview separates the workspace snapshot (explicit reference date) from historical task completion (its own 7/14/30-day selector). Snapshot totals do not pretend to be historical counts. A metric links to a meaningful filtered record view when supported. Legends change visible series without hiding the underlying data alternative. Date changes are shareable in the URL; do not reset the user's other filters.
+Figures with a period filter share that scope and period. The first overview separates the workspace snapshot (explicit reference date) from historical task completion (its own 7/14/30-day selector or a custom range of up to 92 days). Snapshot totals do not pretend to be historical counts. A metric links to a meaningful filtered record view when supported. Legends change visible series without hiding the underlying data alternative. Date changes are shareable in the URL; do not reset the user's other filters.
 
 Implemented first-page action outcomes:
 
@@ -51,7 +51,7 @@ Chart, Card, Tabs where there are panels, Calendar, Popover and Select compose t
 
 ### Implemented Analytics — 2026-09-27
 
-`/app/demo/analytics` reuses the accepted Overview chart/card composition and adapts the [shadcn horizontal bar](https://ui.shadcn.com/charts/bar) and [Chart](https://ui.shadcn.com/docs/components/base/chart) patterns. It adds no dependencies. The page-level period (7/14/30 days) and project selection scope all three charts to the same activity records, inclusive of both date boundaries. Date/project choices live in validated search parameters, with the reference fixture date as the end date.
+`/app/demo/analytics` reuses the accepted Overview chart/card composition and adapts the [shadcn horizontal bar](https://ui.shadcn.com/charts/bar) and [Chart](https://ui.shadcn.com/docs/components/base/chart) patterns. It adds no dependencies. The page-level period (7/14/30 days, or a custom `from`/`to` range) and project selection scope all three charts to the same activity records, inclusive of both date boundaries. Date/project choices live in validated search parameters; presets end on the reference fixture date, and custom ranges cannot pass it.
 
 The time series counts completed tasks per day. Project bars and the contributor donut aggregate those same tasks by project ID and activity actor respectively; current owner reassignment does not rewrite historical credit. Contributor colors retain member identity across sorting/filter changes. The literal task counts remain available without hover in legends/data views. Project table names open existing details; `projectView=data` retains that view alongside filters on return. The host's results memory restores useful focus and scroll.
 
@@ -59,7 +59,7 @@ The current project name labels the report, while activity supplies historical c
 
 Zero-completion ranges produce a zero time series and empty breakdowns. Unknown project filters show an unavailable state with All projects recovery. Session mutations update these views; Reset/reload restores fixtures. No new analytics fixture or parallel state owner is introduced.
 
-Custom ranges, grouped/stacked bars, multi-series legend filtering, prior-period comparisons and named asynchronous loading/failure scenarios remain planned. Data views are scoped alternatives, not complete screen-reader or physical-device conformance evidence.
+Grouped/stacked bars, multi-series legend filtering, prior-period comparisons and named asynchronous loading/failure scenarios remain planned. Data views are scoped alternatives, not complete screen-reader or physical-device conformance evidence.
 
 Current totals derive from projects.json through the shared demo-data owner; activity.json supplies historical events. The workspace fixture's reference date anchors repeatable date ranges. Local project mutations update summaries and history together. A lazy chart loading fallback exists; named chart loading/failure scenarios remain planned.
 

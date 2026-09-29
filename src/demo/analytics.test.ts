@@ -56,8 +56,7 @@ it("keeps all three views in the same date/project scope and attributes work to 
     activity,
     projects,
     people,
-    "2026-09-24",
-    7,
+    { start: "2026-09-18", end: "2026-09-24" },
     "p",
   )
 
@@ -67,10 +66,10 @@ it("keeps all three views in the same date/project scope and attributes work to 
     { id: "a", name: "Ava", completed: 2 },
   ])
   expect(
-    completionSeries(result.activity, "2026-09-24", 7).reduce(
-      (sum, day) => sum + day.completed,
-      0,
-    ),
+    completionSeries(result.activity, {
+      start: "2026-09-18",
+      end: "2026-09-24",
+    }).reduce((sum, day) => sum + day.completed, 0),
   ).toBe(9)
 })
 
@@ -79,14 +78,19 @@ it("does not turn non-completion activity or an empty scope into chart categorie
     [event("2026-09-24", "p", "a", 0)],
     projects,
     people,
-    "2026-09-24",
-    7,
+    { start: "2026-09-18", end: "2026-09-24" },
     "",
   )
 
   expect(result.projects).toEqual([])
   expect(result.contributors).toEqual([])
   expect(
-    completionBreakdown([], projects, people, "2026-09-24", 30, "").activity,
+    completionBreakdown(
+      [],
+      projects,
+      people,
+      { start: "2026-08-26", end: "2026-09-24" },
+      "",
+    ).activity,
   ).toEqual([])
 })

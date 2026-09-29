@@ -7,9 +7,6 @@
   .chart-period {
     width: 100%;
   }
-  .chart-date {
-    flex: 1 1 6rem;
-  }
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: var(--section-gap);

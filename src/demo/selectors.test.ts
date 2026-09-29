@@ -1,6 +1,7 @@
 import { textDocument } from "@/kit/rich-text/document"
 import { describe, expect, it } from "vitest"
 import { completionSeries, projectSummary } from "./selectors"
+import { reportWindow } from "./report-period"
 import type { Activity, Project } from "./model"
 
 describe("overview data", () => {
@@ -53,7 +54,11 @@ describe("overview data", () => {
       },
     ]
 
-    const result = completionSeries(activity, "2026-09-24", 7)
+    const result = completionSeries(
+      activity,
+      reportWindow("2026-09-24", { kind: "preset", days: 7 }),
+    )
+
     expect(result).toHaveLength(7)
     expect(result[0]).toEqual({ date: "2026-09-18", completed: 2 })
     expect(result[3].completed).toBe(0)

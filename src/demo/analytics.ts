@@ -1,5 +1,5 @@
-import type { Activity, Member, Period, Project } from "./model"
-import { dateOffset } from "./selectors"
+import type { Activity, Member, Project } from "./model"
+import type { ReportWindow } from "./report-period"
 
 export interface CompletionGroup {
   id: string
@@ -11,16 +11,13 @@ export function completionBreakdown(
   activity: Activity[],
   projects: Project[],
   people: Member[],
-  reference: string,
-  period: Period,
+  window: ReportWindow,
   projectId: string,
 ) {
-  const start = dateOffset(reference, 1 - period)
-
   const scoped = activity.filter(
     (event) =>
-      event.date >= start &&
-      event.date <= reference &&
+      event.date >= window.start &&
+      event.date <= window.end &&
       (!projectId || event.projectId === projectId),
   )
 

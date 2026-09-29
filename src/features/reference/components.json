@@ -221,5 +221,33 @@
       "label": "Base UI documentation"
     },
     "implementation": "src/kit/ui/toast.tsx"
+  },
+  {
+    "id": "date-picker",
+    "name": "Date picker",
+    "category": "Forms",
+    "purpose": "Pick a single calendar date from a field-sized trigger.",
+    "notes": [
+      "The value is an ISO date string; a hidden input carries it inside a form.",
+      "Pass labelledBy so the field name and the chosen date are both announced. Arrow keys move between days; Enter picks."
+    ],
+    "context": "Project due date",
+    "href": "/app/demo/projects/brand/edit",
+    "patterns": ["KIT-04"],
+    "implementation": "src/kit/ui/date-picker.tsx"
+  },
+  {
+    "id": "date-range-picker",
+    "name": "Date range picker",
+    "category": "Forms",
+    "purpose": "Pick a first and last day for a report in two clicks.",
+    "notes": [
+      "Each opening starts a fresh range; the second day applies it and Escape keeps the current one.",
+      "latest and maxDays keep the range inside the data that exists."
+    ],
+    "context": "Reporting dates",
+    "href": "/app/demo/analytics",
+    "patterns": ["KIT-05", "DVIZ-05"],
+    "implementation": "src/kit/ui/date-range-picker.tsx"
   }
 ]

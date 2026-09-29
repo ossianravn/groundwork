@@ -18,7 +18,7 @@ it("renders the reusable page without a router or demo state provider", () => {
       activity={activity}
       members={workspace.members}
       referenceDate={workspace.referenceDate}
-      period={14}
+      period={{ kind: "preset", days: 14 }}
       onPeriodChange={() => undefined}
       onNewProject={() => undefined}
       onSelectProject={() => undefined}

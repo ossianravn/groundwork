@@ -16,7 +16,7 @@ Find a reusable example and inspect the building blocks used by the actual demo.
 
 ## Actions and outcomes
 
-Search by component name, related inventory ID or task, combined with a category. The initial ten entries are Button, Input, Select, Checkbox, Radio Group, Dialog, Tabs, Alert, Empty and Table; Rich text editor and Tooltip followed, and Switch, Progress, Keyboard key and Toast were added with the 2026-09-29 foundations (Button gained its loading state). These are documented examples, not a count of every installed primitive or completed pattern. Clicking View in context navigates within the running demo; official documentation opens a labelled new tab.
+Search by component name, related inventory ID or task, combined with a category. The initial ten entries are Button, Input, Select, Checkbox, Radio Group, Dialog, Tabs, Alert, Empty and Table; Rich text editor and Tooltip followed, and Switch, Progress, Keyboard key and Toast were added with the 2026-09-29 foundations (Button gained its loading state), followed by Date picker and Date range picker. These are documented examples, not a count of every installed primitive or completed pattern. Clicking View in context navigates within the running demo; official documentation opens a labelled new tab.
 
 Search/category survive opening a detail and returning to the catalogue. The selected Preview/Code tab is URL-backed; changing it preserves preview state. Reset remounts the current example. Code is loaded from that example's actual source by the Vite host, rather than a separately maintained string. Copy reports completion; clipboard refusal selects the code for manual copying and explains recovery.
 

@@ -5,9 +5,9 @@ import {
   formatDate,
   type Activity,
   type Member,
-  type Period,
   type Project,
 } from "@/demo/model"
+import { reportWindow, type ReportPeriod } from "@/demo/report-period"
 import { CompletionPeriod } from "./completion-period"
 import { Metrics } from "./metrics"
 import { ActivityList } from "./activity-list"
@@ -25,8 +25,8 @@ export interface OverviewPageProps {
   members: Member[]
   activityMembers?: Member[]
   referenceDate: string
-  period: Period
-  onPeriodChange: (period: Period) => void
+  period: ReportPeriod
+  onPeriodChange: (period: ReportPeriod) => void
   onNewProject: () => void
   onSelectProject: (id: string) => void
   projectTableControl?: ProjectTableControl
@@ -83,10 +83,14 @@ export function OverviewPage({
         >
           <CompletionChart
             activity={activity}
-            referenceDate={referenceDate}
-            period={period}
+            range={reportWindow(referenceDate, period)}
+            snapshotDate={referenceDate}
             periodControl={
-              <CompletionPeriod period={period} onChange={onPeriodChange} />
+              <CompletionPeriod
+                period={period}
+                referenceDate={referenceDate}
+                onChange={onPeriodChange}
+              />
             }
           />
         </Suspense>

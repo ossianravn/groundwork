@@ -22,6 +22,11 @@
       ],
       "files": [
         {
+          "path": "src/kit/lib/iso-date.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/lib/iso-date.ts"
+        },
+        {
           "path": "src/kit/lib/utils.ts",
           "type": "registry:file",
           "target": "~/src/kit/lib/utils.ts"
@@ -299,6 +304,29 @@
       ]
     },
     {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Calendar primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "date-fns@^4.4.0",
+        "lucide-react@^1.48.0",
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/calendar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/calendar.tsx"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
@@ -445,6 +473,56 @@
           "path": "src/kit/ui/command.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/command.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Date Picker primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "date-fns@^4.4.0",
+        "lucide-react@^1.48.0",
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/calendar",
+        "ossianravn/groundwork/popover"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/date-picker.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/date-picker.tsx"
+        }
+      ]
+    },
+    {
+      "name": "date-range-picker",
+      "type": "registry:ui",
+      "title": "Date Range Picker",
+      "description": "Date Range Picker primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "date-fns@^4.4.0",
+        "lucide-react@^1.48.0",
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/calendar",
+        "ossianravn/groundwork/popover"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/date-range-picker.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/date-range-picker.tsx"
         }
       ]
     },
@@ -1328,12 +1406,15 @@
         "ossianravn/groundwork/badge",
         "ossianravn/groundwork/bubble",
         "ossianravn/groundwork/button",
+        "ossianravn/groundwork/calendar",
         "ossianravn/groundwork/card",
         "ossianravn/groundwork/chart",
         "ossianravn/groundwork/checkbox",
         "ossianravn/groundwork/collapsible",
         "ossianravn/groundwork/combobox",
         "ossianravn/groundwork/command",
+        "ossianravn/groundwork/date-picker",
+        "ossianravn/groundwork/date-range-picker",
         "ossianravn/groundwork/dialog",
         "ossianravn/groundwork/dropdown-menu",
         "ossianravn/groundwork/empty",

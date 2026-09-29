@@ -47,7 +47,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
    npm install @base-ui/react class-variance-authority cn culori lucide-react tw-animate-css shadcn @fontsource-variable/geist @fontsource-variable/inter @fontsource-variable/source-sans-3
    ```
 
-   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `cmdk` (command menu), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
+   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `react-day-picker date-fns` (calendar and date pickers), `cmdk` (command menu), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
 
 3. Make `kit/styles/kit.css` your Tailwind entry (or `@import` it from yours), and point `components.json` at it so `npx shadcn add` installs into `kit/ui`.
 4. Apply saved appearance before rendering, and provide tooltips:

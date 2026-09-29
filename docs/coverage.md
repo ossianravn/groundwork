@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 80 have linked examples and 29 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29) and [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 82 have linked examples and 27 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -116,8 +116,8 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
 | KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
-| KIT-04 | Calendar and date picker | [Design system](design-system.md) | project due date in the editor and inline editing. | Planned |
-| KIT-05 | Date-range picker | [Design system](design-system.md) | custom period on Overview and Analytics (DVIZ-05). | Planned |
+| KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
+| KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
 | KIT-06 | Hover card | [Design system](design-system.md) | member avatars in activity and the projects table. | Planned |
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and table rows. | Planned |
 | KIT-08 | Keyboard key | [Design system](design-system.md) | search hint and shortcut list in /app/demo | Example |
@@ -165,6 +165,13 @@ Build-order step 1 turned eight planned entries into examples: SYS-03, EDGE-07, 
 - **EDGE-07, KIT-09:** `Button` takes `loading`, keeping the label's width under a spinner and staying focusable. The project form accepts an asynchronous save, locks its fields and reports Saving…. Product saves remain immediate; the delay exists only in the Slow save gallery scenario and the Button reference example. This supersedes the 2026-09-26 EDGE-07 deferral below.
 - **EDGE-08:** a 2px brand bar appears when a route's code or data takes longer than 150 ms, then completes and fades. Most demo navigations finish sooner, so it is usually invisible.
 - **KIT-01, KIT-03, KIT-08:** notification preferences use Switch; every native project `<progress>` is now the kit Progress in the project's hue; the shortcut list and the top-bar search hint use Kbd with the platform's modifier.
+
+## Date pickers delivery — 2026-09-29
+
+Build-order step 2 added KIT-04 and KIT-05 and completed the custom range in DVIZ-05, using `react-day-picker` and `date-fns` (approved by the maintainer).
+
+- **KIT-04:** the kit Calendar adapts shadcn's base-nova source; `DatePicker` takes and returns ISO dates, starts weeks on Monday and names its trigger with the field label plus the chosen date. Project due dates use it in the editor (create and edit) and in inline editing, where Escape closes the calendar before it cancels the edit.
+- **KIT-05, DVIZ-05:** Overview and Analytics accept `from`/`to` in the URL beside the 7/14/30-day `period`; an invalid, reversed or over-92-day range falls back to the preset. The dates above the chart open the range calendar, and the period Select gains Custom range. Days after the snapshot cannot be chosen. The snapshot day is drawn at full strength only when the range includes it. This supersedes the DVIZ-05 "custom ranges remain planned" note below.
 
 ## Inventory development
 
