@@ -13,6 +13,9 @@
   margin-bottom: var(--content-gap);
 }
 .project-board-scroll {
+  /* Contain absolutely positioned descendants (screen-reader text) so they
+     scroll with the lanes instead of widening the page. */
+  position: relative;
   overflow-x: auto;
   scroll-snap-type: x proximity;
 }
