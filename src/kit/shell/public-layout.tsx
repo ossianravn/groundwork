@@ -32,6 +32,7 @@ export function PublicLayout<Destination extends string>({
   footerNote,
   legalNavigation,
   onAppearance,
+  announcement,
 }: {
   children: ReactNode
   LinkComponent: ShellLinkComponent<Destination>
@@ -44,6 +45,8 @@ export function PublicLayout<Destination extends string>({
   footerNote: ReactNode
   legalNavigation: ReactNode
   onAppearance: () => void
+  /** A notice above the header, such as AnnouncementBar. */
+  announcement?: ReactNode
 }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const destination = useRef<string | null>(null)
@@ -64,6 +67,7 @@ export function PublicLayout<Destination extends string>({
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
+      {announcement}
       <header className="public-header" ref={header}>
         <div className="public-container public-header-row">
           {homeLink}

@@ -51,7 +51,8 @@
 }
 .public-features,
 .public-questions,
-.public-newsletter {
+.public-newsletter,
+.stats-band {
   border-top: 1px solid var(--border);
   padding-block: var(--public-section-space);
 }

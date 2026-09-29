@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 91 have linked examples and 18 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 93 have linked examples and 16 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -153,9 +153,9 @@ New public pages and sections in the Tandem brand layer. Company, customer and i
 | MKT-20 | About and careers | [Sitemap](sitemap.md) (page specification to write) | /about with a sample roles list. | Planned |
 | MKT-21 | Public roadmap | [Sitemap](sitemap.md) (page specification to write) | /roadmap with local votes and links to the changelog. | Planned |
 | MKT-22 | Status page | [Sitemap](sitemap.md) (page specification to write) | /status with sample components and incident history. | Planned |
-| MKT-23 | Stats band | [Public home](pages/public/home.md) | Home band with display-face figures from the sample workspace. | Planned |
+| MKT-23 | Stats band | [Public home](pages/public/home.md) | / (stats band) | Example |
 | MKT-24 | How it works | [Product overview](pages/public/product.md) | Product page steps linked to the demo. | Planned |
-| MKT-25 | Announcement bar | [Shared shells](shells.md) | public shell bar linking the latest changelog entry. | Planned |
+| MKT-25 | Announcement bar | [Shared shells](shells.md) | public header on every page | Example |
 
 ## Foundations delivery — 2026-09-29
 

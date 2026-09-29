@@ -14,6 +14,8 @@ import content from "@/demo/data/public-home.json"
 import type { ProjectColor } from "@/demo/model"
 import { projectColorStyle } from "@/components/project-color"
 import { Newsletter } from "./newsletter"
+import { CustomerLogos } from "./customer-logos"
+import { StatsBand } from "./stats-band"
 
 // Each feature shows a close-up of the real screen it describes, on a tile
 // tinted with a project colour.
@@ -82,6 +84,9 @@ export function HomePage({
           <figcaption>Studio North · Sample workspace</figcaption>
         </figure>
       </section>
+      <div className="public-container">
+        <CustomerLogos />
+      </div>
       <section
         id="features"
         tabIndex={-1}
@@ -124,6 +129,7 @@ export function HomePage({
           })}
         </div>
       </section>
+      <StatsBand LinkComponent={LinkComponent} />
       <section
         id="questions"
         tabIndex={-1}

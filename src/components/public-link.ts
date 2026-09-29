@@ -7,6 +7,7 @@ export type PublicDestination =
   | "pricing"
   | "blog"
   | "changelog"
+  | "latest-release"
   | "help"
   | "contact"
   | "privacy"

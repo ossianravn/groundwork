@@ -32,6 +32,11 @@
           "target": "~/src/kit/lib/utils.ts"
         },
         {
+          "path": "src/kit/styles/announcement-bar.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/announcement-bar.css"
+        },
+        {
           "path": "src/kit/styles/appearance-previews.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/appearance-previews.css"
@@ -1301,6 +1306,11 @@
           "path": "src/kit/shell/account-menu.tsx",
           "type": "registry:file",
           "target": "~/src/kit/shell/account-menu.tsx"
+        },
+        {
+          "path": "src/kit/shell/announcement-bar.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/announcement-bar.tsx"
         },
         {
           "path": "src/kit/shell/brand-mark.tsx",

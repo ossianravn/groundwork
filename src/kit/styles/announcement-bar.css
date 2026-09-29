@@ -1,0 +1,38 @@
+/* Announcement bar: one line above the public header; it scrolls away. */
+.announcement-bar {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: var(--text-meta);
+}
+.announcement-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap);
+  min-height: 2.5rem;
+  padding-block: 0.25rem;
+}
+.announcement-row p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 0.625rem;
+  text-align: center;
+}
+.announcement-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.announcement-dismiss {
+  flex-shrink: 0;
+  color: inherit;
+}
+.announcement-dismiss:hover {
+  background: color-mix(in oklab, currentColor 14%, transparent);
+  color: inherit;
+}
