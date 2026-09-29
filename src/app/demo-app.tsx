@@ -24,7 +24,9 @@ import { useWorkspaceHelp } from "./use-workspace-help"
 import { WorkspaceHelpLink } from "./workspace-help-link"
 
 export function DemoApp() {
-  const { demo, access, contact, appearance, results, drafts } = useDemoState()
+  const { demo, access, contact, appearance, results, drafts, files } =
+    useDemoState()
+
   const undo = useProjectUndo()
   const navigate = useNavigate()
   const pathname = useLocation({ select: (location) => location.pathname })
@@ -132,6 +134,7 @@ export function DemoApp() {
           access.reset()
           contact.reset()
           drafts.reset()
+          files.reset()
           openInspection(undefined, true)
         }}
       >

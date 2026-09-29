@@ -81,7 +81,7 @@ export function WorkspaceSetupRoute() {
 }
 
 export function TeamSetupRoute() {
-  const { access, demo, drafts, results } = useDemoState()
+  const { access, demo, drafts, results, files } = useDemoState()
   const navigate = useNavigate()
   const registration = access.registration
 
@@ -116,6 +116,7 @@ export function TeamSetupRoute() {
             invitations,
           )
           drafts.reset()
+          files.clear()
           results.reset()
           access.advanceSetup("complete")
           void navigate({ to: "/onboarding/complete" })

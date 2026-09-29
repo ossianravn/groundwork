@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 84 have linked examples and 25 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 85 have linked examples and 24 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -134,7 +134,7 @@ Workflows that make the sample workspace feel real; they reuse the kit component
 | --- | --- | --- | --- | --- |
 | TABL-12 | Project task list | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand | Example |
 | TABL-13 | Comments and mentions | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand; /app/demo/inbox | Example |
-| SETT-15 | File attachments | [Project detail, creation and editing](pages/app/project-editor.md) | project attachments with local previews and a simulated upload failure/retry. | Planned |
+| SETT-15 | File attachments | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand (?scenario=upload-failure) | Example |
 | TABL-14 | Timeline and calendar view | [Projects data view](pages/app/projects.md) | Timeline view alongside Table, Cards and Board, with a month calendar variant. | Planned |
 | SETT-16 | CSV import with column mapping | [Projects data view](pages/app/projects.md) | import projects from a sample CSV: upload, map, validate, preview, import. | Planned |
 | TABL-15 | Saved views | [Projects data view](pages/app/projects.md) | saved project views next to the query builder (TABL-11), shareable by URL. | Planned |

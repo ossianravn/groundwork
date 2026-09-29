@@ -7,6 +7,8 @@ import { useDemoWorkspace } from "./workspace-context"
 import { projectReturnDestination, projectReturnLabel } from "./project-return"
 import { useRouteFocus } from "./use-route-focus"
 import { useProjectUndo } from "./use-project-undo"
+import { useDemoState } from "./demo-state"
+import { ProjectFiles } from "@/features/projects/project-files"
 
 import { ProjectUnavailable } from "@/features/projects/project-unavailable"
 import { ProjectEditLink } from "./project-detail-link"
@@ -18,6 +20,7 @@ export function ProjectDetailRoute() {
   const { projectId } = route.useParams()
   const { returnTo, scenario } = route.useSearch()
   const { demo, drafts } = useDemoWorkspace()
+  const { files } = useDemoState()
   const undo = useProjectUndo()
   const project = demo.projects.find((item) => item.id === projectId)
   const destination = projectReturnDestination(returnTo)
@@ -43,7 +46,7 @@ export function ProjectDetailRoute() {
             drafts,
             (target, values, mode) =>
               demo.saveProject(target, values, mode, false),
-            scenario ?? "normal",
+            scenario === "save-failure" ? "save-failure" : "normal",
           )}
           notice={
             demo.saveNotice?.projectId === project.id
@@ -68,6 +71,28 @@ export function ProjectDetailRoute() {
             (comment) => comment.projectId === project.id,
           )}
           onPostComment={(text) => demo.postComment(project.id, text)}
+          files={
+            <ProjectFiles
+              files={files.files.filter(
+                (file) => file.projectId === project.id,
+              )}
+              people={demo.workspace.people}
+              failFirstUpload={scenario === "upload-failure"}
+              onRemove={files.remove}
+              onUploaded={(file) =>
+                files.add({
+                  id: crypto.randomUUID(),
+                  projectId: project.id,
+                  name: file.name,
+                  type: file.type || "application/octet-stream",
+                  size: file.size,
+                  url: URL.createObjectURL(file),
+                  uploadedBy: demo.workspace.currentUserId,
+                  date: demo.workspace.referenceDate,
+                })
+              }
+            />
+          }
           onTaskChange={(change) => {
             const reversal = demo.changeTask(change)
 

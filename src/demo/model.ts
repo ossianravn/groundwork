@@ -56,6 +56,18 @@ export interface ProjectComment {
   body: string
 }
 
+/** A file attached to a project. Sample files without content have no url. */
+export interface ProjectFile {
+  id: string
+  projectId: string
+  name: string
+  type: string
+  size: number
+  url: string | null
+  uploadedBy: string
+  date: string
+}
+
 export interface ProjectLink {
   id: string
   label: string

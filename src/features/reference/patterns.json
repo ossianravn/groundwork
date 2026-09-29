@@ -2025,10 +2025,26 @@
     "category": "Settings & forms",
     "surface": "Workspace",
     "summary": "Attach files by drag and drop with progress, preview and removal.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: project attachments with local previews and a simulated upload failure/retry.",
-    "examples": [],
-    "sources": []
+    "implemented": "Project files beside progress: thumbnails, a preview dialog with download, and remove with Undo. Drop or choose files; each upload shows labelled progress, files over 10 MB are refused before starting, and scenario=upload-failure interrupts the first upload with Retry.",
+    "deferred": "Upload progress is simulated (no network); uploaded files live in memory and are gone after a reload.",
+    "examples": [
+      {
+        "label": "Brand refresh files",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Choose a file to upload, then open Primary palette."
+      },
+      {
+        "label": "Upload failure",
+        "href": "/app/demo/projects/brand?scenario=upload-failure",
+        "instruction": "Upload a file; the first attempt fails, then Retry."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-files.tsx",
+      "src/features/projects/project-file-upload.tsx",
+      "src/demo/project-files.ts",
+      "src/demo/use-project-files.ts"
+    ]
   },
   {
     "id": "TABL-14",

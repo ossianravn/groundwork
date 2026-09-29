@@ -20,13 +20,15 @@ export function parseProjectEditorSearch(raw: EditorSearchInput): EditorSearch {
 
 interface DetailSearch {
   returnTo: string
-  scenario?: ProjectSaveScenario
+  /** save-failure rejects the first inline save; upload-failure the first upload. */
+  scenario?: ProjectSaveScenario | "upload-failure"
 }
 
 export function parseProjectDetailSearch(raw: EditorSearchInput): DetailSearch {
   const search: DetailSearch = parseProjectReturnSearch(raw)
 
-  if (raw.scenario === "save-failure") search.scenario = "save-failure"
+  if (raw.scenario === "save-failure" || raw.scenario === "upload-failure")
+    search.scenario = raw.scenario
 
   return search
 }

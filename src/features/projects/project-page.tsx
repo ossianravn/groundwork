@@ -36,6 +36,7 @@ export function ProjectPage({
   onTaskChange,
   comments,
   onPostComment,
+  files,
 }: {
   project: Project
   members: Member[]
@@ -50,6 +51,8 @@ export function ProjectPage({
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
+  /** Attachments, shown under progress in the side column. */
+  files?: ReactNode
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -122,7 +125,14 @@ export function ProjectPage({
             <ProjectResources project={project} />
           </CardContent>
         </Card>
-        <ProjectProgress project={project} onComplete={onComplete} standalone />
+        <div className="project-side">
+          <ProjectProgress
+            project={project}
+            onComplete={onComplete}
+            standalone
+          />
+          {files}
+        </div>
         <ProjectTasks
           project={project}
           tasks={tasks}
