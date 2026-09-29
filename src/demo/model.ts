@@ -31,10 +31,20 @@ export interface Project {
   status: ProjectStatus
   ownerId: string
   dueDate: string
+  /** Derived from the project's tasks; see project-tasks.ts. */
   tasks: number
   completedTasks: number
   tags: string[]
   links: ProjectLink[]
+}
+
+/** A task belongs to one project; its order is the order of the list. */
+export interface ProjectTask {
+  id: string
+  projectId: string
+  title: string
+  done: boolean
+  assigneeId: string | null
 }
 
 export interface ProjectLink {
@@ -52,6 +62,8 @@ export interface Activity {
   tasksCompleted: number
   kind: ActivityKind
   changes?: ActivityChange[]
+  /** Set when the event records one task's completion. */
+  taskId?: string
 }
 
 export const statusLabels: Record<ProjectStatus, string> = {

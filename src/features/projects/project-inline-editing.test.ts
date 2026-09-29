@@ -12,7 +12,7 @@ import { projectInlineEditing } from "./project-inline-editing"
 it("saves only the selected field and preserves other drafts through save, cancel and full-editor refresh", () => {
   const project = initialProjects[0]
   const saved = projectValues(project)
-  let records: ProjectRecords = { projects: [project], activity: [] }
+  let records: ProjectRecords = { projects: [project], activity: [], tasks: [] }
 
   const drafts: ProjectDraftStore = {
     entries: {

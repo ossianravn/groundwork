@@ -1,5 +1,5 @@
 import data from "./data/team.json"
-import type { Project } from "./model"
+import type { Project, ProjectTask } from "./model"
 
 export const teamRoles = ["owner", "admin", "member", "viewer"] as const
 
@@ -24,7 +24,11 @@ export type Invitation = { id: string; email: string; role: TeamRole }
 export type MemberChange =
   { kind: "role"; role: TeamRole } | { kind: "remove"; replacementId: string }
 
-export type TeamRecords = { memberships: Membership[]; projects: Project[] }
+export type TeamRecords = {
+  memberships: Membership[]
+  projects: Project[]
+  tasks: ProjectTask[]
+}
 
 export type TeamResult = { ok: true } | { ok: false; message: string }
 
@@ -129,6 +133,15 @@ export function changeMember(
                 : project,
             )
           : records.projects,
+      // Open tasks of a removed member return to the unassigned pool.
+      tasks:
+        change.kind === "remove"
+          ? records.tasks.map((task) =>
+              task.assigneeId === memberId && !task.done
+                ? { ...task, assigneeId: null }
+                : task,
+            )
+          : records.tasks,
     },
   }
 }

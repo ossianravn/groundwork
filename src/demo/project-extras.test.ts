@@ -17,7 +17,7 @@ it("reuses saved tag spelling and saves each trimmed tag once with the project a
   ])
 
   const result = applyProjectSave(
-    { projects: initialProjects, activity: [] },
+    { projects: initialProjects, activity: [], tasks: [] },
     { kind: "edit", id: original.id },
     { ...projectValues(original), tags: draftTags },
     {
@@ -88,7 +88,7 @@ it("saves tags and normalized links together with before/after history, preservi
   expect(projectValuesChanged(projectValues(project), values)).toBe(true)
 
   const result = applyProjectSave(
-    { projects: initialProjects, activity: [] },
+    { projects: initialProjects, activity: [], tasks: [] },
     { kind: "edit", id: project.id },
     values,
     {

@@ -1976,10 +1976,20 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Break a project into tasks whose completion drives its progress.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: tasks on the project page with add, complete, assign and reorder; 24/32 becomes real.",
-    "examples": [],
-    "sources": []
+    "implemented": "Project tasks with add, complete, reopen, assign, reorder and delete (with Undo). Each project's counts derive from its tasks; completing a task records it in Activity and Analytics, and Mark complete completes the remaining tasks. Completed projects show their tasks read-only.",
+    "deferred": "No task due dates, subtasks or drag reordering; menu commands move tasks.",
+    "examples": [
+      {
+        "label": "Brand refresh tasks",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Complete a task and watch 24/32 change; delete one and select Undo."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-tasks.tsx",
+      "src/features/projects/project-task-row.tsx",
+      "src/demo/project-tasks.ts"
+    ]
   },
   {
     "id": "TABL-13",

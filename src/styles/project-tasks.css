@@ -1,0 +1,100 @@
+/* Project tasks (TABL-12): an open section between details and activity,
+   divided by a hairline like activity. Rows read as one line: check,
+   title, assignee and actions. */
+.project-page-grid > .project-tasks {
+  grid-column: 1;
+  gap: var(--content-gap);
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+.project-tasks-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.project-tasks-count {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.project-tasks-content {
+  display: grid;
+  justify-items: start;
+  gap: var(--control-gap);
+}
+.task-list {
+  display: grid;
+  width: 100%;
+}
+.task-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: var(--content-gap);
+  min-height: var(--control-height);
+  padding-block: 0.125rem;
+}
+.task-row + .task-row {
+  border-top: 1px solid var(--border);
+}
+.task-title {
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.task-row[data-done] .task-title {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, currentColor 50%, transparent);
+}
+/* The assignee reads as a quiet chip until hovered or focused. */
+.task-assignee {
+  border-color: transparent;
+  gap: var(--control-gap);
+}
+.task-assignee:not(:hover, [data-popup-open]) {
+  background-color: transparent;
+}
+.task-assignee-name {
+  font-size: var(--text-meta);
+}
+.task-add {
+  display: flex;
+  gap: var(--control-gap);
+  width: 100%;
+  max-width: 32rem;
+  padding-top: var(--control-gap);
+}
+.task-add [data-slot="input"] {
+  flex: 1;
+  min-width: 0;
+}
+.task-completed {
+  width: 100%;
+}
+/* Ghost toggles align their icon with the checkbox column. */
+.task-completed-trigger,
+.task-show-all {
+  margin-inline-start: -0.375rem;
+}
+.task-completed-trigger {
+  color: var(--muted-foreground);
+}
+.task-completed-trigger svg {
+  transition: transform 150ms ease;
+}
+.task-completed-trigger[data-panel-open] svg {
+  transform: rotate(90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .task-completed-trigger svg {
+    transition: none;
+  }
+}
+@media (max-width: 767px) {
+  /* Narrow rows keep the avatar; the name stays in the accessible label. */
+  .task-assignee-name:not(.text-muted-foreground) {
+    display: none;
+  }
+}
