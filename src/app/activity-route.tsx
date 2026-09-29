@@ -22,6 +22,7 @@ import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
 import { projectColorStyle } from "@/components/project-color"
 import { ProjectDetailLink } from "./project-detail-link"
+import { MemberLink } from "./member-link"
 import { defaultActivitySearch } from "./activity-search"
 
 export function ActivityRoute() {
@@ -86,6 +87,15 @@ export function ActivityRoute() {
               events={visible}
               people={demo.workspace.people}
               projects={demo.projects}
+              renderPerson={(person) => (
+                <MemberLink
+                  member={person}
+                  view="activity"
+                  className="member-link"
+                >
+                  {person.name}
+                </MemberLink>
+              )}
               renderProject={(project, eventId) => (
                 <ProjectDetailLink
                   id={`activity-link-${eventId}`}

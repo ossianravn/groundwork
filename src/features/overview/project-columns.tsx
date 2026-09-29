@@ -38,6 +38,7 @@ export function projectColumns(
   members: Member[],
   onSelect: (id: string) => void,
   renderName?: (project: Project) => ReactNode,
+  renderOwner?: (owner: Member) => ReactNode,
 ): ProjectColumn[] {
   function ownerFor(project: Project) {
     const member = members.find((member) => member.id === project.ownerId)
@@ -113,7 +114,11 @@ export function projectColumns(
         return (
           <span className="owner-cell">
             <MemberAvatar member={owner} size="sm" />
-            <span>{owner.name.split(" ")[0]}</span>
+            {renderOwner ? (
+              renderOwner(owner)
+            ) : (
+              <span>{owner.name.split(" ")[0]}</span>
+            )}
           </span>
         )
       },

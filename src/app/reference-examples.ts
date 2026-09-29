@@ -36,6 +36,10 @@ import { DateRangePickerExample } from "@/features/reference/examples/date-range
 import dateRangePickerSource from "@/features/reference/examples/date-range-picker-example?raw"
 import { CarouselExample } from "@/features/reference/examples/carousel-example"
 import carouselSource from "@/features/reference/examples/carousel-example?raw"
+import { HoverCardExample } from "@/features/reference/examples/hover-card-example"
+import hoverCardSource from "@/features/reference/examples/hover-card-example?raw"
+import { ContextMenuExample } from "@/features/reference/examples/context-menu-example"
+import contextMenuSource from "@/features/reference/examples/context-menu-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -61,4 +65,10 @@ export const referenceExamples = [
     source: dateRangePickerSource,
   },
   { id: "carousel", Component: CarouselExample, source: carouselSource },
+  { id: "hover-card", Component: HoverCardExample, source: hoverCardSource },
+  {
+    id: "context-menu",
+    Component: ContextMenuExample,
+    source: contextMenuSource,
+  },
 ]

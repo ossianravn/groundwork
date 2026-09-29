@@ -3,7 +3,7 @@ import { getRouteApi } from "@tanstack/react-router"
 import { Plus, Upload } from "lucide-react"
 import { Link } from "@tanstack/react-router"
 import { cn } from "cn"
-import type { Project } from "@/demo/model"
+import type { Member, Project } from "@/demo/model"
 import { buttonVariants } from "@/kit/ui/button"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { ProjectsTableView } from "@/features/overview/projects-table"
@@ -13,6 +13,8 @@ import { useDemoWorkspace } from "./workspace-context"
 import { projectTableSearch, projectTableState } from "./projects-search"
 import { useRouteFocus } from "./use-route-focus"
 import { ProjectDetailLink } from "./project-detail-link"
+import { useOpenProject } from "./use-open-project"
+import { MemberLink } from "./member-link"
 import { ProjectSavedViews } from "./project-saved-views"
 import { ProjectBulkActions } from "@/features/projects/project-bulk-actions"
 import { ProjectBoard } from "@/features/projects/project-board"
@@ -27,6 +29,7 @@ export function ProjectsRoute() {
   const navigate = route.useNavigate()
 
   const { demo, onNewProject, onSelectProject, results } = useDemoWorkspace()
+  const openProject = useOpenProject()
 
   const state = {
     ...projectTableState(search),
@@ -63,6 +66,16 @@ export function ProjectsRoute() {
       >
         <span className="truncate">{project.name}</span>
       </ProjectDetailLink>
+    ),
+    [],
+  )
+
+  // Stable, like renderName: new column renderers would remount every cell.
+  const renderOwner = useCallback(
+    (owner: Member) => (
+      <MemberLink member={owner} view="projects" className="member-link">
+        {owner.name.split(" ")[0]}
+      </MemberLink>
     ),
     [],
   )
@@ -164,6 +177,8 @@ export function ProjectsRoute() {
           })
         }}
         renderName={renderName}
+        renderOwner={renderOwner}
+        onOpenProject={openProject}
       />
     </main>
   )

@@ -508,6 +508,27 @@
       ]
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Context Menu primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/context-menu.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/context-menu.tsx"
+        }
+      ]
+    },
+    {
       "name": "date-picker",
       "type": "registry:ui",
       "title": "Date Picker",
@@ -638,6 +659,26 @@
           "path": "src/kit/ui/field.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Hover Card primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/hover-card.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/hover-card.tsx"
         }
       ]
     },
@@ -1460,12 +1501,14 @@
         "ossianravn/groundwork/collapsible",
         "ossianravn/groundwork/combobox",
         "ossianravn/groundwork/command",
+        "ossianravn/groundwork/context-menu",
         "ossianravn/groundwork/date-picker",
         "ossianravn/groundwork/date-range-picker",
         "ossianravn/groundwork/dialog",
         "ossianravn/groundwork/dropdown-menu",
         "ossianravn/groundwork/empty",
         "ossianravn/groundwork/field",
+        "ossianravn/groundwork/hover-card",
         "ossianravn/groundwork/input",
         "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/input-otp",

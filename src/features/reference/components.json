@@ -267,5 +267,41 @@
       "label": "shadcn documentation"
     },
     "implementation": "src/kit/ui/carousel.tsx"
+  },
+  {
+    "id": "hover-card",
+    "name": "Hover card",
+    "category": "Overlays",
+    "purpose": "Preview who or what a link leads to before following it.",
+    "notes": [
+      "The trigger is a real link; the card opens on hover or keyboard focus after a short delay and closes when the pointer or focus leaves.",
+      "Touch devices and screen readers follow the link without seeing the card, so the card may only repeat or summarise, never hold the sole copy of information or an action."
+    ],
+    "context": "Project owners",
+    "href": "/app/demo/projects",
+    "patterns": ["KIT-06"],
+    "documentation": {
+      "href": "https://ui.shadcn.com/docs/components/base/hover-card",
+      "label": "shadcn documentation"
+    },
+    "implementation": "src/kit/ui/hover-card.tsx"
+  },
+  {
+    "id": "context-menu",
+    "name": "Context menu",
+    "category": "Overlays",
+    "purpose": "Offer an item's actions where the pointer is, on right-click, long press or the context-menu key.",
+    "notes": [
+      "Shares the dropdown menu's items and styling, so one action list can serve a visible menu button and the context menu.",
+      "It is a shortcut: every action also needs a visible control, because long press and the context-menu key are not discoverable."
+    ],
+    "context": "Project board",
+    "href": "/app/demo/projects?view=board",
+    "patterns": ["KIT-07"],
+    "documentation": {
+      "href": "https://ui.shadcn.com/docs/components/base/context-menu",
+      "label": "shadcn documentation"
+    },
+    "implementation": "src/kit/ui/context-menu.tsx"
   }
 ]

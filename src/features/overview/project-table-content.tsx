@@ -12,8 +12,22 @@ import {
 } from "@/kit/ui/table"
 import type { Project } from "@/demo/model"
 import { projectColumnWidths } from "./project-columns"
+import { ProjectRowMenu } from "./project-row-menu"
 
-export function ProjectTableContent({ table }: { table: DataTable<Project> }) {
+/** Row actions on right-click, long press or the context-menu key. */
+export interface ProjectRowActions {
+  onInspect: (id: string) => void
+  onOpen: (id: string) => void
+  selectable: boolean
+}
+
+export function ProjectTableContent({
+  table,
+  rowActions,
+}: {
+  table: DataTable<Project>
+  rowActions?: ProjectRowActions
+}) {
   const visibleColumns = table.getVisibleLeafColumns().map((column) => {
     // SAFETY: projectColumns requires every ID/accessor key to belong to the
     // width catalog. TanStack widens IDs to string; visibility only removes columns.
@@ -98,18 +112,32 @@ export function ProjectTableContent({ table }: { table: DataTable<Project> }) {
         ))}
       </TableHeader>
       <TableBody>
-        {table.getRowModel().rows.map((row) => (
-          <TableRow
-            key={row.id}
-            data-state={row.getIsSelected() ? "selected" : undefined}
-          >
-            {row.getVisibleCells().map((cell) => (
+        {table.getRowModel().rows.map((row) => {
+          const state = row.getIsSelected() ? "selected" : undefined
+
+          const cells = row
+            .getVisibleCells()
+            .map((cell) => (
               <TableCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
-            ))}
-          </TableRow>
-        ))}
+            ))
+
+          return rowActions ? (
+            <ProjectRowMenu
+              key={row.id}
+              row={row}
+              rowElement={<TableRow data-state={state} />}
+              {...rowActions}
+            >
+              {cells}
+            </ProjectRowMenu>
+          ) : (
+            <TableRow key={row.id} data-state={state}>
+              {cells}
+            </TableRow>
+          )
+        })}
       </TableBody>
     </Table>
   )
