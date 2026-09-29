@@ -1,6 +1,5 @@
 /* Optional fields open from a quiet section header, not a filled button. */
 .project-extra-fields {
-  margin-inline: var(--card-padding);
   padding: var(--content-gap) 0;
   border-top: 1px solid var(--border);
 }
