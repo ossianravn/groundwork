@@ -88,11 +88,21 @@
   grid-column: 2;
   text-align: right;
 }
+/* The product sits on a colour stage and hangs below its bottom edge. The
+   stage is its own element so the blurred shapes stay clipped to it while the
+   screenshot is not. */
 .public-product-preview {
+  --stage-hang: clamp(2.5rem, 7vw, 6rem);
+
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   padding: clamp(3.25rem, 6vw, 5.5rem) clamp(1.25rem, 7vw, 7rem) 0;
+}
+.public-stage {
+  position: absolute;
+  inset: 0 0 var(--stage-hang);
+  z-index: -1;
+  overflow: hidden;
   border-radius: calc(var(--radius-xl) * 2);
   background:
     radial-gradient(
@@ -103,16 +113,15 @@
     var(--tandem-field);
 }
 /* The colour sculpture: two soft conic forms behind the screenshot. */
-.public-product-preview::before,
-.public-product-preview::after {
+.public-stage::before,
+.public-stage::after {
   content: "";
   position: absolute;
-  z-index: -1;
   aspect-ratio: 1;
   border-radius: 50%;
   filter: blur(48px);
 }
-.public-product-preview::before {
+.public-stage::before {
   top: -30%;
   right: -8%;
   width: 46%;
@@ -125,7 +134,7 @@
   );
   opacity: 0.75;
 }
-.public-product-preview::after {
+.public-stage::after {
   bottom: -40%;
   left: -12%;
   width: 40%;
@@ -138,16 +147,20 @@
   );
   opacity: 0.6;
 }
-.public-product-preview a {
-  margin-bottom: -9%;
+.public-product-preview > a,
+.public-product-preview > img {
+  display: block;
+  overflow: hidden;
   border: 0;
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  border-radius: var(--radius-xl);
   box-shadow:
-    0 0 0 1px color-mix(in oklch, white 22%, transparent),
-    0 40px 80px -20px oklch(0.15 0.1 268 / 55%);
+    0 0 0 1px color-mix(in oklch, var(--foreground) 10%, transparent),
+    0 40px 80px -24px oklch(0.15 0.1 268 / 45%);
+}
+.public-product-preview > a {
   transition: transform var(--motion-fast) var(--ease-standard);
 }
-.public-product-preview a:hover {
+.public-product-preview > a:hover {
   transform: translateY(-4px);
 }
 .public-product-preview figcaption {
@@ -180,7 +193,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .public-product-preview a {
+  .public-product-preview > a {
     transition: none;
   }
 }

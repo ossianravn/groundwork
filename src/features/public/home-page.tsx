@@ -64,6 +64,7 @@ export function HomePage({
           </p>
         </div>
         <figure className="public-product-preview">
+          <span className="public-stage" aria-hidden="true" />
           <LinkComponent
             destination="demo"
             aria-label="Open the workspace shown in the preview"

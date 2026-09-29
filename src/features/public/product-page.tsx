@@ -60,6 +60,7 @@ export function ProductPage({
                 </LinkComponent>
               </div>
               <figure className="public-product-preview">
+                <span className="public-stage" aria-hidden="true" />
                 <img
                   src={preview.image}
                   width={1280}
