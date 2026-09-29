@@ -11,6 +11,7 @@ import {
   type Project,
 } from "@/demo/model"
 import { ProjectProgress } from "./project-progress"
+import { actionWithinProject } from "@/demo/activity"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectResources } from "./project-resources"
 import { ProjectInlineField } from "./project-inline-field"
@@ -132,8 +133,8 @@ export function ProjectPage({
                     <li key={event.id}>
                       <MemberAvatar member={member} size="sm" />
                       <p>
-                        <strong>{member.name}</strong> {event.action}{" "}
-                        <span>{project.name}</span>
+                        <strong>{member.name}</strong>{" "}
+                        {actionWithinProject(event.action)}
                       </p>
                       <time dateTime={event.date}>
                         {formatDate(event.date, { year: "numeric" })}
