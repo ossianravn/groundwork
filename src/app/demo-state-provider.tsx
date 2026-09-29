@@ -6,6 +6,7 @@ import { useTheme } from "@/kit/theme/use-theme"
 import { usePresetLibrary } from "@/kit/theme/use-preset-library"
 import { useResultsMemory } from "./use-results-memory"
 import { useProjectDrafts } from "./use-project-drafts"
+import { useProjectFiles } from "@/demo/use-project-files"
 import { DemoStateContext } from "./demo-state"
 
 export function DemoStateProvider({ children }: { children: ReactNode }) {
@@ -16,6 +17,7 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
   const presetLibrary = usePresetLibrary()
   const results = useResultsMemory()
   const drafts = useProjectDrafts()
+  const files = useProjectFiles()
 
   return (
     <DemoStateContext
@@ -27,6 +29,7 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
         presetLibrary,
         results,
         drafts,
+        files,
       }}
     >
       {children}

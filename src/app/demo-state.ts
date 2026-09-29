@@ -6,6 +6,7 @@ import type { useTheme } from "@/kit/theme/use-theme"
 import type { usePresetLibrary } from "@/kit/theme/use-preset-library"
 import type { useResultsMemory } from "./use-results-memory"
 import type { useProjectDrafts } from "./use-project-drafts"
+import type { useProjectFiles } from "@/demo/use-project-files"
 
 export const DemoStateContext = createContext<{
   demo: ReturnType<typeof useWorkspace>
@@ -15,6 +16,7 @@ export const DemoStateContext = createContext<{
   presetLibrary: ReturnType<typeof usePresetLibrary>
   results: ReturnType<typeof useResultsMemory>
   drafts: ReturnType<typeof useProjectDrafts>
+  files: ReturnType<typeof useProjectFiles>
 } | null>(null)
 
 export function useDemoState() {

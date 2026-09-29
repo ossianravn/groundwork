@@ -1,0 +1,62 @@
+[
+  {
+    "id": "f-brand-guidelines",
+    "projectId": "brand",
+    "name": "Brand guidelines v2.pdf",
+    "type": "application/pdf",
+    "size": 4718592,
+    "url": null,
+    "uploadedBy": "ava",
+    "date": "2026-09-24"
+  },
+  {
+    "id": "f-brand-palette",
+    "projectId": "brand",
+    "name": "Primary palette.svg",
+    "type": "image/svg+xml",
+    "size": 1222,
+    "url": "/images/attachments/primary-palette.svg",
+    "uploadedBy": "ava",
+    "date": "2026-09-11"
+  },
+  {
+    "id": "f-brand-type",
+    "projectId": "brand",
+    "name": "Type scale.svg",
+    "type": "image/svg+xml",
+    "size": 1258,
+    "url": "/images/attachments/type-scale.svg",
+    "uploadedBy": "leo",
+    "date": "2026-09-15"
+  },
+  {
+    "id": "f-website-overview",
+    "projectId": "website",
+    "name": "Dashboard layout.png",
+    "type": "image/png",
+    "size": 122931,
+    "url": "/images/tandem-overview.png",
+    "uploadedBy": "leo",
+    "date": "2026-09-22"
+  },
+  {
+    "id": "f-website-board",
+    "projectId": "website",
+    "name": "Board concept.png",
+    "type": "image/png",
+    "size": 98705,
+    "url": "/images/tandem-board.png",
+    "uploadedBy": "noah",
+    "date": "2026-09-17"
+  },
+  {
+    "id": "f-mobile-notes",
+    "projectId": "mobile",
+    "name": "Review build notes.pdf",
+    "type": "application/pdf",
+    "size": 823296,
+    "url": null,
+    "uploadedBy": "mia",
+    "date": "2026-09-23"
+  }
+]

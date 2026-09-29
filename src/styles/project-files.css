@@ -1,0 +1,138 @@
+/* Project files (SETT-15): an open list beside progress, then the drop
+   zone. Thumbnails keep one size so names align. */
+.project-files {
+  display: grid;
+  gap: var(--content-gap);
+}
+.project-files-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.project-files-heading h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.file-list {
+  display: grid;
+}
+.file-item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--content-gap);
+  width: 100%;
+  padding: var(--control-gap);
+  margin-inline: calc(-1 * var(--control-gap));
+  box-sizing: content-box;
+  border-radius: var(--radius-md);
+  text-align: start;
+}
+.file-item:hover {
+  background: var(--accent);
+}
+.file-item:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 0;
+}
+.file-thumb {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
+}
+.file-text {
+  display: grid;
+  min-width: 0;
+}
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-meta {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.file-drop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+  padding: var(--item-padding);
+  border: 1px dashed var(--input);
+  border-radius: var(--radius-lg);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.file-drop[data-dragging] {
+  border-color: var(--ring);
+  background: color-mix(in oklab, var(--brand) 6%, transparent);
+}
+/* Touch devices cannot drag files in; they keep the Choose files action. */
+@media (pointer: coarse) and (hover: none) {
+  .file-drop > p {
+    display: none;
+  }
+}
+.file-drop-icon {
+  width: 1rem;
+  height: 1rem;
+}
+.file-upload {
+  display: grid;
+  gap: var(--control-gap);
+}
+.file-uploads {
+  display: grid;
+  gap: var(--content-gap);
+}
+.file-uploads li {
+  display: grid;
+  gap: 0.375rem;
+}
+.file-upload-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-meta);
+  font-weight: 500;
+}
+.file-uploads li[data-status="failed"] {
+  --progress-color: var(--destructive);
+}
+.file-upload-message {
+  color: var(--destructive);
+  font-size: var(--text-meta);
+}
+.file-upload-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--control-gap);
+}
+.file-preview-dialog {
+  max-width: min(48rem, calc(100vw - 2rem));
+}
+.file-preview {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  background: var(--muted);
+}
+.file-preview-empty {
+  padding: var(--section-gap) var(--item-padding);
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  color: var(--muted-foreground);
+  text-align: center;
+}

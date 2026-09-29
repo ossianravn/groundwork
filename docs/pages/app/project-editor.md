@@ -50,6 +50,14 @@ Comments follow tasks on the project page (TABL-13), oldest first. The composer 
 - Posting records a Comment event ("commented on the project") in Activity.
 - `comments.json` is the single source for the inbox's "Mentioned you in a comment" entries: a teammate's comment that mentions the current user becomes an inbox entry, unread when it is from the last day. Mentioning someone else sends nothing in this single-user demo.
 
+## Files
+
+Files share the side column with progress (SETT-15); on narrow screens they follow progress. Each file shows a thumbnail (images) or a document icon, its size and date. Selecting one opens a preview dialog with who added it, Download (when the file has contents) and Remove. The dialog opens on its title so Enter cannot remove by accident; after removal focus moves to the Files heading and a toast offers Undo.
+
+- Uploads: drop files or Choose files (touch devices show only the button). Each upload shows labelled progress; the demo times it rather than sending anything. Files over 10 MB are refused before starting with a reason and Dismiss.
+- `?scenario=upload-failure` interrupts the first upload at 60% with a message, Retry and Dismiss; Retry completes normally.
+- `files.json` holds sample attachments; images are real files under `public/images`, and PDFs are metadata only and say so. Uploaded files use object URLs held in memory (`use-project-files.ts`), so reset and reload remove them.
+
 ## Broader planned routes and composition
 
 | Route | Ordered page composition (in addition to shell) |

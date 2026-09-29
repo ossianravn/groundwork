@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" font-family="Georgia, 'Times New Roman', serif">
+  <title>Studio North type scale</title>
+  <rect width="960" height="600" fill="#FFFFFF"/>
+  <text x="56" y="84" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#5B6478">Type scale · 1.25 ratio · 16px body</text>
+  <line x1="56" y1="108" x2="904" y2="108" stroke="#E4E1DB"/>
+  <g fill="#1F2A44">
+    <text x="56" y="210" font-size="76" font-weight="700">Display 61</text>
+    <text x="56" y="296" font-size="49" font-weight="700">Heading 39</text>
+    <text x="56" y="362" font-size="31">Title 25</text>
+    <text x="56" y="414" font-size="20" font-family="Helvetica, Arial, sans-serif">Body 16 — Clear, calm and precise.</text>
+    <text x="56" y="456" font-size="16" font-family="Helvetica, Arial, sans-serif" fill="#5B6478">Caption 13 — Used for metadata and labels.</text>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#9AA1AE" text-anchor="end">
+    <text x="904" y="210">61 / 64</text>
+    <text x="904" y="296">39 / 44</text>
+    <text x="904" y="362">25 / 32</text>
+    <text x="904" y="414">16 / 24</text>
+    <text x="904" y="456">13 / 20</text>
+  </g>
+</svg>
