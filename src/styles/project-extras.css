@@ -1,8 +1,15 @@
+/* Optional fields open from a quiet section header, not a filled button. */
 .project-extra-fields {
-  padding: 0 var(--card-padding) var(--content-gap);
+  margin-inline: var(--card-padding);
+  padding: var(--content-gap) 0;
+  border-top: 1px solid var(--border);
 }
 .project-extras-trigger {
   margin-inline-start: calc(-1 * var(--control-gap));
+  font-weight: 500;
+}
+.project-extras-trigger[aria-expanded="true"]:not(:hover) {
+  background: transparent;
 }
 .project-extras-trigger > svg {
   rotate: -90deg;

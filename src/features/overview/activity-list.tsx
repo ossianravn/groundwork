@@ -1,3 +1,4 @@
+import { projectColorStyle } from "@/components/project-color"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
 import {
@@ -127,6 +128,7 @@ export function ActivityList({
                         variant="link"
                         size="sm"
                         className="activity-project"
+                        style={projectColorStyle(project.color)}
                         onClick={() => onSelectProject(project.id)}
                         id={`activity-project-${event.id}`}
                       >

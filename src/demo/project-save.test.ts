@@ -34,6 +34,7 @@ it("rejects missing names, impossible dates and unknown owners before accepting 
         tags: [],
         links: [],
         ownerId: "missing",
+        color: "violet",
         dueDate: "2026-02-30",
       },
       members,
@@ -52,6 +53,7 @@ it("rejects missing names, impossible dates and unknown owners before accepting 
           tags: [],
           links: [],
           ownerId: "ava",
+          color: "violet",
           dueDate: "2026-10-20",
         },
         members,
@@ -72,6 +74,7 @@ it("edits identity fields and adds one event while preserving task completion an
       tags: [],
       links: [],
       ownerId: "leo",
+      color: "teal",
       dueDate: "2026-10-20",
     },
     {
@@ -85,8 +88,8 @@ it("edits identity fields and adds one event while preserving task completion an
   expect(result.projects[0]).toEqual({
     ...project,
     name: "New identity",
+    color: "teal",
     code: "NI",
-    color: "violet",
     description: textDocument("Updated scope"),
     tags: [],
     links: [],

@@ -1,6 +1,13 @@
+/* Short pages still fill the viewport, with the footer at the bottom. */
 .public-site {
   --public-section-space: clamp(3rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
   background: var(--card);
+}
+.public-site > .public-footer {
+  margin-top: auto;
 }
 .public-site .brand {
   padding-inline: 0;

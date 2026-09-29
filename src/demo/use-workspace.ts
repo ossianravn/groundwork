@@ -1,3 +1,4 @@
+import { nextProjectColor } from "./project-colors"
 import { useState } from "react"
 import type { PlanSelection } from "./billing"
 import { initialProjects } from "./project-fixtures"
@@ -98,6 +99,7 @@ export function useWorkspace() {
         ...input,
         description: textDocument(input.description.trim()),
         ownerId: workspace.currentUserId,
+        color: nextProjectColor(state.projects.length),
         tags: [],
         links: [],
       },

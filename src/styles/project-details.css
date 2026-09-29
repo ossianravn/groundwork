@@ -40,12 +40,16 @@
   align-self: flex-start;
 }
 .project-progress {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   gap: var(--item-padding);
+}
+section.project-progress {
+  padding-top: var(--panel-padding);
+  border-top: 1px solid var(--border);
+}
+[data-slot="card"].project-progress {
+  padding: var(--card-padding);
 }
 .project-progress-heading {
   display: flex;
@@ -77,10 +81,21 @@
 }
 .project-completion {
   display: flex;
-  flex-direction: column;
-  gap: var(--item-padding);
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: var(--item-padding) var(--content-gap);
   margin-top: var(--content-gap);
+}
+.project-completion .panel-feedback {
+  flex: 1 1 12rem;
+  font-size: var(--text-meta);
 }
 .project-completion .ui-button {
   white-space: normal;
+}
+/* A record's colour beside its title, in panels and on its page. */
+.panel-heading .project-dot {
+  display: inline-block;
+  margin-inline-end: 0.5rem;
+  vertical-align: 0.1em;
 }

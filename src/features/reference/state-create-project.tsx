@@ -22,6 +22,7 @@ export function StateCreateProject({
     name: "",
     description: textDocument(""),
     ownerId: members[0]?.id ?? "",
+    color: "violet",
     dueDate: "",
     tags: [],
     links: [],

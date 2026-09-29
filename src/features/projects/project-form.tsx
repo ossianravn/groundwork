@@ -18,6 +18,7 @@ import type {
   ProjectSaveResult,
   ProjectValues,
 } from "@/demo/project-form"
+import { ProjectColorField } from "./project-color-field"
 
 export function ProjectForm({
   values,
@@ -145,7 +146,7 @@ export function ProjectForm({
             <FieldError id="edit-owner-error">{errors.ownerId}</FieldError>
           )}
         </Field>
-        <Field>
+        <Field className="project-description-field">
           <FieldLabel
             id="edit-description-label"
             htmlFor="edit-project-description"
@@ -176,6 +177,10 @@ export function ProjectForm({
             <FieldError id="edit-date-error">{errors.dueDate}</FieldError>
           )}
         </Field>
+        <ProjectColorField
+          value={values.color}
+          onChange={(color) => onChange("color", color)}
+        />
       </FieldGroup>
       <ProjectExtraFields
         values={values}

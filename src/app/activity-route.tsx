@@ -20,6 +20,7 @@ import { ActivityTimeline } from "@/features/activity/activity-timeline"
 import { ActivityDetail } from "@/features/activity/activity-detail"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
+import { projectColorStyle } from "@/components/project-color"
 import { ProjectDetailLink } from "./project-detail-link"
 import { defaultActivitySearch } from "./activity-search"
 
@@ -90,6 +91,7 @@ export function ActivityRoute() {
                   id={`activity-link-${eventId}`}
                   projectId={project.id}
                   className="activity-project-link"
+                  style={projectColorStyle(project.color)}
                 >
                   {project.name}
                 </ProjectDetailLink>

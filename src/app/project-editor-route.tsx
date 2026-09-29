@@ -14,6 +14,8 @@ import {
 } from "@/demo/project-form"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
+import { ProjectMark } from "@/components/project-identity"
+import { nextProjectColor } from "@/demo/project-colors"
 import {
   projectReturnDestination,
   projectReturnLabel,
@@ -56,6 +58,7 @@ export function ProjectEditorRoute() {
         name: "",
         description: textDocument(""),
         ownerId: demo.workspace.currentUserId,
+        color: nextProjectColor(demo.projects.length),
         dueDate: "",
         tags: [],
         links: [],
@@ -121,6 +124,7 @@ export function ProjectEditorRoute() {
           {project ? "Back to project" : projectReturnLabel(origin)}
         </Link>
         <div className="project-page-title">
+          <ProjectMark color={draft.values.color} />
           <h1>{project ? `Edit ${project.name}` : "New project"}</h1>
         </div>
         <p className="text-muted-foreground">
