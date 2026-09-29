@@ -13,11 +13,14 @@ export interface ProjectBulkResult {
   failed: { id: string; name: string; message: string }[]
 }
 
+/** A host that can reverse the change attaches undo for the view to offer. */
+export type ProjectBulkOutcome = ProjectBulkResult & { undo?: () => void }
+
 export type ProjectBulkHandler = (
   ids: string[],
   action: ProjectBulkAction,
   retry: boolean,
-) => ProjectBulkResult
+) => ProjectBulkOutcome
 
 export function applyProjectBulkChange(
   records: ProjectRecords,

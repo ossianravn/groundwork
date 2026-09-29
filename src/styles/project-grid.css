@@ -72,9 +72,6 @@
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
-.project-grid-progress progress {
-  width: 100%;
-}
 .project-grid-footer {
   flex-wrap: wrap;
   gap: var(--control-gap);

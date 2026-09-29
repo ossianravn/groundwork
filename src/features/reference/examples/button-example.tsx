@@ -1,9 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Check, Bookmark } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 
 export function ButtonExample() {
   const [saved, setSaved] = useState(false)
+  const [publishing, setPublishing] = useState(false)
+
+  // Stands in for a request; the button keeps its width while it runs.
+  useEffect(() => {
+    if (!publishing) return
+
+    const timer = setTimeout(() => setPublishing(false), 1500)
+
+    return () => clearTimeout(timer)
+  }, [publishing])
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -15,8 +25,13 @@ export function ButtonExample() {
         )}
         {saved ? "Saved" : "Save project"}
       </Button>
-      <Button variant="outline" onClick={() => setSaved(false)}>
-        Reset
+      <Button
+        variant="outline"
+        loading={publishing}
+        loadingLabel="Publishing"
+        onClick={() => setPublishing(true)}
+      >
+        Publish update
       </Button>
       <Button variant="secondary" disabled>
         Archive

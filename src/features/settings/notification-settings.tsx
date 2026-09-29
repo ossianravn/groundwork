@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Checkbox } from "@/kit/ui/checkbox"
+import { Switch } from "@/kit/ui/switch"
 import type { NotificationPreferences } from "@/demo/use-account"
 import { SettingsActions } from "./settings-actions"
 
@@ -69,7 +69,7 @@ export function NotificationSettings({
             </div>
             {channels.map((channel) => (
               <label key={channel.id} className="notification-choice">
-                <Checkbox
+                <Switch
                   name={`${category.id}-${channel.id}`}
                   checked={preferences[category.id][channel.id]}
                   onCheckedChange={(checked) =>

@@ -75,12 +75,19 @@
   gap: var(--control-gap);
   max-width: 100%;
 }
-.project-bulk-notice,
+.project-bulk-outcome,
 .project-bulk-failures {
   flex-basis: 100%;
   font-size: var(--text-meta);
 }
-.project-bulk-notice:empty {
+/* The outcome and its Undo read as one line. */
+.project-bulk-outcome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.project-bulk-outcome:has(.project-bulk-notice:empty) {
   display: none;
 }
 .project-bulk-failures {

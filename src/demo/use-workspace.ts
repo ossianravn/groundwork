@@ -18,7 +18,7 @@ import {
   type TeamRole,
   type TeamResult,
 } from "./team"
-import type { Activity, NewProject } from "./model"
+import type { NewProject } from "./model"
 import {
   validateProjectValues,
   type ProjectValues,
@@ -29,6 +29,11 @@ import {
 import { applyProjectSave } from "./project-save"
 import scenarios from "./data/scenarios.json"
 import { applyProjectBulkChange, type ProjectBulkAction } from "./project-bulk"
+import {
+  captureProjectUndo,
+  revertProjectChange,
+  type ProjectUndo,
+} from "./project-undo"
 
 export function useWorkspace() {
   const account = useAccount()
@@ -112,46 +117,6 @@ export function useWorkspace() {
     return result.projectId
   }
 
-  function completeProject(id: string) {
-    setSaveNotice(null)
-    const project = state.projects.find((item) => item.id === id)
-
-    if (!project || project.status === "completed") return
-
-    const event: Activity = {
-      id: crypto.randomUUID(),
-      projectId: id,
-      memberId: workspace.currentUserId,
-      date: workspace.referenceDate,
-      action: "finished",
-      tasksCompleted: project.tasks - project.completedTasks,
-      kind: "status",
-      changes: [
-        { field: "status", before: project.status, after: "completed" },
-        ...(project.tasks !== project.completedTasks
-          ? [
-              {
-                field: "completedTasks" as const,
-                before: project.completedTasks,
-                after: project.tasks,
-              },
-            ]
-          : []),
-      ],
-    }
-
-    setState((current) => ({
-      ...current,
-      projects: current.projects.map((item) =>
-        item.id === id
-          ? { ...item, status: "completed", completedTasks: item.tasks }
-          : item,
-      ),
-      activity: [...current.activity, event],
-      resetDone: false,
-    }))
-  }
-
   function reset() {
     account.reset()
     inbox.reset()
@@ -167,25 +132,32 @@ export function useWorkspace() {
     })
   }
 
-  function bulkChangeProjects(
+  // Status and owner changes share one path so each can offer Undo.
+  function changeProjects(
     ids: string[],
     action: ProjectBulkAction,
-    failPartially = false,
+    rejectedIds: string[] = [],
   ) {
     const { records, result } = applyProjectBulkChange(state, ids, action, {
       members: workspace.members,
       memberId: workspace.currentUserId,
       date: workspace.referenceDate,
       eventId: () => crypto.randomUUID(),
-      rejectedIds: failPartially
-        ? scenarios["bulk-partial-failure"].projectIds
-        : [],
+      rejectedIds,
     })
 
     setSaveNotice(null)
     setState({ ...state, ...records, resetDone: false })
 
-    return result
+    return { result, undo: captureProjectUndo(state, records) }
+  }
+
+  function undoProjectChange(undo: ProjectUndo) {
+    setState((current) => ({
+      ...current,
+      ...revertProjectChange(current, undo),
+      resetDone: false,
+    }))
   }
 
   function saveProject(
@@ -281,8 +253,19 @@ export function useWorkspace() {
       })
     },
     createProject,
-    completeProject,
-    bulkChangeProjects,
+    completeProject: (id: string) =>
+      changeProjects([id], { kind: "complete" }).undo,
+    bulkChangeProjects: (
+      ids: string[],
+      action: ProjectBulkAction,
+      failPartially = false,
+    ) =>
+      changeProjects(
+        ids,
+        action,
+        failPartially ? scenarios["bulk-partial-failure"].projectIds : [],
+      ),
+    undoProjectChange,
     reset,
     saveProject,
     saveNotice,

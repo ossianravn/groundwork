@@ -16,7 +16,7 @@ Find a reusable example and inspect the building blocks used by the actual demo.
 
 ## Actions and outcomes
 
-Search by component name, related inventory ID or task, combined with a category. The initial ten entries are Button, Input, Select, Checkbox, Radio Group, Dialog, Tabs, Alert, Empty and Table. These are documented examples, not a count of every installed primitive or completed pattern. Clicking View in context navigates within the running demo; official documentation opens a labelled new tab.
+Search by component name, related inventory ID or task, combined with a category. The initial ten entries are Button, Input, Select, Checkbox, Radio Group, Dialog, Tabs, Alert, Empty and Table; Rich text editor and Tooltip followed, and Switch, Progress, Keyboard key and Toast were added with the 2026-09-29 foundations (Button gained its loading state). These are documented examples, not a count of every installed primitive or completed pattern. Clicking View in context navigates within the running demo; official documentation opens a labelled new tab.
 
 Search/category survive opening a detail and returning to the catalogue. The selected Preview/Code tab is URL-backed; changing it preserves preview state. Reset remounts the current example. Code is loaded from that example's actual source by the Vite host, rather than a separately maintained string. Copy reports completion; clipboard refusal selects the code for manual copying and explains recovery.
 
@@ -41,6 +41,6 @@ Follows the confirmed [static JSON demo-data contract](../../demo-data.md).
 Inherits [shared shells](../../shells.md), the [quality contract](../../quality.md) and [proposed UX corrections](../../ux-decisions.md). Route authority: [sitemap](../../sitemap.md).
 
 
-## Verification — 2026-09-27
+## Verification ï¿½ 2026-09-27
 
 TypeScript, changed-code ESLint/anti-slop, Prettier and two catalogue/source/search contracts passed. Chromium review covered 1440/390/320px, representative Dark/Compact, search/category round trip, missing/no-results recovery, required-email error/focus, preview state across tabs, clipboard write completion and injected refusal/manual selection, dialog save/Escape and returned focus, keyboard tab activation, empty recovery and router navigation to real context. All ten previews rendered at 320px. Source panels were corrected to contain horizontal overflow. No full variant matrix, physical-device or screen-reader conformance claim.

@@ -22,6 +22,14 @@ import { TooltipExample } from "@/features/reference/examples/tooltip-example"
 import tooltipSource from "@/features/reference/examples/tooltip-example?raw"
 import { RichTextExample } from "@/features/reference/examples/rich-text-example"
 import richTextSource from "@/features/reference/examples/rich-text-example?raw"
+import { SwitchExample } from "@/features/reference/examples/switch-example"
+import switchSource from "@/features/reference/examples/switch-example?raw"
+import { ProgressExample } from "@/features/reference/examples/progress-example"
+import progressSource from "@/features/reference/examples/progress-example?raw"
+import { KbdExample } from "@/features/reference/examples/kbd-example"
+import kbdSource from "@/features/reference/examples/kbd-example?raw"
+import { ToastExample } from "@/features/reference/examples/toast-example"
+import toastSource from "@/features/reference/examples/toast-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -36,4 +44,8 @@ export const referenceExamples = [
   { id: "alert", Component: AlertExample, source: alertSource },
   { id: "empty", Component: EmptyExample, source: emptySource },
   { id: "table", Component: TableExample, source: tableSource },
+  { id: "switch", Component: SwitchExample, source: switchSource },
+  { id: "progress", Component: ProgressExample, source: progressSource },
+  { id: "kbd", Component: KbdExample, source: kbdSource },
+  { id: "toast", Component: ToastExample, source: toastSource },
 ]

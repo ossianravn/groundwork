@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { Check, X } from "lucide-react"
+import { Check, Undo2, X } from "lucide-react"
 import type { DataTable } from "@/kit/data-table/table-features"
 import { Button } from "@/kit/ui/button"
 import {
@@ -14,7 +14,7 @@ import type { Member, Project } from "@/demo/model"
 import type {
   ProjectBulkAction,
   ProjectBulkHandler,
-  ProjectBulkResult,
+  ProjectBulkOutcome,
 } from "@/demo/project-bulk"
 import { ProjectBulkMenu } from "./project-bulk-menu"
 
@@ -31,8 +31,9 @@ export function ProjectBulkActions({
 
   const [outcome, setOutcome] = useState<{
     action: ProjectBulkAction
-    result: ProjectBulkResult
+    result: ProjectBulkOutcome
     selectionKey: string
+    undone?: boolean
   } | null>(null)
 
   const notice = useRef<HTMLParagraphElement>(null)
@@ -163,24 +164,42 @@ export function ProjectBulkActions({
           </Button>
         </>
       )}
-      <p
-        className="project-bulk-notice"
-        ref={notice}
-        tabIndex={-1}
-        role="status"
-      >
-        {outcome && (
-          <>
-            {outcome.action.kind === "assign"
-              ? `Assigned ${recipient} to ${updatedLabel}.`
-              : `Completed ${updatedLabel}.`}
-            {outcome.result.unchanged.length > 0 &&
-              ` ${outcome.result.unchanged.length} already up to date.`}
-            {outcome.result.failed.length > 0 &&
-              ` ${outcome.result.failed.length} could not be updated.`}
-          </>
+      <div className="project-bulk-outcome">
+        <p
+          className="project-bulk-notice"
+          ref={notice}
+          tabIndex={-1}
+          role="status"
+        >
+          {outcome?.undone && "Change undone."}
+          {outcome && !outcome.undone && (
+            <>
+              {outcome.action.kind === "assign"
+                ? `Assigned ${recipient} to ${updatedLabel}.`
+                : `Completed ${updatedLabel}.`}
+              {outcome.result.unchanged.length > 0 &&
+                ` ${outcome.result.unchanged.length} already up to date.`}
+              {outcome.result.failed.length > 0 &&
+                ` ${outcome.result.failed.length} could not be updated.`}
+            </>
+          )}
+        </p>
+        {outcome?.result.undo && !outcome.undone && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="project-bulk-undo"
+            onClick={() => {
+              outcome.result.undo?.()
+              setOutcome({ ...outcome, undone: true })
+              requestAnimationFrame(() => notice.current?.focus())
+            }}
+          >
+            <Undo2 aria-hidden="true" data-icon="inline-start" />
+            Undo
+          </Button>
         )}
-      </p>
+      </div>
       {outcome && outcome.result.failed.length > 0 && (
         <div className="project-bulk-failures">
           <ul>

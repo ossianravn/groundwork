@@ -1,6 +1,19 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../kit/ui/toast.tsx",
+    "../kit/ui/use-toast.ts",
+    "../app/root-layout.tsx",
+    "../demo/project-undo.ts",
+    "../app/use-project-undo.ts",
+    "../kit/ui/spinner.tsx",
+    "../kit/ui/button.tsx",
+    "../kit/shell/route-progress.tsx",
+    "../kit/ui/switch.tsx",
+    "../features/settings/notification-settings.tsx",
+    "../kit/ui/progress.tsx",
+    "../components/project-progress-bar.tsx",
+    "../kit/ui/kbd.tsx",
     "../features/projects/project-tag-field.tsx",
     "../features/projects/project-extra-fields.tsx",
     "../features/projects/project-link-fields.tsx",

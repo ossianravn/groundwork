@@ -1,3 +1,4 @@
+import { Kbd, KbdGroup } from "@/kit/ui/kbd"
 import { Fragment, useRef, useState, type ReactNode } from "react"
 import {
   ChevronRight,
@@ -39,6 +40,8 @@ interface WorkspaceShellProps<
     label: string
     accessibleLabel: string
     keyShortcuts?: string
+    /** Keys shown beside the label on wide screens, e.g. ["Ctrl", "K"]. */
+    hint?: string[]
     onOpen: () => void
   }
   topbarActions?: ReactNode
@@ -196,6 +199,13 @@ export function WorkspaceShell<Destination extends string>({
               >
                 <Search aria-hidden="true" data-icon="inline-start" />
                 <span>{search.label}</span>
+                {search.hint && (
+                  <KbdGroup className="search-hint" aria-hidden="true">
+                    {search.hint.map((key) => (
+                      <Kbd key={key}>{key}</Kbd>
+                    ))}
+                  </KbdGroup>
+                )}
               </Button>
             )}
             {topbarActions}

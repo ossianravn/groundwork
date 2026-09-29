@@ -457,10 +457,25 @@
     "category": "Feedback & recovery",
     "surface": "Shared",
     "summary": "Keep an action stable while its asynchronous result is pending.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: Save and Create buttons keep their width while a simulated slow save runs (uses KIT-09 spinner).",
-    "examples": [],
-    "sources": []
+    "implemented": "Button loading keeps the label's width, shows a spinner and stays focusable. The project form locks its fields and reports Saving… while an asynchronous save runs.",
+    "deferred": "Product saves stay immediate; the delay exists only in the state gallery and reference example.",
+    "examples": [
+      {
+        "label": "Slow save",
+        "href": "/reference/states/slow-save",
+        "instruction": "Select Save changes and watch the button."
+      },
+      {
+        "label": "Button reference",
+        "href": "/reference/components/button",
+        "instruction": "Select Publish update."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/button.tsx",
+      "src/features/projects/project-form.tsx",
+      "src/features/reference/state-editor.tsx"
+    ]
   },
   {
     "id": "EDGE-08",
@@ -469,10 +484,16 @@
     "category": "Feedback & recovery",
     "surface": "Shared",
     "summary": "Show meaningful route-loading progress without arbitrary delays.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: thin top progress bar during route loads that exceed a short threshold.",
-    "examples": [],
-    "sources": []
+    "implemented": "A thin brand bar across the top while a route's code or data loads, shown only after 150 ms and finished rather than cut off.",
+    "deferred": "No determinate progress; the demo's loads are usually faster than the threshold.",
+    "examples": [
+      {
+        "label": "Reference routes",
+        "href": "/reference",
+        "instruction": "Open a reference page on a slow connection."
+      }
+    ],
+    "sources": ["src/kit/shell/route-progress.tsx", "src/app/root-layout.tsx"]
   },
   {
     "id": "EDGE-09",
@@ -1267,10 +1288,25 @@
     "category": "System",
     "surface": "Shared",
     "summary": "Surface transient, actionable feedback without moving page content.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: save, undo and failure feedback across projects and settings, with an action slot (pairs with EDGE-10).",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit ToastProvider on Base UI Toast with success and error types, an action slot, stacking and F6 focus. Mark complete and board moves confirm with Undo.",
+    "deferred": "No promise toasts or per-page placement.",
+    "examples": [
+      {
+        "label": "Mark complete",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Select Mark complete; the toast offers Undo."
+      },
+      {
+        "label": "Toast reference",
+        "href": "/reference/components/toast",
+        "instruction": "Archive the project, then show an error toast."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/toast.tsx",
+      "src/kit/ui/use-toast.ts",
+      "src/app/root-layout.tsx"
+    ]
   },
   {
     "id": "SYS-04",
@@ -1723,10 +1759,19 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Toggle a setting on or off with an immediate effect.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: notification preferences and workspace settings.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Switch on Base UI in two sizes; notification preferences use it for each channel.",
+    "deferred": "No workspace-level feature toggles yet.",
+    "examples": [
+      {
+        "label": "Notifications",
+        "href": "/app/demo/settings/notifications",
+        "instruction": "Turn a channel on or off, then save."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/switch.tsx",
+      "src/features/settings/notification-settings.tsx"
+    ]
   },
   {
     "id": "KIT-02",
@@ -1747,10 +1792,24 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Show completion as a labelled bar driven by tokens.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: replaces the native progress bars in projects and the inspector.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Progress on Base UI with label and value parts; project bars set --progress-color to the project's hue.",
+    "deferred": "No indeterminate state.",
+    "examples": [
+      {
+        "label": "Project progress",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Compare the bar with the task count."
+      },
+      {
+        "label": "Progress reference",
+        "href": "/reference/components/progress",
+        "instruction": "Complete a task."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/progress.tsx",
+      "src/components/project-progress-bar.tsx"
+    ]
   },
   {
     "id": "KIT-04",
@@ -1807,10 +1866,25 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Show a key or shortcut consistently.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: shortcut overlay (SYS-05) and command search hints.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Kbd and KbdGroup in the shortcut list and as the search hint, with the platform's modifier key.",
+    "deferred": "No shortcut hints inside menus.",
+    "examples": [
+      {
+        "label": "Search hint",
+        "href": "/app/demo",
+        "instruction": "Find Ctrl K (⌘ K on a Mac) beside Find a project."
+      },
+      {
+        "label": "Shortcuts",
+        "href": "/app/demo",
+        "instruction": "Press ? to open the shortcut list."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/kbd.tsx",
+      "src/kit/shell/workspace-shell.tsx",
+      "src/features/help/workspace-help.tsx"
+    ]
   },
   {
     "id": "KIT-09",
@@ -1819,10 +1893,16 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Signal a short wait inside a control without layout shift.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: button loading geometry (EDGE-07).",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Spinner with a status role and label, used inside loading buttons.",
+    "deferred": "No page-level loading overlay.",
+    "examples": [
+      {
+        "label": "Loading button",
+        "href": "/reference/components/button",
+        "instruction": "Select Publish update."
+      }
+    ],
+    "sources": ["src/kit/ui/spinner.tsx"]
   },
   {
     "id": "KIT-10",
@@ -1951,10 +2031,26 @@
     "category": "Feedback & recovery",
     "surface": "Shared",
     "summary": "Let people reverse a removal for a short time instead of confirming up front.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: undo toast after removing a tag, link or bulk status change (uses SYS-03).",
-    "examples": [],
-    "sources": []
+    "implemented": "Status and owner changes apply at once and can be reversed: a toast after Mark complete or a board move, and an inline Undo beside the bulk outcome. Undo restores earlier values and removes the change's activity, keeping later edits.",
+    "deferred": "Tag and link removal keep their current immediate behaviour; no undo history beyond the latest change.",
+    "examples": [
+      {
+        "label": "Bulk undo",
+        "href": "/app/demo/projects",
+        "instruction": "Select two projects, mark them complete, then select Undo."
+      },
+      {
+        "label": "Board move",
+        "href": "/app/demo/projects?view=board",
+        "instruction": "Move a card from its Actions menu, then Undo in the toast."
+      }
+    ],
+    "sources": [
+      "src/demo/project-undo.ts",
+      "src/app/use-project-undo.ts",
+      "src/features/projects/project-bulk-actions.tsx",
+      "src/features/projects/project-board.tsx"
+    ]
   },
   {
     "id": "SYS-10",

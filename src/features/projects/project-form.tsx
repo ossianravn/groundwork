@@ -43,10 +43,12 @@ export function ProjectForm({
     field: K,
     value: ProjectValues[K],
   ) => void
-  onSave: () => ProjectSaveResult
+  /** May resolve later; the form locks and shows progress meanwhile. */
+  onSave: () => ProjectSaveResult | Promise<ProjectSaveResult>
   onCancel: () => void
 }) {
   const form = useRef<HTMLFormElement>(null)
+  const [saving, setSaving] = useState(false)
 
   const [extrasOpen, setExtrasOpen] = useState(
     values.tags.length > 0 || values.links.length > 0,
@@ -62,9 +64,28 @@ export function ProjectForm({
       ref={form}
       className="project-editor-form"
       noValidate
-      onSubmit={(event) => {
+      aria-busy={saving || undefined}
+      onSubmit={async (event) => {
         event.preventDefault()
-        const result = onSave()
+
+        if (saving) return
+
+        const outcome = onSave()
+        let result: ProjectSaveResult
+
+        // Only an asynchronous save shows the pending state; a rejection
+        // still unlocks the form.
+        if (outcome instanceof Promise) {
+          setSaving(true)
+
+          try {
+            result = await outcome
+          } finally {
+            setSaving(false)
+          }
+        } else {
+          result = outcome
+        }
 
         if (result.kind === "invalid") {
           const field = result.errors.name
@@ -97,7 +118,7 @@ export function ProjectForm({
         }
       }}
     >
-      <FieldGroup className="project-editor-fields">
+      <FieldGroup className="project-editor-fields" inert={saving}>
         <Field data-invalid={!!errors.name}>
           <FieldLabel htmlFor="edit-project-name">Project name</FieldLabel>
           <Input
@@ -202,12 +223,22 @@ export function ProjectForm({
           </p>
         )}
         <span className="text-muted-foreground" role="status">
-          {dirty ? "Unsaved changes" : ""}
+          {saving ? "Saving…" : dirty ? "Unsaved changes" : ""}
         </span>
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button
+          type="button"
+          variant="outline"
+          disabled={saving}
+          onClick={onCancel}
+        >
           Cancel
         </Button>
-        <Button type="submit" disabled={!creating && !dirty && !failure}>
+        <Button
+          type="submit"
+          loading={saving}
+          loadingLabel="Saving"
+          disabled={!creating && !dirty && !failure}
+        >
           {failure
             ? "Retry save"
             : creating

@@ -33,12 +33,18 @@ export function ProjectsRoute() {
   const page = boundedProjectPage(search.page - 1, search.pageSize, count) + 1
   useRouteFocus()
 
-  const applyChange: ProjectBulkHandler = (ids, action, retry) =>
-    demo.bulkChangeProjects(
+  const applyChange: ProjectBulkHandler = (ids, action, retry) => {
+    const { result, undo } = demo.bulkChangeProjects(
       ids,
       action,
       !retry && search.bulkScenario === "partial-failure",
     )
+
+    return {
+      ...result,
+      undo: undo ? () => demo.undoProjectChange(undo) : undefined,
+    }
+  }
 
   const renderName = useCallback(
     (project: Project) => (

@@ -1,8 +1,9 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router"
+import { createRootRoute } from "@tanstack/react-router"
 import { Button, buttonVariants } from "@/kit/ui/button"
+import { RootLayout } from "./root-layout"
 
 export const rootRoute = createRootRoute({
-  component: Outlet,
+  component: RootLayout,
   notFoundComponent: () => (
     <main className="route-message">
       <h1>Page not found</h1>

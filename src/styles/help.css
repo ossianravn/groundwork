@@ -52,11 +52,3 @@
   gap: 0.375rem;
   flex-shrink: 0;
 }
-.workspace-help kbd {
-  font-family: inherit;
-  font-size: var(--text-meta);
-  background: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 0.25rem;
-  padding: 0.125rem 0.375rem;
-}

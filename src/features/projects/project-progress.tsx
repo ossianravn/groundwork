@@ -1,5 +1,5 @@
+import { ProjectProgressBar } from "@/components/project-progress-bar"
 import { Check } from "lucide-react"
-import { projectColorStyle } from "@/components/project-color"
 import { Button } from "@/kit/ui/button"
 import { Card } from "@/kit/ui/card"
 import type { Project } from "@/demo/model"
@@ -38,11 +38,10 @@ export function ProjectProgress({
         </span>
       </div>
       {project.tasks > 0 && (
-        <progress
+        <ProjectProgressBar
+          color={project.color}
           value={percent}
-          max={100}
-          aria-label="Completed tasks"
-          style={projectColorStyle(project.color)}
+          label="Completed tasks"
         />
       )}
       <div className="project-completion">

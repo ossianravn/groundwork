@@ -11,6 +11,8 @@
 @import "./data-table.css";
 @import "./panels.css";
 @import "./dropdown-menu.css";
+@import "./toast.css";
+@import "./route-progress.css";
 @import "./responsive.css";
 @import "./appearance.css";
 @import "./public-shell.css";

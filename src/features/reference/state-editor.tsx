@@ -107,7 +107,11 @@ export function StateEditor({ scenario }: { scenario: StateScenario }) {
     requestAnimationFrame(() => heading.current?.focus({ preventScroll: true }))
   }
 
-  function save(): ProjectSaveResult {
+  async function save(): Promise<ProjectSaveResult> {
+    // Stands in for a slow request; see EDGE-07.
+    if (scenario === "slow-save")
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+
     const result: ProjectSaveResult = blocked
       ? {
           kind: "rejected",

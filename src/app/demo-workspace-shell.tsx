@@ -42,6 +42,13 @@ const accountItems: AccountMenuItem<WorkspaceDestination>[] = [
   { destination: "sign-in", label: "Sign out", icon: LogOut, separated: true },
 ]
 
+// The search shortcut hint follows the visitor's platform.
+const modifierKey =
+  typeof navigator !== "undefined" &&
+  /Mac|iPhone|iPad/.test(navigator.userAgent)
+    ? "⌘"
+    : "Ctrl"
+
 const settingsPages = new Map([
   ["profile", "Profile"],
   ["appearance", "Appearance"],
@@ -209,6 +216,7 @@ export function DemoWorkspaceShell({
         label: "Find a project…",
         accessibleLabel: "Find a project",
         keyShortcuts: "Control+k Meta+k",
+        hint: [modifierKey, "K"],
         onOpen: onSearch,
       }}
       topbarActions={notifications}
