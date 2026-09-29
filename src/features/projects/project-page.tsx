@@ -9,6 +9,7 @@ import {
   type Activity,
   type Member,
   type Project,
+  type ProjectComment,
   type ProjectTask,
 } from "@/demo/model"
 import type { TaskChange } from "@/demo/project-tasks"
@@ -19,6 +20,7 @@ import { ProjectResources } from "./project-resources"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectTasks } from "./project-tasks"
+import { ProjectComments } from "./project-comments"
 
 export function ProjectPage({
   project,
@@ -32,6 +34,8 @@ export function ProjectPage({
   onComplete,
   tasks,
   onTaskChange,
+  comments,
+  onPostComment,
 }: {
   project: Project
   members: Member[]
@@ -44,6 +48,8 @@ export function ProjectPage({
   onComplete: (id: string) => void
   tasks: ProjectTask[]
   onTaskChange: (change: TaskChange) => (() => void) | undefined
+  comments: ProjectComment[]
+  onPostComment: (text: string) => boolean
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -123,6 +129,12 @@ export function ProjectPage({
           members={assignableMembers}
           people={members}
           onChange={onTaskChange}
+        />
+        <ProjectComments
+          comments={comments}
+          people={members}
+          members={assignableMembers}
+          onPost={onPostComment}
         />
         <Card className="project-activity">
           <CardHeader>

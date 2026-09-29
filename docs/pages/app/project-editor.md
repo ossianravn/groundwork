@@ -42,6 +42,14 @@ The project page lists the project's tasks between details and activity (TABL-12
 - A completed project shows its tasks read-only, with a note to reopen it.
 - Keyboard: completing a task moves focus to the next open task (or the add field); reopening one focuses it in the open list. A polite status announces each change.
 
+## Comments
+
+Comments follow tasks on the project page (TABL-13), oldest first. The composer is a labelled textarea: typing @ lists matching active members under the field; arrow keys choose, Enter or Tab inserts "@Full Name", and Escape closes the list while keeping focus. Ctrl or ⌘ + Enter posts; an empty post shows an error and returns focus to the field.
+
+- Bodies store mentions as `@{memberId}` tokens (`src/demo/project-comments.ts`), so a mention survives name changes; views render the current name, highlighted.
+- Posting records a Comment event ("commented on the project") in Activity.
+- `comments.json` is the single source for the inbox's "Mentioned you in a comment" entries: a teammate's comment that mentions the current user becomes an inbox entry, unread when it is from the last day. Mentioning someone else sends nothing in this single-user demo.
+
 ## Broader planned routes and composition
 
 | Route | Ordered page composition (in addition to shell) |

@@ -47,6 +47,15 @@ export interface ProjectTask {
   assigneeId: string | null
 }
 
+/** Mentions are stored as @{memberId} tokens in the body. */
+export interface ProjectComment {
+  id: string
+  projectId: string
+  authorId: string
+  date: string
+  body: string
+}
+
 export interface ProjectLink {
   id: string
   label: string
