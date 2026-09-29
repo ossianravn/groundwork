@@ -208,6 +208,9 @@ export function DemoApp() {
         onSelect={(id) => {
           openInspection(id)
         }}
+        onSearchAll={(q) =>
+          void navigate({ to: "/app/demo/search", search: { q, type: "" } })
+        }
       />
     </WorkspaceContext>
   )

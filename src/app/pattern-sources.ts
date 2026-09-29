@@ -1,6 +1,9 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../features/search/search-results.tsx",
+    "../app/search-route.tsx",
+    "../demo/workspace-search.ts",
     "../features/projects/saved-views-menu.tsx",
     "../app/project-saved-views.tsx",
     "../app/saved-views.ts",

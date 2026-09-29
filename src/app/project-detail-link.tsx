@@ -11,6 +11,8 @@ interface ProjectLinkProps {
   id?: string
   title?: string
   style?: CSSProperties
+  /** An element on the project page to scroll to, such as a comment. */
+  hash?: string
 }
 
 export function ProjectDetailLink(props: ProjectLinkProps) {
@@ -28,6 +30,7 @@ function ProjectRouteLink({
   id,
   title,
   style,
+  hash,
   to,
 }: ProjectLinkProps & {
   to: "/app/demo/projects/$projectId" | "/app/demo/projects/$projectId/edit"
@@ -42,6 +45,7 @@ function ProjectRouteLink({
       to={to}
       params={{ projectId }}
       search={{ returnTo: origin }}
+      hash={hash}
       onClick={(event) => {
         if (
           !event.metaKey &&
