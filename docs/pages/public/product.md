@@ -14,7 +14,7 @@ Evaluate what the product does and inspect a representative workflow.
 
 | Route | Ordered page composition (in addition to shell) |
 | --- | --- |
-| `/product` | Page heading; feature showcase (MKT-04); user-controlled product tabs and previews (MKT-05); contextual FAQ (MKT-09); Open demo CTA. |
+| `/product` | Page heading; user-controlled product tabs and previews (MKT-05); How it works (MKT-24): four numbered steps, each linking into the demo; feature showcase (MKT-04); contextual FAQ (MKT-09); Open demo CTA. |
 
 ## Actions and outcomes
 

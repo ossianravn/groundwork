@@ -26,8 +26,14 @@ export function PublicResources({
           <DropdownMenuItem render={<LinkComponent destination="changelog" />}>
             Changelog
           </DropdownMenuItem>
+          <DropdownMenuItem render={<LinkComponent destination="roadmap" />}>
+            Roadmap
+          </DropdownMenuItem>
           <DropdownMenuItem render={<LinkComponent destination="help" />}>
             Help
+          </DropdownMenuItem>
+          <DropdownMenuItem render={<LinkComponent destination="status" />}>
+            Status
           </DropdownMenuItem>
           <DropdownMenuItem render={<LinkComponent destination="contact" />}>
             Contact

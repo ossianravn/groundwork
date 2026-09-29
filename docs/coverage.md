@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 97 have linked examples and 12 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 102 have linked examples and 7 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -148,13 +148,13 @@ New public pages and sections in the Tandem brand layer. Company, customer and i
 
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
-| MKT-18 | Integrations directory | [Sitemap](sitemap.md) (page specification to write) | /integrations with sample, clearly fictional integrations. | Planned |
-| MKT-19 | Customer story | [Sitemap](sitemap.md) (page specification to write) | /customers; /customers/fieldnote | Example |
-| MKT-20 | About and careers | [Sitemap](sitemap.md) (page specification to write) | /about with a sample roles list. | Planned |
-| MKT-21 | Public roadmap | [Sitemap](sitemap.md) (page specification to write) | /roadmap with local votes and links to the changelog. | Planned |
-| MKT-22 | Status page | [Sitemap](sitemap.md) (page specification to write) | /status with sample components and incident history. | Planned |
+| MKT-18 | Integrations directory | [Company pages](pages/public/company.md) | /integrations: search and category filters over fictional integrations | Example |
+| MKT-19 | Customer story | [Public home](pages/public/home.md#customers--2026-09-29) | /customers; /customers/fieldnote | Example |
+| MKT-20 | About and careers | [Company pages](pages/public/company.md) | /about with values and sample roles (#careers) | Example |
+| MKT-21 | Public roadmap | [Company pages](pages/public/company.md) | /roadmap with session votes and changelog links | Example |
+| MKT-22 | Status page | [Company pages](pages/public/company.md) | /status with 90-day bars and incident history | Example |
 | MKT-23 | Stats band | [Public home](pages/public/home.md) | / (stats band) | Example |
-| MKT-24 | How it works | [Product overview](pages/public/product.md) | Product page steps linked to the demo. | Planned |
+| MKT-24 | How it works | [Product overview](pages/public/product.md) | /product How it works: four steps linked into the demo | Example |
 | MKT-25 | Announcement bar | [Shared shells](shells.md) | public header on every page | Example |
 
 ## Foundations delivery — 2026-09-29
@@ -257,7 +257,7 @@ The [workspace/team specification](pages/settings/workspace.md#implemented-compo
 - **MKT-04:** Three concise home features link to actual workflows. This is not the planned Product-page bento showcase.
 - **MKT-09:** Home FAQ accordion implemented; searchable help and categories remain planned.
 - **MKT-10:** Local newsletter required/email validation and focused completion implemented. No delivery, service errors or rate limits.
-- **MKT-03, MKT-06:** Logos/testimonials remain planned; the home does not invent endorsements to fill these rows.
+- **MKT-03, MKT-06:** Logos/testimonials remain planned; the home does not invent endorsements to fill these rows. (Superseded 2026-09-29: fictional, labelled logos and quotes now exist; see their rows.)
 
 The [home specification](pages/public/home.md#implemented-composition-and-scope) owns exact scope. These are subsets of the evolving inventory, not claims that each original recipe is complete.
 

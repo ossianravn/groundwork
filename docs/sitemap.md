@@ -1,10 +1,10 @@
 # Demo sitemap
 
-Status: living implementation map and backlog. Updated: 2026-09-27. Parameterized routes represent page templates, not individual records.
+Status: living implementation map and backlog. Updated: 2026-09-29. Parameterized routes represent page templates, not individual records.
 
 Implemented areas:
 
-- Public home, Product, Pricing, articles, changelog, Help, Contact and legal examples, with shared navigation/footer.
+- Public home, Product, Pricing, Customers, Integrations, About, Roadmap, Status, articles, changelog, Help, Contact and legal examples, with shared navigation and a grouped footer.
 - Workspace Overview, Projects (Table/Cards/Board, details/create/edit), Inbox, Analytics and Activity. Shared project mutations reach related views. Activity has filters, grouped history and event details; sidebar Help provides contextual guides and keyboard shortcuts.
 - Settings Profile, Appearance, Notifications, Security, Workspace, Team, Billing, API keys and Webhooks. `/app/demo/settings` redirects to Profile.
 - Local password, email-link, Google/GitHub and MFA access demonstrations, recovery and three-step workspace onboarding. `/onboarding` resumes the current local step.
@@ -20,7 +20,7 @@ Confirmed implementation scope: all demo data comes from [static JSON files](dem
 
 | Area | Primary navigation | Contextual or secondary destinations |
 | --- | --- | --- |
-| Public | Product, Pricing, Resources; Sign in and Open demo | Articles, Changelog, Help; Contact, Privacy, Terms in footer |
+| Public | Product, Pricing, Customers, Resources; Sign in and Open demo | Articles, Changelog, Roadmap, Help, Status; footer groups Product, Resources, Company (About, Careers, Contact) and Template; Privacy, Terms |
 | Application | Overview, Projects, Inbox, Analytics | Activity, Settings, Help; workspace and account controls |
 | Settings | Profile, Appearance, Notifications, Security; Workspace, Team, Billing; API keys, Webhooks | Group account/workspace/developer settings; hide unavailable actions according to actual capabilities |
 | Reference | Components, Patterns, Themes, States | Public/app examples, source details and accessibility guidance |
@@ -36,8 +36,14 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | Route | Shell | Page-specific patterns | Page specification |
 | --- | --- | --- | --- |
 | `/` | Public | MKT-02, MKT-03, MKT-04, MKT-06, MKT-09, MKT-10 | [Public home](pages/public/home.md) |
-| `/product` | Public | MKT-04, MKT-05, MKT-09 | [Product overview](pages/public/product.md) |
+| `/product` | Public | MKT-04, MKT-05, MKT-24, MKT-09 | [Product overview](pages/public/product.md) |
 | `/pricing` | Public | MKT-07, MKT-08, MKT-09 | [Pricing and comparison](pages/public/pricing.md) |
+| `/customers` | Public | MKT-19, MKT-03, MKT-06 | [Public home](pages/public/home.md#customers--2026-09-29) |
+| `/customers/:slug` | Public | MKT-19 | [Public home](pages/public/home.md#customers--2026-09-29) |
+| `/integrations` | Public | MKT-18 | [Company pages](pages/public/company.md) |
+| `/about` | Public | MKT-20 | [Company pages](pages/public/company.md) |
+| `/roadmap` | Public | MKT-21 | [Company pages](pages/public/company.md) |
+| `/status` | Public | MKT-22 | [Company pages](pages/public/company.md) |
 | `/blog` | Public | MKT-13 | [Articles, changelog and help](pages/public/resources.md) |
 | `/blog/:slug` | Public | MKT-13 | [Articles, changelog and help](pages/public/resources.md) |
 | `/changelog` | Public | MKT-15 | [Articles, changelog and help](pages/public/resources.md) |

@@ -2236,10 +2236,16 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Browse integrations by category with search and detail pages.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: /integrations with sample, clearly fictional integrations.",
-    "examples": [],
-    "sources": []
+    "implemented": "/integrations lists nine fictional integrations with a search and category toggles that combine, a live count, Beta and Coming soon badges, and an empty state. Filters wrap on narrow screens.",
+    "deferred": "No per-integration detail pages or connect flow.",
+    "examples": [
+      {
+        "label": "Integrations",
+        "href": "/integrations",
+        "instruction": "Choose Developer, then search webhook."
+      }
+    ],
+    "sources": ["src/features/public/integrations-page.tsx"]
   },
   {
     "id": "MKT-19",
@@ -2275,10 +2281,21 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Present the company, values and open roles.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: /about with a sample roles list.",
-    "examples": [],
-    "sources": []
+    "implemented": "/about tells the sample team's story, three numbered values and four open roles (#careers), each linking to Contact. The footer's Careers link lands on the roles.",
+    "deferred": "No role detail pages or application form.",
+    "examples": [
+      {
+        "label": "About",
+        "href": "/about",
+        "instruction": "Scroll to Open roles."
+      },
+      {
+        "label": "Careers",
+        "href": "/about#careers",
+        "instruction": "Follow Ask about this role."
+      }
+    ],
+    "sources": ["src/features/public/about-page.tsx"]
   },
   {
     "id": "MKT-21",
@@ -2287,10 +2304,19 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Show planned, in-progress and shipped work, with voting.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: /roadmap with local votes and links to the changelog.",
-    "examples": [],
-    "sources": []
+    "implemented": "/roadmap groups sample ideas as Now, Next, Later and Shipped. Planned ideas have a pressed-state vote toggle kept in session memory across navigation; shipped ones link to the changelog.",
+    "deferred": "No idea submission, comments or sorting.",
+    "examples": [
+      {
+        "label": "Roadmap",
+        "href": "/roadmap",
+        "instruction": "Vote for Guest access, visit Status, come back."
+      }
+    ],
+    "sources": [
+      "src/features/public/roadmap-page.tsx",
+      "src/app/company-route.tsx"
+    ]
   },
   {
     "id": "MKT-22",
@@ -2299,10 +2325,16 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Report service health, incidents and uptime history.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: /status with sample components and incident history.",
-    "examples": [],
-    "sources": []
+    "implemented": "/status shows the overall state, five components with 90 daily bars, uptime and state, and three past incidents with timed updates. It says the demo has no live service.",
+    "deferred": "No subscriptions, live data or scheduled maintenance.",
+    "examples": [
+      {
+        "label": "Status",
+        "href": "/status",
+        "instruction": "Compare the API and Notifications rows with the incidents."
+      }
+    ],
+    "sources": ["src/features/public/status-page.tsx"]
   },
   {
     "id": "MKT-23",
@@ -2329,10 +2361,16 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Explain the product in three or four numbered steps.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: Product page steps linked to the demo.",
-    "examples": [],
-    "sources": []
+    "implemented": "Product's How it works: four numbered steps (import, tasks, comments and files, timeline and saved views), each linking to that place in the sample workspace.",
+    "deferred": "No illustrations or video per step.",
+    "examples": [
+      {
+        "label": "How it works",
+        "href": "/product",
+        "instruction": "Scroll below the product tabs and follow a step."
+      }
+    ],
+    "sources": ["src/features/public/how-it-works.tsx"]
   },
   {
     "id": "MKT-25",
