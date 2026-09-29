@@ -2,12 +2,12 @@ import { Link, useNavigate, useSearch } from "@tanstack/react-router"
 import { HomePage } from "@/features/public/home-page"
 import { ProductPage } from "@/features/public/product-page"
 import { PricingPage, type PlanLinkProps } from "@/features/public/pricing-page"
-import { PublicPage, PublicLink } from "./public-page"
+import { PublicPage, PublicLink, StoryLink } from "./public-page"
 
 export function PublicRoute() {
   return (
     <PublicPage title="A clearer view of your projects">
-      <HomePage LinkComponent={PublicLink} />
+      <HomePage LinkComponent={PublicLink} StoryLink={StoryLink} />
     </PublicPage>
   )
 }

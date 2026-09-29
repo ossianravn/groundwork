@@ -567,10 +567,24 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Present real customer or partner logos with a suitable motion policy.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: static logo row with an optional animated marquee that pauses on hover and honours reduced motion; logos are clearly fictional samples.",
-    "examples": [],
-    "sources": []
+    "implemented": "Fictional sample team logos (simple line marks and names) as a static row under Home's hero, and as a marquee on /customers that stops on hover or focus, has a Pause/Play control and stays still with reduced motion. Both say the companies are fictional.",
+    "deferred": "No real logos.",
+    "examples": [
+      {
+        "label": "Static row",
+        "href": "/",
+        "instruction": "Look under the product stage."
+      },
+      {
+        "label": "Marquee",
+        "href": "/customers",
+        "instruction": "Hover the logos or select Pause."
+      }
+    ],
+    "sources": [
+      "src/features/public/customer-logos.tsx",
+      "src/features/public/customer-mark.tsx"
+    ]
   },
   {
     "id": "MKT-04",
@@ -615,10 +629,16 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Present attributable customer feedback in a readable composition.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: testimonial grid on Home with clearly labelled sample quotes from fictional teams.",
-    "examples": [],
-    "sources": []
+    "implemented": "An In their words wall of six equal quote cards on /customers, rows of three, two or one; the section states that people and teams are fictional.",
+    "deferred": "No photos or ratings.",
+    "examples": [
+      {
+        "label": "Testimonials",
+        "href": "/customers",
+        "instruction": "Scroll to In their words."
+      }
+    ],
+    "sources": ["src/features/public/testimonial-wall.tsx"]
   },
   {
     "id": "MKT-07",
@@ -1961,10 +1981,24 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Browse a row of items with buttons, swipe and keys.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: customer stories on the public site.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Carousel on native scroll snapping: named carousel and slides, Previous/Next by one visible page that disable at the ends, reduced-motion jumps, no auto-advance and no dependency. Home's customer stories use it.",
+    "deferred": "No autoplay, pagination dots or looping.",
+    "examples": [
+      {
+        "label": "Customer stories",
+        "href": "/",
+        "instruction": "Use Next beside Teams that plan in Tandem."
+      },
+      {
+        "label": "Carousel reference",
+        "href": "/reference/components/carousel",
+        "instruction": "Scroll or use the buttons."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/carousel.tsx",
+      "src/features/public/customer-stories.tsx"
+    ]
   },
   {
     "id": "KIT-12",
@@ -2214,10 +2248,25 @@
     "category": "Public website",
     "surface": "Public",
     "summary": "Tell one team's story with results, quotes and product shots.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: /customers/:slug with a fictional sample team.",
-    "examples": [],
-    "sources": []
+    "implemented": "/customers lists four fictional sample stories; /customers/:slug tells one: company and size, outcome headline, three figures in the story's hue, the team's quote, problem/change/result sections, a way into the demo and the other stories. Unknown slugs explain themselves.",
+    "deferred": "No filtering by industry or real customer content.",
+    "examples": [
+      {
+        "label": "Customers",
+        "href": "/customers",
+        "instruction": "Open a story."
+      },
+      {
+        "label": "A story",
+        "href": "/customers/fieldnote",
+        "instruction": "Read the figures and quote."
+      }
+    ],
+    "sources": [
+      "src/features/public/customer-story-page.tsx",
+      "src/features/public/customers-page.tsx",
+      "src/features/public/story-card.tsx"
+    ]
   },
   {
     "id": "MKT-20",

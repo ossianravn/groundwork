@@ -22,6 +22,7 @@ import {
 import { parseAccessSearch, parseSignUpSearch } from "./access-search"
 import { rootRoute } from "./root-route"
 import { publicRoutes } from "./public-routes"
+import { companyRoutes } from "./company-routes"
 import { referenceRoutes } from "./reference-routes"
 import {
   parseAnalyticsSearch,
@@ -231,6 +232,7 @@ const resetPasswordRoute = createRoute({
 export const router = createRouter({
   routeTree: rootRoute.addChildren([
     ...publicRoutes,
+    ...companyRoutes,
     ...referenceRoutes,
     signInRoute,
     verificationRoute,

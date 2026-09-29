@@ -249,5 +249,23 @@
     "href": "/app/demo/analytics",
     "patterns": ["KIT-05", "DVIZ-05"],
     "implementation": "src/kit/ui/date-range-picker.tsx"
+  },
+  {
+    "id": "carousel",
+    "name": "Carousel",
+    "category": "Navigation",
+    "purpose": "Browse a row of related cards one page at a time.",
+    "notes": [
+      "Built on native scroll snapping: swipe, trackpad and keyboard scrolling work, and Previous/Next move one visible page, disabled at the ends.",
+      "The carousel and each slide are named (slide 2 of 4); keep cards readable without the controls, and never auto-advance."
+    ],
+    "context": "Customer stories",
+    "href": "/",
+    "patterns": ["KIT-11"],
+    "documentation": {
+      "href": "https://ui.shadcn.com/docs/components/base/carousel",
+      "label": "shadcn documentation"
+    },
+    "implementation": "src/kit/ui/carousel.tsx"
   }
 ]

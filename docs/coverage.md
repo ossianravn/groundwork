@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 93 have linked examples and 16 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 97 have linked examples and 12 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -30,10 +30,10 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | EDGE-09 | App Update / Version Mismatch | [Shared shells ](shells.md) | Shared shells; /reference/states/:scenario | Default |
 | MKT-01 | Sticky Glassmorphism Header | [Shared shells ](shells.md) | Public shell | Default |
 | MKT-02 | Hero Section (Split & Centered) | [Public home ](pages/public/home.md) | / | Default |
-| MKT-03 | Infinite Logo Marquee | [Public home ](pages/public/home.md) | /; /reference/patterns/MKT-03 | Variant: Static default; animated variant with applicable pause and motion behavior |
+| MKT-03 | Infinite Logo Marquee | [Public home ](pages/public/home.md) | / (static); /customers (marquee) | Example |
 | MKT-04 | Bento Grid Feature Showcase | [Product overview ](pages/public/product.md) | /product | Default |
 | MKT-05 | Interactive Product Showcase Tabs | [Product overview ](pages/public/product.md) | /product | Default |
-| MKT-06 | Testimonial Wall / Grid | [Public home ](pages/public/home.md) | / | Default |
+| MKT-06 | Testimonial Wall / Grid | [Public home ](pages/public/home.md) | /customers | Example |
 | MKT-07 | Pricing Matrix & Toggle | [Pricing and comparison ](pages/public/pricing.md) | /pricing | Default |
 | MKT-08 | Detailed Feature Comparison Table | [Pricing and comparison ](pages/public/pricing.md) | /pricing | Default |
 | MKT-09 | Searchable FAQ Accordion | [Articles, changelog and help ](pages/public/resources.md) | /help | Default |
@@ -123,7 +123,7 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-08 | Keyboard key | [Design system](design-system.md) | search hint and shortcut list in /app/demo | Example |
 | KIT-09 | Spinner | [Design system](design-system.md) | /reference/components/button | Example |
 | KIT-10 | Scroll area | [Design system](design-system.md) | inbox list and activity preview. | Planned |
-| KIT-11 | Carousel | [Design system](design-system.md) | customer stories on the public site. | Planned |
+| KIT-11 | Carousel | [Design system](design-system.md) | / (customer stories); /reference/components/carousel | Example |
 | KIT-12 | Drawer | [Design system](design-system.md) | phone filters on Projects and Activity. | Planned |
 
 ### App workflows
@@ -149,7 +149,7 @@ New public pages and sections in the Tandem brand layer. Company, customer and i
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
 | MKT-18 | Integrations directory | [Sitemap](sitemap.md) (page specification to write) | /integrations with sample, clearly fictional integrations. | Planned |
-| MKT-19 | Customer story | [Sitemap](sitemap.md) (page specification to write) | /customers/:slug with a fictional sample team. | Planned |
+| MKT-19 | Customer story | [Sitemap](sitemap.md) (page specification to write) | /customers; /customers/fieldnote | Example |
 | MKT-20 | About and careers | [Sitemap](sitemap.md) (page specification to write) | /about with a sample roles list. | Planned |
 | MKT-21 | Public roadmap | [Sitemap](sitemap.md) (page specification to write) | /roadmap with local votes and links to the changelog. | Planned |
 | MKT-22 | Status page | [Sitemap](sitemap.md) (page specification to write) | /status with sample components and incident history. | Planned |

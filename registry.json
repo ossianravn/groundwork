@@ -356,6 +356,27 @@
       ]
     },
     {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Carousel primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/carousel.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/carousel.tsx"
+        }
+      ]
+    },
+    {
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
@@ -1428,6 +1449,7 @@
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/calendar",
         "ossianravn/groundwork/card",
+        "ossianravn/groundwork/carousel",
         "ossianravn/groundwork/chart",
         "ossianravn/groundwork/checkbox",
         "ossianravn/groundwork/collapsible",
