@@ -23,6 +23,21 @@ export function PublicLink({ destination, ...props }: PublicLinkProps) {
       return <Link {...props} to="/changelog" />
     case "customers":
       return <Link {...props} to="/customers" />
+    case "integrations":
+      return <Link {...props} to="/integrations" />
+    case "about":
+    case "careers":
+      return (
+        <Link
+          {...props}
+          to="/about"
+          hash={destination === "careers" ? "careers" : ""}
+        />
+      )
+    case "roadmap":
+      return <Link {...props} to="/roadmap" />
+    case "status":
+      return <Link {...props} to="/status" />
     case "latest-release":
       return (
         <Link
@@ -37,6 +52,26 @@ export function PublicLink({ destination, ...props }: PublicLinkProps) {
       return <Link {...props} to="/product" />
     case "pricing":
       return <Link {...props} to="/pricing" search={{ billing: "monthly" }} />
+    case "project-comments":
+      return (
+        <Link
+          {...props}
+          to="/app/demo/projects/$projectId"
+          params={{ projectId: "brand" }}
+          search={{ returnTo: "/app/demo/projects" }}
+          hash="comment-draft"
+        />
+      )
+    case "import":
+      return <Link {...props} to="/app/demo/projects/import" />
+    case "timeline":
+      return (
+        <Link
+          {...props}
+          to="/app/demo/projects"
+          search={{ ...defaultProjectsSearch, view: "timeline" }}
+        />
+      )
     case "project-detail":
       return (
         <Link

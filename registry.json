@@ -1359,6 +1359,11 @@
           "target": "~/src/kit/shell/page-actions.tsx"
         },
         {
+          "path": "src/kit/shell/public-footer-group.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/public-footer-group.tsx"
+        },
+        {
           "path": "src/kit/shell/public-layout.tsx",
           "type": "registry:file",
           "target": "~/src/kit/shell/public-layout.tsx"

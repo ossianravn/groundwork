@@ -19,7 +19,7 @@ All shell data and session/permission scenarios use the shared [static JSON demo
 
 ## Public navigation
 
-Header: Product, Pricing, Resources, Sign in, Open demo. Resources links to articles, changelog and help. The footer supplies Contact, Privacy, Terms and cookie preferences when that capability exists. Reference library is a clearly labelled template link. Mobile navigation uses a labelled Sheet with a title and visible close action.
+Header: Product, Pricing, Customers, Resources, Sign in, Open demo. Resources links to articles, changelog, roadmap, help and status. The footer arranges destinations in titled groups (kit `PublicFooterGroup`: four columns, two on narrow screens): Product, Resources, Company (About, Careers, Contact) and Template, where Reference library is a clearly labelled template link. Privacy, Terms and cookie preferences, when that capability exists, sit in the footer's bottom row. Mobile navigation uses a labelled Sheet with a title and visible close action.
 
 An optional announcement bar (MKT-25, kit `AnnouncementBar`) sits above the public header and scrolls away with the page; Tandem uses it for the latest release and remembers dismissal per release in local storage. The header may be sticky; transparency is an optional visual variant. Readability must hold over every underlying surface. The signed-in state changes the account action to Open app. Public search is scoped to content/help; it does not expose private records or require a global command shortcut.
 

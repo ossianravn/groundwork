@@ -140,3 +140,57 @@
     grid-column: auto;
   }
 }
+
+/* How it works (MKT-24): four numbered steps on one rule. */
+.how-it-works {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: var(--public-section-space);
+  border-top: 1px solid var(--border);
+}
+.how-it-works ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.how-it-works li {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--foreground);
+}
+.how-it-works-number {
+  font-family: var(--tandem-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--tandem-field);
+}
+.how-it-works h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.how-it-works p {
+  color: var(--muted-foreground);
+}
+.how-it-works li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-self: start;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+@media (max-width: 1023px) {
+  .how-it-works ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 639px) {
+  .how-it-works ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

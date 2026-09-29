@@ -8,6 +8,7 @@ import type {
 import content from "@/demo/data/public-product.json"
 import { PublicFaq } from "./public-faq"
 import { ProductFeatures } from "./product-features"
+import { HowItWorks } from "./how-it-works"
 
 const previews = [
   { ...content.previews[0], destination: "demo" },
@@ -73,6 +74,7 @@ export function ProductPage({
           ))}
         </Tabs>
       </section>
+      <HowItWorks LinkComponent={LinkComponent} />
       <ProductFeatures />
       <PublicFaq questions={content.questions} />
     </main>

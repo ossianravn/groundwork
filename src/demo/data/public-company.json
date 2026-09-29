@@ -1,0 +1,287 @@
+{
+  "note": "Sample content for the template. The integrations, roles, plans and service history are fictional.",
+  "integrations": [
+    {
+      "id": "chatterly",
+      "name": "Chatterly",
+      "category": "Communication",
+      "color": "violet",
+      "status": "Available",
+      "description": "Post project updates and mentions to team channels."
+    },
+    {
+      "id": "mailroom",
+      "name": "Mailroom",
+      "category": "Communication",
+      "color": "sky",
+      "status": "Available",
+      "description": "Turn forwarded emails into tasks on the right project."
+    },
+    {
+      "id": "parcel-drive",
+      "name": "Parcel Drive",
+      "category": "Files",
+      "color": "amber",
+      "status": "Available",
+      "description": "Attach files from shared folders without downloading them."
+    },
+    {
+      "id": "sketchpad",
+      "name": "Sketchpad",
+      "category": "Files",
+      "color": "rose",
+      "status": "Beta",
+      "description": "Preview design files beside the project they belong to."
+    },
+    {
+      "id": "daybook",
+      "name": "Daybook",
+      "category": "Calendar",
+      "color": "teal",
+      "status": "Available",
+      "description": "Show due dates and milestones in your team calendar."
+    },
+    {
+      "id": "gitforge",
+      "name": "Gitforge",
+      "category": "Developer",
+      "color": "green",
+      "status": "Available",
+      "description": "Link pull requests to tasks and complete them on merge."
+    },
+    {
+      "id": "hookline",
+      "name": "Hookline",
+      "category": "Developer",
+      "color": "violet",
+      "status": "Available",
+      "description": "Connect Tandem webhooks to hundreds of tools without code."
+    },
+    {
+      "id": "ticketbay",
+      "name": "Ticketbay",
+      "category": "Support",
+      "color": "amber",
+      "status": "Beta",
+      "description": "Escalate customer tickets into project tasks."
+    },
+    {
+      "id": "ledgerly",
+      "name": "Ledgerly",
+      "category": "Finance",
+      "color": "teal",
+      "status": "Coming soon",
+      "description": "Track budgets and invoices against each project."
+    }
+  ],
+  "about": {
+    "headline": "We build calm software for busy teams.",
+    "intro": "The people behind Tandem, what we hold to, and where you could join us. The team and roles are sample content.",
+    "paragraphs": [
+      "Tandem started as a spreadsheet three designers shared to stop asking each other where things stood. It grew into a place where a team can see its work, change it and move on.",
+      "We are a small, remote team. We ship in small steps, write things down and keep the product quiet so the work can be loud."
+    ],
+    "values": [
+      {
+        "title": "Show the work",
+        "description": "Progress should be visible without anyone having to report it."
+      },
+      {
+        "title": "Make it reversible",
+        "description": "People try more when mistakes are one Undo away."
+      },
+      {
+        "title": "Keep it plain",
+        "description": "Clear words and fewer screens beat clever features."
+      }
+    ],
+    "roles": [
+      {
+        "id": "product-designer",
+        "title": "Senior product designer",
+        "team": "Design",
+        "location": "Remote, Europe",
+        "type": "Full time"
+      },
+      {
+        "id": "frontend-engineer",
+        "title": "Front-end engineer",
+        "team": "Engineering",
+        "location": "Remote, Europe or Americas",
+        "type": "Full time"
+      },
+      {
+        "id": "support-lead",
+        "title": "Customer support lead",
+        "team": "Customer success",
+        "location": "Remote, UK",
+        "type": "Full time"
+      },
+      {
+        "id": "writer",
+        "title": "Technical writer",
+        "team": "Product",
+        "location": "Remote",
+        "type": "Contract"
+      }
+    ]
+  },
+  "roadmap": [
+    {
+      "id": "recurring-tasks",
+      "stage": "Now",
+      "title": "Recurring tasks",
+      "description": "Repeat weekly or monthly work without copying it.",
+      "votes": 42
+    },
+    {
+      "id": "guest-access",
+      "stage": "Now",
+      "title": "Guest access",
+      "description": "Invite clients to follow a project without a full seat.",
+      "votes": 67
+    },
+    {
+      "id": "dependencies",
+      "stage": "Next",
+      "title": "Task dependencies",
+      "description": "Mark what blocks what, and see it on the timeline.",
+      "votes": 58
+    },
+    {
+      "id": "workload",
+      "stage": "Next",
+      "title": "Workload view",
+      "description": "See who has too much on before deadlines slip.",
+      "votes": 35
+    },
+    {
+      "id": "mobile-apps",
+      "stage": "Later",
+      "title": "Mobile apps",
+      "description": "Tick off tasks and reply to mentions on the go.",
+      "votes": 81
+    },
+    {
+      "id": "automations",
+      "stage": "Later",
+      "title": "Automations",
+      "description": "Move projects and assign tasks when something happens.",
+      "votes": 29
+    },
+    {
+      "id": "timeline",
+      "stage": "Shipped",
+      "title": "Timeline and saved views",
+      "description": "Released in 0.4.0.",
+      "votes": 94,
+      "release": "0.4.0"
+    },
+    {
+      "id": "public-site",
+      "stage": "Shipped",
+      "title": "Public site and pricing",
+      "description": "Released in 0.3.0.",
+      "votes": 23,
+      "release": "0.3.0"
+    }
+  ],
+  "status": {
+    "components": [
+      {
+        "id": "app",
+        "name": "Web app",
+        "status": "Operational",
+        "incidentDays": []
+      },
+      {
+        "id": "api",
+        "name": "API",
+        "status": "Operational",
+        "incidentDays": [61]
+      },
+      {
+        "id": "notifications",
+        "name": "Notifications",
+        "status": "Operational",
+        "incidentDays": [12, 13]
+      },
+      {
+        "id": "files",
+        "name": "File uploads",
+        "status": "Operational",
+        "incidentDays": []
+      },
+      {
+        "id": "search",
+        "name": "Search",
+        "status": "Operational",
+        "incidentDays": [34]
+      }
+    ],
+    "incidents": [
+      {
+        "id": "notifications-delay",
+        "title": "Delayed notifications",
+        "component": "Notifications",
+        "date": "2026-09-12",
+        "impact": "Minor",
+        "updates": [
+          {
+            "time": "09:14",
+            "label": "Investigating",
+            "text": "Some mention notifications are arriving late."
+          },
+          {
+            "time": "10:02",
+            "label": "Identified",
+            "text": "A queue worker stopped processing after a deploy."
+          },
+          {
+            "time": "10:40",
+            "label": "Resolved",
+            "text": "The worker is restarted and all delayed notifications are delivered."
+          }
+        ]
+      },
+      {
+        "id": "search-index",
+        "title": "Search results out of date",
+        "component": "Search",
+        "date": "2026-08-21",
+        "impact": "Minor",
+        "updates": [
+          {
+            "time": "14:20",
+            "label": "Investigating",
+            "text": "New tasks are not appearing in search."
+          },
+          {
+            "time": "15:05",
+            "label": "Resolved",
+            "text": "The index is rebuilt and new tasks appear within a minute."
+          }
+        ]
+      },
+      {
+        "id": "api-errors",
+        "title": "Elevated API errors",
+        "component": "API",
+        "date": "2026-07-25",
+        "impact": "Major",
+        "updates": [
+          {
+            "time": "07:48",
+            "label": "Investigating",
+            "text": "About one in ten API requests are failing."
+          },
+          {
+            "time": "08:30",
+            "label": "Resolved",
+            "text": "A misconfigured load balancer was rolled back."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ export function useResultsMemory() {
   const [boardOrder, setBoardOrder] = useState<string[]>([])
   const [savedViews, setSavedViews] = useState(builtInViews)
   const [gettingStartedHidden, setGettingStartedHidden] = useState(false)
+  const [roadmapVotes, setRoadmapVotes] = useState<string[]>([])
 
   const [projectColumns, setProjectColumns] = useState<ColumnVisibilityState>(
     {},
@@ -46,6 +47,8 @@ export function useResultsMemory() {
     setSavedViews,
     gettingStartedHidden,
     setGettingStartedHidden,
+    roadmapVotes,
+    setRoadmapVotes,
     rememberFocus,
     getFocus,
     reset: () => {
@@ -55,6 +58,7 @@ export function useResultsMemory() {
       setProjectColumns({})
       setSavedViews(builtInViews)
       setGettingStartedHidden(false)
+      setRoadmapVotes([])
       focus.current.clear()
     },
   }

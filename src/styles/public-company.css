@@ -1,0 +1,299 @@
+/* Company pages: integrations, about, roadmap and status (MKT-18, 20-22). */
+.company-page > .public-page-heading {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+.company-page > .public-page-heading p {
+  max-width: 56ch;
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+}
+.integrations,
+.about-roles,
+.about-values,
+.roadmap,
+.status {
+  padding-block: 2rem var(--public-section-space);
+}
+.integrations {
+  display: grid;
+  gap: 1.25rem;
+}
+.integrations-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+.integrations-search {
+  position: relative;
+  flex: 1 1 16rem;
+  max-width: 22rem;
+}
+.integrations-search svg {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  translate: 0 -50%;
+  color: var(--muted-foreground);
+}
+.integrations-search input {
+  padding-inline-start: 2.25rem;
+}
+.integrations-count,
+.integrations-empty,
+.integration-category {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.integrations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.integrations-grid li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  align-content: start;
+  gap: 0.25rem 0.875rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+}
+.integration-mark {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--project-color) 16%, var(--card));
+  color: color-mix(in oklab, var(--project-color) 75%, var(--foreground));
+  font-family: var(--tandem-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+/* Card and column titles are h2s for structure, not display headings. */
+.integrations-grid h2,
+.roadmap h2,
+.status-component-heading h2 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+.integration-description {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+.about-story {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1rem 2rem;
+}
+.about-story p {
+  max-width: 60ch;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+.about-values,
+.about-roles {
+  display: grid;
+  gap: 2rem;
+  border-top: 1px solid var(--border);
+}
+.about-values ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.about-values li {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+}
+.about-values li > span {
+  color: var(--tandem-field);
+  font-family: var(--tandem-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.about-values h3,
+.about-roles h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.about-values p,
+.about-roles p {
+  color: var(--muted-foreground);
+}
+.about-roles ul {
+  display: grid;
+}
+.about-roles li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--border);
+}
+.about-roles li p {
+  grid-column: 1;
+}
+.about-roles li a {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+}
+.about-roles li a,
+.roadmap li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.roadmap section {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--muted);
+}
+.roadmap ul {
+  display: grid;
+  gap: 0.75rem;
+}
+.roadmap li {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border);
+}
+.roadmap li p {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+
+.status {
+  display: grid;
+  gap: 2rem;
+  max-width: 52rem;
+}
+.status-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--success) 12%, var(--card));
+  font-weight: 600;
+}
+.status-summary svg {
+  color: var(--success);
+}
+.status-components {
+  display: grid;
+}
+.status-components > li {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.status-component-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.status-component-heading span {
+  color: var(--success);
+  font-size: var(--text-meta);
+}
+.status-days {
+  display: grid;
+  grid-template-columns: repeat(90, minmax(0, 1fr));
+  gap: 2px;
+  height: 2rem;
+}
+.status-days li {
+  border-radius: 1px;
+  background: color-mix(in oklab, var(--success) 70%, var(--card));
+}
+.status-days li[data-incident] {
+  background: var(--warning);
+}
+.status-days-legend {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.status-incidents {
+  display: grid;
+  gap: 1rem;
+}
+.status-incidents > h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.status-incidents > ol > li {
+  display: grid;
+  gap: 0.375rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--border);
+}
+.roadmap li h3,
+.status-incidents h3 {
+  font-weight: 600;
+}
+.status-incident-meta,
+.status-updates {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.status-updates {
+  display: grid;
+  gap: 0.25rem;
+}
+.status-updates strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+@media (max-width: 1023px) {
+  .integrations-grid,
+  .roadmap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 639px) {
+  .integrations-grid,
+  .roadmap,
+  .about-values ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .status-days {
+    gap: 1px;
+  }
+  .about-roles li a {
+    grid-row: auto;
+    grid-column: 1;
+  }
+}
