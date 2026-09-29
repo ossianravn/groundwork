@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from "react"
 import { getRouteApi } from "@tanstack/react-router"
-import { Plus } from "lucide-react"
+import { Plus, Upload } from "lucide-react"
+import { Link } from "@tanstack/react-router"
+import { cn } from "cn"
 import type { Project } from "@/demo/model"
 import { buttonVariants } from "@/kit/ui/button"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
@@ -80,6 +82,13 @@ export function ProjectsRoute() {
       <title>{`Projects · ${demo.workspace.name}`}</title>
       <h1 className="sr-only">Projects</h1>
       <PageActions>
+        <Link
+          to="/app/demo/projects/import"
+          className={cn(buttonVariants({ variant: "outline" }), "page-action")}
+        >
+          <Upload data-icon="inline-start" aria-hidden="true" />
+          <span className="page-action-label">Import</span>
+        </Link>
         <PageAction
           id="new-project"
           icon={Plus}

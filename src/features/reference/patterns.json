@@ -2076,10 +2076,22 @@
     "category": "Settings & forms",
     "surface": "Workspace",
     "summary": "Bring records in from a spreadsheet by mapping columns and reviewing problems.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: import projects from a sample CSV: upload, map, validate, preview, import.",
-    "examples": [],
-    "sources": []
+    "implemented": "Import on Projects opens a four-step page: upload (or the sample file), map columns with guessed matches and examples, review every row with its line and problems (missing name, bad date, unknown owner, duplicate), then import the ready rows through the editor's own save. Skipped rows say why.",
+    "deferred": "No inline fixing of rows, status column or undo of an import.",
+    "examples": [
+      {
+        "label": "Import projects",
+        "href": "/app/demo/projects/import",
+        "instruction": "Choose Use the sample file, review the rows and import."
+      }
+    ],
+    "sources": [
+      "src/features/projects/project-import.tsx",
+      "src/features/projects/import-mapping.tsx",
+      "src/features/projects/import-review.tsx",
+      "src/demo/project-import.ts",
+      "src/demo/csv.ts"
+    ]
   },
   {
     "id": "TABL-15",
