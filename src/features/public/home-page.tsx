@@ -1,10 +1,4 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  ChartNoAxesCombined,
-  Columns3,
-  UserRoundCheck,
-} from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { buttonVariants } from "@/kit/ui/button"
 import {
   Accordion,
@@ -17,12 +11,20 @@ import type {
   PublicLinkComponent,
 } from "@/components/public-link"
 import content from "@/demo/data/public-home.json"
+import type { ProjectColor } from "@/demo/model"
+import { projectColorStyle } from "@/components/project-color"
 import { Newsletter } from "./newsletter"
 
-const features: { icon: typeof Columns3; destination: PublicDestination }[] = [
-  { icon: ChartNoAxesCombined, destination: "demo" },
-  { icon: Columns3, destination: "board" },
-  { icon: UserRoundCheck, destination: "projects" },
+// Each feature shows a close-up of the real screen it describes, on a tile
+// tinted with a project colour.
+const features: {
+  shot: "overview" | "board" | "project"
+  color: ProjectColor
+  destination: PublicDestination
+}[] = [
+  { shot: "overview", color: "violet", destination: "demo" },
+  { shot: "board", color: "amber", destination: "board" },
+  { shot: "project", color: "teal", destination: "projects" },
 ]
 
 export function HomePage({
@@ -99,11 +101,18 @@ export function HomePage({
         </div>
         <div className="public-feature-grid">
           {content.features.map((feature, index) => {
-            const { icon: Icon, destination } = features[index]
+            const { shot, color, destination } = features[index]
 
             return (
               <article key={feature.title}>
-                <Icon aria-hidden="true" className="public-feature-icon" />
+                <span
+                  className="public-feature-shot"
+                  data-shot={shot}
+                  style={projectColorStyle(color)}
+                  aria-hidden="true"
+                >
+                  <span />
+                </span>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
                 <LinkComponent destination={destination}>

@@ -1,0 +1,137 @@
+/* Home below the hero: one three-column grid shared by the features and the
+   questions, feature tiles showing the real screens, and a closing panel. */
+.public-features,
+.public-questions {
+  --home-gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.public-feature-grid {
+  column-gap: var(--home-gap);
+  row-gap: 3rem;
+}
+.public-questions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--home-gap);
+}
+.public-questions > [data-slot="accordion"] {
+  grid-column: 2 / -1;
+}
+
+/* A tinted tile with a close-up of the screen, framed like a window. */
+.public-feature-shot {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(
+      90% 80% at 100% 0%,
+      color-mix(in oklch, var(--project-color) 28%, transparent),
+      transparent 70%
+    ),
+    color-mix(in oklch, var(--project-color) 12%, var(--card));
+}
+.public-feature-shot > span {
+  position: absolute;
+  inset: 14% 0 0 12%;
+  border-top-left-radius: var(--radius-lg);
+  background-color: var(--card);
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--foreground) 10%, transparent),
+    0 18px 40px -18px oklch(0.2 0.05 268 / 35%);
+  transition: translate var(--motion-slow, 400ms) var(--ease-standard);
+}
+.public-feature-grid article:hover .public-feature-shot > span {
+  translate: -4px -4px;
+}
+.public-feature-shot[data-shot="overview"] > span {
+  background-image: url("/images/tandem-overview.png");
+  background-size: 175%;
+  background-position: 30% 58%;
+}
+.public-feature-shot[data-shot="board"] > span {
+  background-image: url("/images/tandem-board.png");
+  background-size: 190%;
+  background-position: 45% 49%;
+}
+.public-feature-shot[data-shot="project"] > span {
+  background-image: url("/images/tandem-project.png");
+  background-size: 200%;
+  background-position: 41% 36%;
+}
+.public-feature-grid h3 {
+  margin-top: 0;
+}
+
+/* Closing panel on the Tandem field; tokens are reassigned inside it so the
+   form controls, text and button follow. */
+.public-newsletter {
+  --foreground: oklch(0.99 0 0);
+  --muted-foreground: oklch(0.99 0 0 / 75%);
+  --input: oklch(0.99 0 0 / 35%);
+  --primary: var(--tandem-lime);
+  --primary-foreground: var(--tandem-lime-foreground);
+  --ring: var(--tandem-lime);
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  /* Match the content width (the container minus its gutters), like the
+     hero stage, so every section shares the same outer edges. */
+  width: calc(min(100%, 78rem) - 2 * clamp(1rem, 3vw, 2rem));
+  margin-bottom: var(--public-section-space);
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 0;
+  border-radius: calc(var(--radius-xl) * 2);
+  background:
+    radial-gradient(
+      70% 120% at 100% 0%,
+      oklch(0.62 0.24 300 / 55%),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 100% at 0% 100%,
+      var(--tandem-field-deep),
+      transparent 70%
+    ),
+    var(--tandem-field);
+  color: var(--foreground);
+}
+.public-newsletter > div:first-child {
+  grid-column: span 2;
+}
+.public-newsletter h2 {
+  font-family: var(--tandem-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+.public-newsletter-form {
+  max-width: none;
+  justify-self: stretch;
+}
+.public-newsletter [data-slot="input"] {
+  background: oklch(0.99 0 0 / 12%);
+  color: var(--foreground);
+}
+.public-newsletter [data-slot="input"]::placeholder {
+  color: var(--muted-foreground);
+}
+
+@media (width < 48rem) {
+  .public-questions,
+  .public-newsletter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .public-questions > [data-slot="accordion"],
+  .public-newsletter > div:first-child {
+    grid-column: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-feature-shot > span {
+    transition: none;
+  }
+}
