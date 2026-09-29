@@ -1,4 +1,4 @@
-import { useId, useMemo, useState, type ReactNode } from "react"
+import { useMemo, useState, type ReactNode } from "react"
 import { Bar, BarChart, CartesianGrid, Cell, YAxis } from "recharts"
 import { CompletionDateAxis } from "./completion-date-axis"
 import {
@@ -24,26 +24,29 @@ import {
   TableRow,
 } from "@/kit/ui/table"
 import { completionSeries } from "@/demo/selectors"
-import { formatDate, type Activity, type Period } from "@/demo/model"
+import { formatDate, type Activity } from "@/demo/model"
+import type { ReportWindow } from "@/demo/report-period"
 
 interface CompletionChartProps {
   activity: Activity[]
-  referenceDate: string
-  period: Period
+  /** The dates shown; the host's period control owns how they are chosen. */
+  range: ReportWindow
+  /** Drawn at full strength when the range includes it. */
+  snapshotDate: string
   periodControl: ReactNode
 }
 
 export function CompletionChart({
   activity,
-  referenceDate,
-  period,
+  range,
+  snapshotDate,
   periodControl,
 }: CompletionChartProps) {
   const [showData, setShowData] = useState(false)
 
   const series = useMemo(
-    () => completionSeries(activity, referenceDate, period),
-    [activity, referenceDate, period],
+    () => completionSeries(activity, range),
+    [activity, range],
   )
 
   const dates = useMemo(() => series.map((day) => day.date), [series])
@@ -57,8 +60,8 @@ export function CompletionChart({
     labelWidth,
   } = useChartTypography(labels)
 
-  const periodDescriptionId = useId()
   const total = series.reduce((sum, day) => sum + day.completed, 0)
+  const showsSnapshot = series.some((day) => day.date === snapshotDate)
 
   return (
     <Card className="completion-card">
@@ -69,16 +72,7 @@ export function CompletionChart({
             <span>tasks completed</span>
           </h2>
         </CardTitle>
-        <div className="chart-period">
-          <p id={periodDescriptionId} className="chart-date">
-            <time dateTime={series[0].date}>{formatDate(series[0].date)}</time>
-            {" – "}
-            <time dateTime={referenceDate}>
-              {formatDate(referenceDate, { year: "numeric" })}
-            </time>
-          </p>
-          {periodControl}
-        </div>
+        <div className="chart-period">{periodControl}</div>
       </CardHeader>
       <CardContent ref={chartBody} className="chart-body text-xs">
         {showData ? (
@@ -116,7 +110,7 @@ export function CompletionChart({
             config={{
               completed: { label: "Completed tasks", color: "var(--brand)" },
             }}
-            aria-label={`${total} tasks completed over the last ${period} days. Use Show data for daily values.`}
+            aria-label={`${total} tasks completed from ${formatDate(range.start)} to ${formatDate(range.end, { year: "numeric" })}. Use Show data for daily values.`}
           >
             <BarChart
               accessibilityLayer
@@ -155,11 +149,14 @@ export function CompletionChart({
                 maxBarSize={24}
                 isAnimationActive={false}
               >
-                {/* Earlier days recede so the snapshot day reads first. */}
-                {series.map((day, index) => (
+                {/* Earlier days recede so the snapshot day reads first; a
+                    range without it keeps every day at full strength. */}
+                {series.map((day) => (
                   <Cell
                     key={day.date}
-                    fillOpacity={index === series.length - 1 ? 1 : 0.5}
+                    fillOpacity={
+                      !showsSnapshot || day.date === snapshotDate ? 1 : 0.5
+                    }
                   />
                 ))}
               </Bar>

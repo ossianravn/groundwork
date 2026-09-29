@@ -1,6 +1,12 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../kit/ui/calendar.tsx",
+    "../kit/ui/date-picker.tsx",
+    "../kit/lib/iso-date.ts",
+    "../kit/ui/date-range-picker.tsx",
+    "../app/report-period-search.ts",
+    "../demo/report-period.ts",
     "../kit/ui/toast.tsx",
     "../kit/ui/use-toast.ts",
     "../app/root-layout.tsx",

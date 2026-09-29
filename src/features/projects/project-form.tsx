@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { ProjectExtraFields } from "./project-extra-fields"
 import { Button } from "@/kit/ui/button"
+import { DatePicker } from "@/kit/ui/date-picker"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/kit/ui/field"
 import { Input } from "@/kit/ui/input"
 import { RichTextEditor } from "@/kit/rich-text/rich-text-editor"
@@ -183,15 +184,16 @@ export function ProjectForm({
           />
         </Field>
         <Field data-invalid={!!errors.dueDate}>
-          <FieldLabel htmlFor="edit-project-dueDate">Due date</FieldLabel>
-          <Input
+          <FieldLabel id="edit-date-label" htmlFor="edit-project-dueDate">
+            Due date
+          </FieldLabel>
+          <DatePicker
             id="edit-project-dueDate"
             name="dueDate"
-            type="date"
-            required
+            labelledBy="edit-date-label"
             value={values.dueDate}
-            onChange={(event) => onChange("dueDate", event.target.value)}
-            aria-invalid={!!errors.dueDate}
+            onValueChange={(value) => onChange("dueDate", value)}
+            invalid={!!errors.dueDate}
             aria-describedby={errors.dueDate ? "edit-date-error" : undefined}
           />
           {errors.dueDate && (

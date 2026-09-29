@@ -2,6 +2,7 @@ import { useRef, useState, type ReactNode } from "react"
 import { Pencil } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/kit/ui/field"
+import { DatePicker } from "@/kit/ui/date-picker"
 import { Input } from "@/kit/ui/input"
 import {
   Select,
@@ -96,6 +97,7 @@ export function ProjectInlineField({
           <FieldGroup>
             <Field data-invalid={!!error}>
               <FieldLabel
+                id={`${id}-label`}
                 htmlFor={id}
                 className={field === "name" ? undefined : "sr-only"}
               >
@@ -126,11 +128,21 @@ export function ProjectInlineField({
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+              ) : field === "dueDate" ? (
+                <DatePicker
+                  id={id}
+                  name={field}
+                  labelledBy={`${id}-label`}
+                  value={editing.values.dueDate}
+                  onValueChange={change}
+                  invalid={!!error}
+                  aria-describedby={error ? `${id}-error` : undefined}
+                />
               ) : (
                 <Input
                   id={id}
                   name={field}
-                  type={field === "dueDate" ? "date" : "text"}
+                  type="text"
                   required
                   autoComplete="off"
                   value={editing.values[field]}

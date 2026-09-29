@@ -30,6 +30,10 @@ import { KbdExample } from "@/features/reference/examples/kbd-example"
 import kbdSource from "@/features/reference/examples/kbd-example?raw"
 import { ToastExample } from "@/features/reference/examples/toast-example"
 import toastSource from "@/features/reference/examples/toast-example?raw"
+import { DatePickerExample } from "@/features/reference/examples/date-picker-example"
+import datePickerSource from "@/features/reference/examples/date-picker-example?raw"
+import { DateRangePickerExample } from "@/features/reference/examples/date-range-picker-example"
+import dateRangePickerSource from "@/features/reference/examples/date-range-picker-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -48,4 +52,10 @@ export const referenceExamples = [
   { id: "progress", Component: ProgressExample, source: progressSource },
   { id: "kbd", Component: KbdExample, source: kbdSource },
   { id: "toast", Component: ToastExample, source: toastSource },
+  { id: "date-picker", Component: DatePickerExample, source: datePickerSource },
+  {
+    id: "date-range-picker",
+    Component: DateRangePickerExample,
+    source: dateRangePickerSource,
+  },
 ]

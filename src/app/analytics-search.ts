@@ -1,7 +1,9 @@
-import type { Period } from "@/demo/model"
+import {
+  parseReportPeriodSearch,
+  type ReportPeriodSearch,
+} from "./report-period-search"
 
-interface AnalyticsSearch {
-  period: Period
+interface AnalyticsSearch extends ReportPeriodSearch {
   project: string
   projectView: "chart" | "data"
 }
@@ -14,17 +16,14 @@ export const defaultAnalyticsSearch: AnalyticsSearch = {
 
 export function parseAnalyticsSearch(raw: {
   period?: unknown
+  from?: unknown
+  to?: unknown
   project?: unknown
   projectView?: unknown
 }): AnalyticsSearch {
   try {
     return {
-      period:
-        raw.period === 7 || raw.period === "7"
-          ? 7
-          : raw.period === 14 || raw.period === "14"
-            ? 14
-            : 30,
+      ...parseReportPeriodSearch(raw, 30),
       project: String(raw.project ?? ""),
       projectView: raw.projectView === "data" ? "data" : "chart",
     }

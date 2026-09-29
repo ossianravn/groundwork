@@ -26,7 +26,7 @@ Tags and links share the existing per-project navigation drafts, Cancel discard,
 
 ## Contextual editing on details
 
-Name, owner and due date have labelled pencil actions alongside their saved values. Activation reveals a bounded Input or Select and explicit Save/Cancel. The other properties remain readable. Blur does not save or discard; native input Enter submits and Escape cancels (after a Select popup handles its own dismissal). The full editor remains the entry point for description, tags and links. Only active workspace members are assignable.
+Name, owner and due date have labelled pencil actions alongside their saved values. Activation reveals a bounded Input, Select or DatePicker and explicit Save/Cancel. The other properties remain readable. Blur does not save or discard; native input Enter submits and Escape cancels (after a Select popup or the date calendar handles its own dismissal). The full editor remains the entry point for description, tags and links. Only active workspace members are assignable.
 
 Inline and full editing share the same per-project draft. Navigation retains it and an Unsaved marker identifies unfinished inline fields. Saving commits only the active field against current saved values, leaving other draft fields untouched, even if those fields are invalid. Cancel/Escape restores only this field. A baseline reconciles untouched fields with newer saved values so returning to the full editor does not undo a completed inline save. Full-form Cancel still discards the entire project draft; reset/reload clears all drafts.
 

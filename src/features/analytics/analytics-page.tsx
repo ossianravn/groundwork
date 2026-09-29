@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
-import type { Activity, Member, Period, Project } from "@/demo/model"
+import type { Activity, Member, Project } from "@/demo/model"
+import { reportWindow, type ReportPeriod } from "@/demo/report-period"
 import { completionBreakdown, type CompletionGroup } from "@/demo/analytics"
 import { CompletionChart } from "@/features/overview/completion-chart"
 import { CompletionPeriod } from "@/features/overview/completion-period"
@@ -39,25 +40,20 @@ export function AnalyticsPage({
   projects: Project[]
   people: Member[]
   referenceDate: string
-  period: Period
+  period: ReportPeriod
   projectId: string
-  onPeriodChange: (period: Period) => void
+  onPeriodChange: (period: ReportPeriod) => void
   onProjectChange: (id: string) => void
   renderProject: (row: CompletionGroup) => ReactNode
   projectView: "chart" | "data"
   onProjectViewChange: (view: "chart" | "data") => void
 }) {
+  const range = reportWindow(referenceDate, period)
+
   const missing =
     !!projectId && !projects.some((project) => project.id === projectId)
 
-  const data = completionBreakdown(
-    activity,
-    projects,
-    people,
-    referenceDate,
-    period,
-    projectId,
-  )
+  const data = completionBreakdown(activity, projects, people, range, projectId)
 
   const options = [
     { value: "", label: "All projects" },
@@ -87,7 +83,11 @@ export function AnalyticsPage({
           </SelectGroup>
         </SelectContent>
       </Select>
-      <CompletionPeriod period={period} onChange={onPeriodChange} />
+      <CompletionPeriod
+        period={period}
+        referenceDate={referenceDate}
+        onChange={onPeriodChange}
+      />
     </div>
   )
 
@@ -119,8 +119,8 @@ export function AnalyticsPage({
         <>
           <CompletionChart
             activity={data.activity}
-            referenceDate={referenceDate}
-            period={period}
+            range={range}
+            snapshotDate={referenceDate}
             periodControl={filters}
           />
           <div className="analytics-breakdowns">

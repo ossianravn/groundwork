@@ -91,12 +91,16 @@
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
-.chart-date {
-  font-size: var(--text-meta);
-  color: var(--muted-foreground);
+/* The range reads as the chart's quiet date line until hovered. */
+.completion-period {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
 }
-.chart-date time {
-  display: inline-block;
+.completion-range {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
 }
 .chart-body {
   flex: 1;

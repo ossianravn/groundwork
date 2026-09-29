@@ -12,7 +12,6 @@ import {
   redirect,
   stripSearchParams,
 } from "@tanstack/react-router"
-import type { Period } from "@/demo/model"
 import { defaultProjectsSearch, parseProjectsSearch } from "./projects-search"
 import { resultsLocationKey } from "./project-return"
 import {
@@ -28,16 +27,12 @@ import {
   defaultAnalyticsSearch,
 } from "./analytics-search"
 import { parseInboxSearch, defaultInboxSearch } from "./inbox-search"
-
-type OverviewSearch = { period: Period }
+import { parseReportPeriodSearch } from "./report-period-search"
 
 const overviewRoute = createRoute({
   getParentRoute: () => workspaceRoute,
   path: "overview",
-  validateSearch: (search): OverviewSearch => ({
-    period:
-      Number(search.period) === 7 ? 7 : Number(search.period) === 30 ? 30 : 14,
-  }),
+  validateSearch: (search) => parseReportPeriodSearch(search, 14),
   component: lazyRouteComponent(
     () => import("./overview-route"),
     "OverviewRoute",

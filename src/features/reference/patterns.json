@@ -282,16 +282,24 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Keep several views aligned to one reporting period.",
-    "implemented": "Analytics uses a shared 7/14/30-day period and project filter in the URL.",
-    "deferred": "Custom ranges and comparison periods remain planned.",
+    "implemented": "Overview and Analytics share a 7/14/30-day period or a custom range (up to 92 days) in the URL, plus a project filter on Analytics. The shown dates open the range calendar; the snapshot day is emphasised only when the range includes it.",
+    "deferred": "Comparison periods remain planned.",
     "examples": [
       {
         "label": "Reporting filters",
         "href": "/app/demo/analytics",
-        "instruction": "Change the period and project; charts and totals update together."
+        "instruction": "Choose Custom range, pick two days, then share the URL; charts and totals update together."
+      },
+      {
+        "label": "Overview period",
+        "href": "/app/demo/overview",
+        "instruction": "Select the dates above the chart."
       }
     ],
     "sources": [
+      "src/features/overview/completion-period.tsx",
+      "src/app/report-period-search.ts",
+      "src/demo/report-period.ts",
       "src/features/analytics/analytics-page.tsx",
       "src/app/analytics-search.ts"
     ]
@@ -1818,10 +1826,25 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Choose a date from a calendar that follows density and theme.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: project due date in the editor and inline editing.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and inline editing.",
+    "deferred": "No typed date entry or time of day.",
+    "examples": [
+      {
+        "label": "Due date",
+        "href": "/app/demo/projects/brand/edit",
+        "instruction": "Open Due date and choose a day."
+      },
+      {
+        "label": "Inline due date",
+        "href": "/app/demo/projects/brand",
+        "instruction": "Select the pencil beside the due date."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/calendar.tsx",
+      "src/kit/ui/date-picker.tsx",
+      "src/kit/lib/iso-date.ts"
+    ]
   },
   {
     "id": "KIT-05",
@@ -1830,10 +1853,16 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Choose a start and end date with presets.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: custom period on Overview and Analytics (DVIZ-05).",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit DateRangePicker: two months, a fresh range on each opening, a latest date and a maximum span, applied on the second click.",
+    "deferred": "No preset list inside the popover; hosts pair it with their own presets.",
+    "examples": [
+      {
+        "label": "Reporting dates",
+        "href": "/app/demo/analytics",
+        "instruction": "Select the dates above the chart and choose two days."
+      }
+    ],
+    "sources": ["src/kit/ui/date-range-picker.tsx"]
   },
   {
     "id": "KIT-06",

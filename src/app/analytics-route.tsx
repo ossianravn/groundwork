@@ -3,6 +3,7 @@ import { AnalyticsPage } from "@/features/analytics/analytics-page"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
 import { ProjectDetailLink } from "./project-detail-link"
+import { reportPeriodOf, reportPeriodSearch } from "./report-period-search"
 
 export function AnalyticsRoute() {
   const { demo } = useDemoWorkspace()
@@ -18,7 +19,7 @@ export function AnalyticsRoute() {
         projects={demo.projects}
         people={demo.workspace.people}
         referenceDate={demo.workspace.referenceDate}
-        period={search.period}
+        period={reportPeriodOf(search)}
         projectId={search.project}
         projectView={search.projectView}
         onProjectViewChange={(projectView) => {
@@ -31,7 +32,7 @@ export function AnalyticsRoute() {
         onPeriodChange={(period) => {
           void navigate({
             to: "/app/demo/analytics",
-            search: { ...search, period },
+            search: { ...search, ...reportPeriodSearch(period, search.period) },
             resetScroll: false,
           })
         }}
