@@ -1,6 +1,8 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../kit/shell/workspace-switcher.tsx",
+    "../app/use-workspace-switcher.tsx",
     "../features/overview/getting-started.tsx",
     "../app/overview-getting-started.tsx",
     "../features/projects/project-import.tsx",

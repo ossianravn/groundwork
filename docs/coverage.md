@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 90 have linked examples and 19 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 91 have linked examples and 18 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -88,7 +88,7 @@ The maintainer asked for a status and an expanded list, then chose all four prop
 ### The original planned entries, now committed
 
 - **SYS-03 Toast Notification System:** save, undo and failure feedback across projects and settings, with an action slot (pairs with EDGE-10).
-- **NAV-03 Workspace / Tenant Switcher:** switch between two sample workspaces from the sidebar identity row, with the current workspace marked.
+- **NAV-03 Workspace / Tenant Switcher:** switch between two sample workspaces from the sidebar identity row, with the current workspace marked. *Delivered 2026-09-29 as a menu over one held workspace: the sample and a workspace created through onboarding; switching back discards the created one after confirmation.*
 - **EDGE-07 Button Loading State Geometry Lock:** Save and Create buttons keep their width while a simulated slow save runs (uses KIT-09 spinner).
 - **EDGE-08 Route Loading Progress Bar:** thin top progress bar during route loads that exceed a short threshold.
 - **NAV-07 Mobile Bottom Tab Navigation:** optional phone shell with a bottom tab bar for Overview, Projects, Inbox and Activity in the reference catalogue.
