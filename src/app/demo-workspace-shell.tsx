@@ -77,9 +77,11 @@ function currentLocation(
       item:
         pathname === "/app/demo/projects/new"
           ? "New project"
-          : pathname.startsWith("/app/demo/projects/")
-            ? projectName(pathname)
-            : undefined,
+          : pathname === "/app/demo/projects/import"
+            ? "Import"
+            : pathname.startsWith("/app/demo/projects/")
+              ? projectName(pathname)
+              : undefined,
     }
 
   const page = {
