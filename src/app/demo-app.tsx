@@ -16,6 +16,7 @@ import { ArrowUpRight } from "lucide-react"
 import { buttonVariants } from "@/kit/ui/button"
 import { ProjectDetailLink, ProjectEditLink } from "./project-detail-link"
 import { useDemoState } from "./demo-state"
+import { useProjectUndo } from "./use-project-undo"
 import { projectReturnTo } from "./project-return"
 import { Notifications } from "./notifications"
 import { WorkspaceHelp } from "@/features/help/workspace-help"
@@ -24,6 +25,7 @@ import { WorkspaceHelpLink } from "./workspace-help-link"
 
 export function DemoApp() {
   const { demo, access, contact, appearance, results, drafts } = useDemoState()
+  const undo = useProjectUndo()
   const navigate = useNavigate()
   const pathname = useLocation({ select: (location) => location.pathname })
   const { inspect } = useSearch({ strict: false })
@@ -160,7 +162,7 @@ export function DemoApp() {
         }
         members={demo.workspace.members}
         onClose={() => openInspection(undefined, true)}
-        onComplete={demo.completeProject}
+        onComplete={undo.completeProject}
         returnFocus={projectReturnFocus}
         detailLink={
           selectedProject && (

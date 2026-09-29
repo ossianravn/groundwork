@@ -218,6 +218,9 @@
   font-weight: 400;
   gap: 0.5rem;
 }
+.search-hint {
+  margin-inline-start: 1rem;
+}
 .mobile-menu-button {
   display: none;
 }

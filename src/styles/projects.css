@@ -104,27 +104,6 @@
   text-align: right;
   color: var(--muted-foreground);
 }
-progress {
-  appearance: none;
-  border: 0;
-  width: 4.5rem;
-  height: 0.3rem;
-  overflow: hidden;
-  border-radius: 1rem;
-  background: var(--muted);
-}
-progress::-webkit-progress-bar {
-  background: var(--muted);
-  border-radius: 1rem;
-}
-progress::-webkit-progress-value {
-  background: var(--project-color, var(--brand));
-  border-radius: 1rem;
-}
-progress::-moz-progress-bar {
-  background: var(--project-color, var(--brand));
-  border-radius: 1rem;
-}
 .owner-cell {
   display: flex;
   align-items: center;
@@ -171,6 +150,8 @@ progress::-moz-progress-bar {
 }
 .projects-card[data-surface="plain"] .project-view-controls {
   order: 2;
+  /* A bulk outcome row below the filters must not pull the view switch down. */
+  align-self: flex-start;
 }
 /* Without a card, the cards and board align with the toolbar edge. */
 .projects-card[data-surface="plain"] .project-grid-content,

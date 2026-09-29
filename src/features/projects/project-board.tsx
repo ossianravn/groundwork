@@ -2,6 +2,7 @@ import { useRef, useState, type ReactNode } from "react"
 import type { DataTable } from "@/kit/data-table/table-features"
 import { ProjectStatus as StatusBadge } from "@/components/project-status"
 import { Button } from "@/kit/ui/button"
+import { useToast } from "@/kit/ui/use-toast"
 import {
   projectStatuses,
   statusLabels,
@@ -42,6 +43,7 @@ export function ProjectBoard({
   } | null>(null)
 
   const notice = useRef<HTMLParagraphElement>(null)
+  const toast = useToast()
   const rows = table.getPrePaginatedRowModel().rows
 
   const projects = table.state.sorting.length
@@ -70,6 +72,23 @@ export function ProjectBoard({
       source?.status === status
         ? { failed: [] }
         : onApply([project.id], { kind: "move", status }, retry)
+
+    // The card's new column shows the result; the toast offers the way back.
+    if ("undo" in result && result.undo) {
+      const undo = result.undo
+
+      const id = toast.add({
+        title: `${project.name} moved to ${statusLabels[status]}`,
+        type: "success",
+        actionProps: {
+          children: "Undo",
+          onClick: () => {
+            undo()
+            toast.close(id)
+          },
+        },
+      })
+    }
 
     if (!result.failed.length && nextOrder) {
       onOrderChange(nextOrder)

@@ -6,6 +6,7 @@ import { ProjectPage } from "@/features/projects/project-page"
 import { useDemoWorkspace } from "./workspace-context"
 import { projectReturnDestination, projectReturnLabel } from "./project-return"
 import { useRouteFocus } from "./use-route-focus"
+import { useProjectUndo } from "./use-project-undo"
 
 import { ProjectUnavailable } from "@/features/projects/project-unavailable"
 import { ProjectEditLink } from "./project-detail-link"
@@ -17,6 +18,7 @@ export function ProjectDetailRoute() {
   const { projectId } = route.useParams()
   const { returnTo, scenario } = route.useSearch()
   const { demo, drafts } = useDemoWorkspace()
+  const undo = useProjectUndo()
   const project = demo.projects.find((item) => item.id === projectId)
   const destination = projectReturnDestination(returnTo)
   useRouteFocus()
@@ -60,7 +62,7 @@ export function ProjectDetailRoute() {
           members={demo.workspace.people}
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
-          onComplete={demo.completeProject}
+          onComplete={undo.completeProject}
           returnLink={returnLink}
         />
       ) : (

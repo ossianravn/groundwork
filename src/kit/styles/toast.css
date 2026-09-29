@@ -1,0 +1,172 @@
+/* Toast stack for kit/ui/toast.tsx, adapted from Base UI's stacking recipe:
+   toasts peek behind the newest and expand on hover or focus. */
+.toast-viewport {
+  position: fixed;
+  z-index: 60;
+  right: 1rem;
+  bottom: 1rem;
+  width: calc(100vw - 2rem);
+  outline: none;
+}
+@media (width >= 40rem) {
+  .toast-viewport {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 24rem;
+  }
+}
+.toast {
+  --gap: 0.625rem;
+  --peek: 0.625rem;
+  --scale: calc(max(0, 1 - (var(--toast-index) * 0.08)));
+  --shrink: calc(1 - var(--scale));
+  --height: var(--toast-frontmost-height, var(--toast-height));
+  --offset-y: calc(
+    var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) +
+      var(--toast-swipe-movement-y)
+  );
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: calc(1000 - var(--toast-index));
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--height);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: var(--shadow-md, 0 12px 32px -12px oklch(0.2 0.02 270 / 25%));
+  transform-origin: bottom center;
+  transform: translateX(var(--toast-swipe-movement-x))
+    translateY(
+      calc(
+        var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) -
+          (var(--shrink) * var(--height))
+      )
+    )
+    scale(var(--scale));
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s,
+    height 0.15s;
+  user-select: none;
+}
+.toast::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: calc(var(--gap) + 1px);
+}
+.toast[data-expanded] {
+  height: var(--toast-height);
+  transform: translateX(var(--toast-swipe-movement-x))
+    translateY(var(--offset-y));
+}
+.toast[data-starting-style],
+.toast[data-ending-style] {
+  transform: translateY(150%);
+}
+.toast[data-limited],
+.toast[data-ending-style] {
+  opacity: 0;
+}
+.toast[data-ending-style][data-swipe-direction="right"] {
+  transform: translateX(calc(var(--toast-swipe-movement-x) + 150%))
+    translateY(var(--offset-y));
+}
+.toast[data-ending-style][data-swipe-direction="down"] {
+  transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+}
+.toast:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--item-padding);
+  padding: var(--item-padding) var(--item-padding) var(--item-padding)
+    var(--content-gap);
+  overflow: hidden;
+  transition: opacity 0.25s;
+}
+.toast-content[data-behind] {
+  opacity: 0;
+}
+.toast-content[data-expanded] {
+  opacity: 1;
+}
+.toast-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.toast[data-type="success"] .toast-icon {
+  color: var(--success);
+}
+.toast[data-type="error"] .toast-icon {
+  color: var(--destructive);
+}
+.toast-text {
+  display: grid;
+  flex: 1;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.toast-title {
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+.toast-description {
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.toast-action {
+  flex-shrink: 0;
+  min-height: var(--control-height-sm);
+  padding-inline: 0.625rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  font-size: var(--text-meta);
+  font-weight: 500;
+}
+.toast-action:hover {
+  background: var(--muted);
+}
+.toast-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: var(--control-height-sm);
+  height: var(--control-height-sm);
+  border-radius: var(--radius-md);
+  color: var(--muted-foreground);
+}
+.toast-close:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.toast-close svg {
+  width: 1rem;
+  height: 1rem;
+}
+.toast-action:focus-visible,
+.toast-close:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast-content {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .toast {
+    border-color: CanvasText;
+  }
+}

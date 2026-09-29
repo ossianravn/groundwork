@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 72 have linked examples and 37 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 80 have linked examples and 29 remain planned (see [Expansion — 2026-09-29](#expansion--2026-09-29) and [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -83,7 +83,7 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 
 ## Expansion — 2026-09-29
 
-The maintainer asked for a status and an expanded list, then chose all four proposed groups. The catalogue now holds 109 IDs: 72 with linked examples and 37 planned. Variants built on 2026-09-28/29 update their existing entries rather than adding IDs: MKT-02 (hero product stage), MKT-04 (screen-tile features), MKT-10 (closing newsletter panel) and DVIZ-01 (metric strip).
+The maintainer asked for a status and an expanded list, then chose all four proposed groups. At expansion the catalogue held 109 IDs: 72 with linked examples and 37 planned. Variants built on 2026-09-28/29 update their existing entries rather than adding IDs: MKT-02 (hero product stage), MKT-04 (screen-tile features), MKT-10 (closing newsletter panel) and DVIZ-01 (metric strip).
 
 ### The original planned entries, now committed
 
@@ -113,15 +113,15 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
-| KIT-01 | Switch | [Design system](design-system.md) | notification preferences and workspace settings. | Planned |
+| KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
-| KIT-03 | Progress | [Design system](design-system.md) | replaces the native progress bars in projects and the inspector. | Planned |
+| KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
 | KIT-04 | Calendar and date picker | [Design system](design-system.md) | project due date in the editor and inline editing. | Planned |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | custom period on Overview and Analytics (DVIZ-05). | Planned |
 | KIT-06 | Hover card | [Design system](design-system.md) | member avatars in activity and the projects table. | Planned |
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and table rows. | Planned |
-| KIT-08 | Keyboard key | [Design system](design-system.md) | shortcut overlay (SYS-05) and command search hints. | Planned |
-| KIT-09 | Spinner | [Design system](design-system.md) | button loading geometry (EDGE-07). | Planned |
+| KIT-08 | Keyboard key | [Design system](design-system.md) | search hint and shortcut list in /app/demo | Example |
+| KIT-09 | Spinner | [Design system](design-system.md) | /reference/components/button | Example |
 | KIT-10 | Scroll area | [Design system](design-system.md) | inbox list and activity preview. | Planned |
 | KIT-11 | Carousel | [Design system](design-system.md) | customer stories on the public site. | Planned |
 | KIT-12 | Drawer | [Design system](design-system.md) | phone filters on Projects and Activity. | Planned |
@@ -139,7 +139,7 @@ Workflows that make the sample workspace feel real; they reuse the kit component
 | SETT-16 | CSV import with column mapping | [Projects data view](pages/app/projects.md) | import projects from a sample CSV: upload, map, validate, preview, import. | Planned |
 | TABL-15 | Saved views | [Projects data view](pages/app/projects.md) | saved project views next to the query builder (TABL-11), shareable by URL. | Planned |
 | AUTH-09 | Getting-started checklist | [Workspace onboarding](pages/auth/onboarding.md) | dismissible checklist on Overview after onboarding, ticking off as steps happen. | Planned |
-| EDGE-10 | Undo after destructive actions | [Shared shells](shells.md) | undo toast after removing a tag, link or bulk status change (uses SYS-03). | Planned |
+| EDGE-10 | Undo after destructive actions | [Shared shells](shells.md) | /app/demo/projects (bulk and board); Mark complete | Example |
 | SYS-10 | Search results page | [Shared shells](shells.md) | Enter in command search opens grouped results with filters. | Planned |
 
 ### Public showcase
@@ -156,6 +156,15 @@ New public pages and sections in the Tandem brand layer. Company, customer and i
 | MKT-23 | Stats band | [Public home](pages/public/home.md) | Home band with display-face figures from the sample workspace. | Planned |
 | MKT-24 | How it works | [Product overview](pages/public/product.md) | Product page steps linked to the demo. | Planned |
 | MKT-25 | Announcement bar | [Shared shells](shells.md) | public shell bar linking the latest changelog entry. | Planned |
+
+## Foundations delivery — 2026-09-29
+
+Build-order step 1 turned eight planned entries into examples: SYS-03, EDGE-07, EDGE-08, EDGE-10, KIT-01, KIT-03, KIT-08 and KIT-09.
+
+- **SYS-03, EDGE-10:** the kit's ToastProvider mounts once at the root. Mark complete and board moves confirm in a toast with Undo; table bulk changes offer Undo inline beside the existing outcome, where retry already lives. Undo restores the earlier project values and removes the change's activity; a project edited again since keeps that edit. Tag and link removal are unchanged.
+- **EDGE-07, KIT-09:** `Button` takes `loading`, keeping the label's width under a spinner and staying focusable. The project form accepts an asynchronous save, locks its fields and reports Saving…. Product saves remain immediate; the delay exists only in the Slow save gallery scenario and the Button reference example. This supersedes the 2026-09-26 EDGE-07 deferral below.
+- **EDGE-08:** a 2px brand bar appears when a route's code or data takes longer than 150 ms, then completes and fades. Most demo navigations finish sooner, so it is usually invisible.
+- **KIT-01, KIT-03, KIT-08:** notification preferences use Switch; every native project `<progress>` is now the kit Progress in the project's hue; the shortcut list and the top-bar search hint use Kbd with the platform's modifier.
 
 ## Inventory development
 

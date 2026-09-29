@@ -1,6 +1,7 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { Spinner } from "@/kit/ui/spinner"
 
 const buttonClasses = cva(
   "ui-button group/button inline-flex min-h-(--control-height) shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding py-(--control-padding-block) text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -43,15 +44,42 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  loading = false,
+  loadingLabel = "Working",
+  disabled,
+  focusableWhenDisabled,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonClasses>) {
+}: ButtonPrimitive.Props &
+  VariantProps<typeof buttonClasses> & {
+    /** Keeps the button's width while a result is pending; see EDGE-07. */
+    loading?: boolean
+    loadingLabel?: string
+  }) {
   return (
     <ButtonPrimitive
       data-slot="button"
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      data-loading={loading || undefined}
+      aria-busy={loading || undefined}
+      disabled={disabled || loading}
+      focusableWhenDisabled={focusableWhenDisabled || loading}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        loading && "relative opacity-100!",
+      )}
       {...props}
-    />
+    >
+      {loading ? (
+        <>
+          {/* The label keeps its space so the button cannot change width. */}
+          <span className="invisible contents">{children}</span>
+          <Spinner label={loadingLabel} className="absolute inset-0 m-auto" />
+        </>
+      ) : (
+        children
+      )}
+    </ButtonPrimitive>
   )
 }
 

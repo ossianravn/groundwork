@@ -1,5 +1,5 @@
+import { ProjectProgressBar } from "@/components/project-progress-bar"
 import { Columns3, LayoutGrid, Table2 } from "lucide-react"
-import { projectColorStyle } from "@/components/project-color"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectDueDate } from "@/components/project-due-date"
 import { ProjectMark } from "@/components/project-identity"
@@ -99,11 +99,10 @@ function OwnershipExample() {
           <span>
             {Math.round((project.completedTasks / project.tasks) * 100)}%
           </span>
-          <progress
-            style={projectColorStyle(project.color)}
-            value={project.completedTasks}
-            max={project.tasks}
-            aria-label="Brand refresh completed tasks"
+          <ProjectProgressBar
+            color={project.color}
+            value={Math.round((project.completedTasks / project.tasks) * 100)}
+            label="Brand refresh completed tasks"
           />
         </div>
       </div>

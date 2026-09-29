@@ -87,6 +87,11 @@
           "target": "~/src/kit/styles/rich-text.css"
         },
         {
+          "path": "src/kit/styles/route-progress.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/route-progress.css"
+        },
+        {
           "path": "src/kit/styles/shell.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/shell.css"
@@ -100,6 +105,11 @@
           "path": "src/kit/styles/theme.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/theme.css"
+        },
+        {
+          "path": "src/kit/styles/toast.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/toast.css"
         },
         {
           "path": "src/kit/theme/accents.ts",
@@ -277,7 +287,8 @@
         "cn@^0.4.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/spinner"
       ],
       "files": [
         {
@@ -586,6 +597,25 @@
       ]
     },
     {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Kbd primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/kbd.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/kbd.tsx"
+        }
+      ]
+    },
+    {
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
@@ -662,6 +692,26 @@
           "path": "src/kit/ui/popover.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Progress primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/progress.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/progress.tsx"
         }
       ]
     },
@@ -793,6 +843,46 @@
       ]
     },
     {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Spinner primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/spinner.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Switch primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/switch.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/switch.tsx"
+        }
+      ]
+    },
+    {
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
@@ -869,6 +959,26 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Toast primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/toast.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/toast.tsx"
+        }
+      ]
+    },
+    {
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
@@ -933,6 +1043,25 @@
           "path": "src/kit/ui/tooltip.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "use-toast",
+      "type": "registry:ui",
+      "title": "Use Toast",
+      "description": "Use Toast primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/use-toast.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/use-toast.ts"
         }
       ]
     },
@@ -1079,6 +1208,7 @@
         "ossianravn/groundwork/base",
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/dropdown-menu",
+        "ossianravn/groundwork/kbd",
         "ossianravn/groundwork/member-avatar",
         "ossianravn/groundwork/sheet",
         "ossianravn/groundwork/tooltip"
@@ -1118,6 +1248,11 @@
           "path": "src/kit/shell/public-layout.tsx",
           "type": "registry:file",
           "target": "~/src/kit/shell/public-layout.tsx"
+        },
+        {
+          "path": "src/kit/shell/route-progress.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/route-progress.tsx"
         },
         {
           "path": "src/kit/shell/shell-link.ts",
@@ -1206,23 +1341,29 @@
         "ossianravn/groundwork/input",
         "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/input-otp",
+        "ossianravn/groundwork/kbd",
         "ossianravn/groundwork/label",
         "ossianravn/groundwork/message",
         "ossianravn/groundwork/message-scroller",
         "ossianravn/groundwork/popover",
+        "ossianravn/groundwork/progress",
         "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/resizable",
         "ossianravn/groundwork/select",
         "ossianravn/groundwork/separator",
         "ossianravn/groundwork/sheet",
         "ossianravn/groundwork/skeleton",
+        "ossianravn/groundwork/spinner",
+        "ossianravn/groundwork/switch",
         "ossianravn/groundwork/table",
         "ossianravn/groundwork/tabs",
         "ossianravn/groundwork/text-hint",
         "ossianravn/groundwork/textarea",
+        "ossianravn/groundwork/toast",
         "ossianravn/groundwork/toggle",
         "ossianravn/groundwork/toggle-group",
         "ossianravn/groundwork/tooltip",
+        "ossianravn/groundwork/use-toast",
         "ossianravn/groundwork/data-table",
         "ossianravn/groundwork/member-avatar",
         "ossianravn/groundwork/panel-header",

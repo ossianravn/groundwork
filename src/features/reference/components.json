@@ -25,11 +25,12 @@
     "purpose": "Give the primary action clear emphasis and keep secondary actions quieter.",
     "notes": [
       "Use a button for an action and a link for navigation.",
-      "Label icon-only actions. Disabled controls cannot receive normal keyboard focus."
+      "Label icon-only actions. Disabled controls cannot receive normal keyboard focus.",
+      "While a result is pending, loading keeps the label's width and shows a spinner, so neighbouring controls stay put."
     ],
     "context": "Projects",
     "href": "/app/demo/projects",
-    "patterns": ["TABL-04", "SETT-13"]
+    "patterns": ["TABL-04", "SETT-13", "EDGE-07", "KIT-09"]
   },
   {
     "id": "input",
@@ -160,5 +161,65 @@
     "context": "Overview metrics",
     "href": "/app/demo/overview",
     "patterns": ["SYS-07"]
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "category": "Forms",
+    "purpose": "Turn a setting on or off where the change applies to a saved preference.",
+    "notes": [
+      "Use a switch for an on/off setting and a checkbox for picking items or agreeing to terms.",
+      "Pair each switch with a visible label; the whole row can carry a short description."
+    ],
+    "context": "Notification settings",
+    "href": "/app/demo/settings/notifications",
+    "patterns": ["KIT-01", "SYS-04"],
+    "implementation": "src/kit/ui/switch.tsx"
+  },
+  {
+    "id": "progress",
+    "name": "Progress",
+    "category": "Feedback",
+    "purpose": "Show how far a measurable piece of work has come.",
+    "notes": [
+      "Name what is measured and show the value as text; the bar alone is decoration.",
+      "Set --progress-color to tie a bar to its record, such as a project's colour."
+    ],
+    "context": "Project progress",
+    "href": "/app/demo/projects",
+    "patterns": ["KIT-03"],
+    "implementation": "src/kit/ui/progress.tsx"
+  },
+  {
+    "id": "kbd",
+    "name": "Keyboard key",
+    "category": "Navigation",
+    "purpose": "Show the keys for a shortcut next to the action it performs.",
+    "notes": [
+      "Group the keys of one shortcut; show the platform's modifier where it differs.",
+      "A hint supplements the action's name and aria-keyshortcuts; it never replaces them."
+    ],
+    "context": "Keyboard shortcuts",
+    "href": "/app/demo",
+    "patterns": ["KIT-08"],
+    "implementation": "src/kit/ui/kbd.tsx"
+  },
+  {
+    "id": "toast",
+    "name": "Toast",
+    "category": "Feedback",
+    "purpose": "Confirm a completed action briefly and offer to undo it.",
+    "notes": [
+      "Use a toast when the result is not visible where the person acted, or to offer Undo. Keep errors that block progress inline.",
+      "Toasts stack in the corner, pause while hovered or focused, and F6 moves focus into them."
+    ],
+    "context": "Mark complete",
+    "href": "/app/demo/projects/brand",
+    "patterns": ["SYS-03", "EDGE-10"],
+    "documentation": {
+      "href": "https://base-ui.com/react/components/toast",
+      "label": "Base UI documentation"
+    },
+    "implementation": "src/kit/ui/toast.tsx"
   }
 ]

@@ -1,3 +1,4 @@
+import { Kbd, KbdGroup } from "@/kit/ui/kbd"
 import type { ComponentProps, ComponentType } from "react"
 import { ArrowLeft, ArrowUpRight, BookOpen, Keyboard, Mail } from "lucide-react"
 import { Button } from "@/kit/ui/button"
@@ -94,7 +95,7 @@ export function WorkspaceHelp({
                 onClick={() => onViewChange("shortcuts")}
               >
                 <Keyboard data-icon="inline-start" aria-hidden="true" />
-                Keyboard shortcuts<kbd>?</kbd>
+                Keyboard shortcuts<Kbd>?</Kbd>
               </Button>
               <LinkComponent
                 page="contact"
@@ -113,20 +114,22 @@ export function WorkspaceHelp({
               <div>
                 <dt>Find a project</dt>
                 <dd>
-                  <kbd>Ctrl / ⌘</kbd>
-                  <kbd>K</kbd>
+                  <KbdGroup>
+                    <Kbd>Ctrl / ⌘</Kbd>
+                    <Kbd>K</Kbd>
+                  </KbdGroup>
                 </dd>
               </div>
               <div>
                 <dt>Keyboard shortcuts</dt>
                 <dd>
-                  <kbd>?</kbd>
+                  <Kbd>?</Kbd>
                 </dd>
               </div>
               <div>
                 <dt>Close an overlay</dt>
                 <dd>
-                  <kbd>Esc</kbd>
+                  <Kbd>Esc</Kbd>
                 </dd>
               </div>
             </dl>

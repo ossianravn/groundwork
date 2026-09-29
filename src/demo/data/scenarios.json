@@ -105,6 +105,13 @@
       "boundary": "Starts with the named save-failure fixture. Retry save uses the normal shared project mutation and validation; no network request is made.",
       "source": "src/features/projects/project-form.tsx"
     },
+    "slow-save": {
+      "label": "Slow save",
+      "group": "Editing",
+      "description": "A save that takes a moment keeps its button steady and the draft locked until it finishes.",
+      "boundary": "The gallery holds the save for 1.5 seconds before the normal shared project mutation runs; no network request is made. Product saves stay immediate.",
+      "source": "src/kit/ui/button.tsx"
+    },
     "destructive-action": {
       "label": "Destructive action",
       "group": "Editing",

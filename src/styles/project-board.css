@@ -126,9 +126,6 @@
   flex-wrap: wrap;
   gap: var(--control-gap);
 }
-.project-board-progress progress {
-  width: 100%;
-}
 .project-board-card footer {
   font-size: var(--text-meta);
 }

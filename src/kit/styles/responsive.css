@@ -68,7 +68,8 @@
   .breadcrumb svg {
     display: none;
   }
-  .search-trigger span {
+  .search-trigger span,
+  .search-hint {
     display: none;
   }
   .page-meta {
@@ -141,7 +142,7 @@
     outline: 2px solid Highlight;
     outline-offset: -2px;
   }
-  progress {
+  [data-slot="progress-track"] {
     border: 1px solid CanvasText;
   }
 }

@@ -1,5 +1,5 @@
+import { ProjectProgressBar } from "@/components/project-progress-bar"
 import type { ReactNode } from "react"
-import { projectColorStyle } from "@/components/project-color"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { GripVertical, Ellipsis } from "lucide-react"
@@ -41,11 +41,10 @@ function BoardCardContent({
           </span>
           <span>{percent}%</span>
         </div>
-        <progress
-          style={projectColorStyle(project.color)}
+        <ProjectProgressBar
+          color={project.color}
           value={percent}
-          max={100}
-          aria-label={`${project.name}: ${percent}% complete`}
+          label={`${project.name}: ${percent}% complete`}
         />
       </div>
       <footer>
