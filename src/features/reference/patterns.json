@@ -2088,10 +2088,20 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Save and reopen a named combination of filters, sort and view.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: saved project views next to the query builder (TABL-11), shareable by URL.",
-    "examples": [],
-    "sources": []
+    "implemented": "A Views menu beside the view switch lists three team views and your own. The button names the view that matches the current filters, sort and layout; Save current view asks for a unique name, Copy link copies the URL that reproduces it, and your own views can be deleted.",
+    "deferred": "Saved views last for the session; no sharing to teammates, pinning or per-view columns.",
+    "examples": [
+      {
+        "label": "Saved views",
+        "href": "/app/demo/projects",
+        "instruction": "Open Views, choose My open work, then save a view of your own."
+      }
+    ],
+    "sources": [
+      "src/features/projects/saved-views-menu.tsx",
+      "src/app/project-saved-views.tsx",
+      "src/app/saved-views.ts"
+    ]
   },
   {
     "id": "AUTH-09",

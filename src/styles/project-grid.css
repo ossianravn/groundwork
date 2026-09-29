@@ -84,6 +84,13 @@
 .project-grid-due {
   color: var(--muted-foreground);
 }
+/* With four views and saved views, labels give way before the row wraps;
+   each option keeps its accessible name and a title. */
+@container project-views (max-width: 80rem) {
+  .project-view-label {
+    display: none;
+  }
+}
 @container project-views (max-width: 26rem) {
   .project-view-toggle {
     display: none;

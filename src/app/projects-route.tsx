@@ -11,6 +11,7 @@ import { useDemoWorkspace } from "./workspace-context"
 import { projectTableSearch, projectTableState } from "./projects-search"
 import { useRouteFocus } from "./use-route-focus"
 import { ProjectDetailLink } from "./project-detail-link"
+import { ProjectSavedViews } from "./project-saved-views"
 import { ProjectBulkActions } from "@/features/projects/project-bulk-actions"
 import { ProjectBoard } from "@/features/projects/project-board"
 import { ProjectTimelineView } from "@/features/projects/project-timeline-view"
@@ -96,6 +97,7 @@ export function ProjectsRoute() {
         surface="plain"
         allowViewSwitch
         allowAdvanced
+        savedViews={<ProjectSavedViews search={search} />}
         renderBoard={(table) => (
           <ProjectBoard
             table={table}
