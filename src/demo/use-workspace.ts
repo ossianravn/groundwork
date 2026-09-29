@@ -1,8 +1,6 @@
-import { nextProjectColor } from "./project-colors"
 import { useState } from "react"
 import type { PlanSelection } from "./billing"
 import { initialProjects } from "./project-fixtures"
-import { textDocument } from "@/kit/rich-text/document"
 import { initialActivity as activityData } from "./activity-fixtures"
 import workspaceData from "./data/workspace.json"
 import { useAccount } from "./use-account"
@@ -18,7 +16,6 @@ import {
   type TeamRole,
   type TeamResult,
 } from "./team"
-import type { NewProject } from "./model"
 import {
   validateProjectValues,
   type ProjectValues,
@@ -95,26 +92,6 @@ export function useWorkspace() {
     }))
 
     return { ok: true }
-  }
-
-  function createProject(input: NewProject) {
-    const result = saveProject(
-      { kind: "create" },
-      {
-        ...input,
-        description: textDocument(input.description.trim()),
-        ownerId: workspace.currentUserId,
-        color: nextProjectColor(state.projects.length),
-        tags: [],
-        links: [],
-      },
-      "normal",
-    )
-
-    if (result.kind !== "saved")
-      throw new Error("Quick-create requires valid project fields")
-
-    return result.projectId
   }
 
   function reset() {
@@ -252,7 +229,6 @@ export function useWorkspace() {
         resetDone: false,
       })
     },
-    createProject,
     completeProject: (id: string) =>
       changeProjects([id], { kind: "complete" }).undo,
     bulkChangeProjects: (

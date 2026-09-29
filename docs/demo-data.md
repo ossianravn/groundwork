@@ -37,7 +37,7 @@ Split a domain file when its size or ownership warrants it. Do not duplicate a p
 
 ## Data access and consistency
 
-Project descriptions use a single Tiptap JSON document in runtime records, editor drafts and newly captured Activity changes. `project-fixtures.ts` converts existing plain-text fixture descriptions; quick-create converts at its mutation boundary. Shared rich-text helpers derive plain previews and render the supported schema. Formatting-only edits are recorded; reload/reset still restores the fixture baseline.
+Project descriptions use a single Tiptap JSON document in runtime records, editor drafts and newly captured Activity changes. `project-fixtures.ts` converts existing plain-text fixture descriptions. Shared rich-text helpers derive plain previews and render the supported schema. Formatting-only edits are recorded; reload/reset still restores the fixture baseline.
 
 One small shared data owner loads the JSON and exposes the feature operations used by the UI. Components receive records and results through that owner; they do not each import and mutate a separate copy of the same dataset. Feature-specific operations can remain cohesive without a generic database framework or an invented HTTP API.
 

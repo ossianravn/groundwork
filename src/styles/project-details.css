@@ -19,17 +19,6 @@
 .project-details dd {
   overflow-wrap: anywhere;
 }
-.project-form-fields {
-  padding-block: var(--control-gap) var(--panel-padding);
-}
-.project-form-fields [data-slot="field-label"] {
-  flex-wrap: wrap;
-}
-@media (max-width: 767px) {
-  .project-form-fields {
-    gap: var(--content-gap);
-  }
-}
 .project-sheet-body {
   display: flex;
   flex-direction: column;

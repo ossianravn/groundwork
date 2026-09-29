@@ -21,7 +21,7 @@ Implemented first-page action outcomes:
 
 | Action | Visible result and continuation |
 | --- | --- |
-| Create project | Invalid submission focuses the first error; correcting a field clears its error. Success opens the new project's details with a creation confirmation, regardless of table filters. Closing returns to New project. Cancelling creates nothing. |
+| Create project | Invalid submission focuses the first error; correcting a field clears its error. New project opens the routed editor; success opens the new project's details with a creation confirmation, regardless of table filters. Cancelling returns to the origin and creates nothing. |
 | Inspect or complete | The sheet shows the selected record. Completion updates its status, task totals and visible footer feedback without closing it. Closing returns to the opener, or the table when filtering removed it. |
 | Global project search | Search results open the selected record; closing details returns to the page's search control. The search dialog and its scrollable results fit short screens. |
 | Filter or clear | Counts and results update together. Clearing no-match results returns focus to Search projects. Per-facet clearing and toolbar reset retain focus when their controls become disabled. |
