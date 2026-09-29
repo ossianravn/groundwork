@@ -25,7 +25,10 @@
   overflow-wrap: anywhere;
 }
 /* A record page keeps a readable width instead of spanning wide screens. */
-.page-content.project-page {
+/* The page keeps the shared frame (and so the same left edge as other
+   pages); only its contents stop at 76rem, leaving spare width on the right. */
+.page-content.project-page > * {
+  width: 100%;
   max-width: 76rem;
 }
 .project-page-grid {
