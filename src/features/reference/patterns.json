@@ -849,10 +849,19 @@
     "category": "Navigation",
     "surface": "Workspace",
     "summary": "Switch between available workspaces while preserving useful context.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: switch between two sample workspaces from the sidebar identity row, with the current workspace marked.",
-    "examples": [],
-    "sources": []
+    "implemented": "The sidebar identity row is a workspace menu (kit WorkspaceSwitcher): the current workspace is marked with its plan, Create a workspace starts sign-up and onboarding, and a workspace created that way lists the Studio North sample to switch back to after a confirmation.",
+    "deferred": "The demo holds one workspace's data at a time, so switching back discards the created workspace; two concurrently kept sample workspaces need a second seeded fixture set.",
+    "examples": [
+      {
+        "label": "Workspace menu",
+        "href": "/app/demo/overview",
+        "instruction": "Open the workspace name at the top of the sidebar."
+      }
+    ],
+    "sources": [
+      "src/kit/shell/workspace-switcher.tsx",
+      "src/app/use-workspace-switcher.tsx"
+    ]
   },
   {
     "id": "NAV-04",

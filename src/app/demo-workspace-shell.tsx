@@ -27,6 +27,7 @@ import { tandemBrand } from "@/components/tandem-brand"
 import type { WorkspaceDestination } from "@/components/workspace-link"
 import { roleLabels } from "@/demo/team"
 import { useDemoState } from "./demo-state"
+import { useWorkspaceSwitcher } from "./use-workspace-switcher"
 import { WorkspaceLink } from "./workspace-link"
 
 const accountItems: AccountMenuItem<WorkspaceDestination>[] = [
@@ -110,6 +111,7 @@ export function DemoWorkspaceShell({
   notifications: ReactNode
 }) {
   const { demo } = useDemoState()
+  const switcher = useWorkspaceSwitcher(onReset)
   const pathname = useLocation({ select: (location) => location.pathname })
 
   const member = demo.workspace.members.find(
@@ -149,84 +151,88 @@ export function DemoWorkspaceShell({
   ]
 
   return (
-    <WorkspaceShell
-      LinkComponent={WorkspaceLink}
-      brand={tandemBrand}
-      home={{ destination: "overview", label: "Tandem overview" }}
-      workspace={{
-        name: demo.workspace.name,
-        detail: demo.workspace.plan,
-        logo: demo.workspace.logo,
-      }}
-      navigationLabel="Workspace"
-      items={[
-        {
-          id: "Overview",
-          destination: "overview",
-          label: "Overview",
-          icon: LayoutDashboard,
-        },
-        {
-          id: "Projects",
-          destination: "projects",
-          label: "Projects",
-          icon: FolderKanban,
-          count: projectCount,
-          accessibleLabel: `Projects (${projectCount})`,
-        },
-        {
-          id: "Inbox",
-          destination: "inbox",
-          label: "Inbox",
-          icon: Inbox,
-          count: unread || undefined,
-          accessibleLabel: `Inbox (${unread} unread)`,
-        },
-        {
-          id: "Analytics",
-          destination: "analytics",
-          label: "Analytics",
-          icon: ChartNoAxesCombined,
-        },
-        {
-          id: "Activity",
-          destination: "activity",
-          label: "Activity",
-          icon: Activity,
-        },
-      ]}
-      currentItem={page}
-      actions={actions}
-      notice={<DemoNotice resetDone={demo.resetDone} onReset={onReset} />}
-      account={{
-        person: member,
-        detail:
-          roleLabels[
-            demo.memberships.find((entry) => entry.memberId === member.id)
-              ?.role ?? "member"
-          ],
-        items: accountItems,
-      }}
-      breadcrumbs={[
-        { label: demo.workspace.name },
-        {
-          label: page,
-          destination: page === "Settings" ? "profile" : "projects",
-        },
-        ...(item ? [{ label: item }] : []),
-      ]}
-      search={{
-        label: "Find a project…",
-        accessibleLabel: "Find a project",
-        keyShortcuts: "Control+k Meta+k",
-        hint: [modifierKey, "K"],
-        onOpen: onSearch,
-      }}
-      topbarActions={notifications}
-      onCustomize={onCustomize}
-    >
-      {children}
-    </WorkspaceShell>
+    <>
+      {switcher.dialog}
+      <WorkspaceShell
+        LinkComponent={WorkspaceLink}
+        brand={tandemBrand}
+        home={{ destination: "overview", label: "Tandem overview" }}
+        workspace={{
+          name: demo.workspace.name,
+          detail: demo.workspace.plan,
+          logo: demo.workspace.logo,
+          switcher: switcher.options,
+        }}
+        navigationLabel="Workspace"
+        items={[
+          {
+            id: "Overview",
+            destination: "overview",
+            label: "Overview",
+            icon: LayoutDashboard,
+          },
+          {
+            id: "Projects",
+            destination: "projects",
+            label: "Projects",
+            icon: FolderKanban,
+            count: projectCount,
+            accessibleLabel: `Projects (${projectCount})`,
+          },
+          {
+            id: "Inbox",
+            destination: "inbox",
+            label: "Inbox",
+            icon: Inbox,
+            count: unread || undefined,
+            accessibleLabel: `Inbox (${unread} unread)`,
+          },
+          {
+            id: "Analytics",
+            destination: "analytics",
+            label: "Analytics",
+            icon: ChartNoAxesCombined,
+          },
+          {
+            id: "Activity",
+            destination: "activity",
+            label: "Activity",
+            icon: Activity,
+          },
+        ]}
+        currentItem={page}
+        actions={actions}
+        notice={<DemoNotice resetDone={demo.resetDone} onReset={onReset} />}
+        account={{
+          person: member,
+          detail:
+            roleLabels[
+              demo.memberships.find((entry) => entry.memberId === member.id)
+                ?.role ?? "member"
+            ],
+          items: accountItems,
+        }}
+        breadcrumbs={[
+          { label: demo.workspace.name },
+          {
+            label: page,
+            destination: page === "Settings" ? "profile" : "projects",
+          },
+          ...(item ? [{ label: item }] : []),
+        ]}
+        search={{
+          label: "Find a project…",
+          accessibleLabel: "Find a project",
+          keyShortcuts: "Control+k Meta+k",
+          hint: [modifierKey, "K"],
+          onOpen: onSearch,
+        }}
+        topbarActions={notifications}
+        onCustomize={onCustomize}
+      >
+        {children}
+      </WorkspaceShell>
+    </>
   )
 }
 

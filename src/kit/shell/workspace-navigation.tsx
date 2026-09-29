@@ -6,6 +6,10 @@ import { BrandMark } from "./brand-mark"
 import { NavigationCollapsedContext } from "./navigation-collapsed"
 import { NavigationHint } from "./navigation-hint"
 import type { ShellBrand, ShellLinkComponent } from "./shell-link"
+import {
+  WorkspaceSwitcher,
+  type WorkspaceSwitcherOptions,
+} from "./workspace-switcher"
 
 export interface WorkspaceNavigationItem<Destination extends string> {
   id: string
@@ -28,6 +32,8 @@ export interface WorkspaceIdentity {
   name: string
   detail: string
   logo?: string
+  /** Turns the identity row into a workspace menu. */
+  switcher?: WorkspaceSwitcherOptions
 }
 
 export interface WorkspaceNavigationProps<Destination extends string> {
@@ -70,6 +76,20 @@ export function WorkspaceNavigation<Destination extends string>({
     .join("")
     .toLocaleUpperCase()
 
+  const identity = (
+    <>
+      <span className="workspace-monogram">
+        {workspace.logo ? <img src={workspace.logo} alt="" /> : initials}
+      </span>
+      <span className="navigation-label workspace-identity-text">
+        <span className="font-medium">{workspace.name}</span>
+        <span className="text-xs text-muted-foreground">
+          {workspace.detail}
+        </span>
+      </span>
+    </>
+  )
+
   return (
     <NavigationCollapsedContext value={collapsed}>
       <div className="workspace-navigation">
@@ -84,15 +104,17 @@ export function WorkspaceNavigation<Destination extends string>({
           </LinkComponent>
           {headerAction}
         </div>
-        <div className="workspace-identity" aria-label={workspace.name}>
-          <span className="workspace-monogram">
-            {workspace.logo ? <img src={workspace.logo} alt="" /> : initials}
-          </span>
-          <div className="navigation-label">
-            <p className="font-medium">{workspace.name}</p>
-            <p className="text-xs text-muted-foreground">{workspace.detail}</p>
+        {workspace.switcher ? (
+          <WorkspaceSwitcher
+            name={workspace.name}
+            identity={identity}
+            options={workspace.switcher}
+          />
+        ) : (
+          <div className="workspace-identity" aria-label={workspace.name}>
+            {identity}
           </div>
-        </div>
+        )}
         <nav aria-label={navigationLabel} className="nav-section">
           <p className="nav-label navigation-label">{navigationLabel}</p>
           {items.map((item) => {

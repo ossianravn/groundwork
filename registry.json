@@ -117,6 +117,11 @@
           "target": "~/src/kit/styles/toast.css"
         },
         {
+          "path": "src/kit/styles/workspace-switcher.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/workspace-switcher.css"
+        },
+        {
           "path": "src/kit/theme/accents.ts",
           "type": "registry:file",
           "target": "~/src/kit/theme/accents.ts"
@@ -1351,6 +1356,11 @@
           "path": "src/kit/shell/workspace-shell.tsx",
           "type": "registry:file",
           "target": "~/src/kit/shell/workspace-shell.tsx"
+        },
+        {
+          "path": "src/kit/shell/workspace-switcher.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/workspace-switcher.tsx"
         }
       ]
     },
