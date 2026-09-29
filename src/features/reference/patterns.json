@@ -2122,10 +2122,19 @@
     "category": "Access",
     "surface": "Workspace",
     "summary": "Guide a new workspace through its first useful steps.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: dismissible checklist on Overview after onboarding, ticking off as steps happen.",
-    "examples": [],
-    "sources": []
+    "implemented": "After a workspace is created through onboarding, Overview opens with a Get started list: create a project, add tasks, invite the team, start a conversation. Each step ticks itself from the workspace records, shows its progress and links to where it happens; Hide removes it for the session.",
+    "deferred": "No per-step dismissal or persistence across reloads.",
+    "examples": [
+      {
+        "label": "Get started",
+        "href": "/auth/sign-up",
+        "instruction": "Create an account and a workspace, skip invitations, then open Overview."
+      }
+    ],
+    "sources": [
+      "src/features/overview/getting-started.tsx",
+      "src/app/overview-getting-started.tsx"
+    ]
   },
   {
     "id": "EDGE-10",

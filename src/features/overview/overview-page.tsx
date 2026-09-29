@@ -31,6 +31,8 @@ export interface OverviewPageProps {
   onSelectProject: (id: string) => void
   projectTableControl?: ProjectTableControl
   activityLink?: ReactNode
+  /** Shown before the metrics, such as a getting-started checklist. */
+  intro?: ReactNode
   activityExpansion?: {
     expanded: boolean
     onChange: (expanded: boolean) => void
@@ -50,6 +52,7 @@ export function OverviewPage({
   projectTableControl,
   activityExpansion,
   activityLink,
+  intro,
 }: OverviewPageProps) {
   return (
     <main id="main-content" className="page-content" tabIndex={-1}>
@@ -71,6 +74,7 @@ export function OverviewPage({
           onClick={onNewProject}
         />
       </PageActions>
+      {intro}
       <Metrics projects={projects} referenceDate={referenceDate} />
       <div className="overview-middle">
         <Suspense
