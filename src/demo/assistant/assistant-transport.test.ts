@@ -1,4 +1,4 @@
-import { expect, it } from "vitest"
+import { beforeEach, expect, it } from "vitest"
 import { readUIMessageStream } from "ai"
 import { initialProjects } from "../project-fixtures"
 import { initialActivity } from "../activity-fixtures"
@@ -6,7 +6,12 @@ import workspace from "../data/workspace.json"
 import { assistantReply, matchIntent } from "./assistant-answers"
 import { textChunks } from "./assistant-chunks"
 import { createScriptedTransport } from "./assistant-transport"
-import type { AssistantMessage, AssistantRequest } from "./assistant-types"
+import type {
+  AssistantMessage,
+  AssistantRequest,
+  CreateTasksInput,
+} from "./assistant-types"
+import { continueChecklist } from "./checklist-answer"
 import { atRiskProjects } from "./risk-answer"
 
 const context = {
@@ -16,19 +21,27 @@ const context = {
   referenceDate: workspace.referenceDate,
 }
 
+const created: CreateTasksInput[] = []
+
+beforeEach(() => {
+  created.length = 0
+})
+
 const prompt = (text: string): AssistantMessage => ({
   id: text,
   role: "user",
   parts: [{ type: "text", text }],
 })
 
-async function send(
-  text: string,
+/** Streams a reply to the messages; an assistant message last continues it. */
+async function run(
+  messages: AssistantMessage[],
   scenario: AssistantRequest["scenario"] = "normal",
   abortSignal?: AbortSignal,
 ) {
   const transport = createScriptedTransport({
     reply: assistantReply,
+    resume: continueChecklist,
     pace: { firstToken: 0, chunk: 0, work: 0 },
   })
 
@@ -36,16 +49,22 @@ async function send(
     trigger: "submit-message",
     chatId: "test",
     messageId: undefined,
-    messages: [prompt(text)],
+    messages,
     abortSignal,
-    body: { scenario, context } satisfies AssistantRequest,
+    body: {
+      scenario,
+      context,
+      actions: { createTasks: (input) => void created.push(input) },
+    } satisfies AssistantRequest,
   })
 
+  const last = messages[messages.length - 1]
   let message: AssistantMessage | undefined
   let error: unknown
 
   try {
     for await (const update of readUIMessageStream<AssistantMessage>({
+      message: last.role === "assistant" ? structuredClone(last) : undefined,
       stream,
       terminateOnError: true,
     }))
@@ -57,12 +76,18 @@ async function send(
   return { message, error, types: message?.parts.map((part) => part.type) }
 }
 
+const send = (
+  text: string,
+  scenario?: AssistantRequest["scenario"],
+  abortSignal?: AbortSignal,
+) => run([prompt(text)], scenario, abortSignal)
+
 it("matches prompts to scripted topics and falls back otherwise", () => {
   expect(matchIntent("Which projects are at risk?")).toBe("risk")
   expect(matchIntent("what CHANGED lately")).toBe("week")
   expect(matchIntent("Show me the API")).toBe("api")
   expect(matchIntent("Tell me a joke")).toBeUndefined()
-  expect(assistantReply("Tell me a joke", context).followUps).toHaveLength(3)
+  expect(assistantReply("Tell me a joke", context).followUps).toHaveLength(4)
 })
 
 it("flags only open projects that meet the stated risk rule", () => {
@@ -176,4 +201,90 @@ it("ends with an AbortError when the request is stopped", async () => {
   const { error } = await send("At risk?", "normal", controller.signal)
 
   expect(error).toMatchObject({ name: "AbortError" })
+})
+
+it("asks which project before planning a checklist", async () => {
+  const { message, types } = await send("Add a launch checklist to a project")
+
+  const question = message?.parts.find(
+    (part) => part.type === "tool-chooseProject",
+  )
+
+  expect(question).toMatchObject({ state: "input-available" })
+  expect(types).not.toContain("data-suggestions")
+  expect(
+    question?.type === "tool-chooseProject" &&
+      question.input?.options?.map((option) => option?.value),
+  ).toEqual(["brand", "website", "mobile", "design-system"])
+})
+
+it("plans from the answer, then waits for approval", async () => {
+  const user = prompt("Add a launch checklist to a project")
+  const { message } = await run([user])
+
+  if (!message) throw new Error("No reply")
+
+  const answered: AssistantMessage = {
+    ...message,
+    parts: message.parts.map((part) =>
+      part.type === "tool-chooseProject" && part.state === "input-available"
+        ? {
+            ...part,
+            state: "output-available",
+            output: { projectId: "mobile" },
+          }
+        : part,
+    ),
+  }
+
+  const { message: after } = await run([user, answered])
+
+  expect(after?.parts.find((part) => part.type === "data-plan")).toMatchObject({
+    data: { title: "Launch checklist for Mobile app", complete: true },
+  })
+  expect(
+    after?.parts.find((part) => part.type === "tool-createTasks"),
+  ).toMatchObject({ state: "approval-requested" })
+  expect(created).toEqual([])
+})
+
+async function decide(approved: boolean) {
+  const user = prompt("Add a launch checklist to Mobile app")
+  const { message } = await run([user])
+
+  if (!message) throw new Error("No reply")
+
+  const decided: AssistantMessage = {
+    ...message,
+    parts: message.parts.map((part) =>
+      part.type === "tool-createTasks" && part.state === "approval-requested"
+        ? {
+            ...part,
+            state: "approval-responded",
+            approval: { id: part.approval.id, approved },
+          }
+        : part,
+    ),
+  }
+
+  return run([user, decided])
+}
+
+it("adds the tasks only once the person approves", async () => {
+  const { message } = await decide(true)
+
+  expect(
+    message?.parts.find((part) => part.type === "tool-createTasks"),
+  ).toMatchObject({ state: "output-available", output: { added: 5 } })
+  expect(created.map((input) => input.projectId)).toEqual(["mobile"])
+  expect(created[0].tasks.filter((task) => task.assigneeId)).toHaveLength(2)
+})
+
+it("records a denial without changing anything", async () => {
+  const { message } = await decide(false)
+
+  expect(
+    message?.parts.find((part) => part.type === "tool-createTasks"),
+  ).toMatchObject({ state: "output-denied" })
+  expect(created).toEqual([])
 })

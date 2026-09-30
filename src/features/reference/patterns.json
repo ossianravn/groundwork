@@ -2551,8 +2551,8 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "Write a message to a model: Enter sends, Shift+Enter adds a line, and the send button becomes Stop while a reply streams.",
-    "implemented": "PromptInput grows with its text up to a limit. Enter sends unless an input method is composing; while the model works, Enter does nothing so a follow-up can be drafted, and the button stops the reply. The button never disables, so focus stays put through every state.",
-    "deferred": "Attachments, a model menu and tool toggles in the footer follow in later steps.",
+    "implemented": "PromptInput grows with its text up to a limit. Enter sends unless an input method is composing. While the model works, the button stops the reply and Enter queues the message (AI-13). The button never disables, so focus stays put through every state.",
+    "deferred": "Attachments and a model menu in the footer follow with conversation management.",
     "examples": [
       {
         "label": "Assistant composer",
@@ -2690,7 +2690,7 @@
     "surface": "Shared",
     "summary": "Show that the assistant called a tool, what it asked for and what came back.",
     "implemented": "The at-risk answer calls searchProjects: parameters stream in, the call runs, and the result shows as a readable project list. The row's badge follows the AI SDK tool states. In ?scenario=tool-error the search fails once, the row opens by itself to show why, and the reply says it could not answer; Regenerate succeeds.",
-    "deferred": "Approval before a tool runs arrives with step 3 (Confirmation).",
+    "deferred": "",
     "examples": [
       {
         "label": "Tool call",
@@ -2773,6 +2773,101 @@
       "src/kit/ai/chain-of-thought.tsx",
       "src/features/assistant/assistant-activity.tsx",
       "src/demo/assistant/week-answer.ts"
+    ]
+  },
+  {
+    "id": "AI-11",
+    "title": "Plan",
+    "originalName": "Plan",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show what the assistant proposes before it acts.",
+    "implemented": "Asking for a launch checklist streams a plan as an AI SDK data part updated by id: five tasks arrive one by one, each with its assignee (the project owner takes the first two).",
+    "deferred": "Plans cannot be edited in place; ask again for a different one.",
+    "examples": [
+      {
+        "label": "Checklist plan",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Add a launch checklist to Mobile app."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/plan.tsx",
+      "src/features/assistant/assistant-decisions.tsx",
+      "src/demo/assistant/checklist-answer.ts"
+    ]
+  },
+  {
+    "id": "AI-12",
+    "title": "Tool approval",
+    "originalName": "Tool approval",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Ask before a tool changes anything, then do exactly what was approved.",
+    "implemented": "The createTasks tool call arrives in the AI SDK's approval-requested state. Add tasks or Don't add answers with addToolApprovalResponse; the chat sends automatically, and the scripted server runs the host's createTasks implementation only when approved. The tasks really appear on the project page (shared demo state, one atomic change); the outcome and an Open project link replace the actions.",
+    "deferred": "No Undo in the assistant; remove tasks from the project's list. A pending approval in an older reply cannot be answered.",
+    "examples": [
+      {
+        "label": "Approve",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Add a launch checklist to Brand refresh, choose Add tasks, then Open Brand refresh."
+      },
+      {
+        "label": "Decline",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask for a checklist again and choose Don't add."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/confirmation.tsx",
+      "src/features/assistant/assistant-decisions.tsx",
+      "src/demo/assistant/assistant-transport.ts",
+      "src/demo/workspace-tasks.ts",
+      "src/app/assistant-route.tsx"
+    ]
+  },
+  {
+    "id": "AI-13",
+    "title": "Message queue",
+    "originalName": "Message queue",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Keep messages written while the assistant is busy or waiting, and send them in turn.",
+    "implemented": "During a reply, Enter queues the message; while a reply waits for an answer or approval, sending queues too. The queue sits above the composer with a remove action per message and says when it will send; each becomes the next prompt once the assistant is ready.",
+    "deferred": "The queue belongs to the page and is lost on navigation.",
+    "examples": [
+      {
+        "label": "Queue",
+        "href": "/app/demo/assistant",
+        "instruction": "While a checklist waits for approval, send What changed this week?, then choose Add tasks."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/queue.tsx",
+      "src/features/assistant/use-message-queue.ts",
+      "src/kit/ai/prompt-input.tsx"
+    ]
+  },
+  {
+    "id": "AI-14",
+    "title": "Clarifying question",
+    "originalName": "Clarifying question",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Let the assistant ask instead of guessing.",
+    "implemented": "A checklist request that names no project calls the client-side chooseProject tool. The page renders it as a question listing the open projects; the answer goes back with addToolOutput and the turn continues to the plan automatically.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Question",
+        "href": "/app/demo/assistant",
+        "instruction": "Choose Add a launch checklist to a project, then pick a project."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/question.tsx",
+      "src/features/assistant/assistant-decisions.tsx",
+      "src/demo/assistant/create-assistant-chat.ts"
     ]
   }
 ]

@@ -88,21 +88,100 @@ function toolChunks(tool: NonNullable<AssistantReply["tool"]>, pace: Pace) {
   ]
 }
 
+/** A question the page answers: a client tool call left without output. */
+function questionChunks(
+  input: NonNullable<AssistantReply["question"]>,
+  turn: string,
+) {
+  const toolCallId = `ask-${turn}`
+
+  return [
+    at(0)({ type: "tool-input-start", toolCallId, toolName: "chooseProject" }),
+    at(0)({
+      type: "tool-input-available",
+      toolCallId,
+      toolName: "chooseProject",
+      input,
+    }),
+  ]
+}
+
+/** The plan streams task by task, then createTasks asks for approval. */
+function planChunks(reply: AssistantReply, turn: string, pace: Pace) {
+  const { plan, approval } = reply
+
+  if (!plan || !approval) return []
+
+  const toolCallId = `create-${turn}`
+
+  return [
+    ...plan.tasks.map((_, index) =>
+      at(pace.work / 2)({
+        type: "data-plan",
+        id: "plan",
+        data: {
+          ...plan,
+          tasks: plan.tasks.slice(0, index + 1),
+          complete: false,
+        },
+      }),
+    ),
+    at(pace.chunk)({ type: "data-plan", id: "plan", data: plan }),
+    at(0)({ type: "tool-input-start", toolCallId, toolName: "createTasks" }),
+    at(0)({
+      type: "tool-input-available",
+      toolCallId,
+      toolName: "createTasks",
+      input: approval,
+    }),
+    at(pace.chunk)({
+      type: "tool-approval-request",
+      approvalId: `approve-${turn}`,
+      toolCallId,
+    }),
+  ]
+}
+
+/** The outcome of last turn's approval, which opens the continuation. */
+function resolutionChunks(
+  resolution: NonNullable<AssistantReply["resolution"]>,
+  pace: Pace,
+) {
+  const { toolCallId } = resolution
+
+  return [
+    at(pace.work)(
+      "denied" in resolution
+        ? { type: "tool-output-denied", toolCallId }
+        : {
+            type: "tool-output-available",
+            toolCallId,
+            output: resolution.output,
+          },
+    ),
+    at(0)({ type: "finish-step" }),
+  ]
+}
+
 /**
  * The chunks a scripted reply streams, in AI SDK UI message stream order:
- * reasoning, progress steps, a tool call, the text, its sources and
+ * the outcome of an approval, reasoning, progress steps, a tool call, the
+ * text, then a question or a plan awaiting approval, sources and
  * follow-ups. `fail` cuts the text a third of the way in with an error.
+ * `turn` keeps tool call ids unique within the conversation.
  */
 export function replyChunks(
   reply: AssistantReply,
   fail: boolean,
   pace: Pace,
+  turn = "turn",
 ): TimedChunk[] {
   const text = textChunks(reply.text)
   const sent = fail ? text.slice(0, Math.ceil(text.length / 3)) : text
 
   const opening = [
     at(pace.firstToken)({ type: "start" }),
+    ...(reply.resolution ? resolutionChunks(reply.resolution, pace) : []),
     at(0)({ type: "start-step" }),
     ...(reply.reasoning ? reasoningChunks(reply.reasoning, pace) : []),
     ...(reply.steps ? stepChunks(reply.steps, pace) : []),
@@ -119,6 +198,8 @@ export function replyChunks(
   return [
     ...opening,
     at(0)({ type: "text-end", id: "text" }),
+    ...(reply.question ? questionChunks(reply.question, turn) : []),
+    ...planChunks(reply, turn, pace),
     ...(reply.sources ?? []).map((source) =>
       at(0)({
         type: "source-url",

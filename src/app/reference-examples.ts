@@ -62,6 +62,14 @@ import { InlineCitationExample } from "@/features/reference/examples/inline-cita
 import inlineCitationSource from "@/features/reference/examples/inline-citation-example?raw"
 import { ChainOfThoughtExample } from "@/features/reference/examples/chain-of-thought-example"
 import chainOfThoughtSource from "@/features/reference/examples/chain-of-thought-example?raw"
+import { PlanExample } from "@/features/reference/examples/plan-example"
+import planSource from "@/features/reference/examples/plan-example?raw"
+import { ConfirmationExample } from "@/features/reference/examples/confirmation-example"
+import confirmationSource from "@/features/reference/examples/confirmation-example?raw"
+import { QueueExample } from "@/features/reference/examples/queue-example"
+import queueSource from "@/features/reference/examples/queue-example?raw"
+import { QuestionExample } from "@/features/reference/examples/question-example"
+import questionSource from "@/features/reference/examples/question-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -120,4 +128,12 @@ export const referenceExamples = [
     Component: ChainOfThoughtExample,
     source: chainOfThoughtSource,
   },
+  { id: "plan", Component: PlanExample, source: planSource },
+  {
+    id: "confirmation",
+    Component: ConfirmationExample,
+    source: confirmationSource,
+  },
+  { id: "queue", Component: QueueExample, source: queueSource },
+  { id: "question", Component: QuestionExample, source: questionSource },
 ]

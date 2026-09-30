@@ -65,14 +65,21 @@ export function AssistantRoute() {
 
   useEffect(() => adopt(session.chat), [adopt, session.chat])
 
-  const { messages, status, error, sendMessage, stop, regenerate } = useChat({
-    chat: session.chat,
-    throttle: 40,
-  })
+  const {
+    messages,
+    status,
+    error,
+    sendMessage,
+    stop,
+    regenerate,
+    addToolOutput,
+    addToolApprovalResponse,
+  } = useChat({ chat: session.chat, throttle: 40 })
 
   useRouteFocus()
 
-  // Read when a request is made, so replies reflect the records at that time.
+  // Read when a request is made, so replies reflect the records at that
+  // time. createTasks is the tool implementation an approval runs.
   const request = () => ({
     body: {
       scenario,
@@ -81,6 +88,13 @@ export function AssistantRoute() {
         activity: demo.activity,
         people: demo.workspace.people,
         referenceDate: demo.workspace.referenceDate,
+      },
+      actions: {
+        createTasks: ({ projectId, tasks }) =>
+          demo.addTasks(
+            projectId,
+            tasks.map(({ title, assigneeId }) => ({ title, assigneeId })),
+          ),
       },
     } satisfies AssistantRequest,
   })
@@ -98,6 +112,17 @@ export function AssistantRoute() {
         onStop={() => void stop()}
         onRegenerate={() => void regenerate(request())}
         onNewChat={assistant.newChat}
+        onAnswer={(toolCallId, projectId) =>
+          void addToolOutput({
+            tool: "chooseProject",
+            toolCallId,
+            output: { projectId },
+            options: request(),
+          })
+        }
+        onDecide={(id, approved) =>
+          void addToolApprovalResponse({ id, approved, options: request() })
+        }
         renderLink={(props) => <ReplyLink {...props} />}
       />
     </>

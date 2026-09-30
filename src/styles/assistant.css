@@ -75,3 +75,8 @@
   line-height: 1rem;
   vertical-align: 0.1em;
 }
+.assistant-queue {
+  width: calc(100% - 2 * var(--page-padding));
+  max-width: var(--assistant-width);
+  margin: 0 auto var(--control-gap);
+}

@@ -382,12 +382,12 @@
     "category": "AI and chat",
     "purpose": "Write a message to a model and stop its reply.",
     "notes": [
-      "Enter sends and Shift+Enter adds a line; while an input method is composing, Enter belongs to it. While the model works, Enter does nothing and the button becomes Stop, so a follow-up can be drafted.",
+      "Enter sends and Shift+Enter adds a line; while an input method is composing, Enter belongs to it. While the model works, the button becomes Stop, and Enter queues the message when onQueue is given (otherwise it does nothing), so a follow-up is never lost.",
       "The button never disables, so focus survives every state. Pass status and a stop handler from the AI SDK's useChat."
     ],
     "context": "Assistant",
     "href": "/app/demo/assistant",
-    "patterns": ["AI-03"],
+    "patterns": ["AI-03", "AI-13"],
     "documentation": {
       "href": "https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat",
       "label": "useChat reference"
@@ -501,5 +501,77 @@
       "label": "AI Elements Chain of thought"
     },
     "implementation": "src/kit/ai/chain-of-thought.tsx"
+  },
+  {
+    "id": "plan",
+    "name": "Plan",
+    "category": "AI and chat",
+    "purpose": "Show what the assistant proposes to do, before it does it.",
+    "notes": [
+      "A titled card with numbered steps and a detail per step, such as who it is for. The title shimmers while the plan streams.",
+      "It holds no actions: the decision belongs to a Confirmation directly below it."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-11"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/plan",
+      "label": "AI Elements Plan"
+    },
+    "implementation": "src/kit/ai/plan.tsx"
+  },
+  {
+    "id": "confirmation",
+    "name": "Confirmation",
+    "category": "AI and chat",
+    "purpose": "Ask the person to approve a tool call before it runs, then record the decision.",
+    "notes": [
+      "Pass the AI SDK tool part's state and approval.approved. Pending, it says what will happen and offers the two actions, the declining one first; afterwards it shows the outcome in place.",
+      "The approving action names what it does (Add tasks), not OK. Nothing changes until the person chooses."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-12"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/confirmation",
+      "label": "AI Elements Confirmation"
+    },
+    "implementation": "src/kit/ai/confirmation.tsx"
+  },
+  {
+    "id": "queue",
+    "name": "Queue",
+    "category": "AI and chat",
+    "purpose": "Hold messages written while the assistant cannot take them.",
+    "notes": [
+      "Sits above the composer. Each queued message can be removed; the label says when they will be sent.",
+      "Pair it with PromptInput's onQueue, so Enter queues during a reply instead of doing nothing."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-13"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/queue",
+      "label": "AI Elements Queue"
+    },
+    "implementation": "src/kit/ai/queue.tsx"
+  },
+  {
+    "id": "question",
+    "name": "Question",
+    "category": "AI and chat",
+    "purpose": "Let the assistant ask the person to choose before it continues.",
+    "notes": [
+      "One option from a radio group, or the person's own answer when otherLabel is given. Submitting without an answer explains what is missing and focuses it.",
+      "Once answered, the form is replaced by the question and the answer. It never takes focus when it appears."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-14"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/question",
+      "label": "AI Elements Question"
+    },
+    "implementation": "src/kit/ai/question.tsx"
   }
 ]

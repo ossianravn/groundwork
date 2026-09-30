@@ -18,10 +18,17 @@ import {
   PromptInputTextarea,
 } from "@/kit/ai/prompt-input"
 import type { RenderResponseLink } from "@/kit/ai/response-link"
+import { Queue } from "@/kit/ai/queue"
 import { Suggestion, Suggestions } from "@/kit/ai/suggestion"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantTurn } from "./assistant-message"
-import { messageText, spokenText } from "./assistant-text"
+import {
+  awaitedDecision,
+  awaitsPerson,
+  messageText,
+  spokenText,
+} from "./assistant-text"
+import { useMessageQueue } from "./use-message-queue"
 
 export interface AssistantIntro {
   title: string
@@ -45,6 +52,8 @@ function announcement(
 
   if (stopped) return "Reply stopped."
 
+  if (awaitsPerson(last)) return awaitedDecision(last)
+
   return `The assistant replied: ${spokenText(messageText(last))}`
 }
 
@@ -58,6 +67,8 @@ export function AssistantChat({
   onStop,
   onRegenerate,
   onNewChat,
+  onAnswer,
+  onDecide,
   renderLink,
 }: {
   intro: AssistantIntro
@@ -69,18 +80,35 @@ export function AssistantChat({
   onStop: () => void
   onRegenerate: () => void
   onNewChat: () => void
+  onAnswer: (toolCallId: string, projectId: string) => void
+  onDecide: (approvalId: string, approved: boolean) => void
   renderLink: RenderResponseLink
 }) {
   const [draft, setDraft] = useState("")
   const busy = status === "submitted" || status === "streaming"
   const last = messages.at(-1)
+  const awaiting = status === "ready" && awaitsPerson(last)
+  const queue = useMessageQueue(status === "ready" && !awaiting, onSend)
 
   // Suggestions, Regenerate and Try again disappear once used, so focus
   // moves to the composer, where the next question is written.
   const focusPrompt = () => document.getElementById("assistant-prompt")?.focus()
 
+  // While a reply streams or waits for a decision, new messages queue.
   const send = (text: string) => {
-    onSend(text)
+    if (busy || awaiting) queue.add(text)
+    else onSend(text)
+
+    focusPrompt()
+  }
+
+  const decide = (approvalId: string, approved: boolean) => {
+    onDecide(approvalId, approved)
+    focusPrompt()
+  }
+
+  const answer = (toolCallId: string, projectId: string) => {
+    onAnswer(toolCallId, projectId)
     focusPrompt()
   }
 
@@ -100,6 +128,7 @@ export function AssistantChat({
             label="New chat"
             onClick={() => {
               setDraft("")
+              queue.clear()
               onNewChat()
               focusPrompt()
             }}
@@ -139,6 +168,8 @@ export function AssistantChat({
               latest={status === "ready" && message === last}
               onRegenerate={regenerate}
               onSuggestion={send}
+              onAnswer={answer}
+              onDecide={decide}
               renderLink={renderLink}
             />
           </ConversationItem>
@@ -165,19 +196,33 @@ export function AssistantChat({
       <ConversationStatus>
         {announcement(status, last, !!last && stopped.includes(last.id), error)}
       </ConversationStatus>
+      <Queue
+        className="assistant-queue"
+        messages={queue.queue}
+        label={
+          awaiting
+            ? "Sends after you answer above"
+            : "Sends when the reply finishes"
+        }
+        onRemove={(id) => {
+          queue.remove(id)
+          focusPrompt()
+        }}
+      />
       <PromptInput
         className="assistant-composer"
         status={status}
         value={draft}
         onValueChange={setDraft}
-        onSubmit={onSend}
+        onSubmit={send}
+        onQueue={queue.add}
         onStop={onStop}
       >
         <PromptInputTextarea
           id="assistant-prompt"
           aria-label="Message the assistant"
           placeholder={
-            busy
+            busy || awaiting
               ? "Write your next question…"
               : "Ask about projects, tasks or activity"
           }

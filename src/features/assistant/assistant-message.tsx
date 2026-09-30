@@ -20,6 +20,11 @@ import {
   type AssistantMessage,
 } from "@/demo/assistant/assistant-types"
 import { AssistantSteps, AssistantTool } from "./assistant-activity"
+import {
+  AssistantApproval,
+  AssistantPlan,
+  AssistantQuestion,
+} from "./assistant-decisions"
 import { copyText, messageText } from "./assistant-text"
 
 type Part = AssistantMessage["parts"][number]
@@ -81,6 +86,8 @@ export function AssistantTurn({
   latest,
   onRegenerate,
   onSuggestion,
+  onAnswer,
+  onDecide,
   renderLink,
 }: {
   message: AssistantMessage
@@ -91,6 +98,8 @@ export function AssistantTurn({
   latest: boolean
   onRegenerate: () => void
   onSuggestion: (text: string) => void
+  onAnswer: (toolCallId: string, projectId: string) => void
+  onDecide: (approvalId: string, approved: boolean) => void
   renderLink: RenderResponseLink
 }) {
   const text = messageText(message)
@@ -148,6 +157,29 @@ export function AssistantTurn({
                   key={part.toolCallId}
                   part={part}
                   working={incomplete}
+                />
+              )
+
+            if (part.type === "tool-chooseProject")
+              return (
+                <AssistantQuestion
+                  key={part.toolCallId}
+                  part={part}
+                  actionable={latest}
+                  onAnswer={onAnswer}
+                />
+              )
+
+            if (part.type === "data-plan")
+              return <AssistantPlan key={index} part={part} />
+
+            if (part.type === "tool-createTasks")
+              return (
+                <AssistantApproval
+                  key={part.toolCallId}
+                  part={part}
+                  actionable={latest}
+                  onDecide={onDecide}
                 />
               )
 

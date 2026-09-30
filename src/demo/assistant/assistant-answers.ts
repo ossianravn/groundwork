@@ -1,9 +1,10 @@
 import script from "../data/assistant.json"
 import type { AssistantContext, AssistantReply } from "./assistant-types"
+import { checklistAnswer } from "./checklist-answer"
 import { riskAnswer } from "./risk-answer"
 import { weekAnswer } from "./week-answer"
 
-const intentIds = ["risk", "week", "api"] as const
+const intentIds = ["risk", "week", "tasks", "api"] as const
 
 type IntentId = (typeof intentIds)[number]
 
@@ -57,7 +58,12 @@ export function assistantReply(
       ? riskAnswer(context, { toolFails })
       : intent === "week"
         ? weekAnswer(context)
-        : apiAnswer()
+        : intent === "tasks"
+          ? checklistAnswer(prompt, context)
+          : apiAnswer()
 
-  return { ...answer, followUps }
+  // A reply waiting on the person offers no other questions meanwhile.
+  const waiting = "question" in answer || "approval" in answer
+
+  return { ...answer, followUps: waiting ? [] : followUps }
 }

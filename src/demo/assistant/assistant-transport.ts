@@ -6,6 +6,7 @@ import type {
   AssistantMessage,
   AssistantReply,
   AssistantRequest,
+  CreateTasksInput,
 } from "./assistant-types"
 
 function promptOf(message: AssistantMessage | undefined) {
@@ -22,9 +23,15 @@ function promptOf(message: AssistantMessage | undefined) {
  * server: status, stop, regenerate and errors all behave as in production.
  * The request's scenario fails the first attempt at each prompt: the stream
  * (assistant-error) or the project search (tool-error).
+ *
+ * When the last message is the assistant's, the person has answered its
+ * question or decided on an approval: `resume` continues that turn, and an
+ * approved call runs through the request's actions before its outcome is
+ * streamed.
  */
 export function createScriptedTransport({
   reply,
+  resume,
   pace = defaultPace,
 }: {
   reply: (
@@ -32,6 +39,10 @@ export function createScriptedTransport({
     context: AssistantContext,
     options: { toolFails: boolean },
   ) => AssistantReply
+  resume: (
+    message: AssistantMessage,
+    context: AssistantContext,
+  ) => { answer: AssistantReply; execute?: CreateTasksInput } | undefined
   pace?: Pace
 }): ChatTransport<AssistantMessage> {
   const attempted = new Set<string>()
@@ -50,10 +61,21 @@ export function createScriptedTransport({
 
       if (prompt) attempted.add(prompt.id)
 
-      const fail = first && request.scenario === "assistant-error"
-      const toolFails = first && request.scenario === "tool-error"
-      const answer = reply(promptOf(prompt), request.context, { toolFails })
-      const chunks = replyChunks(answer, fail, pace)
+      const last = messages[messages.length - 1]
+
+      const resumed =
+        last?.role === "assistant" ? resume(last, request.context) : undefined
+
+      if (resumed?.execute) request.actions.createTasks(resumed.execute)
+
+      const fail = !resumed && first && request.scenario === "assistant-error"
+      const toolFails = !resumed && first && request.scenario === "tool-error"
+
+      const answer =
+        resumed?.answer ??
+        reply(promptOf(prompt), request.context, { toolFails })
+
+      const chunks = replyChunks(answer, fail, pace, prompt?.id)
       let timer: ReturnType<typeof setTimeout> | undefined
       let open = true
 

@@ -82,7 +82,7 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | `/app/:workspace/projects/:projectId` | App | EDGE-04, TABL-08 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/projects/:projectId/edit` | App | SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/inbox` | App | TABL-07, SYS-04 | [Inbox and master-detail review](pages/app/inbox.md) |
-| `/app/:workspace/assistant` | App | AI-01–AI-10, DEV-01 | [Assistant](pages/app/assistant.md) |
+| `/app/:workspace/assistant` | App | AI-01–AI-14, DEV-01 | [Assistant](pages/app/assistant.md) |
 | `/app/:workspace/activity` | App | TABL-08 | [Workspace activity](pages/app/activity.md) |
 
 ### Settings

@@ -6,7 +6,8 @@ import {
   initialComments,
   storedCommentBody,
 } from "./project-comments"
-import { applyTaskChange, initialTasks, type TaskChange } from "./project-tasks"
+import { initialTasks } from "./project-tasks"
+import { workspaceTasks } from "./workspace-tasks"
 import { initialActivity as activityData } from "./activity-fixtures"
 import workspaceData from "./data/workspace.json"
 import { useAccount } from "./use-account"
@@ -132,19 +133,16 @@ export function useWorkspace() {
     return { result, undo: captureProjectUndo(state, records) }
   }
 
-  // Task edits apply at once; the caller may offer Undo (removal does).
-  function changeTask(change: TaskChange) {
-    const records = applyTaskChange(state, change, {
+  const tasks = workspaceTasks(
+    state,
+    setState,
+    {
       id: () => crypto.randomUUID(),
       memberId: workspace.currentUserId,
       date: workspace.referenceDate,
-    })
-
-    setSaveNotice(null)
-    setState({ ...state, ...records, resetDone: false })
-
-    return captureProjectUndo(state, records)
-  }
+    },
+    () => setSaveNotice(null),
+  )
 
   function postComment(projectId: string, text: string) {
     const body = storedCommentBody(text, workspace.members)
@@ -283,7 +281,7 @@ export function useWorkspace() {
         failPartially ? scenarios["bulk-partial-failure"].projectIds : [],
       ),
     undoProjectChange,
-    changeTask,
+    ...tasks,
     postComment,
     reset,
     saveProject,
