@@ -1,6 +1,6 @@
 # Pattern library
 
-Status: implemented, awaiting review (2026-09-27). Shell: Reference. Exposes every living inventory ID. Patterns that the demo does not adopt (NAV-07 bottom tabs, MKT-12 consent) are shown as standalone specimens under `/reference/specimens/`, outside the demo's navigation, and preview like any other example.
+Status: implemented, awaiting review (2026-09-27). Shell: Reference. Exposes every living inventory ID. Patterns that the demo does not adopt (NAV-07 bottom tabs, MKT-12 consent, AI-24 coding agent) are shown as standalone specimens under `/reference/specimens/`, outside the demo's navigation, and preview like any other example.
 
 ## User goal
 
@@ -34,3 +34,7 @@ Reuse the accepted Reference shell, Base UI Select/Popover, labelled search and 
 `src/features/reference/patterns.json` owns metadata and links; the coverage map remains the living inventory. Original source inventories are unchanged. Actual pages use their existing fixtures and supported scenarios. Each iframe starts a separate in-memory session: closing/resetting restores that session and does not mutate the surrounding host's workspace. Appearance preferences are shared through local storage. The Vite host owns raw-source imports; reusable views receive routing and source adapters.
 
 Contract checks keep catalogue IDs aligned with coverage and verify advertised source contents against the actual files. Follow the [demo-data contract](../../demo-data.md), [quality contract](../../quality.md) and [sitemap](../../sitemap.md).
+
+## Coding agent specimen
+
+`/reference/specimens/coding-agent` replays a recorded session in which an agent fixes a failing test in a small repository (fixture `src/demo/data/coding-agent.json`). The page opens complete so it can be read at once; Replay plays it back from the prompt, streaming each test run into the Terminal, and Show all skips to the end (the same button, so focus stays). The transcript uses the kit's Message, Reasoning and Tool pieces; tool results render as Test results with a Stack trace under the failure and the terminal output, a Code block for the file read, a diff, and a Commit. Beside it (below on narrow screens), a File tree marks the files once the agent has edited them, and selecting a file previews it as it stands at that point in the session.

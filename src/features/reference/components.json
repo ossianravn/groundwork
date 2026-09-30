@@ -717,5 +717,95 @@
       "label": "AI Elements Open in chat"
     },
     "implementation": "src/kit/ai/open-in-chat.tsx"
+  },
+  {
+    "id": "terminal",
+    "name": "Terminal",
+    "category": "Data",
+    "purpose": "Show command output with its colours, following it while it runs.",
+    "notes": [
+      "ANSI colour codes map to theme roles (error, success, warning, syntax), so output follows light and dark mode. Copy takes the plain text.",
+      "While streaming, the newest line stays in view unless the person scrolls up to read; a cursor marks that it is still running."
+    ],
+    "context": "Coding agent specimen",
+    "href": "/reference/specimens/coding-agent",
+    "patterns": ["DEV-03", "AI-24"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/terminal",
+      "label": "AI Elements Terminal"
+    },
+    "implementation": "src/kit/ui/terminal.tsx"
+  },
+  {
+    "id": "file-tree",
+    "name": "File tree",
+    "category": "Data",
+    "purpose": "Browse folders and files, with changed files marked.",
+    "notes": [
+      "The tree keyboard pattern: arrows move, open and close; Home and End jump; Enter or Space selects a file or toggles a folder. Only one row is in the tab order.",
+      "Added, modified and deleted files carry a letter that is also spoken."
+    ],
+    "context": "Coding agent specimen",
+    "href": "/reference/specimens/coding-agent",
+    "patterns": ["DEV-04", "AI-24"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/file-tree",
+      "label": "AI Elements File tree"
+    },
+    "implementation": "src/kit/ui/file-tree.tsx"
+  },
+  {
+    "id": "commit",
+    "name": "Commit",
+    "category": "Data",
+    "purpose": "Summarise a commit: message, hash, author and the lines each file changed.",
+    "notes": [
+      "Additions and deletions are coloured and also stated in words for screen readers.",
+      "Pass the date already formatted; the component does not format or localise it."
+    ],
+    "context": "Coding agent specimen",
+    "href": "/reference/specimens/coding-agent",
+    "patterns": ["DEV-05", "AI-24"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/commit",
+      "label": "AI Elements Commit"
+    },
+    "implementation": "src/kit/ui/commit.tsx"
+  },
+  {
+    "id": "test-results",
+    "name": "Test results",
+    "category": "Data",
+    "purpose": "Report a test run: the summary, a proportion bar and each test's outcome.",
+    "notes": [
+      "Each test states its status in words as well as with an icon and colour.",
+      "details renders more under a test, such as a failure's Stack trace."
+    ],
+    "context": "Coding agent specimen",
+    "href": "/reference/specimens/coding-agent",
+    "patterns": ["DEV-06", "AI-24"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/test-results",
+      "label": "AI Elements Test results"
+    },
+    "implementation": "src/kit/ui/test-results.tsx"
+  },
+  {
+    "id": "stack-trace",
+    "name": "Stack trace",
+    "category": "Data",
+    "purpose": "Show an error and where it happened, your code first.",
+    "notes": [
+      "Frames marked internal (libraries, the runtime) fold behind a count, so the first useful line is never buried.",
+      "Paths wrap rather than truncate, keeping the line and column readable on narrow screens."
+    ],
+    "context": "Coding agent specimen",
+    "href": "/reference/specimens/coding-agent",
+    "patterns": ["DEV-07", "AI-24"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/stack-trace",
+      "label": "AI Elements Stack trace"
+    },
+    "implementation": "src/kit/ui/stack-trace.tsx"
   }
 ]

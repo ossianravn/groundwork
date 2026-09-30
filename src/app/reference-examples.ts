@@ -48,6 +48,16 @@ import { CodeBlockExample } from "@/features/reference/examples/code-block-examp
 import codeBlockSource from "@/features/reference/examples/code-block-example?raw"
 import { SnippetExample } from "@/features/reference/examples/snippet-example"
 import snippetSource from "@/features/reference/examples/snippet-example?raw"
+import { TerminalExample } from "@/features/reference/examples/terminal-example"
+import terminalSource from "@/features/reference/examples/terminal-example?raw"
+import { FileTreeExample } from "@/features/reference/examples/file-tree-example"
+import fileTreeSource from "@/features/reference/examples/file-tree-example?raw"
+import { CommitExample } from "@/features/reference/examples/commit-example"
+import commitSource from "@/features/reference/examples/commit-example?raw"
+import { TestResultsExample } from "@/features/reference/examples/test-results-example"
+import testResultsSource from "@/features/reference/examples/test-results-example?raw"
+import { StackTraceExample } from "@/features/reference/examples/stack-trace-example"
+import stackTraceSource from "@/features/reference/examples/stack-trace-example?raw"
 import { PromptInputExample } from "@/features/reference/examples/prompt-input-example"
 import promptInputSource from "@/features/reference/examples/prompt-input-example?raw"
 import { MessageResponseExample } from "@/features/reference/examples/message-response-example"
@@ -121,6 +131,15 @@ export const referenceExamples = [
   { id: "drawer", Component: DrawerExample, source: drawerSource },
   { id: "code-block", Component: CodeBlockExample, source: codeBlockSource },
   { id: "snippet", Component: SnippetExample, source: snippetSource },
+  { id: "terminal", Component: TerminalExample, source: terminalSource },
+  { id: "file-tree", Component: FileTreeExample, source: fileTreeSource },
+  { id: "commit", Component: CommitExample, source: commitSource },
+  {
+    id: "test-results",
+    Component: TestResultsExample,
+    source: testResultsSource,
+  },
+  { id: "stack-trace", Component: StackTraceExample, source: stackTraceSource },
   {
     id: "prompt-input",
     Component: PromptInputExample,

@@ -555,6 +555,26 @@
       ]
     },
     {
+      "name": "commit",
+      "type": "registry:ui",
+      "title": "Commit",
+      "description": "Commit primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/commit.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/commit.tsx"
+        }
+      ]
+    },
+    {
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
@@ -727,6 +747,26 @@
           "path": "src/kit/ui/field.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-tree",
+      "type": "registry:ui",
+      "title": "File Tree",
+      "description": "File Tree primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/file-tree.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/file-tree.tsx"
         }
       ]
     },
@@ -1141,6 +1181,27 @@
       ]
     },
     {
+      "name": "stack-trace",
+      "type": "registry:ui",
+      "title": "Stack Trace",
+      "description": "Stack Trace primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/stack-trace.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/stack-trace.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
@@ -1197,6 +1258,52 @@
           "path": "src/kit/ui/tabs.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal",
+      "type": "registry:ui",
+      "title": "Terminal",
+      "description": "Terminal output with ANSI colours mapped to theme roles, following new lines while it runs, and copy.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/ansi.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/ansi.ts"
+        },
+        {
+          "path": "src/kit/ui/terminal.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/terminal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "test-results",
+      "type": "registry:ui",
+      "title": "Test Results",
+      "description": "Test Results primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/test-results.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/test-results.tsx"
         }
       ]
     },
@@ -1819,6 +1926,7 @@
         "ossianravn/groundwork/collapsible",
         "ossianravn/groundwork/combobox",
         "ossianravn/groundwork/command",
+        "ossianravn/groundwork/commit",
         "ossianravn/groundwork/context-menu",
         "ossianravn/groundwork/date-picker",
         "ossianravn/groundwork/date-range-picker",
@@ -1827,6 +1935,7 @@
         "ossianravn/groundwork/dropdown-menu",
         "ossianravn/groundwork/empty",
         "ossianravn/groundwork/field",
+        "ossianravn/groundwork/file-tree",
         "ossianravn/groundwork/hover-card",
         "ossianravn/groundwork/input",
         "ossianravn/groundwork/input-group",
@@ -1847,9 +1956,12 @@
         "ossianravn/groundwork/skeleton",
         "ossianravn/groundwork/snippet",
         "ossianravn/groundwork/spinner",
+        "ossianravn/groundwork/stack-trace",
         "ossianravn/groundwork/switch",
         "ossianravn/groundwork/table",
         "ossianravn/groundwork/tabs",
+        "ossianravn/groundwork/terminal",
+        "ossianravn/groundwork/test-results",
         "ossianravn/groundwork/text-hint",
         "ossianravn/groundwork/textarea",
         "ossianravn/groundwork/toast",

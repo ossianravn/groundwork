@@ -30,4 +30,13 @@ const consentRoute = createRoute({
   ),
 })
 
-export const specimenRoutes = [mobileTabsRoute, consentRoute]
+const codingAgentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/reference/specimens/coding-agent",
+  component: lazyRouteComponent(
+    () => import("./specimen-route"),
+    "CodingAgentRoute",
+  ),
+})
+
+export const specimenRoutes = [mobileTabsRoute, consentRoute, codingAgentRoute]
