@@ -1,10 +1,7 @@
 /* Project comments (TABL-13): an open section after tasks, reading as a
    thread with the author and date above each body. */
-.project-page-grid > .project-comments {
-  grid-column: 1;
+.project-main > .project-comments {
   gap: var(--content-gap);
-  padding-top: var(--section-gap);
-  border-top: 1px solid var(--border);
 }
 .project-comments-heading {
   display: flex;

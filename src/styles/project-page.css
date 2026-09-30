@@ -1,3 +1,8 @@
+/* A project's page (see design-system.md, Workspace page frame): the heading
+   carries identity, status and description; the work fills the main column
+   and the record's properties, progress and files sit in a rail beside it,
+   divided by one hairline. Nothing is framed except inputs and the files'
+   drop zone. */
 .project-page-heading {
   display: grid;
   justify-items: start;
@@ -11,6 +16,11 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--content-gap);
+  width: 100%;
+}
+/* Editing the project is secondary to reading it, so it closes the row. */
+.project-page-title > :last-child {
+  margin-inline-start: auto;
 }
 .project-page-title > .project-dot {
   width: 0.75rem;
@@ -24,7 +34,13 @@
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
-/* A record page keeps a readable width instead of spanning wide screens. */
+/* The description reads as the page's lead, at a bounded measure. */
+.project-page-lead {
+  max-width: 70ch;
+  color: var(--muted-foreground);
+  font-size: var(--text-section);
+  line-height: 1.55;
+}
 /* The page keeps the shared frame (and so the same left edge as other
    pages); only its contents stop at 76rem, leaving spare width on the right. */
 .page-content.project-page > * {
@@ -33,27 +49,64 @@
 }
 .project-page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
-  gap: var(--section-gap);
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 20rem);
+  /* The rail's second row (files) takes the rest of the main column's
+     height, so the rail's hairline runs its full length. */
+  grid-template-rows: auto 1fr;
+  column-gap: calc(var(--section-gap) * 2);
   align-items: start;
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
 }
-.project-summary-content {
+.project-main {
+  grid-column: 1;
+  grid-row: 1 / span 2;
   display: grid;
-  gap: var(--stack-gap);
+  gap: calc(var(--section-gap) * 1.5);
 }
-.project-description {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  max-width: 70ch;
+.project-main > .project-activity {
+  gap: var(--content-gap);
 }
+.project-main > * + * {
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+.project-rail,
+.project-rail-files {
+  grid-column: 2;
+  display: grid;
+  gap: var(--section-gap);
+  min-width: 0;
+  /* The hairline sits midway across the column gap. */
+  padding-inline-start: var(--section-gap);
+  margin-inline-start: calc(-1 * var(--section-gap));
+  border-inline-start: 1px solid var(--border);
+  align-self: stretch;
+  align-content: start;
+}
+.project-rail {
+  grid-row: 1;
+  padding-bottom: var(--section-gap);
+}
+.project-rail-files {
+  grid-row: 2;
+}
+.project-rail-files > * {
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+/* Properties read as label and value rows, labels in one quiet column. */
 .project-properties {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--content-gap) var(--section-gap);
+  display: grid;
+  gap: var(--control-gap);
+  align-content: start;
 }
 .project-properties > div {
   display: grid;
-  gap: var(--control-gap);
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--content-gap);
+  min-height: var(--control-height-sm);
 }
 .project-properties dt,
 .project-event-list time {
@@ -64,26 +117,11 @@
   display: flex;
   align-items: center;
   gap: var(--control-gap);
+  min-width: 0;
 }
-/* Progress and files share the side column beside the open sections. */
-.project-side {
-  display: grid;
-  gap: var(--section-gap);
-  grid-column: 2;
-  grid-row: 1 / span 4;
-}
-.project-side > .project-progress {
-  border: 0;
-}
-/* Details and activity sit open on the canvas; progress is the framed panel. */
-.project-summary,
-.project-activity {
-  gap: var(--content-gap);
-}
-.project-activity {
-  grid-column: 1;
-  padding-top: var(--section-gap);
-  border-top: 1px solid var(--border);
+.project-properties dd .project-tags,
+.project-properties dd .project-links {
+  margin: 0;
 }
 .project-event-list {
   display: grid;
@@ -109,18 +147,50 @@
 .project-event-list strong {
   font-weight: 500;
 }
-@media (max-width: 767px) {
+/* Narrower screens stack in reading order: properties and progress, the
+   work, then files, each divided by a hairline. */
+@media (max-width: 1023px) {
   .project-page-grid {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    row-gap: calc(var(--section-gap) * 1.5);
   }
-  .project-side {
-    grid-column: auto;
+  .project-main,
+  .project-rail,
+  .project-rail-files {
+    grid-column: 1;
     grid-row: auto;
+    padding-inline-start: 0;
+    margin-inline-start: 0;
+    border-inline-start: 0;
   }
-  .project-event-list li {
-    grid-template-columns: auto minmax(0, 1fr);
+  .project-rail,
+  .project-rail-files {
+    padding-block: 0;
   }
-  .project-event-list time {
-    grid-column: 2;
+  .project-main {
+    padding-top: var(--section-gap);
+    border-top: 1px solid var(--border);
   }
+}
+/* With room, properties and progress share a row rather than stacking. */
+@media (min-width: 40rem) and (max-width: 1023px) {
+  .project-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: calc(var(--section-gap) * 2);
+  }
+  .project-rail > .project-progress {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+/* On phones a wrapped Edit project starts the line under the title. */
+@media (max-width: 767px) {
+  .project-page-title > :last-child {
+    margin-inline-start: 0;
+  }
+}
+/* In the rail, progress is one property among several: a smaller count. */
+.project-rail .project-progress-count {
+  font-size: var(--text-page);
 }

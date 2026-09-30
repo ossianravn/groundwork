@@ -224,6 +224,22 @@
 .mobile-menu-button {
   display: none;
 }
+/* The icon buttons at either end of the header line up their icon, not their
+   hit area, with the page's content edge (never closer than 4px to the
+   window). The icons are 1rem wide. */
+.desktop-menu-button,
+.mobile-menu-button {
+  margin-inline-start: max(
+    calc(4px - var(--page-padding)),
+    calc((1rem - var(--control-height)) / 2)
+  );
+}
+.topbar-actions {
+  margin-inline-end: max(
+    calc(4px - var(--page-padding)),
+    calc((1rem - var(--control-height)) / 2)
+  );
+}
 .desktop-menu-button:not(:hover) {
   /* Expansion describes the sidebar, not a selected toolbar action. */
   background-color: transparent;

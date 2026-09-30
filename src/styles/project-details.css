@@ -37,9 +37,6 @@ section.project-progress {
   padding-top: var(--panel-padding);
   border-top: 1px solid var(--border);
 }
-[data-slot="card"].project-progress {
-  padding: var(--card-padding);
-}
 .project-progress-heading {
   display: flex;
   align-items: center;
