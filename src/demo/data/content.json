@@ -311,7 +311,7 @@
           "bullets": [
             "Project pages lead with the name, status and description. Tasks, comments and activity fill the page, with owner, due date, tags, progress and files in a column beside them.",
             "One Edit button beside a project's details changes the owner, due date, tags and links together in a dialog.",
-            "In task lists the assignee's name comes before their avatar, so avatars line up; unassigned tasks show an empty circle in the same place.",
+            "In task lists the assignee's name comes before their avatar, so avatars line up; unassigned tasks show an empty circle in the same place. Only the checkbox completes a task, so a click on its name or the empty row no longer ticks it off.",
             "The projects list shows all your projects on one page by default, its filters and column headers stay quiet until you use them, and on phones its view controls share the filter row.",
             "Hide the assistant's history to give the conversation the whole width; History in the top bar brings it back.",
             "The navigation button in the top bar now lines up with the page below it."
