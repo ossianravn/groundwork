@@ -52,6 +52,16 @@ import { PromptInputExample } from "@/features/reference/examples/prompt-input-e
 import promptInputSource from "@/features/reference/examples/prompt-input-example?raw"
 import { MessageResponseExample } from "@/features/reference/examples/message-response-example"
 import messageResponseSource from "@/features/reference/examples/message-response-example?raw"
+import { ReasoningExample } from "@/features/reference/examples/reasoning-example"
+import reasoningSource from "@/features/reference/examples/reasoning-example?raw"
+import { ToolExample } from "@/features/reference/examples/tool-example"
+import toolSource from "@/features/reference/examples/tool-example?raw"
+import { SourcesExample } from "@/features/reference/examples/sources-example"
+import sourcesSource from "@/features/reference/examples/sources-example?raw"
+import { InlineCitationExample } from "@/features/reference/examples/inline-citation-example"
+import inlineCitationSource from "@/features/reference/examples/inline-citation-example?raw"
+import { ChainOfThoughtExample } from "@/features/reference/examples/chain-of-thought-example"
+import chainOfThoughtSource from "@/features/reference/examples/chain-of-thought-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -96,5 +106,18 @@ export const referenceExamples = [
     id: "message-response",
     Component: MessageResponseExample,
     source: messageResponseSource,
+  },
+  { id: "reasoning", Component: ReasoningExample, source: reasoningSource },
+  { id: "tool", Component: ToolExample, source: toolSource },
+  { id: "sources", Component: SourcesExample, source: sourcesSource },
+  {
+    id: "inline-citation",
+    Component: InlineCitationExample,
+    source: inlineCitationSource,
+  },
+  {
+    id: "chain-of-thought",
+    Component: ChainOfThoughtExample,
+    source: chainOfThoughtSource,
   },
 ]

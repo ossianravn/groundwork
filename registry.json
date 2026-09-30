@@ -1354,18 +1354,33 @@
         "streamdown@^2.6.0"
       ],
       "registryDependencies": [
+        "ossianravn/groundwork/badge",
         "ossianravn/groundwork/base",
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/code-block",
+        "ossianravn/groundwork/collapsible",
+        "ossianravn/groundwork/hover-card",
         "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/message-scroller",
+        "ossianravn/groundwork/shimmer",
+        "ossianravn/groundwork/spinner",
         "ossianravn/groundwork/tooltip"
       ],
       "files": [
         {
+          "path": "src/kit/ai/chain-of-thought.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/chain-of-thought.tsx"
+        },
+        {
           "path": "src/kit/ai/conversation.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/conversation.tsx"
+        },
+        {
+          "path": "src/kit/ai/inline-citation.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/inline-citation.tsx"
         },
         {
           "path": "src/kit/ai/message-actions.tsx",
@@ -1383,9 +1398,34 @@
           "target": "~/src/kit/ai/prompt-input.tsx"
         },
         {
+          "path": "src/kit/ai/reasoning.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/reasoning.tsx"
+        },
+        {
+          "path": "src/kit/ai/response-link.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/response-link.ts"
+        },
+        {
+          "path": "src/kit/ai/sources.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/sources.tsx"
+        },
+        {
           "path": "src/kit/ai/suggestion.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/suggestion.tsx"
+        },
+        {
+          "path": "src/kit/ai/tool.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/tool.tsx"
+        },
+        {
+          "path": "src/kit/ai/use-auto-open.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/use-auto-open.ts"
         }
       ]
     },

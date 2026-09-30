@@ -1,7 +1,7 @@
 import { useEffect, useState, type ComponentProps } from "react"
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { useChat } from "@ai-sdk/react"
-import type { AssistantRequest } from "@/demo/assistant/assistant-transport"
+import type { AssistantRequest } from "@/demo/assistant/assistant-types"
 import { createAssistantChat } from "@/demo/assistant/create-assistant-chat"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import script from "@/demo/data/assistant.json"

@@ -3,17 +3,11 @@ import { readUIMessageStream } from "ai"
 import { initialProjects } from "../project-fixtures"
 import { initialActivity } from "../activity-fixtures"
 import workspace from "../data/workspace.json"
-import {
-  assistantReply,
-  atRiskProjects,
-  matchIntent,
-} from "./assistant-answers"
-import {
-  createScriptedTransport,
-  textChunks,
-  type AssistantMessage,
-  type AssistantRequest,
-} from "./assistant-transport"
+import { assistantReply, matchIntent } from "./assistant-answers"
+import { textChunks } from "./assistant-chunks"
+import { createScriptedTransport } from "./assistant-transport"
+import type { AssistantMessage, AssistantRequest } from "./assistant-types"
+import { atRiskProjects } from "./risk-answer"
 
 const context = {
   projects: initialProjects,
@@ -35,7 +29,7 @@ async function send(
 ) {
   const transport = createScriptedTransport({
     reply: assistantReply,
-    pace: { firstToken: 0, chunk: 0 },
+    pace: { firstToken: 0, chunk: 0, work: 0 },
   })
 
   const stream = await transport.sendMessages({
@@ -60,7 +54,7 @@ async function send(
     error = caught
   }
 
-  return { message, error }
+  return { message, error, types: message?.parts.map((part) => part.type) }
 }
 
 it("matches prompts to scripted topics and falls back otherwise", () => {
@@ -72,9 +66,9 @@ it("matches prompts to scripted topics and falls back otherwise", () => {
 })
 
 it("flags only open projects that meet the stated risk rule", () => {
-  const risks = atRiskProjects(context)
-
-  expect(risks.map((risk) => risk.project.id)).toEqual(["website"])
+  expect(atRiskProjects(context).map((risk) => risk.project.id)).toEqual([
+    "website",
+  ])
   expect(
     atRiskProjects({
       ...context,
@@ -102,25 +96,72 @@ it("keeps every character when splitting text into chunks", () => {
   expect(textChunks(text).join("")).toBe(text)
 })
 
-it("streams a reply the AI SDK assembles into text and follow-ups", async () => {
-  const { message, error } = await send("What changed this week?")
+it("reasons, searches, then answers with citations to every source", async () => {
+  const { message, error, types } = await send("Which projects are at risk?")
 
   expect(error).toBeUndefined()
-  expect(message?.parts.map((part) => part.type)).toEqual([
+  expect(types?.slice(0, 5)).toEqual([
+    "step-start",
+    "reasoning",
+    "tool-searchProjects",
     "step-start",
     "text",
+  ])
+
+  const tool = message?.parts.find(
+    (part) => part.type === "tool-searchProjects",
+  )
+
+  expect(tool).toMatchObject({ state: "output-available" })
+  expect(tool?.state === "output-available" && tool.output).toHaveLength(4)
+
+  const sources = message?.parts.flatMap((part) =>
+    part.type === "source-url" ? part.sourceId : [],
+  )
+
+  const text = message?.parts.find((part) => part.type === "text")
+  const cited = text?.type === "text" ? text.text.match(/#source:[^)]+/gu) : []
+
+  expect(cited?.flatMap((link) => link.slice(8).split(",")).sort()).toEqual(
+    sources?.sort(),
+  )
+})
+
+it("reports progress steps, replacing each by id as it completes", async () => {
+  const { message, types } = await send("What changed this week?")
+
+  expect(types).toEqual([
+    "step-start",
+    "data-step",
+    "data-step",
+    "data-step",
+    "text",
+    "source-url",
     "data-suggestions",
   ])
-  expect(message?.parts[1]).toMatchObject({
-    type: "text",
-    state: "done",
-    text: assistantReply("What changed this week?", context).text,
-  })
+  expect(
+    message?.parts.flatMap((part) =>
+      part.type === "data-step" ? part.data.status : [],
+    ),
+  ).toEqual(["complete", "complete", "complete"])
+})
+
+it("fails the project search once in the tool-error scenario", async () => {
+  const { message, types } = await send("At risk?", "tool-error")
+
+  expect(types).not.toContain("source-url")
+  expect(
+    message?.parts.find((part) => part.type === "tool-searchProjects"),
+  ).toMatchObject({ state: "output-error" })
 })
 
 it("fails the first attempt part-way in the failure scenario", async () => {
-  const { message, error } = await send("At risk?", "assistant-error")
-  const full = assistantReply("At risk?", context).text
+  const { message, error } = await send(
+    "How do I use the API?",
+    "assistant-error",
+  )
+
+  const full = assistantReply("How do I use the API?", context).text
   const text = message?.parts.find((part) => part.type === "text")
 
   expect(error).toBeInstanceOf(Error)
@@ -129,6 +170,7 @@ it("fails the first attempt part-way in the failure scenario", async () => {
 
 it("ends with an AbortError when the request is stopped", async () => {
   const controller = new AbortController()
+
   controller.abort()
 
   const { error } = await send("At risk?", "normal", controller.signal)

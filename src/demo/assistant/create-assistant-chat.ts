@@ -1,9 +1,7 @@
 import { Chat } from "@ai-sdk/react"
 import { assistantReply } from "./assistant-answers"
-import {
-  createScriptedTransport,
-  type AssistantMessage,
-} from "./assistant-transport"
+import { createScriptedTransport } from "./assistant-transport"
+import type { AssistantMessage } from "./assistant-types"
 
 /** A new conversation that answers from the scripted transport. */
 export function createAssistantChat(onStopped: (messageId: string) => void) {

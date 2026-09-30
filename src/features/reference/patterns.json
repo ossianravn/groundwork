@@ -2501,7 +2501,7 @@
     "surface": "Workspace",
     "summary": "Hold a conversation with an assistant: a transcript that follows replies, with a clear empty state and progress.",
     "implemented": "The Assistant page streams scripted replies through the AI SDK's useChat and a local transport. Each question is anchored at the top while the reply grows below it; a jump button returns to the latest reply. The transcript is not announced token by token: a status region says the assistant is replying and then reads the finished reply. Thinking… shimmers until the first words arrive; Stop keeps the partial reply and marks it; a failed reply shows Try again where it failed (?scenario=assistant-error).",
-    "deferred": "One conversation per session; history, branches, attachments, model choice and tool calls follow in later steps.",
+    "deferred": "One conversation per session; history, branches, attachments and model choice follow with conversation management.",
     "examples": [
       {
         "label": "Assistant",
@@ -2657,6 +2657,122 @@
     "sources": [
       "src/kit/ui/snippet.tsx",
       "src/features/settings/api-key-settings.tsx"
+    ]
+  },
+  {
+    "id": "AI-06",
+    "title": "Reasoning",
+    "originalName": "Reasoning",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show what a model is thinking while it works, then get it out of the way.",
+    "implemented": "The at-risk answer streams its reasoning first (a reasoning part). The block opens while it streams, closes when the answer starts and reads Thought for 2 seconds; the person's own open or close sticks.",
+    "deferred": "Reasoning is not persisted across conversations; its duration is measured on screen.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk? and watch the reasoning open and fold away."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/reasoning.tsx",
+      "src/kit/ai/use-auto-open.ts",
+      "src/features/assistant/assistant-message.tsx",
+      "src/demo/assistant/risk-answer.ts"
+    ]
+  },
+  {
+    "id": "AI-07",
+    "title": "Tool call",
+    "originalName": "Tool call",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show that the assistant called a tool, what it asked for and what came back.",
+    "implemented": "The at-risk answer calls searchProjects: parameters stream in, the call runs, and the result shows as a readable project list. The row's badge follows the AI SDK tool states. In ?scenario=tool-error the search fails once, the row opens by itself to show why, and the reply says it could not answer; Regenerate succeeds.",
+    "deferred": "Approval before a tool runs arrives with step 3 (Confirmation).",
+    "examples": [
+      {
+        "label": "Tool call",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk?, then open Search projects."
+      },
+      {
+        "label": "Failed tool call",
+        "href": "/app/demo/assistant?scenario=tool-error",
+        "instruction": "Ask Which projects are at risk?, then Regenerate."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/tool.tsx",
+      "src/features/assistant/assistant-activity.tsx",
+      "src/demo/assistant/assistant-chunks.ts"
+    ]
+  },
+  {
+    "id": "AI-08",
+    "title": "Sources",
+    "originalName": "Sources",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "List the records a reply drew on so its claims can be checked.",
+    "implemented": "Replies stream source-url parts after their text; Used 4 sources opens a numbered list of project pages with their status and due date. Links route in-app and offer Back to assistant.",
+    "deferred": "Document sources (source-document parts) have no demonstration yet.",
+    "examples": [
+      {
+        "label": "Sources",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk?, then open Used 4 sources."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/sources.tsx",
+      "src/features/assistant/assistant-message.tsx",
+      "src/demo/assistant/risk-answer.ts"
+    ]
+  },
+  {
+    "id": "AI-09",
+    "title": "Inline citation",
+    "originalName": "Inline citation",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Attach sources to the sentence they support.",
+    "implemented": "Reply markdown cites with links to #source:<ids>; the assistant view renders them as numbered pills that link to the first source and preview all of them on hover or focus. Before the sources arrive, the number shows without a preview. Citations are removed from copied text and from the spoken reply.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Citations",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk?, then focus the 2–4 citation."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/inline-citation.tsx",
+      "src/features/assistant/assistant-message.tsx",
+      "src/demo/assistant/answer-format.ts"
+    ]
+  },
+  {
+    "id": "AI-10",
+    "title": "Chain of thought",
+    "originalName": "Chain of thought",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Report an agent's progress as named steps.",
+    "implemented": "The weekly summary reports three steps as AI SDK data parts, each sent as in progress and replaced by id when done, with its results as chips. The list shows the current step while it works and folds to Worked through 3 steps.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Progress steps",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask What changed this week? and watch the steps."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/chain-of-thought.tsx",
+      "src/features/assistant/assistant-activity.tsx",
+      "src/demo/assistant/week-answer.ts"
     ]
   }
 ]

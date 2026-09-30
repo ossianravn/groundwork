@@ -47,3 +47,31 @@
     display: none;
   }
 }
+.assistant-tool-results {
+  display: grid;
+}
+.assistant-tool-results li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 var(--control-gap);
+  padding-block: 0.375rem;
+  border-bottom: 1px solid var(--border);
+}
+.assistant-tool-results li:last-child {
+  border-bottom: 0;
+}
+/* A citation before its sources arrive: the same pill, without a preview. */
+.assistant-citation-pending {
+  display: inline-flex;
+  min-width: 1.25rem;
+  justify-content: center;
+  margin-inline: 0.125rem;
+  padding-inline: 0.25rem;
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  vertical-align: 0.1em;
+}
