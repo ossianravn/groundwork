@@ -119,3 +119,64 @@
   color: var(--muted-foreground);
   font-size: var(--text-meta);
 }
+
+/* Coding agent (AI-24): the transcript scrolls beside the repository. */
+.agent-specimen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--content-gap);
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 1.5rem var(--page-padding) 3rem;
+  outline: none;
+}
+.agent-specimen-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+.agent-specimen-header h1 {
+  font-size: var(--text-page);
+  font-weight: 600;
+}
+.agent-specimen-header p {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+}
+.agent-specimen-header p svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.agent-specimen-transcript {
+  height: min(48rem, calc(100dvh - 12rem));
+  min-height: 24rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.agent-specimen-transcript [data-slot="message-scroller-content"] {
+  gap: var(--content-gap);
+  padding: var(--content-gap);
+}
+.agent-specimen-files {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.agent-specimen-files h2 {
+  font-weight: 600;
+}
+@media (min-width: 64rem) {
+  .agent-specimen {
+    grid-template-columns: minmax(0, 1fr) 24rem;
+  }
+  .agent-specimen-header {
+    grid-column: 1 / -1;
+  }
+}

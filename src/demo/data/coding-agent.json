@@ -1,0 +1,217 @@
+{
+  "repository": "tandem-web",
+  "branch": "fix/due-today",
+  "prompt": "The due-date label says “yesterday” for tasks due today. I added a failing test in format-due.test.ts. Can you fix it?",
+  "reasoning": "The new test passes an afternoon `now` with a date-only due date. `Date.parse` reads `2026-09-30` as midnight UTC, so the difference is negative for the rest of the day. If `formatDue` floors elapsed time, that becomes −1, which is *yesterday*. I'll run the test, then read the function to confirm.",
+  "explanation": "Found it. `formatDue` floors the elapsed milliseconds, so once the day has started, *today* reads as *yesterday* and *tomorrow* as *today*. I'll count calendar days instead: start from midnight of `now`, then round.",
+  "summary": "Fixed. `formatDue` now counts calendar days from the start of today, so a task due today says **today** all day. I added a regression test for *tomorrow* in the afternoon; all 5 tests pass. Committed as `3f9c2a1` on `fix/due-today`.",
+  "failing": {
+    "command": "npm test -- format-due",
+    "duration": 412,
+    "output": [
+      "\u001b[2m> tandem-web@0.4.0 test\u001b[22m",
+      "\u001b[2m> vitest run format-due\u001b[22m",
+      "",
+      " \u001b[1;34mRUN\u001b[0m  \u001b[36mv3.2.4\u001b[39m \u001b[90m/work/tandem-web\u001b[39m",
+      "",
+      " \u001b[31m❯\u001b[39m src/lib/format-due.test.ts \u001b[2m(4 tests | \u001b[22m\u001b[31m1 failed\u001b[39m\u001b[2m)\u001b[22m \u001b[33m12ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says tomorrow for the next day \u001b[90m2ms\u001b[39m",
+      "   \u001b[31m×\u001b[39m formatDue > says today during the day \u001b[90m6ms\u001b[39m",
+      "     \u001b[31m→ expected 'yesterday' to be 'today' // Object.is equality\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says yesterday for the day before \u001b[90m1ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > counts days ahead \u001b[90m1ms\u001b[39m",
+      "",
+      "\u001b[31m⎯⎯⎯⎯⎯⎯⎯ \u001b[1mFailed Tests 1\u001b[22m ⎯⎯⎯⎯⎯⎯⎯\u001b[39m",
+      "",
+      " \u001b[1;31mFAIL\u001b[0m  src/lib/format-due.test.ts \u001b[2m>\u001b[22m formatDue \u001b[2m>\u001b[22m says today during the day",
+      "\u001b[31m\u001b[1mAssertionError\u001b[22m: expected 'yesterday' to be 'today' // Object.is equality\u001b[39m",
+      "",
+      "\u001b[32mExpected: \"today\"\u001b[39m",
+      "\u001b[31mReceived: \"yesterday\"\u001b[39m",
+      "",
+      " \u001b[36m❯\u001b[39m src/lib/format-due.test.ts:\u001b[33m13:48\u001b[39m",
+      "",
+      " \u001b[2mTest Files\u001b[22m  \u001b[1;31m1 failed\u001b[0m \u001b[90m(1)\u001b[39m",
+      " \u001b[2m     Tests\u001b[22m  \u001b[1;31m1 failed\u001b[0m\u001b[2m | \u001b[22m\u001b[1;32m3 passed\u001b[0m \u001b[90m(4)\u001b[39m",
+      " \u001b[2m  Duration\u001b[22m  412ms"
+    ],
+    "suites": [
+      {
+        "name": "src/lib/format-due.test.ts",
+        "tests": [
+          {
+            "name": "says tomorrow for the next day",
+            "status": "passed",
+            "duration": 2
+          },
+          {
+            "name": "says today during the day",
+            "status": "failed",
+            "duration": 6
+          },
+          {
+            "name": "says yesterday for the day before",
+            "status": "passed",
+            "duration": 1
+          },
+          { "name": "counts days ahead", "status": "passed", "duration": 1 }
+        ]
+      }
+    ],
+    "failure": {
+      "test": "says today during the day",
+      "name": "AssertionError",
+      "message": "expected 'yesterday' to be 'today' // Object.is equality",
+      "frames": [
+        {
+          "name": "<anonymous>",
+          "file": "src/lib/format-due.test.ts",
+          "line": 13,
+          "column": 48
+        },
+        {
+          "name": "runTest",
+          "file": "node_modules/@vitest/runner/dist/index.js",
+          "line": 1712,
+          "column": 26,
+          "internal": true
+        },
+        {
+          "name": "runSuite",
+          "file": "node_modules/@vitest/runner/dist/index.js",
+          "line": 1868,
+          "column": 15,
+          "internal": true
+        },
+        {
+          "name": "runFiles",
+          "file": "node_modules/@vitest/runner/dist/index.js",
+          "line": 1917,
+          "column": 5,
+          "internal": true
+        }
+      ]
+    }
+  },
+  "passing": {
+    "command": "npm test -- format-due",
+    "duration": 398,
+    "output": [
+      "\u001b[2m> tandem-web@0.4.0 test\u001b[22m",
+      "\u001b[2m> vitest run format-due\u001b[22m",
+      "",
+      " \u001b[1;34mRUN\u001b[0m  \u001b[36mv3.2.4\u001b[39m \u001b[90m/work/tandem-web\u001b[39m",
+      "",
+      " \u001b[32m✓\u001b[39m src/lib/format-due.test.ts \u001b[2m(5 tests)\u001b[22m \u001b[33m9ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says tomorrow for the next day \u001b[90m2ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says tomorrow during the day \u001b[90m1ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says today during the day \u001b[90m1ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > says yesterday for the day before \u001b[90m1ms\u001b[39m",
+      "   \u001b[32m✓\u001b[39m formatDue > counts days ahead \u001b[90m1ms\u001b[39m",
+      "",
+      " \u001b[2mTest Files\u001b[22m  \u001b[1;32m1 passed\u001b[0m \u001b[90m(1)\u001b[39m",
+      " \u001b[2m     Tests\u001b[22m  \u001b[1;32m5 passed\u001b[0m \u001b[90m(5)\u001b[39m",
+      " \u001b[2m  Duration\u001b[22m  398ms"
+    ],
+    "suites": [
+      {
+        "name": "src/lib/format-due.test.ts",
+        "tests": [
+          {
+            "name": "says tomorrow for the next day",
+            "status": "passed",
+            "duration": 2
+          },
+          {
+            "name": "says tomorrow during the day",
+            "status": "passed",
+            "duration": 1
+          },
+          {
+            "name": "says today during the day",
+            "status": "passed",
+            "duration": 1
+          },
+          {
+            "name": "says yesterday for the day before",
+            "status": "passed",
+            "duration": 1
+          },
+          { "name": "counts days ahead", "status": "passed", "duration": 1 }
+        ]
+      }
+    ]
+  },
+  "read": "src/lib/format-due.ts",
+  "diff": [
+    "--- a/src/lib/format-due.ts",
+    "+++ b/src/lib/format-due.ts",
+    "@@ -3,7 +3,10 @@ const DAY = 24 * 60 * 60 * 1000",
+    " /** A short label for when a task is due, such as \"today\" or \"in 3 days\". */",
+    " export function formatDue(dueDate: string, now = new Date()) {",
+    "-  const days = Math.floor((Date.parse(dueDate) - now.getTime()) / DAY)",
+    "+  // Count calendar days, not elapsed time: a task due today is still",
+    "+  // \"today\" in the afternoon.",
+    "+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())",
+    "+  const days = Math.round((Date.parse(dueDate) - today) / DAY)",
+    " ",
+    "   if (days === 0) return \"today\"",
+    "   if (days === 1) return \"tomorrow\"",
+    "--- a/src/lib/format-due.test.ts",
+    "+++ b/src/lib/format-due.test.ts",
+    "@@ -10,6 +10,10 @@ describe(\"formatDue\", () => {",
+    "     expect(formatDue(\"2026-10-01\", midnight)).toBe(\"tomorrow\")",
+    "   })",
+    " ",
+    "+  it(\"says tomorrow during the day\", () => {",
+    "+    expect(formatDue(\"2026-10-01\", afternoon)).toBe(\"tomorrow\")",
+    "+  })",
+    "+",
+    "   it(\"says today during the day\", () => {",
+    "     expect(formatDue(\"2026-09-30\", afternoon)).toBe(\"today\")",
+    "   })"
+  ],
+  "commit": {
+    "hash": "3f9c2a1e8b7d40c6a5f2e9b1d0c8a7f6e5d4c3b2",
+    "message": "Count calendar days in formatDue",
+    "body": "A task due today read as “yesterday” once the day had started, because the label floored elapsed time. Count whole days from the start of today, and cover tomorrow in the afternoon.",
+    "author": "Tandem Agent",
+    "date": "30 Sep 2026, 14:12",
+    "files": [
+      { "path": "src/lib/format-due.ts", "additions": 4, "deletions": 1 },
+      { "path": "src/lib/format-due.test.ts", "additions": 4, "deletions": 0 }
+    ]
+  },
+  "files": [
+    {
+      "path": "src/lib/format-due.ts",
+      "before": "const DAY = 24 * 60 * 60 * 1000\n\n/** A short label for when a task is due, such as \"today\" or \"in 3 days\". */\nexport function formatDue(dueDate: string, now = new Date()) {\n  const days = Math.floor((Date.parse(dueDate) - now.getTime()) / DAY)\n\n  if (days === 0) return \"today\"\n  if (days === 1) return \"tomorrow\"\n  if (days === -1) return \"yesterday\"\n\n  return days > 0 ? `in ${days} days` : `${-days} days ago`\n}",
+      "after": "const DAY = 24 * 60 * 60 * 1000\n\n/** A short label for when a task is due, such as \"today\" or \"in 3 days\". */\nexport function formatDue(dueDate: string, now = new Date()) {\n  // Count calendar days, not elapsed time: a task due today is still\n  // \"today\" in the afternoon.\n  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())\n  const days = Math.round((Date.parse(dueDate) - today) / DAY)\n\n  if (days === 0) return \"today\"\n  if (days === 1) return \"tomorrow\"\n  if (days === -1) return \"yesterday\"\n\n  return days > 0 ? `in ${days} days` : `${-days} days ago`\n}"
+    },
+    {
+      "path": "src/lib/format-due.test.ts",
+      "before": "import { describe, expect, it } from \"vitest\"\nimport { formatDue } from \"./format-due\"\n\nconst midnight = new Date(\"2026-09-30T00:00:00Z\")\nconst afternoon = new Date(\"2026-09-30T14:00:00Z\")\n\ndescribe(\"formatDue\", () => {\n  it(\"says tomorrow for the next day\", () => {\n    expect(formatDue(\"2026-10-01\", midnight)).toBe(\"tomorrow\")\n  })\n\n  it(\"says today during the day\", () => {\n    expect(formatDue(\"2026-09-30\", afternoon)).toBe(\"today\")\n  })\n\n  it(\"says yesterday for the day before\", () => {\n    expect(formatDue(\"2026-09-29\", midnight)).toBe(\"yesterday\")\n  })\n\n  it(\"counts days ahead\", () => {\n    expect(formatDue(\"2026-10-03\", midnight)).toBe(\"in 3 days\")\n  })\n})",
+      "after": "import { describe, expect, it } from \"vitest\"\nimport { formatDue } from \"./format-due\"\n\nconst midnight = new Date(\"2026-09-30T00:00:00Z\")\nconst afternoon = new Date(\"2026-09-30T14:00:00Z\")\n\ndescribe(\"formatDue\", () => {\n  it(\"says tomorrow for the next day\", () => {\n    expect(formatDue(\"2026-10-01\", midnight)).toBe(\"tomorrow\")\n  })\n\n  it(\"says tomorrow during the day\", () => {\n    expect(formatDue(\"2026-10-01\", afternoon)).toBe(\"tomorrow\")\n  })\n\n  it(\"says today during the day\", () => {\n    expect(formatDue(\"2026-09-30\", afternoon)).toBe(\"today\")\n  })\n\n  it(\"says yesterday for the day before\", () => {\n    expect(formatDue(\"2026-09-29\", midnight)).toBe(\"yesterday\")\n  })\n\n  it(\"counts days ahead\", () => {\n    expect(formatDue(\"2026-10-03\", midnight)).toBe(\"in 3 days\")\n  })\n})"
+    },
+    {
+      "path": "src/lib/slug.ts",
+      "before": "/** A URL-safe name: lower case, words joined with hyphens. */\nexport function slug(value: string) {\n  return value\n    .normalize(\"NFKD\")\n    .replace(/[\\u0300-\\u036f]/g, \"\")\n    .toLowerCase()\n    .replace(/[^a-z0-9]+/g, \"-\")\n    .replace(/^-|-$/g, \"\")\n}"
+    },
+    {
+      "path": "src/lib/slug.test.ts",
+      "before": "import { expect, it } from \"vitest\"\nimport { slug } from \"./slug\"\n\nit(\"joins words with hyphens\", () => {\n  expect(slug(\"Website Redesign\")).toBe(\"website-redesign\")\n})\n\nit(\"drops accents\", () => {\n  expect(slug(\"Café menu\")).toBe(\"cafe-menu\")\n})"
+    },
+    {
+      "path": "src/components/due-date.tsx",
+      "before": "import { formatDue } from \"../lib/format-due\"\n\nexport function DueDate({ date }: { date: string }) {\n  return <time dateTime={date}>{formatDue(date)}</time>\n}"
+    },
+    {
+      "path": "package.json",
+      "before": "{\n  \"name\": \"tandem-web\",\n  \"version\": \"0.4.0\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite\",\n    \"test\": \"vitest run\"\n  }\n}"
+    },
+    {
+      "path": "vitest.config.ts",
+      "before": "import { defineConfig } from \"vitest/config\"\n\nexport default defineConfig({\n  test: { environment: \"node\" },\n})"
+    }
+  ]
+}

@@ -3070,5 +3070,161 @@
       "src/app/resource-route.tsx",
       "src/demo/assistant/help-answer.ts"
     ]
+  },
+  {
+    "id": "DEV-03",
+    "title": "Terminal",
+    "originalName": "Terminal",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show command output with its colours, and follow it while it runs.",
+    "implemented": "ANSI SGR codes (colour, bold, dim, italic, underline) are parsed into spans coloured by theme roles. While streaming, the view keeps the newest line in sight unless the person has scrolled up, and shows a cursor. Copy takes the plain text; the output is keyboard scrollable.",
+    "deferred": "No input, cursor movement or 256-colour codes; interactive shells need a terminal emulator such as xterm.js.",
+    "examples": [
+      {
+        "label": "Coding agent",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Choose Replay and watch the first test run print."
+      },
+      {
+        "label": "Terminal reference",
+        "href": "/reference/components/terminal",
+        "instruction": "Copy the output."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/terminal.tsx",
+      "src/kit/ui/ansi.ts",
+      "src/features/reference/specimens/coding-agent-steps.tsx"
+    ]
+  },
+  {
+    "id": "DEV-04",
+    "title": "File tree",
+    "originalName": "File tree",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Browse a folder hierarchy and pick a file, with changes marked.",
+    "implemented": "A tree with the ARIA tree keyboard pattern and one tab stop. Folders open and close; selecting a file reports its path. Added, modified and deleted files carry A, M or D, also spoken. In the specimen, files are marked once the agent edits them, and selecting one previews it.",
+    "deferred": "No type-ahead, multi-select, drag and drop or lazy loading of large folders.",
+    "examples": [
+      {
+        "label": "Coding agent",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Move through Files with the arrow keys and open package.json."
+      },
+      {
+        "label": "File tree reference",
+        "href": "/reference/components/file-tree",
+        "instruction": "Collapse src with the Left arrow."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/file-tree.tsx",
+      "src/features/reference/specimens/coding-agent-specimen.tsx",
+      "src/demo/coding-agent.ts"
+    ]
+  },
+  {
+    "id": "DEV-05",
+    "title": "Commit",
+    "originalName": "Commit",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Summarise a commit and the files it changed.",
+    "implemented": "Message, short hash, body, author and date, then each file with lines added and removed, coloured and stated in words.",
+    "deferred": "No links to a repository host or per-file diffs.",
+    "examples": [
+      {
+        "label": "Coding agent",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Scroll to the Commit step."
+      },
+      {
+        "label": "Commit reference",
+        "href": "/reference/components/commit",
+        "instruction": "Compare the three files' changes."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/commit.tsx",
+      "src/features/reference/specimens/coding-agent-steps.tsx"
+    ]
+  },
+  {
+    "id": "DEV-06",
+    "title": "Test results",
+    "originalName": "Test results",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Report a test run so failures stand out and can be read in place.",
+    "implemented": "A summary (failed count or All passed, passed of total, duration), a passed/failed/skipped bar and each suite's tests with status in words, icon and colour. A failing test can show its stack trace underneath.",
+    "deferred": "No filtering, re-run or history across runs.",
+    "examples": [
+      {
+        "label": "Coding agent",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Read the failing test, then the passing run after the fix."
+      },
+      {
+        "label": "Test results reference",
+        "href": "/reference/components/test-results",
+        "instruction": "Find the skipped test."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/test-results.tsx",
+      "src/features/reference/specimens/coding-agent-steps.tsx"
+    ]
+  },
+  {
+    "id": "DEV-07",
+    "title": "Stack trace",
+    "originalName": "Stack trace",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show an error and where it happened without burying the useful line.",
+    "implemented": "The error name and message, then your own frames; library and runtime frames fold behind a count that opens them. Paths wrap on narrow screens.",
+    "deferred": "Frames are passed parsed; no parser for raw stack strings or source maps, and no open-in-editor links.",
+    "examples": [
+      {
+        "label": "Coding agent",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Open 3 library frames under the failing test."
+      },
+      {
+        "label": "Stack trace reference",
+        "href": "/reference/components/stack-trace",
+        "instruction": "Open the library frames."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/stack-trace.tsx",
+      "src/features/reference/specimens/coding-agent-steps.tsx"
+    ]
+  },
+  {
+    "id": "AI-24",
+    "title": "Coding agent session",
+    "originalName": "Coding agent session",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Follow an agent's work on code: what it ran, read, changed and committed.",
+    "implemented": "A reference specimen replaying a recorded session in which an agent fixes a failing test. The transcript shows reasoning, then tool calls whose results render richly: test results with a stack trace and the terminal output, the file read, the diff and the commit. Files beside it mark what the agent changed and preview each file as it stands at that point. The page opens complete; Replay plays it back and Show all skips to the end.",
+    "deferred": "A recording, not a live agent: Tandem's own assistant works on projects, not code.",
+    "examples": [
+      {
+        "label": "Coding agent specimen",
+        "href": "/reference/specimens/coding-agent",
+        "instruction": "Choose Replay, then open format-due.ts in Files after the edit."
+      }
+    ],
+    "sources": [
+      "src/features/reference/specimens/coding-agent-specimen.tsx",
+      "src/features/reference/specimens/coding-agent-steps.tsx",
+      "src/features/reference/specimens/use-replay.ts",
+      "src/demo/coding-agent.ts",
+      "src/app/specimen-route.tsx"
+    ]
   }
 ]

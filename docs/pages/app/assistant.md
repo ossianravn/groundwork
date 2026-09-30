@@ -1,6 +1,6 @@
 # Assistant
 
-Status: implemented through step 5 (artifacts and configuration), awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-23, DEV-01, DEV-02. The maintainer's plan ends with the coding-agent specimen.
+Status: implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-23, DEV-01, DEV-02. The developer components (DEV-03 to DEV-07) are shown in the coding-agent specimen (AI-24, `/reference/specimens/coding-agent`), not here, because Tandem's assistant works on projects rather than code.
 
 ## User goal and composition
 

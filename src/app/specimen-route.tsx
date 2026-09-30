@@ -11,6 +11,7 @@ import {
   ConsentSpecimen,
   type ConsentChoice,
 } from "@/features/reference/specimens/consent-specimen"
+import { CodingAgentSpecimen } from "@/features/reference/specimens/coding-agent-specimen"
 
 const mobileTabs = getRouteApi("/reference/specimens/mobile-tabs")
 
@@ -120,6 +121,22 @@ export function ConsentRoute() {
           <SpecimenNote id="MKT-12">
             Reference specimen: Tandem sets no optional cookies, so the demo
             never asks.
+          </SpecimenNote>
+        }
+      />
+    </>
+  )
+}
+
+export function CodingAgentRoute() {
+  return (
+    <>
+      <title>Coding agent · Reference specimen</title>
+      <CodingAgentSpecimen
+        note={
+          <SpecimenNote id="AI-24">
+            Reference specimen: a recorded coding-agent session. Tandem's own
+            assistant works on projects, not code.
           </SpecimenNote>
         }
       />
