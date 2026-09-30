@@ -309,10 +309,10 @@
           "title": "Improved",
           "paragraphs": [],
           "bullets": [
-            "Project pages lead with the name, status and description. Tasks, comments and activity fill the page, with owner, due date, tags, progress and files in a column beside them.",
+            "Project pages are reorganised: progress and Mark complete sit beside the name; Tasks, Comments and Activity are tabs; and Project details and files sit in a column beside them.",
+            "Tasks switch between Open and Completed, and a task you tick stays in place until you change view. Open a task's name to read or edit its description, and add tasks in a dialog. Assignees' avatars line up, and only the checkbox completes a task.",
             "Project pages, the editor and import lose their Back row: the breadcrumb names where you came from and takes you back there, and on phones a back arrow sits beside the title.",
             "One Edit button beside a project's details changes the owner, due date, tags and links together in a dialog.",
-            "In task lists the assignee's name comes before their avatar, so avatars line up; unassigned tasks show an empty circle in the same place. Only the checkbox completes a task, so a click on its name or the empty row no longer ticks it off. A completed task stays ticked in place for a moment before it moves to Completed, so you can see it happen and untick it.",
             "The projects list shows all your projects on one page by default, its filters and column headers stay quiet until you use them, and on phones its view controls share the filter row.",
             "Hide the assistant's history to give the conversation the whole width; History in the top bar brings it back.",
             "The navigation button in the top bar now lines up with the page below it."

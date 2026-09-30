@@ -1,4 +1,5 @@
 import { expect, it } from "vitest"
+import { textDocument } from "@/kit/rich-text/document"
 import { initialProjects } from "./project-fixtures"
 import {
   addProjectTasks,
@@ -115,4 +116,48 @@ it("adds several tasks to a project in order, and none to a completed one", () =
   expect(own.slice(-2).map((task) => task.title)).toEqual(["First", "Second"])
   expect(brand(result.records).tasks).toBe(brand(records()).tasks + 2)
   expect(addProjectTasks(records(), "launch", tasks, ids).added).toBe(0)
+})
+
+it("stores task descriptions as rich text and drops empty ones", () => {
+  const described = initialTasks.find((task) => task.id === "brand-t25")!
+
+  expect(described.description?.type).toBe("doc")
+
+  const note = textDocument("Use the new master.")
+
+  const edited = applyTaskChange(
+    records(),
+    { kind: "describe", taskId: "brand-t25", description: note },
+    context,
+  ).tasks.find((task) => task.id === "brand-t25")!
+
+  expect(edited.description).toEqual(note)
+
+  const cleared = applyTaskChange(
+    records(),
+    { kind: "describe", taskId: "brand-t25", description: textDocument("") },
+    context,
+  ).tasks.find((task) => task.id === "brand-t25")!
+
+  expect("description" in cleared).toBe(false)
+
+  const added = applyTaskChange(
+    records(),
+    {
+      kind: "add",
+      projectId: "brand",
+      title: "Press kit",
+      assigneeId: null,
+      description: textDocument(""),
+    },
+    context,
+  ).tasks.find((task) => task.id === "new")!
+
+  expect(added).toEqual({
+    id: "new",
+    projectId: "brand",
+    title: "Press kit",
+    done: false,
+    assigneeId: null,
+  })
 })

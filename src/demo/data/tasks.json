@@ -4,7 +4,8 @@
     "projectId": "brand",
     "title": "Stakeholder interviews",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "Twelve 30-minute interviews across sales, support and leadership. Notes are in the shared research folder."
   },
   {
     "id": "brand-t2",
@@ -25,7 +26,8 @@
     "projectId": "brand",
     "title": "Discovery summary",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "One page: what people said the brand should feel like, where it falls short today, and the three themes we carried into the concepts."
   },
   {
     "id": "brand-t5",
@@ -67,7 +69,8 @@
     "projectId": "brand",
     "title": "Choose logo direction",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "Leadership chose Concept B for its warmth. Keep the geometric construction from A for the logomark."
   },
   {
     "id": "brand-t11",
@@ -165,63 +168,72 @@
     "projectId": "brand",
     "title": "Export guideline PDF",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Export at print and screen resolution. The screen version links to the colour and type pages."
   },
   {
     "id": "brand-t25",
     "projectId": "brand",
     "title": "Email signature template",
     "done": false,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "One HTML signature that works in Gmail and Outlook: name, role, pronouns (optional), phone and the new logo at 2x.\nTest in dark mode before sending it round."
   },
   {
     "id": "brand-t26",
     "projectId": "brand",
     "title": "Social profile images",
     "done": false,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Profile and cover images for LinkedIn, Instagram and YouTube, using the calm palette. Check each platform's safe area for the crop."
   },
   {
     "id": "brand-t27",
     "projectId": "brand",
     "title": "Slide deck template",
     "done": false,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "A 16:9 master with title, section, two-column, quote and closing layouts. Fonts must fall back cleanly on machines without the display face."
   },
   {
     "id": "brand-t28",
     "projectId": "brand",
     "title": "Business card artwork",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Double-sided, 85 × 55 mm. Front: logomark only. Back: name, role, email and phone in the text face."
   },
   {
     "id": "brand-t29",
     "projectId": "brand",
     "title": "Website header and favicon",
     "done": false,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "Update the site header with the new wordmark, and export the favicon at 16, 32 and 180 px plus an SVG."
   },
   {
     "id": "brand-t30",
     "projectId": "brand",
     "title": "Office signage brief",
     "done": false,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Reception sign and meeting room plates. Mia is getting quotes from two print shops."
   },
   {
     "id": "brand-t31",
     "projectId": "brand",
     "title": "Brand launch announcement",
     "done": false,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "description": "A short post for the blog and LinkedIn: why we changed, what stays the same, and where to find the guidelines."
   },
   {
     "id": "brand-t32",
     "projectId": "brand",
     "title": "Hand over source files",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Hand over the logo, palette and type files with the licence, in one folder with a README explaining which file to use where."
   },
   {
     "id": "website-t1",
@@ -291,7 +303,8 @@
     "projectId": "website",
     "title": "Homepage copy",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Lead with the outcome, not the feature list. Approved by Leo on 12 Sept."
   },
   {
     "id": "website-t11",
@@ -375,35 +388,40 @@
     "projectId": "website",
     "title": "Careers page layout",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Open roles pulled from the CMS, a short culture section and a benefits grid. No stock photos."
   },
   {
     "id": "website-t23",
     "projectId": "website",
     "title": "Customer stories layout",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "One template for all stories: the customer's problem, what changed, and one number that shows it."
   },
   {
     "id": "website-t24",
     "projectId": "website",
     "title": "404 page",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Keep it friendly: say the page moved or never existed, offer search and the three most-visited pages."
   },
   {
     "id": "website-t25",
     "projectId": "website",
     "title": "Search results page",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Group results by type (pages, articles, stories) with counts. Show the query in the heading."
   },
   {
     "id": "website-t26",
     "projectId": "website",
     "title": "Design QA: homepage",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Compare the build with the designs at 375, 768 and 1440 px. Log differences as comments on the design file."
   },
   {
     "id": "website-t27",
@@ -417,14 +435,16 @@
     "projectId": "website",
     "title": "Component handoff notes",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "For each component: states, spacing, the tokens it uses and any behaviour the design file can't show."
   },
   {
     "id": "website-t29",
     "projectId": "website",
     "title": "Set up CMS models",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Models for pages, articles, customer stories and job openings. Articles need an author, reading time and related posts."
   },
   {
     "id": "website-t30",
@@ -452,7 +472,8 @@
     "projectId": "website",
     "title": "Redirect map",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Map every old URL with traffic in the last year to its new page. Anything unmapped goes to the closest section, not the homepage."
   },
   {
     "id": "website-t34",
@@ -466,7 +487,8 @@
     "projectId": "website",
     "title": "Accessibility audit",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Automated scan plus a manual pass with a screen reader on the five templates.\nFix blockers before launch; log the rest."
   },
   {
     "id": "website-t36",
@@ -487,7 +509,8 @@
     "projectId": "website",
     "title": "Performance budget",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Largest contentful paint under 2.5 s on a mid-range phone over 4G, and under 170 kB of JavaScript on the homepage."
   },
   {
     "id": "website-t39",
@@ -529,7 +552,8 @@
     "projectId": "website",
     "title": "Launch checklist",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "The go/no-go list for launch day: redirects, analytics, forms, sitemap, robots.txt and who is on call."
   },
   {
     "id": "website-t45",
@@ -585,7 +609,8 @@
     "projectId": "mobile",
     "title": "Platform decision",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Cross-platform with React Native: one team, shared components, and native modules only for notifications."
   },
   {
     "id": "mobile-t5",
@@ -655,7 +680,8 @@
     "projectId": "mobile",
     "title": "Prototype test round 1",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Five participants, remote, 40 minutes each. Main finding: people looked for search on the home screen."
   },
   {
     "id": "mobile-t15",
@@ -816,28 +842,32 @@
     "projectId": "mobile",
     "title": "Final review with Ava",
     "done": false,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Walk through the release build with Ava: onboarding, notifications and the offline state. Note anything that blocks submission."
   },
   {
     "id": "mobile-t38",
     "projectId": "mobile",
     "title": "App Store submission",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Submit build 1.0 (42) with the store screenshots, description and privacy labels. Review usually takes one to two days."
   },
   {
     "id": "mobile-t39",
     "projectId": "mobile",
     "title": "Play Store submission",
     "done": false,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Upload the release bundle to the internal track first, then promote it to production at 20%."
   },
   {
     "id": "mobile-t40",
     "projectId": "mobile",
     "title": "Launch day monitoring",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Watch crash-free sessions, sign-in success and store reviews for the first 48 hours. Roll back if crash-free sessions drop below 99%."
   },
   {
     "id": "design-system-t1",
@@ -865,7 +895,8 @@
     "projectId": "design-system",
     "title": "Token naming",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Tokens are named by role, not value: colour.text.muted rather than grey-600."
   },
   {
     "id": "design-system-t5",
@@ -900,7 +931,8 @@
     "projectId": "design-system",
     "title": "Button",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "description": "Four variants (primary, secondary, outline, ghost), three sizes, and a loading state that keeps the button's width."
   },
   {
     "id": "design-system-t10",
@@ -970,14 +1002,16 @@
     "projectId": "design-system",
     "title": "Switch",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Follow the Base UI switch. The label sits to the right; the whole row is clickable."
   },
   {
     "id": "design-system-t20",
     "projectId": "design-system",
     "title": "Slider",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "description": "Single value and range. Show the value while dragging, and support arrow keys and Page Up/Down."
   },
   {
     "id": "design-system-t21",
@@ -991,14 +1025,16 @@
     "projectId": "design-system",
     "title": "Combobox",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Searchable single and multi select. Chips for multi select, with a clear button when anything is chosen."
   },
   {
     "id": "design-system-t23",
     "projectId": "design-system",
     "title": "Date picker",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Built on the calendar. Monday weeks, ISO values, and the chosen date in the button's accessible name."
   },
   {
     "id": "design-system-t24",
@@ -1019,7 +1055,8 @@
     "projectId": "design-system",
     "title": "Dialog",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Focus moves into the dialog and returns to the opener. Destructive dialogs put the safe action first."
   },
   {
     "id": "design-system-t27",
@@ -1047,14 +1084,16 @@
     "projectId": "design-system",
     "title": "Toast",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "description": "Short confirmations only, with Undo when an action can be reversed. Errors stay on the page instead."
   },
   {
     "id": "design-system-t31",
     "projectId": "design-system",
     "title": "Table",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Sortable headers, a selection column and a sticky header. Long tables scroll inside their container."
   },
   {
     "id": "design-system-t32",
@@ -1138,7 +1177,8 @@
     "projectId": "design-system",
     "title": "Dark mode review",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Check every component in dark mode against the contrast targets, especially borders and disabled states."
   },
   {
     "id": "design-system-t44",
@@ -1222,7 +1262,8 @@
     "projectId": "design-system",
     "title": "Release 1.0",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "description": "Tag 1.0 once every component in scope has documentation and passes the accessibility checklist."
   },
   {
     "id": "design-system-t56",

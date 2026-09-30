@@ -75,6 +75,8 @@ const sources = import.meta.glob<string>(
     "../features/projects/mention-textarea.tsx",
     "../demo/project-comments.ts",
     "../features/projects/project-tasks.tsx",
+    "../features/projects/project-task-description.tsx",
+    "../features/projects/project-task-dialog.tsx",
     "../features/projects/project-task-row.tsx",
     "../demo/project-tasks.ts",
     "../kit/ui/calendar.tsx",

@@ -10,7 +10,8 @@ import type {
   ProjectTask,
 } from "@/demo/model"
 import type { TaskChange } from "@/demo/project-tasks"
-import { ProjectProgress } from "./project-progress"
+import { ProjectHeaderProgress } from "./project-header-progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/kit/ui/tabs"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
@@ -18,6 +19,11 @@ import { ProjectTasks } from "./project-tasks"
 import { ProjectComments } from "./project-comments"
 import { ProjectActivity } from "./project-activity"
 import { ProjectProperties } from "./project-properties"
+
+export type ProjectTab = "tasks" | "comments" | "activity"
+
+const isProjectTab = (value: unknown): value is ProjectTab =>
+  value === "tasks" || value === "comments" || value === "activity"
 
 /**
  * A project's page: its name, status and description as the heading; the
@@ -41,6 +47,8 @@ export function ProjectPage({
   onPostComment,
   files,
   tagOptions,
+  tab,
+  onTabChange,
 }: {
   project: Project
   members: Member[]
@@ -54,10 +62,13 @@ export function ProjectPage({
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
-  /** Attachments, shown under progress in the rail. */
+  /** Attachments, shown under the details in the rail. */
   files?: ReactNode
   /** Tags offered when editing details, such as those used elsewhere. */
   tagOptions: string[]
+  /** The open section; the host keeps it in the URL. */
+  tab: ProjectTab
+  onTabChange: (tab: ProjectTab) => void
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -76,7 +87,10 @@ export function ProjectPage({
             {project.name}
           </ProjectInlineField>
           <ProjectStatus status={project.status} />
-          {editLink}
+          <div className="project-header-side">
+            <ProjectHeaderProgress project={project} onComplete={onComplete} />
+            {editLink}
+          </div>
         </div>
         {documentText(project.description) && (
           <div className="project-page-lead">
@@ -90,7 +104,7 @@ export function ProjectPage({
         </p>
       )}
       <div className="project-page-grid">
-        <aside className="project-rail" aria-label="Project details">
+        <aside className="project-rail" aria-labelledby="project-details-title">
           <ProjectProperties
             project={project}
             owner={owner}
@@ -98,24 +112,53 @@ export function ProjectPage({
             tagOptions={tagOptions}
             editing={editing}
           />
-          <ProjectProgress project={project} onComplete={onComplete} />
         </aside>
-        <div className="project-main">
-          <ProjectTasks
-            project={project}
-            tasks={tasks}
-            members={assignableMembers}
-            people={members}
-            onChange={onTaskChange}
-          />
-          <ProjectComments
-            comments={comments}
-            people={members}
-            members={assignableMembers}
-            onPost={onPostComment}
-          />
-          <ProjectActivity events={events} members={members} />
-        </div>
+        <Tabs
+          className="project-main"
+          value={tab}
+          onValueChange={(value) => {
+            if (isProjectTab(value)) onTabChange(value)
+          }}
+        >
+          <TabsList variant="line" aria-label="Project sections">
+            <TabsTrigger value="tasks">
+              Tasks{" "}
+              <span className="project-tab-count">
+                {tasks.filter((task) => !task.done).length}
+              </span>
+            </TabsTrigger>
+            <TabsTrigger value="comments">
+              Comments{" "}
+              <span className="project-tab-count">{comments.length}</span>
+            </TabsTrigger>
+            <TabsTrigger value="activity">
+              Activity{" "}
+              <span className="project-tab-count">{events.length}</span>
+            </TabsTrigger>
+          </TabsList>
+          {/* Panels stay mounted, so a comment draft or an opened task
+              survives a look at another section. */}
+          <TabsContent value="tasks" keepMounted>
+            <ProjectTasks
+              project={project}
+              tasks={tasks}
+              members={assignableMembers}
+              people={members}
+              onChange={onTaskChange}
+            />
+          </TabsContent>
+          <TabsContent value="comments" keepMounted>
+            <ProjectComments
+              comments={comments}
+              people={members}
+              members={assignableMembers}
+              onPost={onPostComment}
+            />
+          </TabsContent>
+          <TabsContent value="activity" keepMounted>
+            <ProjectActivity events={events} members={members} />
+          </TabsContent>
+        </Tabs>
         {files && <div className="project-rail-files">{files}</div>}
       </div>
     </main>

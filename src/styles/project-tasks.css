@@ -1,24 +1,29 @@
-/* Project tasks (TABL-12): the first open section of the project's main
-   column. Rows read as one line: check, title, assignee and actions. */
-.project-main > .project-tasks {
+/* Project tasks (TABL-12): the Tasks tab of a project page. A toolbar with
+   the Open/Completed switch and Add task, then one list. Rows read as one
+   line (check, title, assignee, actions); an opened task shows its
+   description under the title. */
+.project-tasks {
+  display: grid;
+  justify-items: start;
   gap: var(--content-gap);
 }
-.project-tasks-heading {
+.project-tasks-toolbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--control-gap);
+  width: 100%;
 }
+.task-status-count {
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+/* Files and other rail sections share this quiet count style. */
 .project-tasks-count {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
-}
-.project-tasks-content {
-  display: grid;
-  justify-items: start;
-  gap: var(--control-gap);
 }
 .task-list {
   display: grid;
@@ -36,19 +41,57 @@
   border-top: 1px solid var(--border);
 }
 .task-title {
+  /* Inline text, so a wrapped title keeps its description mark after the
+     last word. */
+  display: block;
+  justify-self: start;
+  max-width: 100%;
+  min-height: var(--control-height-sm);
+  padding-inline: 0.375rem;
+  margin-inline: -0.375rem;
+  border-radius: var(--radius-md);
+  text-align: start;
   overflow-wrap: anywhere;
+  cursor: pointer;
 }
-/* A task just completed fades during the last moment before it moves to
-   Completed (project-tasks.tsx settles it after 1.6s). */
-@media (prefers-reduced-motion: no-preference) {
-  .task-row[data-settling][data-done] {
-    animation: task-settle 300ms var(--ease-standard) 1300ms forwards;
-  }
+.task-title:hover {
+  background: var(--accent);
 }
-@keyframes task-settle {
-  to {
-    opacity: 0.35;
-  }
+.task-title:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+/* A quiet mark that the task has a description to open. */
+.task-has-description {
+  display: inline;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-inline-start: 0.375rem;
+  vertical-align: -0.125rem;
+  color: var(--muted-foreground);
+}
+.task-row[data-open] {
+  padding-bottom: var(--content-gap);
+}
+/* The description sits under the title, across the rest of the row. */
+.task-description {
+  grid-column: 2 / -1;
+  display: grid;
+  justify-items: start;
+  gap: var(--control-gap);
+  max-width: 70ch;
+  color: var(--muted-foreground);
+}
+.task-description .rich-text-editor {
+  width: 100%;
+  color: var(--foreground);
+}
+.task-description-edit {
+  margin-inline-start: -0.625rem;
+}
+.task-description-actions {
+  display: flex;
+  gap: var(--control-gap);
 }
 .task-row[data-done] .task-title {
   color: var(--muted-foreground);
@@ -74,38 +117,12 @@
   border: 1px dashed var(--border);
   border-radius: 9999px;
 }
-.task-add {
-  display: flex;
-  gap: var(--control-gap);
-  width: 100%;
-  max-width: 32rem;
-  padding-top: var(--control-gap);
-}
-.task-add [data-slot="input"] {
-  flex: 1;
-  min-width: 0;
-}
-.task-completed {
-  width: 100%;
-}
-/* Ghost toggles align their icon with the checkbox column. */
-.task-completed-trigger,
+/* The ghost action aligns its label with the checkbox column. */
 .task-show-all {
   margin-inline-start: -0.375rem;
 }
-.task-completed-trigger {
-  color: var(--muted-foreground);
-}
-.task-completed-trigger svg {
-  transition: transform 150ms ease;
-}
-.task-completed-trigger[data-panel-open] svg {
-  transform: rotate(90deg);
-}
-@media (prefers-reduced-motion: reduce) {
-  .task-completed-trigger svg {
-    transition: none;
-  }
+.task-empty {
+  padding-block: var(--item-padding);
 }
 @media (max-width: 767px) {
   /* Narrow rows keep the avatar; the name stays in the accessible label. */
