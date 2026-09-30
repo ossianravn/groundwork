@@ -1,10 +1,16 @@
 import script from "../data/assistant.json"
-import type { AssistantContext, AssistantReply } from "./assistant-types"
+import type {
+  AssistantContext,
+  AssistantReply,
+  AssistantToolSettings,
+} from "./assistant-types"
+import { helpAnswer, namedGuide } from "./help-answer"
+import { statusAnswer } from "./status-answer"
 import { checklistAnswer } from "./checklist-answer"
 import { riskAnswer } from "./risk-answer"
 import { weekAnswer } from "./week-answer"
 
-const intentIds = ["risk", "week", "tasks", "api"] as const
+const intentIds = ["risk", "week", "status", "tasks", "api"] as const
 
 type IntentId = (typeof intentIds)[number]
 
@@ -45,9 +51,25 @@ function apiAnswer() {
   }
 }
 
+const allTools: AssistantToolSettings = {
+  searchProjects: true,
+  createTasks: true,
+  draftUpdates: true,
+}
+
+/** The tool an intent depends on, when the workspace can turn it off. */
+function toolFor(intent: IntentId): keyof AssistantToolSettings | null {
+  if (intent === "risk") return "searchProjects"
+
+  if (intent === "tasks") return "createTasks"
+
+  return intent === "status" ? "draftUpdates" : null
+}
+
 /**
  * Composes the scripted reply to a prompt from the records sent with the
- * request. `toolFails` makes the project search fail (tool-error scenario).
+ * request. `toolFails` makes the project search fail (tool-error scenario);
+ * a tool turned off in settings gets an explanation instead of an answer.
  */
 export function assistantReply(
   prompt: string,
@@ -55,8 +77,17 @@ export function assistantReply(
   {
     toolFails = false,
     files = [],
-  }: { toolFails?: boolean; files?: string[] } = {},
+    tools = allTools,
+  }: {
+    toolFails?: boolean
+    files?: string[]
+    tools?: AssistantToolSettings
+  } = {},
 ): AssistantReply {
+  const guide = namedGuide(prompt)
+
+  if (guide) return { ...helpAnswer(guide), followUps: script.suggestions }
+
   const intent = matchIntent(prompt)
 
   if (!intent && files.length)
@@ -70,6 +101,10 @@ export function assistantReply(
   const followUps =
     script.intents.find((entry) => entry.id === intent)?.followUps ?? []
 
+  const tool = toolFor(intent)
+
+  if (tool && !tools[tool]) return { text: script.disabled[tool], followUps }
+
   const answer =
     intent === "risk"
       ? riskAnswer(context, { toolFails })
@@ -77,7 +112,9 @@ export function assistantReply(
         ? weekAnswer(context)
         : intent === "tasks"
           ? checklistAnswer(prompt, context)
-          : apiAnswer()
+          : intent === "status"
+            ? statusAnswer(prompt, context)
+            : apiAnswer()
 
   // A reply waiting on the person offers no other questions meanwhile.
   const waiting = "question" in answer || "approval" in answer

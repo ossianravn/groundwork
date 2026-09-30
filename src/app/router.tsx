@@ -2,7 +2,7 @@ import { onboardingRoutes } from "./onboarding-routes"
 import { emailLinkRoutes } from "./email-link-routes"
 import { providerRoutes } from "./provider-routes"
 import { activityRoute } from "./activity-routes"
-import { assistantRoute } from "./assistant-routes"
+import { assistantRoute, assistantSettingsRoute } from "./assistant-routes"
 import { projectImportRoute, searchRoute } from "./search-routes"
 import { securityRoute, verificationRoute } from "./security-routes"
 import { parseWebhookSearch, defaultWebhookSearch } from "./webhook-search"
@@ -265,6 +265,7 @@ export const router = createRouter({
       securityRoute,
       workspaceSettingsRoute,
       teamRoute,
+      assistantSettingsRoute,
       billingRoute,
       apiKeysRoute,
       webhooksRoute,

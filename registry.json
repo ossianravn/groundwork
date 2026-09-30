@@ -1375,6 +1375,16 @@
       ],
       "files": [
         {
+          "path": "src/kit/ai/agent.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/agent.tsx"
+        },
+        {
+          "path": "src/kit/ai/artifact.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/artifact.tsx"
+        },
+        {
           "path": "src/kit/ai/attachments.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/attachments.tsx"
@@ -1383,6 +1393,11 @@
           "path": "src/kit/ai/chain-of-thought.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/chain-of-thought.tsx"
+        },
+        {
+          "path": "src/kit/ai/chat-links.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/chat-links.ts"
         },
         {
           "path": "src/kit/ai/checkpoint.tsx",
@@ -1428,6 +1443,11 @@
           "path": "src/kit/ai/model-selector.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/model-selector.tsx"
+        },
+        {
+          "path": "src/kit/ai/open-in-chat.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/open-in-chat.tsx"
         },
         {
           "path": "src/kit/ai/plan.tsx",

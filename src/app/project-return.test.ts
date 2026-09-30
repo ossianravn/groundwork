@@ -79,7 +79,7 @@ it("preserves Analytics scope and the project data view through a project visit"
 it("returns to the assistant from a project opened in a reply", () => {
   expect(projectReturnDestination("/app/demo/assistant")).toEqual({
     to: "/app/demo/assistant",
-    search: { scenario: "normal" },
+    search: { scenario: "normal", q: "" },
     hash: "",
   })
 })

@@ -1,5 +1,10 @@
+import script from "../data/assistant.json"
 import { formatDate, statusLabels, type Project } from "../model"
-import type { AssistantContext } from "./assistant-types"
+import type {
+  AssistantContext,
+  AssistantReply,
+  ChooseProjectInput,
+} from "./assistant-types"
 
 export const projectPath = (project: Project) =>
   `/app/demo/projects/${encodeURIComponent(project.id)}`
@@ -32,4 +37,29 @@ export function projectSummary(project: Project) {
   const open = project.tasks - project.completedTasks
 
   return `${statusLabels[project.status]} · due ${formatDate(project.dueDate)} · ${open} of ${project.tasks} tasks open`
+}
+
+/**
+ * Asks which open project a request is for, through the client-side
+ * chooseProject tool; `purpose` tells the continuation what to do next.
+ */
+export function askForProject(
+  context: AssistantContext,
+  purpose: ChooseProjectInput["purpose"],
+  lead: string,
+): Omit<AssistantReply, "followUps"> {
+  return {
+    text: lead,
+    question: {
+      purpose,
+      question: script.questions[purpose],
+      options: context.projects
+        .filter((project) => project.status !== "completed")
+        .map((project) => ({
+          value: project.id,
+          label: project.name,
+          description: `due ${formatDate(project.dueDate)}`,
+        })),
+    },
+  }
 }

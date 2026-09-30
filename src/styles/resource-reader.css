@@ -3,6 +3,11 @@
   padding-block: var(--page-padding) clamp(2rem, 5vw, 4rem);
 }
 .resource-back {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
   margin-bottom: var(--section-gap);
 }
 .resource-back a,

@@ -349,7 +349,7 @@
       "Highlighting loads on first use and takes its colours from the --syntax-* tokens, so code follows light, dark and the accent. The block renders plain text first, at the same size.",
       "Long lines scroll inside the block, which takes keyboard focus. Copy reports success in place; when the clipboard refuses, the code is selected instead."
     ],
-    "context": "Assistant replies",
+    "context": "Assistant replies and webhook deliveries",
     "href": "/app/demo/assistant",
     "patterns": ["DEV-01", "AI-02"],
     "documentation": {
@@ -663,5 +663,59 @@
       "label": "AI Elements Checkpoint"
     },
     "implementation": "src/kit/ai/checkpoint.tsx"
+  },
+  {
+    "id": "artifact",
+    "name": "Artifact",
+    "category": "AI and chat",
+    "purpose": "Hold something the assistant made for use outside the conversation.",
+    "notes": [
+      "A titled surface: its actions sit in the header (copy, download, a labelled primary action), the content scrolls within a bounded height, and a footer records where it was used.",
+      "The title shimmers while the content streams; actions appear once it is complete."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-21"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/artifact",
+      "label": "AI Elements Artifact"
+    },
+    "implementation": "src/kit/ai/artifact.tsx"
+  },
+  {
+    "id": "agent",
+    "name": "Agent",
+    "category": "AI and chat",
+    "purpose": "Summarise an agent's configuration: model, instructions, tools and output.",
+    "notes": [
+      "It describes; the controls that change the agent belong beside it. Tools show whether they are on and whether they ask first.",
+      "Keep instructions in the person's language: what the agent does and will not do."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/settings/assistant",
+    "patterns": ["AI-22"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/agent",
+      "label": "AI Elements Agent"
+    },
+    "implementation": "src/kit/ai/agent.tsx"
+  },
+  {
+    "id": "open-in-chat",
+    "name": "Open in chat",
+    "category": "AI and chat",
+    "purpose": "Take a question about the current page to a chat.",
+    "notes": [
+      "Your own assistant opens in-app with the question filled in; outside chats open in a new tab through chatLinks, and say so.",
+      "The question travels in the URL, so keep personal details out of it. Label each outside chat with its real mark."
+    ],
+    "context": "Assistant",
+    "href": "/help/create-and-edit-projects",
+    "patterns": ["AI-23"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/open-in-chat",
+      "label": "AI Elements Open in chat"
+    },
+    "implementation": "src/kit/ai/open-in-chat.tsx"
   }
 ]

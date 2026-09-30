@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react"
+import { useNavigate, useSearch } from "@tanstack/react-router"
 import { useToast } from "@/kit/ui/use-toast"
 import { models } from "@/demo/assistant/assistant-model"
 import { conversationTitle } from "@/demo/assistant/use-assistant"
 import script from "@/demo/data/assistant.json"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import { AssistantHistory } from "@/features/assistant/assistant-history"
+import { plainText } from "@/features/assistant/assistant-text"
 import { contextUsage, messageParts, modelIds } from "./assistant-parts"
 import { ReplyLink } from "./assistant-reply-link"
 import { useDemoState } from "./demo-state"
@@ -12,6 +15,21 @@ import { useRouteFocus } from "./use-route-focus"
 
 export function AssistantRoute() {
   const { demo, assistant } = useDemoState()
+  const search = useSearch({ from: "/app/demo/assistant" })
+  const navigate = useNavigate()
+
+  // A question brought in the URL starts the composer once, then leaves the
+  // address, so reloading or switching chats does not bring it back.
+  const [initialDraft] = useState(search.q)
+
+  useEffect(() => {
+    if (search.q)
+      void navigate({
+        to: "/app/demo/assistant",
+        search: { ...search, q: "" },
+        replace: true,
+      })
+  }, [navigate, search])
   const toast = useToast()
   const session = useAssistantSession()
   const { messages, setMessages, status, request, conversation } = session
@@ -107,10 +125,16 @@ export function AssistantRoute() {
         <AssistantChat
           key={conversation.id}
           intro={script}
+          initialDraft={initialDraft}
           messages={messages}
           status={status}
           error={session.error}
           stopped={conversation.stopped}
+          posted={conversation.posted}
+          onPost={(artifactId, projectId, markdown) => {
+            if (demo.postComment(projectId, plainText(markdown)))
+              assistant.markPosted(conversation.id, artifactId)
+          }}
           versions={
             versions.length > 1 && last
               ? {

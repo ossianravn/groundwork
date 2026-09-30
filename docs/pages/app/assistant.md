@@ -1,6 +1,6 @@
 # Assistant
 
-Status: foundations, agent activity, approved actions and conversation management implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-20, DEV-01, DEV-02. The maintainer's plan adds artifacts, the Agent settings page and the coding-agent specimen in later steps.
+Status: implemented through step 5 (artifacts and configuration), awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-23, DEV-01, DEV-02. The maintainer's plan ends with the coding-agent specimen.
 
 ## User goal and composition
 
@@ -30,6 +30,8 @@ Replies are scripted: `src/demo/data/assistant.json` holds the copy, the startin
 - **At risk:** the assistant reasons about the question (a reasoning part), then calls `searchProjects`. That tool part's parameters stream in, it runs, and it returns the active projects. The answer uses the rule it states: projects overdue, due within a week with more than a quarter of their tasks open, or due within two weeks with more than half open. It lists them in a table with links, names the most urgent, and cites the projects it read; the sources follow the text.
 - **This week:** the assistant reports three progress steps (data parts replaced by id as each completes). It then lists the tasks completed in the seven days to the demo date, by project and person, citing Activity as its source.
 - **Launch checklist:** the one answer that changes records. If the prompt names no open project, the assistant asks which one first. Otherwise it streams a five-task plan (the owner takes the first two), then asks for approval to add the tasks. Approving adds them to the end of the project's task list, as one change in the shared demo state. The outcome links to the project, whose page offers Back to assistant. Declining changes nothing.
+- **Status update:** "Draft a status update for Mobile app" streams a document artifact written from the project's week: its status and progress, this week's activity, the next open tasks and a risk line. Copy and Download keep the markdown. Post to project adds it to the project as a comment, once; the footer says so and links to the project, and focus moves to that link. Without a named project the assistant asks which one (the same question as the checklist, with its purpose).
+- **Help guides:** a question naming a help guide gets its summary and sections, cites the guide and links to it.
 - **API:** a curl and a TypeScript example against the illustrative API, and a link to API keys.
 
 Replies link to project pages and settings with in-app navigation; the host supplies the link renderer, so the feature does not import the router.
@@ -51,6 +53,14 @@ A reply shows its work above the answer, in the order it happened:
 - **Tool calls** are rows with the tool's name and state (Preparing, Running, Done, Failed). They stay closed unless the call fails; opened, they show the parameters and the result as a readable list.
 - **Citations** are numbered pills after the sentence they support. They link to the first source and preview all of them on hover or focus. Consecutive numbers read as a range (2–4). Before the sources arrive, the number shows without a preview.
 - **Sources** ("Used 4 sources") list every cited record with its status. The list is the keyboard-reachable record, since previews hold no controls.
+
+## Settings › Assistant
+
+`/app/demo/settings/assistant` pairs an Agent summary (instructions, tools with Asks first, output) with the default model and a switch per tool: Search projects, Create tasks, Draft status updates. Changes apply at once and last for the session. With a tool off, a question that needs it gets an explanation that links back here, instead of an answer. The instructions are fixed, because scripted replies could not follow edited ones.
+
+## Open in chat
+
+Each help guide offers Ask about this guide. Ask the Tandem Assistant opens the Assistant with a question about the guide in the composer, without sending it; the question then leaves the URL. Open in Claude opens a new tab with the question and the guide's address. There is no ChatGPT entry, because its mark is no longer available from Simple Icons.
 
 ## History, versions and restoring
 

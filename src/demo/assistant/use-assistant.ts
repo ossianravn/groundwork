@@ -1,7 +1,11 @@
 import { useCallback, useState } from "react"
 import type { Chat } from "@ai-sdk/react"
 import { defaultModel } from "./assistant-model"
-import type { AssistantMessage, ModelId } from "./assistant-types"
+import type {
+  AssistantMessage,
+  AssistantToolSettings,
+  ModelId,
+} from "./assistant-types"
 
 type AssistantChat = Chat<AssistantMessage>
 
@@ -14,6 +18,8 @@ export interface Conversation {
   stopped: string[]
   /** Earlier replies to a question, by the question's message id. */
   versions: Record<string, AssistantMessage[]>
+  /** Drafts posted to their project, by artifact id. */
+  posted: string[]
 }
 
 const blank = (): Conversation => ({
@@ -22,6 +28,7 @@ const blank = (): Conversation => ({
   chat: null,
   stopped: [],
   versions: {},
+  posted: [],
 })
 
 /** A conversation's name in the history list. */
@@ -49,6 +56,13 @@ export function useAssistant() {
 
   // The model is a preference: it outlasts New chat, not a reload.
   const [model, setModel] = useState<ModelId>(defaultModel)
+
+  // Settings › Assistant: which tools the assistant may use.
+  const [tools, setTools] = useState<AssistantToolSettings>({
+    searchProjects: true,
+    createTasks: true,
+    draftUpdates: true,
+  })
 
   const update = useCallback(
     (id: string, change: (conversation: Conversation) => Conversation) =>
@@ -91,6 +105,9 @@ export function useAssistant() {
     history: () => state.conversations.filter(used).reverse(),
     model,
     setModel,
+    tools,
+    setTool: (name: keyof AssistantToolSettings, on: boolean) =>
+      setTools((current) => ({ ...current, [name]: on })),
     adopt,
     markStopped,
     select: (id: string) =>
@@ -106,6 +123,8 @@ export function useAssistant() {
         activeId: next.id,
       }))
     },
+    markPosted: (id: string, artifactId: string) =>
+      update(id, (item) => ({ ...item, posted: [...item.posted, artifactId] })),
     rename: (id: string, title: string) =>
       update(id, (item) => ({ ...item, title: title.trim() || null })),
     /** Removes a conversation; returns what Undo needs to put it back. */

@@ -1,10 +1,11 @@
 import type { UIMessage, UIMessageChunk } from "ai"
 import { z } from "zod"
-import type { Activity, Member, Project } from "../model"
+import type { Activity, Member, Project, ProjectTask } from "../model"
 
 /** What the scripted assistant can read: the live demo records. */
 export interface AssistantContext {
   projects: Project[]
+  tasks: ProjectTask[]
   activity: Activity[]
   people: Member[]
   referenceDate: string
@@ -28,6 +29,8 @@ export type SearchProjectsInput = {
 
 /** The chooseProject tool: a question the person answers in the page. */
 export type ChooseProjectInput = {
+  /** What the answer is for, so the turn continues with the right reply. */
+  purpose: "checklist" | "status"
   question: string
   options: { value: string; label: string; description: string }[]
 }
@@ -63,6 +66,18 @@ export interface PlanData {
   complete: boolean
 }
 
+/** A document the assistant drafts; it streams as it is written. */
+export interface ArtifactData {
+  title: string
+  projectId: string
+  projectName: string
+  /** The project's page, for a link once the draft is posted. */
+  url: string
+  /** Markdown. */
+  content: string
+  complete: boolean
+}
+
 export interface ReplySource {
   id: string
   url: string
@@ -94,6 +109,8 @@ export interface AssistantReply {
   /** After the text: a plan, then createTasks awaiting approval. */
   plan?: PlanData
   approval?: CreateTasksInput
+  /** After the text: a document to use outside the conversation. */
+  artifact?: ArtifactData
   /** First of all: the outcome of a call approved or denied last turn. */
   resolution?:
     | { toolCallId: string; output: CreateTasksOutput }
@@ -113,6 +130,7 @@ type AssistantData = {
   plan: PlanData
   /** A project the person attached to their message as context. */
   project: { id: string; name: string }
+  artifact: ArtifactData
 }
 
 export type ModelId = "fast" | "balanced" | "thorough"
@@ -154,9 +172,17 @@ export interface AssistantActions {
  * context to a server: the records to answer from, the tool implementations
  * and the demo scenario.
  */
+/** What the workspace lets the assistant use (Settings › Assistant). */
+export type AssistantToolSettings = {
+  searchProjects: boolean
+  createTasks: boolean
+  draftUpdates: boolean
+}
+
 export interface AssistantRequest {
   scenario: AssistantScenario
   model: ModelId
+  tools: AssistantToolSettings
   context: AssistantContext
   actions: AssistantActions
 }

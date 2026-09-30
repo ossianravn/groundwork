@@ -13,9 +13,14 @@ import { WebhookSettings } from "@/features/settings/webhook-settings"
 import { TeamSettings } from "@/features/settings/team-settings"
 import { BillingSettings } from "@/features/settings/billing-settings"
 import { SecuritySettings } from "@/features/settings/security-settings"
+import { AssistantSettings } from "@/features/settings/assistant-settings"
+import { models } from "@/demo/assistant/assistant-model"
+import script from "@/demo/data/assistant.json"
+import { useDemoState } from "./demo-state"
 import { buttonVariants } from "@/kit/ui/button"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
+import { modelIds } from "./assistant-parts"
 
 function SettingsLink({ section, ...props }: SettingsLinkProps) {
   if (section === "webhooks")
@@ -34,6 +39,7 @@ function SettingsRoute({ section }: { section: SettingsSection }) {
   const { demo, appearance } = useDemoWorkspace()
   const { account, identity, integrations } = demo
   const { scenario } = useSearch({ strict: false })
+  const { assistant } = useDemoState()
 
   useRouteFocus()
 
@@ -44,6 +50,7 @@ function SettingsRoute({ section }: { section: SettingsSection }) {
     security: "Security",
     workspace: "Workspace",
     team: "Team",
+    assistant: "Assistant",
     billing: "Billing",
     "api-keys": "API keys",
     webhooks: "Webhooks",
@@ -151,6 +158,24 @@ function SettingsRoute({ section }: { section: SettingsSection }) {
           />
         )}
         {section === "appearance" && <AppearancePage appearance={appearance} />}
+        {section === "assistant" && (
+          <AssistantSettings
+            agent={script.agent}
+            models={models}
+            model={assistant.model}
+            onModelChange={(id) => {
+              const next = modelIds.find((item) => item === id)
+
+              if (next) assistant.setModel(next)
+            }}
+            enabled={assistant.tools}
+            onToolChange={(id, on) => {
+              const tool = toolIds.find((item) => item === id)
+
+              if (tool) assistant.setTool(tool, on)
+            }}
+          />
+        )}
         {section === "notifications" && (
           <NotificationSettings
             preferences={account.notificationDraft}
@@ -163,6 +188,12 @@ function SettingsRoute({ section }: { section: SettingsSection }) {
       </SettingsLayout>
     </>
   )
+}
+
+const toolIds = ["searchProjects", "createTasks", "draftUpdates"] as const
+
+export function AssistantSettingsRoute() {
+  return <SettingsRoute section="assistant" />
 }
 
 export function ProfileRoute() {

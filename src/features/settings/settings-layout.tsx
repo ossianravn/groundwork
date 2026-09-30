@@ -10,6 +10,7 @@ import {
   ChevronDown,
   CreditCard,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import {
@@ -27,6 +28,7 @@ const settingsSections = [
   { id: "security", label: "Security", icon: ShieldCheck },
   { id: "workspace", label: "Workspace", icon: Building2 },
   { id: "team", label: "Team", icon: Users },
+  { id: "assistant", label: "Assistant", icon: Sparkles },
   { id: "billing", label: "Billing", icon: CreditCard },
   { id: "api-keys", label: "API keys", icon: KeyRound },
   { id: "webhooks", label: "Webhooks", icon: Webhook },
