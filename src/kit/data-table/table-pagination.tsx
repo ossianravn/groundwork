@@ -73,57 +73,60 @@ export function TablePagination<T extends RowData>({
           </SelectContent>
         </Select>
       </div>
-      <nav
-        aria-label={`${itemLabel} pagination`}
-        className="table-page-buttons"
-      >
-        <span className="table-page-number">
-          {pageCount ? `Page ${pageIndex + 1} of ${pageCount}` : "No pages"}
-        </span>
-        <Button
-          variant="outline"
-          size="icon-sm"
-          aria-label="First page"
-          className="table-page-edge"
-          disabled={!table.getCanPreviousPage()}
-          focusableWhenDisabled
-          onClick={() => table.firstPage()}
+      {/* One page needs no page controls; the range above says it all. */}
+      {pageCount > 1 && (
+        <nav
+          aria-label={`${itemLabel} pagination`}
+          className="table-page-buttons"
         >
-          <ChevronsLeft aria-hidden="true" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon-sm"
-          aria-label="Previous page"
-          className="table-page-previous"
-          disabled={!table.getCanPreviousPage()}
-          focusableWhenDisabled
-          onClick={() => table.previousPage()}
-        >
-          <ChevronLeft aria-hidden="true" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon-sm"
-          aria-label="Next page"
-          disabled={!table.getCanNextPage()}
-          focusableWhenDisabled
-          onClick={() => table.nextPage()}
-        >
-          <ChevronRight aria-hidden="true" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon-sm"
-          aria-label="Last page"
-          className="table-page-edge"
-          disabled={!table.getCanNextPage()}
-          focusableWhenDisabled
-          onClick={() => table.lastPage()}
-        >
-          <ChevronsRight aria-hidden="true" />
-        </Button>
-      </nav>
+          <span className="table-page-number">
+            {pageCount ? `Page ${pageIndex + 1} of ${pageCount}` : "No pages"}
+          </span>
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label="First page"
+            className="table-page-edge"
+            disabled={!table.getCanPreviousPage()}
+            focusableWhenDisabled
+            onClick={() => table.firstPage()}
+          >
+            <ChevronsLeft aria-hidden="true" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label="Previous page"
+            className="table-page-previous"
+            disabled={!table.getCanPreviousPage()}
+            focusableWhenDisabled
+            onClick={() => table.previousPage()}
+          >
+            <ChevronLeft aria-hidden="true" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label="Next page"
+            disabled={!table.getCanNextPage()}
+            focusableWhenDisabled
+            onClick={() => table.nextPage()}
+          >
+            <ChevronRight aria-hidden="true" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon-sm"
+            aria-label="Last page"
+            className="table-page-edge"
+            disabled={!table.getCanNextPage()}
+            focusableWhenDisabled
+            onClick={() => table.lastPage()}
+          >
+            <ChevronsRight aria-hidden="true" />
+          </Button>
+        </nav>
+      )}
     </div>
   )
 }

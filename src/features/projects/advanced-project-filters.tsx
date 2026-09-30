@@ -33,6 +33,7 @@ export function AdvancedProjectFilters({
           <Button
             variant="outline"
             className="advanced-filter-trigger"
+            data-active={count > 0 || undefined}
             aria-label={
               count
                 ? `Advanced filters, ${count} ${count === 1 ? "condition" : "conditions"}`
