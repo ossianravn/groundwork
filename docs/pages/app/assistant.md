@@ -1,12 +1,25 @@
 # Assistant
 
-Status: foundations, agent activity and approved actions implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-14, DEV-01, DEV-02. The maintainer's plan adds conversation history, attachments, artifacts and the coding-agent specimen in later steps.
+Status: foundations, agent activity, approved actions and conversation management implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-20, DEV-01, DEV-02. The maintainer's plan adds artifacts, the Agent settings page and the coding-agent specimen in later steps.
 
 ## User goal and composition
 
 Ask a question about the workspace and get an answer that points back to the records. `/app/demo/assistant` is a primary workspace section (sidebar item Assistant). The top bar's breadcrumb names the page; New chat appears there once a conversation has started.
 
-The page is one column at a reading width (46rem): the transcript fills the height under the header and the composer sits below it. The scroller spans the page so its scrollbar sits at the edge. An empty conversation says what the assistant can read, that nothing leaves the browser and that replies are scripted, and offers three starting questions.
+History of past conversations sits beside the chat from 72rem; below that, a History action in the top bar opens it in a sheet. The chat is one column at a reading width (46rem): the transcript fills the height under the header and the composer sits below it. The scroller spans the column so its scrollbar sits at the edge.
+
+Before the first message, the composer sits in the middle of the page under a larger heading ("What would you like to know?"). A line says the answers are scripted and nothing leaves the browser, and four starting questions sit below the composer. Sending the first message moves the composer to the bottom with a view transition, where supported and unless reduced motion is requested.
+
+## Composer
+
+A rounded surface holds any attachments, then the text, then a row of tools:
+
+- **+ menu:** add photos and files, or one of the open projects as context.
+- **Context ring:** once a reply has reported usage, it opens the window used, the last input and output tokens, and an estimated cost for the conversation.
+- **Model:** Fast (quicker, no visible reasoning), Balanced or Thorough (slower).
+- **Send:** a round button whose tooltip carries the keys, Enter to send and Shift+Enter for a new line. It becomes Stop during a reply.
+
+Files can also be dropped or pasted. Up to five images, PDFs, text or CSV files of at most 10 MB each are accepted; anything else is refused with the reason. Sent attachments appear as chips above the question. Files travel as AI SDK file parts and projects as data parts. An attached project counts as named in the question, so "Add a launch checklist" with Mobile app attached plans for Mobile app. The scripted assistant says plainly that it cannot read file contents.
 
 A question appears as a right-aligned bubble and is anchored at the top of the view; the reply grows below it without a bubble, as prose with tables, links and code blocks. Thinking… shimmers until the first words arrive. A finished reply gets Copy and, if it is the latest, Regenerate, followed by follow-up questions. Stopping keeps the partial reply and says "You stopped this reply." A failed reply keeps what arrived and shows the failure with Try again where it happened.
 
@@ -39,6 +52,12 @@ A reply shows its work above the answer, in the order it happened:
 - **Citations** are numbered pills after the sentence they support. They link to the first source and preview all of them on hover or focus. Consecutive numbers read as a range (2–4). Before the sources arrive, the number shows without a preview.
 - **Sources** ("Used 4 sources") list every cited record with its status. The list is the keyboard-reachable record, since previews hold no controls.
 
+## History, versions and restoring
+
+- **Conversations:** each one keeps its own chat, so switching is instant and a reply can finish in the background. Titles come from the first question until renamed in place. Delete offers Undo; deleting the open conversation opens an empty one. New chat reuses the current conversation while it is still empty.
+- **Versions:** Regenerate keeps the reply it replaces. The latest reply then shows previous, the position (2 / 2) and next; choosing a version makes it the one the conversation continues from.
+- **Restore:** between turns, Restore (on hover or focus, always on touch) removes that question and everything after it, puts the question back in the composer and offers Undo. If the removed turns added tasks, the toast says those stay.
+
 ## Decisions and the queue
 
 - **Question:** a client-side `chooseProject` tool call left without output. The page renders the open projects as a radio group; the answer returns with `addToolOutput`, and `sendAutomaticallyWhen` continues the turn to the plan.
@@ -59,4 +78,4 @@ The person's own choice to open or close reasoning or steps is kept. Nothing her
 
 ## Scope and limits
 
-One conversation per session, no history list, branches, attachments or model choice yet. Only createTasks needs approval; the project search is read-only. Added tasks have no Undo in the assistant; remove them from the project. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).
+Conversations last until reload. Token counts are estimated from text length and prices are illustrative. Only createTasks needs approval; the project search is read-only. Added tasks have no Undo in the assistant; remove them from the project. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).

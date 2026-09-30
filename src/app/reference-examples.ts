@@ -70,6 +70,16 @@ import { QueueExample } from "@/features/reference/examples/queue-example"
 import queueSource from "@/features/reference/examples/queue-example?raw"
 import { QuestionExample } from "@/features/reference/examples/question-example"
 import questionSource from "@/features/reference/examples/question-example?raw"
+import { AttachmentsExample } from "@/features/reference/examples/attachments-example"
+import attachmentsSource from "@/features/reference/examples/attachments-example?raw"
+import { ModelSelectorExample } from "@/features/reference/examples/model-selector-example"
+import modelSelectorSource from "@/features/reference/examples/model-selector-example?raw"
+import { ContextExample } from "@/features/reference/examples/context-example"
+import contextSource from "@/features/reference/examples/context-example?raw"
+import { MessageBranchExample } from "@/features/reference/examples/message-branch-example"
+import messageBranchSource from "@/features/reference/examples/message-branch-example?raw"
+import { CheckpointExample } from "@/features/reference/examples/checkpoint-example"
+import checkpointSource from "@/features/reference/examples/checkpoint-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -136,4 +146,21 @@ export const referenceExamples = [
   },
   { id: "queue", Component: QueueExample, source: queueSource },
   { id: "question", Component: QuestionExample, source: questionSource },
+  {
+    id: "attachments",
+    Component: AttachmentsExample,
+    source: attachmentsSource,
+  },
+  {
+    id: "model-selector",
+    Component: ModelSelectorExample,
+    source: modelSelectorSource,
+  },
+  { id: "context", Component: ContextExample, source: contextSource },
+  {
+    id: "message-branch",
+    Component: MessageBranchExample,
+    source: messageBranchSource,
+  },
+  { id: "checkpoint", Component: CheckpointExample, source: checkpointSource },
 ]

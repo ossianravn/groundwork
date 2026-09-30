@@ -1385,6 +1385,11 @@
           "target": "~/src/kit/ai/chain-of-thought.tsx"
         },
         {
+          "path": "src/kit/ai/checkpoint.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/checkpoint.tsx"
+        },
+        {
           "path": "src/kit/ai/confirmation.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/confirmation.tsx"
@@ -1408,6 +1413,11 @@
           "path": "src/kit/ai/message-actions.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/message-actions.tsx"
+        },
+        {
+          "path": "src/kit/ai/message-branch.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/message-branch.tsx"
         },
         {
           "path": "src/kit/ai/message-response.tsx",

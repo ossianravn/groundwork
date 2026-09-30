@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 125 IDs: 124 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 131 IDs: 130 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -177,6 +177,12 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | AI-12 | Tool approval | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-13 | Message queue | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-14 | Clarifying question | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-15 | Conversation history | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-16 | Reply versions | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-17 | Restore to a checkpoint | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-18 | Attachments and context | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-19 | Model choice | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-20 | Context usage | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | DEV-01 | Code block | [Design system](design-system.md) | /reference/components/code-block; assistant replies | Example |
 | DEV-02 | Snippet | [API keys and webhooks](pages/settings/developers.md) | /app/demo/settings/api-keys; /reference/components/snippet | Example |
 

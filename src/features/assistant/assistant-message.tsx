@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { RefreshCcw } from "lucide-react"
 import { Bubble, BubbleContent } from "@/kit/ui/bubble"
 import { Message, MessageContent, MessageFooter } from "@/kit/ui/message"
@@ -116,6 +117,7 @@ export function AssistantTurn({
   onAnswer,
   onDecide,
   renderLink,
+  branch,
 }: {
   message: AssistantMessage
   /** Still streaming, or cut off by an error that Try again will replace. */
@@ -128,6 +130,8 @@ export function AssistantTurn({
   onAnswer: (toolCallId: string, projectId: string) => void
   onDecide: (approvalId: string, approved: boolean) => void
   renderLink: RenderResponseLink
+  /** Moves between versions of this reply. */
+  branch?: ReactNode
 }) {
   const text = messageText(message)
 
@@ -230,6 +234,7 @@ export function AssistantTurn({
           {!incomplete && <Sources sources={sources} />}
           {!incomplete && text && (
             <MessageActions aria-label="Reply actions">
+              {branch}
               <MessageCopyAction text={copyText(text)} />
               {latest && (
                 <MessageAction label="Regenerate" onClick={onRegenerate}>

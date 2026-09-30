@@ -380,14 +380,14 @@
     "id": "prompt-input",
     "name": "Prompt input",
     "category": "AI and chat",
-    "purpose": "Write a message to a model and stop its reply.",
+    "purpose": "Write a message to a model, with attachments and tools, and stop its reply.",
     "notes": [
-      "Enter sends and Shift+Enter adds a line; while an input method is composing, Enter belongs to it. While the model works, the button becomes Stop, and Enter queues the message when onQueue is given (otherwise it does nothing), so a follow-up is never lost.",
-      "The button never disables, so focus survives every state. Pass status and a stop handler from the AI SDK's useChat."
+      "A rounded surface: attachments, the text, then a row with the + menu (files, and any records you offer as context), your tools and the round send button. Files can also be dropped or pasted, within type, size and count limits that are explained when refused.",
+      "Enter sends and Shift+Enter adds a line; the keys live in the send button's tooltip rather than on screen. While the model works, the button becomes Stop and Enter queues the message when onQueue is given."
     ],
     "context": "Assistant",
     "href": "/app/demo/assistant",
-    "patterns": ["AI-03", "AI-13"],
+    "patterns": ["AI-03", "AI-13", "AI-18"],
     "documentation": {
       "href": "https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat",
       "label": "useChat reference"
@@ -573,5 +573,95 @@
       "label": "AI Elements Question"
     },
     "implementation": "src/kit/ai/question.tsx"
+  },
+  {
+    "id": "attachments",
+    "name": "Attachments",
+    "category": "AI and chat",
+    "purpose": "Show files and records attached to a message.",
+    "notes": [
+      "Images show as thumbnails; other files and references as chips with a name and a detail (size, or what the record is). With onRemove, each gets a remove button named after it.",
+      "The same chips appear in the composer and above the sent message, so what was sent stays visible."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-18"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/attachments",
+      "label": "AI Elements Attachments"
+    },
+    "implementation": "src/kit/ai/attachments.tsx"
+  },
+  {
+    "id": "model-selector",
+    "name": "Model selector",
+    "category": "AI and chat",
+    "purpose": "Choose the model for the next message.",
+    "notes": [
+      "A quiet button names the current model; its list describes each model and marks the selected one. A search field appears once there are more than six.",
+      "Keep descriptions about behaviour the person will notice, such as speed or visible reasoning."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-19"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/model-selector",
+      "label": "AI Elements Model selector"
+    },
+    "implementation": "src/kit/ai/model-selector.tsx"
+  },
+  {
+    "id": "context",
+    "name": "Context",
+    "category": "AI and chat",
+    "purpose": "Show how much of the model's context window a conversation uses.",
+    "notes": [
+      "A ring in the composer opens a breakdown: tokens used of the window, the last input and output, and an estimated cost. It turns red past 80%.",
+      "It opens as a popover on click or keyboard, not a hover card, because it is a control rather than a link."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-20"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/context",
+      "label": "AI Elements Context"
+    },
+    "implementation": "src/kit/ai/context.tsx"
+  },
+  {
+    "id": "message-branch",
+    "name": "Message branch",
+    "category": "AI and chat",
+    "purpose": "Move between versions of a reply.",
+    "notes": [
+      "Previous and next with the position between them (2 / 3); the count is announced as it changes. At either end the button stays focusable but inert.",
+      "Show it on the latest reply only, since earlier turns have already been answered from the version shown."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-16"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/branch",
+      "label": "AI Elements Message branch"
+    },
+    "implementation": "src/kit/ai/message-branch.tsx"
+  },
+  {
+    "id": "checkpoint",
+    "name": "Checkpoint",
+    "category": "AI and chat",
+    "purpose": "Return a conversation to an earlier point.",
+    "notes": [
+      "A quiet divider between turns whose Restore action appears on hover or keyboard focus, and always on touch screens.",
+      "Restoring removes what came after; pair it with Undo, and say what restoring does not reverse (changes the assistant already made)."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-17"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/checkpoint",
+      "label": "AI Elements Checkpoint"
+    },
+    "implementation": "src/kit/ai/checkpoint.tsx"
   }
 ]

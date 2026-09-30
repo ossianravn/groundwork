@@ -12,6 +12,8 @@ import {
   ConversationItem,
   ConversationStatus,
 } from "@/kit/ai/conversation"
+import { Checkpoint } from "@/kit/ai/checkpoint"
+import { MessageBranch } from "@/kit/ai/message-branch"
 import type { PromptSubmission } from "@/kit/ai/prompt-input"
 import type { RenderResponseLink } from "@/kit/ai/response-link"
 import { Queue } from "@/kit/ai/queue"
@@ -19,7 +21,7 @@ import { Suggestion, Suggestions } from "@/kit/ai/suggestion"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantComposer } from "./assistant-composer"
 import { AssistantTurn } from "./assistant-message"
-import { announcement, awaitsPerson } from "./assistant-text"
+import { announcement, awaitsPerson, messageText } from "./assistant-text"
 import { useMessageQueue } from "./use-message-queue"
 
 export interface AssistantIntro {
@@ -45,10 +47,12 @@ export function AssistantChat({
   status,
   error,
   stopped,
+  versions,
   composer,
   onSend,
   onStop,
   onRegenerate,
+  onRestore,
   onNewChat,
   onAnswer,
   onDecide,
@@ -59,10 +63,14 @@ export function AssistantChat({
   status: ChatStatus
   error: Error | undefined
   stopped: string[]
+  /** Versions of the latest reply, when Regenerate has made more than one. */
+  versions?: { index: number; count: number; onSelect: (index: number) => void }
   composer: ComposerOptions
   onSend: (submission: PromptSubmission) => void
   onStop: () => void
   onRegenerate: () => void
+  /** Returns the conversation to before this message. */
+  onRestore: (messageId: string) => void
   onNewChat: () => void
   onAnswer: (toolCallId: string, projectId: string) => void
   onDecide: (approvalId: string, approved: boolean) => void
@@ -157,13 +165,29 @@ export function AssistantChat({
       )}
       {!empty && (
         <Conversation className="assistant-conversation">
-          {messages.map((message) => (
+          {messages.map((message, index) => (
             <ConversationItem
               key={message.id}
               messageId={message.id}
               scrollAnchor={message.role === "user"}
             >
+              {message.role === "user" && index > 0 && (
+                <Checkpoint
+                  className="assistant-checkpoint"
+                  label={`Restore to before “${messageText(message) || "attachments"}”`}
+                  onRestore={() => {
+                    onRestore(message.id)
+                    setDraft(messageText(message))
+                    focusPrompt()
+                  }}
+                />
+              )}
               <AssistantTurn
+                branch={
+                  versions && status === "ready" && message === last ? (
+                    <MessageBranch {...versions} />
+                  ) : undefined
+                }
                 message={message}
                 incomplete={
                   busy || status === "error" ? message === last : false
