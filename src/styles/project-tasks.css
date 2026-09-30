@@ -38,6 +38,18 @@
 .task-title {
   overflow-wrap: anywhere;
 }
+/* A task just completed fades during the last moment before it moves to
+   Completed (project-tasks.tsx settles it after 1.6s). */
+@media (prefers-reduced-motion: no-preference) {
+  .task-row[data-settling][data-done] {
+    animation: task-settle 300ms var(--ease-standard) 1300ms forwards;
+  }
+}
+@keyframes task-settle {
+  to {
+    opacity: 0.35;
+  }
+}
 .task-row[data-done] .task-title {
   color: var(--muted-foreground);
   text-decoration: line-through;

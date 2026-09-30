@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from "react"
+import { useEffect, useRef, useState, type FormEvent } from "react"
 import { ChevronRight, Plus } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/kit/ui/card"
@@ -16,9 +16,21 @@ import { ProjectTaskRow } from "./project-task-row"
 /** Open tasks shown before "Show all"; the rest stay one action away. */
 const openLimit = 8
 
-// The project's task list (TABL-12). Completing a task moves it to the
-// collapsed Completed list; focus moves to the neighbouring task so keyboard
-// work continues where it was. Deleting offers Undo.
+/** How long a task just completed stays in place, ticked, before it moves. */
+const settleMs = 1600
+
+// The checkbox's focusable element carries a generated id (the task id is on
+// its hidden input), so rows are found by their task id instead.
+const checkboxOf = (row: Element | null | undefined) =>
+  row?.querySelector<HTMLElement>('[data-slot="checkbox"]')
+
+const taskRow = (taskId: string) =>
+  document.querySelector(`[data-task-id="${taskId}"]`)
+
+// The project's task list (TABL-12). A task completed here stays in place,
+// ticked and struck through, for a moment (unticking it then keeps it
+// open), then fades into the collapsed Completed list; if its checkbox had
+// focus, focus moves to the neighbouring task. Deleting offers Undo.
 export function ProjectTasks({
   project,
   tasks,
@@ -39,9 +51,12 @@ export function ProjectTasks({
   const [showAll, setShowAll] = useState(false)
   const [announcement, setAnnouncement] = useState("")
   const input = useRef<HTMLInputElement>(null)
+  const [settling, setSettling] = useState<string[]>([])
+  const timers = useRef(new Map<string, number>())
   const readOnly = project.status === "completed"
-  const open = tasks.filter((task) => !task.done)
-  const done = tasks.filter((task) => task.done)
+  const openCount = tasks.filter((task) => !task.done).length
+  const open = tasks.filter((task) => !task.done || settling.includes(task.id))
+  const done = tasks.filter((task) => task.done && !settling.includes(task.id))
   const visible = showAll ? open : open.slice(0, openLimit)
 
   function focusAfter(list: ProjectTask[], task: ProjectTask) {
@@ -49,21 +64,49 @@ export function ProjectTasks({
     const next = list[index + 1] ?? list[index - 1]
 
     requestAnimationFrame(() =>
-      (next
-        ? document.getElementById(`task-${next.id}`)
-        : input.current
-      )?.focus(),
+      (next ? checkboxOf(taskRow(next.id)) : input.current)?.focus(),
     )
   }
 
-  function toggle(task: ProjectTask) {
-    if (task.done) {
-      setShowAll(true)
-      requestAnimationFrame(() =>
-        document.getElementById(`task-${task.id}`)?.focus(),
+  useEffect(() => {
+    const pending = timers.current
+
+    return () => pending.forEach((timer) => window.clearTimeout(timer))
+  }, [])
+
+  function settle(taskId: string) {
+    timers.current.delete(taskId)
+
+    const item = taskRow(taskId)
+
+    if (item?.contains(document.activeElement)) {
+      const neighbour = checkboxOf(
+        item.nextElementSibling ?? item.previousElementSibling,
       )
+
+      ;(neighbour ?? input.current)?.focus()
+    }
+
+    setSettling((ids) => ids.filter((id) => id !== taskId))
+  }
+
+  function toggle(task: ProjectTask) {
+    const timer = timers.current.get(task.id)
+
+    // Unticked before it settled: it simply stays open where it is.
+    if (timer !== undefined) {
+      window.clearTimeout(timer)
+      timers.current.delete(task.id)
+      setSettling((ids) => ids.filter((id) => id !== task.id))
+    } else if (task.done) {
+      setShowAll(true)
+      requestAnimationFrame(() => checkboxOf(taskRow(task.id))?.focus())
     } else {
-      focusAfter(visible, task)
+      setSettling((ids) => [...ids, task.id])
+      timers.current.set(
+        task.id,
+        window.setTimeout(() => settle(task.id), settleMs),
+      )
     }
 
     onChange({ kind: "toggle", taskId: task.id })
@@ -114,6 +157,7 @@ export function ProjectTasks({
       members={members}
       people={people}
       readOnly={readOnly}
+      settling={settling.includes(task.id)}
       first={index === 0}
       last={index === list.length - 1}
       onToggle={() => toggle(task)}
@@ -137,7 +181,7 @@ export function ProjectTasks({
           <h2>Tasks</h2>
         </CardTitle>
         <p className="project-tasks-count">
-          {open.length} open · {done.length} done
+          {openCount} open · {tasks.length - openCount} done
         </p>
       </CardHeader>
       <CardContent className="project-tasks-content">

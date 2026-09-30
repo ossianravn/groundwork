@@ -26,6 +26,7 @@ export function ProjectTaskRow({
   members,
   people,
   readOnly,
+  settling = false,
   first,
   last,
   onToggle,
@@ -39,6 +40,8 @@ export function ProjectTaskRow({
   /** Everyone who may appear on a task, including former members. */
   people: Member[]
   readOnly: boolean
+  /** Just completed here: shown ticked for a moment before it moves. */
+  settling?: boolean
   first: boolean
   last: boolean
   onToggle: () => void
@@ -55,7 +58,12 @@ export function ProjectTaskRow({
   ]
 
   return (
-    <li className="task-row" data-done={task.done || undefined}>
+    <li
+      className="task-row"
+      data-task-id={task.id}
+      data-done={task.done || undefined}
+      data-settling={settling || undefined}
+    >
       {/* Only the checkbox completes a task; the title names it but is not
           a label, so a click on the text or the row's empty space does
           nothing and the text stays selectable. */}
