@@ -37,7 +37,6 @@
 }
 .task-title {
   overflow-wrap: anywhere;
-  cursor: pointer;
 }
 .task-row[data-done] .task-title {
   color: var(--muted-foreground);

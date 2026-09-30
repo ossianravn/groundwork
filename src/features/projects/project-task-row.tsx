@@ -56,15 +56,19 @@ export function ProjectTaskRow({
 
   return (
     <li className="task-row" data-done={task.done || undefined}>
+      {/* Only the checkbox completes a task; the title names it but is not
+          a label, so a click on the text or the row's empty space does
+          nothing and the text stays selectable. */}
       <Checkbox
         id={id}
+        aria-labelledby={`${id}-title`}
         checked={task.done}
         disabled={readOnly}
         onCheckedChange={onToggle}
       />
-      <label htmlFor={id} className="task-title">
+      <span id={`${id}-title`} className="task-title">
         {task.title}
-      </label>
+      </span>
       {readOnly ? (
         assignee && <MemberAvatar member={assignee} size="sm" />
       ) : (

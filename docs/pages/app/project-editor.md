@@ -34,7 +34,7 @@ Validation errors stay beside the field and focus it. A fresh `?scenario=save-fa
 
 ## Tasks
 
-The project page lists the project's tasks between details and activity (TABL-12). Open tasks come first (eight, then Show all), followed by the add field and a collapsed Completed list. Each row has a checkbox labelled by the title, an assignee select (active members or Unassigned) and actions to move it up or down among tasks in the same state, or delete it.
+The project page lists the project's tasks in its main column (TABL-12). Open tasks come first (eight, then Show all), followed by the add field and a collapsed Completed list. Each row has a checkbox named by the title (`aria-labelledby`; only the checkbox completes a task, so clicking the title or the row's empty space changes nothing and the text stays selectable), an assignee select (active members or Unassigned) and actions to move it up or down among tasks in the same state, or delete it.
 
 - Counts are derived. `tasks.json` holds 218 named tasks whose done/total match the original figures (Brand refresh 24/32); `withTaskCounts` recomputes a project's counts after every task change, so progress, tables, cards, board and Overview agree.
 - Completing a task records one completion in Activity for the snapshot date, so the Overview and Analytics charts include it. Reopening it the same day removes that record; earlier history stays.
