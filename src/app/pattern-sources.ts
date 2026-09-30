@@ -106,6 +106,7 @@ const sources = import.meta.glob<string>(
     "../demo/project-tags.ts",
     "../demo/project-draft.ts",
     "../features/projects/project-inline-field.tsx",
+    "../features/projects/project-details-dialog.tsx",
     "../features/projects/project-inline-editing.ts",
     "../demo/project-form.ts",
     "../features/projects/advanced-project-filters.tsx",

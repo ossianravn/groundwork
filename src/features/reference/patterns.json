@@ -373,27 +373,28 @@
   },
   {
     "id": "EDGE-04",
-    "title": "Inline project editing",
+    "title": "Inline and dialog project editing",
     "originalName": "Inline Click-to-Edit Field",
     "category": "Feedback & recovery",
     "surface": "Workspace",
-    "summary": "Edit a single value in place with explicit save and cancel.",
-    "implemented": "Edit a project name, owner or due date in context with Save/Cancel, validation, retained navigation drafts and rejected-save retry. Saving one field preserves other unfinished edits and records its actual change in Activity.",
-    "deferred": "Description, tags and links use the full editor. No production concurrency or conflict-resolution service.",
+    "summary": "Edit project values in context with explicit save and cancel.",
+    "implemented": "The project name edits in place with Save/Cancel; owner, due date, tags and links edit together in a Details dialog from the rail's one Edit action. Both validate, handle a rejected save with retry, and record their actual change in Activity. The inline name keeps a navigation draft; the dialog starts from the saved project each time it opens.",
+    "deferred": "Description and colour use the full editor. No production concurrency or conflict-resolution service.",
     "examples": [
       {
         "label": "Edit project details",
         "href": "/app/demo/projects/brand",
-        "instruction": "Use a pencil action beside the project name, owner or due date. Save that field, or cancel with Escape; navigating to the full editor retains unfinished input."
+        "instruction": "Use the pencil beside the project name, or Edit beside Details to change the owner, due date, tags or links."
       },
       {
-        "label": "Rejected inline save",
+        "label": "Rejected save",
         "href": "/app/demo/projects/brand?scenario=save-failure",
-        "instruction": "In a fresh draft, change a value and save. The local simulation rejects the first save; retry retains and saves the value."
+        "instruction": "Open Edit beside Details, change the owner and save. The local simulation rejects the first save; Retry save keeps and saves the value."
       }
     ],
     "sources": [
       "src/features/projects/project-inline-field.tsx",
+      "src/features/projects/project-details-dialog.tsx",
       "src/features/projects/project-inline-editing.ts",
       "src/demo/project-draft.ts"
     ]
@@ -1874,7 +1875,7 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Choose a date from a calendar that follows density and theme.",
-    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and inline editing.",
+    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and the Details dialog.",
     "deferred": "No typed date entry or time of day.",
     "examples": [
       {
@@ -1883,9 +1884,9 @@
         "instruction": "Open Due date and choose a day."
       },
       {
-        "label": "Inline due date",
+        "label": "Details dialog",
         "href": "/app/demo/projects/brand",
-        "instruction": "Select the pencil beside the due date."
+        "instruction": "Choose Edit beside Details, then open Due date."
       }
     ],
     "sources": [
