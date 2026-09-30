@@ -1,3 +1,4 @@
+import type { ChatStatus } from "ai"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 
 type Part = AssistantMessage["parts"][number]
@@ -8,7 +9,7 @@ const citations = /\[[^\]]*\]\(#source:[^)]*\)/gu
 
 export function messageText(message: AssistantMessage) {
   return message.parts
-    .map((part) => (part.type === "text" ? part.text : ""))
+    .flatMap((part) => (part.type === "text" ? part.text : []))
     .join("\n\n")
 }
 
@@ -55,4 +56,26 @@ export function approvalTitle(part: ApprovalPart) {
   const count = part.input?.tasks?.length ?? 0
 
   return `Add ${count} task${count === 1 ? "" : "s"} to ${part.input?.projectName ?? "the project"}?`
+}
+
+/** What the status region says about the conversation's progress. */
+export function announcement(
+  status: ChatStatus,
+  last: AssistantMessage | undefined,
+  stopped: boolean,
+  error: Error | undefined,
+) {
+  if (status === "submitted" || status === "streaming")
+    return "The assistant is replying."
+
+  if (status === "error")
+    return `The reply didn't finish. ${error?.message ?? ""}`
+
+  if (last?.role !== "assistant") return ""
+
+  if (stopped) return "Reply stopped."
+
+  if (awaitsPerson(last)) return awaitedDecision(last)
+
+  return `The assistant replied: ${spokenText(messageText(last))}`
 }

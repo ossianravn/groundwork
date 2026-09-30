@@ -1,5 +1,12 @@
 import type { ChatTransport } from "ai"
-import { defaultPace, replyChunks, type Pace } from "./assistant-chunks"
+import { replyChunks, type Pace } from "./assistant-chunks"
+import {
+  estimateUsage,
+  filesOf,
+  modelPace,
+  promptOf,
+  replyForModel,
+} from "./assistant-model"
 import type {
   AssistantChunk,
   AssistantContext,
@@ -8,14 +15,6 @@ import type {
   AssistantRequest,
   CreateTasksInput,
 } from "./assistant-types"
-
-function promptOf(message: AssistantMessage | undefined) {
-  return (
-    message?.parts
-      .map((part) => (part.type === "text" ? part.text : ""))
-      .join(" ") ?? ""
-  )
-}
 
 /**
  * A ChatTransport that answers locally from a script instead of calling a
@@ -32,17 +31,18 @@ function promptOf(message: AssistantMessage | undefined) {
 export function createScriptedTransport({
   reply,
   resume,
-  pace = defaultPace,
+  pace,
 }: {
   reply: (
     prompt: string,
     context: AssistantContext,
-    options: { toolFails: boolean },
+    options: { toolFails: boolean; files: string[] },
   ) => AssistantReply
   resume: (
     message: AssistantMessage,
     context: AssistantContext,
   ) => { answer: AssistantReply; execute?: CreateTasksInput } | undefined
+  /** Overrides the chosen model's pace, as tests do. */
   pace?: Pace
 }): ChatTransport<AssistantMessage> {
   const attempted = new Set<string>()
@@ -71,11 +71,23 @@ export function createScriptedTransport({
       const fail = !resumed && first && request.scenario === "assistant-error"
       const toolFails = !resumed && first && request.scenario === "tool-error"
 
-      const answer =
+      const answer = replyForModel(
         resumed?.answer ??
-        reply(promptOf(prompt), request.context, { toolFails })
+          reply(promptOf(prompt), request.context, {
+            toolFails,
+            files: filesOf(prompt),
+          }),
+        request.model,
+      )
 
-      const chunks = replyChunks(answer, fail, pace, prompt?.id)
+      const chunks = replyChunks(
+        answer,
+        fail,
+        pace ?? modelPace(request.model),
+        prompt?.id,
+        estimateUsage(messages, answer, request.model),
+      )
+
       let timer: ReturnType<typeof setTimeout> | undefined
       let open = true
 

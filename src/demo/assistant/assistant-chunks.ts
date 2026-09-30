@@ -1,6 +1,7 @@
 import script from "../data/assistant.json"
 import type {
   AssistantChunk,
+  AssistantMetadata,
   AssistantReply,
   SourceMetadata,
 } from "./assistant-types"
@@ -13,8 +14,6 @@ export interface Pace {
   /** How long a step or tool call takes to finish. */
   work: number
 }
-
-export const defaultPace: Pace = { firstToken: 700, chunk: 28, work: 650 }
 
 /** A chunk and how long to wait before sending it. */
 export interface TimedChunk {
@@ -175,6 +174,7 @@ export function replyChunks(
   fail: boolean,
   pace: Pace,
   turn = "turn",
+  metadata?: AssistantMetadata,
 ): TimedChunk[] {
   const text = textChunks(reply.text)
   const sent = fail ? text.slice(0, Math.ceil(text.length / 3)) : text
@@ -221,6 +221,6 @@ export function replyChunks(
         ]
       : []),
     at(0)({ type: "finish-step" }),
-    at(0)({ type: "finish", finishReason: "stop" }),
+    at(0)({ type: "finish", finishReason: "stop", messageMetadata: metadata }),
   ]
 }

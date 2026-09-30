@@ -111,6 +111,16 @@ type AssistantData = {
   suggestions: string[]
   step: StepData
   plan: PlanData
+  /** A project the person attached to their message as context. */
+  project: { id: string; name: string }
+}
+
+export type ModelId = "fast" | "balanced" | "thorough"
+
+/** Sent with each reply's finish: which model answered, and token usage. */
+export type AssistantMetadata = {
+  model: ModelId
+  usage: { input: number; output: number }
 }
 
 /** Source descriptions travel in provider metadata under this key. */
@@ -120,9 +130,13 @@ export const sourceMetadata = z.object({
 
 export type SourceMetadata = z.infer<typeof sourceMetadata>
 
-export type AssistantMessage = UIMessage<never, AssistantData, AssistantTools>
+export type AssistantMessage = UIMessage<
+  AssistantMetadata,
+  AssistantData,
+  AssistantTools
+>
 
-export type AssistantChunk = UIMessageChunk<never, AssistantData>
+export type AssistantChunk = UIMessageChunk<AssistantMetadata, AssistantData>
 
 export type AssistantScenario = "normal" | "assistant-error" | "tool-error"
 
@@ -142,6 +156,7 @@ export interface AssistantActions {
  */
 export interface AssistantRequest {
   scenario: AssistantScenario
+  model: ModelId
   context: AssistantContext
   actions: AssistantActions
 }

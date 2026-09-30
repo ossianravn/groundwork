@@ -1,6 +1,6 @@
 {
-  "title": "Ask about your workspace",
-  "description": "Answers come from this demo's projects, tasks and activity. Nothing leaves your browser, and the replies are scripted.",
+  "title": "What would you like to know?",
+  "description": "Scripted answers from this demo's projects, tasks and activity. Nothing leaves your browser.",
   "suggestions": [
     "Which projects are at risk?",
     "What changed this week?",
@@ -92,5 +92,53 @@
         "owner": false
       }
     ]
-  }
+  },
+  "models": [
+    {
+      "id": "fast",
+      "name": "Fast",
+      "description": "Quick answers without visible reasoning",
+      "contextWindow": 32000,
+      "price": {
+        "input": 0.3,
+        "output": 1.2
+      },
+      "pace": {
+        "firstToken": 350,
+        "chunk": 14,
+        "work": 350
+      }
+    },
+    {
+      "id": "balanced",
+      "name": "Balanced",
+      "description": "Reasons briefly before answering",
+      "contextWindow": 200000,
+      "price": {
+        "input": 3,
+        "output": 15
+      },
+      "pace": {
+        "firstToken": 700,
+        "chunk": 28,
+        "work": 650
+      }
+    },
+    {
+      "id": "thorough",
+      "name": "Thorough",
+      "description": "Takes longer over each step",
+      "contextWindow": 200000,
+      "price": {
+        "input": 15,
+        "output": 75
+      },
+      "pace": {
+        "firstToken": 1100,
+        "chunk": 36,
+        "work": 950
+      }
+    }
+  ],
+  "files": "I can see {files}, but this demo can't read attachments. Ask one of the questions below instead."
 }

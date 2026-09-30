@@ -23,6 +23,14 @@ export function matchIntent(prompt: string): IntentId | undefined {
   return isIntentId(id) ? id : undefined
 }
 
+function listFiles(files: string[]) {
+  const names = files.map((name) => `**${name}**`)
+
+  return names.length > 1
+    ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`
+    : names[0]
+}
+
 function apiAnswer() {
   const { intro, curl, typescript, outro } = script.api
 
@@ -44,9 +52,18 @@ function apiAnswer() {
 export function assistantReply(
   prompt: string,
   context: AssistantContext,
-  { toolFails = false }: { toolFails?: boolean } = {},
+  {
+    toolFails = false,
+    files = [],
+  }: { toolFails?: boolean; files?: string[] } = {},
 ): AssistantReply {
   const intent = matchIntent(prompt)
+
+  if (!intent && files.length)
+    return {
+      text: script.files.replace("{files}", listFiles(files)),
+      followUps: script.suggestions,
+    }
 
   if (!intent) return { text: script.fallback, followUps: script.suggestions }
 

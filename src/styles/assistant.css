@@ -1,12 +1,92 @@
 /* Assistant: a transcript that fills the page and a composer pinned below it,
    both at a reading width. The scroller spans the page so its scrollbar sits
    at the edge. */
+/* History beside the chat on wide screens; a sheet from the top bar below. */
+.assistant-layout {
+  display: flex;
+  height: calc(100dvh - var(--header-height));
+  min-height: 20rem;
+}
+.assistant-history {
+  display: none;
+}
+@media (width >= 72rem) {
+  .assistant-history {
+    display: flex;
+    flex-direction: column;
+    gap: var(--control-gap);
+    width: 16rem;
+    flex-shrink: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: var(--section-gap) var(--item-padding);
+    border-inline-end: 1px solid var(--border);
+    scrollbar-width: thin;
+  }
+  .page-action.assistant-history-action {
+    display: none;
+  }
+}
+.assistant-history-title {
+  padding-inline: var(--item-padding);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-weight: 500;
+}
+.assistant-history-list {
+  display: grid;
+  gap: 1px;
+}
+.assistant-history-sheet .assistant-history-list {
+  padding: 0 var(--item-padding) var(--item-padding);
+}
+.assistant-history-list li {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  border-radius: var(--radius-md);
+}
+.assistant-history-list li:hover,
+.assistant-history-list li[data-active] {
+  background: var(--accent);
+}
+.assistant-history-item {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--control-height-sm);
+  padding: var(--control-padding-block) var(--item-padding);
+  overflow: hidden;
+  border-radius: inherit;
+  font-size: var(--text-body);
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+}
+.assistant-history-item:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+.assistant-history-list li[data-active] .assistant-history-item {
+  font-weight: 500;
+}
+/* The row menu stays out of the way until the row is pointed at or focused. */
+@media (pointer: fine) {
+  .assistant-history-menu {
+    opacity: 0;
+  }
+  .assistant-history-list li:hover .assistant-history-menu,
+  .assistant-history-list li:focus-within .assistant-history-menu,
+  .assistant-history-menu[data-popup-open] {
+    opacity: 1;
+  }
+}
 .assistant-page {
   --assistant-width: 46rem;
   display: flex;
+  flex: 1;
+  min-width: 0;
   flex-direction: column;
-  height: calc(100dvh - var(--header-height));
-  min-height: 20rem;
 }
 .assistant-conversation [data-slot="message-scroller-content"] {
   width: 100%;
@@ -14,6 +94,9 @@
   margin-inline: auto;
   padding: var(--section-gap) var(--page-padding);
   gap: calc(var(--section-gap) * 1.5);
+}
+.assistant-checkpoint {
+  margin-bottom: var(--content-gap);
 }
 .assistant-prompt [data-slot="bubble"] {
   max-width: min(80%, 36rem);
@@ -38,14 +121,30 @@
   max-width: var(--assistant-width);
   margin: 0 auto var(--content-gap);
 }
-.assistant-hint {
-  font-size: var(--text-meta);
-  font-weight: 400;
+/* Before the first message the composer sits in the middle, under a larger
+   heading, with suggestions below it; it moves to the bottom once the
+   conversation starts. */
+.assistant-page[data-empty] {
+  justify-content: center;
+  gap: var(--section-gap);
+  padding-bottom: 8vh;
 }
-@media (width < 40rem), (pointer: coarse) {
-  .assistant-hint {
-    display: none;
-  }
+.assistant-page[data-empty] .assistant-composer {
+  margin-bottom: 0;
+}
+.assistant-start[data-slot="conversation-empty"] {
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+.assistant-start h2 {
+  font-size: var(--text-page);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.assistant-start-suggestions {
+  width: calc(100% - 2 * var(--page-padding));
+  max-width: var(--assistant-width);
+  margin: 0 auto;
 }
 .assistant-tool-results {
   display: grid;
@@ -79,4 +178,12 @@
   width: calc(100% - 2 * var(--page-padding));
   max-width: var(--assistant-width);
   margin: 0 auto var(--control-gap);
+}
+/* The composer keeps its identity across the move from the start layout. */
+.assistant-composer {
+  view-transition-name: assistant-composer;
+}
+::view-transition-group(assistant-composer) {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-standard);
 }

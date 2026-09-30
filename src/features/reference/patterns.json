@@ -2501,7 +2501,7 @@
     "surface": "Workspace",
     "summary": "Hold a conversation with an assistant: a transcript that follows replies, with a clear empty state and progress.",
     "implemented": "The Assistant page streams scripted replies through the AI SDK's useChat and a local transport. Each question is anchored at the top while the reply grows below it; a jump button returns to the latest reply. The transcript is not announced token by token: a status region says the assistant is replying and then reads the finished reply. Thinking… shimmers until the first words arrive; Stop keeps the partial reply and marks it; a failed reply shows Try again where it failed (?scenario=assistant-error).",
-    "deferred": "One conversation per session; history, branches, attachments and model choice follow with conversation management.",
+    "deferred": "Conversations last until reload.",
     "examples": [
       {
         "label": "Assistant",
@@ -2551,8 +2551,8 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "Write a message to a model: Enter sends, Shift+Enter adds a line, and the send button becomes Stop while a reply streams.",
-    "implemented": "PromptInput grows with its text up to a limit. Enter sends unless an input method is composing. While the model works, the button stops the reply and Enter queues the message (AI-13). The button never disables, so focus stays put through every state.",
-    "deferred": "Attachments and a model menu in the footer follow with conversation management.",
+    "implemented": "PromptInput is a rounded surface: attachments, text that grows up to a limit, then a row with the + menu, model and context tools and a round send button whose tooltip carries the keys. Enter sends unless an input method is composing; while the model works the button stops the reply and Enter queues the message (AI-13). The button never disables, so focus stays put. Before the first message it sits in the middle of the page under a larger heading, and a view transition moves it to the bottom once the conversation starts.",
+    "deferred": "",
     "examples": [
       {
         "label": "Assistant composer",
@@ -2594,7 +2594,7 @@
     "surface": "Shared",
     "summary": "Act on a reply: copy it, or ask for another version.",
     "implemented": "Icon actions under each finished reply carry tooltips that match their accessible names. Copy confirms in place and reports failure; Regenerate appears on the latest reply and replaces it.",
-    "deferred": "Feedback (helpful/unhelpful) and keeping earlier versions as branches follow with conversation management.",
+    "deferred": "No helpful/unhelpful feedback.",
     "examples": [
       {
         "label": "Reply actions",
@@ -2868,6 +2868,134 @@
       "src/kit/ai/question.tsx",
       "src/features/assistant/assistant-decisions.tsx",
       "src/demo/assistant/create-assistant-chat.ts"
+    ]
+  },
+  {
+    "id": "AI-15",
+    "title": "Conversation history",
+    "originalName": "Conversation history",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Keep past conversations to return to, rename or delete.",
+    "implemented": "Each conversation keeps its own AI SDK Chat in demo state, so switching is instant and a reply can finish in the background. History sits beside the chat on wide screens and opens as a sheet from the top bar below 72rem. Titles come from the first question until renamed in place; Delete offers Undo. New chat reuses an empty conversation instead of piling them up.",
+    "deferred": "History lasts until reload; no search or grouping by date.",
+    "examples": [
+      {
+        "label": "History",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask two questions in separate chats (New chat), switch between them, then rename and delete one."
+      }
+    ],
+    "sources": [
+      "src/features/assistant/assistant-history.tsx",
+      "src/demo/assistant/use-assistant.ts",
+      "src/app/use-assistant-session.ts"
+    ]
+  },
+  {
+    "id": "AI-16",
+    "title": "Reply versions",
+    "originalName": "Reply versions",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Keep the replies Regenerate replaces, and move between them.",
+    "implemented": "Regenerate keeps the reply it replaces as an earlier version of the answer to that question. The latest reply then shows previous and next with its position; choosing a version makes it the reply the conversation continues from.",
+    "deferred": "Versions are kept for the latest question only; earlier questions keep the version that was shown.",
+    "examples": [
+      {
+        "label": "Versions",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask a question, choose Regenerate, then move back to the first version."
+      }
+    ],
+    "sources": ["src/kit/ai/message-branch.tsx", "src/app/assistant-route.tsx"]
+  },
+  {
+    "id": "AI-17",
+    "title": "Restore to a checkpoint",
+    "originalName": "Restore to a checkpoint",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Go back to before a question, to ask it differently.",
+    "implemented": "Between turns, Restore (on hover or focus) removes that question and everything after it, puts the question back in the composer and offers Undo. When the removed turns had added tasks, the toast says those stay.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Checkpoint",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask two questions, then restore to before the second."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/checkpoint.tsx",
+      "src/features/assistant/assistant-chat.tsx",
+      "src/app/assistant-route.tsx"
+    ]
+  },
+  {
+    "id": "AI-18",
+    "title": "Attachments and context",
+    "originalName": "Attachments and context",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Attach files, or a project as context, to a message.",
+    "implemented": "The composer's + menu adds files from the computer or one of the open projects; files can also be dropped or pasted. Chips show above the text and above the sent message. Files travel as AI SDK file parts (data URLs) and projects as data parts. An attached project counts as named in the question (a checklist goes into it); the scripted assistant says honestly that it cannot read files.",
+    "deferred": "Files are not read or stored; there is no upload progress because nothing uploads.",
+    "examples": [
+      {
+        "label": "Attach a project",
+        "href": "/app/demo/assistant",
+        "instruction": "Add Mobile app from the + menu, then ask Add a launch checklist."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/prompt-input-parts.tsx",
+      "src/kit/ai/use-prompt-attachments.ts",
+      "src/kit/ai/attachments.tsx",
+      "src/app/assistant-parts.ts"
+    ]
+  },
+  {
+    "id": "AI-19",
+    "title": "Model choice",
+    "originalName": "Model choice",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Choose how the assistant answers.",
+    "implemented": "Fast, Balanced and Thorough are sent with each request. Fast answers quicker without visible reasoning; Thorough takes longer over each step. The choice lasts for the session, across chats.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Models",
+        "href": "/app/demo/assistant",
+        "instruction": "Switch to Fast and ask Which projects are at risk?"
+      }
+    ],
+    "sources": [
+      "src/kit/ai/model-selector.tsx",
+      "src/demo/assistant/assistant-model.ts"
+    ]
+  },
+  {
+    "id": "AI-20",
+    "title": "Context usage",
+    "originalName": "Context usage",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show how much of the model's window the conversation uses, and roughly what it costs.",
+    "implemented": "Each reply's finish reports token usage as message metadata (as a server would); the composer's ring shows the latest total against the chosen model's window, with the last input and output and the conversation's estimated cost.",
+    "deferred": "Token counts are estimates from text length; prices are illustrative.",
+    "examples": [
+      {
+        "label": "Context",
+        "href": "/app/demo/assistant",
+        "instruction": "After a reply, open the ring beside the model name."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/context.tsx",
+      "src/demo/assistant/assistant-model.ts",
+      "src/features/assistant/assistant-composer.tsx"
     ]
   }
 ]

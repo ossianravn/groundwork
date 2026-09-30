@@ -1359,11 +1359,15 @@
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/code-block",
         "ossianravn/groundwork/collapsible",
+        "ossianravn/groundwork/command",
+        "ossianravn/groundwork/dropdown-menu",
         "ossianravn/groundwork/field",
         "ossianravn/groundwork/hover-card",
         "ossianravn/groundwork/input",
-        "ossianravn/groundwork/input-group",
+        "ossianravn/groundwork/kbd",
         "ossianravn/groundwork/message-scroller",
+        "ossianravn/groundwork/popover",
+        "ossianravn/groundwork/progress",
         "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/shimmer",
         "ossianravn/groundwork/spinner",
@@ -1371,14 +1375,29 @@
       ],
       "files": [
         {
+          "path": "src/kit/ai/attachments.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/attachments.tsx"
+        },
+        {
           "path": "src/kit/ai/chain-of-thought.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/chain-of-thought.tsx"
         },
         {
+          "path": "src/kit/ai/checkpoint.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/checkpoint.tsx"
+        },
+        {
           "path": "src/kit/ai/confirmation.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/confirmation.tsx"
+        },
+        {
+          "path": "src/kit/ai/context.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/context.tsx"
         },
         {
           "path": "src/kit/ai/conversation.tsx",
@@ -1396,14 +1415,34 @@
           "target": "~/src/kit/ai/message-actions.tsx"
         },
         {
+          "path": "src/kit/ai/message-branch.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/message-branch.tsx"
+        },
+        {
           "path": "src/kit/ai/message-response.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/message-response.tsx"
         },
         {
+          "path": "src/kit/ai/model-selector.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/model-selector.tsx"
+        },
+        {
           "path": "src/kit/ai/plan.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/plan.tsx"
+        },
+        {
+          "path": "src/kit/ai/prompt-input-context.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/prompt-input-context.ts"
+        },
+        {
+          "path": "src/kit/ai/prompt-input-parts.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/prompt-input-parts.tsx"
         },
         {
           "path": "src/kit/ai/prompt-input.tsx",
@@ -1449,6 +1488,11 @@
           "path": "src/kit/ai/use-auto-open.ts",
           "type": "registry:file",
           "target": "~/src/kit/ai/use-auto-open.ts"
+        },
+        {
+          "path": "src/kit/ai/use-prompt-attachments.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/use-prompt-attachments.ts"
         }
       ]
     },

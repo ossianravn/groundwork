@@ -53,6 +53,7 @@ async function run(
     abortSignal,
     body: {
       scenario,
+      model: "balanced",
       context,
       actions: { createTasks: (input) => void created.push(input) },
     } satisfies AssistantRequest,

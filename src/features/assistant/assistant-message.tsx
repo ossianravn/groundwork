@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import { RefreshCcw } from "lucide-react"
 import { Bubble, BubbleContent } from "@/kit/ui/bubble"
 import { Message, MessageContent, MessageFooter } from "@/kit/ui/message"
@@ -7,6 +8,7 @@ import {
   MessageActions,
   MessageCopyAction,
 } from "@/kit/ai/message-actions"
+import { Attachment, Attachments } from "@/kit/ai/attachments"
 import { InlineCitation } from "@/kit/ai/inline-citation"
 import { Reasoning } from "@/kit/ai/reasoning"
 import {
@@ -28,6 +30,32 @@ import {
 import { copyText, messageText } from "./assistant-text"
 
 type Part = AssistantMessage["parts"][number]
+
+/** Files and projects the person attached, above their words. */
+function SentAttachments({ message }: { message: AssistantMessage }) {
+  const items = message.parts.flatMap((part, index) =>
+    part.type === "file"
+      ? {
+          id: `${index}`,
+          name: part.filename ?? "Attachment",
+          mediaType: part.mediaType,
+          url: part.url,
+        }
+      : part.type === "data-project"
+        ? { id: `${index}`, name: part.data.name, detail: "Project" }
+        : [],
+  )
+
+  if (!items.length) return null
+
+  return (
+    <Attachments aria-label="You attached" className="justify-end">
+      {items.map((item) => (
+        <Attachment key={item.id} item={item} />
+      ))}
+    </Attachments>
+  )
+}
 
 function sourceItems(parts: Part[]): (SourceItem & { id: string })[] {
   return parts.flatMap((part) => {
@@ -89,6 +117,7 @@ export function AssistantTurn({
   onAnswer,
   onDecide,
   renderLink,
+  branch,
 }: {
   message: AssistantMessage
   /** Still streaming, or cut off by an error that Try again will replace. */
@@ -101,6 +130,8 @@ export function AssistantTurn({
   onAnswer: (toolCallId: string, projectId: string) => void
   onDecide: (approvalId: string, approved: boolean) => void
   renderLink: RenderResponseLink
+  /** Moves between versions of this reply. */
+  branch?: ReactNode
 }) {
   const text = messageText(message)
 
@@ -108,12 +139,15 @@ export function AssistantTurn({
     return (
       <Message align="end" className="assistant-prompt">
         <MessageContent>
-          <Bubble variant="secondary" align="end">
-            <BubbleContent>
-              <span className="sr-only">You: </span>
-              {text}
-            </BubbleContent>
-          </Bubble>
+          <SentAttachments message={message} />
+          {text && (
+            <Bubble variant="secondary" align="end">
+              <BubbleContent>
+                <span className="sr-only">You: </span>
+                {text}
+              </BubbleContent>
+            </Bubble>
+          )}
         </MessageContent>
       </Message>
     )
@@ -200,6 +234,7 @@ export function AssistantTurn({
           {!incomplete && <Sources sources={sources} />}
           {!incomplete && text && (
             <MessageActions aria-label="Reply actions">
+              {branch}
               <MessageCopyAction text={copyText(text)} />
               {latest && (
                 <MessageAction label="Regenerate" onClick={onRegenerate}>
