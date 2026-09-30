@@ -39,6 +39,7 @@ export function ContentReader({
   sections,
   meta,
   backLink,
+  actions,
   figure,
   children,
 }: {
@@ -47,6 +48,8 @@ export function ContentReader({
   sections: ContentSection[]
   meta: ReactNode
   backLink: ReactNode
+  /** Beside the back link, such as Open in chat. */
+  actions?: ReactNode
   figure?: ReactNode
   children: ReactNode
 }) {
@@ -72,7 +75,10 @@ export function ContentReader({
       tabIndex={-1}
       className="public-container resource-reader"
     >
-      <div className="resource-back">{backLink}</div>
+      <div className="resource-back">
+        {backLink}
+        {actions}
+      </div>
       <div className="resource-reading-grid">
         <article ref={contentRef} className="resource-prose">
           <header className="resource-heading">

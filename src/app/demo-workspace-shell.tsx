@@ -58,6 +58,7 @@ const settingsPages = new Map([
   ["security", "Security"],
   ["workspace", "Workspace"],
   ["team", "Team"],
+  ["assistant", "Assistant"],
   ["api-keys", "API keys"],
   ["webhooks", "Webhooks"],
   ["billing", "Billing"],

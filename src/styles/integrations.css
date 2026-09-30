@@ -104,12 +104,8 @@
   margin-top: var(--control-gap);
   color: var(--muted-foreground);
 }
-.delivery-detail pre {
-  background: var(--muted);
-  padding: var(--item-padding);
+.delivery-detail .webhook-response {
   margin-top: var(--control-gap);
-  border-radius: var(--radius);
-  overflow: auto;
 }
 .integration-usage {
   display: grid;

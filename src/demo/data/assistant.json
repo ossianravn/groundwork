@@ -4,8 +4,8 @@
   "suggestions": [
     "Which projects are at risk?",
     "What changed this week?",
-    "Add a launch checklist to a project",
-    "How do I list projects with the API?"
+    "Draft a status update for Mobile app",
+    "Add a launch checklist to a project"
   ],
   "intents": [
     {
@@ -41,6 +41,23 @@
       ]
     },
     {
+      "id": "status",
+      "keywords": [
+        "status",
+        "update",
+        "report",
+        "draft",
+        "summary",
+        "summarise",
+        "summarize",
+        "write"
+      ],
+      "followUps": [
+        "Add a launch checklist to a project",
+        "Which projects are at risk?"
+      ]
+    },
+    {
       "id": "tasks",
       "keywords": ["checklist", "tasks", "task", "plan", "launch", "break"],
       "followUps": ["Which projects are at risk?", "What changed this week?"]
@@ -69,7 +86,6 @@
   },
   "failure": "The assistant stopped responding before it finished.",
   "checklist": {
-    "question": "Which project should the checklist go into?",
     "tasks": [
       {
         "title": "Confirm the launch date and scope",
@@ -140,5 +156,44 @@
       }
     }
   ],
-  "files": "I can see {files}, but this demo can't read attachments. Ask one of the questions below instead."
+  "files": "I can see {files}, but this demo can't read attachments. Ask one of the questions below instead.",
+  "questions": {
+    "checklist": "Which project should the checklist go into?",
+    "status": "Which project is the update for?"
+  },
+  "disabled": {
+    "searchProjects": "Project search is turned off in [Settings › Assistant](/app/demo/settings/assistant), so I can't check deadlines and open work. Turn it on there to ask again.",
+    "createTasks": "Creating tasks is turned off in [Settings › Assistant](/app/demo/settings/assistant), so I can't add a checklist. Turn it on there to ask again.",
+    "draftUpdates": "Drafting updates is turned off in [Settings › Assistant](/app/demo/settings/assistant). Turn it on there to ask again."
+  },
+  "status": {
+    "intro": "Here is a draft status update for **{project}**, written from this week's activity and its task list. Copy it, download it, or post it to the project as a comment."
+  },
+  "agent": {
+    "name": "Tandem Assistant",
+    "description": "Answers questions about this workspace from its projects, tasks and activity.",
+    "instructions": "Answer from the workspace's records and cite the ones you use. State the rule behind any judgement, such as what counts as at risk. Ask which project is meant when it isn't clear. Never change records without the person's approval.",
+    "output": "Markdown with numbered citations; sources follow each answer.",
+    "tools": [
+      {
+        "id": "searchProjects",
+        "name": "searchProjects",
+        "label": "Search projects",
+        "description": "Reads open projects with their owners, due dates and task counts."
+      },
+      {
+        "id": "createTasks",
+        "name": "createTasks",
+        "label": "Create tasks",
+        "description": "Adds a checklist of tasks to a project.",
+        "note": "Asks first"
+      },
+      {
+        "id": "draftUpdates",
+        "name": "draftUpdate",
+        "label": "Draft status updates",
+        "description": "Writes a project's weekly update for you to copy, download or post."
+      }
+    ]
+  }
 }

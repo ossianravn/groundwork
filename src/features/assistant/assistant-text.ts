@@ -79,3 +79,12 @@ export function announcement(
 
   return `The assistant replied: ${spokenText(messageText(last))}`
 }
+
+/** A markdown draft as plain lines, for places that show text as written. */
+export function plainText(markdown: string) {
+  return markdown
+    .replace(/^(#{1,6}\s+.+)\n\n/gmu, "$1\n")
+    .replace(/^#{1,6}\s+/gmu, "")
+    .replace(/\*\*([^*]+)\*\*/gu, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/gu, "$1")
+}

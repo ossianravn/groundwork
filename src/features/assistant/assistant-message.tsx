@@ -22,6 +22,7 @@ import {
   type AssistantMessage,
 } from "@/demo/assistant/assistant-types"
 import { AssistantSteps, AssistantTool } from "./assistant-activity"
+import { AssistantArtifact } from "./assistant-artifact"
 import {
   AssistantApproval,
   AssistantPlan,
@@ -118,6 +119,8 @@ export function AssistantTurn({
   onDecide,
   renderLink,
   branch,
+  posted,
+  onPost,
 }: {
   message: AssistantMessage
   /** Still streaming, or cut off by an error that Try again will replace. */
@@ -132,6 +135,9 @@ export function AssistantTurn({
   renderLink: RenderResponseLink
   /** Moves between versions of this reply. */
   branch?: ReactNode
+  /** Drafts already posted to their project, by artifact id. */
+  posted: string[]
+  onPost: (artifactId: string, projectId: string, markdown: string) => void
 }) {
   const text = messageText(message)
 
@@ -201,6 +207,17 @@ export function AssistantTurn({
                   part={part}
                   actionable={latest}
                   onAnswer={onAnswer}
+                />
+              )
+
+            if (part.type === "data-artifact")
+              return (
+                <AssistantArtifact
+                  key={index}
+                  part={part}
+                  working={incomplete}
+                  posted={posted.includes(part.id ?? part.data.projectId)}
+                  onPost={onPost}
                 />
               )
 

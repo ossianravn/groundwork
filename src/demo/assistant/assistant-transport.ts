@@ -13,6 +13,7 @@ import type {
   AssistantMessage,
   AssistantReply,
   AssistantRequest,
+  AssistantToolSettings,
   CreateTasksInput,
 } from "./assistant-types"
 
@@ -36,7 +37,11 @@ export function createScriptedTransport({
   reply: (
     prompt: string,
     context: AssistantContext,
-    options: { toolFails: boolean; files: string[] },
+    options: {
+      toolFails: boolean
+      files: string[]
+      tools: AssistantToolSettings
+    },
   ) => AssistantReply
   resume: (
     message: AssistantMessage,
@@ -76,6 +81,7 @@ export function createScriptedTransport({
           reply(promptOf(prompt), request.context, {
             toolFails,
             files: filesOf(prompt),
+            tools: request.tools,
           }),
         request.model,
       )

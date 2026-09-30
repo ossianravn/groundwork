@@ -9,6 +9,15 @@ import {
   parseAssistantSearch,
 } from "./assistant-search"
 
+export const assistantSettingsRoute = createRoute({
+  getParentRoute: () => workspaceRoute,
+  path: "settings/assistant",
+  component: lazyRouteComponent(
+    () => import("./settings-route"),
+    "AssistantSettingsRoute",
+  ),
+})
+
 export const assistantRoute = createRoute({
   getParentRoute: () => workspaceRoute,
   path: "assistant",

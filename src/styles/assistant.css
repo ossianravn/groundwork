@@ -187,3 +187,35 @@
   animation-duration: 280ms;
   animation-timing-function: var(--ease-standard);
 }
+/* Settings › Assistant: the agent summary, then its controls. */
+.assistant-settings {
+  display: grid;
+  gap: var(--section-gap);
+  max-width: 44rem;
+}
+.assistant-settings-group {
+  display: grid;
+  gap: var(--control-gap);
+}
+.assistant-settings-group h3 {
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+.assistant-settings-model {
+  max-width: 20rem;
+}
+.assistant-settings-tools {
+  display: grid;
+}
+.assistant-settings-tool {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap);
+  padding-block: var(--row-padding);
+  border-bottom: 1px solid var(--border);
+}
+.assistant-settings-tool > span {
+  display: grid;
+  gap: 0.125rem;
+}

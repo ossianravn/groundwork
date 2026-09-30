@@ -39,8 +39,10 @@ export function useAssistantSession() {
     body: {
       scenario,
       model: assistant.model,
+      tools: assistant.tools,
       context: {
         projects: demo.projects,
+        tasks: demo.tasks,
         activity: demo.activity,
         people: demo.workspace.people,
         referenceDate: demo.workspace.referenceDate,

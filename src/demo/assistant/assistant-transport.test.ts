@@ -2,6 +2,7 @@ import { beforeEach, expect, it } from "vitest"
 import { readUIMessageStream } from "ai"
 import { initialProjects } from "../project-fixtures"
 import { initialActivity } from "../activity-fixtures"
+import { initialTasks } from "../project-tasks"
 import workspace from "../data/workspace.json"
 import { assistantReply, matchIntent } from "./assistant-answers"
 import { textChunks } from "./assistant-chunks"
@@ -16,6 +17,7 @@ import { atRiskProjects } from "./risk-answer"
 
 const context = {
   projects: initialProjects,
+  tasks: initialTasks,
   activity: initialActivity,
   people: workspace.members,
   referenceDate: workspace.referenceDate,
@@ -54,6 +56,7 @@ async function run(
     body: {
       scenario,
       model: "balanced",
+      tools: { searchProjects: true, createTasks: true, draftUpdates: true },
       context,
       actions: { createTasks: (input) => void created.push(input) },
     } satisfies AssistantRequest,

@@ -82,7 +82,7 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | `/app/:workspace/projects/:projectId` | App | EDGE-04, TABL-08 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/projects/:projectId/edit` | App | SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/inbox` | App | TABL-07, SYS-04 | [Inbox and master-detail review](pages/app/inbox.md) |
-| `/app/:workspace/assistant` | App | AI-01–AI-20, DEV-01 | [Assistant](pages/app/assistant.md) |
+| `/app/:workspace/assistant` | App | AI-01–AI-23, DEV-01 | [Assistant](pages/app/assistant.md) |
 | `/app/:workspace/activity` | App | TABL-08 | [Workspace activity](pages/app/activity.md) |
 
 ### Settings
@@ -98,6 +98,7 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | `/app/:workspace/settings/billing` | Settings | SETT-08, SETT-09 | [Billing and invoices](pages/settings/billing.md) |
 | `/app/:workspace/settings/api-keys` | Settings | SETT-06 | [API keys and webhooks](pages/settings/developers.md) |
 | `/app/:workspace/settings/webhooks` | Settings | SETT-07 | [API keys and webhooks](pages/settings/developers.md) |
+| `/app/:workspace/settings/assistant` | Settings | AI-22 | [Assistant](pages/app/assistant.md#settings--assistant) |
 
 ### Reference library
 

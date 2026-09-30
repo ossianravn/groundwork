@@ -141,6 +141,31 @@ function planChunks(reply: AssistantReply, turn: string, pace: Pace) {
   ]
 }
 
+/** The artifact streams paragraph by paragraph, updated in place by id. */
+function artifactChunks(reply: AssistantReply, turn: string, pace: Pace) {
+  const { artifact } = reply
+
+  if (!artifact) return []
+
+  const blocks = artifact.content.split("\n\n")
+  const id = `artifact-${turn}`
+
+  return [
+    ...blocks.map((_, index) =>
+      at(pace.work / 3)({
+        type: "data-artifact",
+        id,
+        data: {
+          ...artifact,
+          content: blocks.slice(0, index + 1).join("\n\n"),
+          complete: false,
+        },
+      }),
+    ),
+    at(0)({ type: "data-artifact", id, data: artifact }),
+  ]
+}
+
 /** The outcome of last turn's approval, which opens the continuation. */
 function resolutionChunks(
   resolution: NonNullable<AssistantReply["resolution"]>,
@@ -200,6 +225,7 @@ export function replyChunks(
     at(0)({ type: "text-end", id: "text" }),
     ...(reply.question ? questionChunks(reply.question, turn) : []),
     ...planChunks(reply, turn, pace),
+    ...artifactChunks(reply, turn, pace),
     ...(reply.sources ?? []).map((source) =>
       at(0)({
         type: "source-url",

@@ -17,6 +17,17 @@ import {
 } from "@/kit/ui/dropdown-menu"
 import type { Delivery, Webhook, WebhookValues } from "@/demo/integrations"
 import { WebhookDialog } from "./webhook-dialog"
+import { CodeBlock } from "@/kit/ui/code-block"
+
+/** Indents a JSON response; anything else is shown as it came. */
+function readable(body: string) {
+  try {
+    return JSON.stringify(JSON.parse(body), null, 2)
+  } catch {
+    // Not JSON: the sample endpoint's raw text is the useful view.
+    return body
+  }
+}
 
 export function WebhookSettings({
   webhooks,
@@ -162,9 +173,12 @@ export function WebhookSettings({
                             </Badge>
                           </summary>
                           <p className="integration-url">{delivery.url}</p>
-                          <pre tabIndex={0} aria-label="Response body">
-                            <code>{delivery.response}</code>
-                          </pre>
+                          <CodeBlock
+                            className="webhook-response"
+                            code={readable(delivery.response)}
+                            language="json"
+                            filename="Response body"
+                          />
                         </details>
                       </li>
                     ))}

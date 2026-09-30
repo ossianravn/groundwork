@@ -1,10 +1,14 @@
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Sparkles } from "lucide-react"
 import {
+  Link,
   useLocation,
   useNavigate,
   useParams,
   useSearch,
 } from "@tanstack/react-router"
+import { chatLinks } from "@/kit/ai/chat-links"
+import { OpenInChat, OpenInChatItem } from "@/kit/ai/open-in-chat"
+import { ClaudeIcon } from "@/components/brand-icons"
 import { ArticleIndex } from "@/features/resources/article-index"
 import { HelpPage } from "@/features/resources/help-page"
 import { ChangelogPage, ReleasePage } from "@/features/resources/changelog-page"
@@ -110,6 +114,36 @@ export function HelpRoute() {
   )
 }
 
+/** Takes a question about the guide to the assistant, or to Claude. */
+function GuideChat({ title, slug }: { title: string; slug: string }) {
+  const url = new URL(`/help/${slug}`, window.location.origin).href
+
+  return (
+    <OpenInChat label="Ask about this guide">
+      <OpenInChatItem
+        icon={<Sparkles className="size-4" aria-hidden="true" />}
+        label="Ask the Tandem Assistant"
+        render={
+          <Link
+            to="/app/demo/assistant"
+            search={{
+              scenario: "normal",
+              q: `Summarise the help guide “${title}”`,
+            }}
+          />
+        }
+      />
+      <OpenInChatItem
+        icon={<ClaudeIcon className="size-4" />}
+        label="Open in Claude"
+        href={chatLinks.claude(
+          `Explain this Tandem help guide, “${title}”: ${url}`,
+        )}
+      />
+    </OpenInChat>
+  )
+}
+
 export function GuideRoute() {
   const { slug } = useParams({ from: "/help/$slug" })
   const guide = guides.find((entry) => entry.slug === slug)
@@ -135,6 +169,7 @@ export function GuideRoute() {
               <ArrowLeft aria-hidden="true" /> Help
             </ResourceLink>
           }
+          actions={<GuideChat title={guide.title} slug={guide.slug} />}
         >
           <RelatedGuides
             title="Related guides"

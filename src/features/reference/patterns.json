@@ -2626,11 +2626,17 @@
         "label": "In a reply",
         "href": "/app/demo/assistant",
         "instruction": "Ask How do I list projects with the API?"
+      },
+      {
+        "label": "Webhook deliveries",
+        "href": "/app/demo/settings/webhooks",
+        "instruction": "Open a webhook's deliveries and a delivery's response body."
       }
     ],
     "sources": [
       "src/kit/ui/code-block.tsx",
-      "src/kit/ui/code-block-highlight.ts"
+      "src/kit/ui/code-block-highlight.ts",
+      "src/features/settings/webhook-settings.tsx"
     ]
   },
   {
@@ -2996,6 +3002,73 @@
       "src/kit/ai/context.tsx",
       "src/demo/assistant/assistant-model.ts",
       "src/features/assistant/assistant-composer.tsx"
+    ]
+  },
+  {
+    "id": "AI-21",
+    "title": "Drafted artifact",
+    "originalName": "Drafted artifact",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Let the assistant draft something the person takes elsewhere.",
+    "implemented": "Asking for a status update streams a document as an AI SDK data part: the week's activity, next open tasks and a risk line, from live records. Copy and Download keep the markdown; Post to project adds it as a comment (once), and the footer links to the project. Without a named project the assistant asks which one first.",
+    "deferred": "Drafts cannot be edited before posting; copy, edit and post from the project instead.",
+    "examples": [
+      {
+        "label": "Status update",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Draft a status update for Mobile app, then Post to project."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/artifact.tsx",
+      "src/features/assistant/assistant-artifact.tsx",
+      "src/demo/assistant/status-answer.ts"
+    ]
+  },
+  {
+    "id": "AI-22",
+    "title": "Assistant settings",
+    "originalName": "Assistant settings",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show what the workspace assistant is and control what it may do.",
+    "implemented": "Settings › Assistant pairs an Agent summary (instructions, tools, output) with a default model and a switch per tool. Changes apply at once; with a tool off, the assistant explains and links back here instead of answering.",
+    "deferred": "Instructions are fixed in this demo; the scripted replies could not follow edited ones.",
+    "examples": [
+      {
+        "label": "Settings › Assistant",
+        "href": "/app/demo/settings/assistant",
+        "instruction": "Turn off Search projects, then ask Which projects are at risk?"
+      }
+    ],
+    "sources": [
+      "src/kit/ai/agent.tsx",
+      "src/features/settings/assistant-settings.tsx",
+      "src/demo/assistant/assistant-answers.ts"
+    ]
+  },
+  {
+    "id": "AI-23",
+    "title": "Open in chat",
+    "originalName": "Open in chat",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Carry a question about a page into a chat.",
+    "implemented": "Help guides offer Ask about this guide: the Tandem Assistant opens with the question filled in and answers from the guide, citing it; Open in Claude opens a new tab with the question and the guide's address.",
+    "deferred": "No ChatGPT entry: its mark is no longer available from Simple Icons, and the kit's chatLinks.chatgpt remains for projects that source it.",
+    "examples": [
+      {
+        "label": "Help guide",
+        "href": "/help/create-and-edit-projects",
+        "instruction": "Open Ask about this guide and choose Ask the Tandem Assistant."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/open-in-chat.tsx",
+      "src/kit/ai/chat-links.ts",
+      "src/app/resource-route.tsx",
+      "src/demo/assistant/help-answer.ts"
     ]
   }
 ]

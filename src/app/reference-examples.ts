@@ -80,6 +80,12 @@ import { MessageBranchExample } from "@/features/reference/examples/message-bran
 import messageBranchSource from "@/features/reference/examples/message-branch-example?raw"
 import { CheckpointExample } from "@/features/reference/examples/checkpoint-example"
 import checkpointSource from "@/features/reference/examples/checkpoint-example?raw"
+import { ArtifactExample } from "@/features/reference/examples/artifact-example"
+import artifactSource from "@/features/reference/examples/artifact-example?raw"
+import { AgentExample } from "@/features/reference/examples/agent-example"
+import agentSource from "@/features/reference/examples/agent-example?raw"
+import { OpenInChatExample } from "@/features/reference/examples/open-in-chat-example"
+import openInChatSource from "@/features/reference/examples/open-in-chat-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -163,4 +169,11 @@ export const referenceExamples = [
     source: messageBranchSource,
   },
   { id: "checkpoint", Component: CheckpointExample, source: checkpointSource },
+  { id: "artifact", Component: ArtifactExample, source: artifactSource },
+  { id: "agent", Component: AgentExample, source: agentSource },
+  {
+    id: "open-in-chat",
+    Component: OpenInChatExample,
+    source: openInChatSource,
+  },
 ]

@@ -1,6 +1,13 @@
 import script from "../data/assistant.json"
-import { formatDate, type Project } from "../model"
-import { personName, plural, projectLink, projectPath } from "./answer-format"
+import type { Project } from "../model"
+import {
+  askForProject,
+  personName,
+  plural,
+  projectLink,
+  projectPath,
+} from "./answer-format"
+import { statusDraft } from "./status-answer"
 import type {
   AssistantContext,
   AssistantMessage,
@@ -10,9 +17,6 @@ import type {
 
 type Answer = Omit<AssistantReply, "followUps">
 
-const active = (context: AssistantContext) =>
-  context.projects.filter((project) => project.status !== "completed")
-
 /** The project a prompt names. */
 export function namedProject(prompt: string, context: AssistantContext) {
   const text = prompt.toLowerCase()
@@ -20,20 +24,6 @@ export function namedProject(prompt: string, context: AssistantContext) {
   return context.projects.find((project) =>
     text.includes(project.name.toLowerCase()),
   )
-}
-
-function askForProject(context: AssistantContext, lead: string): Answer {
-  return {
-    text: lead,
-    question: {
-      question: script.checklist.question,
-      options: active(context).map((project) => ({
-        value: project.id,
-        label: project.name,
-        description: `due ${formatDate(project.dueDate)}`,
-      })),
-    },
-  }
 }
 
 /** The checklist for a project: a plan to review, then tasks to approve. */
@@ -77,12 +67,14 @@ export function checklistAnswer(
   if (!project)
     return askForProject(
       context,
+      "checklist",
       "A launch checklist adds five tasks to one project, so I'll check where they go first.",
     )
 
   if (project.status === "completed")
     return askForProject(
       context,
+      "checklist",
       `${project.name} is completed, so it can't take new tasks. Choose an open project instead.`,
     )
 
@@ -122,9 +114,14 @@ export function continueChecklist(
         (item) => item.id === part.output.projectId,
       )
 
+      const answer =
+        project && part.input.purpose === "status"
+          ? statusDraft(project, context)
+          : project && checklistPlan(project, context)
+
       return {
-        answer: project
-          ? { ...checklistPlan(project, context), followUps: [] }
+        answer: answer
+          ? { ...answer, followUps: [] }
           : { text: "That project is no longer in the workspace.", followUps },
       }
     }

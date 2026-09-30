@@ -43,10 +43,13 @@ const textOnly = (text: string): PromptSubmission => ({
 
 export function AssistantChat({
   intro,
+  initialDraft = "",
   messages,
   status,
   error,
   stopped,
+  posted,
+  onPost,
   versions,
   composer,
   onSend,
@@ -59,10 +62,15 @@ export function AssistantChat({
   renderLink,
 }: {
   intro: AssistantIntro
+  /** A question to start with, such as one brought from a help guide. */
+  initialDraft?: string
   messages: AssistantMessage[]
   status: ChatStatus
   error: Error | undefined
   stopped: string[]
+  /** Drafts already posted to their project, by artifact id. */
+  posted: string[]
+  onPost: (artifactId: string, projectId: string, markdown: string) => void
   /** Versions of the latest reply, when Regenerate has made more than one. */
   versions?: { index: number; count: number; onSelect: (index: number) => void }
   composer: ComposerOptions
@@ -76,7 +84,7 @@ export function AssistantChat({
   onDecide: (approvalId: string, approved: boolean) => void
   renderLink: RenderResponseLink
 }) {
-  const [draft, setDraft] = useState("")
+  const [draft, setDraft] = useState(initialDraft)
   const [started, setStarted] = useState(false)
   const busy = status === "submitted" || status === "streaming"
   const last = messages.at(-1)
@@ -198,6 +206,8 @@ export function AssistantChat({
                 onSuggestion={(text) => send(textOnly(text))}
                 onAnswer={after(onAnswer)}
                 onDecide={after(onDecide)}
+                posted={posted}
+                onPost={onPost}
                 renderLink={renderLink}
               />
             </ConversationItem>
