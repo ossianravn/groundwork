@@ -1359,9 +1359,12 @@
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/code-block",
         "ossianravn/groundwork/collapsible",
+        "ossianravn/groundwork/field",
         "ossianravn/groundwork/hover-card",
+        "ossianravn/groundwork/input",
         "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/message-scroller",
+        "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/shimmer",
         "ossianravn/groundwork/spinner",
         "ossianravn/groundwork/tooltip"
@@ -1371,6 +1374,11 @@
           "path": "src/kit/ai/chain-of-thought.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/chain-of-thought.tsx"
+        },
+        {
+          "path": "src/kit/ai/confirmation.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/confirmation.tsx"
         },
         {
           "path": "src/kit/ai/conversation.tsx",
@@ -1393,9 +1401,24 @@
           "target": "~/src/kit/ai/message-response.tsx"
         },
         {
+          "path": "src/kit/ai/plan.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/plan.tsx"
+        },
+        {
           "path": "src/kit/ai/prompt-input.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/prompt-input.tsx"
+        },
+        {
+          "path": "src/kit/ai/question.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/question.tsx"
+        },
+        {
+          "path": "src/kit/ai/queue.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/queue.tsx"
         },
         {
           "path": "src/kit/ai/reasoning.tsx",

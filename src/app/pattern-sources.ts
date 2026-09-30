@@ -1,6 +1,15 @@
 // Raw-source loading belongs to the Vite host, not the reusable reference view.
 const sources = import.meta.glob<string>(
   [
+    "../kit/ai/plan.tsx",
+    "../features/assistant/assistant-decisions.tsx",
+    "../demo/assistant/checklist-answer.ts",
+    "../kit/ai/confirmation.tsx",
+    "../demo/workspace-tasks.ts",
+    "../kit/ai/queue.tsx",
+    "../features/assistant/use-message-queue.ts",
+    "../kit/ai/question.tsx",
+    "../demo/assistant/create-assistant-chat.ts",
     "../kit/ai/reasoning.tsx",
     "../kit/ai/use-auto-open.ts",
     "../demo/assistant/risk-answer.ts",

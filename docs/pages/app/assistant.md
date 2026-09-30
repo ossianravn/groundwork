@@ -1,6 +1,6 @@
 # Assistant
 
-Status: foundations and agent activity implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-10, DEV-01, DEV-02. The maintainer's plan adds approvals, conversation history, attachments, artifacts and the coding-agent specimen in later steps.
+Status: foundations, agent activity and approved actions implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-14, DEV-01, DEV-02. The maintainer's plan adds conversation history, attachments, artifacts and the coding-agent specimen in later steps.
 
 ## User goal and composition
 
@@ -16,6 +16,7 @@ Replies are scripted: `src/demo/data/assistant.json` holds the copy, the startin
 
 - **At risk:** the assistant reasons about the question (a reasoning part), then calls `searchProjects`. That tool part's parameters stream in, it runs, and it returns the active projects. The answer uses the rule it states: projects overdue, due within a week with more than a quarter of their tasks open, or due within two weeks with more than half open. It lists them in a table with links, names the most urgent, and cites the projects it read; the sources follow the text.
 - **This week:** the assistant reports three progress steps (data parts replaced by id as each completes). It then lists the tasks completed in the seven days to the demo date, by project and person, citing Activity as its source.
+- **Launch checklist:** the one answer that changes records. If the prompt names no open project, the assistant asks which one first. Otherwise it streams a five-task plan (the owner takes the first two), then asks for approval to add the tasks. Approving adds them to the end of the project's task list, as one change in the shared demo state. The outcome links to the project, whose page offers Back to assistant. Declining changes nothing.
 - **API:** a curl and a TypeScript example against the illustrative API, and a link to API keys.
 
 Replies link to project pages and settings with in-app navigation; the host supplies the link renderer, so the feature does not import the router.
@@ -38,6 +39,14 @@ A reply shows its work above the answer, in the order it happened:
 - **Citations** are numbered pills after the sentence they support. They link to the first source and preview all of them on hover or focus. Consecutive numbers read as a range (2–4). Before the sources arrive, the number shows without a preview.
 - **Sources** ("Used 4 sources") list every cited record with its status. The list is the keyboard-reachable record, since previews hold no controls.
 
+## Decisions and the queue
+
+- **Question:** a client-side `chooseProject` tool call left without output. The page renders the open projects as a radio group; the answer returns with `addToolOutput`, and `sendAutomaticallyWhen` continues the turn to the plan.
+- **Approval:** `createTasks` arrives in the AI SDK's approval-requested state as a Confirmation under the plan. Don't add and Add tasks answer with `addToolApprovalResponse`, and the chat sends automatically. The scripted server runs the host's `createTasks` implementation, supplied with the request, only when approved; it then streams the output and a short reply. The decision and outcome replace the actions in place.
+- **Waiting:** while a reply waits for an answer or approval, the status region says so. Messages sent meanwhile queue, since a new prompt would leave the decision open. Only the latest reply's question or approval can be answered; older ones read "Not answered" or "Not decided".
+- **Queue:** during a reply, Enter queues the message rather than doing nothing. Queued messages sit above the composer, each with Remove, labelled with when they will send. They go one per reply once the assistant is ready.
+- Answering, deciding and removing a queued message move focus to the composer, because the control that had focus is gone.
+
 The person's own choice to open or close reasoning or steps is kept. Nothing here takes focus. Copied text and the spoken reply leave citation markers out.
 
 ## Interaction and accessibility
@@ -50,4 +59,4 @@ The person's own choice to open or close reasoning or steps is kept. Nothing her
 
 ## Scope and limits
 
-One conversation per session, no history list, branches, attachments or model choice yet; tools run without approval. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).
+One conversation per session, no history list, branches, attachments or model choice yet. Only createTasks needs approval; the project search is read-only. Added tasks have no Undo in the assistant; remove them from the project. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).

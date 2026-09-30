@@ -145,3 +145,27 @@ function moveTask(tasks: ProjectTask[], task: ProjectTask, offset: -1 | 1) {
 
   return tasks
 }
+
+export interface NewTask {
+  title: string
+  assigneeId: string | null
+}
+
+/**
+ * Adds several tasks to one project in order, as one change. A completed or
+ * missing project takes none; the result says how many were added.
+ */
+export function addProjectTasks(
+  records: TaskRecords,
+  projectId: string,
+  tasks: NewTask[],
+  context: TaskContext,
+) {
+  const next = tasks.reduce(
+    (current, task) =>
+      applyTaskChange(current, { kind: "add", projectId, ...task }, context),
+    records,
+  )
+
+  return { records: next, added: next.tasks.length - records.tasks.length }
+}

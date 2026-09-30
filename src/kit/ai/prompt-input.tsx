@@ -15,6 +15,8 @@ const PromptInputContext = React.createContext<{
   value: string
   setValue: (value: string) => void
   busy: boolean
+  /** Enter queues the message while the model works. */
+  queue?: () => void
   textarea: React.RefObject<HTMLTextAreaElement | null>
 } | null>(null)
 
@@ -27,14 +29,16 @@ function usePromptInput() {
 }
 
 /**
- * The message composer. Enter sends and Shift+Enter adds a line; while the
- * model works, the submit button stops the response instead, and Enter does
- * nothing so a half-written follow-up is never lost.
+ * The message composer. Enter sends and Shift+Enter adds a line. While the
+ * model works, the submit button stops the response instead; Enter queues
+ * the message when `onQueue` is given, and otherwise does nothing, so a
+ * half-written follow-up is never lost.
  */
 function PromptInput({
   status,
   onSubmit,
   onStop,
+  onQueue,
   value: controlled,
   onValueChange,
   className,
@@ -44,6 +48,8 @@ function PromptInput({
   status: PromptStatus
   onSubmit: (text: string) => void
   onStop: () => void
+  /** Keeps a message written during a reply, to send after it. */
+  onQueue?: (text: string) => void
   value?: string
   onValueChange?: (value: string) => void
 }) {
@@ -61,7 +67,22 @@ function PromptInput({
   )
 
   return (
-    <PromptInputContext value={{ value, setValue, busy, textarea }}>
+    <PromptInputContext
+      value={{
+        value,
+        setValue,
+        busy,
+        textarea,
+        queue:
+          onQueue &&
+          (() => {
+            if (!value.trim()) return
+
+            onQueue(value.trim())
+            setValue("")
+          }),
+      }}
+    >
       <form
         data-slot="prompt-input"
         className={cn("w-full", className)}
@@ -91,7 +112,7 @@ function PromptInputTextarea({
   onKeyDown,
   ...props
 }: Omit<React.ComponentProps<"textarea">, "value" | "onChange">) {
-  const { value, setValue, busy, textarea } = usePromptInput()
+  const { value, setValue, busy, queue, textarea } = usePromptInput()
 
   return (
     <InputGroupTextarea
@@ -118,6 +139,7 @@ function PromptInputTextarea({
         event.preventDefault()
 
         if (!busy) event.currentTarget.form?.requestSubmit()
+        else queue?.()
       }}
       {...props}
     />

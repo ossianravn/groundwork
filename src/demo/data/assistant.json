@@ -4,6 +4,7 @@
   "suggestions": [
     "Which projects are at risk?",
     "What changed this week?",
+    "Add a launch checklist to a project",
     "How do I list projects with the API?"
   ],
   "intents": [
@@ -40,6 +41,11 @@
       ]
     },
     {
+      "id": "tasks",
+      "keywords": ["checklist", "tasks", "task", "plan", "launch", "break"],
+      "followUps": ["Which projects are at risk?", "What changed this week?"]
+    },
+    {
       "id": "api",
       "keywords": [
         "api",
@@ -54,12 +60,37 @@
       "followUps": ["Which projects are at risk?", "What changed this week?"]
     }
   ],
-  "fallback": "I can only answer a few scripted questions in this demo: which projects are at risk, what changed this week, and how to list projects with the API. Try one of those below.",
+  "fallback": "I can only answer a few scripted questions in this demo: which projects are at risk, what changed this week, adding a launch checklist to a project, and how to list projects with the API. Try one of those below.",
   "api": {
     "intro": "Create a read-only key under [Settings › API keys](/app/demo/settings/api-keys), then send it as a bearer token. The endpoint returns every project with its status, owner, due date and task counts.",
     "curl": "curl https://api.tandem.example/v1/projects \\\n  -H \"Authorization: Bearer $TANDEM_API_KEY\"",
     "typescript": "const response = await fetch(\"https://api.tandem.example/v1/projects\", {\n  headers: { Authorization: `Bearer ${process.env.TANDEM_API_KEY}` },\n})\n\nif (!response.ok) throw new Error(`Tandem API: ${response.status}`)\n\nconst { projects } = await response.json()\nconsole.log(projects.map((project) => project.name))",
     "outro": "Keys are shown once when you create them. This demo's API is illustrative, so the address does not respond."
   },
-  "failure": "The assistant stopped responding before it finished."
+  "failure": "The assistant stopped responding before it finished.",
+  "checklist": {
+    "question": "Which project should the checklist go into?",
+    "tasks": [
+      {
+        "title": "Confirm the launch date and scope",
+        "owner": true
+      },
+      {
+        "title": "Write the release notes",
+        "owner": true
+      },
+      {
+        "title": "Run a final accessibility review",
+        "owner": false
+      },
+      {
+        "title": "Brief the support team",
+        "owner": false
+      },
+      {
+        "title": "Schedule the announcement",
+        "owner": false
+      }
+    ]
+  }
 }

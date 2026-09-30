@@ -1,6 +1,7 @@
 import { expect, it } from "vitest"
 import { initialProjects } from "./project-fixtures"
 import {
+  addProjectTasks,
   applyTaskChange,
   initialTasks,
   type TaskRecords,
@@ -97,4 +98,21 @@ it("adds at the end of the project, moves among open tasks and ignores completed
   expect(
     applyTaskChange(records(), { kind: "remove", taskId: launch.id }, context),
   ).toEqual(records())
+})
+
+it("adds several tasks to a project in order, and none to a completed one", () => {
+  const tasks = [
+    { title: "First", assigneeId: "ava" },
+    { title: "Second", assigneeId: null },
+  ]
+
+  let next = 0
+  const ids = { ...context, id: () => `batch-${(next += 1)}` }
+  const result = addProjectTasks(records(), "brand", tasks, ids)
+  const own = result.records.tasks.filter((task) => task.projectId === "brand")
+
+  expect(result.added).toBe(2)
+  expect(own.slice(-2).map((task) => task.title)).toEqual(["First", "Second"])
+  expect(brand(result.records).tasks).toBe(brand(records()).tasks + 2)
+  expect(addProjectTasks(records(), "launch", tasks, ids).added).toBe(0)
 })
