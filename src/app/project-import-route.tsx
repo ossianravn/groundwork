@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router"
-import { ArrowLeft } from "lucide-react"
 import { buttonVariants } from "@/kit/ui/button"
 import { textDocument } from "@/kit/rich-text/document"
 import { ProjectImport } from "@/features/projects/project-import"
@@ -27,14 +26,6 @@ export function ProjectImportRoute() {
     >
       <title>{`Import projects · ${demo.workspace.name}`}</title>
       <div className="project-page-heading">
-        <Link
-          to="/app/demo/projects"
-          search={defaultProjectsSearch}
-          className={buttonVariants({ variant: "ghost" })}
-        >
-          <ArrowLeft aria-hidden="true" />
-          Back to projects
-        </Link>
         <div className="project-page-title">
           <h1>Import projects</h1>
         </div>

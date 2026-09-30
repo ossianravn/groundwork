@@ -194,6 +194,32 @@
 .breadcrumb-parent {
   flex-shrink: 0;
 }
+/* Phones only: the parent crumbs are hidden, so the nearest one becomes a
+   back arrow before the page title (see responsive.css). */
+.breadcrumb-back {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--control-height);
+  height: var(--control-height);
+  margin-inline-end: -0.25rem;
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+}
+.breadcrumb-back:hover {
+  background: var(--accent);
+}
+.breadcrumb-back:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+.breadcrumb .breadcrumb-back svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  color: currentColor;
+}
 /* The current page is the page title; section pages keep an equivalent h1. */
 .breadcrumb [aria-current="page"] {
   color: var(--foreground);

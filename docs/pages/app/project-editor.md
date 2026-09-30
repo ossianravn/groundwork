@@ -2,7 +2,7 @@
 
 Status: core detail/create/edit/save-recovery workflow implemented and accepted; rich descriptions, tag selection/creation and related links added on 2026-09-27. Shell: App. Primary inventory ownership: SETT-02, SETT-10, SETT-11, SETT-12, SETT-13, EDGE-04. Contextual name/owner/date editing is implemented; attachments remain planned.
 
-Current detail: identity/status, description, owner, due date, task progress, explicit completion and newest-first related activity. The page and B inspector share the progress/action owner. Back to projects/overview preserves the origin; direct entry returns to default Projects. Missing or reload-lost records explain the demo reset boundary. Edit opens the shared routed form.
+Current detail: identity/status, description, owner, due date, task progress, explicit completion and newest-first related activity. The page and B inspector share the progress/action owner. There is no in-page back link: the top bar's trail names the page the project was opened from (Projects, Overview, Inbox, Assistant, Analytics, Activity or Search) and its link returns there with the same query, restoring focus to the opened record; direct entry names the default Projects list. The editor's trail is origin › project › Edit, and the project crumb keeps the origin. On phones, where parent crumbs are hidden, a back arrow before the title goes to the nearest one. Missing or reload-lost records explain the demo reset boundary. Edit opens the shared routed form.
 
 ## User goal
 

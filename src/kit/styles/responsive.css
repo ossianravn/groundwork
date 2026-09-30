@@ -51,10 +51,13 @@
     font-size: var(--text-section);
     font-weight: 500;
   }
-  .breadcrumb > span:first-child,
+  .breadcrumb-root,
   .breadcrumb-parent,
   .breadcrumb svg {
     display: none;
+  }
+  .breadcrumb-back {
+    display: inline-flex;
   }
   .search-trigger span,
   .search-hint {

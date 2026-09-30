@@ -30,6 +30,7 @@ import { roleLabels } from "@/demo/team"
 import { useDemoState } from "./demo-state"
 import { useWorkspaceSwitcher } from "./use-workspace-switcher"
 import { WorkspaceLink } from "./workspace-link"
+import { workspaceLocation } from "./workspace-breadcrumbs"
 
 const accountItems: AccountMenuItem<WorkspaceDestination>[] = [
   { destination: "profile", label: "Profile", icon: UserRound },
@@ -51,53 +52,6 @@ const modifierKey =
     ? "⌘"
     : "Ctrl"
 
-const settingsPages = new Map([
-  ["profile", "Profile"],
-  ["appearance", "Appearance"],
-  ["notifications", "Notifications"],
-  ["security", "Security"],
-  ["workspace", "Workspace"],
-  ["team", "Team"],
-  ["assistant", "Assistant"],
-  ["api-keys", "API keys"],
-  ["webhooks", "Webhooks"],
-  ["billing", "Billing"],
-])
-
-function currentLocation(
-  pathname: string,
-  projectName: (path: string) => string,
-) {
-  if (pathname.startsWith("/app/demo/settings"))
-    return {
-      page: "Settings",
-      item: settingsPages.get(pathname.split("/").at(-1) ?? ""),
-    }
-
-  if (pathname.startsWith("/app/demo/projects"))
-    return {
-      page: "Projects",
-      item:
-        pathname === "/app/demo/projects/new"
-          ? "New project"
-          : pathname === "/app/demo/projects/import"
-            ? "Import"
-            : pathname.startsWith("/app/demo/projects/")
-              ? projectName(pathname)
-              : undefined,
-    }
-
-  const page = {
-    "/app/demo/analytics": "Analytics",
-    "/app/demo/inbox": "Inbox",
-    "/app/demo/assistant": "Assistant",
-    "/app/demo/activity": "Activity",
-    "/app/demo/search": "Search",
-  }[pathname]
-
-  return { page: page ?? "Overview", item: undefined }
-}
-
 export function DemoWorkspaceShell({
   children,
   onCustomize,
@@ -116,6 +70,7 @@ export function DemoWorkspaceShell({
   const { demo } = useDemoState()
   const switcher = useWorkspaceSwitcher(onReset)
   const pathname = useLocation({ select: (location) => location.pathname })
+  const searchStr = useLocation({ select: (location) => location.searchStr })
 
   const member = demo.workspace.members.find(
     (item) => item.id === demo.workspace.currentUserId,
@@ -123,16 +78,18 @@ export function DemoWorkspaceShell({
 
   if (!member) throw new Error("The demo workspace has no current member")
 
-  const { page, item } = currentLocation(
+  const { page, breadcrumbs } = workspaceLocation({
     pathname,
-    (path) =>
+    searchStr,
+    workspaceName: demo.workspace.name,
+    projectName: (path) =>
       demo.projects.find((project) =>
         [
           `/app/demo/projects/${encodeURIComponent(project.id)}`,
           `/app/demo/projects/${encodeURIComponent(project.id)}/edit`,
         ].includes(path),
       )?.name ?? "Project unavailable",
-  )
+  })
 
   const projectCount = demo.projects.length
   const unread = demo.inbox.unreadCount
@@ -221,14 +178,7 @@ export function DemoWorkspaceShell({
             ],
           items: accountItems,
         }}
-        breadcrumbs={[
-          { label: demo.workspace.name },
-          {
-            label: page,
-            destination: page === "Settings" ? "profile" : "projects",
-          },
-          ...(item ? [{ label: item }] : []),
-        ]}
+        breadcrumbs={breadcrumbs}
         search={{
           label: "Find a project…",
           accessibleLabel: "Find a project",

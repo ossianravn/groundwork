@@ -18,8 +18,9 @@
   gap: var(--content-gap);
   width: 100%;
 }
-/* Editing the project is secondary to reading it, so it closes the row. */
-.project-page-title > :last-child {
+/* Editing the project is secondary to reading it, so it closes the row
+   (the project page only; the editor and import share the title row). */
+.project-page .project-page-title > :last-child {
   margin-inline-start: auto;
 }
 .project-page-title > .project-dot {
@@ -226,7 +227,7 @@
 }
 /* On phones a wrapped Edit project starts the line under the title. */
 @media (max-width: 767px) {
-  .project-page-title > :last-child {
+  .project-page .project-page-title > :last-child {
     margin-inline-start: 0;
   }
 }

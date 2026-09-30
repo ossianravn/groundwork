@@ -31,7 +31,6 @@ export function ProjectPage({
   members,
   assignableMembers,
   activity,
-  returnLink,
   editLink,
   notice,
   editing,
@@ -47,7 +46,6 @@ export function ProjectPage({
   members: Member[]
   assignableMembers: Member[]
   activity: Activity[]
-  returnLink: ReactNode
   editLink: ReactNode
   notice?: string
   editing: ProjectInlineEditing
@@ -72,7 +70,6 @@ export function ProjectPage({
   return (
     <main id="main-content" className="page-content project-page" tabIndex={-1}>
       <header className="project-page-heading">
-        {returnLink}
         <div className="project-page-title">
           <ProjectMark color={project.color} />
           <ProjectInlineField field="name" editing={editing} members={members}>

@@ -113,6 +113,23 @@ export function resultsLocationKey(href: string) {
   return JSON.stringify([destination.to, destination.search])
 }
 
+const returnPages = new Map([
+  ["projects", "Projects"],
+  ["overview", "Overview"],
+  ["inbox", "Inbox"],
+  ["assistant", "Assistant"],
+  ["analytics", "Analytics"],
+  ["activity", "Activity"],
+  ["search", "Search"],
+])
+
+/** The page a project was opened from, as its breadcrumb names it. */
+export function projectReturnPage(value: string) {
+  const path = projectReturnTo(value).split(/[?#]/)[0]
+
+  return returnPages.get(path.split("/").at(-1) ?? "") ?? "Projects"
+}
+
 export function projectReturnLabel(value: string) {
   const path = projectReturnTo(value).split(/[?#]/)[0]
 

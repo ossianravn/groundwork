@@ -3,7 +3,7 @@ import { useNavigate } from "@tanstack/react-router"
 
 /**
  * Links in replies: workspace paths use the router, others open normally.
- * A project opened from a reply offers Back to assistant.
+ * A project opened from a reply names the Assistant in its breadcrumb.
  */
 export function ReplyLink({
   href: path,

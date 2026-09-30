@@ -859,13 +859,13 @@
     "category": "Navigation",
     "surface": "Workspace",
     "summary": "Show where a page sits in the workspace hierarchy.",
-    "implemented": "Route-aware breadcrumb links, page title and explicit return destination.",
+    "implemented": "Route-aware breadcrumb links and page title; a record names the page it was opened from and returns there, and phones show the nearest parent as a back arrow. No in-page back row.",
     "deferred": "Breadcrumb dropdown variants remain planned.",
     "examples": [
       {
         "label": "Project hierarchy",
         "href": "/app/demo/projects/brand",
-        "instruction": "Follow the breadcrumb or Back to projects link."
+        "instruction": "Follow the Projects breadcrumb; on a phone, use the back arrow before the title."
       }
     ],
     "sources": [
@@ -985,7 +985,7 @@
       {
         "label": "Filtered projects",
         "href": "/app/demo/projects?q=brand",
-        "instruction": "Open Brand refresh, then use Back to projects."
+        "instruction": "Open Brand refresh, then follow the Projects breadcrumb."
       }
     ],
     "sources": ["src/app/project-return.ts", "src/app/use-results-memory.ts"]
@@ -2315,7 +2315,7 @@
     "category": "System",
     "surface": "Workspace",
     "summary": "Show grouped results across projects, people, messages and help.",
-    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; opening a project offers Back to search.",
+    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; a project opened from it names Search in its breadcrumb, which returns to the results.",
     "deferred": "No ranking beyond title-first, fuzzy matching or recent searches.",
     "examples": [
       {
@@ -2723,7 +2723,7 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "List the records a reply drew on so its claims can be checked.",
-    "implemented": "Replies stream source-url parts after their text; Used 4 sources opens a numbered list of project pages with their status and due date. Links route in-app and offer Back to assistant.",
+    "implemented": "Replies stream source-url parts after their text; Used 4 sources opens a numbered list of project pages with their status and due date. Links route in-app, and the project page names the Assistant in its breadcrumb to return.",
     "deferred": "Document sources (source-document parts) have no demonstration yet.",
     "examples": [
       {
