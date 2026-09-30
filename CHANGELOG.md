@@ -2,6 +2,11 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.2.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+- `shell`: the icon buttons at either end of the workspace top bar align their icon, rather than their hit area, with the page's content edge at every width (previously only on phones).
+- Demo: project pages move to a main column with a properties rail and no framed panels; the Assistant's history can be hidden on wide screens.
+
 ## v0.2.0 — 2026-09-30
 
 The registry grows from 44 to 67 items, and Tandem gains an assistant, tasks, timelines and a larger public site that show them in use.

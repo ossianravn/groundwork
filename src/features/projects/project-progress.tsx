@@ -1,26 +1,21 @@
 import { ProjectProgressBar } from "@/components/project-progress-bar"
 import { Check } from "lucide-react"
 import { Button } from "@/kit/ui/button"
-import { Card } from "@/kit/ui/card"
 import type { Project } from "@/demo/model"
 
 export function ProjectProgress({
   project,
   onComplete,
-  standalone = false,
 }: {
   project: Project
   onComplete: (id: string) => void
-  standalone?: boolean
 }) {
   const percent = project.tasks
     ? Math.round((project.completedTasks / project.tasks) * 100)
     : 0
 
-  const Surface = standalone ? Card : "section"
-
   return (
-    <Surface
+    <section
       className="project-progress"
       role="region"
       aria-label="Task progress"
@@ -61,6 +56,6 @@ export function ProjectProgress({
             : "Mark complete"}
         </Button>
       </div>
-    </Surface>
+    </section>
   )
 }

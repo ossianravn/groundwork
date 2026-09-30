@@ -4,8 +4,7 @@
 .overview-middle > :is(.completion-card, .activity-card),
 .analytics-page > .completion-card,
 .analytics-breakdowns > .analytics-breakdown,
-.project-page-grid
-  > :is(.project-summary, .project-tasks, .project-comments, .project-activity),
+.project-main > :is(.project-tasks, .project-comments, .project-activity),
 .activity-page > .activity-feed-card,
 .project-editor-card {
   --card-spacing: 0px;

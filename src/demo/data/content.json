@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.5.1",
+      "date": "2026-09-30",
+      "title": "A calmer project page",
+      "summary": "Project pages put the work first, with the details beside it, and the assistant's history can step aside.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Project pages lead with the name, status and description. Tasks, comments and activity fill the page, with owner, due date, tags, progress and files in a column beside them.",
+            "Hide the assistant's history to give the conversation the whole width; History in the top bar brings it back.",
+            "The navigation button in the top bar now lines up with the page below it."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything runs in your browser and resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.5.0",
       "date": "2026-09-30",
       "title": "An assistant that knows your projects",

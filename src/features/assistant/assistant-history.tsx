@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Ellipsis, History, Pencil, Trash2 } from "lucide-react"
+import { Ellipsis, History, PanelLeftClose, Pencil, Trash2 } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import {
   DropdownMenu,
@@ -10,6 +10,7 @@ import {
 import { Input } from "@/kit/ui/input"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/kit/ui/sheet"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/kit/ui/tooltip"
 
 export interface HistoryItem {
   id: string
@@ -126,26 +127,75 @@ function HistoryList({
   )
 }
 
+// Matches the width at which assistant.css shows history beside the chat.
+const besideChat = "(width >= 72rem)"
+
+const focusById = (id: string) =>
+  requestAnimationFrame(() => document.getElementById(id)?.focus())
+
 /**
- * History beside the chat on wide screens; on narrower ones a History action
- * in the top bar opens it in a sheet, which closes once a chat is chosen.
+ * History beside the chat on wide screens, where it can be hidden for the
+ * session; a History action in the top bar brings it back. On narrower
+ * screens that action opens it in a sheet, which closes once a chat is
+ * chosen.
  */
 export function AssistantHistory(props: HistoryProps) {
   const [open, setOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+
+  function show() {
+    if (!window.matchMedia(besideChat).matches) {
+      setOpen(true)
+
+      return
+    }
+
+    setHidden(false)
+    focusById("assistant-history-hide")
+  }
 
   return (
     <>
-      <nav className="assistant-history" aria-label="Conversations">
-        <h2 className="assistant-history-title">History</h2>
+      <nav
+        id="assistant-history"
+        className="assistant-history"
+        aria-label="Conversations"
+        hidden={hidden}
+      >
+        <div className="assistant-history-header">
+          <h2 className="assistant-history-title">History</h2>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  id="assistant-history-hide"
+                  variant="ghost"
+                  size="icon-sm"
+                  aria-label="Hide history"
+                  onClick={() => {
+                    setHidden(true)
+                    // The button hides with the panel; its opposite takes focus.
+                    focusById("assistant-history-show")
+                  }}
+                />
+              }
+            >
+              <PanelLeftClose aria-hidden="true" />
+            </TooltipTrigger>
+            <TooltipContent>Hide history</TooltipContent>
+          </Tooltip>
+        </div>
         <HistoryList {...props} />
       </nav>
       <PageActions>
         <PageAction
+          id="assistant-history-show"
           className="page-action assistant-history-action"
+          data-history-hidden={hidden || undefined}
           variant="outline"
           icon={History}
           label="History"
-          onClick={() => setOpen(true)}
+          onClick={show}
         />
       </PageActions>
       <Sheet open={open} onOpenChange={setOpen}>

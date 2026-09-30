@@ -23,9 +23,18 @@
     border-inline-end: 1px solid var(--border);
     scrollbar-width: thin;
   }
-  .page-action.assistant-history-action {
+  .assistant-history[hidden] {
     display: none;
   }
+  .page-action.assistant-history-action:not([data-history-hidden]) {
+    display: none;
+  }
+}
+.assistant-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
 }
 .assistant-history-title {
   padding-inline: var(--item-padding);

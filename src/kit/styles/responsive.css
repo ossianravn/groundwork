@@ -47,18 +47,6 @@
   .topbar {
     gap: var(--control-gap);
   }
-  .mobile-menu-button {
-    margin-inline-start: max(
-      calc(4px - var(--page-padding)),
-      calc((1rem - var(--control-height)) / 2)
-    );
-  }
-  .topbar-actions {
-    margin-inline-end: max(
-      calc(4px - var(--page-padding)),
-      calc((1rem - var(--control-height)) / 2)
-    );
-  }
   .breadcrumb {
     font-size: var(--text-section);
     font-weight: 500;

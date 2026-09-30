@@ -6,7 +6,7 @@ Status: implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 
 
 Ask a question about the workspace and get an answer that points back to the records. `/app/demo/assistant` is a primary workspace section (sidebar item Assistant). The top bar's breadcrumb names the page; New chat appears there once a conversation has started.
 
-History of past conversations sits beside the chat from 72rem; below that, a History action in the top bar opens it in a sheet. The chat is one column at a reading width (46rem): the transcript fills the height under the header and the composer sits below it. The scroller spans the column so its scrollbar sits at the edge.
+History of past conversations sits beside the chat from 72rem. Hide history (beside its label) hides it for the session, and the top bar's History action brings it back; focus moves to whichever of the two remains. Below 72rem, the History action opens history in a sheet. The chat is one column at a reading width (46rem): the transcript fills the height under the header and the composer sits below it. The scroller spans the column so its scrollbar sits at the edge.
 
 Before the first message, the composer sits in the middle of the page under a larger heading ("What would you like to know?"). A line says the answers are scripted and nothing leaves the browser, and four starting questions sit below the composer. Sending the first message moves the composer to the bottom with a view transition, where supported and unless reduced motion is requested.
 

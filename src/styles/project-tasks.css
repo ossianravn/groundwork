@@ -1,11 +1,7 @@
-/* Project tasks (TABL-12): an open section between details and activity,
-   divided by a hairline like activity. Rows read as one line: check,
-   title, assignee and actions. */
-.project-page-grid > .project-tasks {
-  grid-column: 1;
+/* Project tasks (TABL-12): the first open section of the project's main
+   column. Rows read as one line: check, title, assignee and actions. */
+.project-main > .project-tasks {
   gap: var(--content-gap);
-  padding-top: var(--section-gap);
-  border-top: 1px solid var(--border);
 }
 .project-tasks-heading {
   display: flex;
