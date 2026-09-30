@@ -299,6 +299,36 @@
   ],
   "releases": [
     {
+      "version": "0.5.0",
+      "date": "2026-09-30",
+      "title": "An assistant that knows your projects",
+      "summary": "Ask the Tandem Assistant about your workspace: it answers from your projects with sources, drafts status updates and adds tasks once you approve.",
+      "sections": [
+        {
+          "id": "added",
+          "title": "Added",
+          "paragraphs": [],
+          "bullets": [
+            "The Assistant answers questions about risk, this week and project status from your live projects, shows its reasoning and the searches it ran, and cites its sources.",
+            "It can add a checklist of tasks to a project. You see the plan first and approve it; nothing changes without your yes.",
+            "Draft a status update for any project, then copy it, download it or post it to the project as a comment.",
+            "Conversation history with rename and delete, earlier versions of a reply, and restoring a conversation to an earlier point.",
+            "Attach files and projects as context, choose a model and see how much of its context a conversation uses.",
+            "Settings › Assistant shows what the assistant does and lets you switch each of its tools off.",
+            "Every help guide offers Ask about this guide."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Replies are scripted and run in your browser; no message reaches a real model. Tasks and comments the assistant adds reset on reload, like every other change."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.4.0",
       "date": "2026-09-29",
       "title": "Tasks, timelines and a search for everything",

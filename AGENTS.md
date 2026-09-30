@@ -72,6 +72,15 @@ The [verification tools](tools/verification/README.md) are optional: browser sce
 
 Keep the installed lint rules and tests intact. This workflow changes check selection and orchestration, not product requirements or permission to hide failures.
 
+## Release notes
+
+A merged feature or plan step is not finished until its release notes are written, in two independent places:
+
+- **Tandem** (the demo product): a `releases` entry in `src/demo/data/content.json`, with the next Tandem version (unrelated to Groundwork's). The newest entry drives the public announcement bar. Mark the matching roadmap item Shipped in `src/demo/data/public-company.json`. Write for Tandem's customers and state demo boundaries.
+- **Groundwork** (the kit): an `## Unreleased` section in [CHANGELOG.md](CHANGELOG.md), naming new or changed registry items for developers.
+
+Publishing a Groundwork release follows [README.md](README.md#checks) and is outward-facing, so it needs the maintainer's go-ahead.
+
 ## Code Review Rules
 
 Review against the workflow and ownership rules above. Flag changes that break observable outcomes, introduce inconsistent shared behavior, or claim verification unsupported by the checks performed. Explain the affected user consequence and the responsible boundary. Leave routine formatting enforcement to tooling.
