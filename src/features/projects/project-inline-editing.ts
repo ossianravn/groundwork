@@ -52,6 +52,27 @@ export function projectInlineEditing(
         errors: { ...draft.errors, [field]: undefined },
       }),
     cancel: (field: InlineProjectField) => finish(field, saved),
+    /** The details dialog saves its fields together; its form owns drafts. */
+    saveDetails: (
+      changes: Pick<ProjectValues, "ownerId" | "dueDate" | "tags" | "links">,
+    ): ProjectSaveResult => {
+      const values = { ...saved, ...changes }
+
+      if (!projectValuesChanged(values, saved))
+        return { kind: "saved", projectId: project.id }
+
+      const result = saveProject(
+        { kind: "edit", id: project.id },
+        values,
+        draft.scenario,
+      )
+
+      // A simulated failure happens once; the retry then goes through.
+      if (result.kind === "rejected")
+        drafts.update(project.id, { ...draft, scenario: "normal" })
+
+      return result
+    },
     save: (field: InlineProjectField): ProjectSaveResult => {
       const values = { ...saved, [field]: draft.values[field] }
 

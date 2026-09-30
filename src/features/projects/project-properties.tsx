@@ -1,7 +1,7 @@
-import type { ReactNode } from "react"
+import { useState, type ReactNode } from "react"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { formatDate, type Member, type Project } from "@/demo/model"
-import { ProjectInlineField } from "./project-inline-field"
+import { ProjectDetailsDialog } from "./project-details-dialog"
 import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectLinks, ProjectTags } from "./project-resources"
 
@@ -15,51 +15,68 @@ function Property({ label, children }: { label: string; children: ReactNode }) {
 }
 
 /**
- * The project's properties as label and value rows: owner and due date edit
- * in place; tags and links show only when the project has them.
+ * The project's properties as label and value rows, with one Edit action
+ * that changes them together in a dialog. Tags and links show only when the
+ * project has them.
  */
 export function ProjectProperties({
   project,
   owner,
-  members,
   assignableMembers,
+  tagOptions,
   editing,
 }: {
   project: Project
   owner: Member
-  members: Member[]
   assignableMembers: Member[]
+  tagOptions: string[]
   editing: ProjectInlineEditing
 }) {
+  const [announcement, setAnnouncement] = useState("")
+
   return (
-    <dl className="project-properties">
-      <Property label="Owner">
-        <ProjectInlineField
-          field="ownerId"
-          editing={editing}
+    <section
+      className="project-properties-section"
+      aria-labelledby="project-details-title"
+    >
+      <header className="project-properties-heading">
+        <h2 id="project-details-title">Details</h2>
+        <ProjectDetailsDialog
+          project={project}
           members={assignableMembers}
-        >
+          tagOptions={tagOptions}
+          onSave={(details) => {
+            setAnnouncement("")
+
+            return editing.saveDetails(details)
+          }}
+          onSaved={() => setAnnouncement("Details saved.")}
+        />
+      </header>
+      <dl className="project-properties">
+        <Property label="Owner">
           <MemberAvatar member={owner} size="sm" />
           {owner.name}
-        </ProjectInlineField>
-      </Property>
-      <Property label="Due date">
-        <ProjectInlineField field="dueDate" editing={editing} members={members}>
+        </Property>
+        <Property label="Due date">
           <time dateTime={project.dueDate}>
             {formatDate(project.dueDate, { year: "numeric" })}
           </time>
-        </ProjectInlineField>
-      </Property>
-      {project.tags.length > 0 && (
-        <Property label="Tags">
-          <ProjectTags tags={project.tags} />
         </Property>
-      )}
-      {project.links.length > 0 && (
-        <Property label="Links">
-          <ProjectLinks links={project.links} />
-        </Property>
-      )}
-    </dl>
+        {project.tags.length > 0 && (
+          <Property label="Tags">
+            <ProjectTags tags={project.tags} />
+          </Property>
+        )}
+        {project.links.length > 0 && (
+          <Property label="Links">
+            <ProjectLinks links={project.links} />
+          </Property>
+        )}
+      </dl>
+      <p role="status" className="sr-only">
+        {announcement}
+      </p>
+    </section>
   )
 }

@@ -41,6 +41,7 @@ export function ProjectPage({
   comments,
   onPostComment,
   files,
+  tagOptions,
 }: {
   project: Project
   members: Member[]
@@ -57,6 +58,8 @@ export function ProjectPage({
   onPostComment: (text: string) => boolean
   /** Attachments, shown under progress in the rail. */
   files?: ReactNode
+  /** Tags offered when editing details, such as those used elsewhere. */
+  tagOptions: string[]
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -94,8 +97,8 @@ export function ProjectPage({
           <ProjectProperties
             project={project}
             owner={owner}
-            members={members}
             assignableMembers={assignableMembers}
+            tagOptions={tagOptions}
             editing={editing}
           />
           <ProjectProgress project={project} onComplete={onComplete} />

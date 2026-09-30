@@ -95,6 +95,46 @@
   padding-top: var(--section-gap);
   border-top: 1px solid var(--border);
 }
+/* Details: a heading with its one Edit action, like Files below it. */
+.project-properties-section {
+  display: grid;
+  gap: var(--control-gap);
+}
+.project-properties-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+}
+.project-properties-heading h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+/* The ghost action's label lines up with the rail's end. */
+.project-properties-heading > .ui-button {
+  margin-inline-end: calc(-1 * var(--control-padding-inline, 0.625rem));
+}
+/* The details dialog: owner and date share a row, then tags and links. */
+.project-details-dialog[data-slot="dialog-content"] {
+  width: 36rem;
+  max-width: calc(100% - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+.project-details-form {
+  display: grid;
+  gap: var(--section-gap);
+}
+.project-details-row[data-slot="field-group"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--content-gap);
+}
+@media (max-width: 480px) {
+  .project-details-row[data-slot="field-group"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 /* Properties read as label and value rows, labels in one quiet column. */
 .project-properties {
   display: grid;

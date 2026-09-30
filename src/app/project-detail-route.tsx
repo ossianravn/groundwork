@@ -65,6 +65,9 @@ export function ProjectDetailRoute() {
           members={demo.workspace.people}
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
+          tagOptions={[
+            ...new Set(demo.projects.flatMap((item) => item.tags)),
+          ].sort()}
           onComplete={undo.completeProject}
           tasks={demo.tasks.filter((task) => task.projectId === project.id)}
           comments={demo.comments.filter(
