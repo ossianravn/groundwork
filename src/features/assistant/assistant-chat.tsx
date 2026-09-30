@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, type ComponentProps } from "react"
+import { flushSync } from "react-dom"
 import { SquarePen } from "lucide-react"
 import type { ChatStatus } from "ai"
 import { Alert, AlertDescription, AlertTitle } from "@/kit/ui/alert"
@@ -11,23 +12,14 @@ import {
   ConversationItem,
   ConversationStatus,
 } from "@/kit/ai/conversation"
-import {
-  PromptInput,
-  PromptInputFooter,
-  PromptInputSubmit,
-  PromptInputTextarea,
-} from "@/kit/ai/prompt-input"
+import type { PromptSubmission } from "@/kit/ai/prompt-input"
 import type { RenderResponseLink } from "@/kit/ai/response-link"
 import { Queue } from "@/kit/ai/queue"
 import { Suggestion, Suggestions } from "@/kit/ai/suggestion"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
+import { AssistantComposer } from "./assistant-composer"
 import { AssistantTurn } from "./assistant-message"
-import {
-  awaitedDecision,
-  awaitsPerson,
-  messageText,
-  spokenText,
-} from "./assistant-text"
+import { announcement, awaitsPerson } from "./assistant-text"
 import { useMessageQueue } from "./use-message-queue"
 
 export interface AssistantIntro {
@@ -36,26 +28,16 @@ export interface AssistantIntro {
   suggestions: string[]
 }
 
-function announcement(
-  status: ChatStatus,
-  last: AssistantMessage | undefined,
-  stopped: boolean,
-  error: Error | undefined,
-) {
-  if (status === "submitted" || status === "streaming")
-    return "The assistant is replying."
+type ComposerOptions = Pick<
+  ComponentProps<typeof AssistantComposer>,
+  "projects" | "models" | "model" | "onModelChange" | "usage"
+>
 
-  if (status === "error")
-    return `The reply didn't finish. ${error?.message ?? ""}`
-
-  if (last?.role !== "assistant") return ""
-
-  if (stopped) return "Reply stopped."
-
-  if (awaitsPerson(last)) return awaitedDecision(last)
-
-  return `The assistant replied: ${spokenText(messageText(last))}`
-}
+const textOnly = (text: string): PromptSubmission => ({
+  text,
+  files: [],
+  references: [],
+})
 
 export function AssistantChat({
   intro,
@@ -63,6 +45,7 @@ export function AssistantChat({
   status,
   error,
   stopped,
+  composer,
   onSend,
   onStop,
   onRegenerate,
@@ -76,7 +59,8 @@ export function AssistantChat({
   status: ChatStatus
   error: Error | undefined
   stopped: string[]
-  onSend: (text: string) => void
+  composer: ComposerOptions
+  onSend: (submission: PromptSubmission) => void
   onStop: () => void
   onRegenerate: () => void
   onNewChat: () => void
@@ -85,42 +69,70 @@ export function AssistantChat({
   renderLink: RenderResponseLink
 }) {
   const [draft, setDraft] = useState("")
+  const [started, setStarted] = useState(false)
   const busy = status === "submitted" || status === "streaming"
   const last = messages.at(-1)
   const awaiting = status === "ready" && awaitsPerson(last)
   const queue = useMessageQueue(status === "ready" && !awaiting, onSend)
+  // Bridges the moment between sending and the message arriving; after that
+  // the messages decide, so a reset returns to the start layout.
 
-  // Suggestions, Regenerate and Try again disappear once used, so focus
-  // moves to the composer, where the next question is written.
+  if (started && messages.length) setStarted(false)
+
+  const empty = messages.length === 0 && !started
+
+  // Suggestions, Regenerate, Try again, answers and decisions disappear once
+  // used, so focus moves to the composer, where the next question is written.
   const focusPrompt = () => document.getElementById("assistant-prompt")?.focus()
 
+  // The first message moves the composer from the middle to the bottom; a
+  // view transition animates the move where the browser supports it.
+  const start = () => {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    if (!document.startViewTransition || reduce) return setStarted(true)
+
+    document.startViewTransition(() => flushSync(() => setStarted(true)))
+  }
+
   // While a reply streams or waits for a decision, new messages queue.
-  const send = (text: string) => {
-    if (busy || awaiting) queue.add(text)
-    else onSend(text)
+  const send = (submission: PromptSubmission) => {
+    if (empty) start()
+
+    if (busy || awaiting) queue.add(submission)
+    else onSend(submission)
 
     focusPrompt()
   }
 
-  const decide = (approvalId: string, approved: boolean) => {
-    onDecide(approvalId, approved)
-    focusPrompt()
-  }
+  const after =
+    <T extends unknown[]>(action: (...args: T) => void) =>
+    (...args: T) => {
+      action(...args)
+      focusPrompt()
+    }
 
-  const answer = (toolCallId: string, projectId: string) => {
-    onAnswer(toolCallId, projectId)
-    focusPrompt()
-  }
-
-  const regenerate = () => {
-    onRegenerate()
-    focusPrompt()
-  }
+  const suggestions = (list: string[], label: string) => (
+    <Suggestions aria-label={label} className="justify-center">
+      {list.map((suggestion) => (
+        <Suggestion
+          key={suggestion}
+          suggestion={suggestion}
+          onSelect={(text) => send(textOnly(text))}
+        />
+      ))}
+    </Suggestions>
+  )
 
   return (
-    <main id="main-content" tabIndex={-1} className="assistant-page">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="assistant-page"
+      data-empty={empty || undefined}
+    >
       <h1 className="sr-only">Assistant</h1>
-      {messages.length > 0 && (
+      {!empty && (
         <PageActions>
           <PageAction
             id="assistant-new-chat"
@@ -128,6 +140,7 @@ export function AssistantChat({
             label="New chat"
             onClick={() => {
               setDraft("")
+              setStarted(false)
               queue.clear()
               onNewChat()
               focusPrompt()
@@ -135,105 +148,84 @@ export function AssistantChat({
           />
         </PageActions>
       )}
-      <Conversation className="assistant-conversation">
-        {messages.length === 0 && (
-          <ConversationEmptyState
-            title={intro.title}
-            description={intro.description}
-          >
-            <Suggestions
-              aria-label="Suggested questions"
-              className="justify-center"
+      {empty && (
+        <ConversationEmptyState
+          className="assistant-start"
+          title={intro.title}
+          description={intro.description}
+        />
+      )}
+      {!empty && (
+        <Conversation className="assistant-conversation">
+          {messages.map((message) => (
+            <ConversationItem
+              key={message.id}
+              messageId={message.id}
+              scrollAnchor={message.role === "user"}
             >
-              {intro.suggestions.map((suggestion) => (
-                <Suggestion
-                  key={suggestion}
-                  suggestion={suggestion}
-                  onSelect={send}
-                />
-              ))}
-            </Suggestions>
-          </ConversationEmptyState>
-        )}
-        {messages.map((message) => (
-          <ConversationItem
-            key={message.id}
-            messageId={message.id}
-            scrollAnchor={message.role === "user"}
-          >
-            <AssistantTurn
-              message={message}
-              incomplete={busy || status === "error" ? message === last : false}
-              stopped={stopped.includes(message.id)}
-              latest={status === "ready" && message === last}
-              onRegenerate={regenerate}
-              onSuggestion={send}
-              onAnswer={answer}
-              onDecide={decide}
-              renderLink={renderLink}
-            />
-          </ConversationItem>
-        ))}
-        {status === "submitted" && (
-          <ConversationItem>
-            <Shimmer className="assistant-thinking">Thinking…</Shimmer>
-          </ConversationItem>
-        )}
-        {status === "error" && (
-          <ConversationItem>
-            <Alert variant="destructive" className="assistant-failure">
-              <AlertTitle>The reply didn't finish</AlertTitle>
-              <AlertDescription>
-                {error?.message}
-                <Button variant="outline" onClick={regenerate}>
-                  Try again
-                </Button>
-              </AlertDescription>
-            </Alert>
-          </ConversationItem>
-        )}
-      </Conversation>
+              <AssistantTurn
+                message={message}
+                incomplete={
+                  busy || status === "error" ? message === last : false
+                }
+                stopped={stopped.includes(message.id)}
+                latest={status === "ready" && message === last}
+                onRegenerate={after(onRegenerate)}
+                onSuggestion={(text) => send(textOnly(text))}
+                onAnswer={after(onAnswer)}
+                onDecide={after(onDecide)}
+                renderLink={renderLink}
+              />
+            </ConversationItem>
+          ))}
+          {status === "submitted" && (
+            <ConversationItem>
+              <Shimmer className="assistant-thinking">Thinking…</Shimmer>
+            </ConversationItem>
+          )}
+          {status === "error" && (
+            <ConversationItem>
+              <Alert variant="destructive" className="assistant-failure">
+                <AlertTitle>The reply didn't finish</AlertTitle>
+                <AlertDescription>
+                  {error?.message}
+                  <Button variant="outline" onClick={after(onRegenerate)}>
+                    Try again
+                  </Button>
+                </AlertDescription>
+              </Alert>
+            </ConversationItem>
+          )}
+        </Conversation>
+      )}
       <ConversationStatus>
         {announcement(status, last, !!last && stopped.includes(last.id), error)}
       </ConversationStatus>
       <Queue
         className="assistant-queue"
-        messages={queue.queue}
+        messages={queue.messages}
         label={
           awaiting
             ? "Sends after you answer above"
             : "Sends when the reply finishes"
         }
-        onRemove={(id) => {
-          queue.remove(id)
-          focusPrompt()
-        }}
+        onRemove={after(queue.remove)}
       />
-      <PromptInput
-        className="assistant-composer"
+      <AssistantComposer
+        {...composer}
         status={status}
-        value={draft}
-        onValueChange={setDraft}
+        waiting={awaiting}
+        draft={draft}
+        onDraftChange={setDraft}
         onSubmit={send}
-        onQueue={queue.add}
+        onQueue={(text) => queue.add(textOnly(text))}
         onStop={onStop}
-      >
-        <PromptInputTextarea
-          id="assistant-prompt"
-          aria-label="Message the assistant"
-          placeholder={
-            busy || awaiting
-              ? "Write your next question…"
-              : "Ask about projects, tasks or activity"
-          }
-        />
-        <PromptInputFooter>
-          <span className="assistant-hint">
-            Enter to send, Shift+Enter for a new line
-          </span>
-          <PromptInputSubmit />
-        </PromptInputFooter>
-      </PromptInput>
+      />
+      {empty && (
+        <div className="assistant-start-suggestions">
+          {suggestions(intro.suggestions, "Suggested questions")}
+        </div>
+      )}
     </main>
   )
 }

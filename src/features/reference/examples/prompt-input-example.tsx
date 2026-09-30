@@ -32,8 +32,8 @@ export function PromptInputExample() {
       </p>
       <PromptInput
         status={status}
-        onSubmit={(text) => {
-          setSent(text)
+        onSubmit={({ text, files }) => {
+          setSent(text || `${files.length} files`)
           setStatus("streaming")
         }}
         onStop={() => setStatus("ready")}

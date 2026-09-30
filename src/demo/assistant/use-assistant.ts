@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react"
 import type { Chat } from "@ai-sdk/react"
-import type { AssistantMessage } from "./assistant-types"
+import { defaultModel } from "./assistant-model"
+import type { AssistantMessage, ModelId } from "./assistant-types"
 
 type AssistantChat = Chat<AssistantMessage>
 
@@ -17,6 +18,9 @@ export function useAssistant() {
     stopped: string[]
     generation: number
   }>({ chat: null, stopped: [], generation: 0 })
+
+  // The model is a preference: it outlasts New chat, not a reload.
+  const [model, setModel] = useState<ModelId>(defaultModel)
 
   const adopt = useCallback(
     (chat: AssistantChat) =>
@@ -47,6 +51,8 @@ export function useAssistant() {
     generation: session.generation,
     /** Replies the person stopped before they finished. */
     stopped: session.stopped,
+    model,
+    setModel,
     adopt,
     markStopped,
     newChat: restart,

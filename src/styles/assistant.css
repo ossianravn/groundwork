@@ -38,14 +38,30 @@
   max-width: var(--assistant-width);
   margin: 0 auto var(--content-gap);
 }
-.assistant-hint {
-  font-size: var(--text-meta);
-  font-weight: 400;
+/* Before the first message the composer sits in the middle, under a larger
+   heading, with suggestions below it; it moves to the bottom once the
+   conversation starts. */
+.assistant-page[data-empty] {
+  justify-content: center;
+  gap: var(--section-gap);
+  padding-bottom: 8vh;
 }
-@media (width < 40rem), (pointer: coarse) {
-  .assistant-hint {
-    display: none;
-  }
+.assistant-page[data-empty] .assistant-composer {
+  margin-bottom: 0;
+}
+.assistant-start[data-slot="conversation-empty"] {
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+.assistant-start h2 {
+  font-size: var(--text-page);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.assistant-start-suggestions {
+  width: calc(100% - 2 * var(--page-padding));
+  max-width: var(--assistant-width);
+  margin: 0 auto;
 }
 .assistant-tool-results {
   display: grid;
@@ -79,4 +95,12 @@
   width: calc(100% - 2 * var(--page-padding));
   max-width: var(--assistant-width);
   margin: 0 auto var(--control-gap);
+}
+/* The composer keeps its identity across the move from the start layout. */
+.assistant-composer {
+  view-transition-name: assistant-composer;
+}
+::view-transition-group(assistant-composer) {
+  animation-duration: 280ms;
+  animation-timing-function: var(--ease-standard);
 }

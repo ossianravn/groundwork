@@ -1,7 +1,18 @@
 import { useEffect, useState, type ComponentProps } from "react"
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { useChat } from "@ai-sdk/react"
-import type { AssistantRequest } from "@/demo/assistant/assistant-types"
+import type { PromptSubmission } from "@/kit/ai/prompt-input"
+import { readAsDataUrl } from "@/kit/ai/use-prompt-attachments"
+import {
+  conversationCost,
+  modelOf,
+  models,
+} from "@/demo/assistant/assistant-model"
+import type {
+  AssistantMessage,
+  AssistantRequest,
+  ModelId,
+} from "@/demo/assistant/assistant-types"
 import { createAssistantChat } from "@/demo/assistant/create-assistant-chat"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import script from "@/demo/data/assistant.json"
@@ -44,6 +55,47 @@ function ReplyLink({ href: path, onClick, ...props }: ComponentProps<"a">) {
   )
 }
 
+const modelIds: ModelId[] = ["fast", "balanced", "thorough"]
+
+/** The message parts for a submission: files, attached projects, then text. */
+async function messageParts({ text, files, references }: PromptSubmission) {
+  const fileParts = await Promise.all(
+    files.map(async (file) => ({
+      type: "file" as const,
+      mediaType: file.type,
+      filename: file.name,
+      url: await readAsDataUrl(file),
+    })),
+  )
+
+  const parts: AssistantMessage["parts"] = [
+    ...fileParts,
+    ...references.map(({ value, label }) => ({
+      type: "data-project" as const,
+      data: { id: value, name: label },
+    })),
+  ]
+
+  return text ? [...parts, { type: "text" as const, text }] : parts
+}
+
+/** The latest reply's reported usage against the chosen model's window. */
+function contextUsage(messages: AssistantMessage[], model: ModelId) {
+  const meta = [...messages]
+    .reverse()
+    .find((message) => message.metadata)?.metadata
+
+  if (!meta) return undefined
+
+  return {
+    used: meta.usage.input + meta.usage.output,
+    max: modelOf(model).contextWindow,
+    input: meta.usage.input,
+    output: meta.usage.output,
+    cost: conversationCost(messages),
+  }
+}
+
 export function AssistantRoute() {
   const { demo, assistant } = useDemoState()
   const { scenario } = useSearch({ from: "/app/demo/assistant" })
@@ -83,6 +135,7 @@ export function AssistantRoute() {
   const request = () => ({
     body: {
       scenario,
+      model: assistant.model,
       context: {
         projects: demo.projects,
         activity: demo.activity,
@@ -108,7 +161,24 @@ export function AssistantRoute() {
         status={status}
         error={error}
         stopped={assistant.stopped}
-        onSend={(text) => void sendMessage({ text }, request())}
+        onSend={async (submission) => {
+          const options = request()
+
+          void sendMessage({ parts: await messageParts(submission) }, options)
+        }}
+        composer={{
+          projects: demo.projects.filter(
+            (project) => project.status !== "completed",
+          ),
+          models,
+          model: assistant.model,
+          onModelChange: (id) => {
+            const next = modelIds.find((model) => model === id)
+
+            if (next) assistant.setModel(next)
+          },
+          usage: contextUsage(messages, assistant.model),
+        }}
         onStop={() => void stop()}
         onRegenerate={() => void regenerate(request())}
         onNewChat={assistant.newChat}
