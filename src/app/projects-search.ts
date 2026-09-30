@@ -47,7 +47,8 @@ export const defaultProjectsSearch: ProjectsSearch = {
   sort: undefined,
   desc: false,
   page: 1,
-  pageSize: 5,
+  // The whole sample workspace fits on one page.
+  pageSize: 10,
   advanced: undefined,
 }
 
@@ -77,7 +78,7 @@ export function parseProjectsSearch(raw: ProjectSearchInput): ProjectsSearch {
       sort,
       desc: !!sort && (raw.desc === true || raw.desc === "true"),
       page: Number.isSafeInteger(page) && page > 0 ? page : 1,
-      pageSize: [5, 10, 20].includes(pageSize) ? pageSize : 5,
+      pageSize: [5, 10, 20].includes(pageSize) ? pageSize : 10,
       advanced: parseProjectQuery(raw.advanced),
     }
 

@@ -16,7 +16,7 @@ export interface ProjectTableState {
 export const initialProjectTableState: ProjectTableState = {
   view: "table",
   filters: emptyProjectFilters,
-  pagination: { pageIndex: 0, pageSize: 5 },
+  pagination: { pageIndex: 0, pageSize: 10 },
   sorting: [],
   columnVisibility: {},
 }

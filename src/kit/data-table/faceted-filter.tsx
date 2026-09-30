@@ -52,7 +52,13 @@ export function FacetedFilter<Value extends string>({
       }}
     >
       <PopoverTrigger
-        render={<Button variant="outline" className="facet-trigger" />}
+        render={
+          <Button
+            variant="outline"
+            className="facet-trigger"
+            data-active={selected.length > 0 || undefined}
+          />
+        }
         aria-label={`${label}: ${selectedLabels || "All"}`}
         title={selectedLabels || `All ${label.toLowerCase()}`}
       >

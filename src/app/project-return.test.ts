@@ -24,7 +24,7 @@ it("returns to the same results independently of inspection, defaults and query 
   expect(projectReturnTo(origin)).not.toContain("inspect")
   expect(resultsLocationKey(origin)).toEqual(
     resultsLocationKey(
-      "/app/demo/projects?page=2&desc=true&sort=dueDate&owner=ava&status=in-progress&pageSize=5",
+      "/app/demo/projects?page=2&desc=true&sort=dueDate&owner=ava&status=in-progress&pageSize=10",
     ),
   )
   expect(

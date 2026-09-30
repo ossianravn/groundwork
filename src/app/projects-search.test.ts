@@ -68,7 +68,7 @@ it("resolves malformed query choices and out-of-range pages to usable results", 
     sort: undefined,
     desc: false,
     page: 1,
-    pageSize: 5,
+    pageSize: 10,
   })
   expect(boundedProjectPage(9, 5, 6)).toBe(1)
   expect(boundedProjectPage(1, 5, 0)).toBe(0)

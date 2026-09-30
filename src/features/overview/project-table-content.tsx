@@ -96,7 +96,10 @@ export function ProjectTableContent({
                       ) : sort === "desc" ? (
                         <ArrowDown aria-hidden="true" />
                       ) : (
-                        <ArrowUpDown aria-hidden="true" />
+                        <ArrowUpDown
+                          aria-hidden="true"
+                          className="table-sort-idle"
+                        />
                       )}
                     </Button>
                   ) : (

@@ -35,7 +35,12 @@ export function FacetDrawer({
   return (
     <Drawer>
       <DrawerTrigger
-        className={className}
+        className={
+          className
+            ? `facet-drawer-trigger ${className}`
+            : "facet-drawer-trigger"
+        }
+        data-active={active > 0 || undefined}
         render={<Button variant="outline" />}
         aria-label={active ? `Filters, ${active} selected` : "Filters"}
       >

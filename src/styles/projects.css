@@ -141,6 +141,19 @@
 .table-sort svg {
   color: var(--muted-foreground);
 }
+/* Sorting is on demand: an unsorted column shows its sort icon on hover or
+   focus with a fine pointer, and always on touch screens. An active sort
+   always shows its direction. */
+@media (pointer: fine) {
+  .table-sort-idle {
+    opacity: 0;
+    transition: opacity var(--motion-fast) var(--ease-standard);
+  }
+  .table-sort:hover .table-sort-idle,
+  .table-sort:focus-visible .table-sort-idle {
+    opacity: 1;
+  }
+}
 .table-sort {
   padding-inline: 0.25rem;
   margin-left: -0.25rem;

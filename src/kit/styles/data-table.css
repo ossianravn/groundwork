@@ -1,6 +1,12 @@
 .facet-trigger {
   flex-shrink: 0;
 }
+/* An unused filter is an offer, so its outline is dashed; once it applies
+   the outline turns solid. */
+.facet-trigger:not([data-active]),
+.facet-drawer-trigger:not([data-active]) {
+  border-style: dashed;
+}
 .facet-trigger svg {
   color: var(--muted-foreground);
 }

@@ -1,3 +1,7 @@
+/* Advanced is a filter like Status and Owner: dashed until it applies. */
+.advanced-filter-trigger:not([data-active]) {
+  border-style: dashed;
+}
 .project-query-dialog[data-slot="dialog-content"] {
   width: 44rem;
   max-width: calc(100% - 32px);
