@@ -2,18 +2,11 @@ import * as React from "react"
 import { Streamdown, type Components } from "streamdown"
 import { cn } from "cn"
 import { CodeBlock } from "@/kit/ui/code-block"
-
-type AnchorProps = React.ComponentProps<"a">
-
-/**
- * Renders links in a response. Hosts pass one that routes internal paths
- * with their own router; the default is a plain anchor.
- */
-export type RenderResponseLink = (props: AnchorProps) => React.ReactNode
-
-const LinkContext = React.createContext<RenderResponseLink>((props) => (
-  <a {...props} />
-))
+import {
+  ResponseLinkContext,
+  useResponseLink,
+  type RenderResponseLink,
+} from "@/kit/ai/response-link"
 
 type ElementProps<T extends keyof React.JSX.IntrinsicElements> =
   React.ComponentProps<T> & { node?: unknown }
@@ -27,7 +20,7 @@ function domProps<T extends { node?: unknown }>(props: T) {
 }
 
 function ResponseLink(props: ElementProps<"a">) {
-  const renderLink = React.useContext(LinkContext)
+  const renderLink = useResponseLink()
   const { className, href, ...rest } = domProps(props)
   const external = !!href && /^[a-z]+:/iu.test(href)
 
@@ -139,7 +132,7 @@ function MessageResponse({
   )
 
   return renderLink ? (
-    <LinkContext value={renderLink}>{content}</LinkContext>
+    <ResponseLinkContext value={renderLink}>{content}</ResponseLinkContext>
   ) : (
     content
   )

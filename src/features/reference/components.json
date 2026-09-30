@@ -411,5 +411,95 @@
       "label": "Streamdown documentation"
     },
     "implementation": "src/kit/ai/message-response.tsx"
+  },
+  {
+    "id": "reasoning",
+    "name": "Reasoning",
+    "category": "AI and chat",
+    "purpose": "Show a model's reasoning while it streams, then fold it away.",
+    "notes": [
+      "Opens while the reasoning streams and closes when it ends, labelled with how long it took. Once the person opens or closes it, their choice stands.",
+      "It never takes focus, so reading the conversation is not interrupted. Pass the reasoning part's text and whether it is streaming."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-06"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/reasoning",
+      "label": "AI Elements Reasoning"
+    },
+    "implementation": "src/kit/ai/reasoning.tsx"
+  },
+  {
+    "id": "tool",
+    "name": "Tool call",
+    "category": "AI and chat",
+    "purpose": "Show a tool call's state, parameters and result.",
+    "notes": [
+      "The header names the tool and shows the AI SDK part state as a labelled badge: Preparing, Running, Needs approval, Done, Failed or Denied.",
+      "Closed by default, since the reply usually says what the call found; open it for failures. Pass a rendering of the result as children, or it shows JSON."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-07"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/tool",
+      "label": "AI Elements Tool call"
+    },
+    "implementation": "src/kit/ai/tool.tsx"
+  },
+  {
+    "id": "sources",
+    "name": "Sources",
+    "category": "AI and chat",
+    "purpose": "List the sources a reply drew on, folded behind a count.",
+    "notes": [
+      "Numbered to match inline citations, with a short description of each. Links go through the host's link renderer, so internal ones route in-app.",
+      "It is the complete, keyboard-reachable record of a reply's sources; citation previews only repeat it."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-08"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/sources",
+      "label": "AI Elements Sources"
+    },
+    "implementation": "src/kit/ai/sources.tsx"
+  },
+  {
+    "id": "inline-citation",
+    "name": "Inline citation",
+    "category": "AI and chat",
+    "purpose": "Mark a claim with the sources behind it, in running text.",
+    "notes": [
+      "A numbered link to the first source; hovering or focusing it previews every source it stands for. Consecutive numbers read as a range (2–4).",
+      "The preview holds no controls, because a hover card is not reachable by keyboard; the Sources list carries the same links."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-09"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/inline-citation",
+      "label": "AI Elements Inline citation"
+    },
+    "implementation": "src/kit/ai/inline-citation.tsx"
+  },
+  {
+    "id": "chain-of-thought",
+    "name": "Chain of thought",
+    "category": "AI and chat",
+    "purpose": "Report the steps an agent works through, as it goes.",
+    "notes": [
+      "Each step shows done, in progress or not done, with results as chips. The whole list is open while a step runs and folds away when all are done.",
+      "Use it for progress an agent reports; use Tool call for the technical detail of one call."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-10"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/chain-of-thought",
+      "label": "AI Elements Chain of thought"
+    },
+    "implementation": "src/kit/ai/chain-of-thought.tsx"
   }
 ]

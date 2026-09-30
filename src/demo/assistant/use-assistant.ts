@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import type { Chat } from "@ai-sdk/react"
-import type { AssistantMessage } from "./assistant-transport"
+import type { AssistantMessage } from "./assistant-types"
 
 type AssistantChat = Chat<AssistantMessage>
 

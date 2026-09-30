@@ -1,4 +1,6 @@
-import type { AssistantMessage } from "@/demo/assistant/assistant-transport"
+import type { AssistantMessage } from "@/demo/assistant/assistant-types"
+
+const citations = /\[[^\]]*\]\(#source:[^)]*\)/gu
 
 export function messageText(message: AssistantMessage) {
   return message.parts
@@ -6,9 +8,14 @@ export function messageText(message: AssistantMessage) {
     .join("\n\n")
 }
 
+/** A reply's markdown without citation markers, for the clipboard. */
+export function copyText(markdown: string) {
+  return markdown.replace(citations, "")
+}
+
 /** Reads a markdown reply as plain sentences for a screen reader. */
 export function spokenText(markdown: string) {
-  return markdown
+  return copyText(markdown)
     .replace(/```[\s\S]*?```/gu, " (code example) ")
     .replace(/^\|?\s*-{3}.*$/gmu, "")
     .replace(/\[([^\]]+)\]\([^)]*\)/gu, "$1")

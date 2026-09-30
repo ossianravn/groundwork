@@ -17,9 +17,9 @@ import {
   PromptInputSubmit,
   PromptInputTextarea,
 } from "@/kit/ai/prompt-input"
-import type { RenderResponseLink } from "@/kit/ai/message-response"
+import type { RenderResponseLink } from "@/kit/ai/response-link"
 import { Suggestion, Suggestions } from "@/kit/ai/suggestion"
-import type { AssistantMessage } from "@/demo/assistant/assistant-transport"
+import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantTurn } from "./assistant-message"
 import { messageText, spokenText } from "./assistant-text"
 
