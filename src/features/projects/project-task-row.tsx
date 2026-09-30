@@ -80,17 +80,21 @@ export function ProjectTaskRow({
             className="task-assignee"
             aria-label={`Assignee for ${task.title}: ${assignee?.name ?? "Unassigned"}`}
           >
+            {/* Name first, so avatars line up at the column's edge. */}
             {assignee ? (
               <>
-                <MemberAvatar member={assignee} size="sm" />
                 <span className="task-assignee-name">
                   {assignee.name.split(" ")[0]}
                 </span>
+                <MemberAvatar member={assignee} size="sm" />
               </>
             ) : (
-              <span className="task-assignee-name text-muted-foreground">
-                Unassigned
-              </span>
+              <>
+                <span className="task-assignee-name text-muted-foreground">
+                  Unassigned
+                </span>
+                <span className="task-assignee-empty" aria-hidden="true" />
+              </>
             )}
           </SelectTrigger>
           <SelectContent alignItemWithTrigger={false} align="end">

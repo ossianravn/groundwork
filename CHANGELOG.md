@@ -6,7 +6,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 - `shell`: the icon buttons at either end of the workspace top bar align their icon, rather than their hit area, with the page's content edge at every width (previously only on phones).
 - `data-table`: `TablePagination` shows page controls only when there is more than one page. Faceted filter and facet drawer triggers mark an applied filter with `data-active`, and an unapplied one has a dashed outline. `TableViewOptions` wraps its label in `.table-view-options-label`, so a host can show only the icon in a tight toolbar.
-- Demo: the projects list defaults to 10 rows (the whole sample on one page) and reveals the sort icon of unsorted columns on hover or focus; project pages move to a main column with a properties rail and no framed panels; the Assistant's history can be hidden on wide screens.
+- Demo: the projects list defaults to 10 rows (the whole sample on one page) and reveals the sort icon of unsorted columns on hover or focus; project pages move to a main column with a properties rail and no framed panels; the Assistant's history can be hidden on wide screens. Task rows show the assignee's name before the avatar, so avatars align, with a dashed placeholder circle when unassigned.
 
 ## v0.2.0 — 2026-09-30
 

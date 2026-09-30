@@ -55,6 +55,14 @@
 .task-assignee-name {
   font-size: var(--text-meta);
 }
+/* Unassigned keeps the avatar's place as an empty dashed circle. */
+.task-assignee-empty {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border: 1px dashed var(--border);
+  border-radius: 9999px;
+}
 .task-add {
   display: flex;
   gap: var(--control-gap);
