@@ -310,7 +310,7 @@
           "paragraphs": [],
           "bullets": [
             "Project pages lead with the name, status and description. Tasks, comments and activity fill the page, with owner, due date, tags, progress and files in a column beside them.",
-            "The projects list shows all your projects on one page by default, and its filters and column headers stay quiet until you use them.",
+            "The projects list shows all your projects on one page by default, its filters and column headers stay quiet until you use them, and on phones its view controls share the filter row.",
             "Hide the assistant's history to give the conversation the whole width; History in the top bar brings it back.",
             "The navigation button in the top bar now lines up with the page below it."
           ]

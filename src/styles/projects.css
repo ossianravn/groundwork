@@ -176,6 +176,62 @@
   /* A bulk outcome row below the filters must not pull the view switch down. */
   align-self: flex-start;
 }
+/* On phones the view controls join the filter row: the toolbar's pieces
+   flow into the header's wrapping row (the selector and search fill the
+   first line, the search taking what the selector leaves), and Views and
+   Columns show only their icons, keeping their names for assistive
+   technology. Selection mode keeps its actions on the first line. */
+@container project-views (max-width: 26rem) {
+  .projects-card[data-surface="plain"] .project-card-header {
+    gap: var(--control-gap);
+  }
+  .projects-card[data-surface="plain"] .project-results-toolbar {
+    display: contents;
+  }
+  .projects-card[data-surface="plain"]
+    .project-results-toolbar
+    .project-search {
+    flex: 1 1 calc(100% - 9rem);
+  }
+  .projects-card[data-surface="plain"]
+    .project-results-toolbar[data-selectable="true"]
+    .project-filter-options {
+    /* The filters keep together; when the view controls cannot fit beside
+       them, the controls take the next line as a group. */
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+  /* Selection actions follow the selector; the view controls keep the end. */
+  .projects-card[data-surface="plain"] .project-bulk-mobile {
+    margin-inline-start: 0;
+  }
+  .projects-card[data-surface="plain"] .saved-views-label,
+  .projects-card[data-surface="plain"] .table-view-options-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .projects-card[data-surface="plain"] .project-view-current,
+  .projects-card[data-surface="plain"] .project-view-select > svg:last-child,
+  .projects-card[data-surface="plain"]
+    .saved-views-trigger
+    > [data-icon="inline-end"] {
+    display: none;
+  }
+  .projects-card[data-surface="plain"]
+    :is(
+      .saved-views-trigger,
+      .table-view-options-trigger,
+      .project-view-select
+    ) {
+    width: var(--control-height);
+    padding-inline: 0;
+    justify-content: center;
+  }
+}
 /* Without a card, the cards and board align with the toolbar edge. */
 .projects-card[data-surface="plain"] .project-grid-content,
 .projects-card[data-surface="plain"] .project-board-content {
