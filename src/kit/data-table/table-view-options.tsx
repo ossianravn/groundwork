@@ -21,9 +21,14 @@ export function TableViewOptions<T extends RowData>({
 
   return (
     <Popover>
-      <PopoverTrigger render={<Button variant="outline" />}>
+      <PopoverTrigger
+        render={
+          <Button variant="outline" className="table-view-options-trigger" />
+        }
+      >
         <Columns3 aria-hidden="true" />
-        Columns
+        {/* Hosts may hide this visually in tight toolbars; it stays the name. */}
+        <span className="table-view-options-label">Columns</span>
       </PopoverTrigger>
       <PopoverContent align="end" className="table-view-options">
         <PopoverTitle>Visible columns</PopoverTitle>
