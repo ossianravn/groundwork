@@ -7,6 +7,7 @@ import { usePresetLibrary } from "@/kit/theme/use-preset-library"
 import { useResultsMemory } from "./use-results-memory"
 import { useProjectDrafts } from "./use-project-drafts"
 import { useProjectFiles } from "@/demo/use-project-files"
+import { useAssistant } from "@/demo/assistant/use-assistant"
 import { DemoStateContext } from "./demo-state"
 
 export function DemoStateProvider({ children }: { children: ReactNode }) {
@@ -18,6 +19,7 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
   const results = useResultsMemory()
   const drafts = useProjectDrafts()
   const files = useProjectFiles()
+  const assistant = useAssistant()
 
   return (
     <DemoStateContext
@@ -30,6 +32,7 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
         results,
         drafts,
         files,
+        assistant,
       }}
     >
       {children}

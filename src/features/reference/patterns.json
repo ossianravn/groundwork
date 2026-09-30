@@ -2492,5 +2492,171 @@
       "src/kit/shell/announcement-bar.tsx",
       "src/components/tandem-announcement.tsx"
     ]
+  },
+  {
+    "originalName": "Chat conversation",
+    "id": "AI-01",
+    "title": "Chat conversation",
+    "category": "AI and chat",
+    "surface": "Workspace",
+    "summary": "Hold a conversation with an assistant: a transcript that follows replies, with a clear empty state and progress.",
+    "implemented": "The Assistant page streams scripted replies through the AI SDK's useChat and a local transport. Each question is anchored at the top while the reply grows below it; a jump button returns to the latest reply. The transcript is not announced token by token: a status region says the assistant is replying and then reads the finished reply. Thinking… shimmers until the first words arrive; Stop keeps the partial reply and marks it; a failed reply shows Try again where it failed (?scenario=assistant-error).",
+    "deferred": "One conversation per session; history, branches, attachments, model choice and tool calls follow in later steps.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk?, then stop a longer reply part-way."
+      },
+      {
+        "label": "Failed reply",
+        "href": "/app/demo/assistant?scenario=assistant-error",
+        "instruction": "Ask a question, wait for the failure, then choose Try again."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/conversation.tsx",
+      "src/features/assistant/assistant-chat.tsx",
+      "src/app/assistant-route.tsx",
+      "src/demo/assistant/assistant-transport.ts",
+      "src/demo/assistant/use-assistant.ts"
+    ]
+  },
+  {
+    "originalName": "Streaming markdown response",
+    "id": "AI-02",
+    "title": "Streaming markdown response",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Render a model's markdown as it streams, with kit typography, tables, links and code.",
+    "implemented": "MessageResponse renders markdown with Streamdown, which keeps half-finished syntax readable while it streams. Every element uses kit classes; fenced code becomes the kit Code block; the host passes a link renderer so workspace links route in-app.",
+    "deferred": "No maths, diagrams or images in replies yet.",
+    "examples": [
+      {
+        "label": "API answer",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask How do I list projects with the API? and watch the code blocks stream."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/message-response.tsx",
+      "src/features/assistant/assistant-message.tsx",
+      "src/demo/assistant/assistant-answers.ts"
+    ]
+  },
+  {
+    "originalName": "Prompt composer",
+    "id": "AI-03",
+    "title": "Prompt composer",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Write a message to a model: Enter sends, Shift+Enter adds a line, and the send button becomes Stop while a reply streams.",
+    "implemented": "PromptInput grows with its text up to a limit. Enter sends unless an input method is composing; while the model works, Enter does nothing so a follow-up can be drafted, and the button stops the reply. The button never disables, so focus stays put through every state.",
+    "deferred": "Attachments, a model menu and tool toggles in the footer follow in later steps.",
+    "examples": [
+      {
+        "label": "Assistant composer",
+        "href": "/app/demo/assistant",
+        "instruction": "Write two lines with Shift+Enter, send, then draft a follow-up while it replies."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/prompt-input.tsx",
+      "src/features/assistant/assistant-chat.tsx"
+    ]
+  },
+  {
+    "originalName": "Suggested prompts",
+    "id": "AI-04",
+    "title": "Suggested prompts",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Offer questions the assistant can answer, as one-click prompts.",
+    "implemented": "The empty conversation offers three starting questions; each reply streams follow-up questions as an AI SDK data part, shown under the latest reply only. Choosing one sends it and returns focus to the composer.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Suggestions",
+        "href": "/app/demo/assistant",
+        "instruction": "Choose a starting question, then a follow-up under the reply."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/suggestion.tsx",
+      "src/features/assistant/assistant-message.tsx"
+    ]
+  },
+  {
+    "originalName": "Message actions",
+    "id": "AI-05",
+    "title": "Message actions",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Act on a reply: copy it, or ask for another version.",
+    "implemented": "Icon actions under each finished reply carry tooltips that match their accessible names. Copy confirms in place and reports failure; Regenerate appears on the latest reply and replaces it.",
+    "deferred": "Feedback (helpful/unhelpful) and keeping earlier versions as branches follow with conversation management.",
+    "examples": [
+      {
+        "label": "Reply actions",
+        "href": "/app/demo/assistant",
+        "instruction": "Copy a reply, then regenerate the latest one."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/message-actions.tsx",
+      "src/features/assistant/assistant-message.tsx"
+    ]
+  },
+  {
+    "originalName": "Code block",
+    "id": "DEV-01",
+    "title": "Code block",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show code with syntax highlighting, a language or file label and a copy button.",
+    "implemented": "Shiki highlights on demand (the highlighter and each language load on first use) with a CSS-variables theme, so colours come from the --syntax-* tokens and follow light, dark and the accent. Code renders plainly until highlighting is ready, without moving. Long lines scroll inside the block, which is keyboard focusable.",
+    "deferred": "Eight languages ship; add others in code-block-highlight.ts. No diff or line highlighting yet.",
+    "examples": [
+      {
+        "label": "Code block reference",
+        "href": "/reference/components/code-block",
+        "instruction": "Copy the example and switch to dark mode."
+      },
+      {
+        "label": "In a reply",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask How do I list projects with the API?"
+      }
+    ],
+    "sources": [
+      "src/kit/ui/code-block.tsx",
+      "src/kit/ui/code-block-highlight.ts"
+    ]
+  },
+  {
+    "originalName": "Snippet",
+    "id": "DEV-02",
+    "title": "Snippet",
+    "category": "Kit components",
+    "surface": "Shared",
+    "summary": "Show one command or line of code with a copy button.",
+    "implemented": "A single scrolling line with an optional prompt prefix that is not copied, and a copy button named after what it copies.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "API keys",
+        "href": "/app/demo/settings/api-keys",
+        "instruction": "Copy the request under your keys."
+      },
+      {
+        "label": "Snippet reference",
+        "href": "/reference/components/snippet",
+        "instruction": "Copy the install command."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/snippet.tsx",
+      "src/features/settings/api-key-settings.tsx"
+    ]
   }
 ]

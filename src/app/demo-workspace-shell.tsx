@@ -15,6 +15,7 @@ import {
   Palette,
   RotateCcw,
   SlidersHorizontal,
+  Sparkles,
   UserRound,
 } from "lucide-react"
 import { Button } from "@/kit/ui/button"
@@ -88,6 +89,7 @@ function currentLocation(
   const page = {
     "/app/demo/analytics": "Analytics",
     "/app/demo/inbox": "Inbox",
+    "/app/demo/assistant": "Assistant",
     "/app/demo/activity": "Activity",
     "/app/demo/search": "Search",
   }[pathname]
@@ -186,6 +188,12 @@ export function DemoWorkspaceShell({
             icon: Inbox,
             count: unread || undefined,
             accessibleLabel: `Inbox (${unread} unread)`,
+          },
+          {
+            id: "Assistant",
+            destination: "assistant",
+            label: "Assistant",
+            icon: Sparkles,
           },
           {
             id: "Analytics",

@@ -5,7 +5,7 @@ Status: living implementation map and backlog. Updated: 2026-09-29. Parameterize
 Implemented areas:
 
 - Public home, Product, Pricing, Customers, Integrations, About, Roadmap, Status, articles, changelog, Help, Contact and legal examples, with shared navigation and a grouped footer.
-- Workspace Overview, Projects (Table/Cards/Board, details/create/edit), Inbox, Analytics and Activity. Shared project mutations reach related views. Activity has filters, grouped history and event details; sidebar Help provides contextual guides and keyboard shortcuts.
+- Workspace Overview, Projects (Table/Cards/Board, details/create/edit), Inbox, Assistant, Analytics and Activity. Shared project mutations reach related views. Activity has filters, grouped history and event details; sidebar Help provides contextual guides and keyboard shortcuts.
 - Settings Profile, Appearance, Notifications, Security, Workspace, Team, Billing, API keys and Webhooks. `/app/demo/settings` redirects to Profile.
 - Local password, email-link, Google/GitHub and MFA access demonstrations, recovery and three-step workspace onboarding. `/onboarding` resumes the current local step.
 - Reference home, twelve live component examples, all 76 pattern detail entries (67 demonstrated and 9 planned), theme playground and thirteen state scenarios. Catalogue coverage describes examples, not production service readiness.
@@ -21,7 +21,7 @@ Confirmed implementation scope: all demo data comes from [static JSON files](dem
 | Area | Primary navigation | Contextual or secondary destinations |
 | --- | --- | --- |
 | Public | Product, Pricing, Customers, Resources; Sign in and Open demo | Articles, Changelog, Roadmap, Help, Status; footer groups Product, Resources, Company (About, Careers, Contact) and Template; Privacy, Terms |
-| Application | Overview, Projects, Inbox, Analytics | Activity, Settings, Help; workspace and account controls |
+| Application | Overview, Projects, Inbox, Assistant, Analytics | Activity, Settings, Help; workspace and account controls |
 | Settings | Profile, Appearance, Notifications, Security; Workspace, Team, Billing; API keys, Webhooks | Group account/workspace/developer settings; hide unavailable actions according to actual capabilities |
 | Reference | Components, Patterns, Themes, States | Public/app examples, source details and accessibility guidance |
 
@@ -82,6 +82,7 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | `/app/:workspace/projects/:projectId` | App | EDGE-04, TABL-08 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/projects/:projectId/edit` | App | SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/inbox` | App | TABL-07, SYS-04 | [Inbox and master-detail review](pages/app/inbox.md) |
+| `/app/:workspace/assistant` | App | AI-01–AI-05, DEV-01 | [Assistant](pages/app/assistant.md) |
 | `/app/:workspace/activity` | App | TABL-08 | [Workspace activity](pages/app/activity.md) |
 
 ### Settings

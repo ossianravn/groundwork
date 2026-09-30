@@ -4,6 +4,7 @@ export type WorkspaceDestination =
   | "overview"
   | "projects"
   | "inbox"
+  | "assistant"
   | "analytics"
   | "activity"
   | "profile"

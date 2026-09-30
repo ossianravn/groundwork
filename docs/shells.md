@@ -61,7 +61,7 @@ Shell behavior is specified once and exercised across one public, one app and on
 
 ## Implemented workspace Help and shortcuts
 
-One sidebar Help control opens contextual guides through compact disclosure, with Help center, Contact and Keyboard shortcuts available in the same dialog. Public guide links use host routing. This implements NAV-06; chat and personalized support are not simulated.
+One sidebar Help control opens contextual guides through compact disclosure, with Help center, Contact and Keyboard shortcuts available in the same dialog. Public guide links use host routing. This implements NAV-06; the Help dialog has no chat or personalized support. The scripted workspace assistant is its own section ([Assistant](pages/app/assistant.md)).
 
 `Ctrl/⌘ K` opens project search, `?` opens shortcut discovery and `Esc` is handled by the active overlay. Typing, IME composition and existing modal/popover/menu interactions keep ownership of their keys. Pointer controls remain available for all commands. Shortcut discovery lists only implemented commands (SYS-05); custom bindings and navigation key sequences remain deferred.
 

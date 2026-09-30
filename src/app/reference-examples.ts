@@ -44,6 +44,14 @@ import { ScrollAreaExample } from "@/features/reference/examples/scroll-area-exa
 import scrollAreaSource from "@/features/reference/examples/scroll-area-example?raw"
 import { DrawerExample } from "@/features/reference/examples/drawer-example"
 import drawerSource from "@/features/reference/examples/drawer-example?raw"
+import { CodeBlockExample } from "@/features/reference/examples/code-block-example"
+import codeBlockSource from "@/features/reference/examples/code-block-example?raw"
+import { SnippetExample } from "@/features/reference/examples/snippet-example"
+import snippetSource from "@/features/reference/examples/snippet-example?raw"
+import { PromptInputExample } from "@/features/reference/examples/prompt-input-example"
+import promptInputSource from "@/features/reference/examples/prompt-input-example?raw"
+import { MessageResponseExample } from "@/features/reference/examples/message-response-example"
+import messageResponseSource from "@/features/reference/examples/message-response-example?raw"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -77,4 +85,16 @@ export const referenceExamples = [
   },
   { id: "scroll-area", Component: ScrollAreaExample, source: scrollAreaSource },
   { id: "drawer", Component: DrawerExample, source: drawerSource },
+  { id: "code-block", Component: CodeBlockExample, source: codeBlockSource },
+  { id: "snippet", Component: SnippetExample, source: snippetSource },
+  {
+    id: "prompt-input",
+    Component: PromptInputExample,
+    source: promptInputSource,
+  },
+  {
+    id: "message-response",
+    Component: MessageResponseExample,
+    source: messageResponseSource,
+  },
 ]

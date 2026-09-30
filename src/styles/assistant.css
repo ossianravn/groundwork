@@ -1,0 +1,49 @@
+/* Assistant: a transcript that fills the page and a composer pinned below it,
+   both at a reading width. The scroller spans the page so its scrollbar sits
+   at the edge. */
+.assistant-page {
+  --assistant-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - var(--header-height));
+  min-height: 20rem;
+}
+.assistant-conversation [data-slot="message-scroller-content"] {
+  width: 100%;
+  max-width: calc(var(--assistant-width) + 2 * var(--page-padding));
+  margin-inline: auto;
+  padding: var(--section-gap) var(--page-padding);
+  gap: calc(var(--section-gap) * 1.5);
+}
+.assistant-prompt [data-slot="bubble"] {
+  max-width: min(80%, 36rem);
+}
+.assistant-prompt [data-slot="bubble-content"] {
+  white-space: pre-wrap;
+}
+.assistant-reply [data-slot="message-content"] {
+  gap: var(--content-gap);
+}
+.assistant-thinking {
+  font-size: var(--text-body);
+}
+.assistant-failure [data-slot="alert-description"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.assistant-composer {
+  width: calc(100% - 2 * var(--page-padding));
+  max-width: var(--assistant-width);
+  margin: 0 auto var(--content-gap);
+}
+.assistant-hint {
+  font-size: var(--text-meta);
+  font-weight: 400;
+}
+@media (width < 40rem), (pointer: coarse) {
+  .assistant-hint {
+    display: none;
+  }
+}

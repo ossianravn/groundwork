@@ -14,7 +14,7 @@ Tandem's data, authentication, billing, email and integrations are local demonst
 ## What the demo covers
 
 - **Public site:** Home, Product, Pricing, Blog, Changelog, Help, Contact and legal pages.
-- **Workspace:** Overview, Analytics, Inbox, Activity and Projects (Table, Cards and Board views, rich descriptions, details, editing, bulk actions); account, workspace, team, billing and developer settings.
+- **Workspace:** Overview, Analytics, Inbox, Assistant (scripted AI chat), Activity and Projects (Table, Cards and Board views, rich descriptions, details, editing, bulk actions); account, workspace, team, billing and developer settings.
 - **Access:** password, email-link and provider sign-in demos, recovery, MFA and onboarding.
 - **Reference library:** searchable component and pattern catalogues with source, a theme playground with import/export and saved presets, and state scenarios.
 
@@ -47,7 +47,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
    npm install @base-ui/react class-variance-authority cn culori lucide-react tw-animate-css shadcn @fontsource-variable/geist @fontsource-variable/inter @fontsource-variable/source-sans-3
    ```
 
-   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `react-day-picker date-fns` (calendar and date pickers), `cmdk` (command menu), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
+   Add these only for the parts you use: `@tanstack/react-table` (data tables), `@tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/static-renderer` (rich text), `recharts` (charts), `react-day-picker date-fns` (calendar and date pickers), `shiki` (code block), `streamdown` (AI chat responses), `cmdk` (command menu), `react-resizable-panels`, `input-otp` and `@shadcn/react`.
 
 3. Make `kit/styles/kit.css` your Tailwind entry (or `@import` it from yours), and point `components.json` at it so `npx shadcn add` installs into `kit/ui`.
 4. Apply saved appearance before rendering, and provide tooltips:
@@ -85,7 +85,7 @@ The CLI writes `src/kit/styles/themes/your-theme.css` and imports it from `kit.c
 
 | Path | Contents |
 | --- | --- |
-| `src/kit/` | The reusable kit: `ui/`, `data-table/`, `rich-text/`, `shell/`, `theme/`, `lib/`, `styles/` |
+| `src/kit/` | The reusable kit: `ui/`, `data-table/`, `rich-text/`, `ai/`, `shell/`, `theme/`, `lib/`, `styles/` |
 | `src/components/` | Tandem's brand, shell content and domain components |
 | `src/features/` | Page views, which receive data and callbacks |
 | `src/demo/` | Fixtures and local demo state |

@@ -111,3 +111,16 @@
   border-radius: var(--radius);
   overflow: auto;
 }
+.integration-usage {
+  display: grid;
+  gap: var(--control-gap);
+  max-width: 44rem;
+}
+.integration-usage h3 {
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+.integration-usage p {
+  color: var(--muted-foreground);
+  font-size: var(--text-body);
+}

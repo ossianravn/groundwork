@@ -1,0 +1,33 @@
+/* Shimmer: a light sweep across muted text. */
+.shimmer {
+  color: transparent;
+  background: linear-gradient(
+      90deg,
+      var(--muted-foreground) 40%,
+      var(--foreground) 50%,
+      var(--muted-foreground) 60%
+    )
+    0 0 / 250% 100%;
+  background-clip: text;
+  animation: shimmer 2.2s linear infinite;
+}
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+@media (forced-colors: active) {
+  .shimmer {
+    color: CanvasText;
+    background: none;
+  }
+}

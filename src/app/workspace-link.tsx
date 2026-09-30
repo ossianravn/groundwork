@@ -5,6 +5,7 @@ import { defaultProjectsSearch } from "./projects-search"
 import { defaultAnalyticsSearch } from "./analytics-search"
 import { defaultInboxSearch } from "./inbox-search"
 import { defaultActivitySearch } from "./activity-search"
+import { defaultAssistantSearch } from "./assistant-search"
 
 export function WorkspaceLink({ destination, ...props }: WorkspaceLinkProps) {
   const href = useLocation({ select: (location) => location.href })
@@ -25,6 +26,15 @@ export function WorkspaceLink({ destination, ...props }: WorkspaceLinkProps) {
 
   if (destination === "inbox")
     return <Link {...props} to="/app/demo/inbox" search={defaultInboxSearch} />
+
+  if (destination === "assistant")
+    return (
+      <Link
+        {...props}
+        to="/app/demo/assistant"
+        search={defaultAssistantSearch}
+      />
+    )
 
   if (destination === "sign-in") {
     return (

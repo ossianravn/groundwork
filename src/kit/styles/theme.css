@@ -68,6 +68,22 @@
   --warning-soft: oklch(0.97 0.026 80);
   --in-progress: oklch(0.45 0.17 278);
   --in-progress-soft: oklch(0.951 0.025 278);
+  /* Code highlighting (shiki's CSS-variables theme reads --syntax-*). Each
+     colour keeps text contrast on --muted, where code blocks sit. */
+  --syntax-foreground: var(--foreground);
+  --syntax-background: var(--muted);
+  --syntax-token-keyword: oklch(0.48 0.19 300);
+  --syntax-token-string: oklch(0.47 0.11 150);
+  --syntax-token-function: oklch(0.47 0.15 260);
+  --syntax-token-constant: oklch(0.5 0.13 45);
+  --syntax-token-parameter: var(--foreground);
+  --syntax-token-comment: var(--muted-foreground);
+  --syntax-token-punctuation: var(--muted-foreground);
+  --syntax-token-link: var(--brand);
+  --syntax-token-inserted: var(--syntax-token-string);
+  --syntax-token-deleted: var(--destructive);
+  --syntax-token-changed: var(--syntax-token-constant);
+  --syntax-token-string-expression: var(--syntax-token-string);
   --page-padding: 2rem;
   --section-gap: 1.5rem;
   --row-padding: 0.75rem;
@@ -116,6 +132,10 @@
   --warning-soft: oklch(0.27 0.038 80);
   --in-progress: oklch(0.84 0.09 278);
   --in-progress-soft: oklch(0.285 0.048 278);
+  --syntax-token-keyword: oklch(0.8 0.12 305);
+  --syntax-token-string: oklch(0.8 0.12 150);
+  --syntax-token-function: oklch(0.8 0.1 250);
+  --syntax-token-constant: oklch(0.82 0.11 60);
 }
 
 /* Accents set the brand colour: links, focus, the trend and brand marks.

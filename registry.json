@@ -27,6 +27,11 @@
           "target": "~/src/kit/lib/iso-date.ts"
         },
         {
+          "path": "src/kit/lib/use-copy.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/lib/use-copy.ts"
+        },
+        {
           "path": "src/kit/lib/utils.ts",
           "type": "registry:file",
           "target": "~/src/kit/lib/utils.ts"
@@ -115,6 +120,11 @@
           "path": "src/kit/styles/shell.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/shell.css"
+        },
+        {
+          "path": "src/kit/styles/shimmer.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/shimmer.css"
         },
         {
           "path": "src/kit/styles/text-hint.css",
@@ -444,6 +454,33 @@
           "path": "src/kit/ui/checkbox.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block",
+      "type": "registry:ui",
+      "title": "Code Block",
+      "description": "Code block with on-demand Shiki highlighting coloured by the --syntax-* tokens, a label and copy.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0",
+        "shiki@^4.4.3"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/code-block-highlight.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/code-block-highlight.ts"
+        },
+        {
+          "path": "src/kit/ui/code-block.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/code-block.tsx"
         }
       ]
     },
@@ -1025,6 +1062,25 @@
       ]
     },
     {
+      "name": "shimmer",
+      "type": "registry:ui",
+      "title": "Shimmer",
+      "description": "Shimmer primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/shimmer.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/shimmer.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
@@ -1040,6 +1096,27 @@
           "path": "src/kit/ui/skeleton.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/skeleton.tsx"
+        }
+      ]
+    },
+    {
+      "name": "snippet",
+      "type": "registry:ui",
+      "title": "Snippet",
+      "description": "Snippet primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/snippet.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/snippet.tsx"
         }
       ]
     },
@@ -1263,6 +1340,52 @@
           "path": "src/kit/ui/use-toast.ts",
           "type": "registry:file",
           "target": "~/src/kit/ui/use-toast.ts"
+        }
+      ]
+    },
+    {
+      "name": "ai",
+      "type": "registry:block",
+      "title": "Ai",
+      "description": "Chat components for AI SDK UI: conversation, streaming markdown response, prompt input, suggestions and message actions. Presentational; pass status and handlers from useChat.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0",
+        "streamdown@^2.6.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/code-block",
+        "ossianravn/groundwork/input-group",
+        "ossianravn/groundwork/message-scroller",
+        "ossianravn/groundwork/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ai/conversation.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/conversation.tsx"
+        },
+        {
+          "path": "src/kit/ai/message-actions.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/message-actions.tsx"
+        },
+        {
+          "path": "src/kit/ai/message-response.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/message-response.tsx"
+        },
+        {
+          "path": "src/kit/ai/prompt-input.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/prompt-input.tsx"
+        },
+        {
+          "path": "src/kit/ai/suggestion.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/suggestion.tsx"
         }
       ]
     },
@@ -1565,6 +1688,7 @@
         "ossianravn/groundwork/carousel",
         "ossianravn/groundwork/chart",
         "ossianravn/groundwork/checkbox",
+        "ossianravn/groundwork/code-block",
         "ossianravn/groundwork/collapsible",
         "ossianravn/groundwork/combobox",
         "ossianravn/groundwork/command",
@@ -1592,7 +1716,9 @@
         "ossianravn/groundwork/select",
         "ossianravn/groundwork/separator",
         "ossianravn/groundwork/sheet",
+        "ossianravn/groundwork/shimmer",
         "ossianravn/groundwork/skeleton",
+        "ossianravn/groundwork/snippet",
         "ossianravn/groundwork/spinner",
         "ossianravn/groundwork/switch",
         "ossianravn/groundwork/table",
@@ -1604,6 +1730,7 @@
         "ossianravn/groundwork/toggle-group",
         "ossianravn/groundwork/tooltip",
         "ossianravn/groundwork/use-toast",
+        "ossianravn/groundwork/ai",
         "ossianravn/groundwork/data-table",
         "ossianravn/groundwork/member-avatar",
         "ossianravn/groundwork/panel-header",
