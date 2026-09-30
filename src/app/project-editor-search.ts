@@ -4,6 +4,7 @@ import { parseProjectReturnSearch } from "./project-return"
 interface EditorSearchInput {
   returnTo?: unknown
   scenario?: unknown
+  tab?: unknown
 }
 
 interface EditorSearch {
@@ -22,6 +23,8 @@ interface DetailSearch {
   returnTo: string
   /** save-failure rejects the first inline save; upload-failure the first upload. */
   scenario?: ProjectSaveScenario | "upload-failure"
+  /** The open section; Tasks when absent. */
+  tab?: "comments" | "activity"
 }
 
 export function parseProjectDetailSearch(raw: EditorSearchInput): DetailSearch {
@@ -29,6 +32,8 @@ export function parseProjectDetailSearch(raw: EditorSearchInput): DetailSearch {
 
   if (raw.scenario === "save-failure" || raw.scenario === "upload-failure")
     search.scenario = raw.scenario
+
+  if (raw.tab === "comments" || raw.tab === "activity") search.tab = raw.tab
 
   return search
 }

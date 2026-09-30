@@ -17,7 +17,8 @@ const route = getRouteApi("/app/demo/projects/$projectId")
 
 export function ProjectDetailRoute() {
   const { projectId } = route.useParams()
-  const { returnTo, scenario } = route.useSearch()
+  const { returnTo, scenario, tab } = route.useSearch()
+  const navigate = route.useNavigate()
   const { demo, drafts } = useDemoWorkspace()
   const { files } = useDemoState()
   const undo = useProjectUndo()
@@ -64,6 +65,16 @@ export function ProjectDetailRoute() {
           members={demo.workspace.people}
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
+          tab={tab ?? "tasks"}
+          onTabChange={(next) =>
+            void navigate({
+              search: (search) => ({
+                ...search,
+                tab: next === "tasks" ? undefined : next,
+              }),
+              replace: true,
+            })
+          }
           tagOptions={[
             ...new Set(demo.projects.flatMap((item) => item.tags)),
           ].sort()}

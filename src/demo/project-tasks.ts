@@ -1,7 +1,20 @@
+import {
+  documentText,
+  textDocument,
+  type RichTextDocument,
+} from "@/kit/rich-text/document"
 import taskData from "./data/tasks.json"
 import type { Activity, Project, ProjectTask } from "./model"
 
-export const initialTasks: ProjectTask[] = taskData
+// Fixture descriptions are plain text; the app edits them as rich text.
+export const initialTasks: ProjectTask[] = taskData.map(
+  ({ description, ...task }) =>
+    description ? { ...task, description: textDocument(description) } : task,
+)
+
+/** A description with no text is stored as none. */
+const describedAs = (description: RichTextDocument | undefined) =>
+  description && documentText(description) ? description : undefined
 
 export interface TaskRecords {
   projects: Project[]
@@ -10,7 +23,14 @@ export interface TaskRecords {
 }
 
 export type TaskChange =
-  | { kind: "add"; projectId: string; title: string; assigneeId: string | null }
+  | {
+      kind: "add"
+      projectId: string
+      title: string
+      assigneeId: string | null
+      description?: RichTextDocument
+    }
+  | { kind: "describe"; taskId: string; description: RichTextDocument }
   | { kind: "toggle"; taskId: string }
   | { kind: "assign"; taskId: string; assigneeId: string | null }
   | { kind: "move"; taskId: string; offset: -1 | 1 }
@@ -71,13 +91,17 @@ export function applyTaskChange(
 
     const last = tasks.map((item) => item.projectId).lastIndexOf(project.id)
 
-    const created = {
+    const description = describedAs(change.description)
+
+    const created: ProjectTask = {
       id: context.id(),
       projectId: project.id,
       title,
       done: false,
       assigneeId: change.assigneeId,
     }
+
+    if (description) created.description = description
 
     const at = last < 0 ? tasks.length : last + 1
 
@@ -102,6 +126,14 @@ export function applyTaskChange(
             taskId: task.id,
           },
         ]
+  } else if (task && change.kind === "describe") {
+    const description = describedAs(change.description)
+    const described: ProjectTask = { ...task, description }
+
+    // An emptied description is removed rather than kept as an empty key.
+    if (!description) delete described.description
+
+    tasks = replace(tasks, described)
   } else if (task && change.kind === "assign") {
     tasks = replace(tasks, { ...task, assigneeId: change.assigneeId })
   } else if (task && change.kind === "move") {

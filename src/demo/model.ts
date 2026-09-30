@@ -45,6 +45,8 @@ export interface ProjectTask {
   title: string
   done: boolean
   assigneeId: string | null
+  /** Optional details, shown when the task is opened. */
+  description?: RichTextDocument
 }
 
 /** Mentions are stored as @{memberId} tokens in the body. */

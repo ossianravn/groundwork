@@ -1,4 +1,5 @@
-import { Ellipsis } from "lucide-react"
+import { useState } from "react"
+import { AlignLeft, Ellipsis } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { Checkbox } from "@/kit/ui/checkbox"
 import {
@@ -17,7 +18,9 @@ import {
   SelectTrigger,
 } from "@/kit/ui/select"
 import { MemberAvatar } from "@/kit/member-avatar"
+import type { RichTextDocument } from "@/kit/rich-text/document"
 import type { Member, ProjectTask } from "@/demo/model"
+import { ProjectTaskDescription } from "./project-task-description"
 
 const unassigned = "unassigned"
 
@@ -26,13 +29,13 @@ export function ProjectTaskRow({
   members,
   people,
   readOnly,
-  settling = false,
   first,
   last,
   onToggle,
   onAssign,
   onMove,
   onRemove,
+  onDescribe,
 }: {
   task: ProjectTask
   /** Who can be assigned: active workspace members. */
@@ -40,15 +43,15 @@ export function ProjectTaskRow({
   /** Everyone who may appear on a task, including former members. */
   people: Member[]
   readOnly: boolean
-  /** Just completed here: shown ticked for a moment before it moves. */
-  settling?: boolean
   first: boolean
   last: boolean
   onToggle: () => void
   onAssign: (memberId: string | null) => void
   onMove: (offset: -1 | 1) => void
   onRemove: () => void
+  onDescribe: (description: RichTextDocument) => void
 }) {
+  const [open, setOpen] = useState(false)
   const id = `task-${task.id}`
   const assignee = people.find((person) => person.id === task.assigneeId)
 
@@ -62,11 +65,10 @@ export function ProjectTaskRow({
       className="task-row"
       data-task-id={task.id}
       data-done={task.done || undefined}
-      data-settling={settling || undefined}
+      data-open={open || undefined}
     >
-      {/* Only the checkbox completes a task; the title names it but is not
-          a label, so a click on the text or the row's empty space does
-          nothing and the text stays selectable. */}
+      {/* Only the checkbox completes a task. The title names it and opens
+          the task's description; it is not the checkbox's label. */}
       <Checkbox
         id={id}
         aria-labelledby={`${id}-title`}
@@ -74,9 +76,19 @@ export function ProjectTaskRow({
         disabled={readOnly}
         onCheckedChange={onToggle}
       />
-      <span id={`${id}-title`} className="task-title">
+      <button
+        type="button"
+        id={`${id}-title`}
+        className="task-title"
+        aria-expanded={open}
+        aria-controls={`${id}-details`}
+        onClick={() => setOpen(!open)}
+      >
         {task.title}
-      </span>
+        {task.description && (
+          <AlignLeft className="task-has-description" aria-hidden="true" />
+        )}
+      </button>
       {readOnly ? (
         assignee && <MemberAvatar member={assignee} size="sm" />
       ) : (
@@ -145,6 +157,14 @@ export function ProjectTaskRow({
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+      )}
+      {open && (
+        <ProjectTaskDescription
+          id={`${id}-details`}
+          task={task}
+          readOnly={readOnly}
+          onSave={onDescribe}
+        />
       )}
     </li>
   )

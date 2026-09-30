@@ -40,7 +40,7 @@ export function ProjectProperties({
       aria-labelledby="project-details-title"
     >
       <header className="project-properties-heading">
-        <h2 id="project-details-title">Details</h2>
+        <h2 id="project-details-title">Project details</h2>
         <ProjectDetailsDialog
           project={project}
           members={assignableMembers}

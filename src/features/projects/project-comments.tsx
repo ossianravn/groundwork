@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from "react"
 import { Button } from "@/kit/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/kit/ui/card"
 import { Field, FieldDescription, FieldError, FieldLabel } from "@/kit/ui/field"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { formatDate, type Member, type ProjectComment } from "@/demo/model"
@@ -44,80 +43,72 @@ export function ProjectComments({
   }
 
   return (
-    <Card className="project-comments">
-      <CardHeader className="project-comments-heading">
-        <CardTitle>
-          <h2>Comments</h2>
-        </CardTitle>
-        <p className="project-tasks-count">{comments.length}</p>
-      </CardHeader>
-      <CardContent className="project-comments-content">
-        {comments.length > 0 ? (
-          <ol className="comment-list">
-            {comments.map((comment) => {
-              const author = people.find(
-                (person) => person.id === comment.authorId,
-              )
+    <section className="project-comments" aria-label="Comments">
+      {comments.length > 0 ? (
+        <ol className="comment-list">
+          {comments.map((comment) => {
+            const author = people.find(
+              (person) => person.id === comment.authorId,
+            )
 
-              return (
-                <li key={comment.id} id={`comment-${comment.id}`}>
-                  {author && <MemberAvatar member={author} size="sm" />}
-                  <p className="comment-meta">
-                    <strong>{author?.name ?? "Former member"}</strong>
-                    <time dateTime={comment.date}>
-                      {formatDate(comment.date, { year: "numeric" })}
-                    </time>
-                  </p>
-                  <p className="comment-body">
-                    {commentParts(comment.body, people).map((part, index) =>
-                      part.kind === "mention" ? (
-                        <span key={index} className="comment-mention">
-                          {part.text}
-                        </span>
-                      ) : (
-                        part.text
-                      ),
-                    )}
-                  </p>
-                </li>
-              )
-            })}
-          </ol>
-        ) : (
-          <p className="text-muted-foreground">No comments yet.</p>
-        )}
-        <form className="comment-form" onSubmit={post} noValidate>
-          <Field data-invalid={!!error}>
-            <FieldLabel htmlFor="comment-draft">Add a comment</FieldLabel>
-            <MentionTextarea
-              id="comment-draft"
-              value={draft}
-              onValueChange={(value) => {
-                setDraft(value)
+            return (
+              <li key={comment.id} id={`comment-${comment.id}`}>
+                {author && <MemberAvatar member={author} size="sm" />}
+                <p className="comment-meta">
+                  <strong>{author?.name ?? "Former member"}</strong>
+                  <time dateTime={comment.date}>
+                    {formatDate(comment.date, { year: "numeric" })}
+                  </time>
+                </p>
+                <p className="comment-body">
+                  {commentParts(comment.body, people).map((part, index) =>
+                    part.kind === "mention" ? (
+                      <span key={index} className="comment-mention">
+                        {part.text}
+                      </span>
+                    ) : (
+                      part.text
+                    ),
+                  )}
+                </p>
+              </li>
+            )
+          })}
+        </ol>
+      ) : (
+        <p className="text-muted-foreground">No comments yet.</p>
+      )}
+      <form className="comment-form" onSubmit={post} noValidate>
+        <Field data-invalid={!!error}>
+          <FieldLabel htmlFor="comment-draft">Add a comment</FieldLabel>
+          <MentionTextarea
+            id="comment-draft"
+            value={draft}
+            onValueChange={(value) => {
+              setDraft(value)
 
-                if (error && value.trim()) setError("")
-              }}
-              members={members}
-              onSubmit={() => post()}
-              rows={3}
-              aria-invalid={!!error}
-              aria-describedby={
-                error ? "comment-hint comment-error" : "comment-hint"
-              }
-            />
-            <FieldDescription id="comment-hint">
-              Type @ to mention a teammate. Ctrl or ⌘ + Enter posts.
-            </FieldDescription>
-            {error && <FieldError id="comment-error">{error}</FieldError>}
-          </Field>
-          <Button type="submit" className="comment-submit">
-            Comment
-          </Button>
-        </form>
-        <p role="status" className="sr-only">
-          {announcement}
-        </p>
-      </CardContent>
-    </Card>
+              if (error && value.trim()) setError("")
+            }}
+            members={members}
+            onSubmit={() => post()}
+            rows={3}
+            aria-invalid={!!error}
+            aria-describedby={
+              error ? "comment-hint comment-error" : "comment-hint"
+            }
+          />
+          <FieldDescription id="comment-hint">
+            Type @ to mention a teammate. Ctrl or ⌘ + Enter posts.
+          </FieldDescription>
+          {error && <FieldError id="comment-error">{error}</FieldError>}
+        </Field>
+        <Button type="submit" className="comment-submit">
+          Comment
+        </Button>
+      </form>
+      <p role="status" className="sr-only">
+        {announcement}
+      </p>
+    </section>
   )
 }

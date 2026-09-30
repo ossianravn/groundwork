@@ -2120,19 +2120,21 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Break a project into tasks whose completion drives its progress.",
-    "implemented": "Project tasks with add, complete, reopen, assign, reorder and delete (with Undo). Each project's counts derive from its tasks; completing a task records it in Activity and Analytics, and Mark complete completes the remaining tasks. Completed projects show their tasks read-only.",
+    "implemented": "Project tasks behind an Open/Completed switch in the page's Tasks tab: complete, reopen, assign, reorder and delete (with Undo). A task ticked or unticked stays in the list until the view changes. Titles open a rich-text description that edits in place; Add task is a dialog with title, assignee and description. Each project's counts derive from its tasks; completing a task records it in Activity and Analytics, and Mark complete completes the remaining tasks. Completed projects show their tasks read-only.",
     "deferred": "No task due dates, subtasks or drag reordering; menu commands move tasks.",
     "examples": [
       {
-        "label": "Brand refresh tasks",
+        "label": "Project tasks",
         "href": "/app/demo/projects/brand",
-        "instruction": "Complete a task and watch 24/32 change; delete one and select Undo."
+        "instruction": "Tick two tasks and watch 24 of 32 change; open a task's title and edit its description; add a task."
       }
     ],
     "sources": [
       "src/features/projects/project-tasks.tsx",
       "src/features/projects/project-task-row.tsx",
-      "src/demo/project-tasks.ts"
+      "src/demo/project-tasks.ts",
+      "src/features/projects/project-task-description.tsx",
+      "src/features/projects/project-task-dialog.tsx"
     ]
   },
   {
@@ -2142,12 +2144,12 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Discuss a record in a thread and notify people with @mentions.",
-    "implemented": "Project comments in a thread with a composer that suggests teammates after @ (arrow keys, Enter or Tab, Escape). Mentions are stored as member tokens and highlighted; posting records a Comment event in Activity. Teammates' comments that mention the current user appear in the inbox and notifications.",
+    "implemented": "Project comments in the page's Comments tab, as a thread with a composer that suggests teammates after @ (arrow keys, Enter or Tab, Escape). Mentions are stored as member tokens and highlighted; posting records a Comment event in Activity. Teammates' comments that mention the current user appear in the inbox and notifications.",
     "deferred": "No editing, deleting, reactions or threaded replies; mentioning someone else sends no notification in this single-user demo.",
     "examples": [
       {
         "label": "Brand refresh comments",
-        "href": "/app/demo/projects/brand",
+        "href": "/app/demo/projects/brand?tab=comments",
         "instruction": "Type @ in Add a comment, choose a teammate and post."
       },
       {

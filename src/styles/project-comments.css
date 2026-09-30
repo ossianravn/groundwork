@@ -1,16 +1,6 @@
-/* Project comments (TABL-13): an open section after tasks, reading as a
-   thread with the author and date above each body. */
-.project-main > .project-comments {
-  gap: var(--content-gap);
-}
-.project-comments-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--control-gap);
-}
-.project-comments-content {
+/* Project comments (TABL-13): the Comments tab, reading as a thread with
+   the author and date above each body, then the form. */
+.project-comments {
   display: grid;
   gap: var(--stack-gap);
 }
