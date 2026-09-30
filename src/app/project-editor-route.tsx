@@ -1,5 +1,4 @@
 import { textDocument } from "@/kit/rich-text/document"
-import { ArrowLeft } from "lucide-react"
 import { cn } from "cn"
 import { Link, useNavigate, useParams, useSearch } from "@tanstack/react-router"
 import { buttonVariants } from "@/kit/ui/button"
@@ -119,10 +118,6 @@ export function ProjectEditorRoute() {
         {`${project ? `Edit ${project.name}` : "New project"} · ${demo.workspace.name}`}
       </title>
       <div className="project-page-heading">
-        <Link {...destination} className={buttonVariants({ variant: "ghost" })}>
-          <ArrowLeft aria-hidden="true" />
-          {project ? "Back to project" : projectReturnLabel(origin)}
-        </Link>
         <div className="project-page-title">
           <ProjectMark color={draft.values.color} />
           <h1>{project ? `Edit ${project.name}` : "New project"}</h1>

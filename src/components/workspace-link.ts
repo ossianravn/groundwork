@@ -12,6 +12,10 @@ export type WorkspaceDestination =
   | "notifications"
   | "workspace"
   | "sign-in"
+  /** A project page's origin, from its returnTo search. */
+  | "return"
+  /** The project whose editor is open, keeping its returnTo. */
+  | "project"
 
 export type WorkspaceLinkProps = ShellLinkProps<WorkspaceDestination>
 

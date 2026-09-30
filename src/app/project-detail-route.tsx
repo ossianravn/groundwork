@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react"
 import { getRouteApi, Link } from "@tanstack/react-router"
 import { buttonVariants } from "@/kit/ui/button"
 
@@ -26,9 +25,9 @@ export function ProjectDetailRoute() {
   const destination = projectReturnDestination(returnTo)
   useRouteFocus()
 
+  // The breadcrumb returns to the origin; a missing project offers it too.
   const returnLink = (
-    <Link {...destination} className={buttonVariants({ variant: "ghost" })}>
-      <ArrowLeft aria-hidden="true" />
+    <Link {...destination} className={buttonVariants({ variant: "outline" })}>
       {projectReturnLabel(returnTo)}
     </Link>
   )
@@ -101,7 +100,6 @@ export function ProjectDetailRoute() {
 
             return reversal ? () => demo.undoProjectChange(reversal) : undefined
           }}
-          returnLink={returnLink}
         />
       ) : (
         <ProjectUnavailable returnLink={returnLink} />

@@ -7,6 +7,7 @@ import {
   Search,
   SlidersHorizontal,
   X,
+  ArrowLeft,
 } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import {
@@ -63,6 +64,13 @@ export function WorkspaceShell<Destination extends string>({
   const header = useHeaderOffset()
   const [root, ...trail] = breadcrumbs
   const { LinkComponent } = navigation
+
+  // Phones show only the current page; its nearest linked ancestor becomes
+  // a back arrow, so records need no in-page back link.
+  const parent = trail
+    .slice(0, -1)
+    .reverse()
+    .find((crumb) => crumb.destination !== undefined)
 
   return (
     <div className="app-shell" data-sidebar-collapsed={collapsed}>
@@ -163,7 +171,18 @@ export function WorkspaceShell<Destination extends string>({
               trail.length > 1 ? "breadcrumb breadcrumb-detail" : "breadcrumb"
             }
           >
-            <span className="text-muted-foreground">{root?.label}</span>
+            {parent?.destination && (
+              <LinkComponent
+                destination={parent.destination}
+                className="breadcrumb-back"
+                aria-label={`Back to ${parent.label}`}
+              >
+                <ArrowLeft aria-hidden="true" />
+              </LinkComponent>
+            )}
+            <span className="breadcrumb-root text-muted-foreground">
+              {root?.label}
+            </span>
             {trail.map((crumb, index) => (
               <Fragment key={`${index}-${crumb.label}`}>
                 <ChevronRight aria-hidden="true" />
