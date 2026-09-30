@@ -39,7 +39,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
    npx shadcn add ossianravn/groundwork/kit
    ```
 
-   That installs everything into `src/kit/`, the same layout as this repository, so the kit's own imports keep working, and adds its npm dependencies. To take only what you need, install `ossianravn/groundwork/base` (tokens, styles, theme runtime) plus parts such as `button`, `data-table`, `rich-text`, `shell` or `theme-panel`; each part brings the parts it uses. `npx shadcn list ossianravn/groundwork` shows them all. Pin a release with its tag, such as `ossianravn/groundwork/kit#v0.1.1`; from v0.1.1 on, every part the item brings is pinned to the same release.
+   That installs everything into `src/kit/`, the same layout as this repository, so the kit's own imports keep working, and adds its npm dependencies. To take only what you need, install `ossianravn/groundwork/base` (tokens, styles, theme runtime) plus parts such as `button`, `data-table`, `rich-text`, `shell` or `theme-panel`; each part brings the parts it uses. `npx shadcn list ossianravn/groundwork` shows them all. Pin a release with its tag, such as `ossianravn/groundwork/kit#v0.2.0`; from v0.1.1 on, every part the item brings is pinned to the same release. [CHANGELOG.md](CHANGELOG.md) lists what each release adds.
 
 2. Or copy `src/kit/` into your project's source folder and install what it imports:
 
@@ -105,7 +105,7 @@ npm run build
 npm run format:check
 ```
 
-`registry.json` is generated from the kit: run `npm run registry` after adding, removing or re-importing kit files, and `npm test` fails while it is stale. `npm run release -- <version>` cuts a release: it tags a commit whose registry pins every dependency to that tag (shadcn does not pass a tag on to dependencies), then unpins `main` again.
+`registry.json` is generated from the kit: run `npm run registry` after adding, removing or re-importing kit files, and `npm test` fails while it is stale. To release, rename CHANGELOG.md's Unreleased section to the version and date and commit it on `main`. Then `npm run release -- <version>` tags a commit whose registry pins every dependency to that tag (shadcn does not pass a tag on to dependencies), then unpins `main` again. Push `main` and the tag to the public remote, and publish a GitHub release from the changelog section: `gh release create v<version> --notes-file <that section>`.
 
 `npm run preview` serves the production build. Hosting must serve `index.html` for application routes. The `Dockerfile` does this: it builds the site and serves it with nginx on port 80 (`deploy/nginx.conf`), so any Docker host, such as Dokploy or Coolify, can deploy the repository directly. Optional browser checks, including a computed-style snapshot for refactors, are described in [tools/verification](tools/verification/README.md).
 

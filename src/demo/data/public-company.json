@@ -170,6 +170,14 @@
       "votes": 29
     },
     {
+      "id": "assistant",
+      "stage": "Shipped",
+      "title": "Assistant",
+      "description": "Released in 0.5.0.",
+      "votes": 61,
+      "release": "0.5.0"
+    },
+    {
       "id": "timeline",
       "stage": "Shipped",
       "title": "Timeline and saved views",
