@@ -1,6 +1,7 @@
 import { Ellipsis } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { Badge } from "@/kit/ui/badge"
+import { Snippet } from "@/kit/ui/snippet"
 import {
   Empty,
   EmptyHeader,
@@ -85,8 +86,18 @@ export function ApiKeySettings({
           </EmptyHeader>
         </Empty>
       )}
+      <section className="integration-usage" aria-labelledby="api-usage-title">
+        <h3 id="api-usage-title">Make a request</h3>
+        <p>Send a key as a bearer token, for example to list projects:</p>
+        <Snippet
+          prefix="$"
+          label="request"
+          code={`curl https://api.tandem.example/v1/projects -H "Authorization: Bearer $TANDEM_API_KEY"`}
+        />
+      </section>
       <p className="settings-note">
-        Demo keys cannot access an API. Changes reset on reload.
+        Demo keys cannot access an API, and the address is illustrative. Changes
+        reset on reload.
       </p>
     </div>
   )

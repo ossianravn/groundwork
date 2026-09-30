@@ -28,17 +28,22 @@ const groups = {
     "ui/chart-tooltip.tsx",
     "ui/use-chart-typography.ts",
   ],
+  "code-block": ["ui/code-block.tsx", "ui/code-block-highlight.ts"],
   combobox: ["ui/combobox.tsx", "ui/combobox-chips.tsx"],
   sheet: ["ui/sheet.tsx", "ui/sheet-viewport.ts"],
   toggle: ["ui/toggle.tsx", "ui/toggle-variants.ts"],
   "data-table": ["data-table/"],
   "rich-text": ["rich-text/"],
+  ai: ["ai/"],
   shell: ["shell/"],
   "theme-panel": ["theme/*.tsx"],
 }
 
 const descriptions = {
   base: "Tokens, stylesheets, the theme runtime and the cn utility. Every other item builds on it; import src/kit/styles/kit.css as the Tailwind entry.",
+  ai: "Chat components for AI SDK UI: conversation, streaming markdown response, prompt input, suggestions and message actions. Presentational; pass status and handlers from useChat.",
+  "code-block":
+    "Code block with on-demand Shiki highlighting coloured by the --syntax-* tokens, a label and copy.",
   chart: "Recharts wrapper with themed tooltip, legend and font-aware axes.",
   "data-table":
     "TanStack Table toolbar pieces: faceted filters, view options and pagination.",

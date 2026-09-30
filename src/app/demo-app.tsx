@@ -24,8 +24,16 @@ import { useWorkspaceHelp } from "./use-workspace-help"
 import { WorkspaceHelpLink } from "./workspace-help-link"
 
 export function DemoApp() {
-  const { demo, access, contact, appearance, results, drafts, files } =
-    useDemoState()
+  const {
+    demo,
+    access,
+    contact,
+    appearance,
+    results,
+    drafts,
+    files,
+    assistant,
+  } = useDemoState()
 
   const undo = useProjectUndo()
   const navigate = useNavigate()
@@ -135,6 +143,7 @@ export function DemoApp() {
           contact.reset()
           drafts.reset()
           files.reset()
+          assistant.reset()
           openInspection(undefined, true)
         }}
       >

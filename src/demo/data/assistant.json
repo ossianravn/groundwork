@@ -1,0 +1,65 @@
+{
+  "title": "Ask about your workspace",
+  "description": "Answers come from this demo's projects, tasks and activity. Nothing leaves your browser, and the replies are scripted.",
+  "suggestions": [
+    "Which projects are at risk?",
+    "What changed this week?",
+    "How do I list projects with the API?"
+  ],
+  "intents": [
+    {
+      "id": "risk",
+      "keywords": [
+        "risk",
+        "behind",
+        "late",
+        "overdue",
+        "slipping",
+        "deadline",
+        "due"
+      ],
+      "followUps": [
+        "What changed this week?",
+        "How do I list projects with the API?"
+      ]
+    },
+    {
+      "id": "week",
+      "keywords": [
+        "week",
+        "changed",
+        "recent",
+        "activity",
+        "happened",
+        "progress",
+        "done"
+      ],
+      "followUps": [
+        "Which projects are at risk?",
+        "How do I list projects with the API?"
+      ]
+    },
+    {
+      "id": "api",
+      "keywords": [
+        "api",
+        "curl",
+        "endpoint",
+        "fetch",
+        "code",
+        "integrate",
+        "script",
+        "key"
+      ],
+      "followUps": ["Which projects are at risk?", "What changed this week?"]
+    }
+  ],
+  "fallback": "I can only answer a few scripted questions in this demo: which projects are at risk, what changed this week, and how to list projects with the API. Try one of those below.",
+  "api": {
+    "intro": "Create a read-only key under [Settings › API keys](/app/demo/settings/api-keys), then send it as a bearer token. The endpoint returns every project with its status, owner, due date and task counts.",
+    "curl": "curl https://api.tandem.example/v1/projects \\\n  -H \"Authorization: Bearer $TANDEM_API_KEY\"",
+    "typescript": "const response = await fetch(\"https://api.tandem.example/v1/projects\", {\n  headers: { Authorization: `Bearer ${process.env.TANDEM_API_KEY}` },\n})\n\nif (!response.ok) throw new Error(`Tandem API: ${response.status}`)\n\nconst { projects } = await response.json()\nconsole.log(projects.map((project) => project.name))",
+    "outro": "Keys are shown once when you create them. This demo's API is illustrative, so the address does not respond."
+  },
+  "failure": "The assistant stopped responding before it finished."
+}

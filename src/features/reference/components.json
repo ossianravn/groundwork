@@ -339,5 +339,77 @@
       "label": "shadcn documentation"
     },
     "implementation": "src/kit/ui/drawer.tsx"
+  },
+  {
+    "id": "code-block",
+    "name": "Code block",
+    "category": "Data",
+    "purpose": "Show code with syntax highlighting, a file or language label and a copy button.",
+    "notes": [
+      "Highlighting loads on first use and takes its colours from the --syntax-* tokens, so code follows light, dark and the accent. The block renders plain text first, at the same size.",
+      "Long lines scroll inside the block, which takes keyboard focus. Copy reports success in place; when the clipboard refuses, the code is selected instead."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["DEV-01", "AI-02"],
+    "documentation": {
+      "href": "https://shiki.style/guide/theme-colors#css-variables-theme",
+      "label": "Shiki CSS-variables theme"
+    },
+    "implementation": "src/kit/ui/code-block.tsx"
+  },
+  {
+    "id": "snippet",
+    "name": "Snippet",
+    "category": "Data",
+    "purpose": "Give one command or line of code with a copy button.",
+    "notes": [
+      "The prefix, such as $, is shown but not copied.",
+      "Name what is copied with label; the button then reads Copy install command."
+    ],
+    "context": "API keys",
+    "href": "/app/demo/settings/api-keys",
+    "patterns": ["DEV-02"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/snippet",
+      "label": "AI Elements Snippet"
+    },
+    "implementation": "src/kit/ui/snippet.tsx"
+  },
+  {
+    "id": "prompt-input",
+    "name": "Prompt input",
+    "category": "AI and chat",
+    "purpose": "Write a message to a model and stop its reply.",
+    "notes": [
+      "Enter sends and Shift+Enter adds a line; while an input method is composing, Enter belongs to it. While the model works, Enter does nothing and the button becomes Stop, so a follow-up can be drafted.",
+      "The button never disables, so focus survives every state. Pass status and a stop handler from the AI SDK's useChat."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-03"],
+    "documentation": {
+      "href": "https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat",
+      "label": "useChat reference"
+    },
+    "implementation": "src/kit/ai/prompt-input.tsx"
+  },
+  {
+    "id": "message-response",
+    "name": "Message response",
+    "category": "AI and chat",
+    "purpose": "Render a model's markdown reply while it streams.",
+    "notes": [
+      "Streamdown keeps unfinished syntax readable mid-stream; every element uses kit typography, and fenced code uses the Code block.",
+      "Pass renderLink to route internal links with your router. Announce a finished reply once rather than letting a live region read each token."
+    ],
+    "context": "Assistant replies",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-02"],
+    "documentation": {
+      "href": "https://streamdown.ai",
+      "label": "Streamdown documentation"
+    },
+    "implementation": "src/kit/ai/message-response.tsx"
   }
 ]

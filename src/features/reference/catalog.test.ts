@@ -16,7 +16,7 @@ describe("reference catalogue", () => {
       expect(example.source).toContain(
         `export function ${example.Component.name}`,
       )
-      expect(example.source).toContain("@/kit/ui/")
+      expect(example.source).toMatch(/@\/kit\/(?:ui|ai)\//u)
     }
   })
 

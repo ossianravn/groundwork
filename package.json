@@ -25,6 +25,7 @@
     "release": "node tools/registry/release.mjs"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.126",
     "@base-ui/react": "^1.8.0",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
@@ -41,6 +42,7 @@
     "@tiptap/react": "^3.31.3",
     "@tiptap/starter-kit": "^3.31.3",
     "@tiptap/static-renderer": "^3.31.3",
+    "ai": "^7.0.123",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "cn": "^0.4.0",
@@ -53,7 +55,10 @@
     "react-dom": "^19.3.0",
     "react-resizable-panels": "^4.13.3",
     "recharts": "^3.8.0",
-    "tw-animate-css": "^1.4.0"
+    "shiki": "^4.4.3",
+    "streamdown": "^2.6.0",
+    "tw-animate-css": "^1.4.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

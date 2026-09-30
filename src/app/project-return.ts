@@ -5,6 +5,7 @@ import { parseInboxSearch } from "./inbox-search"
 import { parseActivitySearch } from "./activity-search"
 import { parseReportPeriodSearch } from "./report-period-search"
 import { parseWorkspaceSearch } from "./workspace-search-params"
+import { parseAssistantSearch } from "./assistant-search"
 
 const projectsPath = "/app/demo/projects"
 
@@ -30,6 +31,7 @@ export function projectReturnTo(value: string): string {
     path !== projectsPath &&
     path !== overviewPath &&
     path !== "/app/demo/inbox" &&
+    path !== "/app/demo/assistant" &&
     path !== "/app/demo/analytics" &&
     path !== "/app/demo/activity" &&
     path !== "/app/demo/search"
@@ -68,6 +70,14 @@ export function projectReturnDestination(value: string) {
     return {
       to: "/app/demo/inbox",
       search: parseInboxSearch(search),
+      hash,
+    } as const
+  }
+
+  if (url.pathname === "/app/demo/assistant") {
+    return {
+      to: "/app/demo/assistant",
+      search: parseAssistantSearch(search),
       hash,
     } as const
   }

@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-29. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 109 IDs: 108 have linked examples and 1 remains planned (see [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 116 IDs: 115 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -156,6 +156,20 @@ New public pages and sections in the Tandem brand layer. Company, customer and i
 | MKT-23 | Stats band | [Public home](pages/public/home.md) | / (stats band) | Example |
 | MKT-24 | How it works | [Product overview](pages/public/product.md) | /product How it works: four steps linked into the demo | Example |
 | MKT-25 | Announcement bar | [Shared shells](shells.md) | public header on every page | Example |
+
+## AI and chat — 2026-09-30
+
+Chat and code components modelled on the AI SDK's message model and Vercel's AI Elements, built into the Tandem Assistant. The [assistant specification](pages/app/assistant.md) owns their behaviour; the remaining steps of the plan add IDs as they ship.
+
+| ID | Pattern | Primary specification | Demonstration or target | Status |
+| --- | --- | --- | --- | --- |
+| AI-01 | Chat conversation | [Assistant](pages/app/assistant.md) | /app/demo/assistant (?scenario=assistant-error) | Example |
+| AI-02 | Streaming markdown response | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-03 | Prompt composer | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-04 | Suggested prompts | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-05 | Message actions | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| DEV-01 | Code block | [Design system](design-system.md) | /reference/components/code-block; assistant replies | Example |
+| DEV-02 | Snippet | [API keys and webhooks](pages/settings/developers.md) | /app/demo/settings/api-keys; /reference/components/snippet | Example |
 
 ## Foundations delivery — 2026-09-29
 

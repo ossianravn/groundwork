@@ -30,6 +30,7 @@ Keep a central demo-data directory, divided by domain rather than page. The exac
 | tasks.json | Named project tasks in order; every project's task counts derive from them (`project-tasks.ts`) |
 | activity.json | Seeded project/workspace history; activity feed and historical analytics |
 | inbox.json | Requests and notifications linked to projects; inbox, drawer and unread counters |
+| assistant.json | The assistant's copy, starting questions, keyword topics and API example; scripted replies compose answers from the live records |
 | billing.json | Plans, sample subscriptions, usage and invoices; public pricing and billing settings |
 | integrations.json | Nonfunctional key metadata, webhook endpoints and delivery examples; developer settings |
 | content.json | Marketing content, sample testimonials, FAQ, articles, releases and help content |
@@ -85,6 +86,8 @@ Resource content (2026-09-27): `src/demo/data/content.json` owns authored articl
 Contact/legal (2026-09-27): `use-contact.ts` owns the contact draft and local result above routing. Navigation retains the draft; completion, Reset demo data and reload clear it. A fresh draft at `/contact?scenario=contact-failure` fails its first valid submission, retains all input and completes on retry. No message is sent or persisted. `content.json` owns the clearly labelled Privacy/Terms specimens; no consent state or optional tracking integration is introduced.
 
 Inbox (2026-09-27): `inbox.json` seeds incoming project-linked conversations; mention entries derive from `comments.json` (2026-09-29). The `inbox.ts` reducer owns conversations, posts, compose/reply drafts, read flags and read-action failure state; `use-inbox.ts` retains it above routes. New conversations address one active workspace member and optionally a project. Replies append posts atomically, mark the thread read and refresh its list position/preview. Navigation and dialog dismissal retain drafts; Cancel discards, successful send clears its draft, and reset/reload clears all mutations/drafts. A new workspace starts empty. The bell projects incoming posts only and derives its own unread count. `scenario=inbox-failure` preserves records on the first rejected read action and supports retry. No external delivery or simulated teammate response occurs.
+
+Assistant (2026-09-30): the conversation is an AI SDK `Chat` in shared demo state (`use-assistant.ts`); navigation keeps it, and New chat, Reset demo data and reload start over. No model or network is involved: a local transport streams replies composed from the records sent with each request, so answers reflect current edits. `scenario=assistant-error` fails the first attempt at each question part-way. See [Assistant](pages/app/assistant.md).
 
 ### Security settings and verification
 
