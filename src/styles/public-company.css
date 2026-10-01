@@ -227,25 +227,6 @@
   color: var(--success);
   font-size: var(--text-meta);
 }
-.status-days {
-  display: grid;
-  grid-template-columns: repeat(90, minmax(0, 1fr));
-  gap: 2px;
-  height: 2rem;
-}
-.status-days li {
-  border-radius: 1px;
-  background: color-mix(in oklab, var(--success) 70%, var(--card));
-}
-.status-days li[data-incident] {
-  background: var(--warning);
-}
-.status-days-legend {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted-foreground);
-  font-size: var(--text-meta);
-}
 .status-incidents {
   display: grid;
   gap: 1rem;
@@ -288,9 +269,6 @@
   .roadmap,
   .about-values ul {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .status-days {
-    gap: 1px;
   }
   .about-roles li a {
     grid-row: auto;

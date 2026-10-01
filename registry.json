@@ -357,6 +357,25 @@
       ]
     },
     {
+      "name": "calendar-heatmap",
+      "type": "registry:ui",
+      "title": "Calendar Heatmap",
+      "description": "Activity by day as a GitHub-style calendar in one hue; a keyboard grid (arrows move by day and week) with a detail line.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/calendar-heatmap.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/calendar-heatmap.tsx"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
@@ -1002,6 +1021,25 @@
       ]
     },
     {
+      "name": "radial-progress",
+      "type": "registry:ui",
+      "title": "Radial Progress",
+      "description": "Progress toward a goal as a ring with the figure in its centre; a meter with its value and label exposed.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/radial-progress.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/radial-progress.tsx"
+        }
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
@@ -1185,6 +1223,30 @@
           "path": "src/kit/ui/snippet.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/snippet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:ui",
+      "title": "Sparkline",
+      "description": "A small SVG trend line with a soft area and the last value marked, named by its trend in words (trendLabel).",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/sparkline-label.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/sparkline-label.ts"
+        },
+        {
+          "path": "src/kit/ui/sparkline.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/sparkline.tsx"
         }
       ]
     },
@@ -1456,6 +1518,25 @@
           "path": "src/kit/ui/tooltip.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "uptime-strip",
+      "type": "registry:ui",
+      "title": "Uptime Strip",
+      "description": "A service's recent days as bars, good and incident days in status colours, with hover detail and the uptime and incident days in words.",
+      "dependencies": [
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/uptime-strip.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/uptime-strip.tsx"
         }
       ]
     },
@@ -1956,6 +2037,7 @@
         "ossianravn/groundwork/bubble",
         "ossianravn/groundwork/button",
         "ossianravn/groundwork/calendar",
+        "ossianravn/groundwork/calendar-heatmap",
         "ossianravn/groundwork/card",
         "ossianravn/groundwork/carousel",
         "ossianravn/groundwork/chart",
@@ -1984,6 +2066,7 @@
         "ossianravn/groundwork/message-scroller",
         "ossianravn/groundwork/popover",
         "ossianravn/groundwork/progress",
+        "ossianravn/groundwork/radial-progress",
         "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/resizable",
         "ossianravn/groundwork/scroll-area",
@@ -1993,6 +2076,7 @@
         "ossianravn/groundwork/shimmer",
         "ossianravn/groundwork/skeleton",
         "ossianravn/groundwork/snippet",
+        "ossianravn/groundwork/sparkline",
         "ossianravn/groundwork/spinner",
         "ossianravn/groundwork/stack-trace",
         "ossianravn/groundwork/switch",
@@ -2006,6 +2090,7 @@
         "ossianravn/groundwork/toggle",
         "ossianravn/groundwork/toggle-group",
         "ossianravn/groundwork/tooltip",
+        "ossianravn/groundwork/uptime-strip",
         "ossianravn/groundwork/use-toast",
         "ossianravn/groundwork/ai",
         "ossianravn/groundwork/data-table",

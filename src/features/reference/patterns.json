@@ -196,7 +196,7 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Summarize the current state of project work.",
-    "implemented": "Four totals shown as one metric strip with hairline dividers, derived from the same projects used by the table and board.",
+    "implemented": "Four totals shown as one metric strip with hairline dividers, derived from the same projects used by the table and board. Each figure has a 30-day sparkline beside it (kit Sparkline, plain SVG), named by its trend in words (\"Tasks remaining: down from 87 to 77 over 30 days\"); the history comes from task and project dates and ends on today's figures.",
     "deferred": "Historical comparisons and asynchronous loading remain planned.",
     "examples": [
       {
@@ -205,7 +205,12 @@
         "instruction": "Compare active projects, tasks remaining, near-term due dates and completions."
       }
     ],
-    "sources": ["src/features/overview/metrics.tsx", "src/demo/selectors.ts"]
+    "sources": [
+      "src/features/overview/metrics.tsx",
+      "src/demo/selectors.ts",
+      "src/kit/ui/sparkline.tsx",
+      "src/demo/snapshot-history.ts"
+    ]
   },
   {
     "id": "DVIZ-02",
@@ -3315,8 +3320,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Compare how two flows move over time, such as work arriving and work getting done.",
-    "implemented": "Analytics › Delivery: tasks completed and added as two gradient areas (shadcn's area chart), by day up to a month and by week beyond. The legend is a ChartSeriesToggle that shows and hides each series and keeps one on; with comparison, last period's completions follow as a keyed dashed line. Show data lists every point. Analytics › Projects adds each project's share of open work at every week's end as a stacked expanded area, with the largest share in the heading.",
-    "deferred": "API key usage (step area) arrives with the settings charts (charts plan step 4).",
+    "implemented": "Analytics › Delivery: tasks completed and added as two gradient areas (shadcn's area chart), by day up to a month and by week beyond. The legend is a ChartSeriesToggle that shows and hides each series and keeps one on; with comparison, last period's completions follow as a keyed dashed line. Show data lists every point. Analytics › Projects adds each project's share of open work at every week's end as a stacked expanded area, with the largest share in the heading. Settings › API keys shows each key's requests per day as stepped areas, a revoked key's line ending where it stopped.",
+    "deferred": "",
     "examples": [
       {
         "label": "Delivery",
@@ -3328,7 +3333,8 @@
       "src/features/analytics/throughput-chart.tsx",
       "src/demo/delivery.ts",
       "src/kit/ui/chart-series.tsx",
-      "src/features/analytics/open-share-chart.tsx"
+      "src/features/analytics/open-share-chart.tsx",
+      "src/features/settings/api-usage-chart.tsx"
     ]
   },
   {
@@ -3408,8 +3414,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show a total and what it is made of in one bar, such as each person's open work by project.",
-    "implemented": "Analytics › Workload: open tasks per person now, stacked by project in the projects' own hues and in the palette's order so neighbours stay apart, with unassigned work last (shadcn's stacked bar chart). The legend shows and hides projects; Show data gives each person's split.",
-    "deferred": "Webhook delivery history (success and failure) arrives with the settings charts (charts plan step 4).",
+    "implemented": "Analytics › Workload: open tasks per person now, stacked by project in the projects' own hues and in the palette's order so neighbours stay apart, with unassigned work last (shadcn's stacked bar chart). The legend shows and hides projects; Show data gives each person's split. Settings › Webhooks stacks delivered and failed deliveries per day in the status colours, with failures counted in the heading.",
+    "deferred": "",
     "examples": [
       {
         "label": "Workload",
@@ -3420,7 +3426,8 @@
     "sources": [
       "src/features/analytics/member-load-chart.tsx",
       "src/features/analytics/palette-order.ts",
-      "src/demo/workload.ts"
+      "src/demo/workload.ts",
+      "src/features/settings/delivery-history-chart.tsx"
     ]
   },
   {
@@ -3442,6 +3449,69 @@
     "sources": [
       "src/features/analytics/member-compare-chart.tsx",
       "src/demo/workload.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-11",
+    "title": "Radial progress",
+    "originalName": "Radial progress",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Show how far something is toward done, with the figure in the ring.",
+    "implemented": "Project cards in the Projects grid show completion as a ring in the project's hue with the percentage inside and \"24 of 32 tasks done\" beside it (kit RadialProgress, a meter with its value and label exposed).",
+    "deferred": "Billing has no plan limits (it charges per seat), so the planned usage ring there was not built rather than inventing a limit.",
+    "examples": [
+      {
+        "label": "Projects grid",
+        "href": "/app/demo/projects?view=grid",
+        "instruction": "Each card's ring shows its share of tasks done."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/radial-progress.tsx",
+      "src/features/projects/project-grid.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-13",
+    "title": "Calendar heatmap",
+    "originalName": "Calendar heatmap",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Show rhythm over many days at once: when work happens.",
+    "implemented": "Activity opens with completed tasks per day since the history began, as a calendar in one hue (kit CalendarHeatmap): a grid you walk with the arrow keys (a day down, a week across), each day naming itself, with a detail line for the day in focus or under the pointer. It follows the feed's filters.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Activity",
+        "href": "/app/demo/activity?member=noah",
+        "instruction": "Tab to the calendar and use the arrow keys; filters change it."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/calendar-heatmap.tsx",
+      "src/features/activity/activity-heatmap.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-14",
+    "title": "Uptime strip",
+    "originalName": "Uptime strip",
+    "category": "Data visualization",
+    "surface": "Shared",
+    "summary": "Show a service's recent days as good or incident at a glance.",
+    "implemented": "The public status page shows 90 days per component (kit UptimeStrip): good days in the success colour, incident days in the warning colour, the day under the pointer named below with its incident, and the uptime and incident dates given in words for screen readers.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Status",
+        "href": "/status",
+        "instruction": "Point at the orange days under Notifications."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/uptime-strip.tsx",
+      "src/features/public/status-page.tsx"
     ]
   }
 ]

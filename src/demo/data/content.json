@@ -299,6 +299,41 @@
   ],
   "releases": [
     {
+      "version": "0.9.0",
+      "date": "2026-10-01",
+      "title": "Trends everywhere",
+      "summary": "Small charts across Tandem: trends on the Overview, progress rings on project cards, a calendar of completed work, and usage history in settings.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Each Overview figure shows its last 30 days as a small trend line beside it.",
+            "Activity opens with a calendar of completed tasks by day. Use the arrow keys to move through it; it follows your filters.",
+            "Settings › API keys shows each key's requests by day, and Settings › Webhooks shows delivered and failed deliveries for the last two weeks."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Project cards show progress as a ring with the percentage inside.",
+            "The status page names each day as you point at it, including what went wrong on incident days."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Key usage and delivery history are sample data and don't change when you create keys or send tests. Everything resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.8.0",
       "date": "2026-10-01",
       "title": "Burn-ups and workload",

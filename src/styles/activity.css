@@ -166,3 +166,38 @@
     width: var(--control-height);
   }
 }
+/* When the team ships (DVIZ-13): a calendar of completions above the feed,
+   at the feed's reading width. */
+.activity-heatmap {
+  --heatmap-cell: 1.125rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--content-gap) var(--section-gap);
+  max-width: 60rem;
+  padding-bottom: var(--section-gap);
+  border-bottom: 1px solid var(--border);
+}
+.activity-heatmap h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--control-gap);
+  font-weight: 600;
+}
+.activity-heatmap-total {
+  font-size: var(--text-metric);
+  line-height: var(--leading-metric);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.activity-heatmap header {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 20rem;
+}
+.activity-heatmap header p {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}

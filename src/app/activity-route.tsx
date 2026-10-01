@@ -18,6 +18,7 @@ import { filterActivity } from "@/demo/activity"
 import { ActivityFilters } from "@/features/activity/activity-filters"
 import { ActivityTimeline } from "@/features/activity/activity-timeline"
 import { ActivityDetail } from "@/features/activity/activity-detail"
+import { ActivityHeatmap } from "@/features/activity/activity-heatmap"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
 import { projectColorStyle } from "@/components/project-color"
@@ -61,6 +62,14 @@ export function ActivityRoute() {
     >
       <title>{`Activity · ${demo.workspace.name}`}</title>
       <h1 className="sr-only">Activity</h1>
+      <ActivityHeatmap
+        events={events}
+        start={demo.activity.reduce(
+          (first, item) => (item.date < first ? item.date : first),
+          demo.workspace.referenceDate,
+        )}
+        end={demo.workspace.referenceDate}
+      />
       <Card className="activity-feed-card">
         <CardHeader className="activity-feed-toolbar">
           <ActivityFilters

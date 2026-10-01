@@ -18,6 +18,7 @@ import {
 import type { ApiKey } from "@/demo/integrations"
 import { formatDate } from "@/demo/model"
 import { CreateKeyDialog } from "./create-key-dialog"
+import { ApiUsageChart } from "./api-usage-chart"
 
 export function ApiKeySettings({
   keys,
@@ -34,6 +35,7 @@ export function ApiKeySettings({
         <h2 id="settings-title">API keys</h2>
         <CreateKeyDialog onCreate={onCreate} />
       </header>
+      <ApiUsageChart keys={keys} />
       <ul className="integration-list" aria-label="API keys">
         {keys.map((key) => (
           <li key={key.id} className="integration-row">

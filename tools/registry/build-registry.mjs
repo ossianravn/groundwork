@@ -34,6 +34,7 @@ const groups = {
     "ui/chart-state.tsx",
   ],
   "code-block": ["ui/code-block.tsx", "ui/code-block-highlight.ts"],
+  sparkline: ["ui/sparkline.tsx", "ui/sparkline-label.ts"],
   terminal: ["ui/terminal.tsx", "ui/ansi.ts"],
   combobox: ["ui/combobox.tsx", "ui/combobox-chips.tsx"],
   sheet: ["ui/sheet.tsx", "ui/sheet-viewport.ts"],
@@ -56,6 +57,14 @@ const descriptions = {
     "Recharts wrapper with themed tooltip, legend and font-aware axes, plus a result header, series toggles and picker, a Show data table, loading/empty/failed states and validated series colours.",
   "data-table":
     "TanStack Table toolbar pieces: faceted filters, view options and pagination.",
+  sparkline:
+    "A small SVG trend line with a soft area and the last value marked, named by its trend in words (trendLabel).",
+  "radial-progress":
+    "Progress toward a goal as a ring with the figure in its centre; a meter with its value and label exposed.",
+  "calendar-heatmap":
+    "Activity by day as a GitHub-style calendar in one hue; a keyboard grid (arrows move by day and week) with a detail line.",
+  "uptime-strip":
+    "A service's recent days as bars, good and incident days in status colours, with hover detail and the uptime and incident days in words.",
   "rich-text":
     "Tiptap editor, toolbar and static renderer for stored documents.",
   shell:

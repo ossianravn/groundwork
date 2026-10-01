@@ -1,4 +1,5 @@
-import { ProjectProgressBar } from "@/components/project-progress-bar"
+import { RadialProgress } from "@/kit/ui/radial-progress"
+import { hueColor } from "@/kit/ui/chart-colors"
 import { documentText } from "@/kit/rich-text/document"
 import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
@@ -85,17 +86,16 @@ export function ProjectGrid({
                   )}
                 </CardHeader>
                 <CardContent className="project-grid-progress">
-                  <div>
-                    <span>
-                      {project.completedTasks} / {project.tasks} tasks
-                    </span>
-                    <span>{percent}%</span>
-                  </div>
-                  <ProjectProgressBar
-                    color={project.color}
+                  <RadialProgress
                     value={percent}
+                    color={hueColor(project.color)}
                     label={`${project.name}: ${percent}% complete`}
-                  />
+                  >
+                    {percent}%
+                  </RadialProgress>
+                  <span>
+                    {project.completedTasks} of {project.tasks} tasks done
+                  </span>
                 </CardContent>
                 <CardFooter className="project-grid-footer">
                   <span className="owner-cell">

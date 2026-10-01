@@ -32,6 +32,18 @@
   padding-inline-start: 0;
   border-inline-start: 0;
 }
+/* The figure with its 30-day trend beside it, aligned to the numerals. */
+.metric-figure {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--content-gap);
+}
+.metric-trend {
+  flex: 0 1 6.5rem;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+}
 .metric-value {
   margin: var(--control-gap) 0 0.25rem;
   font-size: calc(var(--text-metric) * 1.25);
