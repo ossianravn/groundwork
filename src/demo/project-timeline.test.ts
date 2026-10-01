@@ -14,7 +14,7 @@ it("spans each project from its first activity to its due date", () => {
   const rows = timelineRows(initialProjects, initialActivity, "2026-09-24")
   const brand = rows.find((row) => row.project.id === "brand")!
 
-  expect(brand).toMatchObject({ start: "2026-08-26", end: "2026-09-28" })
+  expect(brand).toMatchObject({ start: "2026-08-05", end: "2026-09-28" })
 
   const fresh = timelineRows(
     [{ ...initialProjects[0], id: "new", dueDate: "2026-10-30" }],
@@ -30,9 +30,9 @@ it("covers whole Monday-first weeks including the snapshot date", () => {
   const range = timelineRange(rows, "2026-09-24")
 
   expect(weekStart("2026-09-24")).toBe("2026-09-21")
-  expect(range.start).toBe("2026-08-24")
+  expect(range.start).toBe("2026-07-13")
   expect(range.days % 7).toBe(0)
-  expect(range.weeks[0]).toBe("2026-08-24")
+  expect(range.weeks[0]).toBe("2026-07-13")
   expect(daysBetween(range.start, "2026-10-16")).toBeLessThan(range.days)
 })
 

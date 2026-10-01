@@ -27,6 +27,11 @@ const groups = {
     "ui/chart-legend.tsx",
     "ui/chart-tooltip.tsx",
     "ui/use-chart-typography.ts",
+    "ui/chart-colors.ts",
+    "ui/chart-header.tsx",
+    "ui/chart-data-table.tsx",
+    "ui/chart-series.tsx",
+    "ui/chart-state.tsx",
   ],
   "code-block": ["ui/code-block.tsx", "ui/code-block-highlight.ts"],
   terminal: ["ui/terminal.tsx", "ui/ansi.ts"],
@@ -47,7 +52,8 @@ const descriptions = {
     "Code block with on-demand Shiki highlighting coloured by the --syntax-* tokens, a label and copy.",
   terminal:
     "Terminal output with ANSI colours mapped to theme roles, following new lines while it runs, and copy.",
-  chart: "Recharts wrapper with themed tooltip, legend and font-aware axes.",
+  chart:
+    "Recharts wrapper with themed tooltip, legend and font-aware axes, plus a result header, series toggles and picker, a Show data table, loading/empty/failed states and validated series colours.",
   "data-table":
     "TanStack Table toolbar pieces: faceted filters, view options and pagination.",
   "rich-text":

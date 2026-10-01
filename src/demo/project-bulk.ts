@@ -131,7 +131,7 @@ export function applyProjectBulkChange(
   const tasks = result.updated.reduce(
     (current, id) =>
       projects.find((project) => project.id === id)?.status === "completed"
-        ? completeProjectTasks(current, id)
+        ? completeProjectTasks(current, id, context.date)
         : current,
     records.tasks,
   )

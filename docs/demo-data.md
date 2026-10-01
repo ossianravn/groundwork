@@ -27,8 +27,8 @@ Keep a central demo-data directory, divided by domain rather than page. The exac
 | projects.json | Project records, colours, tags, descriptions and related links; table, grid, board, inspector and editor |
 | comments.json | Project comments with @{memberId} mentions; the project thread and the inbox's mention entries |
 | files.json | Sample project attachments; images point at files in public/images, PDFs have no contents |
-| tasks.json | Named project tasks in order; every project's task counts derive from them (`project-tasks.ts`) |
-| activity.json | Seeded project/workspace history; activity feed and historical analytics |
+| tasks.json | Named project tasks in order, each with `createdAt` and, once done, `completedAt` over about 90 days before the snapshot; every project's task counts derive from them (`project-tasks.ts`). Adding a task dates it; completing or reopening it sets or clears `completedAt`. `task-history.test.ts` keeps completions in agreement with Activity |
+| activity.json | Seeded project/workspace history from mid-July (events `h01`… precede the original `a01`…), one event per batch of completions; activity feed and historical analytics |
 | inbox.json | Requests and notifications linked to projects; inbox, drawer and unread counters |
 | assistant.json | The assistant's copy, starting questions, keyword topics and API example; scripted replies compose answers from the live records |
 | billing.json | Plans, sample subscriptions, usage and invoices; public pricing and billing settings |

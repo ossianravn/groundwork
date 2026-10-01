@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { Activity, Member, Project } from "@/demo/model"
+import type { Activity, Member, Project, ProjectTask } from "@/demo/model"
 import { reportWindow, type ReportPeriod } from "@/demo/report-period"
 import { completionBreakdown, type CompletionGroup } from "@/demo/analytics"
 import { CompletionChart } from "@/features/overview/completion-chart"
@@ -22,9 +22,11 @@ import {
 import { Button } from "@/kit/ui/button"
 import { ProjectBreakdown } from "./project-breakdown"
 import { ContributorBreakdown } from "./contributor-breakdown"
+import { hueColor, seriesColor } from "@/kit/ui/chart-colors"
 
 export function AnalyticsPage({
   activity,
+  tasks,
   projects,
   people,
   referenceDate,
@@ -37,6 +39,7 @@ export function AnalyticsPage({
   onProjectViewChange,
 }: {
   activity: Activity[]
+  tasks: ProjectTask[]
   projects: Project[]
   people: Member[]
   referenceDate: string
@@ -119,6 +122,11 @@ export function AnalyticsPage({
         <>
           <CompletionChart
             activity={data.activity}
+            tasks={
+              projectId
+                ? tasks.filter((task) => task.projectId === projectId)
+                : tasks
+            }
             range={range}
             snapshotDate={referenceDate}
             periodControl={filters}
@@ -129,7 +137,7 @@ export function AnalyticsPage({
               colorFor={(row) => {
                 const color = projects.find((item) => item.id === row.id)?.color
 
-                return color ? `var(--hue-${color})` : "var(--chart-1)"
+                return color ? hueColor(color) : seriesColor(0)
               }}
               renderName={renderProject}
               showData={projectView === "data"}

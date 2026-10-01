@@ -4,6 +4,7 @@ import { OverviewPage } from "./overview-page"
 import workspace from "@/demo/data/workspace.json"
 import { initialActivity as activity } from "@/demo/activity-fixtures"
 import { initialProjects as projectData } from "@/demo/project-fixtures"
+import { initialTasks as tasks } from "@/demo/project-tasks"
 import type { Project } from "@/demo/model"
 
 it("renders the reusable page without a router or demo state provider", () => {
@@ -16,6 +17,7 @@ it("renders the reusable page without a router or demo state provider", () => {
     <OverviewPage
       projects={projects}
       activity={activity}
+      tasks={tasks}
       members={workspace.members}
       referenceDate={workspace.referenceDate}
       period={{ kind: "preset", days: 14 }}
@@ -25,6 +27,6 @@ it("renders the reusable page without a router or demo state provider", () => {
     />,
   )
 
-  expect(markup).toContain("Task completion")
+  expect(markup).toContain("Tasks completed and added")
   expect(markup).toContain("Brand refresh")
 })

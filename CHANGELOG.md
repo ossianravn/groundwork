@@ -4,6 +4,9 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `chart`: adds `ChartHeader` and `ChartTotal`, `ChartSeriesPicker` (totals that choose the series) and `ChartSeriesToggle` (a legend that shows and hides series), `ChartDataTable` (Show data), `ChartState` (loading, empty, failed) and `chart-colors` (`seriesColor`, `hueColor`, `maxSeries`).
+- `base` (theme): `--chart-5` is now sky (was green) so adjacent series stay apart for colour-blind readers; new `--chart-violet` … `--chart-green` tokens follow the record hues in light mode and have their own darker steps in dark mode. Themes that override `--chart-5` are unaffected.
+- Demo: tasks carry `createdAt`/`completedAt` over about 90 days, with Activity extended to match; the completion chart chooses between tasks completed and added.
 - `ai`: `WorkflowRunSummary`, `WorkflowSteps` and `WorkflowStep` (with `WorkflowRunBadge`) for an agent's background run on a record: state, timing and progress, then each step by state with what it found, how long it took and, on the current step, the decision it needs.
 - Demo: workspace pages (`.page-content`) start at the content edge on wide screens instead of centring their 1600px frame; spare width goes to the right.
 - Demo: project pages gain an Agent tab that runs a status report or launch plan in the background, stops for review before posting or adding tasks, and recovers from a failed step (`?scenario=run-failure`).

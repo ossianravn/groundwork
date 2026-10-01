@@ -96,6 +96,7 @@ it("proposes only the launch steps the project lacks", () => {
         id: `covered-${index}`,
         projectId: "mobile",
         done: false,
+        createdAt: context.referenceDate,
       })),
     ],
   }

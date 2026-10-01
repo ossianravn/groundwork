@@ -159,5 +159,6 @@ it("stores task descriptions as rich text and drops empty ones", () => {
     title: "Press kit",
     done: false,
     assigneeId: null,
+    createdAt: "2026-09-24",
   })
 })

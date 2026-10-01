@@ -16,6 +16,7 @@ export function AnalyticsRoute() {
       <title>{`Analytics · ${demo.workspace.name}`}</title>
       <AnalyticsPage
         activity={demo.activity}
+        tasks={demo.tasks}
         projects={demo.projects}
         people={demo.workspace.people}
         referenceDate={demo.workspace.referenceDate}

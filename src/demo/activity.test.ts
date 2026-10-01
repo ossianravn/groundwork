@@ -28,7 +28,7 @@ it("combines actor, event type, dates and text while preserving newest-first his
       "2026-09-24",
     ),
   ).toHaveLength(events.length)
-  expect(initialActivity[0].id).toBe("a01")
+  expect(initialActivity[0].id).toBe("h01")
 })
 
 it("returns from a project to filtered Activity without reopening the event dialog", () => {
