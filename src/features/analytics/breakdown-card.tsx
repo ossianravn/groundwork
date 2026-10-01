@@ -26,6 +26,7 @@ import type { CompletionGroup } from "@/demo/analytics"
 export function BreakdownCard({
   title,
   nameLabel,
+  previous,
   rows,
   children,
   renderName,
@@ -34,6 +35,8 @@ export function BreakdownCard({
 }: {
   title: string
   nameLabel: string
+  /** Last period's counts by row id, with what to call that period. */
+  previous?: { label: string; counts: Record<string, number> }
   rows: CompletionGroup[]
   children: ReactNode
   renderName: (row: CompletionGroup) => ReactNode
@@ -71,6 +74,11 @@ export function BreakdownCard({
                   <TableHead scope="col" className="text-right">
                     Completed tasks
                   </TableHead>
+                  {previous && (
+                    <TableHead scope="col" className="text-right">
+                      {previous.label}
+                    </TableHead>
+                  )}
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -80,6 +88,11 @@ export function BreakdownCard({
                     <TableCell className="text-right tabular-nums">
                       {row.completed}
                     </TableCell>
+                    {previous && (
+                      <TableCell className="text-right tabular-nums">
+                        {previous.counts[row.id] ?? 0}
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </TableBody>
@@ -90,7 +103,15 @@ export function BreakdownCard({
         )}
       </CardContent>
       <CardFooter className="overview-card-footer">
-        <span className="text-xs text-muted-foreground">Completed tasks</span>
+        <span className="analytics-legend-row text-xs text-muted-foreground">
+          Completed tasks
+          {previous && (
+            <span className="analytics-previous-bar">
+              <span aria-hidden="true" />
+              {previous.label}
+            </span>
+          )}
+        </span>
         <Button
           variant="ghost"
           size="sm"

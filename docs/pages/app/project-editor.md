@@ -50,6 +50,10 @@ Comments follow tasks on the project page (TABL-13), oldest first. The composer 
 - Posting records a Comment event ("commented on the project") in Activity.
 - `comments.json` is the single source for the inbox's "Mentioned you in a comment" entries: a teammate's comment that mentions the current user becomes an inbox entry, unread when it is from the last day. Mentioning someone else sends nothing in this single-user demo.
 
+## Burn-up
+
+The Activity tab opens with the project's burn-up (DVIZ-07): scope as a step line, completed tasks rising toward it, and a dashed projection at the last two weeks' pace to the due date, marked Due. Its heading reads, for example, "At this pace it finishes 1 Nov, after its 8 Oct due date"; Show data gives the daily figures. Completed projects show their history without a projection.
+
 ## Agent
 
 The project's **Agent** tab (AI-27) hands routine work to an agent that runs in the background. Before the first run it lists what the agent can do; afterwards New run starts another, and a run picker shows earlier ones. One run at a time per project.
