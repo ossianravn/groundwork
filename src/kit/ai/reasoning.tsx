@@ -71,7 +71,7 @@ function Reasoning({
     >
       <CollapsibleTrigger className="group/reasoning -ms-1 inline-flex min-h-(--control-height-sm) items-center gap-1.5 rounded-md px-1 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50">
         <Brain className="size-4" aria-hidden="true" />
-        {streaming ? <Shimmer>{label}</Shimmer> : label}
+        {streaming ? <Shimmer variant="rainbow">{label}</Shimmer> : label}
         <ChevronDown
           className="size-4 transition-transform group-data-panel-open/reasoning:rotate-180"
           aria-hidden="true"
