@@ -97,6 +97,15 @@ export function riskAnswer(
 
   const reasoning = `The question is about schedule risk, so I need each open project's due date and how much of its work is still open. I'll search the active projects, then compare each due date with today, ${formatDate(context.referenceDate)}, and the share of tasks still open.`
 
+  const todo = {
+    title: "Find the projects at risk",
+    tasks: [
+      { label: "Understand the question", after: "reasoning" as const },
+      { label: "Search the open projects", after: "tool" as const },
+      { label: "Compare due dates with open work", after: "text" as const },
+    ],
+  }
+
   const input = {
     status: ["in-progress", "in-review"],
     fields: ["dueDate", "owner", "tasks"],
@@ -104,6 +113,7 @@ export function riskAnswer(
 
   if (toolFails)
     return {
+      todo,
       reasoning,
       tool: {
         name: "searchProjects",
@@ -134,6 +144,7 @@ export function riskAnswer(
   }))
 
   return {
+    todo,
     reasoning,
     tool: { name: "searchProjects", input, output },
     text: answerText(context),

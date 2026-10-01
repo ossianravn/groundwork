@@ -3,8 +3,10 @@ import type {
   AssistantChunk,
   AssistantMetadata,
   AssistantReply,
+  ReplyStage,
   SourceMetadata,
 } from "./assistant-types"
+import { todoChunk } from "./todo-chunks"
 
 export interface Pace {
   /** Delay before the first chunk, while the reply is "submitted". */
@@ -203,14 +205,30 @@ export function replyChunks(
 ): TimedChunk[] {
   const text = textChunks(reply.text)
   const sent = fail ? text.slice(0, Math.ceil(text.length / 3)) : text
+  const { todo } = reply
+  const done: ReplyStage[] = []
+
+  // With a working plan, each stage that streams is followed by the plan
+  // with that stage's tasks done and the next in progress.
+  const stage = (name: ReplyStage, chunks: TimedChunk[]) => {
+    if (!todo || !chunks.length) return chunks
+
+    done.push(name)
+
+    return [...chunks, at(0)(todoChunk(todo, [...done]))]
+  }
 
   const opening = [
     at(pace.firstToken)({ type: "start" }),
     ...(reply.resolution ? resolutionChunks(reply.resolution, pace) : []),
     at(0)({ type: "start-step" }),
-    ...(reply.reasoning ? reasoningChunks(reply.reasoning, pace) : []),
-    ...(reply.steps ? stepChunks(reply.steps, pace) : []),
-    ...(reply.tool ? toolChunks(reply.tool, pace) : []),
+    ...(todo ? [at(0)(todoChunk(todo, []))] : []),
+    ...stage(
+      "reasoning",
+      reply.reasoning ? reasoningChunks(reply.reasoning, pace) : [],
+    ),
+    ...stage("steps", reply.steps ? stepChunks(reply.steps, pace) : []),
+    ...stage("tool", reply.tool ? toolChunks(reply.tool, pace) : []),
     at(0)({ type: "text-start", id: "text" }),
     ...sent.map((delta) =>
       at(pace.chunk)({ type: "text-delta", id: "text", delta }),
@@ -218,14 +236,18 @@ export function replyChunks(
   ]
 
   if (fail)
-    return [...opening, at(0)({ type: "error", errorText: script.failure })]
+    return [
+      ...opening,
+      ...(todo ? [at(0)(todoChunk(todo, done, true))] : []),
+      at(0)({ type: "error", errorText: script.failure }),
+    ]
 
   return [
     ...opening,
-    at(0)({ type: "text-end", id: "text" }),
+    ...stage("text", [at(0)({ type: "text-end", id: "text" })]),
     ...(reply.question ? questionChunks(reply.question, turn) : []),
-    ...planChunks(reply, turn, pace),
-    ...artifactChunks(reply, turn, pace),
+    ...stage("plan", planChunks(reply, turn, pace)),
+    ...stage("artifact", artifactChunks(reply, turn, pace)),
     ...(reply.sources ?? []).map((source) =>
       at(0)({
         type: "source-url",

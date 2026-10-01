@@ -79,6 +79,13 @@ export function statusDraft(
   context: AssistantContext,
 ): Answer {
   return {
+    todo: {
+      title: `Draft a status update for ${project.name}`,
+      tasks: [
+        { label: "Read the project's week", after: "text" },
+        { label: "Write the update", after: "artifact" },
+      ],
+    },
     text: script.status.intro.replace("{project}", project.name),
     artifact: {
       title: `Status update: ${project.name}`,

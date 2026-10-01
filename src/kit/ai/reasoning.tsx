@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Brain, ChevronDown } from "lucide-react"
+import { Brain, ChevronDown, PanelRight } from "lucide-react"
 import { cn } from "cn"
 import {
   Collapsible,
@@ -41,14 +41,22 @@ function useDuration(streaming: boolean) {
 /**
  * A model's reasoning: open while it streams, then folded away behind
  * "Thought for 3 seconds". Opening or closing it by hand keeps that choice.
- * It never takes focus, so reading the conversation is not interrupted.
+ * With `onOpenDetails`, the finished label opens the host's details view
+ * (such as a side panel) instead of unfolding in place. It never takes
+ * focus, so reading the conversation is not interrupted.
  */
 function Reasoning({
   streaming = false,
+  onOpenDetails,
+  detailsLabel = "Open details",
   children,
   className,
 }: {
   streaming?: boolean
+  /** Shows the finished reasoning elsewhere, such as in a side panel. */
+  onOpenDetails?: () => void
+  /** Names where `onOpenDetails` leads, for assistive technology. */
+  detailsLabel?: string
   /** Markdown text of the reasoning part. */
   children: string
   className?: string
@@ -61,6 +69,22 @@ function Reasoning({
     : seconds
       ? `Thought for ${seconds} second${seconds === 1 ? "" : "s"}`
       : "Reasoning"
+
+  if (onOpenDetails && !streaming)
+    return (
+      <div data-slot="reasoning" className={cn("min-w-0", className)}>
+        <button
+          type="button"
+          className="-ms-1 inline-flex min-h-(--control-height-sm) items-center gap-1.5 rounded-md px-1 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+          onClick={onOpenDetails}
+        >
+          <Brain className="size-4" aria-hidden="true" />
+          {label}
+          <span className="sr-only">{`, ${detailsLabel}`}</span>
+          <PanelRight className="size-4" aria-hidden="true" />
+        </button>
+      </div>
+    )
 
   return (
     <Collapsible

@@ -316,7 +316,8 @@
             "The projects list shows all your projects on one page by default, its filters and column headers stay quiet until you use them, and on phones its view controls share the filter row.",
             "Hide the assistant's history to give the conversation the whole width; History in the top bar brings it back.",
             "The navigation button in the top bar now lines up with the page below it.",
-            "While the assistant works on a reply or reasons through a question, its Thinking… label shimmers in colour, and the shimmer on plans moves faster so you can see it."
+            "While the assistant works on a reply or reasons through a question, its Thinking… label shimmers in colour, and the shimmer on plans moves faster so you can see it.",
+            "The assistant shows its plan for each request above the message box, ticking off steps as it works. A Conversation panel lists what it did for each question, the drafts and tasks it produced, and the pages it cited; select Thought for… on a reply to open it there."
           ]
         },
         {

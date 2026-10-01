@@ -121,6 +121,7 @@ export function AssistantTurn({
   branch,
   posted,
   onPost,
+  onOpenWork,
 }: {
   message: AssistantMessage
   /** Still streaming, or cut off by an error that Try again will replace. */
@@ -138,6 +139,8 @@ export function AssistantTurn({
   /** Drafts already posted to their project, by artifact id. */
   posted: string[]
   onPost: (artifactId: string, projectId: string, markdown: string) => void
+  /** Opens this reply's work in the conversation panel. */
+  onOpenWork: () => void
 }) {
   const text = messageText(message)
 
@@ -177,6 +180,8 @@ export function AssistantTurn({
                 <Reasoning
                   key={index}
                   streaming={incomplete && part.state === "streaming"}
+                  onOpenDetails={onOpenWork}
+                  detailsLabel="open in the conversation panel"
                 >
                   {part.text}
                 </Reasoning>

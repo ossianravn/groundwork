@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { Check, Copy, Download, Send } from "lucide-react"
 import { useCopy } from "@/kit/lib/use-copy"
+import { downloadMarkdown } from "./download-markdown"
 import { Button } from "@/kit/ui/button"
 import {
   Artifact,
@@ -18,19 +19,6 @@ type ArtifactPart = Extract<
   AssistantMessage["parts"][number],
   { type: "data-artifact" }
 >
-
-function download(name: string, content: string) {
-  const url = URL.createObjectURL(
-    new Blob([content], { type: "text/markdown" }),
-  )
-
-  const link = document.createElement("a")
-
-  link.href = url
-  link.download = name
-  link.click()
-  URL.revokeObjectURL(url)
-}
 
 /**
  * A drafted status update. Copy and Download keep it as markdown; Post adds
@@ -76,7 +64,9 @@ export function AssistantArtifact({
             </MessageAction>
             <MessageAction
               label="Download as markdown"
-              onClick={() => download(`status-update-${projectId}.md`, content)}
+              onClick={() =>
+                downloadMarkdown(`status-update-${projectId}.md`, content)
+              }
             >
               <Download aria-hidden="true" />
             </MessageAction>

@@ -33,6 +33,14 @@ export function weekAnswer(
     .filter((entry) => entry.updates)
     .sort((a, b) => b.tasks - a.tasks || b.updates - a.updates)
 
+  const todo = {
+    title: "Summarise this week",
+    tasks: [
+      { label: "Read this week's activity", after: "steps" as const },
+      { label: "Write the summary", after: "text" as const },
+    ],
+  }
+
   const steps = [
     {
       id: "read",
@@ -62,6 +70,7 @@ export function weekAnswer(
 
   if (!events.length)
     return {
+      todo,
       steps,
       sources,
       text: `Nothing was recorded between ${range}. Activity appears here as the team completes tasks and updates projects.`,
@@ -73,6 +82,7 @@ export function weekAnswer(
   )
 
   return {
+    todo,
     steps,
     sources,
     text: [

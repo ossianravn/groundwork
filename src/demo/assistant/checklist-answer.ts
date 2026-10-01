@@ -46,6 +46,14 @@ export function checklistPlan(
   }
 
   return {
+    todo: {
+      title: `Plan a launch checklist for ${project.name}`,
+      tasks: [
+        { label: "Read the project's open tasks", after: "text" },
+        { label: "Draft the checklist", after: "plan" },
+        { label: "Ask before adding the tasks", after: "plan" },
+      ],
+    },
     text: `Here is a launch checklist for **${project.name}**. I'll add the tasks once you approve.`,
     plan: {
       title: `Launch checklist for ${project.name}`,

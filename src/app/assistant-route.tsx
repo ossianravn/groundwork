@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useSearch } from "@tanstack/react-router"
+import { PanelRight } from "lucide-react"
 import { useToast } from "@/kit/ui/use-toast"
+import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { models } from "@/demo/assistant/assistant-model"
 import { conversationTitle } from "@/demo/assistant/use-assistant"
 import script from "@/demo/data/assistant.json"
 import { AssistantChat } from "@/features/assistant/assistant-chat"
 import { AssistantHistory } from "@/features/assistant/assistant-history"
+import {
+  AssistantInspector,
+  type InspectorTab,
+} from "@/features/assistant/assistant-inspector"
 import { plainText } from "@/features/assistant/assistant-text"
 import { contextUsage, messageParts, modelIds } from "./assistant-parts"
 import { ReplyLink } from "./assistant-reply-link"
@@ -35,6 +41,21 @@ export function AssistantRoute() {
   const { messages, setMessages, status, request, conversation } = session
 
   useRouteFocus()
+
+  // The conversation panel: opened by its top-bar action, or at a reply's
+  // work from that reply's reasoning.
+  const [inspector, setInspector] = useState<{
+    open: boolean
+    tab: InspectorTab
+    focus?: { messageId: string; key: number }
+  }>({ open: false, tab: "work" })
+
+  const closeInspector = () => {
+    setInspector((state) => ({ ...state, open: false }))
+    requestAnimationFrame(() =>
+      document.getElementById("assistant-panel-toggle")?.focus(),
+    )
+  }
 
   const last = messages.at(-1)
   const question = messages.at(-2)
@@ -111,6 +132,22 @@ export function AssistantRoute() {
   return (
     <>
       <title>{`Assistant · ${demo.workspace.name}`}</title>
+      {messages.length > 0 && (
+        <PageActions>
+          <PageAction
+            id="assistant-panel-toggle"
+            variant="outline"
+            icon={PanelRight}
+            label="Conversation"
+            aria-expanded={inspector.open}
+            onClick={() =>
+              inspector.open
+                ? closeInspector()
+                : setInspector((state) => ({ ...state, open: true }))
+            }
+          />
+        </PageActions>
+      )}
       <div className="assistant-layout">
         <AssistantHistory
           items={assistant.history().map((item) => ({
@@ -191,6 +228,24 @@ export function AssistantRoute() {
             })
           }
           renderLink={(props) => <ReplyLink {...props} />}
+          onOpenWork={(messageId) =>
+            setInspector((state) => ({
+              open: true,
+              tab: "work",
+              focus: { messageId, key: (state.focus?.key ?? 0) + 1 },
+            }))
+          }
+        />
+        <AssistantInspector
+          open={inspector.open && messages.length > 0}
+          messages={messages}
+          stopped={conversation.stopped}
+          posted={conversation.posted}
+          tab={inspector.tab}
+          focus={inspector.focus}
+          renderLink={(props) => <ReplyLink {...props} />}
+          onTabChange={(tab) => setInspector((state) => ({ ...state, tab }))}
+          onClose={closeInspector}
         />
       </div>
     </>

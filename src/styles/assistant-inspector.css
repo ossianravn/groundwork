@@ -1,0 +1,206 @@
+/* The conversation panel (AI-26): Work, Outputs and Sources beside the chat
+   from 84rem, a sheet below that. Items are open rows divided by hairlines;
+   Work reads as a timeline under each question. */
+.assistant-inspector {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 22rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--section-gap) 0;
+  border-inline-start: 1px solid var(--border);
+  scrollbar-width: thin;
+}
+.assistant-inspector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  padding-inline: var(--item-padding);
+  margin-bottom: var(--control-gap);
+}
+.assistant-inspector-header h2 {
+  padding-inline-start: var(--item-padding);
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.assistant-inspector-tabs {
+  gap: var(--content-gap);
+}
+.assistant-inspector-tabs > [data-slot="tabs-list"] {
+  margin-inline: calc(2 * var(--item-padding) - 0.375rem);
+}
+.assistant-inspector-count {
+  color: var(--muted-foreground);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.assistant-inspector-panel {
+  padding-inline: calc(2 * var(--item-padding));
+}
+.assistant-inspector-empty {
+  padding-block: var(--item-padding);
+  color: var(--muted-foreground);
+  font-size: var(--text-body);
+}
+.assistant-inspector-sheet {
+  gap: 0;
+}
+.assistant-inspector-sheet .assistant-inspector-tabs {
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: var(--section-gap);
+}
+/* Work: each question, then a timeline of what was done for it. */
+.assistant-work {
+  display: grid;
+  gap: var(--section-gap);
+}
+.assistant-work > section {
+  display: grid;
+  gap: var(--control-gap);
+}
+.assistant-work-question {
+  font-size: var(--text-body);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.assistant-work-items {
+  display: grid;
+}
+.assistant-work-items > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  align-items: start;
+  column-gap: 0.625rem;
+  padding-bottom: var(--item-padding);
+}
+.assistant-work-items > li > svg {
+  margin-top: 0.125rem;
+}
+/* The line joining one item's mark to the next. */
+.assistant-work-items > li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 1.375rem;
+  bottom: 0.125rem;
+  left: calc(0.5rem - 0.5px);
+  width: 1px;
+  background: var(--border);
+}
+.assistant-work-body {
+  display: grid;
+  justify-items: start;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.assistant-work-label {
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body);
+  font-weight: 500;
+  text-align: start;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.assistant-work-label:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.assistant-work-label:focus-visible,
+.assistant-work-more:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.assistant-work-detail,
+.assistant-work-reasoning {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  overflow-wrap: anywhere;
+}
+.assistant-work-reasoning {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.assistant-work-reasoning[data-open] {
+  display: block;
+}
+.assistant-work-more {
+  border-radius: var(--radius-sm);
+  font-size: var(--text-meta);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+/* Outputs and sources: rows divided by hairlines. */
+.assistant-outputs > li,
+.assistant-sources-list > li {
+  padding-block: var(--item-padding);
+}
+.assistant-outputs > li + li,
+.assistant-sources-list > li + li {
+  border-top: 1px solid var(--border);
+}
+.assistant-output {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0.625rem;
+}
+.assistant-output-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.125rem;
+  color: var(--muted-foreground);
+}
+.assistant-output-body {
+  display: grid;
+  gap: 0.125rem;
+  min-width: 0;
+}
+.assistant-output-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+.assistant-output-detail,
+.assistant-sources-list p {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  overflow-wrap: anywhere;
+}
+.assistant-output-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  margin-inline-start: -0.625rem;
+}
+.assistant-output-link,
+.assistant-sources-list a {
+  font-size: var(--text-body);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, currentColor 35%, transparent);
+  text-underline-offset: 0.2em;
+}
+.assistant-output-link {
+  padding-inline: 0.625rem;
+}
+/* A reply shown from the panel is marked for a moment in the transcript. */
+[data-message-id][data-highlight] {
+  border-radius: var(--radius-lg);
+  animation: assistant-highlight 1.6s var(--ease-standard);
+}
+@keyframes assistant-highlight {
+  from {
+    background: color-mix(in oklch, var(--brand) 12%, transparent);
+  }
+}
