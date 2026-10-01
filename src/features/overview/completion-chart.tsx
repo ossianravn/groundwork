@@ -6,29 +6,19 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/kit/ui/chart"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/kit/ui/card"
+import { ChartDataTable } from "@/kit/ui/chart-data-table"
+import { ChartHeader } from "@/kit/ui/chart-header"
+import { ChartSeriesPicker } from "@/kit/ui/chart-series"
+import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
 import { Button } from "@/kit/ui/button"
 import { useChartTypography } from "@/kit/ui/use-chart-typography"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/kit/ui/table"
-import { completionSeries } from "@/demo/selectors"
-import { formatDate, type Activity } from "@/demo/model"
+import { taskSeries } from "@/demo/selectors"
+import { formatDate, type Activity, type ProjectTask } from "@/demo/model"
 import type { ReportWindow } from "@/demo/report-period"
 
 interface CompletionChartProps {
   activity: Activity[]
+  tasks: ProjectTask[]
   /** The dates shown; the host's period control owns how they are chosen. */
   range: ReportWindow
   /** Drawn at full strength when the range includes it. */
@@ -36,20 +26,36 @@ interface CompletionChartProps {
   periodControl: ReactNode
 }
 
+const series = {
+  completed: { label: "completed", heading: "Tasks completed" },
+  added: { label: "added", heading: "Tasks added" },
+}
+
+type SeriesKey = keyof typeof series
+
+const isSeries = (key: string): key is SeriesKey => Object.hasOwn(series, key)
+
+/**
+ * Tasks completed or added each day. The totals in the heading choose the
+ * series, as in shadcn's interactive bar chart; one series shows at a time,
+ * so the heading names it and no legend is needed.
+ */
 export function CompletionChart({
   activity,
+  tasks,
   range,
   snapshotDate,
   periodControl,
 }: CompletionChartProps) {
   const [showData, setShowData] = useState(false)
+  const [shown, setShown] = useState<SeriesKey>("completed")
 
-  const series = useMemo(
-    () => completionSeries(activity, range),
-    [activity, range],
+  const days = useMemo(
+    () => taskSeries(activity, tasks, range),
+    [activity, tasks, range],
   )
 
-  const dates = useMemo(() => series.map((day) => day.date), [series])
+  const dates = useMemo(() => days.map((day) => day.date), [days])
   const labels = useMemo(() => dates.map((date) => formatDate(date)), [dates])
 
   const {
@@ -60,61 +66,79 @@ export function CompletionChart({
     labelWidth,
   } = useChartTypography(labels)
 
-  const total = series.reduce((sum, day) => sum + day.completed, 0)
-  const showsSnapshot = series.some((day) => day.date === snapshotDate)
+  const totals = {
+    completed: days.reduce((sum, day) => sum + day.completed, 0),
+    added: days.reduce((sum, day) => sum + day.added, 0),
+  }
+
+  const showsSnapshot = dates.includes(snapshotDate)
+  const period = `from ${formatDate(range.start)} to ${formatDate(range.end, { year: "numeric" })}`
 
   return (
     <Card className="completion-card">
-      <CardHeader className="chart-header">
-        <CardTitle>
-          <h2 className="chart-heading">
-            <span className="chart-total">{total}</span>{" "}
-            <span>tasks completed</span>
-          </h2>
-        </CardTitle>
-        <div className="chart-period">{periodControl}</div>
+      <CardHeader>
+        <ChartHeader
+          title={
+            <>
+              <h2 className="sr-only">Tasks completed and added</h2>
+              <ChartSeriesPicker
+                label="Show tasks"
+                value={shown}
+                onValueChange={(key) => {
+                  if (isSeries(key)) setShown(key)
+                }}
+                series={(["completed", "added"] as const).map((key) => ({
+                  key,
+                  label: series[key].label,
+                  color: "var(--brand)",
+                  total: totals[key],
+                }))}
+              />
+            </>
+          }
+        >
+          {periodControl}
+        </ChartHeader>
       </CardHeader>
       <CardContent ref={chartBody} className="chart-body text-xs">
         {showData ? (
-          <div
+          <ChartDataTable
+            label="Daily task data"
             className="chart-data-table"
-            tabIndex={0}
-            role="region"
-            aria-label="Daily task completion data"
-          >
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead scope="col">Date</TableHead>
-                  <TableHead scope="col" className="text-right">
-                    Completed tasks
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {series.map((day) => (
-                  <TableRow key={day.date}>
-                    <TableCell>{formatDate(day.date)}</TableCell>
-                    <TableCell className="text-right tabular-nums">
-                      {day.completed}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
+            rows={days}
+            rowKey={(day) => day.date}
+            columns={[
+              {
+                key: "date",
+                header: "Date",
+                cell: (day) => formatDate(day.date),
+              },
+              {
+                key: "completed",
+                header: "Completed",
+                numeric: true,
+                cell: (day) => day.completed,
+              },
+              {
+                key: "added",
+                header: "Added",
+                numeric: true,
+                cell: (day) => day.added,
+              },
+            ]}
+          />
         ) : (
           <ChartContainer
             role="figure"
             className="completion-chart"
             config={{
-              completed: { label: "Completed tasks", color: "var(--brand)" },
+              [shown]: { label: series[shown].heading, color: "var(--brand)" },
             }}
-            aria-label={`${total} tasks completed from ${formatDate(range.start)} to ${formatDate(range.end, { year: "numeric" })}. Use Show data for daily values.`}
+            aria-label={`${totals[shown]} tasks ${series[shown].label} ${period}. Use Show data for daily values.`}
           >
             <BarChart
               accessibilityLayer
-              data={series}
+              data={days}
               barCategoryGap="28%"
               margin={{ left: 0, right: 8, top: 8, bottom: 0 }}
             >
@@ -143,15 +167,15 @@ export function CompletionChart({
                 }
               />
               <Bar
-                dataKey="completed"
-                fill="var(--color-completed)"
+                dataKey={shown}
+                fill={`var(--color-${shown})`}
                 radius={[3, 3, 0, 0]}
                 maxBarSize={24}
                 isAnimationActive={false}
               >
                 {/* Earlier days recede so the snapshot day reads first; a
                     range without it keeps every day at full strength. */}
-                {series.map((day) => (
+                {days.map((day) => (
                   <Cell
                     key={day.date}
                     fillOpacity={
@@ -167,7 +191,7 @@ export function CompletionChart({
       <CardFooter className="overview-card-footer">
         <span className="chart-legend">
           <span />
-          Completed tasks
+          {series[shown].heading}
         </span>
         <Button
           variant="ghost"

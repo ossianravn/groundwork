@@ -8,6 +8,7 @@ import {
 import type { CompletionGroup } from "@/demo/analytics"
 import type { Member } from "@/demo/model"
 import { BreakdownCard } from "./breakdown-card"
+import { maxSeries, seriesColor } from "@/kit/ui/chart-colors"
 
 export function ContributorBreakdown({
   rows,
@@ -18,16 +19,16 @@ export function ContributorBreakdown({
 }) {
   const [showData, setShowData] = useState(false)
 
+  const memberColor = (index: number) =>
+    index >= 0 && index < maxSeries
+      ? seriesColor(index)
+      : "var(--muted-foreground)"
+
   const data = rows.map((row) => ({
     ...row,
-    fill: `var(--chart-${
-      (Math.max(
-        0,
-        people.findIndex((person) => person.id === row.id),
-      ) %
-        5) +
-      1
-    })`,
+    // Colour follows the person's place in the workspace, never their rank;
+    // anyone past the palette (a former member) reads as Other.
+    fill: memberColor(people.findIndex((person) => person.id === row.id)),
   }))
 
   const total = rows.reduce((sum, row) => sum + row.completed, 0)

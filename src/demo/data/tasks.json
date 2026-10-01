@@ -5,6 +5,8 @@
     "title": "Stakeholder interviews",
     "done": true,
     "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-08-05",
     "description": "Twelve 30-minute interviews across sales, support and leadership. Notes are in the shared research folder."
   },
   {
@@ -12,14 +14,18 @@
     "projectId": "brand",
     "title": "Audit current brand touchpoints",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-08",
+    "completedAt": "2026-08-05"
   },
   {
     "id": "brand-t3",
     "projectId": "brand",
     "title": "Competitor brand review",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-08-05"
   },
   {
     "id": "brand-t4",
@@ -27,6 +33,8 @@
     "title": "Discovery summary",
     "done": true,
     "assigneeId": "mia",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-08-26",
     "description": "One page: what people said the brand should feel like, where it falls short today, and the three themes we carried into the concepts."
   },
   {
@@ -34,35 +42,45 @@
     "projectId": "brand",
     "title": "Moodboard: calm and precise",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-08-26"
   },
   {
     "id": "brand-t6",
     "projectId": "brand",
     "title": "Moodboard: bold and warm",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-08",
+    "completedAt": "2026-09-04"
   },
   {
     "id": "brand-t7",
     "projectId": "brand",
     "title": "Concept A sketches",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-08",
+    "completedAt": "2026-09-04"
   },
   {
     "id": "brand-t8",
     "projectId": "brand",
     "title": "Concept B sketches",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-09-04"
   },
   {
     "id": "brand-t9",
     "projectId": "brand",
     "title": "Concept review with leadership",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-09-04"
   },
   {
     "id": "brand-t10",
@@ -70,6 +88,8 @@
     "title": "Choose logo direction",
     "done": true,
     "assigneeId": "ava",
+    "createdAt": "2026-07-09",
+    "completedAt": "2026-09-04",
     "description": "Leadership chose Concept B for its warmth. Keep the geometric construction from A for the logomark."
   },
   {
@@ -77,91 +97,117 @@
     "projectId": "brand",
     "title": "Refine logomark",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-09-11"
   },
   {
     "id": "brand-t12",
     "projectId": "brand",
     "title": "Wordmark spacing",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-09",
+    "completedAt": "2026-09-11"
   },
   {
     "id": "brand-t13",
     "projectId": "brand",
     "title": "Primary palette",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-10",
+    "completedAt": "2026-09-11"
   },
   {
     "id": "brand-t14",
     "projectId": "brand",
     "title": "Type pairing shortlist",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-08",
+    "completedAt": "2026-09-15"
   },
   {
     "id": "brand-t15",
     "projectId": "brand",
     "title": "Heading scale",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-11",
+    "completedAt": "2026-09-15"
   },
   {
     "id": "brand-t16",
     "projectId": "brand",
     "title": "Body text sizes",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-06",
+    "completedAt": "2026-09-15"
   },
   {
     "id": "brand-t17",
     "projectId": "brand",
     "title": "Licence display typeface",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-14",
+    "completedAt": "2026-09-15"
   },
   {
     "id": "brand-t18",
     "projectId": "brand",
     "title": "Guidelines: logo usage",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-22",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t19",
     "projectId": "brand",
     "title": "Guidelines: colour",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-11",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t20",
     "projectId": "brand",
     "title": "Guidelines: typography",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-06",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t21",
     "projectId": "brand",
     "title": "Guidelines: imagery",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-17",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t22",
     "projectId": "brand",
     "title": "Guidelines: voice and tone",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-07",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t23",
     "projectId": "brand",
     "title": "Guidelines: layout grid",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-29",
+    "completedAt": "2026-09-24"
   },
   {
     "id": "brand-t24",
@@ -169,6 +215,8 @@
     "title": "Export guideline PDF",
     "done": true,
     "assigneeId": "mia",
+    "createdAt": "2026-09-10",
+    "completedAt": "2026-09-24",
     "description": "Export at print and screen resolution. The screen version links to the colour and type pages."
   },
   {
@@ -177,6 +225,7 @@
     "title": "Email signature template",
     "done": false,
     "assigneeId": "ava",
+    "createdAt": "2026-08-15",
     "description": "One HTML signature that works in Gmail and Outlook: name, role, pronouns (optional), phone and the new logo at 2x.\nTest in dark mode before sending it round."
   },
   {
@@ -185,6 +234,7 @@
     "title": "Social profile images",
     "done": false,
     "assigneeId": "mia",
+    "createdAt": "2026-08-09",
     "description": "Profile and cover images for LinkedIn, Instagram and YouTube, using the calm palette. Check each platform's safe area for the crop."
   },
   {
@@ -193,6 +243,7 @@
     "title": "Slide deck template",
     "done": false,
     "assigneeId": "ava",
+    "createdAt": "2026-08-12",
     "description": "A 16:9 master with title, section, two-column, quote and closing layouts. Fonts must fall back cleanly on machines without the display face."
   },
   {
@@ -201,6 +252,7 @@
     "title": "Business card artwork",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-07-23",
     "description": "Double-sided, 85 × 55 mm. Front: logomark only. Back: name, role, email and phone in the text face."
   },
   {
@@ -209,6 +261,7 @@
     "title": "Website header and favicon",
     "done": false,
     "assigneeId": "ava",
+    "createdAt": "2026-08-05",
     "description": "Update the site header with the new wordmark, and export the favicon at 16, 32 and 180 px plus an SVG."
   },
   {
@@ -217,6 +270,7 @@
     "title": "Office signage brief",
     "done": false,
     "assigneeId": "mia",
+    "createdAt": "2026-08-06",
     "description": "Reception sign and meeting room plates. Mia is getting quotes from two print shops."
   },
   {
@@ -225,6 +279,7 @@
     "title": "Brand launch announcement",
     "done": false,
     "assigneeId": "ava",
+    "createdAt": "2026-08-07",
     "description": "A short post for the blog and LinkedIn: why we changed, what stays the same, and where to find the guidelines."
   },
   {
@@ -233,6 +288,7 @@
     "title": "Hand over source files",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-07-18",
     "description": "Hand over the logo, palette and type files with the licence, in one folder with a README explaining which file to use where."
   },
   {
@@ -240,63 +296,81 @@
     "projectId": "website",
     "title": "Analytics review",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-07-29"
   },
   {
     "id": "website-t2",
     "projectId": "website",
     "title": "User interviews",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-07-29"
   },
   {
     "id": "website-t3",
     "projectId": "website",
     "title": "Survey results summary",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-07-29"
   },
   {
     "id": "website-t4",
     "projectId": "website",
     "title": "Content inventory",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-14",
+    "completedAt": "2026-07-29"
   },
   {
     "id": "website-t5",
     "projectId": "website",
     "title": "Draft sitemap",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-08-18"
   },
   {
     "id": "website-t6",
     "projectId": "website",
     "title": "Card sort study",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-08-28"
   },
   {
     "id": "website-t7",
     "projectId": "website",
     "title": "Final sitemap",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-14",
+    "completedAt": "2026-08-28"
   },
   {
     "id": "website-t8",
     "projectId": "website",
     "title": "Navigation labels",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-08-28"
   },
   {
     "id": "website-t9",
     "projectId": "website",
     "title": "Mega menu decision",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-06"
   },
   {
     "id": "website-t10",
@@ -304,6 +378,8 @@
     "title": "Homepage copy",
     "done": true,
     "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-06",
     "description": "Lead with the outcome, not the feature list. Approved by Leo on 12 Sept."
   },
   {
@@ -311,77 +387,99 @@
     "projectId": "website",
     "title": "About page copy",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-06"
   },
   {
     "id": "website-t12",
     "projectId": "website",
     "title": "Pricing page copy",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-09-13"
   },
   {
     "id": "website-t13",
     "projectId": "website",
     "title": "Legal page review",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-13"
   },
   {
     "id": "website-t14",
     "projectId": "website",
     "title": "Homepage layout",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-09-17"
   },
   {
     "id": "website-t15",
     "projectId": "website",
     "title": "Product page layout",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-09-17"
   },
   {
     "id": "website-t16",
     "projectId": "website",
     "title": "Pricing page layout",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-09-17"
   },
   {
     "id": "website-t17",
     "projectId": "website",
     "title": "Blog index layout",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-09-22"
   },
   {
     "id": "website-t18",
     "projectId": "website",
     "title": "Article layout",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-22"
   },
   {
     "id": "website-t19",
     "projectId": "website",
     "title": "Contact page layout",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-14",
+    "completedAt": "2026-09-22"
   },
   {
     "id": "website-t20",
     "projectId": "website",
     "title": "Mobile navigation",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-17",
+    "completedAt": "2026-09-22"
   },
   {
     "id": "website-t21",
     "projectId": "website",
     "title": "Footer layout",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-09-22"
   },
   {
     "id": "website-t22",
@@ -389,6 +487,7 @@
     "title": "Careers page layout",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-07-15",
     "description": "Open roles pulled from the CMS, a short culture section and a benefits grid. No stock photos."
   },
   {
@@ -397,6 +496,7 @@
     "title": "Customer stories layout",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-07-25",
     "description": "One template for all stories: the customer's problem, what changed, and one number that shows it."
   },
   {
@@ -405,6 +505,7 @@
     "title": "404 page",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-09-21",
     "description": "Keep it friendly: say the page moved or never existed, offer search and the three most-visited pages."
   },
   {
@@ -413,6 +514,7 @@
     "title": "Search results page",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-09-04",
     "description": "Group results by type (pages, articles, stories) with counts. Show the query in the heading."
   },
   {
@@ -421,6 +523,7 @@
     "title": "Design QA: homepage",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-09-13",
     "description": "Compare the build with the designs at 375, 768 and 1440 px. Log differences as comments on the design file."
   },
   {
@@ -428,7 +531,8 @@
     "projectId": "website",
     "title": "Design QA: product pages",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-08-03"
   },
   {
     "id": "website-t28",
@@ -436,6 +540,7 @@
     "title": "Component handoff notes",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-07-26",
     "description": "For each component: states, spacing, the tokens it uses and any behaviour the design file can't show."
   },
   {
@@ -444,6 +549,7 @@
     "title": "Set up CMS models",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-08-16",
     "description": "Models for pages, articles, customer stories and job openings. Articles need an author, reading time and related posts."
   },
   {
@@ -451,21 +557,24 @@
     "projectId": "website",
     "title": "Migrate blog posts",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-10"
   },
   {
     "id": "website-t31",
     "projectId": "website",
     "title": "Migrate case studies",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-16"
   },
   {
     "id": "website-t32",
     "projectId": "website",
     "title": "Image optimisation",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-26"
   },
   {
     "id": "website-t33",
@@ -473,6 +582,7 @@
     "title": "Redirect map",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-08-15",
     "description": "Map every old URL with traffic in the last year to its new page. Anything unmapped goes to the closest section, not the homepage."
   },
   {
@@ -480,7 +590,8 @@
     "projectId": "website",
     "title": "Cookie banner copy",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-10"
   },
   {
     "id": "website-t35",
@@ -488,6 +599,7 @@
     "title": "Accessibility audit",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-08-12",
     "description": "Automated scan plus a manual pass with a screen reader on the five templates.\nFix blockers before launch; log the rest."
   },
   {
@@ -495,14 +607,16 @@
     "projectId": "website",
     "title": "Fix contrast issues",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-22"
   },
   {
     "id": "website-t37",
     "projectId": "website",
     "title": "Keyboard navigation pass",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t38",
@@ -510,6 +624,7 @@
     "title": "Performance budget",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-09-07",
     "description": "Largest contentful paint under 2.5 s on a mid-range phone over 4G, and under 170 kB of JavaScript on the homepage."
   },
   {
@@ -517,35 +632,40 @@
     "projectId": "website",
     "title": "Lighthouse run",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t40",
     "projectId": "website",
     "title": "Analytics events",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t41",
     "projectId": "website",
     "title": "Form spam protection",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t42",
     "projectId": "website",
     "title": "Staging review",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t43",
     "projectId": "website",
     "title": "Stakeholder sign-off",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t44",
@@ -553,6 +673,7 @@
     "title": "Launch checklist",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-09-08",
     "description": "The go/no-go list for launch day: redirects, analytics, forms, sitemap, robots.txt and who is on call."
   },
   {
@@ -560,49 +681,59 @@
     "projectId": "website",
     "title": "DNS switch plan",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-09-08"
   },
   {
     "id": "website-t46",
     "projectId": "website",
     "title": "Post-launch monitoring",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t47",
     "projectId": "website",
     "title": "Update help centre links",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "website-t48",
     "projectId": "website",
     "title": "Retire the old site",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-07"
   },
   {
     "id": "mobile-t1",
     "projectId": "mobile",
     "title": "Define core journeys",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-07-13"
   },
   {
     "id": "mobile-t2",
     "projectId": "mobile",
     "title": "Competitive app review",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-07-13"
   },
   {
     "id": "mobile-t3",
     "projectId": "mobile",
     "title": "Feature priorities",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-07-13"
   },
   {
     "id": "mobile-t4",
@@ -610,6 +741,8 @@
     "title": "Platform decision",
     "done": true,
     "assigneeId": "noah",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-07-25",
     "description": "Cross-platform with React Native: one team, shared components, and native modules only for notifications."
   },
   {
@@ -617,63 +750,81 @@
     "projectId": "mobile",
     "title": "Sign-in wireframes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-06-30",
+    "completedAt": "2026-07-25"
   },
   {
     "id": "mobile-t6",
     "projectId": "mobile",
     "title": "Home wireframes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-07-25"
   },
   {
     "id": "mobile-t7",
     "projectId": "mobile",
     "title": "Project list wireframes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-08"
   },
   {
     "id": "mobile-t8",
     "projectId": "mobile",
     "title": "Settings wireframes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-06-30",
+    "completedAt": "2026-08-08"
   },
   {
     "id": "mobile-t9",
     "projectId": "mobile",
     "title": "Navigation model",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-08-19"
   },
   {
     "id": "mobile-t10",
     "projectId": "mobile",
     "title": "Clickable prototype",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-06-30",
+    "completedAt": "2026-08-19"
   },
   {
     "id": "mobile-t11",
     "projectId": "mobile",
     "title": "Onboarding flow",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-31"
   },
   {
     "id": "mobile-t12",
     "projectId": "mobile",
     "title": "Notifications flow",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-31"
   },
   {
     "id": "mobile-t13",
     "projectId": "mobile",
     "title": "Offline states",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-08-31"
   },
   {
     "id": "mobile-t14",
@@ -681,6 +832,8 @@
     "title": "Prototype test round 1",
     "done": true,
     "assigneeId": "noah",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-31",
     "description": "Five participants, remote, 40 minutes each. Main finding: people looked for search on the home screen."
   },
   {
@@ -688,154 +841,198 @@
     "projectId": "mobile",
     "title": "Prototype test round 2",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t16",
     "projectId": "mobile",
     "title": "Gesture spec",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-06-30",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t17",
     "projectId": "mobile",
     "title": "Pull to refresh",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t18",
     "projectId": "mobile",
     "title": "Swipe actions",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t19",
     "projectId": "mobile",
     "title": "Haptics guidance",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-31",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t20",
     "projectId": "mobile",
     "title": "Empty states",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-09",
+    "completedAt": "2026-09-08"
   },
   {
     "id": "mobile-t21",
     "projectId": "mobile",
     "title": "Loading states",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-10",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t22",
     "projectId": "mobile",
     "title": "Dynamic type check",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-09-11",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t23",
     "projectId": "mobile",
     "title": "Screen reader labels",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-23",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t24",
     "projectId": "mobile",
     "title": "Touch target audit",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-29",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t25",
     "projectId": "mobile",
     "title": "Colour contrast pass",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-19",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t26",
     "projectId": "mobile",
     "title": "App icon",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-04",
+    "completedAt": "2026-09-14"
   },
   {
     "id": "mobile-t27",
     "projectId": "mobile",
     "title": "Splash screen",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-16",
+    "completedAt": "2026-09-19"
   },
   {
     "id": "mobile-t28",
     "projectId": "mobile",
     "title": "Push notification copy",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-04",
+    "completedAt": "2026-09-19"
   },
   {
     "id": "mobile-t29",
     "projectId": "mobile",
     "title": "Store screenshots",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-14",
+    "completedAt": "2026-09-19"
   },
   {
     "id": "mobile-t30",
     "projectId": "mobile",
     "title": "Store description",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-29",
+    "completedAt": "2026-09-19"
   },
   {
     "id": "mobile-t31",
     "projectId": "mobile",
     "title": "Privacy labels",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-30",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t32",
     "projectId": "mobile",
     "title": "Beta build",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-18",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t33",
     "projectId": "mobile",
     "title": "TestFlight group",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-08-26",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t34",
     "projectId": "mobile",
     "title": "Beta feedback triage",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-17",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t35",
     "projectId": "mobile",
     "title": "Crash fixes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-09-05",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t36",
     "projectId": "mobile",
     "title": "Release notes",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-22",
+    "completedAt": "2026-09-23"
   },
   {
     "id": "mobile-t37",
@@ -843,6 +1040,7 @@
     "title": "Final review with Ava",
     "done": false,
     "assigneeId": "mia",
+    "createdAt": "2026-09-10",
     "description": "Walk through the release build with Ava: onboarding, notifications and the offline state. Note anything that blocks submission."
   },
   {
@@ -851,6 +1049,7 @@
     "title": "App Store submission",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-08-15",
     "description": "Submit build 1.0 (42) with the store screenshots, description and privacy labels. Review usually takes one to two days."
   },
   {
@@ -859,6 +1058,7 @@
     "title": "Play Store submission",
     "done": false,
     "assigneeId": "mia",
+    "createdAt": "2026-08-20",
     "description": "Upload the release bundle to the internal track first, then promote it to production at 20%."
   },
   {
@@ -867,6 +1067,7 @@
     "title": "Launch day monitoring",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-09-15",
     "description": "Watch crash-free sessions, sign-in success and store reviews for the first 48 hours. Roll back if crash-free sessions drop below 99%."
   },
   {
@@ -874,21 +1075,27 @@
     "projectId": "design-system",
     "title": "Audit existing components",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-07-15"
   },
   {
     "id": "design-system-t2",
     "projectId": "design-system",
     "title": "Inventory colours",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-07-15"
   },
   {
     "id": "design-system-t3",
     "projectId": "design-system",
     "title": "Inventory type styles",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-28",
+    "completedAt": "2026-07-15"
   },
   {
     "id": "design-system-t4",
@@ -896,6 +1103,8 @@
     "title": "Token naming",
     "done": true,
     "assigneeId": "leo",
+    "createdAt": "2026-06-28",
+    "completedAt": "2026-07-30",
     "description": "Tokens are named by role, not value: colour.text.muted rather than grey-600."
   },
   {
@@ -903,28 +1112,36 @@
     "projectId": "design-system",
     "title": "Colour tokens",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-07-30"
   },
   {
     "id": "design-system-t6",
     "projectId": "design-system",
     "title": "Spacing tokens",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-26",
+    "completedAt": "2026-07-30"
   },
   {
     "id": "design-system-t7",
     "projectId": "design-system",
     "title": "Radius tokens",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-29",
+    "completedAt": "2026-07-30"
   },
   {
     "id": "design-system-t8",
     "projectId": "design-system",
     "title": "Type tokens",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-08-16"
   },
   {
     "id": "design-system-t9",
@@ -932,6 +1149,8 @@
     "title": "Button",
     "done": true,
     "assigneeId": "mia",
+    "createdAt": "2026-06-26",
+    "completedAt": "2026-09-02",
     "description": "Four variants (primary, secondary, outline, ghost), three sizes, and a loading state that keeps the button's width."
   },
   {
@@ -939,63 +1158,81 @@
     "projectId": "design-system",
     "title": "Input",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-09-02"
   },
   {
     "id": "design-system-t11",
     "projectId": "design-system",
     "title": "Select",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-28",
+    "completedAt": "2026-09-12"
   },
   {
     "id": "design-system-t12",
     "projectId": "design-system",
     "title": "Checkbox",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-28",
+    "completedAt": "2026-09-12"
   },
   {
     "id": "design-system-t13",
     "projectId": "design-system",
     "title": "Radio group",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-29",
+    "completedAt": "2026-09-12"
   },
   {
     "id": "design-system-t14",
     "projectId": "design-system",
     "title": "Contributing guide",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-09-12"
   },
   {
     "id": "design-system-t15",
     "projectId": "design-system",
     "title": "Token reference page",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-27",
+    "completedAt": "2026-09-12"
   },
   {
     "id": "design-system-t16",
     "projectId": "design-system",
     "title": "Button documentation",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-26",
+    "completedAt": "2026-09-21"
   },
   {
     "id": "design-system-t17",
     "projectId": "design-system",
     "title": "Changelog setup",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-29",
+    "completedAt": "2026-09-21"
   },
   {
     "id": "design-system-t18",
     "projectId": "design-system",
     "title": "Versioning policy",
     "done": true,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-26",
+    "completedAt": "2026-09-21"
   },
   {
     "id": "design-system-t19",
@@ -1003,6 +1240,7 @@
     "title": "Switch",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-06-27",
     "description": "Follow the Base UI switch. The label sits to the right; the whole row is clickable."
   },
   {
@@ -1011,6 +1249,7 @@
     "title": "Slider",
     "done": false,
     "assigneeId": "leo",
+    "createdAt": "2026-06-27",
     "description": "Single value and range. Show the value while dragging, and support arrow keys and Page Up/Down."
   },
   {
@@ -1018,7 +1257,8 @@
     "projectId": "design-system",
     "title": "Textarea",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-28"
   },
   {
     "id": "design-system-t22",
@@ -1026,6 +1266,7 @@
     "title": "Combobox",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-06-28",
     "description": "Searchable single and multi select. Chips for multi select, with a clear button when anything is chosen."
   },
   {
@@ -1034,6 +1275,7 @@
     "title": "Date picker",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-06-29",
     "description": "Built on the calendar. Monday weeks, ISO values, and the chosen date in the button's accessible name."
   },
   {
@@ -1041,14 +1283,16 @@
     "projectId": "design-system",
     "title": "Tabs",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-06-26"
   },
   {
     "id": "design-system-t25",
     "projectId": "design-system",
     "title": "Accordion",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-06-28"
   },
   {
     "id": "design-system-t26",
@@ -1056,6 +1300,7 @@
     "title": "Dialog",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-06-27",
     "description": "Focus moves into the dialog and returns to the opener. Destructive dialogs put the safe action first."
   },
   {
@@ -1063,21 +1308,24 @@
     "projectId": "design-system",
     "title": "Sheet",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-08-04"
   },
   {
     "id": "design-system-t28",
     "projectId": "design-system",
     "title": "Popover",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-08-20"
   },
   {
     "id": "design-system-t29",
     "projectId": "design-system",
     "title": "Tooltip",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-02"
   },
   {
     "id": "design-system-t30",
@@ -1085,6 +1333,7 @@
     "title": "Toast",
     "done": false,
     "assigneeId": null,
+    "createdAt": "2026-07-24",
     "description": "Short confirmations only, with Undo when an action can be reversed. Errors stay on the page instead."
   },
   {
@@ -1093,6 +1342,7 @@
     "title": "Table",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-07-17",
     "description": "Sortable headers, a selection column and a sticky header. Long tables scroll inside their container."
   },
   {
@@ -1100,77 +1350,88 @@
     "projectId": "design-system",
     "title": "Pagination",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-19"
   },
   {
     "id": "design-system-t33",
     "projectId": "design-system",
     "title": "Badge",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-08-03"
   },
   {
     "id": "design-system-t34",
     "projectId": "design-system",
     "title": "Avatar",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-08-07"
   },
   {
     "id": "design-system-t35",
     "projectId": "design-system",
     "title": "Card",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-08-25"
   },
   {
     "id": "design-system-t36",
     "projectId": "design-system",
     "title": "Alert",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-21"
   },
   {
     "id": "design-system-t37",
     "projectId": "design-system",
     "title": "Empty state",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-01"
   },
   {
     "id": "design-system-t38",
     "projectId": "design-system",
     "title": "Skeleton",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-08-25"
   },
   {
     "id": "design-system-t39",
     "projectId": "design-system",
     "title": "Progress",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-16"
   },
   {
     "id": "design-system-t40",
     "projectId": "design-system",
     "title": "Breadcrumb",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-23"
   },
   {
     "id": "design-system-t41",
     "projectId": "design-system",
     "title": "Sidebar",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-12"
   },
   {
     "id": "design-system-t42",
     "projectId": "design-system",
     "title": "Command menu",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-09-12"
   },
   {
     "id": "design-system-t43",
@@ -1178,6 +1439,7 @@
     "title": "Dark mode review",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-07-19",
     "description": "Check every component in dark mode against the contrast targets, especially borders and disabled states."
   },
   {
@@ -1185,77 +1447,88 @@
     "projectId": "design-system",
     "title": "Density modes",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-14"
   },
   {
     "id": "design-system-t45",
     "projectId": "design-system",
     "title": "Forced colours pass",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-16"
   },
   {
     "id": "design-system-t46",
     "projectId": "design-system",
     "title": "Focus ring audit",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-07-02"
   },
   {
     "id": "design-system-t47",
     "projectId": "design-system",
     "title": "Figma library sync",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-07-23"
   },
   {
     "id": "design-system-t48",
     "projectId": "design-system",
     "title": "Icon set",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-06"
   },
   {
     "id": "design-system-t49",
     "projectId": "design-system",
     "title": "Illustration style",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-08-25"
   },
   {
     "id": "design-system-t50",
     "projectId": "design-system",
     "title": "Motion guidelines",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-08-21"
   },
   {
     "id": "design-system-t51",
     "projectId": "design-system",
     "title": "Input documentation",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-15"
   },
   {
     "id": "design-system-t52",
     "projectId": "design-system",
     "title": "Form patterns page",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-19"
   },
   {
     "id": "design-system-t53",
     "projectId": "design-system",
     "title": "Data table documentation",
     "done": false,
-    "assigneeId": "noah"
+    "assigneeId": "noah",
+    "createdAt": "2026-09-19"
   },
   {
     "id": "design-system-t54",
     "projectId": "design-system",
     "title": "Accessibility checklist",
     "done": false,
-    "assigneeId": null
+    "assigneeId": null,
+    "createdAt": "2026-07-31"
   },
   {
     "id": "design-system-t55",
@@ -1263,6 +1536,7 @@
     "title": "Release 1.0",
     "done": false,
     "assigneeId": "noah",
+    "createdAt": "2026-09-18",
     "description": "Tag 1.0 once every component in scope has documentation and passes the accessibility checklist."
   },
   {
@@ -1270,300 +1544,385 @@
     "projectId": "design-system",
     "title": "Team training session",
     "done": false,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-13"
   },
   {
     "id": "onboarding-t1",
     "projectId": "onboarding",
     "title": "Welcome email",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-05",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "onboarding-t2",
     "projectId": "onboarding",
     "title": "Day 3 email",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-04",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "onboarding-t3",
     "projectId": "onboarding",
     "title": "Day 7 email",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-04",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "onboarding-t4",
     "projectId": "onboarding",
     "title": "In-app checklist",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "onboarding-t5",
     "projectId": "onboarding",
     "title": "Sample project template",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-05",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "onboarding-t6",
     "projectId": "onboarding",
     "title": "Product tour steps",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-08-02"
   },
   {
     "id": "onboarding-t7",
     "projectId": "onboarding",
     "title": "Tour copy",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-06",
+    "completedAt": "2026-08-02"
   },
   {
     "id": "onboarding-t8",
     "projectId": "onboarding",
     "title": "Invite teammates step",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-08-02"
   },
   {
     "id": "onboarding-t9",
     "projectId": "onboarding",
     "title": "Workspace name step",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-07-04",
+    "completedAt": "2026-08-19"
   },
   {
     "id": "onboarding-t10",
     "projectId": "onboarding",
     "title": "Plan selection step",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-03",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t11",
     "projectId": "onboarding",
     "title": "Help centre links",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-05",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t12",
     "projectId": "onboarding",
     "title": "Onboarding metrics",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-30",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t13",
     "projectId": "onboarding",
     "title": "Activation event",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-28",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t14",
     "projectId": "onboarding",
     "title": "Drop-off report",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-09-02",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t15",
     "projectId": "onboarding",
     "title": "Support macros",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-27",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t16",
     "projectId": "onboarding",
     "title": "Welcome call script",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-02",
+    "completedAt": "2026-09-16"
   },
   {
     "id": "onboarding-t17",
     "projectId": "onboarding",
     "title": "Kickoff template",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-14",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t18",
     "projectId": "onboarding",
     "title": "FAQ updates",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-20",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t19",
     "projectId": "onboarding",
     "title": "Video walkthrough",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-09-08",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t20",
     "projectId": "onboarding",
     "title": "Week-one survey",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-09-02",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t21",
     "projectId": "onboarding",
     "title": "Churn risk alert",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-08-14",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t22",
     "projectId": "onboarding",
     "title": "Success criteria",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t23",
     "projectId": "onboarding",
     "title": "Handover to support",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-21",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "onboarding-t24",
     "projectId": "onboarding",
     "title": "Retrospective",
     "done": true,
-    "assigneeId": "mia"
+    "assigneeId": "mia",
+    "createdAt": "2026-09-16",
+    "completedAt": "2026-09-20"
   },
   {
     "id": "launch-t1",
     "projectId": "launch",
     "title": "Launch goals",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "launch-t2",
     "projectId": "launch",
     "title": "Audience segments",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "launch-t3",
     "projectId": "launch",
     "title": "Key message",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-06-29",
+    "completedAt": "2026-07-17"
   },
   {
     "id": "launch-t4",
     "projectId": "launch",
     "title": "Press release",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-07-31"
   },
   {
     "id": "launch-t5",
     "projectId": "launch",
     "title": "Press list",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-02",
+    "completedAt": "2026-07-31"
   },
   {
     "id": "launch-t6",
     "projectId": "launch",
     "title": "Launch blog post",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-06-30",
+    "completedAt": "2026-07-31"
   },
   {
     "id": "launch-t7",
     "projectId": "launch",
     "title": "Email announcement",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-06-29",
+    "completedAt": "2026-07-31"
   },
   {
     "id": "launch-t8",
     "projectId": "launch",
     "title": "Social posts",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-16"
   },
   {
     "id": "launch-t9",
     "projectId": "launch",
     "title": "Paid social ads",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-01",
+    "completedAt": "2026-08-16"
   },
   {
     "id": "launch-t10",
     "projectId": "launch",
     "title": "Landing page",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-16",
+    "completedAt": "2026-09-10"
   },
   {
     "id": "launch-t11",
     "projectId": "launch",
     "title": "Product Hunt listing",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-04",
+    "completedAt": "2026-09-10"
   },
   {
     "id": "launch-t12",
     "projectId": "launch",
     "title": "Partner outreach",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-15",
+    "completedAt": "2026-09-10"
   },
   {
     "id": "launch-t13",
     "projectId": "launch",
     "title": "Launch webinar",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-07-04",
+    "completedAt": "2026-09-10"
   },
   {
     "id": "launch-t14",
     "projectId": "launch",
     "title": "Sales one-pager",
     "done": true,
-    "assigneeId": "ava"
+    "assigneeId": "ava",
+    "createdAt": "2026-07-30",
+    "completedAt": "2026-09-18"
   },
   {
     "id": "launch-t15",
     "projectId": "launch",
     "title": "FAQ for sales",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-02",
+    "completedAt": "2026-09-18"
   },
   {
     "id": "launch-t16",
     "projectId": "launch",
     "title": "Launch day rota",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-15",
+    "completedAt": "2026-09-18"
   },
   {
     "id": "launch-t17",
     "projectId": "launch",
     "title": "Results report",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-15",
+    "completedAt": "2026-09-18"
   },
   {
     "id": "launch-t18",
     "projectId": "launch",
     "title": "Retrospective",
     "done": true,
-    "assigneeId": "leo"
+    "assigneeId": "leo",
+    "createdAt": "2026-09-03",
+    "completedAt": "2026-09-18"
   }
 ]

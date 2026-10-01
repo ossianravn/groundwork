@@ -400,24 +400,52 @@
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
-      "description": "Recharts wrapper with themed tooltip, legend and font-aware axes.",
+      "description": "Recharts wrapper with themed tooltip, legend and font-aware axes, plus a result header, series toggles and picker, a Show data table, loading/empty/failed states and validated series colours.",
       "dependencies": [
         "cn@^0.4.0",
+        "lucide-react@^1.48.0",
         "recharts@^3.8.0"
       ],
       "registryDependencies": [
-        "ossianravn/groundwork/base"
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/table"
       ],
       "files": [
+        {
+          "path": "src/kit/ui/chart-colors.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-colors.ts"
+        },
         {
           "path": "src/kit/ui/chart-context.ts",
           "type": "registry:file",
           "target": "~/src/kit/ui/chart-context.ts"
         },
         {
+          "path": "src/kit/ui/chart-data-table.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-data-table.tsx"
+        },
+        {
+          "path": "src/kit/ui/chart-header.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-header.tsx"
+        },
+        {
           "path": "src/kit/ui/chart-legend.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ui/chart-legend.tsx"
+        },
+        {
+          "path": "src/kit/ui/chart-series.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-series.tsx"
+        },
+        {
+          "path": "src/kit/ui/chart-state.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/chart-state.tsx"
         },
         {
           "path": "src/kit/ui/chart-tooltip.tsx",

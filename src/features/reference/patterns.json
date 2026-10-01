@@ -214,13 +214,13 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "See how completed work changes over time.",
-    "implemented": "Shared preset period, a line/area chart and an accessible data table.",
-    "deferred": "Custom ranges and previous-period comparisons remain planned.",
+    "implemented": "Daily bars for the chosen period or custom range, with Completed and Added totals in the heading that choose the series (shadcn's interactive bar chart), the snapshot day at full strength, and Show data with both columns in the chart's place. Completions come from Activity and additions from task creation dates, over about 90 days of history.",
+    "deferred": "Previous-period comparison remains planned (charts plan step 2).",
     "examples": [
       {
         "label": "Last 30 days",
         "href": "/app/demo/overview?period=30",
-        "instruction": "Change the period or choose Show data."
+        "instruction": "Choose Added in the heading, change the period, or choose Show data."
       },
       {
         "label": "Last 7 days",
@@ -230,7 +230,8 @@
     ],
     "sources": [
       "src/features/overview/completion-chart.tsx",
-      "src/features/overview/completion-period.tsx"
+      "src/features/overview/completion-period.tsx",
+      "src/demo/selectors.ts"
     ]
   },
   {

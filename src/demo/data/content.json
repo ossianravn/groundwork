@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.6.1",
+      "date": "2026-10-01",
+      "title": "Tasks added, and a longer history",
+      "summary": "The completion chart now shows tasks added as well as completed, and the sample workspace has three months of history behind it.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Choose Completed or Added in the chart's heading on Overview and Analytics to see how fast work is finished and how fast it arrives. Show data lists both.",
+            "Every task now records the day it was added and the day it was completed, so longer ranges and the project timeline show the full three months of work.",
+            "Chart colours are arranged so neighbouring series stay distinguishable for colour-blind readers, with their own shades in dark mode."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "The history is sample data; tasks you add or complete join it until you reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.6.0",
       "date": "2026-10-01",
       "title": "Agent runs on projects",

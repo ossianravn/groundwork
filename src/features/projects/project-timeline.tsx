@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react"
+import { useCallback, type CSSProperties, type ReactNode } from "react"
 import { formatDate, statusLabels, type Project } from "@/demo/model"
 import { projectColorStyle } from "@/components/project-color"
 import {
@@ -23,14 +23,24 @@ export function ProjectTimeline({
 }) {
   const range = timelineRange(rows, referenceDate)
 
+  // Open on the snapshot, with the weeks before it in view; history that
+  // starts months earlier stays a scroll away.
+  const showSnapshot = useCallback((scroller: HTMLDivElement | null) => {
+    const line = scroller?.querySelector<HTMLElement>(".timeline-today")
+
+    if (scroller && line)
+      scroller.scrollLeft = line.offsetLeft - scroller.clientWidth * 0.75
+  }, [])
+
   const style: TimelineStyle = {
     "--timeline-days": range.days,
     "--timeline-today": daysBetween(range.start, referenceDate) + 0.5,
   }
 
   return (
-    <div className="timeline-scroll">
+    <div className="timeline-scroll" ref={showSnapshot}>
       <div className="timeline" style={style}>
+        <span className="timeline-corner" aria-hidden="true" />
         <div className="timeline-axis" aria-hidden="true">
           {range.weeks.map((week) => (
             <span key={week}>{formatDate(week)}</span>

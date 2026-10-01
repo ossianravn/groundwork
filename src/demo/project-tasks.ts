@@ -57,11 +57,26 @@ export function withTaskCounts(projects: Project[], tasks: ProjectTask[]) {
   })
 }
 
-/** Completing a project completes its remaining tasks. */
-export function completeProjectTasks(tasks: ProjectTask[], projectId: string) {
+/** Completing a project completes its remaining tasks on that day. */
+export function completeProjectTasks(
+  tasks: ProjectTask[],
+  projectId: string,
+  date: string,
+) {
   return tasks.map((task) =>
-    task.projectId === projectId && !task.done ? { ...task, done: true } : task,
+    task.projectId === projectId && !task.done
+      ? { ...task, done: true, completedAt: date }
+      : task,
   )
+}
+
+/** A task reopened loses its completion day. */
+function reopened(task: ProjectTask): ProjectTask {
+  const open = { ...task, done: false }
+
+  delete open.completedAt
+
+  return open
 }
 
 export function applyTaskChange(
@@ -99,6 +114,7 @@ export function applyTaskChange(
       title,
       done: false,
       assigneeId: change.assigneeId,
+      createdAt: context.date,
     }
 
     if (description) created.description = description
@@ -107,7 +123,12 @@ export function applyTaskChange(
 
     tasks = [...tasks.slice(0, at), created, ...tasks.slice(at)]
   } else if (task && change.kind === "toggle") {
-    tasks = replace(tasks, { ...task, done: !task.done })
+    tasks = replace(
+      tasks,
+      task.done
+        ? reopened(task)
+        : { ...task, done: true, completedAt: context.date },
+    )
     activity = task.done
       ? // Reopening removes this session's completion record, if any.
         activity.filter(

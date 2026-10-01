@@ -1,11 +1,13 @@
 import { lazy, Suspense, type ReactNode } from "react"
 import { Plus } from "lucide-react"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
+import { ChartState } from "@/kit/ui/chart-state"
 import {
   formatDate,
   type Activity,
   type Member,
   type Project,
+  type ProjectTask,
 } from "@/demo/model"
 import { reportWindow, type ReportPeriod } from "@/demo/report-period"
 import { CompletionPeriod } from "./completion-period"
@@ -22,6 +24,8 @@ const CompletionChart = lazy(() =>
 export interface OverviewPageProps {
   projects: Project[]
   activity: Activity[]
+  /** Every task, for tasks added per day. */
+  tasks: ProjectTask[]
   members: Member[]
   activityMembers?: Member[]
   referenceDate: string
@@ -42,6 +46,7 @@ export interface OverviewPageProps {
 export function OverviewPage({
   projects,
   activity,
+  tasks,
   members,
   activityMembers = members,
   referenceDate,
@@ -80,13 +85,14 @@ export function OverviewPage({
         <Suspense
           fallback={
             <section className="chart-loading" aria-busy="true">
-              <h2>Task completion</h2>
-              <p role="status">Loading chart…</p>
+              <h2>Tasks completed and added</h2>
+              <ChartState status="loading" />
             </section>
           }
         >
           <CompletionChart
             activity={activity}
+            tasks={tasks}
             range={reportWindow(referenceDate, period)}
             snapshotDate={referenceDate}
             periodControl={

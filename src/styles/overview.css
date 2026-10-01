@@ -124,13 +124,18 @@
 .chart-loading h2 {
   font-weight: 600;
 }
-.chart-loading p {
-  margin-top: 1rem;
-  color: var(--muted-foreground);
+.chart-loading [data-slot="chart-state"] {
+  margin-top: var(--card-padding);
 }
-.chart-data-table {
-  height: 16rem;
-  overflow: auto;
+/* The table takes the chart's place at the chart's size and scrolls. */
+.chart-body:has(> .chart-data-table) {
+  position: relative;
+  min-height: 16rem;
+}
+.chart-body > .chart-data-table {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
 }
 .overview-card-footer {
   flex-wrap: wrap;

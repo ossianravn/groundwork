@@ -35,6 +35,7 @@ export function OverviewRoute() {
         }}
         projects={demo.projects}
         activity={demo.activity}
+        tasks={demo.tasks}
         members={demo.workspace.members}
         activityMembers={demo.workspace.people}
         referenceDate={demo.workspace.referenceDate}

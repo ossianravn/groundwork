@@ -45,6 +45,10 @@ export interface ProjectTask {
   title: string
   done: boolean
   assigneeId: string | null
+  /** The day it was added (ISO date), for created-versus-completed charts. */
+  createdAt: string
+  /** The day it was completed; absent while open. */
+  completedAt?: string
   /** Optional details, shown when the task is opened. */
   description?: RichTextDocument
 }

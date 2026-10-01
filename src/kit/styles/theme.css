@@ -49,12 +49,22 @@
   --secondary-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   /* Categorical series never follow the accent, so every accent keeps them
-     distinct. A single primary series uses the accent explicitly instead. */
-  --chart-1: var(--hue-violet);
-  --chart-2: var(--hue-teal);
-  --chart-3: var(--hue-amber);
-  --chart-4: var(--hue-rose);
-  --chart-5: var(--hue-green);
+     distinct. A single primary series uses the accent explicitly instead.
+     The order keeps neighbours apart for colour-blind readers (checked with
+     the dataviz palette validator); a sixth series takes green. */
+  --chart-1: var(--chart-violet);
+  --chart-2: var(--chart-teal);
+  --chart-3: var(--chart-amber);
+  --chart-4: var(--chart-rose);
+  --chart-5: var(--chart-sky);
+  /* A record's hue as a chart mark, so a project keeps its colour in charts.
+     Light mode uses the hues as they are; dark mode has its own steps. */
+  --chart-violet: var(--hue-violet);
+  --chart-teal: var(--hue-teal);
+  --chart-amber: var(--hue-amber);
+  --chart-rose: var(--hue-rose);
+  --chart-sky: var(--hue-sky);
+  --chart-green: var(--hue-green);
   /* Categorical hues identify records (projects, people, chart series). */
   --hue-violet: oklch(0.56 0.19 285);
   --hue-teal: oklch(0.6 0.1 190);
@@ -126,6 +136,14 @@
   --hue-rose: oklch(0.74 0.14 12);
   --hue-green: oklch(0.76 0.12 155);
   --hue-sky: oklch(0.76 0.1 235);
+  /* Darker than the hues, inside the validator's dark band (L 0.48-0.67),
+     so marks keep their chroma and stay apart on the dark card. */
+  --chart-violet: oklch(0.66 0.17 285);
+  --chart-teal: oklch(0.66 0.113 190);
+  --chart-amber: oklch(0.67 0.143 72);
+  --chart-rose: oklch(0.66 0.17 12);
+  --chart-sky: oklch(0.66 0.139 235);
+  --chart-green: oklch(0.66 0.163 155);
   --success: oklch(0.8 0.11 161);
   --success-soft: oklch(0.26 0.033 161);
   --warning: oklch(0.82 0.11 80);

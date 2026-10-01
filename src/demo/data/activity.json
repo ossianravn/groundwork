@@ -1,5 +1,149 @@
 [
   {
+    "id": "h01",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-07-13",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h02",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-07-15",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h03",
+    "projectId": "launch",
+    "memberId": "leo",
+    "date": "2026-07-17",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h04",
+    "projectId": "onboarding",
+    "memberId": "ava",
+    "date": "2026-07-17",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 5,
+    "kind": "tasks"
+  },
+  {
+    "id": "h05",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-07-25",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h06",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-07-29",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "h07",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-07-30",
+    "action": "completed inventory tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "h08",
+    "projectId": "launch",
+    "memberId": "leo",
+    "date": "2026-07-31",
+    "action": "completed positioning tasks in",
+    "tasksCompleted": 4,
+    "kind": "tasks"
+  },
+  {
+    "id": "h09",
+    "projectId": "onboarding",
+    "memberId": "ava",
+    "date": "2026-08-02",
+    "action": "completed journey mapping tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h10",
+    "projectId": "brand",
+    "memberId": "ava",
+    "date": "2026-08-05",
+    "action": "completed kickoff tasks in",
+    "tasksCompleted": 3,
+    "kind": "tasks"
+  },
+  {
+    "id": "h11",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-08-08",
+    "action": "completed user research tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "h12",
+    "projectId": "design-system",
+    "memberId": "noah",
+    "date": "2026-08-16",
+    "action": "completed audit tasks in",
+    "tasksCompleted": 1,
+    "kind": "tasks"
+  },
+  {
+    "id": "h13",
+    "projectId": "launch",
+    "memberId": "leo",
+    "date": "2026-08-16",
+    "action": "completed asset tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "h14",
+    "projectId": "website",
+    "memberId": "leo",
+    "date": "2026-08-18",
+    "action": "completed analytics review tasks in",
+    "tasksCompleted": 1,
+    "kind": "tasks"
+  },
+  {
+    "id": "h15",
+    "projectId": "mobile",
+    "memberId": "mia",
+    "date": "2026-08-19",
+    "action": "completed flow mapping tasks in",
+    "tasksCompleted": 2,
+    "kind": "tasks"
+  },
+  {
+    "id": "h16",
+    "projectId": "onboarding",
+    "memberId": "ava",
+    "date": "2026-08-19",
+    "action": "completed email tasks in",
+    "tasksCompleted": 1,
+    "kind": "tasks"
+  },
+  {
     "id": "a01",
     "projectId": "brand",
     "memberId": "ava",

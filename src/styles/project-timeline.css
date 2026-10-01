@@ -49,6 +49,19 @@
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
 }
+/* Covers the axis where it scrolls under the pinned name column. */
+.timeline-corner {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 2;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+.timeline-axis {
+  grid-row: 1;
+}
 .timeline-axis span {
   padding-inline-start: 0.25rem;
   border-inline-start: 1px solid var(--border);

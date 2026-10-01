@@ -27,6 +27,8 @@ const tasks: ProjectTask[] = [
     title: "Logo",
     done: true,
     assigneeId: "ava",
+    createdAt: "2026-09-01",
+    completedAt: "2026-09-10",
   },
   {
     id: "t2",
@@ -34,6 +36,7 @@ const tasks: ProjectTask[] = [
     title: "Palette",
     done: false,
     assigneeId: null,
+    createdAt: "2026-09-01",
   },
   {
     id: "t3",
@@ -41,6 +44,7 @@ const tasks: ProjectTask[] = [
     title: "Type",
     done: false,
     assigneeId: "leo",
+    createdAt: "2026-09-01",
   },
 ]
 
