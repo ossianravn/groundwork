@@ -19,6 +19,7 @@ import type { RenderResponseLink } from "@/kit/ai/response-link"
 import { Queue } from "@/kit/ai/queue"
 import { Suggestion, Suggestions } from "@/kit/ai/suggestion"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
+import { AssistantPlanDock } from "./assistant-plan-dock"
 import { AssistantComposer } from "./assistant-composer"
 import { AssistantTurn } from "./assistant-message"
 import { announcement, awaitsPerson, messageText } from "./assistant-text"
@@ -55,6 +56,7 @@ export function AssistantChat({
   onSend,
   onStop,
   onRegenerate,
+  onOpenWork,
   onRestore,
   onNewChat,
   onAnswer,
@@ -77,6 +79,8 @@ export function AssistantChat({
   onSend: (submission: PromptSubmission) => void
   onStop: () => void
   onRegenerate: () => void
+  /** Opens a reply's work in the conversation panel. */
+  onOpenWork: (messageId: string) => void
   /** Returns the conversation to before this message. */
   onRestore: (messageId: string) => void
   onNewChat: () => void
@@ -203,6 +207,7 @@ export function AssistantChat({
                 stopped={stopped.includes(message.id)}
                 latest={status === "ready" && message === last}
                 onRegenerate={after(onRegenerate)}
+                onOpenWork={() => onOpenWork(message.id)}
                 onSuggestion={(text) => send(textOnly(text))}
                 onAnswer={after(onAnswer)}
                 onDecide={after(onDecide)}
@@ -246,6 +251,11 @@ export function AssistantChat({
             : "Sends when the reply finishes"
         }
         onRemove={after(queue.remove)}
+      />
+      <AssistantPlanDock
+        messages={messages}
+        streaming={busy}
+        stopped={stopped}
       />
       <AssistantComposer
         {...composer}

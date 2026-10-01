@@ -129,8 +129,9 @@ it("reasons, searches, then answers with citations to every source", async () =>
   const { message, error, types } = await send("Which projects are at risk?")
 
   expect(error).toBeUndefined()
-  expect(types?.slice(0, 5)).toEqual([
+  expect(types?.slice(0, 6)).toEqual([
     "step-start",
+    "data-todo",
     "reasoning",
     "tool-searchProjects",
     "step-start",
@@ -161,6 +162,7 @@ it("reports progress steps, replacing each by id as it completes", async () => {
 
   expect(types).toEqual([
     "step-start",
+    "data-todo",
     "data-step",
     "data-step",
     "data-step",

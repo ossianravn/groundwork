@@ -130,6 +130,13 @@
   max-width: var(--assistant-width);
   margin: 0 auto var(--content-gap);
 }
+/* The working plan docks on the composer's top edge, inset from its
+   rounded corners so it reads as a tray attached to it. */
+.assistant-plan-dock {
+  width: calc(100% - 2 * var(--page-padding) - 2.5rem);
+  max-width: calc(var(--assistant-width) - 2.5rem);
+  margin-inline: auto;
+}
 /* Before the first message the composer sits in the middle, under a larger
    heading, with suggestions below it; it moves to the bottom once the
    conversation starts. */

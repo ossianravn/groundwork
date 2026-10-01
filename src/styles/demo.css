@@ -45,6 +45,7 @@
 @import "./inbox.css";
 @import "./inbox-messaging.css";
 @import "./assistant.css";
+@import "./assistant-inspector.css";
 @import "./analytics.css";
 @import "./integrations.css";
 @import "./billing.css";

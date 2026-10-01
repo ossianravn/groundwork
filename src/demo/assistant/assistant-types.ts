@@ -85,6 +85,18 @@ export interface ReplySource {
   description: string
 }
 
+export type TodoStatus = "todo" | "doing" | "done" | "dropped" | "blocked"
+
+/** The assistant's own plan for a request, updated as it works. */
+export interface TodoData {
+  title: string
+  tasks: { id: string; label: string; status: TodoStatus }[]
+}
+
+/** Where a reply's work happens, in stream order. */
+export type ReplyStage =
+  "reasoning" | "steps" | "tool" | "text" | "plan" | "artifact"
+
 /** A progress step the assistant reports while it works. */
 export interface StepData {
   label: string
@@ -93,6 +105,8 @@ export interface StepData {
 }
 
 export interface AssistantReply {
+  /** A working plan: each task is done when its stage has streamed. */
+  todo?: { title: string; tasks: { label: string; after: ReplyStage }[] }
   reasoning?: string
   steps?: { id: string; label: string; results: string[] }[]
   tool?: {
@@ -127,6 +141,7 @@ type AssistantTools = {
 type AssistantData = {
   suggestions: string[]
   step: StepData
+  todo: TodoData
   plan: PlanData
   /** A project the person attached to their message as context. */
   project: { id: string; name: string }

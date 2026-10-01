@@ -54,6 +54,20 @@ A reply shows its work above the answer, in the order it happened:
 - **Citations** are numbered pills after the sentence they support. They link to the first source and preview all of them on hover or focus. Consecutive numbers read as a range (2–4). Before the sources arrive, the number shows without a preview.
 - **Sources** ("Used 4 sources") list every cited record with its status. The list is the keyboard-reachable record, since previews hold no controls.
 
+## Working plan
+
+Multi-step replies carry the assistant's own plan for the request (AI-25), streamed as a `data-todo` part that is replaced in place as the reply moves through its stages (reasoning, steps, tool call, text, plan, artifact): the current task is in progress, finished ones are done, and a failed reply marks the current task blocked. At-risk projects, this week, status updates and launch checklists have one. The latest reply's plan docks on the composer's top edge as a collapsed bar (title and progress, such as 2/3) that opens upward into the tasks, each with a status icon and a spoken status. It hides while a new question waits for its reply; a task still in progress when the reply was stopped reads as stopped. A working plan is the assistant's to-do list, not a proposal: the launch checklist's Plan and its Confirmation stay in the reply.
+
+## Conversation panel
+
+The top bar's **Conversation** action, or a finished reply's **Thought for …** label, opens a panel about the open conversation (AI-26): beside the chat from 84rem, as a sheet from the right below that. Opening it from a reply's reasoning shows that reply's work with its reasoning expanded. Three tabs, each with a count:
+
+- **Work:** each question with a timeline of what was done for it: reasoning (three lines, Show all), steps, tool calls in words (Searched projects · 4 projects, Asked which project, Add 5 tasks to Mobile app · Waiting for your approval) and the answer's first line, each marked in progress, done, failed, waiting, declined or stopped.
+- **Outputs:** drafted documents (Writing…, Draft or Posted, with Copy, Download and, once posted, Open project) and tasks the assistant proposed (Waiting for approval, Added with a link to the project, or Declined), newest first.
+- **Sources:** every page the replies cited, once each, most cited first.
+
+Work items and Show in conversation scroll the transcript to their reply and mark it for a moment; on a narrow screen the sheet closes first and focus returns to Conversation. Reasoning, steps and tool calls also stay in the transcript, so the panel is an overview rather than the only place to read them.
+
 ## Settings › Assistant
 
 `/app/demo/settings/assistant` pairs an Agent summary (instructions, tools with Asks first, output) with the default model and a switch per tool: Search projects, Create tasks, Draft status updates. Changes apply at once and last for the session. With a tool off, a question that needs it gets an explanation that links back here, instead of an answer. The instructions are fixed, because scripted replies could not follow edited ones.

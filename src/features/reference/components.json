@@ -419,16 +419,35 @@
     "purpose": "Show a model's reasoning while it streams, then fold it away.",
     "notes": [
       "Opens while the reasoning streams and closes when it ends, labelled with how long it took. Once the person opens or closes it, their choice stands.",
-      "It never takes focus, so reading the conversation is not interrupted. Pass the reasoning part's text and whether it is streaming."
+      "It never takes focus, so reading the conversation is not interrupted. Pass the reasoning part's text and whether it is streaming.",
+      "Pass onOpenDetails to show finished reasoning elsewhere, such as a side panel: the label then opens it instead of unfolding in place, with a panel icon and a spoken hint."
     ],
     "context": "Assistant replies",
     "href": "/app/demo/assistant",
-    "patterns": ["AI-06"],
+    "patterns": ["AI-06", "AI-26"],
     "documentation": {
       "href": "https://elements.ai-sdk.dev/components/reasoning",
       "label": "AI Elements Reasoning"
     },
     "implementation": "src/kit/ai/reasoning.tsx"
+  },
+  {
+    "id": "task-plan",
+    "name": "Task plan",
+    "category": "AI and chat",
+    "purpose": "Show the agent's own plan for the current request, docked above the composer.",
+    "notes": [
+      "A bar with the plan's title and progress (2/3) that opens upward into the task list. Each task is to do, in progress, done, dropped or blocked, by icon and in words.",
+      "Collapsed by default so it reports progress without taking the conversation's room. Dock it on the composer's top edge; it is not a proposal for the person to approve, which is Plan."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-25"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/plan",
+      "label": "AI Elements Plan"
+    },
+    "implementation": "src/kit/ai/task-plan.tsx"
   },
   {
     "id": "tool",

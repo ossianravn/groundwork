@@ -1607,6 +1607,11 @@
           "target": "~/src/kit/ai/suggestion.tsx"
         },
         {
+          "path": "src/kit/ai/task-plan.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/task-plan.tsx"
+        },
+        {
           "path": "src/kit/ai/tool.tsx",
           "type": "registry:file",
           "target": "~/src/kit/ai/tool.tsx"

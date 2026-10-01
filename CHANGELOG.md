@@ -4,6 +4,8 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `ai`: `TaskPlan`, the agent's own plan for a request (title, progress and tasks to do, in progress, done, dropped or blocked), docked above the composer. `Reasoning` takes `onOpenDetails` to open finished reasoning in a host's panel instead of unfolding in place.
+- Demo: the Assistant streams a working plan for multi-step replies and gains a Conversation panel (Work, Outputs, Sources).
 - `shimmer`: one sweep every 1.4s (was 2.2s) with a wider bright band, and a `variant="rainbow"` that sweeps the theme's categorical hues, mixed toward the text colour for legibility. `Reasoning` uses the rainbow variant while it streams. The reference gains a Shimmer page.
 - `shell`: the icon buttons at either end of the workspace top bar align their icon, rather than their hit area, with the page's content edge at every width (previously only on phones).
 - `data-table`: `TablePagination` shows page controls only when there is more than one page. Faceted filter and facet drawer triggers mark an applied filter with `data-active`, and an unapplied one has a dashed outline. `TableViewOptions` wraps its label in `.table-view-options-label`, so a host can show only the icon in a tight toolbar.

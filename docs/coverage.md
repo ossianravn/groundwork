@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 140 IDs: 139 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 142 IDs: 141 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -186,6 +186,8 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | AI-21 | Drafted artifact | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-22 | Assistant settings | [Assistant](pages/app/assistant.md) | /app/demo/settings/assistant | Example |
 | AI-23 | Open in chat | [Assistant](pages/app/assistant.md) | /help/create-and-edit-projects | Example |
+| AI-25 | Working plan | [Assistant](pages/app/assistant.md) | /app/demo/assistant; /reference/components/task-plan | Example |
+| AI-26 | Conversation panel | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-24 | Coding agent session | [Reference patterns](pages/reference/patterns.md) | /reference/specimens/coding-agent (specimen only) | Example |
 | DEV-01 | Code block | [Design system](design-system.md) | /reference/components/code-block; assistant replies; webhook deliveries | Example |
 | DEV-02 | Snippet | [API keys and webhooks](pages/settings/developers.md) | /app/demo/settings/api-keys; /reference/components/snippet | Example |

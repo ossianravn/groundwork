@@ -3229,5 +3229,51 @@
       "src/demo/coding-agent.ts",
       "src/app/specimen-route.tsx"
     ]
+  },
+  {
+    "id": "AI-25",
+    "title": "Working plan",
+    "originalName": "Working plan",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Show what the assistant is doing for this request, step by step, while it works.",
+    "implemented": "Multi-step replies (at-risk projects, this week, status updates, launch checklists) stream a working plan as a data part, replaced in place as each stage finishes: one task in progress, then done; a failed reply marks the current task blocked and a stopped one shows it as stopped. The plan docks above the composer as a collapsed bar with its title and progress that opens upward into the tasks.",
+    "deferred": "The plan is scripted with each reply; a real agent would write and revise it as a tool call.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Draft a status update for Mobile app and open the bar above the composer while it works."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/task-plan.tsx",
+      "src/features/assistant/assistant-plan-dock.tsx",
+      "src/demo/assistant/todo-chunks.ts"
+    ]
+  },
+  {
+    "id": "AI-26",
+    "title": "Conversation panel",
+    "originalName": "Conversation panel",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "See everything a conversation did, made and cited, and get back to it.",
+    "implemented": "A panel beside the chat (a sheet on narrower screens), opened from Conversation in the top bar or from a finished reply's reasoning. Work lists each question with a timeline of reasoning, steps, tool calls and answers, by state; Outputs lists drafted documents (Draft or Posted, with copy, download and the project) and tasks added, waiting or declined; Sources lists the cited pages once each. Items scroll the transcript to their reply and mark it for a moment.",
+    "deferred": "The panel describes the open conversation only; history across conversations stays in the history list.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Which projects are at risk?, then select Thought for 1 second."
+      }
+    ],
+    "sources": [
+      "src/features/assistant/assistant-inspector.tsx",
+      "src/features/assistant/assistant-work.tsx",
+      "src/features/assistant/assistant-outputs.tsx",
+      "src/features/assistant/inspector-model.ts",
+      "src/app/assistant-route.tsx"
+    ]
   }
 ]
