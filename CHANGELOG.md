@@ -4,6 +4,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `shimmer`: one sweep every 1.4s (was 2.2s) with a wider bright band, and a `variant="rainbow"` that sweeps the theme's categorical hues, mixed toward the text colour for legibility. The reference gains a Shimmer page.
 - `shell`: the icon buttons at either end of the workspace top bar align their icon, rather than their hit area, with the page's content edge at every width (previously only on phones).
 - `data-table`: `TablePagination` shows page controls only when there is more than one page. Faceted filter and facet drawer triggers mark an applied filter with `data-active`, and an unapplied one has a dashed outline. `TableViewOptions` wraps its label in `.table-view-options-label`, so a host can show only the icon in a tight toolbar.
 - `shell`: on phones, where parent crumbs are hidden, the workspace top bar shows the nearest linked parent crumb as a back arrow (`.breadcrumb-back`) before the page title; the root crumb is `.breadcrumb-root`.
