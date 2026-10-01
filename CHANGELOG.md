@@ -4,6 +4,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- Reference: `/reference/charts` shows every chart in the kit by family (Area, Bar, Line, Pie, Radar, Radial, Small charts, Tooltip): a live preview on the demo's data, that variant's code, and where Tandem uses it, or Reference only. Patterns DVIZ-15 and DVIZ-16 are catalogued.
 - New registry items: `sparkline` (with `trendLabel`), `radial-progress`, `calendar-heatmap` and `uptime-strip`, each accessible without the pointer (a named trend, a meter, a keyboard grid, an uptime summary in words). The registry grows to 71 items.
 - Demo: Overview metrics gain 30-day sparklines, project cards a completion ring, Activity a calendar heatmap, Settings › API keys and Webhooks usage and delivery charts, and the status page the kit uptime strip. Patterns DVIZ-11, DVIZ-13 and DVIZ-14 are catalogued.
 - Demo: Analytics adds Projects (burn-up with a projection and due line, previous-period bars, projects by status, share of open work as an expanded area) and Workload (open tasks per person stacked by project, a radar comparing two people by project tag); project pages show the burn-up in Activity. Patterns DVIZ-08 and DVIZ-12 are catalogued.

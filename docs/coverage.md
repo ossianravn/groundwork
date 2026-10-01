@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 152 IDs: 151 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 154 IDs: 153 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -28,6 +28,8 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | DVIZ-12 | Radar comparison | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/analytics | Default |
 | DVIZ-13 | Calendar heatmap | [Activity](pages/app/activity.md) | /app/:workspace/activity | Default |
 | DVIZ-14 | Uptime strip | [Company pages](pages/public/company.md) | /status | Default |
+| DVIZ-15 | Chart tooltip and legend | [Design system](design-system.md) | /reference/charts?family=tooltip; /app/:workspace/analytics | Default |
+| DVIZ-16 | Charts reference | [Reference patterns](pages/reference/patterns.md) | /reference/charts | Example |
 | EDGE-01 | Content-Geometry Skeleton Loaders | [Shared shells ](shells.md) | Shared shells; /reference/states/:scenario | Default |
 | EDGE-02 | Zero-Data Empty States | [Shared shells ](shells.md) | Shared shells; /reference/states/:scenario | Default |
 | EDGE-03 | Destructive Action Dialog (Guarded) | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/workspace; /reference/states/destructive-action | Policy decision: Confirmation severity and recovery must be agreed for the actual operation |

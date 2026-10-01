@@ -8,6 +8,7 @@ export type ReferenceLinkProps = Omit<ComponentProps<"a">, "href"> & {
     | "patterns"
     | "pattern"
     | "themes"
+    | "charts"
     | "states"
     | "website"
     | "demo"

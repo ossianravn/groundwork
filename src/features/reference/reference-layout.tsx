@@ -49,6 +49,12 @@ export function ReferenceLayout({
         Patterns
       </LinkComponent>
       <LinkComponent
+        destination="charts"
+        aria-current={active === "charts" ? "page" : undefined}
+      >
+        Charts
+      </LinkComponent>
+      <LinkComponent
         destination="themes"
         aria-current={active === "themes" ? "page" : undefined}
       >

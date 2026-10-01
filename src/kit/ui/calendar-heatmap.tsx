@@ -65,6 +65,19 @@ function CalendarHeatmap({
   const weeks = Math.ceil((offset + days.length) / 7)
   const current = shown ?? active
   // Cells take --heatmap-cell (0.75rem unless the host sets it).
+  // A month's name over the week it starts in; the first, partial week is
+  // named only when the next month is not about to be.
+
+  const months = Array.from({ length: weeks }, (_, week) => {
+    const start = shift(first, week * 7 - offset)
+
+    return week === 0 || day(start).getUTCDate() <= 7
+      ? month.format(day(week === 0 ? first : start))
+      : ""
+  })
+
+  if (months[1] || months[2]) months[0] = ""
+
   const columns = `1.75rem repeat(${weeks}, var(--heatmap-cell, 0.75rem))`
 
   const move = (to: string) => {
@@ -89,19 +102,11 @@ function CalendarHeatmap({
           style={{ gridTemplateColumns: columns }}
         >
           <span />
-          {Array.from({ length: weeks }, (_, week) => {
-            const start = shift(first, week * 7 - offset)
-            const opens = week === 0 || day(start).getUTCDate() <= 7
-
-            return (
-              <span
-                key={week}
-                className="h-4 overflow-visible whitespace-nowrap"
-              >
-                {opens ? month.format(day(week === 0 ? first : start)) : ""}
-              </span>
-            )
-          })}
+          {months.map((name, week) => (
+            <span key={week} className="h-4 overflow-visible whitespace-nowrap">
+              {name}
+            </span>
+          ))}
         </div>
         <div
           ref={grid}
@@ -125,7 +130,10 @@ function CalendarHeatmap({
         >
           {["Mon", "", "Wed", "", "Fri", "", ""].map((name, row) => (
             <div key={row} role="row" className="contents">
-              <span aria-hidden="true" className="flex items-center pe-1">
+              <span
+                aria-hidden="true"
+                className="flex h-(--heatmap-cell,0.75rem) items-center pe-1 leading-none"
+              >
                 {name}
               </span>
               {Array.from({ length: weeks }, (_, week) => {

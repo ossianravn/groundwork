@@ -18,6 +18,8 @@ const sources = import.meta.glob<string>(
     "../features/analytics/palette-order.ts",
     "../kit/ui/{sparkline,radial-progress,calendar-heatmap,uptime-strip}.tsx",
     "../demo/snapshot-history.ts",
+    "../features/reference/charts/*.{ts,tsx}",
+    "../app/chart-gallery-route.tsx",
     "../features/projects/project-grid.tsx",
     "../features/activity/activity-heatmap.tsx",
     "../features/settings/{api-usage-chart,delivery-history-chart}.tsx",

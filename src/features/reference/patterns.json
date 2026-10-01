@@ -3513,5 +3513,54 @@
       "src/kit/ui/uptime-strip.tsx",
       "src/features/public/status-page.tsx"
     ]
+  },
+  {
+    "id": "DVIZ-15",
+    "title": "Chart tooltip and legend",
+    "originalName": "Chart tooltip and legend",
+    "category": "Data visualization",
+    "surface": "Shared",
+    "summary": "One tooltip and one legend behaviour for every chart, so reading values works the same everywhere.",
+    "implemented": "The kit ChartTooltipContent takes a dot, line or dashed indicator (or none), a label formatter and a value formatter, and follows each series' colour from the chart config. Legends are ChartSeriesToggle (pressed-state buttons that show and hide series, keeping one on) or ChartSeriesPicker (totals in the heading that choose the series). Neither is the only way to a value: every chart also has Show data.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Tooltips",
+        "href": "/reference/charts?family=tooltip",
+        "instruction": "Each preview opens on one day; hover the others."
+      },
+      {
+        "label": "Legend toggles",
+        "href": "/app/demo/analytics",
+        "instruction": "Hide Added in the Delivery legend."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/chart-tooltip.tsx",
+      "src/kit/ui/chart-series.tsx",
+      "src/features/reference/charts/tooltip-charts.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-16",
+    "title": "Charts reference",
+    "originalName": "Charts reference",
+    "category": "Data visualization",
+    "surface": "Shared",
+    "summary": "Browse every chart the kit supports, with its code and where the product uses it.",
+    "implemented": "/reference/charts groups the kit's charts by family (Area, Bar, Line, Pie, Radar, Radial, Small charts, Tooltip), as shadcn's chart pages do: each variant is a live preview on the demo's own data, a Code toggle showing exactly that variant's source, and a link to where Tandem uses it, or Reference only for variants that complete a family. The family is kept in the URL (family=bar).",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Charts reference",
+        "href": "/reference/charts",
+        "instruction": "Open Bar, then choose Code on any variant."
+      }
+    ],
+    "sources": [
+      "src/features/reference/charts/chart-gallery.tsx",
+      "src/features/reference/charts/gallery-families.ts",
+      "src/app/chart-gallery-route.tsx"
+    ]
   }
 ]

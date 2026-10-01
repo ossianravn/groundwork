@@ -38,3 +38,7 @@ Contract checks keep catalogue IDs aligned with coverage and verify advertised s
 ## Coding agent specimen
 
 `/reference/specimens/coding-agent` replays a recorded session in which an agent fixes a failing test in a small repository (fixture `src/demo/data/coding-agent.json`). The page opens complete so it can be read at once; Replay plays it back from the prompt, streaming each test run into the Terminal, and Show all skips to the end (the same button, so focus stays). The transcript uses the kit's Message, Reasoning and Tool pieces; tool results render as Test results with a Stack trace under the failure and the terminal output, a Code block for the file read, a diff, and a Commit. Beside it (below on narrow screens), a File tree marks the files once the agent has edited them, and selecting a file previews it as it stands at that point in the session.
+
+## Charts
+
+`/reference/charts` (DVIZ-16) shows every chart in the kit by family: Area, Bar, Line, Pie, Radar, Radial, Small charts and Tooltip. Each variant is a live preview on the demo's data (`gallery-data.ts`) with a Code toggle showing exactly its source: the region between `// #region <id>` and `// #endregion` in its family file. Each also links to where Tandem uses it, or says Reference only. The family is kept in the URL (`?family=bar`). To add a variant, write it in a region of its family file, then list it in `variants-cartesian.ts` or `variants-other.ts`.

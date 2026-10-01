@@ -30,6 +30,15 @@ export function ReferenceLink({
           params={{ scenario: "loading" }}
         />
       )
+    case "charts":
+      return (
+        <Link
+          activeOptions={{ exact: true }}
+          {...props}
+          to="/reference/charts"
+          search={{ family: "area" }}
+        />
+      )
     case "themes":
       return (
         <Link
