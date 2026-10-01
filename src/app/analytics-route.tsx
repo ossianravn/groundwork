@@ -23,6 +23,14 @@ export function AnalyticsRoute() {
         period={reportPeriodOf(search)}
         projectId={search.project}
         projectView={search.projectView}
+        compare={search.compare}
+        onCompareChange={(compare) => {
+          void navigate({
+            to: "/app/demo/analytics",
+            search: { ...search, compare },
+            resetScroll: false,
+          })
+        }}
         onProjectViewChange={(projectView) => {
           void navigate({
             to: "/app/demo/analytics",

@@ -4,19 +4,8 @@
   gap: var(--control-gap);
   min-width: 0;
 }
-.analytics-heading .analytics-filters {
-  justify-content: flex-end;
-}
 .analytics-filters [data-slot="select-trigger"] {
   max-width: min(24ch, 100%);
-}
-.analytics-page > .completion-card {
-  padding-bottom: var(--section-gap);
-  border-bottom: 1px solid var(--border);
-}
-.analytics-page > .completion-card .chart-body {
-  height: 20rem;
-  flex: none;
 }
 .analytics-breakdowns {
   display: grid;
@@ -123,13 +112,110 @@
   .analytics-page {
     padding-inline: 1rem;
   }
-  .analytics-heading {
+}
+/* Sections (charts plan): shared filters on top, then titled sections. */
+.analytics-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+.analytics-compare {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--control-gap);
+  min-height: var(--control-height);
+  padding-inline: 0.25rem;
+  font-size: var(--text-body);
+}
+.analytics-section {
+  display: grid;
+  gap: var(--section-gap);
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+.analytics-section-header h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.analytics-section-header p {
+  color: var(--muted-foreground);
+  font-size: var(--text-body);
+}
+.analytics-chart {
+  min-width: 0;
+  gap: var(--card-padding);
+}
+.analytics-plot {
+  display: grid;
+  height: 100%;
+}
+.analytics-plot-chart {
+  width: 100%;
+  min-height: 16rem;
+  aspect-ratio: auto;
+}
+.analytics-throughput .analytics-plot-chart {
+  min-height: 18rem;
+}
+.analytics-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.analytics-pair > :first-child {
+  padding-inline-end: var(--section-gap);
+}
+.analytics-pair > :last-child {
+  padding-inline-start: var(--section-gap);
+  border-inline-start: 1px solid var(--border);
+}
+.analytics-poles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--content-gap);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.analytics-poles > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.analytics-poles > span > span {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 3px;
+}
+@media (width < 64rem) {
+  .analytics-pair {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--section-gap);
   }
-  .analytics-heading .analytics-filters {
-    justify-content: flex-start;
+  .analytics-pair > :first-child {
+    padding-inline-end: 0;
   }
-  .analytics-page > .completion-card .chart-body {
-    height: 16rem;
+  .analytics-pair > :last-child {
+    padding-inline-start: 0;
+    padding-top: var(--section-gap);
+    border-inline-start: 0;
+    border-top: 1px solid var(--border);
   }
+}
+.analytics-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--control-gap);
+}
+/* Last period's completions: a dashed line, keyed the same way. */
+.analytics-previous-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.analytics-previous-key > span {
+  width: 1rem;
+  border-top: 1.5px dashed var(--muted-foreground);
 }

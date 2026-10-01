@@ -13,7 +13,7 @@ export const projectStatuses: ProjectStatus[] = [
   "completed",
 ]
 
-export type Period = 7 | 14 | 30
+export type Period = 7 | 14 | 30 | 90
 
 export interface Member {
   id: string

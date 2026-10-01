@@ -16,7 +16,12 @@ export function parseReportPeriodSearch(
   fallback: Period,
 ): ReportPeriodSearch {
   const value = Number(raw.period)
-  const period = value === 7 || value === 14 || value === 30 ? value : fallback
+
+  const period =
+    value === 7 || value === 14 || value === 30 || value === 90
+      ? value
+      : fallback
+
   const from = String(raw.from ?? "")
   const to = String(raw.to ?? "")
 

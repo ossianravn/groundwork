@@ -68,12 +68,22 @@ it("preserves Analytics scope and the project data view through a project visit"
   const origin = "/app/demo/analytics?period=7&project=brand&projectView=data"
   expect(projectReturnDestination(origin)).toEqual({
     to: "/app/demo/analytics",
-    search: { period: 7, project: "brand", projectView: "data" },
+    search: {
+      period: 7,
+      project: "brand",
+      projectView: "data",
+      compare: false,
+    },
     hash: "",
   })
   expect(
     projectReturnDestination("/app/demo/analytics?period=invalid").search,
-  ).toEqual({ period: 30, project: "", projectView: "chart" })
+  ).toEqual({
+    period: 30,
+    project: "",
+    projectView: "chart",
+    compare: false,
+  })
 })
 
 it("returns to the assistant from a project opened in a reply", () => {

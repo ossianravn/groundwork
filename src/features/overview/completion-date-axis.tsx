@@ -6,8 +6,11 @@ export function CompletionDateAxis({
   fontSize,
   lineHeight,
   labelWidth,
+  format = (value) => formatDate(value),
 }: {
   dates: readonly string[]
+  /** Formats a date label; defaults to the short date. */
+  format?: (date: string) => string
   fontSize: number
   lineHeight: number
   labelWidth: number
@@ -40,7 +43,7 @@ export function CompletionDateAxis({
       interval={0}
       tickLine={false}
       axisLine={false}
-      tickFormatter={(value: string) => formatDate(value)}
+      tickFormatter={(value: string) => format(value)}
     />
   )
 }

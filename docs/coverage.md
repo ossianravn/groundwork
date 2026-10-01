@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 143 IDs: 142 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-09-30. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 147 IDs: 146 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -19,6 +19,10 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | DVIZ-03 | Segmented Bar Chart | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/overview; /app/:workspace/analytics | Default |
 | DVIZ-04 | Donut / Breakdown Chart | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/overview; /app/:workspace/analytics | Default |
 | DVIZ-05 | Date Range & Filter Picker | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/overview; /app/:workspace/analytics | Default |
+| DVIZ-06 | Area time series | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/analytics | Default |
+| DVIZ-07 | Line with labelled points | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/analytics | Default |
+| DVIZ-09 | Diverging bars | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/analytics | Default |
+| DVIZ-10 | Chart states | [Overview and analytics ](pages/app/overview.md) | /app/:workspace/analytics | Default |
 | EDGE-01 | Content-Geometry Skeleton Loaders | [Shared shells ](shells.md) | Shared shells; /reference/states/:scenario | Default |
 | EDGE-02 | Zero-Data Empty States | [Shared shells ](shells.md) | Shared shells; /reference/states/:scenario | Default |
 | EDGE-03 | Destructive Action Dialog (Guarded) | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/workspace; /reference/states/destructive-action | Policy decision: Confirmation severity and recovery must be agreed for the actual operation |

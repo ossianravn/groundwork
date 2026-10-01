@@ -12,7 +12,7 @@ import { ChartSeriesPicker } from "@/kit/ui/chart-series"
 import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
 import { Button } from "@/kit/ui/button"
 import { useChartTypography } from "@/kit/ui/use-chart-typography"
-import { taskSeries } from "@/demo/selectors"
+import { bucketOf, deliverySeries } from "@/demo/delivery"
 import { formatDate, type Activity, type ProjectTask } from "@/demo/model"
 import type { ReportWindow } from "@/demo/report-period"
 
@@ -25,6 +25,10 @@ interface CompletionChartProps {
   snapshotDate: string
   periodControl: ReactNode
 }
+
+const weekLabel = (date: string) => `w/c ${formatDate(date)}`
+
+const dayLabel = (date: string) => formatDate(date)
 
 const series = {
   completed: { label: "completed", heading: "Tasks completed" },
@@ -51,12 +55,15 @@ export function CompletionChart({
   const [shown, setShown] = useState<SeriesKey>("completed")
 
   const days = useMemo(
-    () => taskSeries(activity, tasks, range),
+    () => deliverySeries(activity, tasks, range),
     [activity, tasks, range],
   )
 
   const dates = useMemo(() => days.map((day) => day.date), [days])
-  const labels = useMemo(() => dates.map((date) => formatDate(date)), [dates])
+  // Past a month the days are too thin to read, so bars become weeks.
+  const weekly = bucketOf(range) === "week"
+  const label = weekly ? weekLabel : dayLabel
+  const labels = useMemo(() => dates.map(label), [dates, label])
 
   const {
     ref: chartBody,
@@ -71,7 +78,12 @@ export function CompletionChart({
     added: days.reduce((sum, day) => sum + day.added, 0),
   }
 
-  const showsSnapshot = dates.includes(snapshotDate)
+  // The bar holding the snapshot day reads first (the last week, by week).
+  const snapshotBar = weekly
+    ? dates.filter((date) => date <= snapshotDate).at(-1)
+    : snapshotDate
+
+  const showsSnapshot = !!snapshotBar && dates.includes(snapshotBar)
   const period = `from ${formatDate(range.start)} to ${formatDate(range.end, { year: "numeric" })}`
 
   return (
@@ -111,7 +123,7 @@ export function CompletionChart({
               {
                 key: "date",
                 header: "Date",
-                cell: (day) => formatDate(day.date),
+                cell: (day) => label(day.date),
               },
               {
                 key: "completed",
@@ -145,6 +157,7 @@ export function CompletionChart({
               <CartesianGrid vertical={false} strokeDasharray="3 4" />
               <CompletionDateAxis
                 dates={dates}
+                format={label}
                 lineHeight={lineHeight}
                 fontSize={fontSize}
                 labelWidth={labelWidth}
@@ -162,7 +175,7 @@ export function CompletionChart({
                 cursor={{ fill: "var(--muted)" }}
                 content={
                   <ChartTooltipContent
-                    labelFormatter={(value) => formatDate(String(value))}
+                    labelFormatter={(value) => label(String(value))}
                   />
                 }
               />
@@ -179,7 +192,7 @@ export function CompletionChart({
                   <Cell
                     key={day.date}
                     fillOpacity={
-                      !showsSnapshot || day.date === snapshotDate ? 1 : 0.5
+                      !showsSnapshot || day.date === snapshotBar ? 1 : 0.5
                     }
                   />
                 ))}
