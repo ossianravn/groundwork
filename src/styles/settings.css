@@ -160,3 +160,12 @@
     gap: 4px;
   }
 }
+/* Usage and delivery history (DVIZ-06, DVIZ-08) sit between a settings
+   page's heading and its records, shorter than Analytics charts. */
+.settings-chart {
+  padding-bottom: var(--section-gap);
+  border-bottom: 1px solid var(--border);
+}
+.settings-chart .settings-chart-plot {
+  min-height: 12rem;
+}

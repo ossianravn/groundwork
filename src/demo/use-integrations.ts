@@ -2,8 +2,15 @@ import { useState } from "react"
 import fixtures from "./data/integrations.json"
 import { createDemoKey, demoDelivery, type WebhookValues } from "./integrations"
 
+// The usage and delivery histories are read-only samples, outside state.
+const initial = {
+  keys: fixtures.keys,
+  webhooks: fixtures.webhooks,
+  deliveries: fixtures.deliveries,
+}
+
 export function useIntegrations() {
-  const [state, setState] = useState(fixtures)
+  const [state, setState] = useState(initial)
 
   return {
     ...state,
@@ -51,7 +58,7 @@ export function useIntegrations() {
         }
       })
     },
-    reset: () => setState(fixtures),
+    reset: () => setState(initial),
     clear: () => setState({ keys: [], webhooks: [], deliveries: [] }),
   }
 }

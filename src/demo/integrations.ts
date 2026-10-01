@@ -66,3 +66,12 @@ export function demoDelivery(webhook: Webhook, failed: boolean): Delivery {
       : '{"received":true}',
   }
 }
+
+/** A key's requests per day over the last 30 days; new keys have none. */
+export const keyUsage = (id: string) =>
+  Object.entries(fixtures.keyUsage).find(([key]) => key === id)?.[1] ?? []
+
+/** An endpoint's deliveries per day over the last 14 days. */
+export const deliveryHistory = (id: string) =>
+  Object.entries(fixtures.deliveryHistory).find(([key]) => key === id)?.[1] ??
+  []

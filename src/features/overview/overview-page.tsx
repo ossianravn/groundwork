@@ -2,6 +2,7 @@ import { lazy, Suspense, type ReactNode } from "react"
 import { Plus } from "lucide-react"
 import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { ChartState } from "@/kit/ui/chart-state"
+import { snapshotHistory } from "@/demo/snapshot-history"
 import {
   formatDate,
   type Activity,
@@ -80,7 +81,11 @@ export function OverviewPage({
         />
       </PageActions>
       {intro}
-      <Metrics projects={projects} referenceDate={referenceDate} />
+      <Metrics
+        projects={projects}
+        referenceDate={referenceDate}
+        history={snapshotHistory(projects, tasks, activity, referenceDate)}
+      />
       <div className="overview-middle">
         <Suspense
           fallback={

@@ -4,6 +4,7 @@
 .overview-middle > :is(.completion-card, .activity-card),
 .analytics-section .analytics-chart,
 .project-burn-up,
+.settings-chart,
 .analytics-breakdowns > .analytics-breakdown,
 .analytics-pair > .analytics-breakdown,
 .activity-page > .activity-feed-card,

@@ -18,6 +18,7 @@ import {
 import type { Delivery, Webhook, WebhookValues } from "@/demo/integrations"
 import { WebhookDialog } from "./webhook-dialog"
 import { CodeBlock } from "@/kit/ui/code-block"
+import { DeliveryHistoryChart } from "./delivery-history-chart"
 
 /** Indents a JSON response; anything else is shown as it came. */
 function readable(body: string) {
@@ -64,6 +65,7 @@ export function WebhookSettings({
           Add endpoint
         </Button>
       </header>
+      <DeliveryHistoryChart webhooks={webhooks} />
       <ul className="integration-list" aria-label="Webhook endpoints">
         {webhooks.map((webhook) => {
           const history = deliveries.filter(

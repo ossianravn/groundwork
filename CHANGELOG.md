@@ -4,6 +4,8 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- New registry items: `sparkline` (with `trendLabel`), `radial-progress`, `calendar-heatmap` and `uptime-strip`, each accessible without the pointer (a named trend, a meter, a keyboard grid, an uptime summary in words). The registry grows to 71 items.
+- Demo: Overview metrics gain 30-day sparklines, project cards a completion ring, Activity a calendar heatmap, Settings › API keys and Webhooks usage and delivery charts, and the status page the kit uptime strip. Patterns DVIZ-11, DVIZ-13 and DVIZ-14 are catalogued.
 - Demo: Analytics adds Projects (burn-up with a projection and due line, previous-period bars, projects by status, share of open work as an expanded area) and Workload (open tasks per person stacked by project, a radar comparing two people by project tag); project pages show the burn-up in Activity. Patterns DVIZ-08 and DVIZ-12 are catalogued.
 - Demo: Analytics is reorganised into Delivery (tasks completed and added as areas with a toggle legend, diverging bars for the change in open tasks, a labelled cycle-time line) and Projects and people, under one filter row with Compare with previous period. Periods gain Last 90 days, read by week. Patterns DVIZ-06, DVIZ-07, DVIZ-09 and DVIZ-10 are catalogued.
 - `chart`: adds `ChartHeader` and `ChartTotal`, `ChartSeriesPicker` (totals that choose the series) and `ChartSeriesToggle` (a legend that shows and hides series), `ChartDataTable` (Show data), `ChartState` (loading, empty, failed) and `chart-colors` (`seriesColor`, `hueColor`, `maxSeries`).
