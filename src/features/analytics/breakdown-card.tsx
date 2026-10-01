@@ -44,7 +44,7 @@ export function BreakdownCard({
     <Card className="analytics-breakdown">
       <CardHeader>
         <CardTitle>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
         </CardTitle>
       </CardHeader>
       <CardContent>

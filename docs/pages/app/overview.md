@@ -11,7 +11,7 @@ Understand workspace activity and investigate the numbers that need attention.
 | Route | Ordered page composition (in addition to shell) |
 | --- | --- |
 | `/app/:workspace/overview` | Page header; period filter (DVIZ-05); a small set of contextual metrics (DVIZ-01); time-series overview (DVIZ-02); recent activity (TABL-08); links to Projects and Analytics. |
-| `/app/:workspace/analytics` | Page header; date range and segment controls (DVIZ-05); time-series chart (DVIZ-02); grouped/stacked bars (DVIZ-03); categorical breakdown (DVIZ-04); accessible data view. |
+| `/app/:workspace/analytics` | Shared filters (project, period, Compare with previous period; DVIZ-05); Delivery section: tasks completed and added (DVIZ-06), change in open tasks (DVIZ-09), cycle time (DVIZ-07); Projects and people section: project bars (DVIZ-03) and contributor donut (DVIZ-04). Each chart has Show data and chart states (DVIZ-10). |
 
 ## Actions and outcomes
 
@@ -49,6 +49,15 @@ Filter triggers fit their visible icon, label and active selection count. No cou
 Chart, Card, Tabs where there are panels, Calendar, Popover and Select compose the view. Charts resize with their container and have clear labels/units plus readable data or summaries. Keyboard and touch users can access values without hovering. Stacking cards must preserve a sensible comparison order.
 
 ## Data and persistence
+
+### Analytics sections — 2026-10-01
+
+Analytics is one scrolling page under one filter row (project, period, Compare with previous period). Sections have a visible heading and a line saying what they answer; charts inside use h3 result headings.
+
+- **Delivery** answers whether work is finished as fast as it arrives. Tasks completed and added (two areas with a toggle legend), change in open tasks (bars above or below zero) and median cycle time (labelled points). Ranges over a month read by week (`w/c 6 Jul`); cycle time reads by week past two weeks, because a day's few tasks give noisy medians. Completions come from Activity and additions and cycle times from task dates (`src/demo/delivery.ts`).
+- **Compare with previous period** (`compare=true`) uses the window of the same length ending the day before. Headings gain the change (+70 completed vs previous 30 days; faster or slower cycle time) and the area chart a keyed dashed line. When that window starts before the recorded history (26 June), the section says so instead of comparing with zeros.
+- A chart with nothing in the range shows ChartState's No data for this range and disables Show data.
+- **Projects and people** keeps the project bars and contributor donut.
 
 ### Implemented Analytics — 2026-09-27
 

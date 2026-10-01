@@ -4,6 +4,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- Demo: Analytics is reorganised into Delivery (tasks completed and added as areas with a toggle legend, diverging bars for the change in open tasks, a labelled cycle-time line) and Projects and people, under one filter row with Compare with previous period. Periods gain Last 90 days, read by week. Patterns DVIZ-06, DVIZ-07, DVIZ-09 and DVIZ-10 are catalogued.
 - `chart`: adds `ChartHeader` and `ChartTotal`, `ChartSeriesPicker` (totals that choose the series) and `ChartSeriesToggle` (a legend that shows and hides series), `ChartDataTable` (Show data), `ChartState` (loading, empty, failed) and `chart-colors` (`seriesColor`, `hueColor`, `maxSeries`).
 - `base` (theme): `--chart-5` is now sky (was green) so adjacent series stay apart for colour-blind readers; new `--chart-violet` … `--chart-green` tokens follow the record hues in light mode and have their own darker steps in dark mode. Themes that override `--chart-5` are unaffected.
 - Demo: tasks carry `createdAt`/`completedAt` over about 90 days, with Activity extended to match; the completion chart chooses between tasks completed and added.

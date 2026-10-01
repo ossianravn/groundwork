@@ -18,6 +18,7 @@ const presets: ReportPeriod[] = [
   { kind: "preset", days: 7 },
   { kind: "preset", days: 14 },
   { kind: "preset", days: 30 },
+  { kind: "preset", days: 90 },
 ]
 
 const options = [

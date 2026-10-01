@@ -299,6 +299,42 @@
   ],
   "releases": [
     {
+      "version": "0.7.0",
+      "date": "2026-10-01",
+      "title": "Delivery analytics",
+      "summary": "Analytics now shows whether work is finished as fast as it arrives: tasks completed and added, the change in open work, and how long tasks take.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Analytics opens with Delivery: tasks completed and added over time, whether the backlog grew or shrank each day or week, and the median days from adding a task to completing it.",
+            "Turn on Compare with previous period to see each figure against the period just before, with last period's completions as a dashed line.",
+            "Choose Last 90 days to read the last three months by week. Hide a series from the chart's legend to focus on the other."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Analytics is organised into Delivery and Projects and people, under one row of filters.",
+            "Charts with nothing to show in the chosen range now say so, instead of drawing a flat line.",
+            "Overview's chart offers Last 90 days too, read as weekly bars."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "The sample history starts on 26 June 2026, so comparisons need a period that starts after that. Everything resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.6.1",
       "date": "2026-10-01",
       "title": "Tasks added, and a longer history",

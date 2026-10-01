@@ -215,7 +215,7 @@
     "surface": "Workspace",
     "summary": "See how completed work changes over time.",
     "implemented": "Daily bars for the chosen period or custom range, with Completed and Added totals in the heading that choose the series (shadcn's interactive bar chart), the snapshot day at full strength, and Show data with both columns in the chart's place. Completions come from Activity and additions from task creation dates, over about 90 days of history.",
-    "deferred": "Previous-period comparison remains planned (charts plan step 2).",
+    "deferred": "None for the daily series; Analytics' Delivery section carries the multi-series variants (DVIZ-06, DVIZ-07, DVIZ-09).",
     "examples": [
       {
         "label": "Last 30 days",
@@ -283,8 +283,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Keep several views aligned to one reporting period.",
-    "implemented": "Overview and Analytics share a 7/14/30-day period or a custom range (up to 92 days) in the URL, plus a project filter on Analytics. The shown dates open the range calendar; the snapshot day is emphasised only when the range includes it.",
-    "deferred": "Comparison periods remain planned.",
+    "implemented": "Overview and Analytics share a 7/14/30/90-day period or a custom range (up to 92 days) in the URL, plus a project filter on Analytics. The shown dates open the range calendar; the snapshot day is emphasised only when the range includes it. Analytics' Compare with previous period (compare=true) adds the period of the same length just before to Delivery's headings and a dashed line, and says when there is no history to compare with.",
+    "deferred": "Comparison against a chosen period (rather than the one just before) is not offered.",
     "examples": [
       {
         "label": "Reporting filters",
@@ -3305,6 +3305,91 @@
       "src/demo/agent-runs.ts",
       "src/demo/agent-run-plans.ts",
       "src/demo/use-agent-runs.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-06",
+    "title": "Area time series",
+    "originalName": "Area time series",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Compare how two flows move over time, such as work arriving and work getting done.",
+    "implemented": "Analytics › Delivery: tasks completed and added as two gradient areas (shadcn's area chart), by day up to a month and by week beyond. The legend is a ChartSeriesToggle that shows and hides each series and keeps one on; with comparison, last period's completions follow as a keyed dashed line. Show data lists every point.",
+    "deferred": "Stacked and 100% (expand) variants arrive with Workload (charts plan step 3); API key usage (step area) with step 4.",
+    "examples": [
+      {
+        "label": "Delivery",
+        "href": "/app/demo/analytics?period=30&compare=true",
+        "instruction": "Hide Added in the legend, then switch to Last 90 days to read by week."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/throughput-chart.tsx",
+      "src/demo/delivery.ts",
+      "src/kit/ui/chart-series.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-07",
+    "title": "Line with labelled points",
+    "originalName": "Line with labelled points",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Show a trend whose values matter, readable without hovering.",
+    "implemented": "Analytics › Delivery: median cycle time (days from adding a task to completing it) by week, as a line with its values on the points (shadcn's line chart with labels); daily medians are too noisy, so it reads by week past two weeks. The heading gives the period's median and, when comparing, whether it is faster or slower.",
+    "deferred": "Burn-up with a due-date line and projection arrives with Projects (charts plan step 3).",
+    "examples": [
+      {
+        "label": "Cycle time",
+        "href": "/app/demo/analytics?period=30&compare=true",
+        "instruction": "Read the weekly medians on the points; choose Show data for the table."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/cycle-time-chart.tsx",
+      "src/demo/delivery.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-09",
+    "title": "Diverging bars",
+    "originalName": "Diverging bars",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Show change in both directions from zero, such as a backlog growing or shrinking.",
+    "implemented": "Analytics › Delivery: tasks added minus tasks completed per day or week, above zero when the backlog grew and below when it shrank (shadcn's negative bar chart), in two poles no other Delivery series uses, with a Grew/Shrank key and a signed heading.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Change in open tasks",
+        "href": "/app/demo/analytics?period=90",
+        "instruction": "Weeks above the line added more work than they finished."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/net-change-chart.tsx",
+      "src/demo/delivery.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-10",
+    "title": "Chart states",
+    "originalName": "Chart states",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Say what a chart can't show: still loading, nothing in the range, or failed.",
+    "implemented": "Kit ChartState: loading draws placeholder bars at the chart's size (the Overview chart's lazy fallback), empty says No data for this range with a way forward (Analytics charts for a quiet project or range, which also disable Show data), and failed offers Try again. Charts and their Show data tables keep the card's height.",
+    "deferred": "A scripted failure scenario for charts is not offered; the failed state is shown in the reference.",
+    "examples": [
+      {
+        "label": "Empty range",
+        "href": "/app/demo/analytics?project=launch&from=2026-09-19&to=2026-09-24",
+        "instruction": "Launch campaign had no work in these days."
+      }
+    ],
+    "sources": [
+      "src/kit/ui/chart-state.tsx",
+      "src/features/analytics/analytics-chart-card.tsx"
     ]
   }
 ]
