@@ -12,6 +12,8 @@ const sources = import.meta.glob<string>(
     "../app/assistant-parts.ts",
     "../demo/workspace-tasks.ts",
     "../app/assistant-route.tsx",
+    "../features/projects/{project-agent,agent-run-view}.tsx",
+    "../demo/{agent-runs,agent-run-plans,use-agent-runs}.ts",
     "../kit/ui/code-block.tsx",
     "../kit/ui/code-block-highlight.ts",
     "../kit/ui/snippet.tsx",

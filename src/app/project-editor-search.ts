@@ -21,19 +21,27 @@ export function parseProjectEditorSearch(raw: EditorSearchInput): EditorSearch {
 
 interface DetailSearch {
   returnTo: string
-  /** save-failure rejects the first inline save; upload-failure the first upload. */
-  scenario?: ProjectSaveScenario | "upload-failure"
+  /**
+   * save-failure rejects the first inline save; upload-failure the first
+   * upload; run-failure fails a step of the project's first agent run.
+   */
+  scenario?: ProjectSaveScenario | "upload-failure" | "run-failure"
   /** The open section; Tasks when absent. */
-  tab?: "comments" | "activity"
+  tab?: "comments" | "activity" | "agent"
 }
 
 export function parseProjectDetailSearch(raw: EditorSearchInput): DetailSearch {
   const search: DetailSearch = parseProjectReturnSearch(raw)
 
-  if (raw.scenario === "save-failure" || raw.scenario === "upload-failure")
+  if (
+    raw.scenario === "save-failure" ||
+    raw.scenario === "upload-failure" ||
+    raw.scenario === "run-failure"
+  )
     search.scenario = raw.scenario
 
-  if (raw.tab === "comments" || raw.tab === "activity") search.tab = raw.tab
+  if (raw.tab === "comments" || raw.tab === "activity" || raw.tab === "agent")
+    search.tab = raw.tab
 
   return search
 }

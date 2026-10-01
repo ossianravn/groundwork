@@ -1625,6 +1625,11 @@
           "path": "src/kit/ai/use-prompt-attachments.ts",
           "type": "registry:file",
           "target": "~/src/kit/ai/use-prompt-attachments.ts"
+        },
+        {
+          "path": "src/kit/ai/workflow-run.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ai/workflow-run.tsx"
         }
       ]
     },

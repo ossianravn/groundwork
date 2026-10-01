@@ -52,6 +52,8 @@ import { ShimmerExample } from "@/features/reference/examples/shimmer-example"
 import shimmerSource from "@/features/reference/examples/shimmer-example?raw"
 import { TaskPlanExample } from "@/features/reference/examples/task-plan-example"
 import taskPlanSource from "@/features/reference/examples/task-plan-example?raw"
+import { WorkflowRunExample } from "@/features/reference/examples/workflow-run-example"
+import workflowRunSource from "@/features/reference/examples/workflow-run-example?raw"
 import { TerminalExample } from "@/features/reference/examples/terminal-example"
 import terminalSource from "@/features/reference/examples/terminal-example?raw"
 import { FileTreeExample } from "@/features/reference/examples/file-tree-example"
@@ -137,6 +139,11 @@ export const referenceExamples = [
   { id: "snippet", Component: SnippetExample, source: snippetSource },
   { id: "shimmer", Component: ShimmerExample, source: shimmerSource },
   { id: "task-plan", Component: TaskPlanExample, source: taskPlanSource },
+  {
+    id: "workflow-run",
+    Component: WorkflowRunExample,
+    source: workflowRunSource,
+  },
   { id: "terminal", Component: TerminalExample, source: terminalSource },
   { id: "file-tree", Component: FileTreeExample, source: fileTreeSource },
   { id: "commit", Component: CommitExample, source: commitSource },

@@ -50,6 +50,16 @@ Comments follow tasks on the project page (TABL-13), oldest first. The composer 
 - Posting records a Comment event ("commented on the project") in Activity.
 - `comments.json` is the single source for the inbox's "Mentioned you in a comment" entries: a teammate's comment that mentions the current user becomes an inbox entry, unread when it is from the last day. Mentioning someone else sends nothing in this single-user demo.
 
+## Agent
+
+The project's **Agent** tab (AI-27) hands routine work to an agent that runs in the background. Before the first run it lists what the agent can do; afterwards New run starts another, and a run picker shows earlier ones. One run at a time per project.
+
+- **Write a status report** reads the tasks, the week's activity and the comments, writes a report, then stops at **Review the report**: the report is an editable field, posted to Comments under the person's name only with Post report. **Plan the launch** reads the brief and open tasks, finds checklist steps the project lacks and stops at **Approve the tasks** (Add 5 tasks); when nothing is missing it finishes without a review. Completed projects cannot take a launch plan.
+- The summary shows the state (Running, Needs you, Needs attention, Completed, Cancelled), when and by whom it started or how long it took, what it is doing or did, progress labelled by the current step, and Stop run while it works or Show in Comments / Show tasks once it has made its change. Each step says what it found and how long it took; review time is the person's and is not shown.
+- Runs live in shared demo state (`use-agent-runs.ts`), so they keep going while the person is on another page. The tab shows a dot while a run needs the person, and a status region announces when a run needs review, needs attention or finishes. Each decision removes its buttons, so focus moves to the run's heading.
+- Discard and Stop run end the run with nothing posted or added. `?scenario=run-failure` fails the reading step of the page's first run once: Try again repeats it, and Continue without … skips it and carries on.
+- Runs read the records when they start and reset with the demo.
+
 ## Files
 
 Files share the side column with progress (SETT-15); on narrow screens they follow progress. Each file shows a thumbnail (images) or a document icon, its size and date. Selecting one opens a preview dialog with who added it, Download (when the file has contents) and Remove. The dialog opens on its title so Enter cannot remove by accident; after removal focus moves to the Files heading and a toast offers Undo.

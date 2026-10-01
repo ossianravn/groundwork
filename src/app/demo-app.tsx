@@ -33,6 +33,7 @@ export function DemoApp() {
     drafts,
     files,
     assistant,
+    runs,
   } = useDemoState()
 
   const undo = useProjectUndo()
@@ -144,6 +145,7 @@ export function DemoApp() {
           drafts.reset()
           files.reset()
           assistant.reset()
+          runs.reset()
           openInspection(undefined, true)
         }}
       >

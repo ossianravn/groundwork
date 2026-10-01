@@ -8,6 +8,7 @@ import type { useResultsMemory } from "./use-results-memory"
 import type { useProjectDrafts } from "./use-project-drafts"
 import type { useProjectFiles } from "@/demo/use-project-files"
 import type { useAssistant } from "@/demo/assistant/use-assistant"
+import type { useAgentRuns } from "@/demo/use-agent-runs"
 
 export const DemoStateContext = createContext<{
   demo: ReturnType<typeof useWorkspace>
@@ -19,6 +20,7 @@ export const DemoStateContext = createContext<{
   drafts: ReturnType<typeof useProjectDrafts>
   files: ReturnType<typeof useProjectFiles>
   assistant: ReturnType<typeof useAssistant>
+  runs: ReturnType<typeof useAgentRuns>
 } | null>(null)
 
 export function useDemoState() {

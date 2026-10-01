@@ -3275,5 +3275,35 @@
       "src/features/assistant/inspector-model.ts",
       "src/app/assistant-route.tsx"
     ]
+  },
+  {
+    "id": "AI-27",
+    "title": "Agent runs",
+    "originalName": "Agent runs",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Hand routine work on a record to an agent that runs in the background and asks before it changes anything.",
+    "implemented": "A project's Agent tab starts a status report or a launch plan. The run reads the project step by step (each step says what it found and how long it took), keeps going if the person leaves, and stops at a review step: the report is edited and posted to Comments, or the proposed tasks are added, only on approval; Discard or Stop run end it with nothing changed. A failed step offers Try again or a way to continue without it (?scenario=run-failure). The tab is marked while a run needs the person, and earlier runs stay available from a run picker.",
+    "deferred": "Runs are scripted from the project's records and timed in the browser; they are not scheduled, and there is no notification outside the project page.",
+    "examples": [
+      {
+        "label": "Project page",
+        "href": "/app/demo/projects/brand?tab=agent",
+        "instruction": "Start Write a status report, then review and post the report."
+      },
+      {
+        "label": "Failure",
+        "href": "/app/demo/projects/mobile?tab=agent&scenario=run-failure",
+        "instruction": "Start Plan the launch; the second step fails once."
+      }
+    ],
+    "sources": [
+      "src/kit/ai/workflow-run.tsx",
+      "src/features/projects/project-agent.tsx",
+      "src/features/projects/agent-run-view.tsx",
+      "src/demo/agent-runs.ts",
+      "src/demo/agent-run-plans.ts",
+      "src/demo/use-agent-runs.ts"
+    ]
   }
 ]
