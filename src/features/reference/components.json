@@ -450,6 +450,25 @@
     "implementation": "src/kit/ai/task-plan.tsx"
   },
   {
+    "id": "workflow-run",
+    "name": "Workflow run",
+    "category": "AI and chat",
+    "purpose": "Show an agent's background run on a record: where it is, what each step found, and what it needs from the person.",
+    "notes": [
+      "WorkflowRunSummary carries the run's state (Running, Needs you, Needs attention, Completed, Cancelled) with its timing, title and description, a progress bar labelled by the current step while it is unfinished, and the actions that fit its state. An aside slot holds controls such as switching runs.",
+      "WorkflowSteps is an ordered timeline. Each WorkflowStep shows its state by icon and in words, what it found once done and how long it took; the current step is marked with aria-current and a tinted band, and its children hold the decision: a draft to edit and approve, items to add, or Try again and a way past a failure.",
+      "Unlike Chain of thought, a run lives outside the chat, on the record it changes, and keeps going while the person is elsewhere."
+    ],
+    "context": "Project page › Agent",
+    "href": "/app/demo/projects/brand?tab=agent",
+    "patterns": ["AI-27"],
+    "documentation": {
+      "href": "https://ai-sdk.dev/docs/agents/workflows",
+      "label": "AI SDK workflow patterns"
+    },
+    "implementation": "src/kit/ai/workflow-run.tsx"
+  },
+  {
     "id": "tool",
     "name": "Tool call",
     "category": "AI and chat",

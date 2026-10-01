@@ -170,6 +170,14 @@
       "votes": 29
     },
     {
+      "id": "agent-runs",
+      "stage": "Shipped",
+      "title": "Agent runs",
+      "description": "Released in 0.6.0.",
+      "votes": 34,
+      "release": "0.6.0"
+    },
+    {
       "id": "assistant",
       "stage": "Shipped",
       "title": "Assistant",

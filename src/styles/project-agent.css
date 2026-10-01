@@ -1,0 +1,78 @@
+/* The project's Agent tab (AI-27): one run at a time as a summary over its
+   steps, at a reading width; before the first run, the work it can take. */
+.project-agent {
+  display: grid;
+  gap: var(--stack-gap);
+  max-width: 46rem;
+}
+.agent-run {
+  display: grid;
+  gap: var(--stack-gap);
+}
+/* Step rows carry their own padding, so their marks start at the content
+   edge with the summary above. */
+.agent-run > [data-slot="workflow-steps"] {
+  margin-inline: -0.75rem;
+}
+.agent-run-tasks {
+  display: grid;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+}
+.agent-run-tasks > li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem var(--content-gap);
+  padding: 0.5rem 0.75rem;
+}
+.agent-run-tasks > li + li {
+  border-top: 1px solid var(--border);
+}
+.agent-run-tasks > li > span:last-child {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.agent-run textarea {
+  max-height: 24rem;
+  background: var(--background);
+}
+.project-agent-intro {
+  display: grid;
+  gap: 0.25rem;
+}
+.project-agent-intro h3 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.project-agent-intro p,
+.project-agent-workflows p {
+  color: var(--muted-foreground);
+}
+.project-agent-workflows > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-gap);
+  padding-block: var(--item-padding);
+}
+.project-agent-workflows > li + li {
+  border-top: 1px solid var(--border);
+}
+.project-agent-workflows h4 {
+  font-weight: 500;
+}
+.project-agent-menu {
+  max-width: 20rem;
+}
+/* A run waiting on the person marks the tab; the label says so in words. */
+.project-tab-alert {
+  display: inline-block;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  margin-inline-start: 0.125rem;
+  border-radius: 999px;
+  background: var(--brand);
+  vertical-align: 0.125em;
+}

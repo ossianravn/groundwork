@@ -8,6 +8,7 @@ import { useResultsMemory } from "./use-results-memory"
 import { useProjectDrafts } from "./use-project-drafts"
 import { useProjectFiles } from "@/demo/use-project-files"
 import { useAssistant } from "@/demo/assistant/use-assistant"
+import { useAgentRuns } from "@/demo/use-agent-runs"
 import { DemoStateContext } from "./demo-state"
 
 export function DemoStateProvider({ children }: { children: ReactNode }) {
@@ -21,6 +22,17 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
   const files = useProjectFiles()
   const assistant = useAssistant()
 
+  // A run's change lands in the project like the person's own edits.
+  const runs = useAgentRuns((run) => {
+    if (run.report) demo.postComment(run.projectId, run.report)
+
+    if (run.tasks)
+      demo.addTasks(
+        run.projectId,
+        run.tasks.map(({ title, assigneeId }) => ({ title, assigneeId })),
+      )
+  })
+
   return (
     <DemoStateContext
       value={{
@@ -33,6 +45,7 @@ export function DemoStateProvider({ children }: { children: ReactNode }) {
         drafts,
         files,
         assistant,
+        runs,
       }}
     >
       {children}

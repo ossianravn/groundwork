@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.6.0",
+      "date": "2026-10-01",
+      "title": "Agent runs on projects",
+      "summary": "Hand routine project work to the agent: it works through it in the background and asks before it posts or adds anything.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "A project's new Agent tab can write a status report or plan the launch. Watch each step and what it found, or leave the page while it works.",
+            "The agent stops for your review before it changes anything: edit the report and post it to Comments, or approve the tasks it proposes. Discard or Stop run leaves the project as it was.",
+            "If a step fails, try it again or continue without it. The tab is marked while a run needs you, and earlier runs stay available from the run picker."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Runs are scripted from your project's records, run in your browser and reset on reload. They aren't scheduled and don't notify you elsewhere."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.5.1",
       "date": "2026-09-30",
       "title": "Calmer project pages",

@@ -20,10 +20,13 @@ import { ProjectComments } from "./project-comments"
 import { ProjectActivity } from "./project-activity"
 import { ProjectProperties } from "./project-properties"
 
-export type ProjectTab = "tasks" | "comments" | "activity"
+export type ProjectTab = "tasks" | "comments" | "activity" | "agent"
 
 const isProjectTab = (value: unknown): value is ProjectTab =>
-  value === "tasks" || value === "comments" || value === "activity"
+  value === "tasks" ||
+  value === "comments" ||
+  value === "activity" ||
+  value === "agent"
 
 /**
  * A project's page: its name, status and description as the heading; the
@@ -46,6 +49,7 @@ export function ProjectPage({
   comments,
   onPostComment,
   files,
+  agent,
   tagOptions,
   tab,
   onTabChange,
@@ -64,6 +68,8 @@ export function ProjectPage({
   onPostComment: (text: string) => boolean
   /** Attachments, shown under the details in the rail. */
   files?: ReactNode
+  /** The agent's runs on the project; alert when one needs the person. */
+  agent: { panel: ReactNode; runs: number; alert: boolean }
   /** Tags offered when editing details, such as those used elsewhere. */
   tagOptions: string[]
   /** The open section; the host keeps it in the URL. */
@@ -135,6 +141,18 @@ export function ProjectPage({
               Activity{" "}
               <span className="project-tab-count">{events.length}</span>
             </TabsTrigger>
+            <TabsTrigger value="agent">
+              Agent{" "}
+              {agent.alert ? (
+                <span className="project-tab-alert">
+                  <span className="sr-only">needs you</span>
+                </span>
+              ) : (
+                agent.runs > 0 && (
+                  <span className="project-tab-count">{agent.runs}</span>
+                )
+              )}
+            </TabsTrigger>
           </TabsList>
           {/* Panels stay mounted, so a comment draft or an opened task
               survives a look at another section. */}
@@ -157,6 +175,9 @@ export function ProjectPage({
           </TabsContent>
           <TabsContent value="activity" keepMounted>
             <ProjectActivity events={events} members={members} />
+          </TabsContent>
+          <TabsContent value="agent" keepMounted>
+            {agent.panel}
           </TabsContent>
         </Tabs>
         {files && <div className="project-rail-files">{files}</div>}

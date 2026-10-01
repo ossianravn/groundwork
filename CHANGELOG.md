@@ -4,6 +4,8 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `ai`: `WorkflowRunSummary`, `WorkflowSteps` and `WorkflowStep` (with `WorkflowRunBadge`) for an agent's background run on a record: state, timing and progress, then each step by state with what it found, how long it took and, on the current step, the decision it needs.
+- Demo: project pages gain an Agent tab that runs a status report or launch plan in the background, stops for review before posting or adding tasks, and recovers from a failed step (`?scenario=run-failure`).
 - `ai`: `TaskPlan`, the agent's own plan for a request (title, progress and tasks to do, in progress, done, dropped or blocked), docked above the composer. `Reasoning` takes `onOpenDetails` to open finished reasoning in a host's panel instead of unfolding in place.
 - Demo: the Assistant streams a working plan for multi-step replies and gains a Conversation panel (Work, Outputs, Sources).
 - `shimmer`: one sweep every 1.4s (was 2.2s) with a wider bright band, and a `variant="rainbow"` that sweeps the theme's categorical hues, mixed toward the text colour for legibility. `Reasoning` uses the rainbow variant while it streams. The reference gains a Shimmer page.

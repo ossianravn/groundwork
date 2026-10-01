@@ -12,6 +12,9 @@ import { ProjectFiles } from "@/features/projects/project-files"
 import { ProjectUnavailable } from "@/features/projects/project-unavailable"
 import { ProjectEditLink } from "./project-detail-link"
 import { projectInlineEditing } from "@/features/projects/project-inline-editing"
+import { ProjectAgent } from "@/features/projects/project-agent"
+import { isActiveRun } from "@/demo/agent-runs"
+import { startRun } from "@/demo/agent-run-plans"
 
 const route = getRouteApi("/app/demo/projects/$projectId")
 
@@ -20,10 +23,21 @@ export function ProjectDetailRoute() {
   const { returnTo, scenario, tab } = route.useSearch()
   const navigate = route.useNavigate()
   const { demo, drafts } = useDemoWorkspace()
-  const { files } = useDemoState()
+  const { files, runs } = useDemoState()
   const undo = useProjectUndo()
   const project = demo.projects.find((item) => item.id === projectId)
   const destination = projectReturnDestination(returnTo)
+  const projectRuns = runs.runs.filter((run) => run.projectId === projectId)
+
+  const showTab = (next: "tasks" | "comments" | "activity" | "agent") =>
+    void navigate({
+      search: (search) => ({
+        ...search,
+        tab: next === "tasks" ? undefined : next,
+      }),
+      replace: true,
+    })
+
   useRouteFocus()
 
   // The breadcrumb returns to the origin; a missing project offers it too.
@@ -66,15 +80,50 @@ export function ProjectDetailRoute() {
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
           tab={tab ?? "tasks"}
-          onTabChange={(next) =>
-            void navigate({
-              search: (search) => ({
-                ...search,
-                tab: next === "tasks" ? undefined : next,
-              }),
-              replace: true,
-            })
-          }
+          onTabChange={showTab}
+          agent={{
+            runs: projectRuns.length,
+            alert: projectRuns.some(
+              (run) => isActiveRun(run) && run.status !== "running",
+            ),
+            panel: (
+              <ProjectAgent
+                project={project}
+                runs={projectRuns}
+                nameOf={(id) =>
+                  id === demo.workspace.currentUserId
+                    ? "you"
+                    : (demo.workspace.people.find((person) => person.id === id)
+                        ?.name ?? "a former member")
+                }
+                actions={runs}
+                onShowResult={(run) =>
+                  showTab(
+                    run.workflow === "status-report" ? "comments" : "tasks",
+                  )
+                }
+                onStart={(workflow) =>
+                  runs.start(
+                    startRun(
+                      workflow,
+                      project,
+                      {
+                        projects: demo.projects,
+                        tasks: demo.tasks,
+                        activity: demo.activity,
+                        comments: demo.comments,
+                        people: demo.workspace.people,
+                        referenceDate: demo.workspace.referenceDate,
+                        currentUserId: demo.workspace.currentUserId,
+                      },
+                      Date.now(),
+                      scenario === "run-failure" && !projectRuns.length,
+                    ),
+                  )
+                }
+              />
+            ),
+          }}
           tagOptions={[
             ...new Set(demo.projects.flatMap((item) => item.tags)),
           ].sort()}
