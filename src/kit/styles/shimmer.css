@@ -1,15 +1,18 @@
-/* Shimmer: a light sweep across muted text. */
+/* Shimmer: a light sweep across muted text, one pass every 1.4s so even a
+   short "working" moment shows it. The rainbow variant sweeps the
+   categorical hues instead, each mixed toward the text colour so the words
+   stay legible on the background in both themes. */
 .shimmer {
   color: transparent;
   background: linear-gradient(
       90deg,
-      var(--muted-foreground) 40%,
+      var(--muted-foreground) 36%,
       var(--foreground) 50%,
-      var(--muted-foreground) 60%
+      var(--muted-foreground) 64%
     )
     0 0 / 250% 100%;
   background-clip: text;
-  animation: shimmer 2.2s linear infinite;
+  animation: shimmer 1.4s linear infinite;
 }
 @keyframes shimmer {
   from {
@@ -19,6 +22,36 @@
     background-position: 0 0;
   }
 }
+.shimmer[data-variant="rainbow"] {
+  --shimmer-mix: 75%;
+  /* The gradient starts and ends on the same hue and repeats every 200%, so
+     moving it by one full length loops without a seam. */
+  background-image: linear-gradient(
+    90deg,
+    color-mix(
+      in oklch,
+      var(--hue-violet) var(--shimmer-mix),
+      var(--foreground)
+    ),
+    color-mix(in oklch, var(--hue-sky) var(--shimmer-mix), var(--foreground)),
+    color-mix(in oklch, var(--hue-teal) var(--shimmer-mix), var(--foreground)),
+    color-mix(in oklch, var(--hue-green) var(--shimmer-mix), var(--foreground)),
+    color-mix(in oklch, var(--hue-amber) var(--shimmer-mix), var(--foreground)),
+    color-mix(in oklch, var(--hue-rose) var(--shimmer-mix), var(--foreground)),
+    color-mix(in oklch, var(--hue-violet) var(--shimmer-mix), var(--foreground))
+  );
+  background-size: 200% 100%;
+  background-repeat: repeat-x;
+  animation: shimmer-rainbow 2.4s linear infinite;
+}
+@keyframes shimmer-rainbow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .shimmer {
     animation: none;
@@ -26,7 +59,8 @@
   }
 }
 @media (forced-colors: active) {
-  .shimmer {
+  .shimmer,
+  .shimmer[data-variant="rainbow"] {
     color: CanvasText;
     background: none;
   }

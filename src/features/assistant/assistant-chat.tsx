@@ -214,7 +214,9 @@ export function AssistantChat({
           ))}
           {status === "submitted" && (
             <ConversationItem>
-              <Shimmer className="assistant-thinking">Thinking…</Shimmer>
+              <Shimmer variant="rainbow" className="assistant-thinking">
+                Thinking…
+              </Shimmer>
             </ConversationItem>
           )}
           {status === "error" && (

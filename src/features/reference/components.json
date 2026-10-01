@@ -665,6 +665,24 @@
     "implementation": "src/kit/ai/checkpoint.tsx"
   },
   {
+    "id": "shimmer",
+    "name": "Shimmer",
+    "category": "AI and chat",
+    "purpose": "Mark a short working label, such as Thinking…, with a sweep of light.",
+    "notes": [
+      "The default sweeps muted text to full strength once every 1.4 seconds; variant=\"rainbow\" sweeps the theme's categorical hues, mixed toward the text colour so the words stay legible.",
+      "Use it only while work is under way, and keep the words meaningful on their own: the sweep stops when reduced motion is requested and becomes plain text in forced colours."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-01", "AI-06"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/shimmer",
+      "label": "AI Elements Shimmer"
+    },
+    "implementation": "src/kit/ui/shimmer.tsx"
+  },
+  {
     "id": "artifact",
     "name": "Artifact",
     "category": "AI and chat",

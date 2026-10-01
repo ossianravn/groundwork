@@ -48,6 +48,8 @@ import { CodeBlockExample } from "@/features/reference/examples/code-block-examp
 import codeBlockSource from "@/features/reference/examples/code-block-example?raw"
 import { SnippetExample } from "@/features/reference/examples/snippet-example"
 import snippetSource from "@/features/reference/examples/snippet-example?raw"
+import { ShimmerExample } from "@/features/reference/examples/shimmer-example"
+import shimmerSource from "@/features/reference/examples/shimmer-example?raw"
 import { TerminalExample } from "@/features/reference/examples/terminal-example"
 import terminalSource from "@/features/reference/examples/terminal-example?raw"
 import { FileTreeExample } from "@/features/reference/examples/file-tree-example"
@@ -131,6 +133,7 @@ export const referenceExamples = [
   { id: "drawer", Component: DrawerExample, source: drawerSource },
   { id: "code-block", Component: CodeBlockExample, source: codeBlockSource },
   { id: "snippet", Component: SnippetExample, source: snippetSource },
+  { id: "shimmer", Component: ShimmerExample, source: shimmerSource },
   { id: "terminal", Component: TerminalExample, source: terminalSource },
   { id: "file-tree", Component: FileTreeExample, source: fileTreeSource },
   { id: "commit", Component: CommitExample, source: commitSource },
