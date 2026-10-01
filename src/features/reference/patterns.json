@@ -241,8 +241,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Compare completed work across projects.",
-    "implemented": "Single-series horizontal bars with labels and a linked data alternative.",
-    "deferred": "Grouped/stacked bars and legend filtering remain planned.",
+    "implemented": "Horizontal project bars with value labels and a linked data view; with Compare with previous period, each project gains a quieter bar for the period before (shadcn's multiple bar chart), keyed in the footer and added to the table.",
+    "deferred": "",
     "examples": [
       {
         "label": "Project breakdown",
@@ -262,8 +262,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Understand the share of work completed by each contributor.",
-    "implemented": "Donut chart, stable member colors, visible values and a data table.",
-    "deferred": "No hover-only data or historical comparison is supplied.",
+    "implemented": "Donuts with the total in the centre and the counts beside them (shadcn's donut with text): completed tasks by contributor, coloured by each person's place in the workspace, and projects by status, in the reserved status colours.",
+    "deferred": "",
     "examples": [
       {
         "label": "Contributor breakdown",
@@ -273,7 +273,8 @@
     ],
     "sources": [
       "src/features/analytics/contributor-breakdown.tsx",
-      "src/demo/analytics.ts"
+      "src/demo/analytics.ts",
+      "src/features/analytics/status-breakdown.tsx"
     ]
   },
   {
@@ -3314,8 +3315,8 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Compare how two flows move over time, such as work arriving and work getting done.",
-    "implemented": "Analytics › Delivery: tasks completed and added as two gradient areas (shadcn's area chart), by day up to a month and by week beyond. The legend is a ChartSeriesToggle that shows and hides each series and keeps one on; with comparison, last period's completions follow as a keyed dashed line. Show data lists every point.",
-    "deferred": "Stacked and 100% (expand) variants arrive with Workload (charts plan step 3); API key usage (step area) with step 4.",
+    "implemented": "Analytics › Delivery: tasks completed and added as two gradient areas (shadcn's area chart), by day up to a month and by week beyond. The legend is a ChartSeriesToggle that shows and hides each series and keeps one on; with comparison, last period's completions follow as a keyed dashed line. Show data lists every point. Analytics › Projects adds each project's share of open work at every week's end as a stacked expanded area, with the largest share in the heading.",
+    "deferred": "API key usage (step area) arrives with the settings charts (charts plan step 4).",
     "examples": [
       {
         "label": "Delivery",
@@ -3326,7 +3327,8 @@
     "sources": [
       "src/features/analytics/throughput-chart.tsx",
       "src/demo/delivery.ts",
-      "src/kit/ui/chart-series.tsx"
+      "src/kit/ui/chart-series.tsx",
+      "src/features/analytics/open-share-chart.tsx"
     ]
   },
   {
@@ -3336,18 +3338,25 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show a trend whose values matter, readable without hovering.",
-    "implemented": "Analytics › Delivery: median cycle time (days from adding a task to completing it) by week, as a line with its values on the points (shadcn's line chart with labels); daily medians are too noisy, so it reads by week past two weeks. The heading gives the period's median and, when comparing, whether it is faster or slower.",
-    "deferred": "Burn-up with a due-date line and projection arrives with Projects (charts plan step 3).",
+    "implemented": "Analytics › Delivery: median cycle time (days from adding a task to completing it) by week, as a line with its values on the points (shadcn's line chart with labels); daily medians are too noisy, so it reads by week past two weeks. The heading gives the period's median and, when comparing, whether it is faster or slower. A project's burn-up (scope as a step line, completed work rising toward it, a dashed projection at the last two weeks' pace and a Due line) heads the project page's Activity tab and Analytics › Projects, where a picker chooses the project; its heading says whether it lands on time.",
+    "deferred": "",
     "examples": [
       {
         "label": "Cycle time",
         "href": "/app/demo/analytics?period=30&compare=true",
         "instruction": "Read the weekly medians on the points; choose Show data for the table."
+      },
+      {
+        "label": "Burn-up",
+        "href": "/app/demo/projects/website?tab=activity",
+        "instruction": "Website redesign is projected to finish after its due date."
       }
     ],
     "sources": [
       "src/features/analytics/cycle-time-chart.tsx",
-      "src/demo/delivery.ts"
+      "src/demo/delivery.ts",
+      "src/features/analytics/burn-up-chart.tsx",
+      "src/demo/workload.ts"
     ]
   },
   {
@@ -3390,6 +3399,49 @@
     "sources": [
       "src/kit/ui/chart-state.tsx",
       "src/features/analytics/analytics-chart-card.tsx"
+    ]
+  },
+  {
+    "id": "DVIZ-08",
+    "title": "Stacked bars",
+    "originalName": "Stacked bars",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Show a total and what it is made of in one bar, such as each person's open work by project.",
+    "implemented": "Analytics › Workload: open tasks per person now, stacked by project in the projects' own hues and in the palette's order so neighbours stay apart, with unassigned work last (shadcn's stacked bar chart). The legend shows and hides projects; Show data gives each person's split.",
+    "deferred": "Webhook delivery history (success and failure) arrives with the settings charts (charts plan step 4).",
+    "examples": [
+      {
+        "label": "Workload",
+        "href": "/app/demo/analytics#analytics-workload",
+        "instruction": "Hide Design system in the legend to compare the rest."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/member-load-chart.tsx",
+      "src/features/analytics/palette-order.ts",
+      "src/demo/workload.ts"
+    ]
+  },
+  {
+    "id": "DVIZ-12",
+    "title": "Radar comparison",
+    "originalName": "Radar comparison",
+    "category": "Data visualization",
+    "surface": "Workspace",
+    "summary": "Compare two profiles across a few dimensions, rather than two totals.",
+    "implemented": "Analytics › Workload: two people's completed work across project tags (shadcn's multiple radar), each in the colour the contributor chart gives them and chosen with the pickers in the footer. The description gives each person's true total and notes that a project with two tags counts in both spokes; Show data has the counts.",
+    "deferred": "",
+    "examples": [
+      {
+        "label": "Compare people",
+        "href": "/app/demo/analytics?period=90#analytics-workload",
+        "instruction": "Choose Noah Williams as the second person."
+      }
+    ],
+    "sources": [
+      "src/features/analytics/member-compare-chart.tsx",
+      "src/demo/workload.ts"
     ]
   }
 ]

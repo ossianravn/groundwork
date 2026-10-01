@@ -21,15 +21,16 @@ import {
 import { Button } from "@/kit/ui/button"
 import { Switch } from "@/kit/ui/switch"
 import { DeliverySection } from "./delivery-section"
-import { ProjectBreakdown } from "./project-breakdown"
-import { ContributorBreakdown } from "./contributor-breakdown"
-import { hueColor, seriesColor } from "@/kit/ui/chart-colors"
+import { ProjectsSection } from "./projects-section"
+import { WorkloadSection } from "./workload-section"
+import { previousWindow } from "@/demo/delivery"
 
 export function AnalyticsPage({
   activity,
   tasks,
   projects,
   people,
+  members,
   referenceDate,
   period,
   projectId,
@@ -45,6 +46,8 @@ export function AnalyticsPage({
   tasks: ProjectTask[]
   projects: Project[]
   people: Member[]
+  /** Current members, who can hold open work. */
+  members: Member[]
   referenceDate: string
   period: ReportPeriod
   projectId: string
@@ -115,6 +118,15 @@ export function AnalyticsPage({
       ? `previous ${period.days} days`
       : "previous period"
 
+  // Comparison needs the whole previous period inside recorded history.
+  const historyStart = [
+    ...activity.map((event) => event.date),
+    ...tasks.map((task) => task.createdAt),
+  ].reduce((first, date) => (date < first ? date : first), referenceDate)
+
+  const before = previousWindow(range)
+  const comparable = before.start >= historyStart
+
   // Delivery reads before the period too (comparison), so it scopes by
   // project only and windows the records itself.
   const inProject = <T extends { projectId: string }>(items: T[]) =>
@@ -151,41 +163,46 @@ export function AnalyticsPage({
             tasks={inProject(tasks)}
             range={range}
             comparison={comparison}
-            historyStart={[
-              ...activity.map((event) => event.date),
-              ...tasks.map((task) => task.createdAt),
-            ].reduce(
-              (first, date) => (date < first ? date : first),
-              referenceDate,
-            )}
+            historyStart={historyStart}
           />
-          <section
-            className="analytics-section"
-            aria-labelledby="analytics-people"
-          >
-            <header className="analytics-section-header">
-              <h2 id="analytics-people">Projects and people</h2>
-              <p>Where the completed work went.</p>
-            </header>
-            <div className="analytics-breakdowns">
-              <ProjectBreakdown
-                rows={data.projects}
-                colorFor={(row) => {
-                  const color = projects.find(
-                    (item) => item.id === row.id,
-                  )?.color
-
-                  return color ? hueColor(color) : seriesColor(0)
-                }}
-                renderName={renderProject}
-                showData={projectView === "data"}
-                onShowDataChange={(show) =>
-                  onProjectViewChange(show ? "data" : "chart")
-                }
-              />
-              <ContributorBreakdown rows={data.contributors} people={people} />
-            </div>
-          </section>
+          <ProjectsSection
+            projects={projects}
+            tasks={inProject(tasks)}
+            projectId={projectId}
+            range={range}
+            referenceDate={referenceDate}
+            completed={data.projects}
+            previous={
+              comparable && comparison
+                ? {
+                    label: comparison,
+                    counts: Object.fromEntries(
+                      completionBreakdown(
+                        activity,
+                        projects,
+                        people,
+                        before,
+                        projectId,
+                      ).projects.map((row) => [row.id, row.completed]),
+                    ),
+                  }
+                : undefined
+            }
+            renderProject={renderProject}
+            showData={projectView === "data"}
+            onShowDataChange={(show) =>
+              onProjectViewChange(show ? "data" : "chart")
+            }
+          />
+          <WorkloadSection
+            activity={inProject(activity)}
+            tasks={inProject(tasks)}
+            projects={projects}
+            people={people}
+            members={members}
+            range={range}
+            contributors={data.contributors}
+          />
         </>
       )}
     </main>

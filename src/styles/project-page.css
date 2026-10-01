@@ -265,3 +265,10 @@
     column-gap: calc(var(--section-gap) * 2);
   }
 }
+/* The burn-up heads the Activity tab: how the project got here, then the
+   events that moved it. */
+.project-burn-up {
+  margin-bottom: var(--section-gap);
+  padding-bottom: var(--section-gap);
+  border-bottom: 1px solid var(--border);
+}

@@ -18,6 +18,7 @@ import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectTasks } from "./project-tasks"
 import { ProjectComments } from "./project-comments"
 import { ProjectActivity } from "./project-activity"
+import { BurnUpChart } from "@/features/analytics/burn-up-chart"
 import { ProjectProperties } from "./project-properties"
 
 export type ProjectTab = "tasks" | "comments" | "activity" | "agent"
@@ -53,6 +54,7 @@ export function ProjectPage({
   tagOptions,
   tab,
   onTabChange,
+  referenceDate,
 }: {
   project: Project
   members: Member[]
@@ -75,6 +77,8 @@ export function ProjectPage({
   /** The open section; the host keeps it in the URL. */
   tab: ProjectTab
   onTabChange: (tab: ProjectTab) => void
+  /** The snapshot date the burn-up projects from. */
+  referenceDate: string
 }) {
   const owner = members.find((member) => member.id === project.ownerId)
 
@@ -174,6 +178,12 @@ export function ProjectPage({
             />
           </TabsContent>
           <TabsContent value="activity" keepMounted>
+            <BurnUpChart
+              project={project}
+              tasks={tasks}
+              referenceDate={referenceDate}
+              className="project-burn-up"
+            />
             <ProjectActivity events={events} members={members} />
           </TabsContent>
           <TabsContent value="agent" keepMounted>

@@ -80,6 +80,7 @@ export function ProjectDetailRoute() {
           assignableMembers={demo.workspace.members}
           activity={demo.activity}
           tab={tab ?? "tasks"}
+          referenceDate={demo.workspace.referenceDate}
           onTabChange={showTab}
           agent={{
             runs: projectRuns.length,

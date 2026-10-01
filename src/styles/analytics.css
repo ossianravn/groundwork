@@ -219,3 +219,63 @@
   width: 1rem;
   border-top: 1.5px dashed var(--muted-foreground);
 }
+/* Line keys: a short stroke in the series' colour (dashed when projected,
+   muted for scope), so lines are keyed the way they are drawn. */
+.analytics-line-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: var(--text-meta);
+}
+.analytics-line-key > span {
+  width: 1rem;
+  border-top: 2px solid currentColor;
+}
+.analytics-line-key[data-variant="projected"] > span {
+  border-top-style: dashed;
+}
+.analytics-line-key[data-variant="scope"] {
+  color: var(--muted-foreground);
+}
+.analytics-line-key[data-variant="scope"] > span {
+  border-top-width: 1.5px;
+}
+/* The key's text stays ink; only the stroke carries the colour. */
+.analytics-line-key {
+  color: var(--muted-foreground);
+}
+.analytics-line-key > span {
+  border-top-color: var(--key-color, currentColor);
+}
+.analytics-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.analytics-pick > span {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 3px;
+  background: currentColor;
+}
+.analytics-previous-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.analytics-previous-bar > span {
+  width: 0.75rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--muted-foreground) 35%, transparent);
+}
+.analytics-radar {
+  max-height: 20rem;
+}
+.analytics-load-chart {
+  min-height: 0;
+}
+/* A donut beside a taller neighbour sits at the top, under its heading. */
+.analytics-pair .analytics-contributors {
+  align-self: start;
+}

@@ -11,7 +11,7 @@ Understand workspace activity and investigate the numbers that need attention.
 | Route | Ordered page composition (in addition to shell) |
 | --- | --- |
 | `/app/:workspace/overview` | Page header; period filter (DVIZ-05); a small set of contextual metrics (DVIZ-01); time-series overview (DVIZ-02); recent activity (TABL-08); links to Projects and Analytics. |
-| `/app/:workspace/analytics` | Shared filters (project, period, Compare with previous period; DVIZ-05); Delivery section: tasks completed and added (DVIZ-06), change in open tasks (DVIZ-09), cycle time (DVIZ-07); Projects and people section: project bars (DVIZ-03) and contributor donut (DVIZ-04). Each chart has Show data and chart states (DVIZ-10). |
+| `/app/:workspace/analytics` | Shared filters (project, period, Compare with previous period; DVIZ-05); Delivery: tasks completed and added (DVIZ-06), change in open tasks (DVIZ-09), cycle time (DVIZ-07); Projects: burn-up (DVIZ-07), project bars with the previous period (DVIZ-03), projects by status (DVIZ-04), share of open work (DVIZ-06); Workload: open tasks per person (DVIZ-08), contributors (DVIZ-04), compare people (DVIZ-12). Each chart has Show data and chart states (DVIZ-10). |
 
 ## Actions and outcomes
 
@@ -57,7 +57,9 @@ Analytics is one scrolling page under one filter row (project, period, Compare w
 - **Delivery** answers whether work is finished as fast as it arrives. Tasks completed and added (two areas with a toggle legend), change in open tasks (bars above or below zero) and median cycle time (labelled points). Ranges over a month read by week (`w/c 6 Jul`); cycle time reads by week past two weeks, because a day's few tasks give noisy medians. Completions come from Activity and additions and cycle times from task dates (`src/demo/delivery.ts`).
 - **Compare with previous period** (`compare=true`) uses the window of the same length ending the day before. Headings gain the change (+70 completed vs previous 30 days; faster or slower cycle time) and the area chart a keyed dashed line. When that window starts before the recorded history (26 June), the section says so instead of comparing with zeros.
 - A chart with nothing in the range shows ChartState's No data for this range and disables Show data.
-- **Projects and people** keeps the project bars and contributor donut.
+- **Projects** answers how each project is moving. Its burn-up shows the page's project, or the one chosen in its footer (open projects first, soonest due); the heading says when it finishes at the last two weeks' pace and whether that is after the due date. Completed by project gains a quieter previous-period bar when comparing. Projects by status uses the status colours. Share of open work by project (by week's end, 100%) appears for All projects only.
+- **Workload** answers who has the work. Open tasks per person now, stacked by project (unassigned last; the legend hides projects), completed tasks by contributor, and Compare people: a radar of two people's completed work by project tag. A two-tag project counts in both spokes, so its totals come from Activity, not the spokes.
+- The project page's Activity tab opens with the same burn-up for that project.
 
 ### Implemented Analytics — 2026-09-27
 

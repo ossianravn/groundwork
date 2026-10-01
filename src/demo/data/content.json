@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.8.0",
+      "date": "2026-10-01",
+      "title": "Burn-ups and workload",
+      "summary": "See whether each project will land on time, and who has the work.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Every project's Activity tab opens with a burn-up: scope, completed work, and where it is heading at the last two weeks' pace, against the due date.",
+            "Analytics gains a Projects section (the burn-up for any project, projects by status, and where open work sits) and a Workload section (open tasks per person by project, and a comparison of two people's work by project tag).",
+            "With Compare with previous period on, Completed by project shows the period before beside each project."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Projections assume the last two weeks' pace continues; they are sample estimates, not forecasts. Everything resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.7.0",
       "date": "2026-10-01",
       "title": "Delivery analytics",

@@ -19,6 +19,7 @@ export function AnalyticsRoute() {
         tasks={demo.tasks}
         projects={demo.projects}
         people={demo.workspace.people}
+        members={demo.workspace.members}
         referenceDate={demo.workspace.referenceDate}
         period={reportPeriodOf(search)}
         projectId={search.project}

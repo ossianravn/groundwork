@@ -3,7 +3,9 @@
    such as the Overview projects table, stays the only framed surface. */
 .overview-middle > :is(.completion-card, .activity-card),
 .analytics-section .analytics-chart,
+.project-burn-up,
 .analytics-breakdowns > .analytics-breakdown,
+.analytics-pair > .analytics-breakdown,
 .activity-page > .activity-feed-card,
 .project-editor-card {
   --card-spacing: 0px;
