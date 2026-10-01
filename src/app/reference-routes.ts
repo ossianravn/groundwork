@@ -5,6 +5,7 @@ import {
   redirect,
 } from "@tanstack/react-router"
 import { rootRoute } from "./root-route"
+import { chartFamilyOf } from "./chart-gallery-search"
 import {
   defaultPatternFilters,
   parsePatternSearch,
@@ -84,6 +85,19 @@ const themePlayground = createRoute({
   ),
 })
 
+const chartGallery = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/reference/charts",
+  validateSearch: (raw: { family?: unknown }) => ({
+    family: chartFamilyOf(String(raw.family ?? "")),
+  }),
+  search: { middlewares: [stripSearchParams({ family: "area" })] },
+  component: lazyRouteComponent(
+    () => import("./chart-gallery-route"),
+    "ChartGalleryRoute",
+  ),
+})
+
 const stateIndex = createRoute({
   getParentRoute: () => rootRoute,
   path: "/reference/states",
@@ -111,6 +125,7 @@ export const referenceRoutes = [
   patternIndex,
   patternDetail,
   themePlayground,
+  chartGallery,
   stateIndex,
   stateGallery,
 ]
