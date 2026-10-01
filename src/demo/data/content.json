@@ -315,6 +315,14 @@
           ]
         },
         {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "On wide screens, pages start at the left edge under the top bar instead of sitting in the middle with a gap on either side."
+          ]
+        },
+        {
           "id": "demo-boundaries",
           "title": "Demo boundaries",
           "paragraphs": [

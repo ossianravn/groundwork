@@ -4,9 +4,11 @@
 .chart-data-table [data-slot="table-head"] {
   height: max(var(--navigation-height), var(--control-height-sm));
 }
+/* Pages start at the content edge, under the top bar's trail; on very wide
+   screens the spare width goes to the right rather than both sides. */
 .page-content {
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 0;
   padding: var(--page-padding);
   display: grid;
   gap: var(--section-gap);
