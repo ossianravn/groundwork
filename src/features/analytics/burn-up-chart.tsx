@@ -44,7 +44,7 @@ export function BurnUpChart({
   project: Project
   tasks: ProjectTask[]
   referenceDate: string
-  /** A project picker beside the legend, when the host offers one. */
+  /** A project picker in the header, when the host offers one. */
   picker?: ReactNode
   className?: string
 }) {
@@ -81,6 +81,7 @@ export function BurnUpChart({
         />
       }
       description={`${heading}${late ? `, after its ${formatDate(project.dueDate)} due date` : ""}.`}
+      controls={picker}
       legend={
         <span className="analytics-legend-row">
           <span className="analytics-line-key" style={keyStyle}>
@@ -101,7 +102,6 @@ export function BurnUpChart({
               Projected
             </span>
           )}
-          {picker}
         </span>
       }
       table={

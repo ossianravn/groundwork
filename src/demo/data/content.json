@@ -299,6 +299,34 @@
   ],
   "releases": [
     {
+      "version": "0.9.1",
+      "date": "2026-10-02",
+      "title": "Charts that fit your phone",
+      "summary": "Charts line up properly on phones, the activity calendar holds still while you explore it, and people and project pickers show the colour they draw in.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "The activity calendar fills your phone's width with larger days to tap, and no longer shifts as you point at different days.",
+            "On phones, Activity gives search its own row, with Filters, Reset and the number of events below it.",
+            "Compare people shows each person's colour inside their picker, and each name in the list carries the colour it draws in.",
+            "The burn-up's project picker sits at the top of the chart, beside its heading, and shows the project's colour.",
+            "Legends and Show data line up with their chart on every page, and the last date on an axis is no longer cut off."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "These are layout changes; the charts still show the sample workspace, which resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.9.0",
       "date": "2026-10-01",
       "title": "Trends everywhere",

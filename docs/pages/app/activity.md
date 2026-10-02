@@ -8,7 +8,7 @@ Understand who changed what, narrow the history and inspect the affected project
 
 ## Delivered composition and behavior
 
-`/app/demo/activity` provides search, member/event-type/snapshot-relative date filters, date-grouped semantic lists and Load more. Filters and the visible page count are URL-backed. Mobile keeps search visible and groups the remaining filters in a bottom drawer (KIT-12) whose close button reports the matching events.
+`/app/demo/activity` provides search, member/event-type/snapshot-relative date filters, date-grouped semantic lists and Load more. Filters and the visible page count are URL-backed. Mobile gives search its own row; the remaining filters move to a bottom drawer (KIT-12), whose button shares the next row with Reset and the event count, and whose close button reports the matching events.
 
 Each event names its actor, action, project and date. Details open a dialog. New project edits, owner assignments and status changes capture actual before/after fields; historic fixtures show their known action and task count without inventing a diff. These fixtures have dates, not precise timestamps. Missing actors and projects have readable fallbacks; unavailable projects have no broken link.
 

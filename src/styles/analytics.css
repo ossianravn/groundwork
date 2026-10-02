@@ -247,17 +247,6 @@
 .analytics-line-key > span {
   border-top-color: var(--key-color, currentColor);
 }
-.analytics-pick {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-}
-.analytics-pick > span {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 3px;
-  background: currentColor;
-}
 .analytics-previous-bar {
   display: inline-flex;
   align-items: center;

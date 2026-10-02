@@ -64,10 +64,9 @@ function CalendarHeatmap({
   const byDate = new Map(days.map((item) => [item.date, item.value]))
   const weeks = Math.ceil((offset + days.length) / 7)
   const current = shown ?? active
-  // Cells take --heatmap-cell (0.75rem unless the host sets it).
+
   // A month's name over the week it starts in; the first, partial week is
   // named only when the next month is not about to be.
-
   const months = Array.from({ length: weeks }, (_, week) => {
     const start = shift(first, week * 7 - offset)
 
@@ -78,7 +77,9 @@ function CalendarHeatmap({
 
   if (months[1] || months[2]) months[0] = ""
 
-  const columns = `1.75rem repeat(${weeks}, var(--heatmap-cell, 0.75rem))`
+  // Cells are square, up to --heatmap-cell (0.75rem unless the host sets
+  // it), and shrink to --heatmap-cell-min to fit before the weeks scroll.
+  const columns = `1.75rem repeat(${weeks}, minmax(var(--heatmap-cell-min, 0.75rem), var(--heatmap-cell, 0.75rem)))`
 
   const move = (to: string) => {
     if (!byDate.has(to)) return
@@ -91,9 +92,9 @@ function CalendarHeatmap({
   return (
     <figure
       data-slot="calendar-heatmap"
-      className={cn("grid w-max max-w-full gap-2", className)}
+      className={cn("grid w-fit max-w-full gap-2", className)}
     >
-      <div className="grid w-max max-w-full gap-1 overflow-x-auto pb-1 text-(length:--text-meta) text-muted-foreground">
+      <div className="grid w-fit max-w-full gap-1 overflow-x-auto pb-1 text-(length:--text-meta) text-muted-foreground">
         {/* Month names above the weeks they start in; the cells name
             their own dates, so this row is for the eye only. */}
         <div
@@ -132,7 +133,7 @@ function CalendarHeatmap({
             <div key={row} role="row" className="contents">
               <span
                 aria-hidden="true"
-                className="flex h-(--heatmap-cell,0.75rem) items-center pe-1 leading-none"
+                className="flex items-center pe-1 leading-none"
               >
                 {name}
               </span>
@@ -153,7 +154,7 @@ function CalendarHeatmap({
                     onFocus={() => setActive(date)}
                     onPointerEnter={() => setShown(date)}
                     onPointerLeave={() => setShown(undefined)}
-                    className="size-(--heatmap-cell,0.75rem) rounded-[3px] outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="aspect-square w-full rounded-[3px] outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     style={{
                       background:
                         level(value, max) === 0
@@ -167,26 +168,31 @@ function CalendarHeatmap({
           ))}
         </div>
       </div>
-      <figcaption className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-(length:--text-meta) text-muted-foreground">
-        <span>
-          {current &&
-            `${short.format(day(current))}: ${describe(byDate.get(current) ?? 0)}`}
-        </span>
-        <span className="flex items-center gap-1" aria-hidden="true">
-          Less
-          {shade.map((amount, index) => (
-            <span
-              key={amount}
-              className="size-3 rounded-[3px]"
-              style={{
-                background:
-                  index === 0
-                    ? "var(--muted)"
-                    : `color-mix(in oklab, ${color} ${amount}, var(--muted))`,
-              }}
-            />
-          ))}
-          More
+      {/* The calendar sets the width: as a size container the caption adds
+          none, so a longer day name cannot shift the grid. Narrow captions
+          stack the day above the key, so the line count stays put too. */}
+      <figcaption className="@container text-(length:--text-meta) text-muted-foreground">
+        <span className="grid justify-items-start gap-1 @min-[21rem]:flex @min-[21rem]:items-center @min-[21rem]:justify-between @min-[21rem]:gap-4">
+          <span>
+            {current &&
+              `${short.format(day(current))}: ${describe(byDate.get(current) ?? 0)}`}
+          </span>
+          <span className="flex items-center gap-1" aria-hidden="true">
+            Less
+            {shade.map((amount, index) => (
+              <span
+                key={amount}
+                className="size-3 rounded-[3px]"
+                style={{
+                  background:
+                    index === 0
+                      ? "var(--muted)"
+                      : `color-mix(in oklab, ${color} ${amount}, var(--muted))`,
+                }}
+              />
+            ))}
+            More
+          </span>
         </span>
       </figcaption>
     </figure>

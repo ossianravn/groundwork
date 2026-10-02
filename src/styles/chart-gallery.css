@@ -4,9 +4,21 @@
   display: grid;
   gap: var(--section-gap);
 }
+/* One row from the content edge (as on the project page) that scrolls on
+   narrow screens; the padding keeps the active line inside the scroller. */
 .chart-gallery-tabs {
-  flex-wrap: wrap;
   justify-content: flex-start;
+  max-width: calc(100% + 0.375rem);
+  margin-inline-start: -0.375rem;
+  padding-bottom: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chart-gallery-tabs > [data-slot="tabs-trigger"] {
+  flex: none;
+}
+.chart-gallery > [data-slot="tabs"] {
+  min-width: 0;
 }
 .chart-gallery-count {
   margin-inline-start: 0.375rem;

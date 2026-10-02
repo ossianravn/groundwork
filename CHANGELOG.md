@@ -4,6 +4,9 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `calendar-heatmap`: days are square and size between `--heatmap-cell-min` and `--heatmap-cell` (both 0.75rem by default, so existing hosts look the same), so a host can let a narrow screen fill its width before the weeks scroll. The caption no longer sets the figure's width, so pointing at days with longer names stops shifting the grid; narrow captions stack the day above the key.
+- `chart`: `ChartContainer` lets the surface overflow, so an end tick label Recharts places a pixel or two past the plot is no longer clipped. `ChartSeriesToggle` starts its first swatch on the content edge, as `ChartSeriesPicker` does.
+- Demo: chart footers keep their legend on the content edge in frameless sections, with Show data at the end when the legend wraps. Compare people's pickers carry each person's swatch, and the burn-up's project picker moves to the chart header. On phones, Activity's calendar fills the width and its toolbar gives search its own row; the chart gallery's family tabs scroll in one row.
 - Reference: `/reference/charts` shows every chart in the kit by family (Area, Bar, Line, Pie, Radar, Radial, Small charts, Tooltip): a live preview on the demo's data, that variant's code, and where Tandem uses it, or Reference only. Patterns DVIZ-15 and DVIZ-16 are catalogued.
 - New registry items: `sparkline` (with `trendLabel`), `radial-progress`, `calendar-heatmap` and `uptime-strip`, each accessible without the pointer (a named trend, a meter, a keyboard grid, an uptime summary in words). The registry grows to 71 items.
 - Demo: Overview metrics gain 30-day sparklines, project cards a completion ring, Activity a calendar heatmap, Settings › API keys and Webhooks usage and delivery charts, and the status page the kit uptime strip. Patterns DVIZ-11, DVIZ-13 and DVIZ-14 are catalogued.

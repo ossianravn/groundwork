@@ -103,6 +103,8 @@ export function SmallHeatmap() {
       days={completionsByDay}
       label="Completed tasks by day"
       describe={(value) => `${value} tasks completed`}
+      // Days grow to 1.25rem and shrink to fit a narrow card.
+      className="[--heatmap-cell:1.25rem]"
     />
   )
 }
