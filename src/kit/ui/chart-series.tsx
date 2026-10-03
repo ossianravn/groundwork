@@ -35,7 +35,7 @@ function ChartSeriesToggle({
       data-slot="chart-series-toggle"
       role="group"
       aria-label={label}
-      className={cn("flex flex-wrap items-center gap-1", className)}
+      className={cn("-ms-2 flex flex-wrap items-center gap-1", className)}
     >
       {series.map((item) => {
         const on = !hidden.includes(item.key)

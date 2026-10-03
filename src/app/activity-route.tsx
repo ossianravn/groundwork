@@ -1,12 +1,6 @@
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Button, buttonVariants } from "@/kit/ui/button"
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/kit/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
 import {
   Empty,
   EmptyHeader,
@@ -85,11 +79,6 @@ export function ActivityRoute() {
               })
             }}
           />
-          <CardAction>
-            <span className="count-chip" role="status">
-              {events.length} {events.length === 1 ? "event" : "events"}
-            </span>
-          </CardAction>
         </CardHeader>
         <CardContent>
           {events.length ? (

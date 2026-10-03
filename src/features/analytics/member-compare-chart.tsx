@@ -7,53 +7,11 @@ import {
 } from "@/kit/ui/chart"
 import { ChartDataTable } from "@/kit/ui/chart-data-table"
 import { maxSeries, seriesColor } from "@/kit/ui/chart-colors"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/kit/ui/select"
 import { workByTag } from "@/demo/workload"
 import type { Activity, Member, Project } from "@/demo/model"
 import type { ReportWindow } from "@/demo/report-period"
 import { AnalyticsChartCard } from "./analytics-chart-card"
-
-function MemberSelect({
-  label,
-  value,
-  members,
-  onChange,
-}: {
-  label: string
-  value: string
-  members: Member[]
-  onChange: (id: string) => void
-}) {
-  return (
-    <Select
-      items={members.map((member) => ({
-        value: member.id,
-        label: member.name,
-      }))}
-      value={value}
-      onValueChange={(next) => {
-        if (next) onChange(next)
-      }}
-    >
-      <SelectTrigger size="sm" aria-label={label}>
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {members.map((member) => (
-          <SelectItem key={member.id} value={member.id}>
-            {member.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  )
-}
+import { SeriesSelect } from "./series-select"
 
 /**
  * How two people's completed work spreads across the kinds of project they
@@ -99,13 +57,25 @@ export function MemberCompareChart({
   )
 
   // A person keeps the colour the contributor chart gives them.
-  const colors = pair.map((id) => {
+  const colorOf = (id: string) => {
     const index = people.findIndex((person) => person.id === id)
 
     return index >= 0 && index < maxSeries
       ? seriesColor(index)
       : "var(--muted-foreground)"
-  })
+  }
+
+  const colors = pair.map(colorOf)
+
+  // Either side offers everyone except the person on the other.
+  const optionsBesides = (other: string) =>
+    members
+      .filter((member) => member.id !== other)
+      .map((member) => ({
+        value: member.id,
+        label: member.name,
+        color: colorOf(member.id),
+      }))
 
   return (
     <AnalyticsChartCard
@@ -117,24 +87,18 @@ export function MemberCompareChart({
       description={`Tasks completed in the period by project tag (${names[0]} ${totals[0]}, ${names[1]} ${totals[1]}). A project with two tags counts in both.`}
       legend={
         <span className="analytics-legend-row">
-          <span className="analytics-pick" style={{ color: colors[0] }}>
-            <span aria-hidden="true" />
-            <MemberSelect
-              label="First person"
-              value={pair[0]}
-              members={members.filter((member) => member.id !== pair[1])}
-              onChange={(id) => setPair([id, pair[1]])}
-            />
-          </span>
-          <span className="analytics-pick" style={{ color: colors[1] }}>
-            <span aria-hidden="true" />
-            <MemberSelect
-              label="Second person"
-              value={pair[1]}
-              members={members.filter((member) => member.id !== pair[0])}
-              onChange={(id) => setPair([pair[0], id])}
-            />
-          </span>
+          <SeriesSelect
+            label="First person"
+            value={pair[0]}
+            options={optionsBesides(pair[1])}
+            onChange={(id) => setPair([id, pair[1]])}
+          />
+          <SeriesSelect
+            label="Second person"
+            value={pair[1]}
+            options={optionsBesides(pair[0])}
+            onChange={(id) => setPair([pair[0], id])}
+          />
         </span>
       }
       table={

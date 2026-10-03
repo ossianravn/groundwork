@@ -33,7 +33,7 @@ export function ActivityFilters({
 }: {
   value: Filters
   people: Member[]
-  /** Matching events, for the phone drawer's close button. */
+  /** Matching events: the toolbar's result count and the drawer's button. */
   count: number
   onChange: (value: Filters) => void
 }) {
@@ -156,16 +156,21 @@ export function ActivityFilters({
       {!!(value.q || value.member || value.kind || value.period) && (
         <Button
           variant="ghost"
-          size="sm"
+          className="filter-reset"
+          aria-label="Reset filters"
+          title="Reset filters"
           onClick={() => {
             document.getElementById("activity-query")?.focus()
             onChange({ q: "", member: "", kind: "", period: 0 })
           }}
         >
           <RotateCcw data-icon="inline-start" aria-hidden="true" />
-          Reset
+          <span>Reset</span>
         </Button>
       )}
+      <span className="count-chip activity-count" role="status">
+        {count} {count === 1 ? "event" : "events"}
+      </span>
     </div>
   )
 }

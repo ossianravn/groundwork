@@ -1,9 +1,6 @@
 .activity-feed-card {
   gap: 0;
 }
-.activity-feed-toolbar [data-slot="card-action"] {
-  align-self: center;
-}
 .activity-feed-toolbar {
   padding-bottom: var(--content-gap);
   border-bottom: 1px solid var(--border);
@@ -16,6 +13,10 @@
 }
 .activity-filters [data-slot="input-group"] {
   width: min(100%, 17rem);
+}
+/* The result count closes the row, wherever the controls wrap. */
+.activity-count {
+  margin-inline-start: auto;
 }
 .activity-filter-options {
   display: flex;
@@ -137,10 +138,11 @@
   white-space: pre-wrap;
 }
 @media (max-width: 639px) {
+  /* Search gets its own row, as on Projects; Filters, Reset and the count
+     share the next one. */
   .activity-filters [data-slot="input-group"] {
-    flex: 1;
+    flex: 1 1 100%;
     width: auto;
-    min-width: 8rem;
   }
   .activity-filter-options {
     display: none;
@@ -200,4 +202,11 @@
 .activity-heatmap header p {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
+}
+/* Phones stack the calendar under its heading, filling the width with
+   larger, easier-to-tap days. */
+@media (max-width: 639px) {
+  .activity-heatmap {
+    --heatmap-cell: 2rem;
+  }
 }

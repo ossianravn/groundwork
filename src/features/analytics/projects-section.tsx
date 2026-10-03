@@ -1,11 +1,4 @@
 import { useState, type ReactNode } from "react"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/kit/ui/select"
 import { hueColor } from "@/kit/ui/chart-colors"
 import type { CompletionGroup } from "@/demo/analytics"
 import type { Project, ProjectTask } from "@/demo/model"
@@ -13,6 +6,7 @@ import type { ReportWindow } from "@/demo/report-period"
 import { BurnUpChart } from "./burn-up-chart"
 import { OpenShareChart } from "./open-share-chart"
 import { ProjectBreakdown } from "./project-breakdown"
+import { SeriesSelect } from "./series-select"
 import { StatusBreakdown } from "./status-breakdown"
 
 /**
@@ -67,27 +61,16 @@ export function ProjectsSection({
           referenceDate={referenceDate}
           picker={
             !projectId && (
-              <Select
-                items={ordered.map((project) => ({
+              <SeriesSelect
+                label="Burn-up project"
+                value={shown.id}
+                options={ordered.map((project) => ({
                   value: project.id,
                   label: project.name,
+                  color: hueColor(project.color),
                 }))}
-                value={shown.id}
-                onValueChange={(value) => {
-                  if (value) setPicked(value)
-                }}
-              >
-                <SelectTrigger size="sm" aria-label="Burn-up project">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {ordered.map((project) => (
-                    <SelectItem key={project.id} value={project.id}>
-                      {project.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                onChange={setPicked}
+              />
             )
           }
         />

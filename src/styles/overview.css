@@ -153,7 +153,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--control-gap);
-  padding: 0 var(--card-padding) var(--card-padding);
+  /* The card's own spacing, so frameless sections stay on the content edge. */
+  padding: 0 var(--card-spacing) var(--card-spacing);
   background: transparent;
   border: 0;
 }
@@ -161,6 +162,10 @@
   max-width: 100%;
   white-space: normal;
   flex-shrink: 1;
+}
+/* A trailing action (Show data) stays at the end when the legend wraps. */
+.overview-card-footer > .ui-button:last-child:not(:only-child) {
+  margin-inline-start: auto;
 }
 .activity-body {
   position: relative;

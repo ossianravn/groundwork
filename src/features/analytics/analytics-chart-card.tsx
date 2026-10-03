@@ -5,13 +5,15 @@ import { ChartHeader } from "@/kit/ui/chart-header"
 import { ChartState } from "@/kit/ui/chart-state"
 
 /**
- * One Analytics chart: the result as its heading, the chart (or its table,
- * in the same space) and a footer with the legend and Show data.
+ * One Analytics chart: the result as its heading (with any controls that
+ * set its scope), the chart (or its table, in the same space) and a footer
+ * with the legend and Show data.
  */
 export function AnalyticsChartCard({
   label,
   heading,
   description,
+  controls,
   legend,
   table,
   children,
@@ -22,6 +24,8 @@ export function AnalyticsChartCard({
   label: string
   heading: ReactNode
   description?: ReactNode
+  /** Scope controls, such as which project it shows, at the header's end. */
+  controls?: ReactNode
   legend?: ReactNode
   table: ReactNode
   children: ReactNode
@@ -34,7 +38,9 @@ export function AnalyticsChartCard({
   return (
     <Card className={["analytics-chart", className].filter(Boolean).join(" ")}>
       <CardHeader>
-        <ChartHeader title={heading} description={description} />
+        <ChartHeader title={heading} description={description}>
+          {controls}
+        </ChartHeader>
       </CardHeader>
       <CardContent className="chart-body text-xs">
         {empty ? (
