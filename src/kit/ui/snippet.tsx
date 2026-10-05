@@ -43,7 +43,7 @@ function Snippet({
       </code>
       <span className="sr-only" role="status">
         {state === "copied"
-          ? `${label[0].toUpperCase()}${label.slice(1)} copied`
+          ? `${label.charAt(0).toUpperCase()}${label.slice(1)} copied`
           : state === "failed"
             ? `Copying isn't available. The ${label} is selected; copy it with your keyboard.`
             : ""}

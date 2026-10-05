@@ -4,6 +4,10 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- Kit TypeScript: every shipped file compiles under `noUncheckedIndexedAccess` (fixes in `iso-date`, `sparkline` and `snippet`) and the Vite template's stricter settings; `tsconfig.kit.json` checks this in `npm run typecheck`, so a project with these flags no longer has to relax them for the kit.
+- `badge`: a `count` variant for tallies beside a heading or results control ("6", "38 events"). The demo's `.count-chip` class is gone; Tandem uses the variant.
+- `code-block` and `terminal`: their focusable scroll areas take `role="region"`, as `ChartDataTable` does, so their labels name them. The workspace identity row in `shell` is a named group. Small cleanups in `ansi`, `field` and the prompt attachments hook.
+- README: a TypeScript, formatting and linting section, including a tested Biome setup (format once with `biome check --write`, Tailwind CSS parsing, and rule overrides for the kit's deliberate ARIA patterns) so the kit can stay inside Biome rather than be excluded.
 - `calendar-heatmap`: days are square and size between `--heatmap-cell-min` and `--heatmap-cell` (both 0.75rem by default, so existing hosts look the same), so a host can let a narrow screen fill its width before the weeks scroll. The caption no longer sets the figure's width, so pointing at days with longer names stops shifting the grid; narrow captions stack the day above the key.
 - `chart`: `ChartContainer` lets the surface overflow, so an end tick label Recharts places a pixel or two past the plot is no longer clipped. `ChartSeriesToggle` starts its first swatch on the content edge, as `ChartSeriesPicker` does.
 - Demo: chart footers keep their legend on the content edge in frameless sections, with Show data at the end when the legend wraps. Compare people's pickers carry each person's swatch, and the burn-up's project picker moves to the chart header. On phones, Activity's calendar fills the width and its toolbar gives search its own row; the chart gallery's family tabs scroll in one row.

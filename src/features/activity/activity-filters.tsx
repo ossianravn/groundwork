@@ -8,6 +8,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/kit/ui/drawer"
+import { Badge } from "@/kit/ui/badge"
 import { Button } from "@/kit/ui/button"
 import {
   InputGroup,
@@ -168,9 +169,9 @@ export function ActivityFilters({
           <span>Reset</span>
         </Button>
       )}
-      <span className="count-chip activity-count" role="status">
+      <Badge variant="count" className="activity-count" role="status">
         {count} {count === 1 ? "event" : "events"}
-      </span>
+      </Badge>
     </div>
   )
 }

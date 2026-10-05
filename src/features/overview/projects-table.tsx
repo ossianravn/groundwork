@@ -8,6 +8,7 @@ import {
   useTable,
   type RowSelectionState,
 } from "@tanstack/react-table"
+import { Badge } from "@/kit/ui/badge"
 import { Card, CardHeader, CardTitle } from "@/kit/ui/card"
 import { TablePagination } from "@/kit/data-table/table-pagination"
 import { TableViewOptions } from "@/kit/data-table/table-view-options"
@@ -197,7 +198,7 @@ export function ProjectsTableView({
             <CardTitle>
               <h2 id="projects-heading">{heading}</h2>
             </CardTitle>
-            <span className="count-chip">{projects.length}</span>
+            <Badge variant="count">{projects.length}</Badge>
           </div>
         )}
         <div className="project-view-controls">

@@ -31,7 +31,7 @@ const colors = new Map<number, AnsiColor>([
 type Style = Omit<AnsiSpan, "text">
 
 // Built from its code so the pattern has no literal control character.
-const escape = String.fromCharCode(27)
+const esc = String.fromCharCode(27)
 
 function apply(style: Style, code: number): Style {
   if (code === 0) return {}
@@ -64,7 +64,7 @@ function apply(style: Style, code: number): Style {
  */
 export function parseAnsi(input: string): AnsiSpan[] {
   const spans: AnsiSpan[] = []
-  const pattern = new RegExp(`${escape}\\[([\\d;]*)([A-Za-z])`, "gu")
+  const pattern = new RegExp(`${esc}\\[([\\d;]*)([A-Za-z])`, "gu")
   let style: Style = {}
   let index = 0
 

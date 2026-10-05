@@ -76,6 +76,7 @@ function Terminal({
       <pre
         ref={body}
         tabIndex={0}
+        role="region"
         aria-label={`${title} output`}
         aria-busy={streaming || undefined}
         onScroll={(event) => {

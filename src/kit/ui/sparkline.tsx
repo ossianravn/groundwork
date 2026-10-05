@@ -21,8 +21,9 @@ function Sparkline({
   className?: string
 }) {
   const id = React.useId().replace(/:/g, "")
+  const last = values.at(-1)
 
-  if (values.length < 2) return null
+  if (values.length < 2 || last === undefined) return null
 
   const max = Math.max(...values)
   const min = Math.min(...values)
@@ -34,8 +35,6 @@ function Sparkline({
   const line = values
     .map((value, index) => `${index ? "L" : "M"}${x(index)},${y(value)}`)
     .join(" ")
-
-  const last = values[values.length - 1]
 
   return (
     <span

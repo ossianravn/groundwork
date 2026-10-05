@@ -1,6 +1,7 @@
 import { useRef, useState, type ReactNode } from "react"
 import type { DataTable } from "@/kit/data-table/table-features"
 import { ProjectStatus as StatusBadge } from "@/components/project-status"
+import { Badge } from "@/kit/ui/badge"
 import { Button } from "@/kit/ui/button"
 import { useToast } from "@/kit/ui/use-toast"
 import {
@@ -165,12 +166,12 @@ export function ProjectBoard({
                     <h3>
                       <StatusBadge status={status} />
                     </h3>
-                    <span
-                      className="count-chip"
+                    <Badge
+                      variant="count"
                       aria-label={`${column.length} projects`}
                     >
                       {column.length}
-                    </span>
+                    </Badge>
                   </header>
                   <ul>
                     {column.map((project, index) => {
