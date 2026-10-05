@@ -108,8 +108,10 @@ function CodeBlock({
       </div>
       <pre
         data-slot="code-block-body"
-        // Scrollable regions need keyboard access when code overflows.
+        // Scrollable regions need keyboard access when code overflows; the
+        // region role lets its label name it.
         tabIndex={0}
+        role="region"
         aria-label={label}
         className="overflow-x-auto p-3 font-mono text-[0.8125rem] leading-relaxed outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset"
       >

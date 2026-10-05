@@ -18,6 +18,9 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-brand underline-offset-4 hover:underline",
+        // A quiet tally beside a heading or a filtered list ("6", "38 events").
+        count:
+          "rounded-sm border-border font-normal text-muted-foreground tabular-nums",
       },
     },
     defaultVariants: {

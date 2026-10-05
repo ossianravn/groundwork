@@ -111,7 +111,11 @@ export function WorkspaceNavigation<Destination extends string>({
             options={workspace.switcher}
           />
         ) : (
-          <div className="workspace-identity" aria-label={workspace.name}>
+          <div
+            className="workspace-identity"
+            role="group"
+            aria-label={workspace.name}
+          >
             {identity}
           </div>
         )}

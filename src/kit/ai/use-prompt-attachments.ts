@@ -40,11 +40,10 @@ export function usePromptAttachments(limits: AttachmentLimits) {
 
   // Preview URLs still held when the composer goes away are released.
   useEffect(
-    () => () =>
-      current.current.forEach(
-        (item) =>
-          item.kind === "file" && item.url && URL.revokeObjectURL(item.url),
-      ),
+    () => () => {
+      for (const item of current.current)
+        if (item.kind === "file" && item.url) URL.revokeObjectURL(item.url)
+    },
     [],
   )
 
@@ -92,10 +91,8 @@ export function usePromptAttachments(limits: AttachmentLimits) {
   }
 
   function release(list: PromptAttachment[]) {
-    list.forEach(
-      (item) =>
-        item.kind === "file" && item.url && URL.revokeObjectURL(item.url),
-    )
+    for (const item of list)
+      if (item.kind === "file" && item.url) URL.revokeObjectURL(item.url)
   }
 
   function remove(id: string) {

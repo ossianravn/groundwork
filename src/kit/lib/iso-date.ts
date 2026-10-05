@@ -12,7 +12,8 @@ export function parseIsoDate(value: string | undefined) {
 
   if (!match) return undefined
 
-  const [year, month, day] = match.slice(1).map(Number)
+  // The pattern guarantees all three; a missing part (0) fails the check.
+  const [year = 0, month = 0, day = 0] = match.slice(1).map(Number)
   const date = new Date(year, month - 1, day)
 
   return date.getMonth() === month - 1 && date.getDate() === day

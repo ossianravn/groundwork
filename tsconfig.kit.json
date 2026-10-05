@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "erasableSyntaxOnly": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.kit.tsbuildinfo"
+  },
+  "include": ["src/kit"],
+  "exclude": ["src/kit/**/*.test.ts", "src/kit/**/*.test.tsx"]
+}

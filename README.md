@@ -62,6 +62,36 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
 
 5. Render a shell with your own brand, navigation and router link. `src/app/demo-workspace-shell.tsx` and `src/components/tandem-public-layout.tsx` show complete examples. Shells never import a router: you pass a `LinkComponent` that resolves the destinations you name.
 
+### TypeScript, formatting and linting
+
+- **TypeScript.** The kit compiles under `strict` with `noUncheckedIndexedAccess`, `noImplicitReturns`, `noImplicitOverride`, `noFallthroughCasesInSwitch`, `noUncheckedSideEffectImports` and `erasableSyntaxOnly`, which covers Vite's template settings; `npm run typecheck` checks this through `tsconfig.kit.json`. `exactOptionalPropertyTypes` and `noPropertyAccessFromIndexSignature` are not supported yet.
+- **Formatting.** Installed files are your source and arrive in this repository's Prettier style. Format them once with your own tool; with Biome, `npx @biomejs/biome check --write src/kit` formats them, sorts imports and applies safe fixes.
+- **Biome.** Turn on Tailwind syntax, which your own Tailwind 4 stylesheet needs too. For the kit, turn off the accessibility rules that don't model ARIA patterns it uses on purpose: a keyboard grid (calendar heatmap) and tree (file tree), named groups and regions rather than `fieldset` and `section`, focusable scroll regions (code, terminal output, chart tables), menu items that render links, and shadcn's own label and input group. With this, Biome 2.5's recommended rules report no errors in the kit; a few CSS warnings remain.
+
+  ```json
+  {
+    "css": { "parser": { "tailwindDirectives": true } },
+    "overrides": [
+      {
+        "includes": ["src/kit/**"],
+        "linter": {
+          "rules": {
+            "a11y": {
+              "useSemanticElements": "off",
+              "noNoninteractiveTabindex": "off",
+              "useFocusableInteractive": "off",
+              "noNoninteractiveElementToInteractiveRole": "off",
+              "useKeyWithClickEvents": "off",
+              "noLabelWithoutControl": "off",
+              "useAnchorContent": "off"
+            }
+          }
+        }
+      }
+    ]
+  }
+  ```
+
 ## Customize
 
 | To change | Edit |
