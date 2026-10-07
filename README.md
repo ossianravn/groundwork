@@ -39,7 +39,7 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
    npx shadcn add ossianravn/groundwork/kit
    ```
 
-   That installs everything into `src/kit/`, the same layout as this repository, so the kit's own imports keep working, and adds its npm dependencies. To take only what you need, install `ossianravn/groundwork/base` (tokens, styles, theme runtime) plus parts such as `button`, `data-table`, `rich-text`, `shell` or `theme-panel`; each part brings the parts it uses. `npx shadcn list ossianravn/groundwork` shows them all. Pin a release with its tag, such as `ossianravn/groundwork/kit#v0.3.0`; from v0.1.1 on, every part the item brings is pinned to the same release. [CHANGELOG.md](CHANGELOG.md) lists what each release adds.
+   That installs everything into `src/kit/`, the same layout as this repository, so the kit's own imports keep working, and adds its npm dependencies. To take only what you need, install `ossianravn/groundwork/base` (tokens, styles, theme runtime) plus parts such as `button`, `data-table`, `rich-text`, `shell` or `theme-panel`; each part brings the parts it uses. `npx shadcn list ossianravn/groundwork` shows them all. Pin a release with its tag, such as `ossianravn/groundwork/kit#v0.3.1`; from v0.1.1 on, every part the item brings is pinned to the same release. [CHANGELOG.md](CHANGELOG.md) lists what each release adds.
 
 2. Or copy `src/kit/` into your project's source folder and install what it imports:
 
