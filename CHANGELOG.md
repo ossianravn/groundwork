@@ -2,6 +2,10 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.3.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+- `base`: in the collapsed navigation rail, the workspace switcher's monogram sits in the middle of the rail like its icons (it sat at the start of the row).
+
 ## v0.3.0 — 2026-10-05
 
 The registry grows from 67 to 71 items with a chart system and small charts, components for an agent's background runs, and a kit that fits stricter TypeScript and Biome setups. Tandem shows them in Analytics, across its pages and on project Agent tabs.

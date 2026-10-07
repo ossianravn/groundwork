@@ -16,6 +16,10 @@
   [data-sidebar-collapsed="true"] .workspace-identity {
     padding: 0;
   }
+  /* The switcher keeps the row's width; its monogram sits in the middle like the rail's icons. */
+  [data-sidebar-collapsed="true"] .workspace-switcher {
+    justify-content: center;
+  }
   [data-sidebar-collapsed="true"] .nav-section {
     width: 100%;
   }
