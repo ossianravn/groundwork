@@ -54,7 +54,20 @@ export function useAssistantSession() {
             projectId,
             tasks.map(({ title, assigneeId }) => ({ title, assigneeId })),
           ),
+        // Reassign as planned; deferred tasks stay open, noted in a comment.
+        applyPlan: ({ projectId, moves, deferred }) => {
+          demo.assignTasks(
+            moves.map(({ taskId, to }) => ({ taskId, assigneeId: to })),
+          )
+
+          if (deferred.length)
+            demo.postComment(
+              projectId,
+              `Deferred until after the due date, as planned with the assistant:\n${deferred.map((task) => `- ${task.title}`).join("\n")}`,
+            )
+        },
       },
+      answers: active.answers,
     } satisfies AssistantRequest,
   })
 

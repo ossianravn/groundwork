@@ -6,7 +6,7 @@ import type {
   ReplyStage,
   SourceMetadata,
 } from "./assistant-types"
-import { answerChunks } from "./answer-chunks"
+import { answerChunks, applyChunks } from "./answer-chunks"
 import { todoChunk } from "./todo-chunks"
 
 export interface Pace {
@@ -255,6 +255,7 @@ export function replyChunks(
       reply.text ? [at(0)({ type: "text-end", id: "text" })] : [],
     ),
     ...(reply.question ? questionChunks(reply.question, turn) : []),
+    ...(reply.applyPlan ? applyChunks(reply.applyPlan, turn, pace) : []),
     ...stage("plan", planChunks(reply, turn, pace)),
     ...stage("artifact", artifactChunks(reply, turn, pace)),
     ...(reply.sources ?? []).map((source) =>

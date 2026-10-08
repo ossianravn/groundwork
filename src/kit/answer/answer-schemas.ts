@@ -55,3 +55,35 @@ export type AnswerFiguresProps = z.output<typeof answerFiguresProps>
 export type AnswerSectionProps = z.output<typeof answerSectionProps>
 
 export type AnswerCalloutProps = z.output<typeof answerCalloutProps>
+
+const formOption = z.object({ value: z.string(), label: z.string() })
+
+export const answerFormProps = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  submitLabel: z
+    .string()
+    .describe("What sending does, such as Update the plan."),
+  fields: z
+    .array(
+      z.discriminatedUnion("kind", [
+        z.object({
+          kind: z.literal("choice"),
+          name: z.string(),
+          label: z.string(),
+          options: z.array(formOption).min(2),
+          value: z.string().optional(),
+        }),
+        z.object({
+          kind: z.literal("checks"),
+          name: z.string(),
+          label: z.string(),
+          options: z.array(formOption).min(1),
+          values: z.array(z.string()).optional(),
+        }),
+      ]),
+    )
+    .min(1),
+})
+
+export type AnswerFormProps = z.output<typeof answerFormProps>

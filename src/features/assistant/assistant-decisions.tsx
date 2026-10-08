@@ -24,6 +24,7 @@ const continueLabels = {
   checklist: "Plan the checklist",
   status: "Draft the update",
   catchup: "Catch me up",
+  land: "Plan it",
 } as const
 
 export function AssistantQuestion({

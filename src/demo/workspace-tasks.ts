@@ -29,6 +29,24 @@ export function workspaceTasks<T extends Records>(
       return captureProjectUndo(state, records)
     },
 
+    // Several owners changed at once (an applied plan), on the latest records.
+    assignTasks(assignments: { taskId: string; assigneeId: string | null }[]) {
+      onChange()
+      setState((current) => ({
+        ...current,
+        ...assignments.reduce<TaskRecords>(
+          (records, { taskId, assigneeId }) =>
+            applyTaskChange(
+              records,
+              { kind: "assign", taskId, assigneeId },
+              context,
+            ),
+          current,
+        ),
+        resetDone: false,
+      }))
+    },
+
     // Applied to the latest records, so a caller holding an older render
     // (the assistant's tool) cannot overwrite other edits.
     addTasks(projectId: string, tasks: NewTask[]) {

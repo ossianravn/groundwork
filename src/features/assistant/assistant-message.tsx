@@ -20,7 +20,7 @@ import {
   type AssistantMessage,
 } from "@/demo/assistant/assistant-types"
 import { copyText, messageText } from "./assistant-text"
-import { ReplyPart } from "./reply-part"
+import { ReplyPart, type AnswerHost } from "./reply-part"
 
 type Part = AssistantMessage["parts"][number]
 
@@ -116,6 +116,7 @@ export function AssistantTurn({
   renderLink,
   branch,
   posted,
+  answers,
   onPost,
   onOpenWork,
 }: {
@@ -134,6 +135,8 @@ export function AssistantTurn({
   branch?: ReactNode
   /** Drafts already posted to their project, by artifact id. */
   posted: string[]
+  /** Where answers keep their edits and send their actions. */
+  answers: AnswerHost
   onPost: (artifactId: string, projectId: string, markdown: string) => void
   /** Opens this reply's work in the conversation panel. */
   onOpenWork: () => void
@@ -179,6 +182,7 @@ export function AssistantTurn({
               incomplete={incomplete}
               latest={latest}
               posted={posted}
+              answers={answers}
               onAnswer={onAnswer}
               onDecide={onDecide}
               onPost={onPost}

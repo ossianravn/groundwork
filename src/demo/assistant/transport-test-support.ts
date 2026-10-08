@@ -7,11 +7,13 @@ import workspace from "../data/workspace.json"
 import { assistantReply } from "./assistant-answers"
 import { createScriptedTransport } from "./assistant-transport"
 import type {
+  ApplyPlanInput,
+  AnswerStates,
   AssistantMessage,
   AssistantRequest,
   CreateTasksInput,
 } from "./assistant-types"
-import { continueChecklist } from "./checklist-answer"
+import { continueTurn } from "./continue-turn"
 
 // Shared by the transport tests: the fixture records, and a way to stream
 // a reply at full speed and read the message it builds.
@@ -25,8 +27,10 @@ export const context = {
   referenceDate: workspace.referenceDate,
 }
 
-/** Tasks createTasks added; clear it before each test. */
+/** What createTasks added and applyPlan applied; clear before each test. */
 export const created: CreateTasksInput[] = []
+
+export const applied: ApplyPlanInput[] = []
 
 export const prompt = (text: string): AssistantMessage => ({
   id: text,
@@ -39,10 +43,11 @@ export async function run(
   messages: AssistantMessage[],
   scenario: AssistantRequest["scenario"] = "normal",
   abortSignal?: AbortSignal,
+  answers: AnswerStates = {},
 ) {
   const transport = createScriptedTransport({
     reply: assistantReply,
-    resume: continueChecklist,
+    resume: continueTurn,
     pace: { firstToken: 0, chunk: 0, work: 0 },
   })
 
@@ -57,7 +62,11 @@ export async function run(
       model: "balanced",
       tools: { searchProjects: true, createTasks: true, draftUpdates: true },
       context,
-      actions: { createTasks: (input) => void created.push(input) },
+      actions: {
+        createTasks: (input) => void created.push(input),
+        applyPlan: (input) => void applied.push(input),
+      },
+      answers,
     } satisfies AssistantRequest,
   })
 

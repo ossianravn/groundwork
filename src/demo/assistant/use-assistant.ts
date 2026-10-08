@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react"
 import type { Chat } from "@ai-sdk/react"
 import { defaultModel } from "./assistant-model"
+import type { AnswerState } from "@/kit/answer/answer-library"
 import type {
+  AnswerStates,
   AssistantMessage,
   AssistantToolSettings,
   ModelId,
@@ -20,6 +22,8 @@ export interface Conversation {
   versions: Record<string, AssistantMessage[]>
   /** Drafts posted to their project, by artifact id. */
   posted: string[]
+  /** What the person changed in each answer, by its showAnswer call. */
+  answers: AnswerStates
 }
 
 const blank = (): Conversation => ({
@@ -29,6 +33,7 @@ const blank = (): Conversation => ({
   stopped: [],
   versions: {},
   posted: [],
+  answers: {},
 })
 
 /** A conversation's name in the history list. */
@@ -125,6 +130,12 @@ export function useAssistant() {
     },
     markPosted: (id: string, artifactId: string) =>
       update(id, (item) => ({ ...item, posted: [...item.posted, artifactId] })),
+    /** Keeps an answer's edits, so they survive scrolling and travel with the next turn. */
+    setAnswerState: (id: string, answerId: string, value: AnswerState) =>
+      update(id, (item) => ({
+        ...item,
+        answers: { ...item.answers, [answerId]: value },
+      })),
     rename: (id: string, title: string) =>
       update(id, (item) => ({ ...item, title: title.trim() || null })),
     /** Removes a conversation; returns what Undo needs to put it back. */

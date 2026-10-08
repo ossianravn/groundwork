@@ -22,6 +22,7 @@ import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantPlanDock } from "./assistant-plan-dock"
 import { AssistantComposer } from "./assistant-composer"
 import { AssistantTurn } from "./assistant-message"
+import type { AnswerHost } from "./reply-part"
 import { announcement, awaitsPerson, messageText } from "./assistant-text"
 import { useMessageQueue } from "./use-message-queue"
 
@@ -50,6 +51,7 @@ export function AssistantChat({
   error,
   stopped,
   posted,
+  answers,
   onPost,
   versions,
   composer,
@@ -72,6 +74,8 @@ export function AssistantChat({
   stopped: string[]
   /** Drafts already posted to their project, by artifact id. */
   posted: string[]
+  /** Where answers keep their edits and send their actions. */
+  answers: AnswerHost
   onPost: (artifactId: string, projectId: string, markdown: string) => void
   /** Versions of the latest reply, when Regenerate has made more than one. */
   versions?: { index: number; count: number; onSelect: (index: number) => void }
@@ -212,6 +216,7 @@ export function AssistantChat({
                 onAnswer={after(onAnswer)}
                 onDecide={after(onDecide)}
                 posted={posted}
+                answers={{ ...answers, onAction: after(answers.onAction) }}
                 onPost={onPost}
                 renderLink={renderLink}
               />

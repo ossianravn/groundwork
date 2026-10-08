@@ -8,11 +8,13 @@ import {
   projectPath,
 } from "./answer-format"
 import { catchUp } from "./catchup-answer"
+import { landPlan } from "./land-answer"
 import { statusDraft } from "./status-answer"
 import type {
   AssistantContext,
   AssistantMessage,
   AssistantReply,
+  Continuation,
   CreateTasksInput,
 } from "./assistant-types"
 
@@ -92,7 +94,8 @@ export function checklistAnswer(
 
 type Part = AssistantMessage["parts"][number]
 
-function lastStep(message: AssistantMessage): Part[] {
+/** The parts of a reply's last step, where its latest decision is. */
+export function lastStep(message: AssistantMessage): Part[] {
   const start = message.parts.reduce(
     (last, part, index) => (part.type === "step-start" ? index : last),
     -1,
@@ -103,14 +106,14 @@ function lastStep(message: AssistantMessage): Part[] {
 
 /**
  * Continues a turn the person has just acted on: an answered question
- * leads to the plan; an approval runs createTasks (`execute`); a denial
+ * leads to the plan; an approval runs createTasks (`run`); a denial
  * records that nothing changed. Returns undefined when there is nothing to
  * continue.
  */
 export function continueChecklist(
   message: AssistantMessage,
   context: AssistantContext,
-): { answer: AssistantReply; execute?: CreateTasksInput } | undefined {
+): Continuation | undefined {
   const followUps =
     script.intents.find((intent) => intent.id === "tasks")?.followUps ?? []
 
@@ -131,7 +134,9 @@ export function continueChecklist(
           ? statusDraft(project, context)
           : purpose === "catchup"
             ? catchUp(project, context)
-            : checklistPlan(project, context)
+            : purpose === "land"
+              ? landPlan(project, context)
+              : checklistPlan(project, context)
 
       return {
         answer: answer
@@ -163,7 +168,7 @@ export function continueChecklist(
         project && project.status !== "completed" ? input.tasks.length : 0
 
       return {
-        execute: added ? input : undefined,
+        run: added ? (actions) => actions.createTasks(input) : undefined,
         answer: {
           resolution: {
             toolCallId,

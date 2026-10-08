@@ -123,6 +123,25 @@ function partItem(
       }
     }
 
+    case "tool-applyPlan": {
+      const state: WorkState =
+        part.state === "output-available"
+          ? "done"
+          : part.state === "output-denied"
+            ? "declined"
+            : stopped
+              ? "stopped"
+              : "waiting"
+
+      return {
+        ...base,
+        kind: "tool",
+        label: `Apply the plan to ${part.input?.projectName ?? "the project"}`,
+        detail: state === "waiting" ? "Waiting for your approval" : undefined,
+        state,
+      }
+    }
+
     case "tool-showAnswer":
       return {
         ...base,

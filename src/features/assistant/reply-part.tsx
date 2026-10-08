@@ -1,7 +1,13 @@
 import { MessageResponse } from "@/kit/ai/message-response"
 import { Reasoning } from "@/kit/ai/reasoning"
+import type { AnswerAction } from "@/kit/answer/answer-context"
+import type { AnswerState } from "@/kit/answer/answer-library"
 import { AnswerRenderer } from "@/kit/answer/answer-renderer"
-import type { AssistantMessage } from "@/demo/assistant/assistant-types"
+import type {
+  AnswerStates,
+  AssistantMessage,
+} from "@/demo/assistant/assistant-types"
+import { AssistantApplyPlan } from "./assistant-apply"
 import { AssistantSteps, AssistantTool } from "./assistant-activity"
 import { AssistantArtifact } from "./assistant-artifact"
 import {
@@ -14,6 +20,13 @@ import { tandemAnswers } from "./answers/tandem-answers"
 type Part = AssistantMessage["parts"][number]
 
 type StepPart = Extract<Part, { type: "data-step" }>
+
+/** Where answers keep their edits and send their actions: the host. */
+export interface AnswerHost {
+  states: AnswerStates
+  onStateChange: (answerId: string, state: AnswerState) => void
+  onAction: (answerId: string, action: AnswerAction) => void
+}
 
 /**
  * One part of a reply, drawn by the component that shows it. Parts shown
@@ -28,6 +41,7 @@ export function ReplyPart({
   incomplete,
   latest,
   posted,
+  answers,
   onAnswer,
   onDecide,
   onPost,
@@ -40,6 +54,7 @@ export function ReplyPart({
   incomplete: boolean
   latest: boolean
   posted: string[]
+  answers: AnswerHost
   onAnswer: (toolCallId: string, projectId: string) => void
   onDecide: (approvalId: string, approved: boolean) => void
   onPost: (artifactId: string, projectId: string, markdown: string) => void
@@ -77,7 +92,15 @@ export function ReplyPart({
         library={tandemAnswers}
         streaming={incomplete && part.state === "input-streaming"}
         interactive={latest}
+        state={answers.states[part.toolCallId]}
+        onStateChange={(state) => answers.onStateChange(part.toolCallId, state)}
+        onAction={(action) => answers.onAction(part.toolCallId, action)}
       />
+    )
+
+  if (part.type === "tool-applyPlan")
+    return (
+      <AssistantApplyPlan part={part} actionable={latest} onDecide={onDecide} />
     )
 
   if (part.type === "data-artifact")
