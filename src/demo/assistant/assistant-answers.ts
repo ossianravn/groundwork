@@ -4,13 +4,14 @@ import type {
   AssistantReply,
   AssistantToolSettings,
 } from "./assistant-types"
+import { catchUpAnswer } from "./catchup-answer"
 import { helpAnswer, namedGuide } from "./help-answer"
 import { statusAnswer } from "./status-answer"
 import { checklistAnswer } from "./checklist-answer"
 import { riskAnswer } from "./risk-answer"
 import { weekAnswer } from "./week-answer"
 
-const intentIds = ["risk", "week", "status", "tasks", "api"] as const
+const intentIds = ["catchup", "risk", "week", "status", "tasks", "api"] as const
 
 type IntentId = (typeof intentIds)[number]
 
@@ -106,15 +107,17 @@ export function assistantReply(
   if (tool && !tools[tool]) return { text: script.disabled[tool], followUps }
 
   const answer =
-    intent === "risk"
-      ? riskAnswer(context, { toolFails })
-      : intent === "week"
-        ? weekAnswer(context)
-        : intent === "tasks"
-          ? checklistAnswer(prompt, context)
-          : intent === "status"
-            ? statusAnswer(prompt, context)
-            : apiAnswer()
+    intent === "catchup"
+      ? catchUpAnswer(prompt, context)
+      : intent === "risk"
+        ? riskAnswer(context, { toolFails })
+        : intent === "week"
+          ? weekAnswer(context)
+          : intent === "tasks"
+            ? checklistAnswer(prompt, context)
+            : intent === "status"
+              ? statusAnswer(prompt, context)
+              : apiAnswer()
 
   // A reply waiting on the person offers no other questions meanwhile.
   const waiting = "question" in answer || "approval" in answer

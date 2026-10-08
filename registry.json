@@ -1743,6 +1743,55 @@
       ]
     },
     {
+      "name": "answer",
+      "type": "registry:block",
+      "title": "Answer",
+      "description": "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with a tool schema and prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout).",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0",
+        "zod@^4.6.5"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/ai",
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/skeleton",
+        "ossianravn/groundwork/sparkline"
+      ],
+      "files": [
+        {
+          "path": "src/kit/answer/answer-blocks.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-blocks.tsx"
+        },
+        {
+          "path": "src/kit/answer/answer-context.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-context.ts"
+        },
+        {
+          "path": "src/kit/answer/answer-definitions.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-definitions.tsx"
+        },
+        {
+          "path": "src/kit/answer/answer-library.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-library.tsx"
+        },
+        {
+          "path": "src/kit/answer/answer-renderer.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-renderer.tsx"
+        },
+        {
+          "path": "src/kit/answer/answer-schemas.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-schemas.ts"
+        }
+      ]
+    },
+    {
       "name": "data-table",
       "type": "registry:block",
       "title": "Data Table",
@@ -2093,6 +2142,7 @@
         "ossianravn/groundwork/uptime-strip",
         "ossianravn/groundwork/use-toast",
         "ossianravn/groundwork/ai",
+        "ossianravn/groundwork/answer",
         "ossianravn/groundwork/data-table",
         "ossianravn/groundwork/member-avatar",
         "ossianravn/groundwork/panel-header",

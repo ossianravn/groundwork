@@ -7,6 +7,7 @@ import {
   projectLink,
   projectPath,
 } from "./answer-format"
+import { catchUp } from "./catchup-answer"
 import { statusDraft } from "./status-answer"
 import type {
   AssistantContext,
@@ -122,10 +123,15 @@ export function continueChecklist(
         (item) => item.id === part.output.projectId,
       )
 
-      const answer =
-        project && part.input.purpose === "status"
+      const { purpose } = part.input
+
+      const answer = !project
+        ? undefined
+        : purpose === "status"
           ? statusDraft(project, context)
-          : project && checklistPlan(project, context)
+          : purpose === "catchup"
+            ? catchUp(project, context)
+            : checklistPlan(project, context)
 
       return {
         answer: answer

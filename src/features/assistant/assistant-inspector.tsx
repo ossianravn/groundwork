@@ -13,7 +13,8 @@ import type { RenderResponseLink } from "@/kit/ai/response-link"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantOutputs, AssistantSources } from "./assistant-outputs"
 import { AssistantWork } from "./assistant-work"
-import { workOutputs, workSources, workTurns } from "./inspector-model"
+import { workTurns } from "./inspector-model"
+import { workOutputs, workSources } from "./inspector-outputs"
 
 export type InspectorTab = "work" | "outputs" | "sources"
 

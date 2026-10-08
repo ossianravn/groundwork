@@ -114,6 +114,7 @@ export function ProjectDetailRoute() {
                         activity: demo.activity,
                         comments: demo.comments,
                         people: demo.workspace.people,
+                        files: files.files,
                         referenceDate: demo.workspace.referenceDate,
                         currentUserId: demo.workspace.currentUserId,
                       },

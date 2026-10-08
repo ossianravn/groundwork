@@ -53,7 +53,11 @@ const tokens = (text: string) => Math.ceil(text.length / 4)
 function textOf(message: AssistantMessage) {
   return message.parts
     .map((part) =>
-      part.type === "text" || part.type === "reasoning" ? part.text : "",
+      part.type === "text" || part.type === "reasoning"
+        ? part.text
+        : part.type === "tool-showAnswer"
+          ? JSON.stringify(part.input ?? {})
+          : "",
     )
     .join(" ")
 }
@@ -71,7 +75,9 @@ export function estimateUsage(
   const input =
     420 + messages.reduce((sum, message) => sum + tokens(textOf(message)), 0)
 
-  const output = tokens(`${reply.reasoning ?? ""} ${reply.text}`)
+  const output = tokens(
+    `${reply.reasoning ?? ""} ${reply.text} ${reply.answer ? JSON.stringify(reply.answer) : ""}`,
+  )
 
   return { model, usage: { input, output } }
 }
