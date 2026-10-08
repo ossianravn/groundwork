@@ -19,6 +19,13 @@ type PlanPart = Extract<Part, { type: "data-plan" }>
 
 type ApprovalPart = Extract<Part, { type: "tool-createTasks" }>
 
+/** What answering leads to, by what the question is for. */
+const continueLabels = {
+  checklist: "Plan the checklist",
+  status: "Draft the update",
+  catchup: "Catch me up",
+} as const
+
 export function AssistantQuestion({
   part,
   actionable,
@@ -31,7 +38,7 @@ export function AssistantQuestion({
 }) {
   if (part.state === "input-streaming" || !part.input) return null
 
-  const { question, options } = part.input
+  const { question, options, purpose } = part.input
 
   const answer =
     part.state === "output-available"
@@ -45,7 +52,7 @@ export function AssistantQuestion({
     <Question
       question={question}
       options={options}
-      submitLabel="Plan the checklist"
+      submitLabel={continueLabels[purpose]}
       answer={answer}
       onAnswer={(choice) => {
         if (choice.kind === "option") onAnswer(part.toolCallId, choice.value)

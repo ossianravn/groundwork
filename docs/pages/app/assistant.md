@@ -27,6 +27,7 @@ A question appears as a right-aligned bubble and is anchored at the top of the v
 
 Replies are scripted: `src/demo/data/assistant.json` holds the copy, the starting questions and the keyword topics; `src/demo/assistant/assistant-answers.ts` composes each answer from the records at the moment the question is sent. Prompts match topics by whole words; anything else gets a fallback that lists what can be asked.
 
+- **Catch up** (AI-28): "Catch me up on Brand refresh" answers with components instead of prose, as an [interactive answer](#interactive-answers). It reads the project's tasks and activity (two steps), then builds a heading that states the result (on track for its due date, or how many days late at the last two weeks' pace), a short summary citing Activity and the project, four figures (done, completed this week, open, due) with trend lines, a callout for open tasks without an owner, the latest activity and the project's files. Without a named project the assistant asks which one.
 - **At risk:** the assistant reasons about the question (a reasoning part), then calls `searchProjects`. That tool part's parameters stream in, it runs, and it returns the active projects. The answer uses the rule it states: projects overdue, due within a week with more than a quarter of their tasks open, or due within two weeks with more than half open. It lists them in a table with links, names the most urgent, and cites the projects it read; the sources follow the text.
 - **This week:** the assistant reports three progress steps (data parts replaced by id as each completes). It then lists the tasks completed in the seven days to the demo date, by project and person, citing Activity as its source.
 - **Launch checklist:** the one answer that changes records. If the prompt names no open project, the assistant asks which one first. Otherwise it streams a five-task plan (the owner takes the first two), then asks for approval to add the tasks. Approving adds them to the end of the project's task list, as one change in the shared demo state. The outcome links to the project, whose page offers the breadcrumb's Assistant link. Declining changes nothing.
@@ -35,6 +36,14 @@ Replies are scripted: `src/demo/data/assistant.json` holds the copy, the startin
 - **API:** a curl and a TypeScript example against the illustrative API, and a link to API keys.
 
 Replies link to project pages and settings with in-app navigation; the host supplies the link renderer, so the feature does not import the router.
+
+### Interactive answers
+
+An interactive answer is composed from a library of components rather than written as markdown. The assistant calls `showAnswer`, a display tool whose input is the answer: a tree of nodes, each a component's name, its props and any children. The AI SDK parses the input after every streamed delta, and the kit's `AnswerRenderer` (`src/kit/answer/`) draws what has arrived: text and headings read as they are written, other parts hold their place with a placeholder until they are complete, and a part whose props are invalid or whose component the library does not know is left out. The call completes as soon as its input does, and a new step follows, so nothing is sent back.
+
+Tandem's library (`features/assistant/answers/tandem-answers.tsx`) is the kit's heading, text, figures, section and callout plus Tandem's recent work and project files. Each component declares a Zod schema, which validates what the model wrote, and a text form: Copy, the status announcement and the Conversation panel read an answer in words. The library also gives the tool's JSON schema and a description of its components for a real model's system prompt.
+
+Answers are read-only for now. Editing them, views that update together, edits that travel with the next turn and forms that answer back are planned.
 
 ## State and navigation
 

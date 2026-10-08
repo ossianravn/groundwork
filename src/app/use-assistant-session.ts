@@ -11,7 +11,7 @@ import { useDemoState } from "./demo-state"
  * Switching conversation switches Chat; each keeps streaming on its own.
  */
 export function useAssistantSession() {
-  const { demo, assistant } = useDemoState()
+  const { demo, assistant, files } = useDemoState()
   const { scenario } = useSearch({ from: "/app/demo/assistant" })
   const { active, adopt, markStopped } = assistant
 
@@ -45,6 +45,7 @@ export function useAssistantSession() {
         tasks: demo.tasks,
         activity: demo.activity,
         people: demo.workspace.people,
+        files: files.files,
         referenceDate: demo.workspace.referenceDate,
       },
       actions: {

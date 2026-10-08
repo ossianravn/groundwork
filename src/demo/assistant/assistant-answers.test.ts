@@ -2,6 +2,7 @@ import { expect, it } from "vitest"
 import { initialProjects } from "../project-fixtures"
 import { initialActivity } from "../activity-fixtures"
 import { initialTasks } from "../project-tasks"
+import { initialFiles } from "../project-files"
 import workspace from "../data/workspace.json"
 import { assistantReply } from "./assistant-answers"
 
@@ -10,6 +11,7 @@ const context = {
   tasks: initialTasks,
   activity: initialActivity,
   people: workspace.members,
+  files: initialFiles,
   referenceDate: workspace.referenceDate,
 }
 

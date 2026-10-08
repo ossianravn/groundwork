@@ -1,6 +1,13 @@
 import type { UIMessage, UIMessageChunk } from "ai"
 import { z } from "zod"
-import type { Activity, Member, Project, ProjectTask } from "../model"
+import type { AnswerNode } from "@/kit/answer/answer-library"
+import type {
+  Activity,
+  Member,
+  Project,
+  ProjectFile,
+  ProjectTask,
+} from "../model"
 
 /** What the scripted assistant can read: the live demo records. */
 export interface AssistantContext {
@@ -8,6 +15,7 @@ export interface AssistantContext {
   tasks: ProjectTask[]
   activity: Activity[]
   people: Member[]
+  files: ProjectFile[]
   referenceDate: string
 }
 
@@ -30,7 +38,7 @@ export type SearchProjectsInput = {
 /** The chooseProject tool: a question the person answers in the page. */
 export type ChooseProjectInput = {
   /** What the answer is for, so the turn continues with the right reply. */
-  purpose: "checklist" | "status"
+  purpose: "checklist" | "status" | "catchup"
   question: string
   options: { value: string; label: string; description: string }[]
 }
@@ -57,6 +65,17 @@ export type CreateTasksOutput = {
   /** Where the tasks are, for a link in the outcome. */
   url: string
 }
+
+/**
+ * The showAnswer display tool: an answer composed from the answer library,
+ * streamed as the tool's input and rendered as it arrives.
+ */
+export type ShowAnswerInput = {
+  title: string
+  nodes: AnswerNode[]
+}
+
+export type ShowAnswerOutput = { shown: true }
 
 /** The plan as it streams: tasks arrive one by one, then it is complete. */
 export interface PlanData {
@@ -95,7 +114,7 @@ export interface TodoData {
 
 /** Where a reply's work happens, in stream order. */
 export type ReplyStage =
-  "reasoning" | "steps" | "tool" | "text" | "plan" | "artifact"
+  "reasoning" | "steps" | "tool" | "answer" | "text" | "plan" | "artifact"
 
 /** A progress step the assistant reports while it works. */
 export interface StepData {
@@ -115,7 +134,12 @@ export interface AssistantReply {
     output?: ProjectRow[]
     errorText?: string
   }
-  /** Markdown. Citations are links to `#source:<id>[,<id>]`. */
+  /** An answer built from components, before any text. */
+  answer?: ShowAnswerInput
+  /**
+   * Markdown, empty when an answer says it all. Citations are links to
+   * `#source:<id>[,<id>]`.
+   */
   text: string
   sources?: ReplySource[]
   /** After the text: a question the person answers (chooseProject). */
@@ -136,6 +160,7 @@ type AssistantTools = {
   searchProjects: { input: SearchProjectsInput; output: ProjectRow[] }
   chooseProject: { input: ChooseProjectInput; output: ChooseProjectOutput }
   createTasks: { input: CreateTasksInput; output: CreateTasksOutput }
+  showAnswer: { input: ShowAnswerInput; output: ShowAnswerOutput }
 }
 
 type AssistantData = {

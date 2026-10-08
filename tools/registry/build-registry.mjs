@@ -42,6 +42,7 @@ const groups = {
   "data-table": ["data-table/"],
   "rich-text": ["rich-text/"],
   ai: ["ai/"],
+  answer: ["answer/"],
   shell: ["shell/"],
   "theme-panel": ["theme/*.tsx"],
 }
@@ -49,6 +50,8 @@ const groups = {
 const descriptions = {
   base: "Tokens, stylesheets, the theme runtime and the cn utility. Every other item builds on it; import src/kit/styles/kit.css as the Tailwind entry.",
   ai: "Chat components for AI SDK UI: conversation, streaming markdown response, prompt input, suggestions and message actions. Presentational; pass status and handlers from useChat.",
+  answer:
+    "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with a tool schema and prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout).",
   "code-block":
     "Code block with on-demand Shiki highlighting coloured by the --syntax-* tokens, a label and copy.",
   terminal:

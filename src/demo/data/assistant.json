@@ -2,12 +2,17 @@
   "title": "What would you like to know?",
   "description": "Scripted answers from this demo's projects, tasks and activity. Nothing leaves your browser.",
   "suggestions": [
+    "Catch me up on Brand refresh",
     "Which projects are at risk?",
-    "What changed this week?",
     "Draft a status update for Mobile app",
     "Add a launch checklist to a project"
   ],
   "intents": [
+    {
+      "id": "catchup",
+      "keywords": ["catch", "brief", "briefing", "rundown"],
+      "followUps": ["Which projects are at risk?", "What changed this week?"]
+    },
     {
       "id": "risk",
       "keywords": [
@@ -77,7 +82,7 @@
       "followUps": ["Which projects are at risk?", "What changed this week?"]
     }
   ],
-  "fallback": "I can only answer a few scripted questions in this demo: which projects are at risk, what changed this week, adding a launch checklist to a project, and how to list projects with the API. Try one of those below.",
+  "fallback": "I can only answer a few scripted questions in this demo: catching you up on a project, which projects are at risk, what changed this week, adding a launch checklist to a project, and how to list projects with the API. Try one of those below.",
   "api": {
     "intro": "Create a read-only key under [Settings › API keys](/app/demo/settings/api-keys), then send it as a bearer token. The endpoint returns every project with its status, owner, due date and task counts.",
     "curl": "curl https://api.tandem.example/v1/projects \\\n  -H \"Authorization: Bearer $TANDEM_API_KEY\"",
@@ -159,7 +164,8 @@
   "files": "I can see {files}, but this demo can't read attachments. Ask one of the questions below instead.",
   "questions": {
     "checklist": "Which project should the checklist go into?",
-    "status": "Which project is the update for?"
+    "status": "Which project is the update for?",
+    "catchup": "Which project should I catch you up on?"
   },
   "disabled": {
     "searchProjects": "Project search is turned off in [Settings › Assistant](/app/demo/settings/assistant), so I can't check deadlines and open work. Turn it on there to ask again.",

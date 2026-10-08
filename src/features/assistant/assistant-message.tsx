@@ -2,7 +2,6 @@ import type { ReactNode } from "react"
 import { RefreshCcw } from "lucide-react"
 import { Bubble, BubbleContent } from "@/kit/ui/bubble"
 import { Message, MessageContent, MessageFooter } from "@/kit/ui/message"
-import { MessageResponse } from "@/kit/ai/message-response"
 import {
   MessageAction,
   MessageActions,
@@ -10,7 +9,6 @@ import {
 } from "@/kit/ai/message-actions"
 import { Attachment, Attachments } from "@/kit/ai/attachments"
 import { InlineCitation } from "@/kit/ai/inline-citation"
-import { Reasoning } from "@/kit/ai/reasoning"
 import {
   ResponseLinkContext,
   type RenderResponseLink,
@@ -21,16 +19,14 @@ import {
   sourceMetadata,
   type AssistantMessage,
 } from "@/demo/assistant/assistant-types"
-import { AssistantSteps, AssistantTool } from "./assistant-activity"
-import { AssistantArtifact } from "./assistant-artifact"
-import {
-  AssistantApproval,
-  AssistantPlan,
-  AssistantQuestion,
-} from "./assistant-decisions"
 import { copyText, messageText } from "./assistant-text"
+import { ReplyPart } from "./reply-part"
 
 type Part = AssistantMessage["parts"][number]
+
+/** A stable key for a part: its tool call where it has one. */
+const partKey = (part: Part, index: number) =>
+  "toolCallId" in part ? part.toolCallId : `${part.type}-${index}`
 
 /** Files and projects the person attached, above their words. */
 function SentAttachments({ message }: { message: AssistantMessage }) {
@@ -174,80 +170,21 @@ export function AssistantTurn({
       <Message className="assistant-reply">
         <MessageContent>
           <span className="sr-only">Assistant: </span>
-          {message.parts.map((part, index) => {
-            if (part.type === "reasoning")
-              return (
-                <Reasoning
-                  key={index}
-                  streaming={incomplete && part.state === "streaming"}
-                  onOpenDetails={onOpenWork}
-                  detailsLabel="open in the conversation panel"
-                >
-                  {part.text}
-                </Reasoning>
-              )
-
-            if (part.type === "data-step" && index === firstStep)
-              return (
-                <AssistantSteps
-                  key={index}
-                  steps={steps}
-                  working={incomplete}
-                />
-              )
-
-            if (part.type === "tool-searchProjects")
-              return (
-                <AssistantTool
-                  key={part.toolCallId}
-                  part={part}
-                  working={incomplete}
-                />
-              )
-
-            if (part.type === "tool-chooseProject")
-              return (
-                <AssistantQuestion
-                  key={part.toolCallId}
-                  part={part}
-                  actionable={latest}
-                  onAnswer={onAnswer}
-                />
-              )
-
-            if (part.type === "data-artifact")
-              return (
-                <AssistantArtifact
-                  key={index}
-                  part={part}
-                  working={incomplete}
-                  posted={posted.includes(part.id ?? part.data.projectId)}
-                  onPost={onPost}
-                />
-              )
-
-            if (part.type === "data-plan")
-              return <AssistantPlan key={index} part={part} />
-
-            if (part.type === "tool-createTasks")
-              return (
-                <AssistantApproval
-                  key={part.toolCallId}
-                  part={part}
-                  actionable={latest}
-                  onDecide={onDecide}
-                />
-              )
-
-            if (part.type === "text")
-              return (
-                <MessageResponse key={index} streaming={incomplete}>
-                  {part.text}
-                </MessageResponse>
-              )
-
-            return null
-          })}
+          {message.parts.map((part, index) => (
+            <ReplyPart
+              key={partKey(part, index)}
+              part={part}
+              firstStep={index === firstStep}
+              steps={steps}
+              incomplete={incomplete}
+              latest={latest}
+              posted={posted}
+              onAnswer={onAnswer}
+              onDecide={onDecide}
+              onPost={onPost}
+              onOpenWork={onOpenWork}
+            />
+          ))}
           {stopped && (
             <MessageFooter className="px-0">
               You stopped this reply.

@@ -1,5 +1,7 @@
 import type { ChatStatus } from "ai"
+import { answerNodeList } from "@/kit/answer/answer-library"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
+import { tandemAnswers } from "./answers/tandem-answers"
 
 type Part = AssistantMessage["parts"][number]
 
@@ -7,9 +9,17 @@ type ApprovalPart = Extract<Part, { type: "tool-createTasks" }>
 
 const citations = /\[[^\]]*\]\(#source:[^)]*\)/gu
 
+/** A message in words: its text, and any answer built from components. */
 export function messageText(message: AssistantMessage) {
   return message.parts
-    .flatMap((part) => (part.type === "text" ? part.text : []))
+    .flatMap((part) =>
+      part.type === "text"
+        ? part.text
+        : part.type === "tool-showAnswer"
+          ? tandemAnswers.text(answerNodeList.parse(part.input?.nodes))
+          : [],
+    )
+    .filter(Boolean)
     .join("\n\n")
 }
 

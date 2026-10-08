@@ -6,6 +6,7 @@ import type {
   ReplyStage,
   SourceMetadata,
 } from "./assistant-types"
+import { answerChunks } from "./answer-chunks"
 import { todoChunk } from "./todo-chunks"
 
 export interface Pace {
@@ -191,9 +192,10 @@ function resolutionChunks(
 
 /**
  * The chunks a scripted reply streams, in AI SDK UI message stream order:
- * the outcome of an approval, reasoning, progress steps, a tool call, the
- * text, then a question or a plan awaiting approval, sources and
- * follow-ups. `fail` cuts the text a third of the way in with an error.
+ * the outcome of an approval, reasoning, progress steps, a tool call, an
+ * answer, the text (none when the answer says it all), then a question or
+ * a plan awaiting approval, sources and follow-ups. `fail` cuts the text a
+ * third of the way in with an error.
  * `turn` keeps tool call ids unique within the conversation.
  */
 export function replyChunks(
@@ -229,7 +231,11 @@ export function replyChunks(
     ),
     ...stage("steps", reply.steps ? stepChunks(reply.steps, pace) : []),
     ...stage("tool", reply.tool ? toolChunks(reply.tool, pace) : []),
-    at(0)({ type: "text-start", id: "text" }),
+    ...stage(
+      "answer",
+      reply.answer ? answerChunks(reply.answer, turn, pace) : [],
+    ),
+    ...(reply.text ? [at(0)({ type: "text-start", id: "text" })] : []),
     ...sent.map((delta) =>
       at(pace.chunk)({ type: "text-delta", id: "text", delta }),
     ),
@@ -244,7 +250,10 @@ export function replyChunks(
 
   return [
     ...opening,
-    ...stage("text", [at(0)({ type: "text-end", id: "text" })]),
+    ...stage(
+      "text",
+      reply.text ? [at(0)({ type: "text-end", id: "text" })] : [],
+    ),
     ...(reply.question ? questionChunks(reply.question, turn) : []),
     ...stage("plan", planChunks(reply, turn, pace)),
     ...stage("artifact", artifactChunks(reply, turn, pace)),

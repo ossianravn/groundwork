@@ -1,90 +1,21 @@
 import { beforeEach, expect, it } from "vitest"
-import { readUIMessageStream } from "ai"
 import { initialProjects } from "../project-fixtures"
-import { initialActivity } from "../activity-fixtures"
-import { initialTasks } from "../project-tasks"
-import workspace from "../data/workspace.json"
 import { assistantReply, matchIntent } from "./assistant-answers"
 import { textChunks } from "./assistant-chunks"
-import { createScriptedTransport } from "./assistant-transport"
-import type {
-  AssistantMessage,
-  AssistantRequest,
-  CreateTasksInput,
-} from "./assistant-types"
-import { continueChecklist } from "./checklist-answer"
+import type { AssistantMessage } from "./assistant-types"
 import { atRiskProjects } from "./risk-answer"
-
-const context = {
-  projects: initialProjects,
-  tasks: initialTasks,
-  activity: initialActivity,
-  people: workspace.members,
-  referenceDate: workspace.referenceDate,
-}
-
-const created: CreateTasksInput[] = []
+import {
+  answered,
+  context,
+  created,
+  prompt,
+  run,
+  send,
+} from "./transport-test-support"
 
 beforeEach(() => {
   created.length = 0
 })
-
-const prompt = (text: string): AssistantMessage => ({
-  id: text,
-  role: "user",
-  parts: [{ type: "text", text }],
-})
-
-/** Streams a reply to the messages; an assistant message last continues it. */
-async function run(
-  messages: AssistantMessage[],
-  scenario: AssistantRequest["scenario"] = "normal",
-  abortSignal?: AbortSignal,
-) {
-  const transport = createScriptedTransport({
-    reply: assistantReply,
-    resume: continueChecklist,
-    pace: { firstToken: 0, chunk: 0, work: 0 },
-  })
-
-  const stream = await transport.sendMessages({
-    trigger: "submit-message",
-    chatId: "test",
-    messageId: undefined,
-    messages,
-    abortSignal,
-    body: {
-      scenario,
-      model: "balanced",
-      tools: { searchProjects: true, createTasks: true, draftUpdates: true },
-      context,
-      actions: { createTasks: (input) => void created.push(input) },
-    } satisfies AssistantRequest,
-  })
-
-  const last = messages[messages.length - 1]
-  let message: AssistantMessage | undefined
-  let error: unknown
-
-  try {
-    for await (const update of readUIMessageStream<AssistantMessage>({
-      message: last.role === "assistant" ? structuredClone(last) : undefined,
-      stream,
-      terminateOnError: true,
-    }))
-      message = update
-  } catch (caught) {
-    error = caught
-  }
-
-  return { message, error, types: message?.parts.map((part) => part.type) }
-}
-
-const send = (
-  text: string,
-  scenario?: AssistantRequest["scenario"],
-  abortSignal?: AbortSignal,
-) => run([prompt(text)], scenario, abortSignal)
 
 it("matches prompts to scripted topics and falls back otherwise", () => {
   expect(matchIntent("Which projects are at risk?")).toBe("risk")
@@ -230,20 +161,7 @@ it("plans from the answer, then waits for approval", async () => {
 
   if (!message) throw new Error("No reply")
 
-  const answered: AssistantMessage = {
-    ...message,
-    parts: message.parts.map((part) =>
-      part.type === "tool-chooseProject" && part.state === "input-available"
-        ? {
-            ...part,
-            state: "output-available",
-            output: { projectId: "mobile" },
-          }
-        : part,
-    ),
-  }
-
-  const { message: after } = await run([user, answered])
+  const { message: after } = await run([user, answered(message, "mobile")])
 
   expect(after?.parts.find((part) => part.type === "data-plan")).toMatchObject({
     data: { title: "Launch checklist for Mobile app", complete: true },

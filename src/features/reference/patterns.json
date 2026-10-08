@@ -3314,6 +3314,31 @@
     ]
   },
   {
+    "id": "AI-28",
+    "title": "Interactive answer",
+    "originalName": "Interactive answer",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "summary": "Answer with components the model composes from a library, such as figures, a callout and recent work, drawn while the answer streams.",
+    "implemented": "Ask the Assistant to catch you up on a project. The answer arrives as a showAnswer tool call whose input is a tree of components from Tandem's library: the kit's heading, text, figures, section and callout, plus Tandem's recent work and project files. It is drawn as it is written: text reads as it arrives, other parts hold their place until they are complete, and a part the library does not know is left out. The heading states the result; figures carry trend lines; Copy, the status announcement and the Conversation panel read the answer as text. With no project named, the Assistant asks which one first.",
+    "deferred": "Answers are read-only for now: editing an answer, linked views, edits carried to the next turn and forms that answer back are planned.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Catch me up on Brand refresh."
+      }
+    ],
+    "sources": [
+      "src/kit/answer/answer-renderer.tsx",
+      "src/kit/answer/answer-library.tsx",
+      "src/kit/answer/answer-definitions.tsx",
+      "src/features/assistant/answers/tandem-answers.tsx",
+      "src/demo/assistant/catchup-answer.ts",
+      "src/demo/assistant/answer-chunks.ts"
+    ]
+  },
+  {
     "id": "DVIZ-06",
     "title": "Area time series",
     "originalName": "Area time series",

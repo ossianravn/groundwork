@@ -2,6 +2,11 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.3.1`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+- `answer` (new item; the registry grows to 72): interactive answers. `AnswerRenderer` draws an answer a model composes from a library of components (a display tool's streaming input), holding unfinished parts with placeholders and leaving out unknown or invalid ones. `defineAnswerComponent` pairs a Zod props schema with a component, a description for the model and a text form; `createAnswerLibrary` validates answers, reads them as text, and gives the tool's JSON schema (`toolInputSchema`) and a prompt description (`describe`). `useAnswerState` and `useAnswerAction` connect edits and actions to the host. Generic blocks: Heading, Text, Figures, Section and Callout, with their schemas in `answer-schemas`. Brings `zod`.
+- Demo: the Assistant's Catch up answer is built from components and streamed as a `showAnswer` call. The question asking which project a status update is for names its action.
+
 ## v0.3.1 — 2026-10-07
 
 - `base`: in the collapsed navigation rail, the workspace switcher's monogram sits in the middle of the rail like its icons (it sat at the start of the row).

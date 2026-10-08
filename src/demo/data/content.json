@@ -299,6 +299,40 @@
   ],
   "releases": [
     {
+      "version": "0.10.0",
+      "date": "2026-10-08",
+      "title": "Catch up on any project",
+      "summary": "Ask the assistant to catch you up on a project, and the answer arrives as a short page: where it stands, the figures behind it, what needs attention, recent work and files.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Ask the Assistant to catch you up on a project, such as Catch me up on Brand refresh. The answer says whether it is on track for its due date, with figures and trend lines, the open tasks without an owner, its latest activity and its files.",
+            "The answer builds as it arrives: text appears as it is written, and each figure, list and file strip holds its place until it is ready.",
+            "Copy an answer, or open the Conversation panel to see the steps behind it."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "When the assistant asks which project a status update is for, its button now says Draft the update."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Answers are scripted from the sample workspace and can't be edited yet. Everything resets on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.9.1",
       "date": "2026-10-02",
       "title": "Charts that fit your phone",

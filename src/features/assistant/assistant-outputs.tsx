@@ -4,7 +4,7 @@ import { Button } from "@/kit/ui/button"
 import { useCopy } from "@/kit/lib/use-copy"
 import type { RenderResponseLink } from "@/kit/ai/response-link"
 import { downloadMarkdown } from "./download-markdown"
-import type { WorkOutput, WorkSource } from "./inspector-model"
+import type { WorkOutput, WorkSource } from "./inspector-outputs"
 
 const stateLabels = {
   writing: "Writing…",
