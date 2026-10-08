@@ -1,22 +1,22 @@
 import { useAnswer, useAnswerState } from "@/kit/answer/answer-context"
 import type { AnswerComponentProps } from "@/kit/answer/answer-library"
-import { planOutcome } from "@/demo/capacity"
+import { teamOutcome } from "@/demo/capacity"
 import { planMoves } from "@/demo/assistant/plan-actions"
 import { movesOf } from "@/demo/assistant/land-plan"
-import type { ProjectPlanProps } from "@/demo/assistant/plan-schemas"
+import type { TeamPlanProps } from "@/demo/assistant/plan-schemas"
 import { PlanContext } from "./plan-context"
 
 /**
- * A plan for a project's remaining work. It keeps the person's moves in the
- * answer's state (starting from the proposal), works out what they come to,
- * and shares both with the views inside it, so they stay linked.
+ * A plan across the team's open projects: who holds what, and when each
+ * project lands. Like a project's plan, it keeps the person's moves in the
+ * answer's state and shares what they come to with the views inside it.
  */
-export function ProjectPlan({
+export function TeamPlan({
   props,
   children,
-}: AnswerComponentProps<ProjectPlanProps>) {
+}: AnswerComponentProps<TeamPlanProps>) {
   const { interactive, streaming } = useAnswer()
-  const { people, tasks, referenceDate } = props
+  const { people, projects, tasks, referenceDate } = props
 
   const [moves, setMoves] = useAnswerState(
     "plan",
@@ -27,18 +27,18 @@ export function ProjectPlan({
   return (
     <PlanContext
       value={{
-        kind: "project",
+        kind: "team",
         plan: props,
         moves,
         setMoves,
-        outcome: planOutcome(people, tasks, moves, referenceDate),
-        assigned: planOutcome(people, tasks, {}, referenceDate),
+        outcome: teamOutcome(people, projects, tasks, moves, referenceDate),
+        assigned: teamOutcome(people, projects, tasks, {}, referenceDate),
         editable: interactive && !streaming,
       }}
     >
       <section
-        data-slot="project-plan"
-        aria-label={`Plan for ${props.projectName}`}
+        data-slot="team-plan"
+        aria-label="Plan for the team"
         className="grid min-w-0 gap-(--section-gap)"
       >
         {children}

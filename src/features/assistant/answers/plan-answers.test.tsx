@@ -4,6 +4,7 @@ import { parsePartialJson } from "ai"
 import { z } from "zod"
 import { answerNodeList, type AnswerState } from "@/kit/answer/answer-library"
 import { AnswerRenderer } from "@/kit/answer/answer-renderer"
+import { balanceAnswer } from "@/demo/assistant/balance-answer"
 import { landPlan } from "@/demo/assistant/land-answer"
 import { context } from "@/demo/assistant/transport-test-support"
 import { tandemAnswers } from "./tandem-answers"
@@ -34,23 +35,28 @@ it("builds plans that Tandem's library accepts, for every open project", () => {
   }
 })
 
-it("renders every prefix of a streaming plan", async () => {
+it("renders every prefix of a streaming plan, for a project or the team", async () => {
   if (!website) throw new Error("No Website redesign fixture")
 
-  const json = JSON.stringify(landPlan(website, context).answer)
+  for (const answer of [
+    landPlan(website, context).answer,
+    balanceAnswer(context).answer,
+  ]) {
+    const json = JSON.stringify(answer)
 
-  for (let end = 1; end <= json.length; end += 41) {
-    const { value } = await parsePartialJson(json.slice(0, end))
+    for (let end = 1; end <= json.length; end += 41) {
+      const { value } = await parsePartialJson(json.slice(0, end))
 
-    expect(() =>
-      renderToStaticMarkup(
-        <AnswerRenderer
-          nodes={draft.parse(value).nodes}
-          library={tandemAnswers}
-          streaming
-        />,
-      ),
-    ).not.toThrow()
+      expect(() =>
+        renderToStaticMarkup(
+          <AnswerRenderer
+            nodes={draft.parse(value).nodes}
+            library={tandemAnswers}
+            streaming
+          />,
+        ),
+      ).not.toThrow()
+    }
   }
 })
 
@@ -72,4 +78,25 @@ it("links the views to the plan the person keeps", () => {
   expect(none).toContain("No changes: the plan keeps every task where it is")
   expect(none).toContain("done 13 Oct, late")
   expect(none).toContain("Not in the plan")
+})
+
+it("links the team's views to the moves the person keeps", () => {
+  const { answer } = balanceAnswer(context)
+
+  if (!answer) throw new Error("No team plan")
+
+  expect(tandemAnswers.validate(answer)).toEqual([])
+
+  const { nodes } = draft.parse(answer)
+  const proposed = render(nodes)
+
+  expect(proposed).toContain("22 tasks move · every project on time")
+  expect(proposed).toContain("9 tasks (was 27) · done 15 Oct")
+  expect(proposed).toContain("16 Oct · due 16 Oct (was 26 Nov)")
+
+  // Every move removed: the team as assigned.
+  const none = render(nodes, { plan: {} })
+
+  expect(none).toContain("27 tasks · done 26 Nov, late")
+  expect(none).toContain("26 Nov, late · due 16 Oct")
 })

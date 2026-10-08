@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import {
   Confirmation,
   ConfirmationAccepted,
@@ -7,11 +8,10 @@ import {
 } from "@/kit/ai/confirmation"
 import { useResponseLink } from "@/kit/ai/response-link"
 import type {
-  ApplyPlanInput,
   ApplyPlanOutput,
   AssistantMessage,
 } from "@/demo/assistant/assistant-types"
-import { applyTitle } from "./assistant-text"
+import { applyTitle, shareText } from "./assistant-text"
 
 type Part = AssistantMessage["parts"][number]
 
@@ -19,18 +19,6 @@ type ApplyPart = Extract<Part, { type: "tool-applyPlan" }>
 
 const plural = (count: number, word: string) =>
   `${count} ${word}${count === 1 ? "" : "s"}`
-
-/** Who takes how many: Ava 7, Mia 5. */
-function shares(moves: ApplyPlanInput["moves"]) {
-  const counts = new Map<string, number>()
-
-  for (const move of moves)
-    counts.set(move.toName, (counts.get(move.toName) ?? 0) + 1)
-
-  return [...counts]
-    .map(([name, count]) => `${name.split(" ")[0]} ${count}`)
-    .join(", ")
-}
 
 /** What applying did, recorded in place of the actions. */
 function outcome({ reassigned, deferred }: ApplyPlanOutput) {
@@ -76,7 +64,7 @@ export function AssistantApplyPlan({
         <ul className="grid gap-1 text-muted-foreground">
           {moves.length > 0 && (
             <li>
-              Reassign {plural(moves.length, "task")}: {shares(moves)}.
+              Reassign {plural(moves.length, "task")}: {shareText(moves)}.
             </li>
           )}
           {waiting.length > 0 && (
@@ -100,14 +88,17 @@ export function AssistantApplyPlan({
       <ConfirmationAccepted>
         <p className="text-muted-foreground">
           {output ? `${outcome(output)} ` : "Approved. Applying the plan…"}
-          {output?.url
-            ? renderLink({
-                href: output.url,
+          {output?.projects.map((project, index) => (
+            <Fragment key={project.id}>
+              {index > 0 && " · "}
+              {renderLink({
+                href: project.url,
                 className:
                   "font-medium text-brand underline-offset-[0.2em] hover:underline",
-                children: `Open ${output.projectName}`,
-              })
-            : null}
+                children: `Open ${project.name}`,
+              })}
+            </Fragment>
+          ))}
         </p>
       </ConfirmationAccepted>
       <ConfirmationRejected>

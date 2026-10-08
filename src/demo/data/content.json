@@ -299,6 +299,41 @@
   ],
   "releases": [
     {
+      "version": "0.12.0",
+      "date": "2026-10-09",
+      "title": "Balance the team",
+      "summary": "Ask who is overloaded, and the assistant shows who has what across your projects, when each project lands, and the moves that would bring every project in on time.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Ask the Assistant Who is overloaded? It shows each person's open tasks across projects, stacked by project, and when each project lands against its due date.",
+            "Suggested moves give overloaded people's tasks to people with room. Remove a move, add it back or give any of its tasks to someone else, and every view updates as you go.",
+            "Apply the moves when they look right. The assistant asks first, then reassigns the tasks across every project they belong to.",
+            "The Conversation panel lists a conversation's answers under Outputs, beside the plans you applied, each with a way back to it."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Plans no longer round a whole number of days of work up by a day, and their bars keep one scale while you edit."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Plans estimate from each person's pace over the last four weeks in the sample workspace and leave out tasks without an owner. Applied moves and your edits reset on reload."
+          ]
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.11.0",
       "date": "2026-10-08",
       "title": "Plans you can change",

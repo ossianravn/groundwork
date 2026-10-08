@@ -5,9 +5,10 @@ import type {
   Continuation,
 } from "./assistant-types"
 import { continueChecklist } from "./checklist-answer"
-import { continueLand } from "./land-apply"
+import { continuePlan } from "./plan-actions"
 
-const landFollowUps =
+// After applying a plan, the questions that check its effect.
+const planFollowUps =
   script.intents.find((intent) => intent.id === "land")?.followUps ?? []
 
 /**
@@ -19,7 +20,7 @@ export function continueTurn(
   context: AssistantContext,
 ): Continuation | undefined {
   return (
-    continueLand(message, context, landFollowUps) ??
+    continuePlan(message, context, planFollowUps) ??
     continueChecklist(message, context)
   )
 }

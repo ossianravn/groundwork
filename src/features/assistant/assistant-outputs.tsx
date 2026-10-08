@@ -1,4 +1,13 @@
-import { Check, Copy, Download, FileText, ListChecks } from "lucide-react"
+import {
+  Check,
+  Copy,
+  Download,
+  FileText,
+  ListChecks,
+  PanelsTopLeft,
+  type LucideIcon,
+} from "lucide-react"
+import { Fragment } from "react"
 import { Badge } from "@/kit/ui/badge"
 import { Button } from "@/kit/ui/button"
 import { useCopy } from "@/kit/lib/use-copy"
@@ -12,8 +21,15 @@ const stateLabels = {
   posted: "Posted",
   waiting: "Waiting for approval",
   added: "Added",
+  applied: "Applied",
   declined: "Declined",
-} satisfies Record<WorkOutput["state"], string>
+} satisfies Record<NonNullable<WorkOutput["state"]>, string>
+
+const icons = {
+  answer: PanelsTopLeft,
+  draft: FileText,
+  tasks: ListChecks,
+} satisfies Record<WorkOutput["kind"], LucideIcon>
 
 function OutputRow({
   output,
@@ -25,7 +41,7 @@ function OutputRow({
   onShow: (messageId: string) => void
 }) {
   const { state, copy } = useCopy()
-  const Icon = output.kind === "draft" ? FileText : ListChecks
+  const Icon = icons[output.kind]
   const { markdown } = output
 
   return (
@@ -34,9 +50,13 @@ function OutputRow({
       <div className="assistant-output-body">
         <p className="assistant-output-title">
           {output.title}
-          <Badge variant="secondary">{stateLabels[output.state]}</Badge>
+          {output.state && (
+            <Badge variant="secondary">{stateLabels[output.state]}</Badge>
+          )}
         </p>
-        <p className="assistant-output-detail">{output.detail}</p>
+        {output.detail && (
+          <p className="assistant-output-detail">{output.detail}</p>
+        )}
         <div className="assistant-output-actions">
           <Button
             variant="ghost"
@@ -45,12 +65,15 @@ function OutputRow({
           >
             Show in conversation
           </Button>
-          {output.url &&
-            renderLink({
-              href: output.url,
-              className: "assistant-output-link",
-              children: "Open project",
-            })}
+          {output.links?.map((link) => (
+            <Fragment key={link.url}>
+              {renderLink({
+                href: link.url,
+                className: "assistant-output-link",
+                children: link.label,
+              })}
+            </Fragment>
+          ))}
           {markdown && output.state !== "writing" && (
             <>
               <Button
@@ -87,7 +110,7 @@ function OutputRow({
   )
 }
 
-/** Drafts and task changes the conversation produced, newest first. */
+/** Answers, drafts and changes the conversation produced, newest first. */
 export function AssistantOutputs({
   outputs,
   renderLink,
@@ -100,7 +123,7 @@ export function AssistantOutputs({
   if (!outputs.length)
     return (
       <p className="assistant-inspector-empty">
-        Drafts and changes the assistant makes appear here.
+        Answers, drafts and changes the assistant makes appear here.
       </p>
     )
 

@@ -53,7 +53,7 @@ const paceDays = 28
 /** Each person's completions a day over the last four weeks. */
 export function paceByPerson(tasks: ProjectTask[], reference: string) {
   const start = dateOffset(reference, -(paceDays - 1))
-  const pace = new Map<string, number>()
+  const done = new Map<string, number>()
 
   for (const task of tasks)
     if (
@@ -62,9 +62,10 @@ export function paceByPerson(tasks: ProjectTask[], reference: string) {
       task.completedAt >= start &&
       task.completedAt <= reference
     )
-      pace.set(task.assigneeId, (pace.get(task.assigneeId) ?? 0) + 1 / paceDays)
+      done.set(task.assigneeId, (done.get(task.assigneeId) ?? 0) + 1)
 
-  return pace
+  // Divided once: summing 1/28 drifts, and 14 days of work became 15.
+  return new Map([...done].map(([id, count]) => [id, count / paceDays]))
 }
 
 /** The people who could take part in a project's plan, with what they owe first. */
@@ -110,7 +111,10 @@ export function personFinish(
 
   if (person.pace <= 0) return null
 
-  return dateOffset(reference, Math.ceil((person.before + count) / person.pace))
+  // A whole number of days stays whole despite floating-point noise.
+  const days = (person.before + count) / person.pace
+
+  return dateOffset(reference, Math.ceil(days - 1e-9))
 }
 
 /** Who holds each task once the moves apply; null when nobody does. */
@@ -142,18 +146,115 @@ export function planOutcome(
       : []
   })
 
-  const finishes = load.map((item) => item.finish)
-
   return {
     load,
     unowned: count(null),
     deferred: count(deferred),
     remaining: holders.filter((h) => h !== deferred).length,
-    finish: finishes.includes(null)
-      ? null
-      : finishes.reduce<string>(
-          (latest, date) => (date && date > latest ? date : latest),
-          reference,
+    finish: latest(
+      load.map((item) => item.finish),
+      reference,
+    ),
+  }
+}
+
+/** The last of some finishes: null if any is unknown, the reference if none. */
+function latest(finishes: (string | null)[], reference: string) {
+  return finishes.includes(null)
+    ? null
+    : finishes.reduce<string>(
+        (last, date) => (date && date > last ? date : last),
+        reference,
+      )
+}
+
+/** One person in a team plan: their pace, with no project of their own. */
+export type TeamPerson = Pick<PlanPerson, "id" | "name" | "pace">
+
+/** An open project in a team plan. */
+export interface PlanProject {
+  id: string
+  name: string
+  dueDate: string
+}
+
+/** An open task in a team plan, on one of its projects. */
+export interface TeamTask extends PlanTask {
+  projectId: string
+}
+
+/** A person's open work across projects once a team plan applies. */
+export interface TeamLoad {
+  personId: string
+  tasks: number
+  /** When they clear all of it, or null without a recent pace. */
+  finish: string | null
+  /** Their part of each project, in the order they work: by due date. */
+  projects: { projectId: string; tasks: number; finish: string | null }[]
+}
+
+export interface TeamOutcome {
+  load: TeamLoad[]
+  /** When each project lands: once everyone clears their part of it. */
+  projects: { projectId: string; finish: string | null }[]
+}
+
+/**
+ * What a team plan comes to: each person's work across the projects, taken
+ * in due-date order, and when each project lands.
+ */
+export function teamOutcome(
+  people: TeamPerson[],
+  projects: PlanProject[],
+  tasks: TeamTask[],
+  moves: PlanMoves,
+  reference: string,
+): TeamOutcome {
+  const order = [...projects].sort((a, b) => a.dueDate.localeCompare(b.dueDate))
+  const due = new Map(order.map((project) => [project.id, project.dueDate]))
+
+  const load = people.flatMap((person) => {
+    const theirs = tasks.filter(
+      (task) => due.has(task.projectId) && holderOf(task, moves) === person.id,
+    )
+
+    const parts = order.flatMap((project) => {
+      const count = theirs.filter((t) => t.projectId === project.id).length
+
+      // What they reach first: their work on projects due no later.
+      const before = theirs.filter(
+        (task) =>
+          task.projectId !== project.id &&
+          (due.get(task.projectId) ?? "") <= project.dueDate,
+      ).length
+
+      const finish = personFinish({ ...person, before }, count, reference)
+
+      return count ? [{ projectId: project.id, tasks: count, finish }] : []
+    })
+
+    const finish = latest(
+      parts.map((part) => part.finish),
+      reference,
+    )
+
+    return parts.length
+      ? [{ personId: person.id, tasks: theirs.length, finish, projects: parts }]
+      : []
+  })
+
+  return {
+    load,
+    projects: order.map((project) => ({
+      projectId: project.id,
+      finish: latest(
+        load.flatMap((item) =>
+          item.projects.flatMap((part) =>
+            part.projectId === project.id ? [part.finish] : [],
+          ),
         ),
+        reference,
+      ),
+    })),
   }
 }

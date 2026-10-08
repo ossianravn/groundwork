@@ -3266,7 +3266,7 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "See everything a conversation did, made and cited, and get back to it.",
-    "implemented": "A panel beside the chat (a sheet on narrower screens), opened from Conversation in the top bar or from a finished reply's reasoning. Work lists each question with a timeline of reasoning, steps, tool calls and answers, by state; Outputs lists drafted documents (Draft or Posted, with copy, download and the project) and tasks added, waiting or declined; Sources lists the cited pages once each. Items scroll the transcript to their reply and mark it for a moment.",
+    "implemented": "A panel beside the chat (a sheet on narrower screens), opened from Conversation in the top bar or from a finished reply's reasoning. Work lists each question with a timeline of reasoning, steps, tool calls and answers, by state; Outputs lists answers with their result, drafted documents (Draft or Posted, with copy, download and the project), and tasks added or plans applied, by state, with links to the projects they changed; Sources lists the cited pages once each. Items scroll the transcript to their reply and mark it for a moment.",
     "deferred": "The panel describes the open conversation only; history across conversations stays in the history list.",
     "examples": [
       {
@@ -3280,6 +3280,7 @@
       "src/features/assistant/assistant-work.tsx",
       "src/features/assistant/assistant-outputs.tsx",
       "src/features/assistant/inspector-model.ts",
+      "src/features/assistant/inspector-outputs.ts",
       "src/app/assistant-route.tsx"
     ]
   },
@@ -3320,7 +3321,7 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "Answer with components the model composes from a library, such as figures, a callout and recent work, drawn while the answer streams.",
-    "implemented": "Ask the Assistant to catch you up on a project, or whether a project can land by its due date. The answer arrives as a showAnswer tool call whose input is a tree of components from Tandem's library: the kit's heading, text, figures, section, callout and form, plus Tandem's recent work, project files and project plan. It is drawn as it is written: text reads as it arrives, other parts hold their place until they are complete, and a part the library does not know is left out. A plan's views are linked: removing a change, adding an option or giving a task to someone else moves the projection, who finishes when and the summary at once. Copy, the status announcement and the Conversation panel read the answer as text. With no project named, the Assistant asks which one first.",
+    "implemented": "Ask the Assistant to catch you up on a project, whether a project can land by its due date, or who is overloaded. The answer arrives as a showAnswer tool call whose input is a tree of components from Tandem's library: the kit's heading, text, figures, section, callout and form, plus Tandem's recent work, project files, and plans for a project or the whole team. It is drawn as it is written: text reads as it arrives, other parts hold their place until they are complete, and a part the library does not know is left out. A plan's views are linked: removing a change, adding an option or giving a task to someone else moves the projection or each project's date, who finishes when (across the team, stacked by project) and the summary at once. Copy, the status announcement and the Conversation panel read the answer as text. With no project named, the Assistant asks which one first.",
     "deferred": "Answers are scripted from the sample workspace; a real model would be given the library's tool schema and description.",
     "examples": [
       {
@@ -3332,6 +3333,11 @@
         "label": "Land a project",
         "href": "/app/demo/assistant",
         "instruction": "Ask Can we land Website redesign by 8 October?, then remove a change and watch the projection."
+      },
+      {
+        "label": "Balance the team",
+        "href": "/app/demo/assistant",
+        "instruction": "Ask Who is overloaded?, then remove Move 16 of Noah's Design system tasks and watch Design system's date."
       }
     ],
     "sources": [
@@ -3342,9 +3348,12 @@
       "src/demo/assistant/catchup-answer.ts",
       "src/demo/assistant/answer-chunks.ts",
       "src/features/assistant/answers/project-plan.tsx",
+      "src/features/assistant/answers/team-plan.tsx",
       "src/features/assistant/answers/plan-changes.tsx",
+      "src/features/assistant/answers/plan-projects.tsx",
       "src/demo/capacity.ts",
-      "src/demo/assistant/land-plan.ts"
+      "src/demo/assistant/land-plan.ts",
+      "src/demo/assistant/balance-answer.ts"
     ]
   },
   {
@@ -3354,7 +3363,7 @@
     "category": "AI and chat",
     "surface": "Shared",
     "summary": "Keep what the person changes inside an answer with the answer, and send it with the next turn so the assistant answers their version.",
-    "implemented": "A plan answer keeps the person's edits (which changes are in, and where each task goes) in its state, held by the conversation and restored when the answer is drawn again. Every request carries the conversation's answer states; asking to apply the plan, in words or with its button, applies the edited plan, and the approval names what it changes (Apply 9 changes to Website redesign?). Earlier answers keep their edits and are read-only.",
+    "implemented": "A plan answer keeps the person's edits (which changes are in, and where each task goes) in its state, held by the conversation and restored when the answer is drawn again. Every request carries the conversation's answer states; asking to apply the plan, in words or with its button, applies the edited plan, and the approval names what it changes (Apply 9 changes to Website redesign?); a team's plan applies across its projects in one approval. Earlier answers keep their edits and are read-only.",
     "deferred": "State lives in memory with the conversation; reload or Reset clears it.",
     "examples": [
       {
@@ -3366,7 +3375,7 @@
     "sources": [
       "src/kit/answer/answer-context.ts",
       "src/features/assistant/answers/project-plan.tsx",
-      "src/demo/assistant/land-apply.ts",
+      "src/demo/assistant/plan-actions.ts",
       "src/demo/assistant/use-assistant.ts",
       "src/app/use-assistant-session.ts"
     ]
@@ -3390,7 +3399,7 @@
     "sources": [
       "src/kit/answer/answer-form.tsx",
       "src/kit/answer/answer-schemas.ts",
-      "src/demo/assistant/land-apply.ts",
+      "src/demo/assistant/plan-actions.ts",
       "src/app/assistant-route.tsx"
     ]
   },

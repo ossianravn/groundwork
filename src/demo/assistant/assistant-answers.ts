@@ -7,9 +7,11 @@ import type {
   AssistantReply,
   AssistantToolSettings,
 } from "./assistant-types"
+import { inWords } from "./answer-format"
+import { balanceAnswer } from "./balance-answer"
 import { catchUpAnswer } from "./catchup-answer"
 import { landAnswer } from "./land-answer"
-import { answerAction, applyRequest, heldAnswers, planOf } from "./land-apply"
+import { answerAction, applyRequest, heldAnswers, planOf } from "./plan-actions"
 import { helpAnswer, namedGuide } from "./help-answer"
 import { statusAnswer } from "./status-answer"
 import { checklistAnswer } from "./checklist-answer"
@@ -19,6 +21,7 @@ import { weekAnswer } from "./week-answer"
 const intentIds = [
   "catchup",
   "land",
+  "balance",
   "risk",
   "week",
   "status",
@@ -43,13 +46,8 @@ export function matchIntent(prompt: string): IntentId | undefined {
   return isIntentId(id) ? id : undefined
 }
 
-function listFiles(files: string[]) {
-  const names = files.map((name) => `**${name}**`)
-
-  return names.length > 1
-    ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`
-    : names[0]
-}
+const listFiles = (files: string[]) =>
+  inWords(files.map((name) => `**${name}**`))
 
 function apiAnswer() {
   const { intro, curl, typescript, outro } = script.api
@@ -143,15 +141,17 @@ export function assistantReply(
       ? catchUpAnswer(prompt, context)
       : intent === "land"
         ? landAnswer(prompt, context)
-        : intent === "risk"
-          ? riskAnswer(context, { toolFails })
-          : intent === "week"
-            ? weekAnswer(context)
-            : intent === "tasks"
-              ? checklistAnswer(prompt, context)
-              : intent === "status"
-                ? statusAnswer(prompt, context)
-                : apiAnswer()
+        : intent === "balance"
+          ? balanceAnswer(context)
+          : intent === "risk"
+            ? riskAnswer(context, { toolFails })
+            : intent === "week"
+              ? weekAnswer(context)
+              : intent === "tasks"
+                ? checklistAnswer(prompt, context)
+                : intent === "status"
+                  ? statusAnswer(prompt, context)
+                  : apiAnswer()
 
   return withFollowUps(answer, followUps)
 }

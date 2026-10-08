@@ -7,6 +7,7 @@ import workspace from "../data/workspace.json"
 import { assistantReply } from "./assistant-answers"
 import { createScriptedTransport } from "./assistant-transport"
 import type {
+  AnswerActionData,
   ApplyPlanInput,
   AnswerStates,
   AssistantMessage,
@@ -93,6 +94,52 @@ export const send = (
   scenario?: AssistantRequest["scenario"],
   abortSignal?: AbortSignal,
 ) => run([prompt(text)], scenario, abortSignal)
+
+/** The answer a reply built, once it is complete. */
+export function answerOf(message: AssistantMessage | undefined) {
+  const part = message?.parts.find((item) => item.type === "tool-showAnswer")
+
+  return part?.type === "tool-showAnswer" && part.state === "output-available"
+    ? { toolCallId: part.toolCallId, input: part.input }
+    : undefined
+}
+
+/** A message sent from inside an answer: its words, with the values. */
+export const acting = (
+  text: string,
+  data: AnswerActionData,
+): AssistantMessage => ({
+  id: text,
+  role: "user",
+  parts: [
+    { type: "text", text },
+    { type: "data-action", data },
+  ],
+})
+
+/** The reply asking to apply a plan, with the person's decision on it. */
+export function decided(
+  request: AssistantMessage | undefined,
+  approved: boolean,
+): AssistantMessage {
+  const call = request?.parts.find((part) => part.type === "tool-applyPlan")
+
+  if (!request || call?.type !== "tool-applyPlan" || !("approval" in call))
+    throw new Error("No approval")
+
+  return {
+    ...request,
+    parts: request.parts.map((part) =>
+      part.type === "tool-applyPlan" && part.state === "approval-requested"
+        ? {
+            ...part,
+            state: "approval-responded",
+            approval: { id: part.approval.id, approved },
+          }
+        : part,
+    ),
+  }
+}
 
 /** The reply with its question answered: the project chosen. */
 export function answered(
