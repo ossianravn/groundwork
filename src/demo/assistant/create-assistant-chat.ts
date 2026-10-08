@@ -6,7 +6,7 @@ import {
 import { assistantReply } from "./assistant-answers"
 import { createScriptedTransport } from "./assistant-transport"
 import type { AssistantMessage } from "./assistant-types"
-import { continueChecklist } from "./checklist-answer"
+import { continueTurn } from "./continue-turn"
 
 /**
  * A new conversation that answers from the scripted transport. Answering
@@ -17,7 +17,7 @@ export function createAssistantChat(onStopped: (messageId: string) => void) {
   return new Chat<AssistantMessage>({
     transport: createScriptedTransport({
       reply: assistantReply,
-      resume: continueChecklist,
+      resume: continueTurn,
     }),
     sendAutomaticallyWhen: (options) =>
       lastAssistantMessageIsCompleteWithToolCalls(options) ||

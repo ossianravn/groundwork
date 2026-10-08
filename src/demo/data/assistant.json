@@ -14,6 +14,14 @@
       "followUps": ["Which projects are at risk?", "What changed this week?"]
     },
     {
+      "id": "land",
+      "keywords": ["land", "finish", "rescue", "rebalance"],
+      "followUps": [
+        "Catch me up on Website redesign",
+        "Which projects are at risk?"
+      ]
+    },
+    {
       "id": "risk",
       "keywords": [
         "risk",
@@ -165,7 +173,8 @@
   "questions": {
     "checklist": "Which project should the checklist go into?",
     "status": "Which project is the update for?",
-    "catchup": "Which project should I catch you up on?"
+    "catchup": "Which project should I catch you up on?",
+    "land": "Which project should I plan?"
   },
   "disabled": {
     "searchProjects": "Project search is turned off in [Settings › Assistant](/app/demo/settings/assistant), so I can't check deadlines and open work. Turn it on there to ask again.",

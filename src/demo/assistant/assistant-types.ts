@@ -1,6 +1,6 @@
 import type { UIMessage, UIMessageChunk } from "ai"
 import { z } from "zod"
-import type { AnswerNode } from "@/kit/answer/answer-library"
+import type { AnswerNode, AnswerState } from "@/kit/answer/answer-library"
 import type {
   Activity,
   Member,
@@ -38,7 +38,7 @@ export type SearchProjectsInput = {
 /** The chooseProject tool: a question the person answers in the page. */
 export type ChooseProjectInput = {
   /** What the answer is for, so the turn continues with the right reply. */
-  purpose: "checklist" | "status" | "catchup"
+  purpose: "checklist" | "status" | "catchup" | "land"
   question: string
   options: { value: string; label: string; description: string }[]
 }
@@ -64,6 +64,33 @@ export type CreateTasksOutput = {
   projectName: string
   /** Where the tasks are, for a link in the outcome. */
   url: string
+}
+
+/**
+ * The applyPlan tool: reassigns tasks as a plan proposes, and records the
+ * deferred ones as a comment. It runs only after the person approves it.
+ */
+export type ApplyPlanInput = {
+  projectId: string
+  projectName: string
+  moves: { taskId: string; title: string; to: string; toName: string }[]
+  deferred: { taskId: string; title: string }[]
+}
+
+export type ApplyPlanOutput = {
+  reassigned: number
+  deferred: number
+  projectId: string
+  projectName: string
+  url: string
+}
+
+/** A choice the person sent from an answer, such as a form's values. */
+export type AnswerActionData = {
+  /** The showAnswer call it came from. */
+  answerId: string
+  nodeId: string
+  values: AnswerState
 }
 
 /**
@@ -147,11 +174,13 @@ export interface AssistantReply {
   /** After the text: a plan, then createTasks awaiting approval. */
   plan?: PlanData
   approval?: CreateTasksInput
+  /** After the text: applying a plan, awaiting approval. */
+  applyPlan?: ApplyPlanInput
   /** After the text: a document to use outside the conversation. */
   artifact?: ArtifactData
   /** First of all: the outcome of a call approved or denied last turn. */
   resolution?:
-    | { toolCallId: string; output: CreateTasksOutput }
+    | { toolCallId: string; output: CreateTasksOutput | ApplyPlanOutput }
     | { toolCallId: string; denied: true }
   followUps: string[]
 }
@@ -161,6 +190,7 @@ type AssistantTools = {
   chooseProject: { input: ChooseProjectInput; output: ChooseProjectOutput }
   createTasks: { input: CreateTasksInput; output: CreateTasksOutput }
   showAnswer: { input: ShowAnswerInput; output: ShowAnswerOutput }
+  applyPlan: { input: ApplyPlanInput; output: ApplyPlanOutput }
 }
 
 type AssistantData = {
@@ -171,6 +201,8 @@ type AssistantData = {
   /** A project the person attached to their message as context. */
   project: { id: string; name: string }
   artifact: ArtifactData
+  /** What the person chose in an answer, sent with their message. */
+  action: AnswerActionData
 }
 
 export type ModelId = "fast" | "balanced" | "thorough"
@@ -205,13 +237,15 @@ export type AssistantScenario = "normal" | "assistant-error" | "tool-error"
  */
 export interface AssistantActions {
   createTasks: (input: CreateTasksInput) => void
+  applyPlan: (input: ApplyPlanInput) => void
 }
 
-/**
- * What the host sends with each request, as a client would send page
- * context to a server: the records to answer from, the tool implementations
- * and the demo scenario.
- */
+/** A turn continued after the person decided: the reply, and the approved action to run first. */
+export interface Continuation {
+  answer: AssistantReply
+  run?: (actions: AssistantActions) => void
+}
+
 /** What the workspace lets the assistant use (Settings › Assistant). */
 export type AssistantToolSettings = {
   searchProjects: boolean
@@ -219,10 +253,19 @@ export type AssistantToolSettings = {
   draftUpdates: boolean
 }
 
+/** What the person changed in each answer, by its showAnswer call. */
+export type AnswerStates = { [toolCallId: string]: AnswerState }
+
+/**
+ * What the host sends with each request, as a client would send page
+ * context to a server: the records to answer from, the tool implementations,
+ * what the person changed in answers, and the demo scenario.
+ */
 export interface AssistantRequest {
   scenario: AssistantScenario
   model: ModelId
   tools: AssistantToolSettings
   context: AssistantContext
   actions: AssistantActions
+  answers: AnswerStates
 }

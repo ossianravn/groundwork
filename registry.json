@@ -1755,6 +1755,10 @@
       "registryDependencies": [
         "ossianravn/groundwork/ai",
         "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/checkbox",
+        "ossianravn/groundwork/field",
+        "ossianravn/groundwork/radio-group",
         "ossianravn/groundwork/skeleton",
         "ossianravn/groundwork/sparkline"
       ],
@@ -1773,6 +1777,11 @@
           "path": "src/kit/answer/answer-definitions.tsx",
           "type": "registry:file",
           "target": "~/src/kit/answer/answer-definitions.tsx"
+        },
+        {
+          "path": "src/kit/answer/answer-form.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/answer/answer-form.tsx"
         },
         {
           "path": "src/kit/answer/answer-library.tsx",

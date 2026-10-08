@@ -7,6 +7,8 @@ type Part = AssistantMessage["parts"][number]
 
 type ApprovalPart = Extract<Part, { type: "tool-createTasks" }>
 
+type ApplyPart = Extract<Part, { type: "tool-applyPlan" }>
+
 const citations = /\[[^\]]*\]\(#source:[^)]*\)/gu
 
 /** A message in words: its text, and any answer built from components. */
@@ -45,7 +47,8 @@ export function awaitsPerson(message: AssistantMessage | undefined) {
     (part) =>
       (part.type === "tool-chooseProject" &&
         part.state === "input-available") ||
-      (part.type === "tool-createTasks" && part.state === "approval-requested"),
+      ((part.type === "tool-createTasks" || part.type === "tool-applyPlan") &&
+        part.state === "approval-requested"),
   )
 }
 
@@ -57,6 +60,9 @@ export function awaitedDecision(message: AssistantMessage) {
 
     if (part.type === "tool-createTasks" && part.state === "approval-requested")
       return `The assistant needs your approval: ${approvalTitle(part)}`
+
+    if (part.type === "tool-applyPlan" && part.state === "approval-requested")
+      return `The assistant needs your approval: ${applyTitle(part)}`
   }
 
   return ""
@@ -66,6 +72,13 @@ export function approvalTitle(part: ApprovalPart) {
   const count = part.input?.tasks?.length ?? 0
 
   return `Add ${count} task${count === 1 ? "" : "s"} to ${part.input?.projectName ?? "the project"}?`
+}
+
+export function applyTitle(part: ApplyPart) {
+  const count =
+    (part.input?.moves?.length ?? 0) + (part.input?.deferred?.length ?? 0)
+
+  return `Apply ${count} change${count === 1 ? "" : "s"} to ${part.input?.projectName ?? "the project"}?`
 }
 
 /** What the status region says about the conversation's progress. */

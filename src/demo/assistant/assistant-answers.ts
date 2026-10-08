@@ -1,17 +1,30 @@
 import script from "../data/assistant.json"
 import type {
+  AnswerActionData,
+  AnswerStates,
   AssistantContext,
+  AssistantMessage,
   AssistantReply,
   AssistantToolSettings,
 } from "./assistant-types"
 import { catchUpAnswer } from "./catchup-answer"
+import { landAnswer } from "./land-answer"
+import { answerAction, applyRequest, heldAnswers, planOf } from "./land-apply"
 import { helpAnswer, namedGuide } from "./help-answer"
 import { statusAnswer } from "./status-answer"
 import { checklistAnswer } from "./checklist-answer"
 import { riskAnswer } from "./risk-answer"
 import { weekAnswer } from "./week-answer"
 
-const intentIds = ["catchup", "risk", "week", "status", "tasks", "api"] as const
+const intentIds = [
+  "catchup",
+  "land",
+  "risk",
+  "week",
+  "status",
+  "tasks",
+  "api",
+] as const
 
 type IntentId = (typeof intentIds)[number]
 
@@ -71,6 +84,8 @@ function toolFor(intent: IntentId): keyof AssistantToolSettings | null {
  * Composes the scripted reply to a prompt from the records sent with the
  * request. `toolFails` makes the project search fail (tool-error scenario);
  * a tool turned off in settings gets an explanation instead of an answer.
+ * A choice sent from an answer goes back to that answer, and asking to
+ * apply works on the latest plan as the person left it.
  */
 export function assistantReply(
   prompt: string,
@@ -79,12 +94,30 @@ export function assistantReply(
     toolFails = false,
     files = [],
     tools = allTools,
+    conversation = { messages: [], answers: {} },
+    action,
   }: {
     toolFails?: boolean
     files?: string[]
     tools?: AssistantToolSettings
+    conversation?: { messages: AssistantMessage[]; answers: AnswerStates }
+    action?: AnswerActionData
   } = {},
 ): AssistantReply {
+  const held = heldAnswers(conversation.messages, conversation.answers)
+
+  const from =
+    action && held.find((item) => item.toolCallId === action.answerId)
+
+  const acted = action && from ? answerAction(action, from, context) : undefined
+
+  if (acted) return withFollowUps(acted, followUpsOf("land"))
+
+  const plan = held.find((item) => planOf(item))
+
+  if (plan && /\bapply\b/iu.test(prompt))
+    return withFollowUps(applyRequest(plan, context), followUpsOf("land"))
+
   const guide = namedGuide(prompt)
 
   if (guide) return { ...helpAnswer(guide), followUps: script.suggestions }
@@ -99,8 +132,7 @@ export function assistantReply(
 
   if (!intent) return { text: script.fallback, followUps: script.suggestions }
 
-  const followUps =
-    script.intents.find((entry) => entry.id === intent)?.followUps ?? []
+  const followUps = followUpsOf(intent)
 
   const tool = toolFor(intent)
 
@@ -109,18 +141,32 @@ export function assistantReply(
   const answer =
     intent === "catchup"
       ? catchUpAnswer(prompt, context)
-      : intent === "risk"
-        ? riskAnswer(context, { toolFails })
-        : intent === "week"
-          ? weekAnswer(context)
-          : intent === "tasks"
-            ? checklistAnswer(prompt, context)
-            : intent === "status"
-              ? statusAnswer(prompt, context)
-              : apiAnswer()
+      : intent === "land"
+        ? landAnswer(prompt, context)
+        : intent === "risk"
+          ? riskAnswer(context, { toolFails })
+          : intent === "week"
+            ? weekAnswer(context)
+            : intent === "tasks"
+              ? checklistAnswer(prompt, context)
+              : intent === "status"
+                ? statusAnswer(prompt, context)
+                : apiAnswer()
 
-  // A reply waiting on the person offers no other questions meanwhile.
-  const waiting = "question" in answer || "approval" in answer
+  return withFollowUps(answer, followUps)
+}
+
+function followUpsOf(intent: IntentId) {
+  return script.intents.find((entry) => entry.id === intent)?.followUps ?? []
+}
+
+/** A reply waiting on the person offers no other questions meanwhile. */
+function withFollowUps(
+  answer: Omit<AssistantReply, "followUps">,
+  followUps: string[],
+): AssistantReply {
+  const waiting =
+    "question" in answer || "approval" in answer || "applyPlan" in answer
 
   return { ...answer, followUps: waiting ? [] : followUps }
 }

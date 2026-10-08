@@ -1,6 +1,7 @@
 import type { ChatTransport } from "ai"
 import { replyChunks, type Pace } from "./assistant-chunks"
 import {
+  actionOf,
   estimateUsage,
   filesOf,
   modelPace,
@@ -8,13 +9,15 @@ import {
   replyForModel,
 } from "./assistant-model"
 import type {
+  AnswerActionData,
+  AnswerStates,
   AssistantChunk,
   AssistantContext,
   AssistantMessage,
   AssistantReply,
   AssistantRequest,
   AssistantToolSettings,
-  CreateTasksInput,
+  Continuation,
 } from "./assistant-types"
 
 /**
@@ -27,7 +30,8 @@ import type {
  * When the last message is the assistant's, the person has answered its
  * question or decided on an approval: `resume` continues that turn, and an
  * approved call runs through the request's actions before its outcome is
- * streamed.
+ * streamed. Replies also see the conversation with what the person changed
+ * in its answers, and any choice they sent from one.
  */
 export function createScriptedTransport({
   reply,
@@ -41,12 +45,14 @@ export function createScriptedTransport({
       toolFails: boolean
       files: string[]
       tools: AssistantToolSettings
+      conversation: { messages: AssistantMessage[]; answers: AnswerStates }
+      action?: AnswerActionData
     },
   ) => AssistantReply
   resume: (
     message: AssistantMessage,
     context: AssistantContext,
-  ) => { answer: AssistantReply; execute?: CreateTasksInput } | undefined
+  ) => Continuation | undefined
   /** Overrides the chosen model's pace, as tests do. */
   pace?: Pace
 }): ChatTransport<AssistantMessage> {
@@ -71,7 +77,7 @@ export function createScriptedTransport({
       const resumed =
         last?.role === "assistant" ? resume(last, request.context) : undefined
 
-      if (resumed?.execute) request.actions.createTasks(resumed.execute)
+      resumed?.run?.(request.actions)
 
       const fail = !resumed && first && request.scenario === "assistant-error"
       const toolFails = !resumed && first && request.scenario === "tool-error"
@@ -82,6 +88,8 @@ export function createScriptedTransport({
             toolFails,
             files: filesOf(prompt),
             tools: request.tools,
+            conversation: { messages, answers: request.answers },
+            action: actionOf(prompt),
           }),
         request.model,
       )

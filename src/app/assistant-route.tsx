@@ -168,6 +168,22 @@ export function AssistantRoute() {
           error={session.error}
           stopped={conversation.stopped}
           posted={conversation.posted}
+          answers={{
+            states: conversation.answers,
+            onStateChange: (answerId, state) =>
+              assistant.setAnswerState(conversation.id, answerId, state),
+            // The sentence is the person's message; the values travel with it.
+            onAction: (answerId, { text, nodeId, values = {} }) =>
+              void session.sendMessage(
+                {
+                  parts: [
+                    { type: "text", text },
+                    { type: "data-action", data: { answerId, nodeId, values } },
+                  ],
+                },
+                request(),
+              ),
+          }}
           onPost={(artifactId, projectId, markdown) => {
             if (demo.postComment(projectId, plainText(markdown)))
               assistant.markPosted(conversation.id, artifactId)

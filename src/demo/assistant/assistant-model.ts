@@ -39,6 +39,11 @@ export function promptOf(message: AssistantMessage | undefined) {
   )
 }
 
+/** A choice the person sent from an answer with this message, if any. */
+export function actionOf(message: AssistantMessage | undefined) {
+  return message?.parts.find((part) => part.type === "data-action")?.data
+}
+
 /** Names of the files attached to a message. */
 export function filesOf(message: AssistantMessage | undefined) {
   return (

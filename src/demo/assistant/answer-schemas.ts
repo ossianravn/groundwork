@@ -3,6 +3,7 @@ import type { AnswerNode } from "@/kit/answer/answer-library"
 import type {
   answerCalloutProps,
   answerFiguresProps,
+  answerFormProps,
   answerHeadingProps,
   answerSectionProps,
   answerTextProps,
@@ -56,6 +57,7 @@ export const node = {
   heading: builder<z.input<typeof answerHeadingProps>>("Heading"),
   text: builder<z.input<typeof answerTextProps>>("Text"),
   figures: builder<z.input<typeof answerFiguresProps>>("Figures"),
+  form: builder<z.input<typeof answerFormProps>>("Form"),
   section: builder<z.input<typeof answerSectionProps>>("Section"),
   callout: builder<z.input<typeof answerCalloutProps>>("Callout"),
   projectFiles: builder<z.input<typeof projectFilesProps>>("ProjectFiles"),

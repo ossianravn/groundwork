@@ -6,10 +6,12 @@ import {
   AnswerSection,
   AnswerText,
 } from "./answer-blocks"
+import { AnswerForm } from "./answer-form"
 import { defineAnswerComponent } from "./answer-library"
 import {
   answerCalloutProps,
   answerFiguresProps,
+  answerFormProps,
   answerHeadingProps,
   answerSectionProps,
   answerTextProps,
@@ -71,6 +73,23 @@ export const calloutBlock = defineAnswerComponent({
   text: ({ title, markdown }) => (markdown ? `${title}\n${markdown}` : title),
 })
 
+export const formBlock = defineAnswerComponent({
+  name: "Form",
+  description:
+    "Choices the person makes and sends back as their next message: a title, fields (a choice of one option, or checks for several) and what sending does (submitLabel).",
+  props: answerFormProps,
+  component: AnswerForm,
+  placeholder: <Skeleton className="h-40" />,
+  text: ({ title, fields }) =>
+    [
+      title,
+      ...fields.map(
+        (field) =>
+          `${field.label}: ${field.options.map((option) => option.label).join(" / ")}`,
+      ),
+    ].join("\n"),
+})
+
 /** The generic blocks, to include in a library beside your own components. */
 export const answerBlocks = [
   headingBlock,
@@ -78,4 +97,5 @@ export const answerBlocks = [
   figuresBlock,
   sectionBlock,
   calloutBlock,
+  formBlock,
 ]

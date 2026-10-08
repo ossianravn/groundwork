@@ -18,7 +18,7 @@ const sources = import.meta.glob<string>(
     "../app/assistant-route.tsx",
     "../features/projects/{project-agent,agent-run-view}.tsx",
     "../features/analytics/*.tsx",
-    "../demo/{delivery,workload}.ts",
+    "../demo/{delivery,workload,capacity}.ts",
     "../features/analytics/palette-order.ts",
     "../kit/ui/{sparkline,radial-progress,calendar-heatmap,uptime-strip}.tsx",
     "../demo/snapshot-history.ts",

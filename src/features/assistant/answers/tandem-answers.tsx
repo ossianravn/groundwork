@@ -10,6 +10,7 @@ import {
 } from "@/demo/assistant/answer-schemas"
 import { AnswerActivityDigest } from "./answer-activity-digest"
 import { AnswerProjectFiles } from "./answer-project-files"
+import { planComponents } from "./plan-definitions"
 
 const activityDigest = defineAnswerComponent({
   name: "ActivityDigest",
@@ -43,4 +44,5 @@ export const tandemAnswers = createAnswerLibrary([
   ...answerBlocks,
   activityDigest,
   projectFiles,
+  ...planComponents,
 ])
