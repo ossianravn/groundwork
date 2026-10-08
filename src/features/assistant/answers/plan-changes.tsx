@@ -47,9 +47,10 @@ function ChangeRow({ change }: { change: Change }) {
   const state = coverage(change, moves)
   const ids = change.moves.map((move) => move.taskId)
 
+  // A project's plan can defer work past its due date; a team's moves it.
   const holders = [
     ...plan.people.map((person) => ({ value: person.id, label: person.name })),
-    { value: deferred, label: "Defer" },
+    ...(view.kind === "project" ? [{ value: deferred, label: "Defer" }] : []),
     ...(change.from ? [] : [{ value: unowned, label: "No owner" }]),
   ]
 
@@ -74,9 +75,11 @@ function ChangeRow({ change }: { change: Change }) {
           </p>
         </div>
         <div className="flex items-center gap-1">
+          {/* Its text lines up with the title when the actions wrap. */}
           <Button
             variant="ghost"
             size="sm"
+            className="-ms-2.5"
             aria-expanded={open}
             aria-controls={listId}
             onClick={() => setOpen(!open)}
@@ -168,7 +171,7 @@ function ChangeRow({ change }: { change: Change }) {
 /**
  * The plan's changes, like stops on a route: each proposed one is in the
  * plan until the person removes it, options can be added, and any task can
- * go elsewhere. The projection and load follow every edit.
+ * go elsewhere. The plan's other views follow every edit.
  */
 export function PlanChanges({ props }: AnswerComponentProps<PlanViewProps>) {
   const view = usePlan()

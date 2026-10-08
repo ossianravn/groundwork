@@ -54,7 +54,10 @@ function daysFrom(from: string, to: string) {
  * (dashed), against the due date.
  */
 export function PlanProjection({ props }: AnswerComponentProps<PlanViewProps>) {
-  const view = usePlan()
+  const context = usePlan()
+
+  // A burn-up is for one project's plan.
+  const view = context?.kind === "project" ? context : null
 
   const rows = useMemo(() => {
     if (!view) return []

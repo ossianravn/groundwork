@@ -4,10 +4,33 @@ import { Button } from "@/kit/ui/button"
 import { deferred } from "@/demo/capacity"
 import { formatDate } from "@/demo/model"
 import type { PlanApplyProps } from "@/demo/assistant/plan-schemas"
-import { usePlan } from "./plan-context"
+import { usePlan, type PlanView } from "./plan-context"
 
 const plural = (count: number, word: string) =>
   `${count} ${word}${count === 1 ? "" : "s"}`
+
+/** When the plan lands: the project's date, or which projects stay late. */
+function landing(view: PlanView) {
+  if (view.kind === "project") {
+    const { finish } = view.outcome
+
+    return finish
+      ? `lands ${formatDate(finish)}${finish > view.plan.dueDate ? ", after the due date" : ""}`
+      : ""
+  }
+
+  const late = view.plan.projects.filter((project) => {
+    const finish = view.outcome.projects.find(
+      (item) => item.projectId === project.id,
+    )?.finish
+
+    return !finish || finish > project.dueDate
+  })
+
+  return late.length
+    ? `${late.map((project) => project.name).join(", ")} still late`
+    : "every project on time"
+}
 
 /**
  * What the plan comes to, and the action that asks to apply it. Applying
@@ -23,8 +46,7 @@ export function PlanApply({
 
   if (!view) return null
 
-  const { plan, moves, outcome } = view
-  const values = Object.values(moves)
+  const values = Object.values(view.moves)
   const moved = values.filter((to) => to !== deferred).length
   const waiting = values.filter((to) => to === deferred).length
 
@@ -33,8 +55,7 @@ export function PlanApply({
       ? [
           moved && `${plural(moved, "task")} ${moved === 1 ? "moves" : "move"}`,
           waiting && `${plural(waiting, "task")} deferred`,
-          outcome.finish &&
-            `lands ${formatDate(outcome.finish)}${outcome.finish > plan.dueDate ? ", after the due date" : ""}`,
+          landing(view),
         ]
           .filter(Boolean)
           .join(" · ")
@@ -51,8 +72,11 @@ export function PlanApply({
         onClick={() =>
           act?.({
             type: "send",
-            text: `${props.label} to ${plan.projectName}`,
-            values: { moves },
+            text:
+              view.kind === "project"
+                ? `${props.label} to ${view.plan.projectName}`
+                : props.label,
+            values: { moves: view.moves },
             nodeId,
           })
         }

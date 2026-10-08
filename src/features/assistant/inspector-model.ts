@@ -1,5 +1,5 @@
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
-import { messageText } from "./assistant-text"
+import { messageText, planProjects } from "./assistant-text"
 
 type Part = AssistantMessage["parts"][number]
 
@@ -136,7 +136,7 @@ function partItem(
       return {
         ...base,
         kind: "tool",
-        label: `Apply the plan to ${part.input?.projectName ?? "the project"}`,
+        label: `Apply the plan to ${planProjects(part)}`,
         detail: state === "waiting" ? "Waiting for your approval" : undefined,
         state,
       }

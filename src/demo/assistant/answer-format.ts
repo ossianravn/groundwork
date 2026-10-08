@@ -15,6 +15,12 @@ export const projectLink = (project: Project) =>
 export const plural = (count: number, word: string) =>
   `${count} ${word}${count === 1 ? "" : "s"}`
 
+/** Names in a sentence: A, B and C. */
+export const inWords = (names: string[]) =>
+  names.length > 1
+    ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`
+    : (names[0] ?? "")
+
 /** A citation in reply markdown; the assistant view renders it inline. */
 export const citation = (number: number, ids: string[]) =>
   `[${number}](#source:${ids.join(",")})`

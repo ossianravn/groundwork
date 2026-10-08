@@ -68,21 +68,27 @@ export type CreateTasksOutput = {
 
 /**
  * The applyPlan tool: reassigns tasks as a plan proposes, and records the
- * deferred ones as a comment. It runs only after the person approves it.
+ * deferred ones as a comment on their project. A plan changes one project,
+ * or several when it balances the team. It runs only after approval.
  */
 export type ApplyPlanInput = {
-  projectId: string
-  projectName: string
-  moves: { taskId: string; title: string; to: string; toName: string }[]
-  deferred: { taskId: string; title: string }[]
+  /** The projects whose tasks change. */
+  projects: { id: string; name: string }[]
+  moves: {
+    taskId: string
+    title: string
+    projectId: string
+    to: string
+    toName: string
+  }[]
+  deferred: { taskId: string; title: string; projectId: string }[]
 }
 
 export type ApplyPlanOutput = {
   reassigned: number
   deferred: number
-  projectId: string
-  projectName: string
-  url: string
+  /** Where the changes are, for links in the outcome. */
+  projects: { id: string; name: string; url: string }[]
 }
 
 /** A choice the person sent from an answer, such as a form's values. */

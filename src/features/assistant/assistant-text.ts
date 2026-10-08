@@ -1,5 +1,6 @@
 import type { ChatStatus } from "ai"
 import { answerNodeList } from "@/kit/answer/answer-library"
+import { inWords } from "@/demo/assistant/answer-format"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { tandemAnswers } from "./answers/tandem-answers"
 
@@ -78,7 +79,28 @@ export function applyTitle(part: ApplyPart) {
   const count =
     (part.input?.moves?.length ?? 0) + (part.input?.deferred?.length ?? 0)
 
-  return `Apply ${count} change${count === 1 ? "" : "s"} to ${part.input?.projectName ?? "the project"}?`
+  return `Apply ${count} change${count === 1 ? "" : "s"} to ${planProjects(part)}?`
+}
+
+/** Who takes how many of a plan's moves: Ava 7, Mia 5. */
+export function shareText(moves: { toName: string }[]) {
+  const counts = new Map<string, number>()
+
+  for (const move of moves)
+    counts.set(move.toName, (counts.get(move.toName) ?? 0) + 1)
+
+  return [...counts]
+    .map(([name, count]) => `${name.split(" ")[0]} ${count}`)
+    .join(", ")
+}
+
+/** The projects a plan changes, in a sentence. */
+export function planProjects(part: ApplyPart) {
+  const names = (part.input?.projects ?? []).flatMap((project) =>
+    project?.name ? [project.name] : [],
+  )
+
+  return names.length ? inWords(names) : "the project"
 }
 
 /** What the status region says about the conversation's progress. */

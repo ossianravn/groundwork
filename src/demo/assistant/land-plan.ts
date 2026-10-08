@@ -33,17 +33,24 @@ const buffer = 2
 const plural = (count: number, word: string) =>
   `${count} ${word}${count === 1 ? "" : "s"}`
 
-const firstName = (person: PlanPerson | undefined) =>
+const firstName = (person: Pick<PlanPerson, "name"> | undefined) =>
   person?.name.split(" ")[0] ?? "someone"
 
-/** Names a change: whose tasks, how many, and where they go. */
-function changeTitle(people: PlanPerson[], change: PlanChange) {
+/**
+ * Names a change: whose tasks, how many, and where they go. `noun` names
+ * the tasks, such as "Design system task" when the plan spans projects.
+ */
+function changeTitle(
+  people: Pick<PlanPerson, "id" | "name">[],
+  change: PlanChange,
+  noun: string,
+) {
   const from = people.find((person) => person.id === change.from)
   const count = change.moves.length
 
   const tasks = from
-    ? `${count} of ${firstName(from)}'s tasks`
-    : plural(count, "unowned task")
+    ? `${count} of ${firstName(from)}'s ${noun}s`
+    : plural(count, `unowned ${noun}`)
 
   if (change.moves.every((move) => move.to === deferred))
     return `Defer ${tasks}`
@@ -63,11 +70,12 @@ function changeTitle(people: PlanPerson[], change: PlanChange) {
 }
 
 /** Groups the moves by whose tasks they are, and whether they move or wait. */
-function groupMoves(
-  people: PlanPerson[],
+export function groupMoves(
+  people: Pick<PlanPerson, "id" | "name">[],
   tasks: PlanTask[],
   moves: PlanMoves,
   proposed: boolean,
+  noun = "task",
 ): PlanChange[] {
   const groups = new Map<string, PlanChange>()
 
@@ -98,7 +106,7 @@ function groupMoves(
 
   return [...groups.values()]
     .sort((a, b) => rank(a) - rank(b))
-    .map((group) => ({ ...group, title: changeTitle(people, group) }))
+    .map((group) => ({ ...group, title: changeTitle(people, group, noun) }))
 }
 
 /**

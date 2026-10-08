@@ -16,8 +16,21 @@
     {
       "id": "land",
       "keywords": ["land", "finish", "rescue", "rebalance"],
+      "followUps": ["Who is overloaded?", "Which projects are at risk?"]
+    },
+    {
+      "id": "balance",
+      "keywords": [
+        "overloaded",
+        "overload",
+        "overworked",
+        "balance",
+        "workload",
+        "capacity",
+        "swamped"
+      ],
       "followUps": [
-        "Catch me up on Website redesign",
+        "Can we land Design system by 16 October?",
         "Which projects are at risk?"
       ]
     },
@@ -33,8 +46,8 @@
         "due"
       ],
       "followUps": [
-        "What changed this week?",
-        "How do I list projects with the API?"
+        "Can we land Website redesign by 8 October?",
+        "Who is overloaded?"
       ]
     },
     {

@@ -1,18 +1,32 @@
+import { answerNodeList } from "@/kit/answer/answer-library"
+import { answerHeadingProps } from "@/kit/answer/answer-schemas"
+import { inWords } from "@/demo/assistant/answer-format"
 import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { sourceMetadata } from "@/demo/assistant/assistant-types"
+import { shareText } from "./assistant-text"
+
+type Part = AssistantMessage["parts"][number]
 
 /** Something the conversation produced or changed. */
 export interface WorkOutput {
   id: string
   messageId: string
-  kind: "draft" | "tasks"
+  kind: "answer" | "draft" | "tasks"
   title: string
   detail: string
-  state: "writing" | "draft" | "posted" | "waiting" | "added" | "declined"
+  /** Where it stands; a finished answer needs no label. */
+  state?:
+    | "writing"
+    | "draft"
+    | "posted"
+    | "waiting"
+    | "added"
+    | "applied"
+    | "declined"
   /** The draft's markdown. */
   markdown?: string
-  /** The project page, once it changed. */
-  url?: string
+  /** The pages it changed, once it did. */
+  links?: { url: string; label: string }[]
 }
 
 export interface WorkSource {
@@ -26,60 +40,121 @@ export interface WorkSource {
 const plural = (count: number, word: string) =>
   `${count} ${word}${count === 1 ? "" : "s"}`
 
-/** Drafts and task changes, newest first. */
+/** A change awaiting approval, then done or declined. */
+const decided = (state: string, done: "added" | "applied") =>
+  state === "output-available"
+    ? done
+    : state === "output-denied"
+      ? "declined"
+      : "waiting"
+
+/** What a part of a reply produced or changed, if anything. */
+function outputOf(
+  part: Part,
+  messageId: string,
+  posted: string[],
+): WorkOutput | undefined {
+  const base = { messageId }
+
+  switch (part.type) {
+    case "tool-showAnswer": {
+      const nodes = answerNodeList.parse(part.input?.nodes)
+      const heading = nodes.find((node) => node.type === "Heading")
+      const result = answerHeadingProps.safeParse(heading?.props)
+
+      return part.input?.title
+        ? {
+            ...base,
+            id: part.toolCallId,
+            kind: "answer",
+            title: part.input.title,
+            detail: result.success ? result.data.text : "",
+            state: part.state === "input-streaming" ? "writing" : undefined,
+          }
+        : undefined
+    }
+
+    case "data-artifact": {
+      const { data } = part
+      const done = !!part.id && posted.includes(part.id)
+
+      return part.id
+        ? {
+            ...base,
+            id: part.id,
+            kind: "draft",
+            title: data.title,
+            detail: data.projectName,
+            state: !data.complete ? "writing" : done ? "posted" : "draft",
+            markdown: data.content,
+            links: done
+              ? [{ url: data.url, label: `Open ${data.projectName}` }]
+              : undefined,
+          }
+        : undefined
+    }
+
+    case "tool-createTasks": {
+      const input = part.state === "input-streaming" ? undefined : part.input
+
+      if (!input) return undefined
+
+      return {
+        ...base,
+        id: part.toolCallId,
+        kind: "tasks",
+        title: `${plural(input.tasks.length, "task")} for ${input.projectName}`,
+        detail: input.tasks.map((task) => task.title).join(", "),
+        state: decided(part.state, "added"),
+        links:
+          part.state === "output-available"
+            ? [{ url: part.output.url, label: `Open ${input.projectName}` }]
+            : undefined,
+      }
+    }
+
+    case "tool-applyPlan": {
+      const input = part.state === "input-streaming" ? undefined : part.input
+
+      if (!input) return undefined
+
+      const { moves, deferred, projects } = input
+
+      return {
+        ...base,
+        id: part.toolCallId,
+        kind: "tasks",
+        title: `${plural(moves.length + deferred.length, "change")} to ${inWords(projects.map((project) => project.name))}`,
+        detail: [
+          moves.length ? `Reassign ${moves.length}: ${shareText(moves)}` : "",
+          deferred.length ? `defer ${deferred.length}` : "",
+        ]
+          .filter((item) => item !== "")
+          .join(" · "),
+        state: decided(part.state, "applied"),
+        links:
+          part.state === "output-available"
+            ? part.output.projects.map((project) => ({
+                url: project.url,
+                label: `Open ${project.name}`,
+              }))
+            : undefined,
+      }
+    }
+
+    default:
+      return undefined
+  }
+}
+
+/** Answers, drafts and changes to records, newest first. */
 export function workOutputs(messages: AssistantMessage[], posted: string[]) {
   return messages
     .flatMap((message) =>
-      message.parts.flatMap((part): WorkOutput[] => {
-        if (part.type === "data-artifact" && part.id) {
-          const { data } = part
+      message.parts.flatMap((part) => {
+        const output = outputOf(part, message.id, posted)
 
-          return [
-            {
-              id: part.id,
-              messageId: message.id,
-              kind: "draft",
-              title: data.title,
-              detail: data.projectName,
-              state: !data.complete
-                ? "writing"
-                : posted.includes(part.id)
-                  ? "posted"
-                  : "draft",
-              markdown: data.content,
-              url: posted.includes(part.id) ? data.url : undefined,
-            },
-          ]
-        }
-
-        const input =
-          part.type === "tool-createTasks" && part.state !== "input-streaming"
-            ? part.input
-            : undefined
-
-        if (part.type === "tool-createTasks" && input) {
-          const state =
-            part.state === "output-available"
-              ? "added"
-              : part.state === "output-denied"
-                ? "declined"
-                : "waiting"
-
-          return [
-            {
-              id: part.toolCallId,
-              messageId: message.id,
-              kind: "tasks",
-              title: `${plural(input.tasks.length, "task")} for ${input.projectName}`,
-              detail: input.tasks.map((task) => task.title).join(", "),
-              state,
-              url:
-                part.state === "output-available" ? part.output.url : undefined,
-            },
-          ]
-        }
-
-        return []
+        return output ? [output] : []
       }),
     )
     .reverse()

@@ -49,7 +49,7 @@ function showInConversation(messageId: string) {
 
 /**
  * The conversation at a glance: Work (what the assistant did, question by
- * question), Outputs (drafts and task changes) and Sources (pages cited).
+ * question), Outputs (answers, drafts and changes) and Sources (pages cited).
  * Items lead back to their place in the transcript. It sits beside the
  * chat on wide screens and opens as a sheet on narrower ones.
  */

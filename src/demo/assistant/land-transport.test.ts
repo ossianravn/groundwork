@@ -1,31 +1,21 @@
 import { beforeEach, expect, it } from "vitest"
 import type { AnswerState } from "@/kit/answer/answer-library"
-import type { AnswerActionData, AssistantMessage } from "./assistant-types"
 import { projectPlanProps } from "./plan-schemas"
-import { applied, prompt, run, send } from "./transport-test-support"
+import {
+  acting,
+  answerOf,
+  applied,
+  decided,
+  prompt,
+  run,
+  send,
+} from "./transport-test-support"
 
 beforeEach(() => {
   applied.length = 0
 })
 
 const question = prompt("Can we land Website redesign by 8 October?")
-
-const answerOf = (message: AssistantMessage | undefined) => {
-  const part = message?.parts.find((item) => item.type === "tool-showAnswer")
-
-  return part?.type === "tool-showAnswer" && part.state === "output-available"
-    ? { toolCallId: part.toolCallId, input: part.input }
-    : undefined
-}
-
-const acting = (text: string, data: AnswerActionData): AssistantMessage => ({
-  id: text,
-  role: "user",
-  parts: [
-    { type: "text", text },
-    { type: "data-action", data },
-  ],
-})
 
 async function planned() {
   const { message } = await run([question])
@@ -34,30 +24,6 @@ async function planned() {
   if (!message || !answer) throw new Error("No plan")
 
   return { message, answer }
-}
-
-/** The reply asking to apply a plan, with the person's decision on it. */
-function decided(
-  request: AssistantMessage | undefined,
-  approved: boolean,
-): AssistantMessage {
-  const call = request?.parts.find((part) => part.type === "tool-applyPlan")
-
-  if (!request || call?.type !== "tool-applyPlan" || !("approval" in call))
-    throw new Error("No approval")
-
-  return {
-    ...request,
-    parts: request.parts.map((part) =>
-      part.type === "tool-applyPlan" && part.state === "approval-requested"
-        ? {
-            ...part,
-            state: "approval-responded",
-            approval: { id: part.approval.id, approved },
-          }
-        : part,
-    ),
-  }
 }
 
 it("plans a late project as an answer with a linked plan and a form", async () => {
