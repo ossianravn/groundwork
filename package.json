@@ -1,7 +1,7 @@
 {
   "name": "groundwork",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A reusable shadcn/ui kit and reference demo for public websites and admin interfaces, with centralized, customizable design tokens.",
   "license": "MIT",
   "repository": {
