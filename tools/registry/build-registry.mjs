@@ -51,7 +51,7 @@ const descriptions = {
   base: "Tokens, stylesheets, the theme runtime and the cn utility. Every other item builds on it; import src/kit/styles/kit.css as the Tailwind entry.",
   ai: "Chat components for AI SDK UI: conversation, streaming markdown response, prompt input, suggestions and message actions. Presentational; pass status and handlers from useChat.",
   answer:
-    "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with a tool schema and prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout).",
+    "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with the tool's schema (a Standard Schema for tool APIs such as the AI SDK's, or JSON Schema) and a prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout, form).",
   "code-block":
     "Code block with on-demand Shiki highlighting coloured by the --syntax-* tokens, a label and copy.",
   terminal:

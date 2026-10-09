@@ -1746,7 +1746,7 @@
       "name": "answer",
       "type": "registry:block",
       "title": "Answer",
-      "description": "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with a tool schema and prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout).",
+      "description": "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with the tool's schema (a Standard Schema for tool APIs such as the AI SDK's, or JSON Schema) and a prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout, form).",
       "dependencies": [
         "cn@^0.4.0",
         "lucide-react@^1.48.0",

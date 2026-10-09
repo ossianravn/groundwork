@@ -3338,6 +3338,11 @@
         "label": "Balance the team",
         "href": "/app/demo/assistant",
         "instruction": "Ask Who is overloaded?, then remove Move 16 of Noah's Design system tasks and watch Design system's date."
+      },
+      {
+        "label": "Interactive answer reference",
+        "href": "/reference/components/answer",
+        "instruction": "Select Replay and watch parts hold their place until they are complete, then read Connect a model."
       }
     ],
     "sources": [
@@ -3370,6 +3375,11 @@
         "label": "Assistant",
         "href": "/app/demo/assistant",
         "instruction": "Ask Can we land Website redesign by 8 October?, remove Move 3 of Leo's tasks, then Apply the plan."
+      },
+      {
+        "label": "Interactive answer reference",
+        "href": "/reference/components/answer",
+        "instruction": "Change the form's focus and read what is kept with the answer."
       }
     ],
     "sources": [
@@ -3394,6 +3404,11 @@
         "label": "Assistant",
         "href": "/app/demo/assistant",
         "instruction": "Ask Can we land Website redesign by 8 October?, untick Ava Morgan under Who can help, then Update the plan."
+      },
+      {
+        "label": "Interactive answer reference",
+        "href": "/reference/components/answer",
+        "instruction": "Choose Polish first, then Plan the week, and read the message it sends."
       }
     ],
     "sources": [

@@ -146,6 +146,22 @@ export const answerNodeList: z.ZodType<AnswerNode[]> = z.lazy(() =>
     ),
 )
 
+// A display tool's input once it has arrived, read as leniently as the
+// renderer reads it: anything that isn't a node is left out.
+const toolInput = z
+  .object({ title: z.string().catch(""), nodes: answerNodeList })
+  .catch({ title: "", nodes: [] })
+
+export type AnswerToolInput = z.output<typeof toolInput>
+
+/**
+ * A Standard Schema with its JSON Schema (standardschema.dev): the form
+ * tool APIs such as the AI SDK's `tool({ inputSchema })` accept.
+ */
+export interface AnswerToolSchema {
+  readonly "~standard": z.core.ZodStandardSchemaWithJSON<typeof toolInput>
+}
+
 /** The node written last, which is still open while the answer streams. */
 export function lastNodeId(nodes: AnswerNode[]): string | undefined {
   const last = nodes.at(-1)
@@ -205,8 +221,25 @@ export function createAnswerLibrary(components: AnswerComponent[]) {
             (issue) => `${issue.path.join(".")}: ${issue.message}`,
           )
     },
-    /** The display tool's input schema, for a model's tool definition. */
+    /** The display tool's input as JSON Schema, for a provider's tool. */
     toolInputSchema: () => z.toJSONSchema(input),
+    /**
+     * The display tool's input for tool APIs that take a Standard Schema,
+     * such as the AI SDK's `tool({ inputSchema })`. The model gets the full
+     * JSON Schema in the draft it asks for; validation is lenient, since
+     * the renderer leaves out what it can't draw.
+     */
+    toolSchema: (): AnswerToolSchema => ({
+      "~standard": {
+        version: 1,
+        vendor: "groundwork",
+        validate: (value) => ({ value: toolInput.parse(value) }),
+        jsonSchema: {
+          input: ({ target }) => z.toJSONSchema(input, { target }),
+          output: ({ target }) => z.toJSONSchema(input, { target }),
+        },
+      },
+    }),
     /** The components in words, for a model's system prompt. */
     describe: () =>
       components

@@ -200,7 +200,7 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | AI-25 | Working plan | [Assistant](pages/app/assistant.md) | /app/demo/assistant; /reference/components/task-plan | Example |
 | AI-26 | Conversation panel | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-27 | Agent runs | [Project detail](pages/app/project-editor.md) | /app/demo/projects/brand?tab=agent; /reference/components/workflow-run | Example |
-| AI-28 | Interactive answer | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-28 | Interactive answer | [Assistant](pages/app/assistant.md) | /app/demo/assistant; /reference/components/answer | Example |
 | AI-29 | Answer state carried forward | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-30 | Answer form | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-24 | Coding agent session | [Reference patterns](pages/reference/patterns.md) | /reference/specimens/coding-agent (specimen only) | Example |

@@ -146,3 +146,26 @@ it("describes itself for a model: a recursive tool schema and the components", (
   expect(schema).toContain('"children"')
   expect(library.describe()).toContain("## Figures")
 })
+
+it("gives tool APIs a Standard Schema: the full schema, read leniently", () => {
+  const standard = library.toolSchema()["~standard"]
+
+  expect(standard.jsonSchema.input({ target: "draft-07" })).toMatchObject({
+    $schema: "http://json-schema.org/draft-07/schema#",
+  })
+
+  // An unknown component stays for the renderer to leave out; a fragment
+  // that is not a node at all is dropped, and nothing fails.
+  expect(
+    standard.validate({
+      title: "Catch-up",
+      nodes: [{ id: "a", type: "Chart", props: {} }, "fragment"],
+    }),
+  ).toEqual({
+    value: {
+      title: "Catch-up",
+      nodes: [{ id: "a", type: "Chart", props: {}, children: [] }],
+    },
+  })
+  expect(standard.validate(null)).toEqual({ value: { title: "", nodes: [] } })
+})
