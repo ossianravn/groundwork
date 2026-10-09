@@ -27,7 +27,8 @@ export function ComponentDetail({
   onPanelChange: (panel: "preview" | "code") => void
   LinkComponent: ReferenceLinkComponent
   ContextLink: ReferenceContextLinkComponent
-  example?: { Component: ComponentType; source: string }
+  /** The live example, its source, and any guide that follows the notes. */
+  example?: { Component: ComponentType; source: string; Guide?: ComponentType }
 }) {
   const item = components.find((entry) => entry.id === id)
   const [revision, setRevision] = useState(0)
@@ -169,6 +170,7 @@ export function ComponentDetail({
           to its starting state.
         </p>
       </section>
+      {example.Guide && <example.Guide />}
       <details className="reference-source-details">
         <summary>Implementation</summary>
         <dl className="reference-source-list">

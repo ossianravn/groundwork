@@ -12,7 +12,7 @@ Find a reusable example and inspect the building blocks used by the actual demo.
 | --- | --- |
 | `/reference` | Compact documentation navigation; grouped component links; real workflow links; shared-token and source locations. |
 | `/reference/components` | URL-backed text/category search; documented component names, purposes and categories; no-results recovery. |
-| `/reference/components/:component` | Heading; live Preview/Code tabs; reset/copy; usage and keyboard notes; disclosed implementation paths and related inventory IDs; actual workflow and official Base UI documentation links. |
+| `/reference/components/:component` | Heading; live Preview/Code tabs; reset/copy; usage and keyboard notes; an optional guide after the notes (Interactive answer: Connect a model, with a type-checked route, the tool's schema and the prompt description); disclosed implementation paths and related inventory IDs; actual workflow and official Base UI documentation links. |
 
 ## Actions and outcomes
 

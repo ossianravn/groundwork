@@ -102,6 +102,10 @@ import { AgentExample } from "@/features/reference/examples/agent-example"
 import agentSource from "@/features/reference/examples/agent-example?raw"
 import { OpenInChatExample } from "@/features/reference/examples/open-in-chat-example"
 import openInChatSource from "@/features/reference/examples/open-in-chat-example?raw"
+import { AnswerExample } from "@/features/reference/examples/answer-example"
+import answerSource from "@/features/reference/examples/answer-example?raw"
+import answerLibrarySource from "@/features/reference/examples/answer-example-library?raw"
+import { AnswerGuide } from "@/features/reference/examples/answer-guide"
 
 export const referenceExamples = [
   { id: "rich-text", Component: RichTextExample, source: richTextSource },
@@ -207,5 +211,17 @@ export const referenceExamples = [
     id: "open-in-chat",
     Component: OpenInChatExample,
     source: openInChatSource,
+  },
+  {
+    id: "answer",
+    Component: AnswerExample,
+    // Two files: the library (your component, the answer) and the example.
+    source: [
+      "// answer-example-library.tsx",
+      answerLibrarySource,
+      "// answer-example.tsx",
+      answerSource,
+    ].join("\n"),
+    Guide: AnswerGuide,
   },
 ]

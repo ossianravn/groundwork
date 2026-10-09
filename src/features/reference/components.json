@@ -775,6 +775,26 @@
     "implementation": "src/kit/ai/open-in-chat.tsx"
   },
   {
+    "id": "answer",
+    "name": "Interactive answer",
+    "category": "AI and chat",
+    "purpose": "Answer with components a model composes from a library, drawn while the answer streams, with choices that go back to the model.",
+    "notes": [
+      "A model calls a display tool whose input is the answer: a tree of named components with props. AnswerRenderer draws it as it arrives. Text and headings read while they are written; other parts hold their place until they are complete, and a part the library doesn't know, or whose props are invalid, is left out.",
+      "Define each component once with defineAnswerComponent: a Zod schema the model fills, a description for the model, the component and its text. createAnswerLibrary joins your components to the kit's blocks (Heading, Text, Figures, Section, Callout, Form), validates answers, reads them as text, and gives the tool's schema and a prompt description.",
+      "What the person changes belongs to the answer (useAnswerState), so views that read the same state stay linked. Keep the state with the conversation and send it with the next request. A Form sends its choices as the person's next message, worded as a sentence, with the values attached.",
+      "Only the latest answer takes changes, once it has finished. Records still change only through a Confirmation that names the change."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-28", "AI-29", "AI-30"],
+    "documentation": {
+      "href": "https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces",
+      "label": "AI SDK generative user interfaces"
+    },
+    "implementation": "src/kit/answer/answer-renderer.tsx"
+  },
+  {
     "id": "terminal",
     "name": "Terminal",
     "category": "Data",
