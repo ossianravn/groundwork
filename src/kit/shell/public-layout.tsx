@@ -1,3 +1,5 @@
+"use client"
+
 import { useRef, useState, type ReactNode } from "react"
 import { Menu, SlidersHorizontal, X } from "lucide-react"
 import { Button } from "@/kit/ui/button"

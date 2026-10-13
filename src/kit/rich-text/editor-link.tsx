@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useId } from "react"
 import { useEditorState, type Editor } from "@tiptap/react"
 import { Link2, Unlink } from "lucide-react"

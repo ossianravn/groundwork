@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useContext } from "react"
 
 // The workspace shell exposes a place in its top bar for the current page's

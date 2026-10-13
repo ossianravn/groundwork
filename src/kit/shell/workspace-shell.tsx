@@ -1,3 +1,5 @@
+"use client"
+
 import { Kbd, KbdGroup } from "@/kit/ui/kbd"
 import { Fragment, useRef, useState, type ReactNode } from "react"
 import {

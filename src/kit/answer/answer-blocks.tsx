@@ -1,3 +1,5 @@
+"use client"
+
 import { CircleAlert, Info } from "lucide-react"
 import { cn } from "cn"
 import { MessageResponse } from "@/kit/ai/message-response"

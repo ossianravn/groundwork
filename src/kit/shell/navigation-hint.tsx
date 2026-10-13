@@ -1,3 +1,5 @@
+"use client"
+
 import type { ReactElement } from "react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/kit/ui/tooltip"
 import { useNavigationCollapsed } from "./navigation-collapsed"

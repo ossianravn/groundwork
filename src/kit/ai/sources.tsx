@@ -1,3 +1,5 @@
+"use client"
+
 import { ChevronDown, FileText } from "lucide-react"
 import { cn } from "cn"
 import {

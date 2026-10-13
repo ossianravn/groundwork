@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
 import type { ThemedToken } from "shiki/core"

@@ -1,3 +1,5 @@
+"use client"
+
 import { useId, type ReactNode } from "react"
 import { Check } from "lucide-react"
 import { FieldSet, FieldLegend } from "@/kit/ui/field"

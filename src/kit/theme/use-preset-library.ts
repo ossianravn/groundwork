@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { newPreset, type ThemePreset } from "./preset"
 import { readPresets, writePresets } from "./preset-storage"

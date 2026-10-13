@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { CalendarDays } from "lucide-react"
 import { addDays, subDays, subMonths } from "date-fns"

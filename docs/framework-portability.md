@@ -1,6 +1,6 @@
 # Framework portability
 
-Status: adopted for the first UI iteration on 2026-09-24. The demo uses React/TypeScript, Vite and TanStack Router. Reusable views remain separate from the host; cross-framework integrations are not yet verified.
+Status: adopted for the first UI iteration on 2026-09-24. The demo uses React/TypeScript, Vite and TanStack Router. Reusable views remain separate from the host. One cross-framework integration is verified: the workspace shell and theme panel in a Next.js 15 App Router app (Datastream, 2026-10-13), covering theme styles, the portalled appearance sheet, server rendering and hydration. See the README's server-rendered frameworks section.
 
 ## Recommended direction
 
