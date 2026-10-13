@@ -1,3 +1,5 @@
+"use client"
+
 import type { RowData } from "@tanstack/react-table"
 import type { DataTable } from "./table-features"
 import {

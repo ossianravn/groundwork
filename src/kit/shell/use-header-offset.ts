@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef } from "react"
 
 // Anchor clearance follows the actual sticky header, including text reflow.

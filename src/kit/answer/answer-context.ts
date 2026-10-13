@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import type { z } from "zod"
 import type { AnswerState, AnswerValue } from "./answer-library"

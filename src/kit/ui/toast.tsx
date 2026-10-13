@@ -1,3 +1,5 @@
+"use client"
+
 import type { ReactNode } from "react"
 import { Toast } from "@base-ui/react/toast"
 import { CircleAlert, CircleCheck, X } from "lucide-react"

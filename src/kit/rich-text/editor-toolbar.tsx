@@ -1,3 +1,5 @@
+"use client"
+
 import { type Editor, useEditorState } from "@tiptap/react"
 import { Bold, Italic, List, ListOrdered, Undo2, Redo2 } from "lucide-react"
 import { Button } from "@/kit/ui/button"

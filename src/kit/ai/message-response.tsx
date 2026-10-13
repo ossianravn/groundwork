@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Streamdown, type Components } from "streamdown"
 import { cn } from "cn"

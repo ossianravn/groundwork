@@ -1,3 +1,5 @@
+"use client"
+
 import { useId, useState } from "react"
 import { Plus, Search } from "lucide-react"
 import { Badge } from "@/kit/ui/badge"

@@ -196,6 +196,7 @@ export function buildRegistry({ ref, local } = {}) {
 
   const items = [...members].map(([name, owned]) => {
     const packages = new Set(peers[name] ?? [])
+    const stylesheetPackages = new Set()
     const needs = new Set(name === "base" ? [] : ["base"])
 
     for (const file of owned) {
@@ -210,9 +211,18 @@ export function buildRegistry({ ref, local } = {}) {
 
           if (target !== name) needs.add(target)
         } else if (!provided.has(packageName(specifier)))
-          packages.add(packageName(specifier))
+          (file.endsWith(".css") ? stylesheetPackages : packages).add(
+            packageName(specifier),
+          )
       }
     }
+
+    // Stylesheet imports compile at build time, so the host needs them only
+    // as development dependencies (unless a script imports them too).
+    const buildOnly = [
+      ...(devDependencies[name] ?? []),
+      ...[...stylesheetPackages].filter((dep) => !packages.has(dep)),
+    ].sort()
 
     return {
       name,
@@ -226,10 +236,8 @@ export function buildRegistry({ ref, local } = {}) {
           .sort()
           .map((dep) => versioned(dep, manifest)),
       }),
-      ...(devDependencies[name] && {
-        devDependencies: devDependencies[name].map((dep) =>
-          versioned(dep, manifest),
-        ),
+      ...(buildOnly.length && {
+        devDependencies: buildOnly.map((dep) => versioned(dep, manifest)),
       }),
       ...(needs.size && {
         registryDependencies: [...needs].sort().map(dependencyAddress),

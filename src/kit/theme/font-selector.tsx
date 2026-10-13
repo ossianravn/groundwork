@@ -1,3 +1,5 @@
+"use client"
+
 import { useId } from "react"
 import { Field, FieldLabel } from "@/kit/ui/field"
 import {

@@ -62,6 +62,37 @@ The kit assumes React 19, Tailwind CSS 4 and a `@/` path alias to your source fo
 
 5. Render a shell with your own brand, navigation and router link. `src/app/demo-workspace-shell.tsx` and `src/components/tandem-public-layout.tsx` show complete examples. Shells never import a router: you pass a `LinkComponent` that resolves the destinations you name.
 
+### Server-rendered frameworks (Next.js)
+
+Server rendering has no saved appearance to read, so step 4 changes: an inline script applies it before the first paint, and `useTheme` loads it after hydration. Pass the same defaults to both.
+
+```tsx
+// theme-defaults.ts, shared by the layout and your shell
+import { defaultTheme, type ThemeSettings } from "@/kit/theme/preferences"
+
+export const themeDefaults: ThemeSettings = { ...defaultTheme, accent: "neutral", font: "inter" }
+
+// app/layout.tsx (a Server Component)
+import { themeScript } from "@/kit/theme/theme-script"
+import { themeDefaults } from "./theme-defaults"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    // The script sets classes and data attributes on <html> before hydration.
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript({ defaults: themeDefaults }) }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  )
+}
+
+// In your shell, a Client Component: useTheme({ defaults: themeDefaults })
+```
+
+The router adapter is a Client Component that renders `next/link` for each destination. With Next.js, the `@/` alias usually points at the project root, so map `@/kit/*` to `./src/kit/*` in `tsconfig.json`. Kit modules that use hooks start with `"use client"`, so Server Components can import kit components directly.
+
 ### TypeScript, formatting and linting
 
 - **TypeScript.** The kit compiles under `strict` with `noUncheckedIndexedAccess`, `noImplicitReturns`, `noImplicitOverride`, `noFallthroughCasesInSwitch`, `noUncheckedSideEffectImports` and `erasableSyntaxOnly`, which covers Vite's template settings; `npm run typecheck` checks this through `tsconfig.kit.json`. `exactOptionalPropertyTypes` and `noPropertyAccessFromIndexSignature` are not supported yet.

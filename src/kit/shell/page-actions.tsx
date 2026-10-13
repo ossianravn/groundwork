@@ -1,3 +1,5 @@
+"use client"
+
 import type { ComponentProps, ReactNode } from "react"
 import { createPortal } from "react-dom"
 import type { LucideIcon } from "lucide-react"

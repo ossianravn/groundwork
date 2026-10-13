@@ -1,3 +1,5 @@
+"use client"
+
 import { useId } from "react"
 import { Button } from "@/kit/ui/button"
 import { Sheet, SheetContent, SheetFooter } from "@/kit/ui/sheet"

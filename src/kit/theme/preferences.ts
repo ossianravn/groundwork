@@ -36,44 +36,67 @@ export const defaultTheme: ThemeSettings = {
   font: defaultInterfaceFont.value,
 }
 
-const storageKey = "groundwork.theme.v1"
+export const themeStorageKey = "groundwork.theme.v1"
 
-export function readTheme(): ThemeSettings {
-  if (typeof window !== "undefined") {
-    const preview = previewFrame()?.themePreview
+/** The values each saved preference may take; anything else falls back to the default. */
+export const themeChoices: {
+  [Key in keyof ThemeSettings]: readonly ThemeSettings[Key][]
+} = {
+  appearance: ["light", "dark", "system"],
+  accent: accents.map((accent) => accent.value),
+  radius: ["subtle", "rounded"],
+  density: ["comfortable", "compact"],
+  headerSurface: ["glass", "solid", "system"],
+  font: interfaceFonts.map((font) => font.value),
+}
 
-    if (preview) return preview.settings
+/** Decodes each saved choice independently, keeping the host's default for any it cannot use. */
+export function normalizeTheme(
+  saved: unknown,
+  defaults: ThemeSettings = defaultTheme,
+): ThemeSettings {
+  const record: Record<string, unknown> =
+    typeof saved === "object" && saved !== null ? { ...saved } : {}
+
+  const pick = <Key extends keyof ThemeSettings>(key: Key) => {
+    const value = record[key]
+    const allowed: readonly unknown[] = themeChoices[key]
+
+    // SAFETY: value is one of this key's allowed values.
+    return allowed.includes(value)
+      ? (value as ThemeSettings[Key])
+      : defaults[key]
   }
 
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) ?? "null") ?? {}
+  return {
+    appearance: pick("appearance"),
+    accent: pick("accent"),
+    radius: pick("radius"),
+    density: pick("density"),
+    headerSurface: pick("headerSurface"),
+    font: pick("font"),
+  }
+}
 
-    return {
-      appearance:
-        saved.appearance === "dark"
-          ? "dark"
-          : saved.appearance === "system"
-            ? "system"
-            : "light",
-      accent:
-        accents.find((accent) => accent.value === saved.accent)?.value ??
-        defaultAccent,
-      radius: saved.radius === "subtle" ? "subtle" : "rounded",
-      density: saved.density === "compact" ? "compact" : "comfortable",
-      headerSurface:
-        saved.headerSurface === "solid"
-          ? "solid"
-          : saved.headerSurface === "system"
-            ? "system"
-            : "glass",
-      font:
-        interfaceFonts.find((font) => font.value === saved.font)?.value ??
-        defaultTheme.font,
-    }
+export function readTheme(
+  defaults: ThemeSettings = defaultTheme,
+): ThemeSettings {
+  const preview = previewFrame()?.themePreview
+
+  if (preview) return preview.settings
+
+  // Server rendering has no storage; hosts apply the saved theme before paint with themeScript().
+  if (typeof localStorage === "undefined") return defaults
+
+  try {
+    return normalizeTheme(
+      JSON.parse(localStorage.getItem(themeStorageKey) ?? "null"),
+      defaults,
+    )
   } catch (error) {
     console.warn("Theme preferences could not be read; using defaults.", error)
 
-    return defaultTheme
+    return defaults
   }
 }
 
@@ -116,7 +139,7 @@ export function applyTheme(
 
 export function saveTheme(theme: ThemeSettings) {
   try {
-    localStorage.setItem(storageKey, JSON.stringify(theme))
+    localStorage.setItem(themeStorageKey, JSON.stringify(theme))
 
     return true
   } catch (error) {

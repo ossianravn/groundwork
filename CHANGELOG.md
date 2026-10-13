@@ -2,6 +2,21 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+The kit now runs in server-rendered React frameworks. It was checked in a Next.js 15 App Router app (Datastream): the workspace shell and theme panel render on the server, hydrate without mismatches, and a saved appearance applies before the first paint.
+
+### Server rendering
+
+- `base` (theme): `themeScript({ defaults })` returns an inline script that applies the saved appearance to `<html>` before the first paint; render it first in the document head. A test keeps it in agreement with `applyTheme(readTheme())`.
+- `base` (theme): `useTheme` no longer reads storage or the preview frame while rendering, so server rendering no longer throws `window is not defined`, and hydration renders the defaults before the saved theme loads. `readTheme` returns the defaults where there is no storage; `previewFrame` returns `null` where there is no window.
+- `base` (theme): hosts choose their own defaults, which apply when nothing is saved and to Restore defaults: `useTheme({ defaults })`, `readTheme(defaults)` and `themeScript({ defaults })`. New exports `themeChoices`, `themeStorageKey` and `normalizeTheme`.
+- Modules that use React hooks or context start with `"use client"`, so React Server Components can import kit components directly. Modules that only export values (tokens, preferences, `themeScript`) stay importable on the server.
+
+### Registry
+
+- Packages that only stylesheets import (`shadcn`, `tw-animate-css` and the `@fontsource-variable` fonts) are now development dependencies: they compile at build time, so they no longer ship as runtime dependencies (the `shadcn` CLI brought about 100 packages with it).
+
 ## v0.4.0 — 2026-10-09
 
 The registry grows from 71 to 72 items with `answer`: interactive answers that a model composes from a library of components and the kit draws while they stream, with edits and choices that travel back to the model. Tandem's Assistant uses them to catch you up on a project, plan how a project can land and balance the team's work; the reference shows how to connect a real model.

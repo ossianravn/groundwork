@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Paperclip, Plus } from "lucide-react"
 import { cn } from "cn"

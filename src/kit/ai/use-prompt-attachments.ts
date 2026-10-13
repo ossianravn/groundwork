@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef, useState } from "react"
 
 /** Something the person attached: a file, or a reference to a record. */

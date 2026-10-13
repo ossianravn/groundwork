@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useRef, useState } from "react"
 
 // SVG axes need pixel measurements even though the interface uses rem roles.

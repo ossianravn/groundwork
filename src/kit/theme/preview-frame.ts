@@ -13,6 +13,9 @@ export interface ThemePreviewFrame extends HTMLIFrameElement {
 export const previewEvent = "groundwork-theme-preview"
 
 export function previewFrame(): ThemePreviewFrame | null {
+  // Server rendering has no window, and so no preview frame.
+  if (typeof window === "undefined") return null
+
   const element = window.frameElement
 
   if (element?.tagName !== "IFRAME") return null

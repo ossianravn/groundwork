@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 
 // A thin bar across the top while a route loads (EDGE-08). The host passes

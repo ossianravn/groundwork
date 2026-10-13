@@ -56,3 +56,17 @@ it("recovers from malformed saved JSON and reports the read failure", () => {
   expect(readTheme()).toEqual(defaultTheme)
   expect(warning).toHaveBeenCalledOnce()
 })
+
+it("falls back to the host's defaults for choices that are not saved", () => {
+  const defaults = {
+    ...defaultTheme,
+    accent: "neutral",
+    font: "inter",
+  } as const
+
+  vi.stubGlobal("localStorage", {
+    getItem: () => JSON.stringify({ density: "compact" }),
+  })
+
+  expect(readTheme(defaults)).toEqual({ ...defaults, density: "compact" })
+})

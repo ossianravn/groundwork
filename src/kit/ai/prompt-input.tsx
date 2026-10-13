@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { ArrowUp, Square } from "lucide-react"
 import { cn } from "cn"
