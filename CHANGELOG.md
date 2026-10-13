@@ -2,7 +2,7 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
-## Unreleased
+## v0.5.0 — 2026-10-13
 
 The kit now runs in server-rendered React frameworks. It was checked in a Next.js 15 App Router app (Datastream): the workspace shell and theme panel render on the server, hydrate without mismatches, and a saved appearance applies before the first paint.
 
