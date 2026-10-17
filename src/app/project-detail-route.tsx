@@ -9,7 +9,6 @@ import { useDemoState } from "./demo-state"
 import { useProjectRecord } from "./use-project-record"
 
 import { ProjectUnavailable } from "@/features/projects/project-unavailable"
-import { ProjectEditLink } from "./project-detail-link"
 import { ProjectAgent } from "@/features/projects/project-agent"
 import { isActiveRun } from "@/demo/agent-runs"
 import { startRun } from "@/demo/agent-run-plans"
@@ -88,14 +87,6 @@ function ProjectRecordPage({
         demo.saveNotice?.projectId === project.id
           ? demo.saveNotice.message
           : undefined
-      }
-      editLink={
-        <ProjectEditLink
-          projectId={project.id}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          Edit project
-        </ProjectEditLink>
       }
       tab={tab}
       onTabChange={onTabChange}

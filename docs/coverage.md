@@ -114,7 +114,7 @@ Implemented during the visual refinement and theme builder work; each has a live
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
 | NAV-09 | Page actions in the top bar | [Shared shells](shells.md) | /app/demo/overview | Example |
-| SETT-14 | Identity colour picker | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand/edit | Example |
+| SETT-14 | Identity colour picker | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand (Project details) | Example |
 | SYS-08 | Palette generator | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
 | SYS-09 | Theme export to shadcn | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
 
@@ -127,7 +127,7 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
 | KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and quick view | Example |
-| KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
+| KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/new; Project details due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
 | KIT-06 | Hover card | [Design system](design-system.md) | owner names in the Projects table and people in Activity | Example |
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and Projects table rows | Example |

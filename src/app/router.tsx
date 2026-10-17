@@ -102,15 +102,19 @@ const projectCreateRoute = createRoute({
   ),
 })
 
+// Projects are edited in place; old editor links open the project.
 const projectEditRoute = createRoute({
   getParentRoute: () => workspaceRoute,
   path: "projects/$projectId/edit",
   validateSearch: parseProjectEditorSearch,
-  search: { middlewares: [stripSearchParams({ scenario: "normal" })] },
-  component: lazyRouteComponent(
-    () => import("./project-editor-route"),
-    "ProjectEditorRoute",
-  ),
+  beforeLoad: ({ params, search }) => {
+    throw redirect({
+      to: "/app/demo/projects/$projectId",
+      params,
+      search: { returnTo: search.returnTo },
+      replace: true,
+    })
+  },
 })
 
 const settingsIndexRoute = createRoute({

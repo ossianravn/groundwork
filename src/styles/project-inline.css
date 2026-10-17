@@ -108,3 +108,17 @@
   flex: 1;
   max-width: 7rem;
 }
+/* The description reads as the page's lead and edits in place. */
+.project-description {
+  display: grid;
+  justify-items: start;
+  gap: var(--gap-control);
+}
+.project-description[data-editing] {
+  justify-items: stretch;
+  width: min(100%, 70ch);
+}
+.project-description-edit {
+  margin-inline-start: calc(var(--space-2) * -1);
+  color: var(--muted-foreground);
+}

@@ -55,7 +55,10 @@ export function projectInlineEditing(
     /** Properties save as each one changes, without a draft of their own. */
     saveDetails: (
       changes: Partial<
-        Pick<ProjectValues, "ownerId" | "dueDate" | "tags" | "links">
+        Pick<
+          ProjectValues,
+          "ownerId" | "dueDate" | "tags" | "links" | "description" | "color"
+        >
       >,
     ): ProjectSaveResult => {
       const values = { ...saved, ...changes }

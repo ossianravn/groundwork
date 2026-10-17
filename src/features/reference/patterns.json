@@ -1027,8 +1027,8 @@
     "deferred": "No blocking leave prompt or persisted draft storage.",
     "examples": [
       {
-        "label": "Edit project",
-        "href": "/app/demo/projects/brand/edit",
+        "label": "New project",
+        "href": "/app/demo/projects/new",
         "instruction": "Change a value, leave via navigation, and return before saving or cancelling."
       },
       {
@@ -1201,8 +1201,8 @@
     "examples": [
       {
         "label": "Project description",
-        "href": "/app/demo/projects/brand/edit",
-        "instruction": "Format the description, save it and view the project details."
+        "href": "/app/demo/projects/brand",
+        "instruction": "Choose Edit description under the name, format the text and save it in place."
       },
       {
         "label": "Editor example",
@@ -1231,8 +1231,8 @@
     "examples": [
       {
         "label": "Project tags",
-        "href": "/app/demo/projects/design-system/edit",
-        "instruction": "Search Tags, select an existing name or create a new one, then save. Other project editors can reuse the saved tag."
+        "href": "/app/demo/projects/design-system",
+        "instruction": "In Project details, search Tags and select an existing name or create a new one; it saves at once, and other projects can reuse it."
       }
     ],
     "sources": [
@@ -1255,8 +1255,8 @@
     "examples": [
       {
         "label": "Related project links",
-        "href": "/app/demo/projects/design-system/edit",
-        "instruction": "Add or remove a link under Tags and links. Save an incomplete URL to see its error, correct it and save."
+        "href": "/app/demo/projects/design-system",
+        "instruction": "Choose Add link in Project details. Add an incomplete URL to see its error, correct it and add it; remove it again with its ×."
       }
     ],
     "sources": [
@@ -1770,8 +1770,8 @@
     "examples": [
       {
         "label": "Project colour",
-        "href": "/app/demo/projects/brand/edit",
-        "instruction": "Pick a swatch, watch the heading mark change, then save and open the project."
+        "href": "/app/demo/projects/brand",
+        "instruction": "Pick a swatch under Colour in Project details; the mark, progress bar and charts change at once."
       }
     ],
     "sources": [
@@ -1892,7 +1892,7 @@
     "examples": [
       {
         "label": "Due date",
-        "href": "/app/demo/projects/brand/edit",
+        "href": "/app/demo/projects/new",
         "instruction": "Open Due date and choose a day."
       },
       {

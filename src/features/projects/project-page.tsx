@@ -1,5 +1,3 @@
-import { RichText } from "@/kit/rich-text/rich-text"
-import { documentText } from "@/kit/rich-text/document"
 import type { ReactNode } from "react"
 import { ProjectStatus } from "@/components/project-status"
 import type {
@@ -11,6 +9,7 @@ import type {
 } from "@/demo/model"
 import type { TaskChange } from "@/demo/project-tasks"
 import { ProjectCompletion } from "./project-completion"
+import { ProjectDescription } from "./project-description"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/kit/ui/tabs"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectInlineField } from "./project-inline-field"
@@ -41,7 +40,6 @@ export function ProjectPage({
   members,
   assignableMembers,
   activity,
-  editLink,
   notice,
   editing,
   onComplete,
@@ -61,7 +59,6 @@ export function ProjectPage({
   members: Member[]
   assignableMembers: Member[]
   activity: Activity[]
-  editLink: ReactNode
   notice?: string
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
@@ -105,14 +102,16 @@ export function ProjectPage({
               onComplete={onComplete}
               onReopen={onReopen}
             />
-            {editLink}
           </div>
         </div>
-        {documentText(project.description) && (
-          <div className="project-page-lead">
-            <RichText value={project.description} />
-          </div>
-        )}
+        <div className="project-page-lead">
+          <ProjectDescription
+            description={project.description}
+            onSave={(description) =>
+              editing.saveDetails({ description }).kind === "saved"
+            }
+          />
+        </div>
       </header>
       {notice && (
         <p role="status" className="project-save-notice">

@@ -1,7 +1,5 @@
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from "react"
 import { ChevronDown, ChevronUp, X } from "lucide-react"
-import { RichText } from "@/kit/rich-text/rich-text"
-import { documentText } from "@/kit/rich-text/document"
 import { Button } from "@/kit/ui/button"
 import { Dialog, DialogClose, DialogContent } from "@/kit/ui/dialog"
 import { ProjectMark } from "@/components/project-identity"
@@ -17,6 +15,7 @@ import type { TaskChange } from "@/demo/project-tasks"
 import { ProjectActivity } from "./project-activity"
 import { ProjectComments } from "./project-comments"
 import { ProjectCompletion } from "./project-completion"
+import { ProjectDescription } from "./project-description"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectProperties } from "./project-properties"
@@ -196,13 +195,14 @@ export function ProjectQuickView({
                 {notice}
               </p>
             )}
-            {documentText(project.description) ? (
-              <div className="quick-view-description">
-                <RichText value={project.description} />
-              </div>
-            ) : (
-              <p className="text-muted-foreground">No description added.</p>
-            )}
+            <div className="quick-view-description">
+              <ProjectDescription
+                description={project.description}
+                onSave={(description) =>
+                  editing.saveDetails({ description }).kind === "saved"
+                }
+              />
+            </div>
             <section aria-labelledby="quick-view-tasks">
               <h2 id="quick-view-tasks">Tasks</h2>
               <ProjectTasks

@@ -43,10 +43,12 @@ export function ProjectTasks({
   onChange: (change: TaskChange) => (() => void) | undefined
 }) {
   const toast = useToast()
+
   // A completed project opens on what was done; it has nothing open.
   const [status, setStatus] = useState<TaskStatus>(() =>
     project.status === "completed" ? "completed" : "open",
   )
+
   const [kept, setKept] = useState<string[]>([])
   const [showAll, setShowAll] = useState(false)
   const [announcement, setAnnouncement] = useState("")
