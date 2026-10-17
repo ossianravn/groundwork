@@ -67,6 +67,7 @@ function ProjectRouteLink({
       }}
       className={cn(className)}
       id={id}
+      data-quick-view-id={onOpen ? projectId : undefined}
       title={title}
       style={style}
     >

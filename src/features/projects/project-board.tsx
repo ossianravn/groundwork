@@ -236,6 +236,7 @@ export function ProjectBoard({
                               <button
                                 type="button"
                                 className="project-name"
+                                data-quick-view-id={project.id}
                                 onClick={() => onInspect(project.id)}
                               >
                                 {project.name}

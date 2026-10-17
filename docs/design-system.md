@@ -188,7 +188,9 @@ A group's internal gap is always smaller than the gap around it (proximity). A d
 - one progress bar with its count and percentage;
 - the owner.
 
-The board's compact density leaves out the description and the status, which its column names. The name's link covers the card, so a click anywhere opens the project, and Ctrl/⌘-click opens the full page; checkboxes and actions sit above that link. Hover darkens the border, focus on the name rings the whole card, and a selected card takes the brand's soft tint.
+The board's compact density leaves out the description and the status, which its column names.
+
+**One way to open a project.** Every list (table, cards, board, timeline), search result and activity link opens the same quick view (`ProjectQuickView`), a dialog over the list with `?inspect=` in the URL, so Back closes it and the link can be shared. List views mark their container `data-quick-view-list` and each project's opener `data-quick-view-id`; the host reads them when a project opens, so J and K step through the list as the person saw it. Open full page, or Ctrl/⌘-click on a name, leads to the project page for deep work (the agent, burn-up and history). The quick view and the page render the same record (`projectRecord`). The name's link covers the card, so a click anywhere opens the project, and Ctrl/⌘-click opens the full page; checkboxes and actions sit above that link. Hover darkens the border, focus on the name rings the whole card, and a selected card takes the brand's soft tint.
 
 The page's top and side insets use the same `--inset-page`. Its opening heading uses `text-box: trim-start cap alphabetic` so font leading does not add a visible extra band above the title. Preserve normal line spacing within wrapped headings and below them; do not compensate by reducing page padding or adding font-specific offsets. This is a progressive enhancement: older browsers without [text-box trimming](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box-trim) retain normal heading leading.
 

@@ -152,6 +152,7 @@ export function ProjectsRoute() {
               <ProjectDetailLink
                 projectId={project.id}
                 className="timeline-link"
+                onOpen={() => onSelectProject(project.id)}
               >
                 {project.name}
               </ProjectDetailLink>

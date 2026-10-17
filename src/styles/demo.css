@@ -8,7 +8,6 @@
 @import "./help.css";
 @import "./projects.css";
 @import "./controls.css";
-@import "./project-details.css";
 @import "./project-page.css";
 @import "./project-tasks.css";
 @import "./project-comments.css";
@@ -23,6 +22,7 @@
 @import "./project-grid.css";
 @import "./project-board.css";
 @import "./project-card.css";
+@import "./project-quick-view.css";
 @import "./project-timeline.css";
 @import "./search-results.css";
 @import "./project-import.css";

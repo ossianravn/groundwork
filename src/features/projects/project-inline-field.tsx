@@ -23,11 +23,17 @@ export function ProjectInlineField({
   editing,
   members,
   children,
+  heading: Heading = "h1",
+  headingId,
 }: {
   field: InlineProjectField
   editing: ProjectInlineEditing
   members: Member[]
   children: ReactNode
+  /** The name's heading level: h1 on the project page, h2 in a dialog. */
+  heading?: "h1" | "h2"
+  /** Lets a dialog take its name from the heading. */
+  headingId?: string
 }) {
   const [open, setOpen] = useState(false)
   const [error, setError] = useState("")
@@ -93,7 +99,11 @@ export function ProjectInlineField({
             }
           }}
         >
-          {field === "name" && <h1 className="sr-only">{children}</h1>}
+          {field === "name" && (
+            <Heading id={headingId} className="sr-only">
+              {children}
+            </Heading>
+          )}
           <FieldGroup>
             <Field data-invalid={!!error}>
               <FieldLabel
@@ -170,7 +180,11 @@ export function ProjectInlineField({
         </form>
       ) : (
         <div className="project-inline-value">
-          {field === "name" ? <h1>{children}</h1> : children}
+          {field === "name" ? (
+            <Heading id={headingId}>{children}</Heading>
+          ) : (
+            children
+          )}
           <Button
             ref={trigger}
             type="button"

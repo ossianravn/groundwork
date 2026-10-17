@@ -28,10 +28,13 @@ export function useMenuHandoff(onInspect: (id: string) => void) {
 
       if (open || !id) return
       pending.current = null
-      // The inspector returns focus to the item's inspect button.
-      document
-        .getElementById(`project-inspect-${id}`)
-        ?.focus({ preventScroll: true })
+      // The quick view returns focus to the project's name, or to its card's
+      // menu button when the name is no button of its own.
+      const target =
+        document.getElementById(`project-link-${id}`) ??
+        document.getElementById(`project-inspect-${id}`)
+
+      target?.focus({ preventScroll: true })
       onInspect(id)
     },
     finalFocus: () => !handoff.current,

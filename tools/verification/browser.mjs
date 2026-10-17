@@ -74,7 +74,7 @@ function controls() {
 function scrollbar() {
   evaluate(() =>
     document
-      .querySelector('[aria-label="Inspect Brand refresh"]')
+      .querySelector("#project-link-brand")
       .scrollIntoView({ block: "center" }),
   )
   browser("wait", "250")
@@ -88,12 +88,13 @@ function scrollbar() {
 
   if (fault === "old-scroll-lock")
     inject(
-      "[data-sheet-viewport] body{width:auto} [data-sheet-viewport] #root{width:calc(100% - var(--sheet-page-gutter))}",
+      // Sheets keep the page width themselves; dialogs through a stable gutter.
+      "[data-sheet-viewport] body{width:auto} [data-sheet-viewport] #root{width:calc(100% - var(--sheet-page-gutter))} html{scrollbar-gutter:auto!important}",
     )
 
   const point = evaluate(() => {
     const rect = document
-      .querySelector('[aria-label="Inspect Brand refresh"]')
+      .querySelector("#project-link-brand")
       .getBoundingClientRect()
 
     return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 }
@@ -128,7 +129,7 @@ function scrollbar() {
   )
   browser("mouse", "down")
   browser("mouse", "up")
-  browser("wait", '[data-slot="sheet-content"]')
+  browser("wait", '[data-slot="dialog-content"]')
   browser("wait", "250")
   capture("open")
   browser("press", "Escape")
@@ -140,8 +141,8 @@ function scrollbar() {
     return {
       before: window.verificationBefore,
       frames: window.verificationFrames,
-      focused: document.activeElement.getAttribute("aria-label"),
-      sheetClosed: !document.querySelector('[data-slot="sheet-content"]'),
+      focused: document.activeElement.id,
+      closed: !document.querySelector('[data-slot="dialog-content"]'),
     }
   })
 
@@ -155,8 +156,8 @@ function scrollbar() {
     ),
     "Modal changed background geometry/scroll during its transition",
   )
-  assert.equal(measurements.focused, "Inspect Brand refresh")
-  assert.ok(measurements.sheetClosed, "Sheet did not dismiss")
+  assert.equal(measurements.focused, "project-link-brand")
+  assert.ok(measurements.closed, "Quick view did not dismiss")
 }
 
 function overlay() {

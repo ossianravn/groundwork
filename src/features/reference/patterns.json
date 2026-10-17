@@ -1038,7 +1038,7 @@
     ],
     "sources": [
       "src/features/projects/project-form.tsx",
-      "src/app/use-project-drafts.ts",
+      "src/demo/use-project-drafts.ts",
       "src/features/reference/state-editor.tsx"
     ]
   },
@@ -1546,23 +1546,24 @@
   },
   {
     "id": "TABL-06",
-    "title": "Project inspector",
+    "title": "Project quick view",
     "originalName": "Slide-Over Inspection Drawer",
     "category": "Data views",
     "surface": "Workspace",
-    "summary": "Inspect one record while retaining the surrounding results.",
-    "implemented": "B panel shows progress, metadata, completion and full-detail/edit links with focus return.",
-    "deferred": "Additional inspector variants remain planned.",
+    "summary": "Open a project in place, keep the list behind it, and step through the list.",
+    "implemented": "A click on a project's name, card, board card or timeline bar, a search result or an activity link opens the project as a dialog over the list, with its URL (?inspect=) so Back closes it and the link can be shared. It holds the name (renamed in place), status and properties, the description and progress, tasks, comments, activity and files; Open full page leads to the project page, and Ctrl/⌘-click on a name opens that page directly. J and K step through the list it was opened from, and closing returns focus to the last project shown. It replaced the side-panel inspector on 2026-10-17.",
+    "deferred": "Inline editing of owner, due date and tags in place of the details dialog remains planned.",
     "examples": [
       {
-        "label": "Inspect projects",
-        "href": "/app/demo/projects",
-        "instruction": "Use a project rowï¿½s inspect arrow to open the side panel."
+        "label": "Quick view",
+        "href": "/app/demo/projects?view=grid",
+        "instruction": "Click a card, then press J and K to step through the projects."
       }
     ],
     "sources": [
-      "src/features/projects/project-details.tsx",
-      "src/features/projects/project-progress.tsx"
+      "src/features/projects/project-quick-view.tsx",
+      "src/features/projects/project-record.ts",
+      "src/app/project-quick-view-host.tsx"
     ]
   },
   {

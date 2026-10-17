@@ -187,6 +187,7 @@ export function ProjectsTableView({
       tabIndex={-1}
       className="projects-card"
       data-surface={surface}
+      data-quick-view-list=""
     >
       <CardHeader className="project-card-header">
         {surface === "plain" ? (

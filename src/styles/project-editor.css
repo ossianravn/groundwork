@@ -91,15 +91,6 @@
   flex-basis: 100%;
   color: var(--destructive);
 }
-.project-sheet-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap-control);
-}
-.project-sheet-actions {
-  padding-top: var(--inset-panel);
-  border-top: 1px solid var(--border);
-}
 .project-page-title {
   width: 100%;
 }

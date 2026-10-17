@@ -6,17 +6,14 @@ import {
   useSearch,
 } from "@tanstack/react-router"
 import { DemoWorkspaceShell } from "./demo-workspace-shell"
-import { ProjectDetails } from "@/features/projects/project-details"
 import { ProjectSearch } from "@/features/projects/project-search"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { WorkspaceContext } from "./workspace-context"
 import { MissingProject } from "@/features/projects/missing-project"
 import { parseProjectsSearch } from "./projects-search"
-import { ArrowUpRight } from "lucide-react"
-import { buttonVariants } from "@/kit/ui/button"
-import { ProjectDetailLink, ProjectEditLink } from "./project-detail-link"
 import { useDemoState } from "./demo-state"
-import { useProjectUndo } from "./use-project-undo"
+import { ProjectQuickViewHost } from "./project-quick-view-host"
+import { quickViewList } from "./quick-view-list"
 import { projectReturnTo } from "./project-return"
 import { Notifications } from "./notifications"
 import { WorkspaceHelp } from "@/features/help/workspace-help"
@@ -36,12 +33,13 @@ export function DemoApp() {
     runs,
   } = useDemoState()
 
-  const undo = useProjectUndo()
   const navigate = useNavigate()
   const pathname = useLocation({ select: (location) => location.pathname })
   const { inspect } = useSearch({ strict: false })
   const [themeOpen, setThemeOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  // The list a project was opened from, for J and K in its quick view.
+  const [quickOrder, setQuickOrder] = useState<string[]>([])
   const projectOpener = useRef<HTMLElement | null>(null)
 
   const rememberProjectOpener = useCallback(() => {
@@ -73,6 +71,7 @@ export function DemoApp() {
   const selectProject = useCallback(
     (id: string) => {
       rememberProjectOpener()
+      setQuickOrder(quickViewList())
       openInspection(id)
     },
     [rememberProjectOpener, openInspection],
@@ -141,7 +140,10 @@ export function DemoApp() {
               open ? showSearch() : setSearchOpen(false)
             }
             projects={demo.projects}
-            onSelect={(id) => openInspection(id)}
+            onSelect={(id) => {
+              setQuickOrder([])
+              openInspection(id)
+            }}
             onSearchAll={(q) =>
               void navigate({ to: "/app/demo/search", search: { q, type: "" } })
             }
@@ -180,36 +182,30 @@ export function DemoApp() {
         onRestore={appearance.restoreDefaults}
         onChange={appearance.updateTheme}
       />
-      <ProjectDetails
-        project={selectedProject}
-        created={
-          inspect === demo.saveNotice?.projectId &&
-          demo.saveNotice?.message === "Project created."
-        }
-        members={demo.workspace.members}
-        onClose={() => openInspection(undefined, true)}
-        onComplete={undo.completeProject}
-        returnFocus={projectReturnFocus}
-        detailLink={
-          selectedProject && (
-            <div className="project-sheet-actions">
-              <ProjectDetailLink
-                projectId={selectedProject.id}
-                className={buttonVariants({ variant: "outline" })}
-              >
-                Open project
-                <ArrowUpRight aria-hidden="true" />
-              </ProjectDetailLink>
-              <ProjectEditLink
-                projectId={selectedProject.id}
-                className={buttonVariants({ variant: "outline" })}
-              >
-                Edit project
-              </ProjectEditLink>
-            </div>
-          )
-        }
-      />
+      {selectedProject && (
+        <ProjectQuickViewHost
+          project={selectedProject}
+          order={
+            quickOrder.includes(selectedProject.id)
+              ? quickOrder
+              : demo.projects.map((project) => project.id)
+          }
+          created={
+            inspect === demo.saveNotice?.projectId &&
+            demo.saveNotice?.message === "Project created."
+          }
+          onOpen={(id) => {
+            // Closing returns to the project last shown, where it is listed.
+            projectOpener.current =
+              document.querySelector<HTMLElement>(
+                `#main-content [data-quick-view-id="${CSS.escape(id)}"]`,
+              ) ?? projectOpener.current
+            openInspection(id, true)
+          }}
+          onClose={() => openInspection(undefined, true)}
+          returnFocus={projectReturnFocus}
+        />
+      )}
       {inspect && !selectedProject && (
         <MissingProject
           onClose={() => openInspection(undefined, true)}
