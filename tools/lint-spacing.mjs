@@ -23,7 +23,7 @@ const utility =
 const declaration =
   /(?<![\w-])(gap|row-gap|column-gap|(?:margin|padding)(?:-(?:top|bottom|left|right|inline|block)(?:-(?:start|end))?)?)\s*:\s*([^;}]+)/gu
 
-/** Token names that role tokens replaced (aliases in theme.css). */
+/** Token names that role tokens replaced, removed after v0.6.0. */
 export const deprecatedTokens = [
   "--control-gap",
   "--content-gap",
