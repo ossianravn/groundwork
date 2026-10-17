@@ -25,7 +25,7 @@ export function ProjectImportRoute() {
       tabIndex={-1}
     >
       <title>{`Import projects · ${demo.workspace.name}`}</title>
-      <div className="project-page-heading">
+      <div className="project-page-heading" data-page-zone="header">
         <div className="project-page-title">
           <h1>Import projects</h1>
         </div>

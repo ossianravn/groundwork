@@ -44,13 +44,31 @@
   font-size: var(--text-section);
   font-weight: 600;
 }
+/* The drop zone is as wide as its guidance, and lights up as the drop
+   target while a file is dragged over it. */
 .import-drop {
   display: grid;
   justify-items: start;
   gap: var(--gap-group);
-  padding: var(--gap-zone);
+  max-width: 40rem;
+  padding: var(--inset-panel);
   border: 1px dashed var(--input);
   border-radius: var(--radius-lg);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+.import-drop[data-dragging] {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+.import-drop-text {
+  display: grid;
+  gap: var(--gap-inline);
+}
+.import-drop .import-drop-title {
+  color: var(--foreground);
+  font-weight: 500;
 }
 .import-drop > svg {
   width: 1.5rem;
@@ -68,8 +86,7 @@
   gap: var(--gap-control);
 }
 .import-sample-link {
-  margin-inline-start: var(--gap-control);
-  font-size: var(--text-meta);
+  color: var(--foreground);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
