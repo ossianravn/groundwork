@@ -299,6 +299,34 @@
   ],
   "releases": [
     {
+      "version": "0.16.1",
+      "date": "2026-10-17",
+      "title": "Fits every screen",
+      "summary": "Long project names, tablets and phones get tidier layouts, and keyboard focus on phones skips controls you can't see.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Long project names wrap neatly. On a project's page and in its quick view, the name wraps beside its colour mark with the status below; cards and the timeline show two lines and the rest in the project itself.",
+            "The projects table fits a tablet's width without scrolling sideways.",
+            "On tablets, Settings shows every section, wrapping onto a second row instead of scrolling.",
+            "On phones, keyboard focus no longer lands on the table's hidden column headers; sort from the toolbar instead."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "These are layout changes only. Projects you create still reset on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.16.0",
       "date": "2026-10-17",
       "title": "What needs you, first",
