@@ -24,6 +24,8 @@ import { RichTextExample } from "@/features/reference/examples/rich-text-example
 import richTextSource from "@/features/reference/examples/rich-text-example?raw"
 import { SwitchExample } from "@/features/reference/examples/switch-example"
 import switchSource from "@/features/reference/examples/switch-example?raw"
+import { SliderExample } from "@/features/reference/examples/slider-example"
+import sliderSource from "@/features/reference/examples/slider-example?raw"
 import { ProgressExample } from "@/features/reference/examples/progress-example"
 import progressSource from "@/features/reference/examples/progress-example?raw"
 import { KbdExample } from "@/features/reference/examples/kbd-example"
@@ -121,6 +123,7 @@ export const referenceExamples = [
   { id: "empty", Component: EmptyExample, source: emptySource },
   { id: "table", Component: TableExample, source: tableSource },
   { id: "switch", Component: SwitchExample, source: switchSource },
+  { id: "slider", Component: SliderExample, source: sliderSource },
   { id: "progress", Component: ProgressExample, source: progressSource },
   { id: "kbd", Component: KbdExample, source: kbdSource },
   { id: "toast", Component: ToastExample, source: toastSource },

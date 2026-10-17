@@ -655,7 +655,7 @@
     "category": "Public website",
     "surface": "Shared",
     "summary": "Compare sample plans and carry a choice into registration.",
-    "implemented": "Monthly/yearly pricing, explicit totals and plan selection through local sign-up.",
+    "implemented": "Monthly/yearly pricing, explicit totals, a team-size estimate and plan selection through local sign-up.",
     "deferred": "No checkout, charges or feature restrictions.",
     "examples": [
       {
@@ -1844,10 +1844,21 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Pick a value or range along a track with keyboard steps.",
-    "implemented": "",
-    "deferred": "Planned. Demo target: seat count in billing plan selection.",
-    "examples": [],
-    "sources": []
+    "implemented": "Kit Slider on Base UI: one thumb per value, so an array makes a range; its name, description and value text reach each thumb. Pricing's Team size uses it to estimate each plan's total.",
+    "deferred": "No range or vertical slider in Tandem yet.",
+    "examples": [
+      {
+        "label": "Team size on Pricing",
+        "href": "/pricing",
+        "instruction": "Drag Team size, or use the arrow keys, and compare each plan's total."
+      },
+      {
+        "label": "Slider reference",
+        "href": "/reference/components/slider",
+        "instruction": "Change the team size and read the Team plan total."
+      }
+    ],
+    "sources": ["src/kit/ui/slider.tsx", "src/features/public/pricing-page.tsx"]
   },
   {
     "id": "KIT-03",

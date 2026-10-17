@@ -133,7 +133,8 @@
     outline: 2px solid Highlight;
     outline-offset: -2px;
   }
-  [data-slot="progress-track"] {
+  [data-slot="progress-track"],
+  [data-slot="slider-track"] {
     border: 1px solid CanvasText;
   }
 }
