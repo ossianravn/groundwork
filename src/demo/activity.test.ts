@@ -65,8 +65,11 @@ it("drops the project from actions shown on the project's own page", () => {
 })
 
 it("groups a feed under week headings relative to the snapshot", () => {
-  const event = (id: string, date: string) =>
-    ({ id, date }) as Parameters<typeof activityWeeks>[0][number]
+  const event = (id: string, date: string) => ({
+    ...initialActivity[0],
+    id,
+    date,
+  })
 
   const weeks = activityWeeks(
     [

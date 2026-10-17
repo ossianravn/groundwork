@@ -10,7 +10,7 @@ it("lists active projects that need someone, most urgent first", () => {
 
   expect(items.every((item) => item.project.status !== "completed")).toBe(true)
   expect(items.map((item) => item.rank)).toEqual(
-    [...items.map((item) => item.rank)].sort((a, b) => a - b),
+    items.map((item) => item.rank).sort((a, b) => a - b),
   )
   expect(items.length).toBeGreaterThan(0)
 })

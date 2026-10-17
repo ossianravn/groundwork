@@ -26,6 +26,7 @@ The first steps of a layout pass: spacing tokens named for their role, checks th
 - `member-avatar`: initials sit on a soft tint of one of the six `--hue-*` hues, chosen from the person's name, so a person keeps one colour everywhere.
 - `dropdown-menu`: `DropdownMenuCheckboxItem`, an option that turns on and off and shows a check at the end of its row when on.
 - `toggle`: the small size's text is 14px (it was 12.8px, off the type ramp), which `toggle-group` items share.
+- `theme-panel`: appearance choices have two selected states. Choices with a preview (Theme, Density) are tiles with an ink edge and a check badge; the others (Accent colour, Corners, Header surface) form one segmented control whose chosen segment takes the toggle group's fill. `AppearanceChoices` options take a `mark` to lead a segment's label, which accents use for their swatch, and the label now reads Accent colour. The font picker stacks under its label at a font name's width.
 
 ### Menus, Select and AI components
 
@@ -40,6 +41,7 @@ The first steps of a layout pass: spacing tokens named for their role, checks th
 ### Repository
 
 - The layout contract counts a framed control group (`data-control-group`, like an input group) as one control when it checks a toolbar's heights.
+- The layout contract checks a code snippet's 13px monospace as code, like code blocks and terminals, rather than against the type ramp.
 - `npm run lint` includes `lint:spacing`, which reports raw spacing in demo code against a per-file baseline, and `npm run check:layout` checks each workspace page's anatomy in a browser. See [Checks](README.md#checks).
 
 ## v0.5.0 — 2026-10-13
