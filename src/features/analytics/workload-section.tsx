@@ -30,7 +30,11 @@ export function WorkloadSection({
   contributors: CompletionGroup[]
 }) {
   return (
-    <section className="analytics-section" aria-labelledby="analytics-workload">
+    <section
+      className="analytics-section"
+      aria-labelledby="analytics-workload"
+      data-page-zone="section"
+    >
       <header className="analytics-section-header">
         <h2 id="analytics-workload">Workload</h2>
         <p>Who has the work now, and who did it in the period.</p>

@@ -139,7 +139,9 @@ export function AnalyticsPage({
       tabIndex={-1}
     >
       <h1 className="sr-only">Analytics</h1>
-      <div className="analytics-toolbar">{filters}</div>
+      <div className="analytics-toolbar" data-page-zone="toolbar">
+        {filters}
+      </div>
       {missing ? (
         <>
           <Empty>
