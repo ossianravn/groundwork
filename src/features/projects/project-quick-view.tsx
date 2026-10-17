@@ -124,16 +124,18 @@ export function ProjectQuickView({
         <header className="quick-view-header">
           <div className="quick-view-title">
             <ProjectMark color={project.color} />
-            <ProjectInlineField
-              key={project.id}
-              field="name"
-              editing={editing}
-              members={members}
-              headingId="project-quick-view-title"
-            >
-              {project.name}
-            </ProjectInlineField>
-            <ProjectStatus status={project.status} />
+            <div className="record-title-name">
+              <ProjectInlineField
+                key={project.id}
+                field="name"
+                editing={editing}
+                members={members}
+                headingId="project-quick-view-title"
+              >
+                {project.name}
+              </ProjectInlineField>
+              <ProjectStatus status={project.status} />
+            </div>
           </div>
           <div className="quick-view-tools">
             {position && position.count > 1 && (

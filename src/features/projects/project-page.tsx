@@ -94,10 +94,16 @@ export function ProjectPage({
       <header className="project-page-heading" data-page-zone="header">
         <div className="project-page-title">
           <ProjectMark color={project.color} />
-          <ProjectInlineField field="name" editing={editing} members={members}>
-            {project.name}
-          </ProjectInlineField>
-          <ProjectStatus status={project.status} />
+          <div className="record-title-name">
+            <ProjectInlineField
+              field="name"
+              editing={editing}
+              members={members}
+            >
+              {project.name}
+            </ProjectInlineField>
+            <ProjectStatus status={project.status} />
+          </div>
           <div className="project-header-side">
             <ProjectCompletion
               project={project}

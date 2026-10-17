@@ -27,6 +27,11 @@
     overflow: hidden;
     clip-path: inset(50%);
   }
+  /* Headers stay for screen readers; sorting is in the toolbar, so the
+     hidden sort buttons leave the tab order. */
+  .project-table thead .table-sort {
+    visibility: hidden;
+  }
   .project-table tbody {
     display: grid;
   }

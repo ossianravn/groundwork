@@ -11,6 +11,29 @@
 .project-inline-value > .ui-button {
   color: var(--muted-foreground);
 }
+/* A record's title row (the project page and its quick view): the mark
+   sits on the name's first line, a long name wraps in place with its
+   pencil after it, and the status follows the name. The row sets
+   --title-line, the height of one line of its name. */
+.record-title-name {
+  display: flex;
+  flex: 1 1 18rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-control) var(--gap-item);
+  min-width: 0;
+}
+.record-title-name > .project-inline-field[data-field="name"] {
+  flex: 0 1 auto;
+}
+.record-title-name .project-inline-value {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.record-title-name .project-inline-value > .ui-button {
+  flex: none;
+  margin-block-start: calc((var(--title-line) - var(--control-height-sm)) / 2);
+}
 .project-inline-draft {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
