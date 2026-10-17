@@ -194,6 +194,8 @@ The board's compact density leaves out the description and the status, which its
 
 **Properties.** A record's properties are label and value rows whose values are quiet controls: no frame at rest, a frame on hover and focus, and a change saves at once (Linear's model). Owner and due date save as one is picked, tags as they change, and links as one is added through a small form or removed. A failed save keeps the saved value with Retry beside it; there is no separate edit dialog. Labels sit on their value's first line.
 
+**Metrics.** A metric is its label (a dotted text hint defining the figure, on every label or none), the figure at 32px with its 30-day trend beside it, then a caption saying what it counts.
+
 **Avatars.** Kit `MemberAvatar` puts a person's initials on a soft tint of one of the six categorical hues (`--hue-*`), chosen from their name, so each person keeps one colour across the workspace in both themes; a photo replaces the initials when the person has one.
 
 **Form footers.** Every form ends with its primary action at the right: Cancel first (outline in dialogs and page forms, ghost in inline edits), then the primary. Status text, such as Unsaved changes, sits at the start of the row. Dialog footers sit on the dialog's own surface, without a band or rule; a sheet keeps a hairline above its fixed footer, because its content scrolls behind it. The name's link covers the card, so a click anywhere opens the project, and Ctrl/⌘-click opens the full page; checkboxes and actions sit above that link. Hover darkens the border, focus on the name rings the whole card, and a selected card takes the brand's soft tint.

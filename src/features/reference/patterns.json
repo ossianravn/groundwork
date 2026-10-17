@@ -1728,7 +1728,7 @@
       {
         "label": "Due date definition",
         "href": "/app/demo/overview",
-        "instruction": "Hover or activate the dotted-underlined Due in 7 days label."
+        "instruction": "Hover or activate a metric label, such as Due in 7 days; every label defines its figure."
       }
     ],
     "sources": [

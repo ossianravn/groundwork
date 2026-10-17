@@ -45,8 +45,8 @@
   margin-bottom: 0.5rem;
 }
 .metric-value {
-  margin: var(--gap-control) 0 0.25rem;
-  font-size: calc(var(--text-metric) * 1.25);
+  margin: var(--gap-control) 0 var(--gap-inline);
+  font-size: var(--text-metric);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: var(--leading-metric);
