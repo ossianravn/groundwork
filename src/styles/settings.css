@@ -84,6 +84,11 @@
   border-top: 1px solid var(--border);
   padding-top: var(--gap-group);
 }
+/* Form footers end with the primary action, at the right (design-system.md,
+   form footers). */
+.settings-actions {
+  justify-content: flex-end;
+}
 .settings-appearance-footer {
   justify-content: space-between;
 }

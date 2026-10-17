@@ -170,11 +170,11 @@ export function ProjectInlineField({
             </p>
           )}
           <div className="project-inline-actions">
-            <Button type="submit" size="sm">
-              {failure ? "Retry save" : "Save"}
-            </Button>
             <Button type="button" variant="ghost" size="sm" onClick={cancel}>
               Cancel
+            </Button>
+            <Button type="submit" size="sm">
+              {failure ? "Retry save" : "Save"}
             </Button>
           </div>
         </form>

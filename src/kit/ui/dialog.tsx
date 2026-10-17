@@ -121,7 +121,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "mx-[calc(-1*var(--dialog-padding,var(--inset-panel)))] mb-[calc(-1*var(--dialog-padding,var(--inset-panel)))] flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-[var(--dialog-padding,var(--inset-panel))] sm:flex-row sm:justify-end max-md:flex-row max-md:flex-wrap max-md:justify-end max-md:py-(--gap-control) max-md:[&>.ui-button]:max-w-full max-md:[&>.ui-button]:whitespace-normal",
+        "flex flex-wrap items-center justify-end gap-(--gap-control) [&>.ui-button]:max-w-full [&>.ui-button]:whitespace-normal",
         className,
       )}
       {...props}

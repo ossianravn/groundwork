@@ -29,6 +29,7 @@
 .project-inline-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: var(--gap-control);
 }
 .project-properties {
