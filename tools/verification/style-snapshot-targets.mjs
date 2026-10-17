@@ -60,7 +60,7 @@ export const states = [
     ["click", ".mobile-sidebar .account-menu-trigger"],
     appearanceItem,
   ],
-  ["project-sheet", "/app/demo/projects?inspect=brand"],
+  ["project-quick-view", "/app/demo/projects?inspect=brand"],
   [
     "compose",
     "/app/demo/inbox",

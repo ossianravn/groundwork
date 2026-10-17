@@ -126,7 +126,7 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | --- | --- | --- | --- | --- |
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
-| KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
+| KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and quick view | Example |
 | KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
 | KIT-06 | Hover card | [Design system](design-system.md) | owner names in the Projects table and people in Activity | Example |
@@ -259,7 +259,7 @@ Updated 2026-09-25 from the actual router, persistent workspace owner, reused ta
 | TABL-02 | Implemented subset: URL search, multi-value Status/Owner facets/counts, valid page reset and reload/history reconstruction | Detail/editor return verified, including changed filter membership |
 | TABL-03 | Implemented subset: reused column visibility survives inspection/query updates and detail navigation; session view state | Column reordering remains an optional later variant |
 | TABL-05 | Implemented subset: URL-backed page size/page, first/previous/next/last and Back; invalid pages clamp | Detail/editor round trip verified |
-| TABL-06 | Implemented subset: URL-backed live B Sheet, completion feedback and focus return, missing-record recovery | Full-detail and editor links verified |
+| TABL-06 | Implemented subset: URL-backed live B Sheet, completion feedback and focus return, missing-record recovery (2026-10-17: replaced by the project quick view, a dialog with the full record, J/K stepping and Open full page) | Full-detail and editor links verified |
 | TABL-08 | Implemented subset: workspace preview/expansion and newest-first project activity on detail; create/edit/completion are reflected immediately | Dedicated Activity page remains later |
 | NAV-02 | Implemented subset: active Overview/Projects navigation, page titles and shell context; mobile destination focus | Detail breadcrumb and explicit origin return implemented; dropdown variants remain later |
 | SYS-02, SYS-06 | Implemented subset: shared project search and skip link across both routes, inspector handoff and return focus | Broader command categories/history remain later |
@@ -403,7 +403,7 @@ AUTH-02 now has local Google/GitHub choices, continuation, single-use callback, 
 
 ## Activity and contextual help - 2026-09-27
 
-- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
+- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. (2026-10-17: Overview, a project's Activity tab and the Activity page share one `ActivityRow`, a sentence with the date at the end of the line.) New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
 - **NAV-06 / SYS-05:** contextual Help via one sidebar action; existing guide disclosure, Help center/Contact destinations, and working search/help shortcuts.
 - **SYS-07:** dotted-underlined explanatory terms use the shared TextHint; hover and pointer/keyboard activation reveal the same content. Existing icon tooltips retain accessible names. The reference library now has eleven documented component examples.
 

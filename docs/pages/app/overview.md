@@ -52,7 +52,7 @@ Chart, Card, Tabs where there are panels, Calendar, Popover and Select compose t
 
 ### Analytics sections — 2026-10-01
 
-Analytics is one scrolling page under one filter row (project, period, Compare with previous period). Sections have a visible heading and a line saying what they answer; charts inside use h3 result headings.
+Analytics is one scrolling page under one filter row (project, period, Compare with previous period). Sections have a visible heading and a line saying what they answer; charts inside use the shared chart header: an h3 naming the chart, then its key figure and takeaway, with its controls (a project, two people) at the end.
 
 - **Delivery** answers whether work is finished as fast as it arrives. Tasks completed and added (two areas with a toggle legend), change in open tasks (bars above or below zero) and median cycle time (labelled points). Ranges over a month read by week (`w/c 6 Jul`); cycle time reads by week past two weeks, because a day's few tasks give noisy medians. Completions come from Activity and additions and cycle times from task dates (`src/demo/delivery.ts`).
 - **Compare with previous period** (`compare=true`) uses the window of the same length ending the day before. Headings gain the change (+70 completed vs previous 30 days; faster or slower cycle time) and the area chart a keyed dashed line. When that window starts before the recorded history (26 June), the section says so instead of comparing with zeros.

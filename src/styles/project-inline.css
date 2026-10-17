@@ -29,6 +29,7 @@
 .project-inline-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: var(--gap-control);
 }
 .project-properties {
@@ -36,4 +37,61 @@
 }
 .project-properties > div {
   max-width: 100%;
+}
+/* Properties change in place: their values are quiet controls that read as
+   values until hovered or focused, then show their frame. */
+.project-properties
+  :is(.project-property-control, [data-slot="combobox-chips"]) {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+.project-properties .project-property-control {
+  margin-inline-start: calc(var(--space-2) * -1);
+  padding-inline: var(--space-2);
+  font-weight: 400;
+}
+.project-properties [data-slot="combobox-chips"] {
+  margin-inline-start: calc(var(--space-1) * -1);
+}
+.project-properties
+  :is(.project-property-control, [data-slot="combobox-chips"]):is(
+    :hover,
+    :focus-visible,
+    :focus-within,
+    [data-popup-open]
+  ) {
+  border-color: var(--input);
+}
+.project-properties dd:has(.project-link-editor) {
+  align-items: start;
+}
+.project-link-editor {
+  display: grid;
+  justify-items: start;
+  gap: var(--gap-inline);
+  min-width: 0;
+  width: 100%;
+}
+.project-link-editor .project-links li {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-inline);
+}
+.project-link-add {
+  margin-inline-start: calc(var(--space-2) * -1);
+  color: var(--muted-foreground);
+}
+.project-link-form {
+  display: grid;
+  gap: var(--gap-item);
+  width: 100%;
+}
+.project-property-failure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-control);
+  color: var(--destructive);
+  font-size: var(--text-meta);
 }

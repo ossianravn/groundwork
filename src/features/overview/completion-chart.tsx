@@ -90,23 +90,22 @@ export function CompletionChart({
     <Card className="completion-card">
       <CardHeader>
         <ChartHeader
-          title={
-            <>
-              <h2 className="sr-only">Tasks completed and added</h2>
-              <ChartSeriesPicker
-                label="Show tasks"
-                value={shown}
-                onValueChange={(key) => {
-                  if (isSeries(key)) setShown(key)
-                }}
-                series={(["completed", "added"] as const).map((key) => ({
-                  key,
-                  label: series[key].label,
-                  color: "var(--brand)",
-                  total: totals[key],
-                }))}
-              />
-            </>
+          title="Tasks completed and added"
+          headingLevel="h2"
+          figure={
+            <ChartSeriesPicker
+              label="Show tasks"
+              value={shown}
+              onValueChange={(key) => {
+                if (isSeries(key)) setShown(key)
+              }}
+              series={(["completed", "added"] as const).map((key) => ({
+                key,
+                label: series[key].label,
+                color: "var(--brand)",
+                total: totals[key],
+              }))}
+            />
           }
         >
           {periodControl}

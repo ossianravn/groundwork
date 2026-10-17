@@ -12,9 +12,11 @@ import {
   EmptyContent,
 } from "@/kit/ui/empty"
 import { useWorkspace } from "@/demo/use-workspace"
+import { useProjectDrafts } from "@/demo/use-project-drafts"
 import { ProjectsTableView } from "@/features/overview/projects-table"
 import { initialProjectTableState } from "@/features/overview/project-table-state"
-import { ProjectDetails } from "@/features/projects/project-details"
+import { ProjectQuickView } from "@/features/projects/project-quick-view"
+import { projectRecord } from "@/features/projects/project-record"
 import { StateCreateProject } from "./state-create-project"
 import type { StateScenario } from "./state-catalog"
 
@@ -41,6 +43,7 @@ const failures = {
 
 export function StateProjects({ scenario }: { scenario: StateScenario }) {
   const demo = useWorkspace()
+  const drafts = useProjectDrafts()
   const [resolved, setResolved] = useState(false)
   const [creating, setCreating] = useState(false)
   const [createdIds, setCreatedIds] = useState<string[]>([])
@@ -53,6 +56,7 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
     },
   })
   const surface = useRef<HTMLDivElement>(null)
+  const selectedProject = demo.projects.find((item) => item.id === selected)
   const opener = useRef<HTMLElement | null>(null)
   const projects =
     scenario === "first-use"
@@ -169,14 +173,15 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
           />
         )}
       </div>
-      <ProjectDetails
-        project={projects.find((project) => project.id === selected)}
-        created={false}
-        members={demo.workspace.members}
-        onClose={() => setSelected("")}
-        onComplete={demo.completeProject}
-        returnFocus={() => opener.current ?? surface.current}
-      />
+      {selectedProject && (
+        <ProjectQuickView
+          {...projectRecord(demo, drafts, selectedProject)}
+          files={null}
+          fullPage={null}
+          onClose={() => setSelected("")}
+          returnFocus={() => opener.current ?? surface.current}
+        />
+      )}
     </>
   )
 }

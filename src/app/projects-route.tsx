@@ -62,11 +62,12 @@ export function ProjectsRoute() {
           variant: "ghost",
           className: "project-name",
         })}
+        onOpen={() => onSelectProject(project.id)}
       >
         <span className="truncate">{project.name}</span>
       </ProjectDetailLink>
     ),
-    [],
+    [onSelectProject],
   )
 
   // Stable, like renderName: new column renderers would remount every cell.
@@ -151,6 +152,7 @@ export function ProjectsRoute() {
               <ProjectDetailLink
                 projectId={project.id}
                 className="timeline-link"
+                onOpen={() => onSelectProject(project.id)}
               >
                 {project.name}
               </ProjectDetailLink>

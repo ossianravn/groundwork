@@ -12,6 +12,14 @@ export function SettingsActions({
 }) {
   return (
     <div className="settings-actions">
+      <Button
+        type="button"
+        variant="outline"
+        onClick={onCancel}
+        disabled={!dirty}
+      >
+        Cancel
+      </Button>
       <Button type="submit" disabled={!dirty}>
         {saved && !dirty ? (
           <>
@@ -21,14 +29,6 @@ export function SettingsActions({
         ) : (
           "Save changes"
         )}
-      </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        onClick={onCancel}
-        disabled={!dirty}
-      >
-        Cancel
       </Button>
       <span role="status" className="sr-only">
         {saved && !dirty ? "Changes saved for this demo session." : ""}

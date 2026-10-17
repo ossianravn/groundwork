@@ -46,12 +46,11 @@ export function CycleTimeChart({
 
   const heading =
     cycle === null ? (
-      <ChartTotal as="h3" value="–" unit="median cycle time" />
+      <ChartTotal value="–" unit="median" />
     ) : (
       <ChartTotal
-        as="h3"
         value={Number(cycle.toFixed(1))}
-        unit={`${cycle === 1 ? "day" : "days"} median cycle time`}
+        unit={`${cycle === 1 ? "day" : "days"} median`}
       />
     )
 
@@ -59,7 +58,7 @@ export function CycleTimeChart({
     <AnalyticsChartCard
       label="Cycle time"
       empty={cycle === null}
-      heading={heading}
+      figure={heading}
       description={`From adding a task to completing it.${change}`}
       table={
         <ChartDataTable

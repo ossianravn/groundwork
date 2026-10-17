@@ -42,11 +42,6 @@ export function StatusBreakdown({ projects }: { projects: Project[] }) {
     <AnalyticsChartCard
       label="Projects by status"
       empty={!projects.length}
-      heading={
-        <h3 className="font-heading text-base font-semibold">
-          Projects by status
-        </h3>
-      }
       description={`${open} open, ${projects.length - open} completed.`}
       table={
         <ChartDataTable

@@ -2,7 +2,6 @@ import { ProjectProgressBar } from "@/components/project-progress-bar"
 import { dataTableFeatures } from "@/kit/data-table/table-features"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { ReactNode } from "react"
-import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectMark } from "@/components/project-identity"
@@ -23,7 +22,6 @@ export const projectColumnWidths = {
   progress: 9.5,
   owner: 7.5,
   dueDate: 7,
-  actions: 4,
 }
 
 type ProjectColumnId = keyof typeof projectColumnWidths
@@ -64,6 +62,7 @@ export function projectColumns(
               className="project-name"
               title={project.name}
               id={`project-link-${project.id}`}
+              data-quick-view-id={project.id}
               onClick={() => onSelect(project.id)}
             >
               <span className="truncate">{project.name}</span>
@@ -130,23 +129,6 @@ export function projectColumns(
         <span className="text-muted-foreground">
           {formatDate(row.original.dueDate)}
         </span>
-      ),
-    },
-    {
-      id: "actions",
-      header: () => <span className="sr-only">Actions</span>,
-      enableSorting: false,
-      enableHiding: false,
-      cell: ({ row }) => (
-        <Button
-          variant="ghost"
-          size="icon-sm"
-          id={`project-inspect-${row.original.id}`}
-          aria-label={`Inspect ${row.original.name}`}
-          onClick={() => onSelect(row.original.id)}
-        >
-          <ArrowUpRight aria-hidden="true" />
-        </Button>
       ),
     },
   ]

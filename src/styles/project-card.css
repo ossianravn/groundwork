@@ -1,0 +1,146 @@
+/* Project cards (features/projects/project-card.tsx) in the cards view and on
+   the board. The name's link covers the card, so the whole card opens the
+   project; the checkbox and actions sit above that link. */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-item);
+  min-width: 0;
+  padding: var(--inset-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+.project-card[data-density="board"] {
+  gap: var(--gap-control);
+}
+.project-card:hover {
+  border-color: color-mix(in oklch, var(--foreground) 24%, var(--border));
+}
+.project-card[data-selected] {
+  border-color: color-mix(in oklch, var(--brand) 45%, var(--border));
+  background: color-mix(in srgb, var(--brand-soft) 60%, var(--card));
+}
+/* Focus on the name rings the whole card it stands for. */
+.project-card:has(.project-card-title :focus-visible) {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.project-card-title :focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+.project-card-head {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  min-height: var(--control-height-sm);
+}
+/* The mark and the checkbox share one place: the checkbox shows on hover,
+   on focus, when the card is selected and while any card is. */
+.project-card-lead {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+.project-card-lead > * {
+  grid-area: 1 / 1;
+}
+.project-card-lead [data-slot="checkbox"] {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
+.project-card:is(:hover, :focus-within, [data-selected])
+  .project-card-lead
+  [data-slot="checkbox"],
+[data-selecting] .project-card-lead [data-slot="checkbox"] {
+  opacity: 1;
+}
+.project-card:is(:hover, :focus-within, [data-selected])
+  .project-card-lead:has([data-slot="checkbox"])
+  > .project-dot,
+[data-selecting] .project-card-lead:has([data-slot="checkbox"]) > .project-dot {
+  opacity: 0;
+}
+@media (hover: none) {
+  .project-card-lead [data-slot="checkbox"] {
+    opacity: 1;
+  }
+  .project-card-lead:has([data-slot="checkbox"]) > .project-dot {
+    opacity: 0;
+  }
+}
+.project-card-title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-section);
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.project-card[data-density="board"] .project-card-title {
+  font-size: var(--text-body);
+}
+.project-card-title .project-name {
+  display: inline;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  white-space: normal;
+  cursor: pointer;
+}
+.project-card-title .project-name .truncate {
+  white-space: normal;
+}
+.project-card-title .project-name::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.project-card-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  margin-inline-end: calc(var(--space-2) * -1);
+}
+.project-card-meta,
+.project-card-progress,
+.project-card-owner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.project-card-meta {
+  flex-wrap: wrap;
+}
+.project-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: var(--muted-foreground);
+}
+/* Progress and owner end every card in a row at the same line. */
+.project-card-progress {
+  margin-top: auto;
+  font-variant-numeric: tabular-nums;
+}
+.project-card-progress [data-slot="progress"] {
+  flex: 1;
+}

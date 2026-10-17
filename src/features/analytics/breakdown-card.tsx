@@ -1,12 +1,7 @@
 import type { ReactNode } from "react"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/kit/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
 import { Button } from "@/kit/ui/button"
+import { ChartHeader } from "@/kit/ui/chart-header"
 import {
   Empty,
   EmptyHeader,
@@ -46,9 +41,7 @@ export function BreakdownCard({
   return (
     <Card className="analytics-breakdown">
       <CardHeader>
-        <CardTitle>
-          <h3>{title}</h3>
-        </CardTitle>
+        <ChartHeader title={title} />
       </CardHeader>
       <CardContent>
         {!rows.length ? (

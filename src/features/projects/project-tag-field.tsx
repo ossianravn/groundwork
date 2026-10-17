@@ -17,10 +17,15 @@ export function ProjectTagField({
   tags,
   options,
   onChange,
+  id = "edit-project-tags",
+  hideLabel = false,
 }: {
   tags: string[]
   options: string[]
   onChange: (tags: string[]) => void
+  id?: string
+  /** For a row that shows its label beside the field. */
+  hideLabel?: boolean
 }) {
   const anchor = useRef<HTMLDivElement | null>(null)
   const [query, setQuery] = useState("")
@@ -40,7 +45,9 @@ export function ProjectTagField({
 
   return (
     <Field>
-      <FieldLabel htmlFor="edit-project-tags">Tags</FieldLabel>
+      <FieldLabel htmlFor={id} className={hideLabel ? "sr-only" : undefined}>
+        Tags
+      </FieldLabel>
       <Combobox
         multiple
         autoHighlight
@@ -63,8 +70,8 @@ export function ProjectTagField({
             </ComboboxChip>
           ))}
           <ComboboxChipsInput
-            id="edit-project-tags"
-            placeholder="Select or create tags…"
+            id={id}
+            placeholder={tags.length ? "Add tag…" : "Select or create tags…"}
           />
         </ComboboxChips>
         <ComboboxContent anchor={anchor}>

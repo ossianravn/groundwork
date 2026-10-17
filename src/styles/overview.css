@@ -45,8 +45,8 @@
   margin-bottom: 0.5rem;
 }
 .metric-value {
-  margin: var(--gap-control) 0 0.25rem;
-  font-size: calc(var(--text-metric) * 1.25);
+  margin: var(--gap-control) 0 var(--gap-inline);
+  font-size: var(--text-metric);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: var(--leading-metric);
@@ -207,54 +207,6 @@
   height: 0.4rem;
   border-radius: 2px;
   background: var(--brand);
-}
-.activity-list {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--gap-group);
-}
-.activity-list li {
-  display: flex;
-  min-width: 0;
-  gap: 0.75rem;
-  position: relative;
-}
-.activity-list li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 0.71875rem;
-  top: 2rem;
-  bottom: calc(0.25rem - var(--gap-group));
-  width: 1px;
-  background: var(--border);
-}
-.activity-copy {
-  overflow-wrap: anywhere;
-  font-size: var(--text-body);
-  line-height: 1.5;
-  color: var(--muted-foreground);
-}
-.activity-copy .activity-project {
-  display: inline;
-  padding: 0;
-  min-height: 0;
-  height: auto;
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-align: left;
-  justify-content: flex-start;
-  font-size: var(--text-body);
-  font-weight: 500;
-}
-.activity-project svg {
-  display: inline;
-  margin-inline-start: 0.25em;
-  vertical-align: -0.125em;
-}
-.activity-list time {
-  margin-top: 0.15rem;
-  font-size: var(--text-meta);
 }
 @media (width < 64rem) {
   .activity-card[data-expanded="false"] .activity-body {

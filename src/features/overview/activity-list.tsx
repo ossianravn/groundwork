@@ -1,6 +1,5 @@
 import { projectColorStyle } from "@/components/project-color"
 import { useRef, useState, type ReactNode } from "react"
-import { ArrowUpRight } from "lucide-react"
 import {
   Card,
   CardContent,
@@ -10,13 +9,8 @@ import {
 } from "@/kit/ui/card"
 import { Button } from "@/kit/ui/button"
 import { ScrollArea } from "@/kit/ui/scroll-area"
-import { MemberAvatar } from "@/kit/member-avatar"
-import {
-  formatDate,
-  type Activity,
-  type Member,
-  type Project,
-} from "@/demo/model"
+import { ActivityRow } from "@/components/activity-row"
+import type { Activity, Member, Project } from "@/demo/model"
 
 interface ActivityListProps {
   activity: Activity[]
@@ -71,7 +65,7 @@ export function ActivityList({
                 : "Latest workspace activity",
             }}
           >
-            <ol className="activity-list">
+            <ol className="activity-rows">
               {events.map((event) => {
                 const member = members.find(
                   (item) => item.id === event.memberId,
@@ -87,37 +81,23 @@ export function ActivityList({
                   )
 
                 return (
-                  <li key={event.id}>
-                    <MemberAvatar member={member} size="sm" />
-                    <div className="min-w-0">
-                      <p className="activity-copy">
-                        <span className="font-medium text-foreground">
-                          {member.name}
-                        </span>{" "}
-                        {event.action}{" "}
-                        <Button
-                          variant="link"
-                          size="sm"
-                          className="activity-project"
-                          style={projectColorStyle(project.color)}
-                          onClick={() => onSelectProject(project.id)}
-                          id={`activity-project-${event.id}`}
-                        >
-                          {project.name}
-                          <ArrowUpRight
-                            data-icon="inline-end"
-                            aria-hidden="true"
-                          />
-                        </Button>
-                      </p>
-                      <time
-                        className="block text-xs text-muted-foreground"
-                        dateTime={event.date}
+                  <ActivityRow
+                    key={event.id}
+                    person={member}
+                    action={event.action}
+                    project={
+                      <button
+                        type="button"
+                        className="activity-project-link"
+                        style={projectColorStyle(project.color)}
+                        onClick={() => onSelectProject(project.id)}
+                        id={`activity-project-${event.id}`}
                       >
-                        {formatDate(event.date)}
-                      </time>
-                    </div>
-                  </li>
+                        {project.name}
+                      </button>
+                    }
+                    date={event.date}
+                  />
                 )
               })}
             </ol>

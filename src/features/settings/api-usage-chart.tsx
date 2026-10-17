@@ -67,9 +67,8 @@ export function ApiUsageChart({ keys }: { keys: ApiKey[] }) {
       label="API requests"
       className="settings-chart"
       empty={!total}
-      heading={
+      figure={
         <ChartTotal
-          as="h3"
           value={total.toLocaleString("en-GB")}
           unit="requests in 30 days"
         />

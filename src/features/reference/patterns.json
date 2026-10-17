@@ -380,28 +380,29 @@
   },
   {
     "id": "EDGE-04",
-    "title": "Inline and dialog project editing",
+    "title": "Inline project editing",
     "originalName": "Inline Click-to-Edit Field",
     "category": "Feedback & recovery",
     "surface": "Workspace",
     "summary": "Edit project values in context with explicit save and cancel.",
-    "implemented": "The project name edits in place with Save/Cancel; owner, due date, tags and links edit together in a Details dialog from the rail's one Edit action. Both validate, handle a rejected save with retry, and record their actual change in Activity. The inline name keeps a navigation draft; the dialog starts from the saved project each time it opens.",
+    "implemented": "The project name edits in place with Save/Cancel. Project details change in place, in the project page's rail and the quick view: owner and due date save as soon as one is picked, tags as they change, links as one is added (a small form that checks the URL) or removed. A rejected save keeps the saved value and offers Retry, and every change is recorded in Activity. The inline name keeps a navigation draft. (2026-10-17: replaced the Details dialog.)",
     "deferred": "Description and colour use the full editor. No production concurrency or conflict-resolution service.",
     "examples": [
       {
         "label": "Edit project details",
         "href": "/app/demo/projects/brand",
-        "instruction": "Use the pencil beside the project name, or Edit beside Details to change the owner, due date, tags or links."
+        "instruction": "Use the pencil beside the project name, or change the owner, due date, tags or links in Project details."
       },
       {
         "label": "Rejected save",
         "href": "/app/demo/projects/brand?scenario=save-failure",
-        "instruction": "Open Edit beside Details, change the owner and save. The local simulation rejects the first save; Retry save keeps and saves the value."
+        "instruction": "Change the owner in Project details. The local simulation rejects the first save; Retry saves it."
       }
     ],
     "sources": [
       "src/features/projects/project-inline-field.tsx",
-      "src/features/projects/project-details-dialog.tsx",
+      "src/features/projects/project-properties.tsx",
+      "src/features/projects/project-link-editor.tsx",
       "src/features/projects/project-inline-editing.ts",
       "src/demo/project-draft.ts"
     ]
@@ -1038,7 +1039,7 @@
     ],
     "sources": [
       "src/features/projects/project-form.tsx",
-      "src/app/use-project-drafts.ts",
+      "src/demo/use-project-drafts.ts",
       "src/features/reference/state-editor.tsx"
     ]
   },
@@ -1546,23 +1547,24 @@
   },
   {
     "id": "TABL-06",
-    "title": "Project inspector",
+    "title": "Project quick view",
     "originalName": "Slide-Over Inspection Drawer",
     "category": "Data views",
     "surface": "Workspace",
-    "summary": "Inspect one record while retaining the surrounding results.",
-    "implemented": "B panel shows progress, metadata, completion and full-detail/edit links with focus return.",
-    "deferred": "Additional inspector variants remain planned.",
+    "summary": "Open a project in place, keep the list behind it, and step through the list.",
+    "implemented": "A click on a project's name, card, board card or timeline bar, a search result or an activity link opens the project as a dialog over the list, with its URL (?inspect=) so Back closes it and the link can be shared. It holds the name (renamed in place), status and properties, the description and progress, tasks, comments, activity and files; Open full page leads to the project page, and Ctrl/⌘-click on a name opens that page directly. J and K step through the list it was opened from, and closing returns focus to the last project shown. It replaced the side-panel inspector on 2026-10-17.",
+    "deferred": "No multi-project quick view or side-by-side comparison.",
     "examples": [
       {
-        "label": "Inspect projects",
-        "href": "/app/demo/projects",
-        "instruction": "Use a project rowï¿½s inspect arrow to open the side panel."
+        "label": "Quick view",
+        "href": "/app/demo/projects?view=grid",
+        "instruction": "Click a card, then press J and K to step through the projects."
       }
     ],
     "sources": [
-      "src/features/projects/project-details.tsx",
-      "src/features/projects/project-progress.tsx"
+      "src/features/projects/project-quick-view.tsx",
+      "src/features/projects/project-record.ts",
+      "src/app/project-quick-view-host.tsx"
     ]
   },
   {
@@ -1601,7 +1603,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Understand recent changes and reach the related project.",
-    "implemented": "Recent activity and full date-grouped workspace history share live events. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
+    "implemented": "Recent activity, a project's Activity tab and full date-grouped workspace history share live events and one ActivityRow: one sentence with the date at the end of the line. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
     "deferred": "Historical fixture events contain no invented before/after values. No remote pagination or trusted audit service.",
     "examples": [
       {
@@ -1616,6 +1618,7 @@
       }
     ],
     "sources": [
+      "src/components/activity-row.tsx",
       "src/features/overview/activity-list.tsx",
       "src/features/activity/activity-timeline.tsx",
       "src/features/activity/activity-detail.tsx",
@@ -1629,7 +1632,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Move work through status columns while keeping all views consistent.",
-    "implemented": "Pointer/keyboard dragging, menu moves, empty columns and retry; reopening preserves tasks.",
+    "implemented": "Pointer/keyboard dragging, menu moves, empty columns and retry; reopening preserves tasks. Cards are the shared ProjectCard in its compact density: the column names the status, and a click anywhere on a card opens the project.",
     "deferred": "Lane customization and alternative pipelines remain planned.",
     "examples": [
       {
@@ -1645,7 +1648,8 @@
     ],
     "sources": [
       "src/features/projects/project-board.tsx",
-      "src/features/projects/project-board-drag.tsx"
+      "src/features/projects/project-board-drag.tsx",
+      "src/features/projects/project-card.tsx"
     ]
   },
   {
@@ -1676,7 +1680,8 @@
     ],
     "sources": [
       "src/features/projects/project-view-toggle.tsx",
-      "src/features/projects/project-grid.tsx"
+      "src/features/projects/project-grid.tsx",
+      "src/features/projects/project-card.tsx"
     ]
   },
   {
@@ -1723,7 +1728,7 @@
       {
         "label": "Due date definition",
         "href": "/app/demo/overview",
-        "instruction": "Hover or activate the dotted-underlined Due in 7 days label."
+        "instruction": "Hover or activate a metric label, such as Due in 7 days; every label defines its figure."
       }
     ],
     "sources": [
@@ -1882,7 +1887,7 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Choose a date from a calendar that follows density and theme.",
-    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and the Details dialog.",
+    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and in Project details.",
     "deferred": "No typed date entry or time of day.",
     "examples": [
       {
@@ -1891,9 +1896,9 @@
         "instruction": "Open Due date and choose a day."
       },
       {
-        "label": "Details dialog",
+        "label": "Project details",
         "href": "/app/demo/projects/brand",
-        "instruction": "Choose Edit beside Details, then open Due date."
+        "instruction": "Open the due date in Project details and choose a day."
       }
     ],
     "sources": [
@@ -3563,18 +3568,18 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show how far something is toward done, with the figure in the ring.",
-    "implemented": "Project cards in the Projects grid show completion as a ring in the project's hue with the percentage inside and \"24 of 32 tasks done\" beside it (kit RadialProgress, a meter with its value and label exposed).",
+    "implemented": "Kit RadialProgress, a meter with its value and label exposed, in the chart gallery's Radial family. Project cards showed it until 2026-10-17; they now show progress once, as a bar.",
     "deferred": "Billing has no plan limits (it charges per seat), so the planned usage ring there was not built rather than inventing a limit.",
     "examples": [
       {
-        "label": "Projects grid",
-        "href": "/app/demo/projects?view=grid",
-        "instruction": "Each card's ring shows its share of tasks done."
+        "label": "Chart gallery",
+        "href": "/reference/charts?family=radial",
+        "instruction": "The first variant shows a ring with the figure inside."
       }
     ],
     "sources": [
       "src/kit/ui/radial-progress.tsx",
-      "src/features/projects/project-grid.tsx"
+      "src/features/reference/charts/small-charts.tsx"
     ]
   },
   {

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 import { Info } from "lucide-react"
 import { Button } from "@/kit/ui/button"
-import { MemberAvatar } from "@/kit/member-avatar"
+import { ActivityRow } from "@/components/activity-row"
 import {
   formatDate,
   type Activity,
@@ -38,7 +38,7 @@ export function ActivityTimeline({
           <h2>
             <time dateTime={date}>{formatDate(date)}</time>
           </h2>
-          <ol>
+          <ol className="activity-rows">
             {events
               .filter((event) => event.date === date)
               .map((event) => {
@@ -51,42 +51,38 @@ export function ActivityTimeline({
                 )
 
                 return (
-                  <li key={event.id}>
-                    <MemberAvatar
-                      member={
-                        person ?? {
-                          id: event.memberId,
-                          name: "Former member",
-                          initials: "?",
-                        }
+                  <ActivityRow
+                    key={event.id}
+                    person={
+                      person ?? {
+                        id: event.memberId,
+                        name: "Former member",
+                        initials: "?",
                       }
-                      size="sm"
-                    />
-                    <p>
-                      <span className="font-medium">
-                        {person ? renderPerson(person) : "Former member"}
-                      </span>{" "}
-                      <span className="text-muted-foreground">
-                        {event.action}
-                      </span>{" "}
-                      {project ? (
+                    }
+                    name={person && renderPerson(person)}
+                    action={event.action}
+                    project={
+                      project ? (
                         renderProject(project, event.id)
                       ) : (
                         <span>an unavailable project</span>
-                      )}
-                    </p>
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      className="activity-event-details"
-                      aria-haspopup="dialog"
-                      id={`event-${event.id}`}
-                      aria-label={`View event: ${person?.name ?? "Former member"} ${event.action} ${project?.name ?? "unavailable project"}`}
-                      onClick={() => onDetails(event)}
-                    >
-                      <Info aria-hidden="true" />
-                    </Button>
-                  </li>
+                      )
+                    }
+                    trailing={
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        className="activity-event-details"
+                        aria-haspopup="dialog"
+                        id={`event-${event.id}`}
+                        aria-label={`View event: ${person?.name ?? "Former member"} ${event.action} ${project?.name ?? "unavailable project"}`}
+                        onClick={() => onDetails(event)}
+                      >
+                        <Info aria-hidden="true" />
+                      </Button>
+                    }
+                  />
                 )
               })}
           </ol>

@@ -6,6 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/kit/ui/chart"
 import { ChartDataTable } from "@/kit/ui/chart-data-table"
+import { ChartTotal } from "@/kit/ui/chart-header"
 import { useChartTypography } from "@/kit/ui/use-chart-typography"
 import { CompletionDateAxis } from "@/features/overview/completion-date-axis"
 import { AnalyticsChartCard } from "@/features/analytics/analytics-chart-card"
@@ -52,14 +53,21 @@ export function DeliveryHistoryChart({ webhooks }: { webhooks: Webhook[] }) {
     ? `${failed} failed ${failed === 1 ? "delivery" : "deliveries"} in 14 days`
     : `All ${delivered} deliveries succeeded`
 
+  const figure = failed ? (
+    <ChartTotal
+      value={failed}
+      unit={`failed ${failed === 1 ? "delivery" : "deliveries"} in 14 days`}
+    />
+  ) : (
+    <ChartTotal value={delivered} unit="deliveries, all succeeded" />
+  )
+
   return (
     <AnalyticsChartCard
       label="Deliveries"
       className="settings-chart"
       empty={!delivered && !failed}
-      heading={
-        <h3 className="font-heading text-base font-semibold">{heading}</h3>
-      }
+      figure={figure}
       description={`${delivered} delivered across ${webhooks.length} endpoints. Each endpoint lists its recent deliveries below.`}
       legend={
         <span className="analytics-poles">

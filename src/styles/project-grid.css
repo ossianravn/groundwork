@@ -33,55 +33,6 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
   gap: var(--gap-group);
 }
-.project-grid > li {
-  min-width: 0;
-  display: flex;
-}
-.project-grid-card {
-  container: project-card / inline-size;
-  width: 100%;
-  border: 1px solid var(--border);
-  box-shadow: none;
-}
-.project-grid-card[data-selected="true"] {
-  background: var(--muted);
-}
-.project-grid-status,
-.project-grid-progress [data-slot="radial-progress"] {
-  color: var(--foreground);
-}
-.project-grid-status {
-  margin-bottom: var(--gap-control);
-}
-.project-grid-card .project-name {
-  display: inline;
-  white-space: normal;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-.project-grid-card .project-name .truncate {
-  white-space: normal;
-}
-.project-grid-progress {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-group);
-  margin-top: auto;
-  font-size: var(--text-meta);
-  color: var(--muted-foreground);
-}
-.project-grid-footer {
-  flex-wrap: wrap;
-  gap: var(--gap-control);
-  padding-block: var(--gap-control);
-  font-size: var(--text-meta);
-}
-.project-grid-footer .owner-cell {
-  margin-inline-end: auto;
-}
-.project-grid-due {
-  color: var(--muted-foreground);
-}
 /* With four views and saved views, labels give way before the row wraps;
    each option keeps its accessible name and a title. */
 @container project-views (max-width: 80rem) {
@@ -100,21 +51,5 @@
 @container project-views (max-width: 22rem) {
   .project-view-current {
     display: none;
-  }
-}
-@container project-card (max-width: 17.5rem) {
-  .project-grid-footer {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .project-grid-footer .owner-cell {
-    grid-column: 1;
-  }
-  .project-grid-due {
-    grid-column: 1;
-  }
-  .project-grid-footer .ui-button {
-    grid-column: 2;
-    grid-row: 1 / span 2;
   }
 }
