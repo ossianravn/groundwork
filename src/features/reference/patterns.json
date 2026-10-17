@@ -2323,7 +2323,7 @@
     "category": "System",
     "surface": "Workspace",
     "summary": "Show grouped results across projects, people, messages and help.",
-    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; a project opened from it names Search in its breadcrumb, which returns to the results.",
+    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters for the kinds that have results, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; a project opened from it names Search in its breadcrumb, which returns to the results.",
     "deferred": "No ranking beyond title-first, fuzzy matching or recent searches.",
     "examples": [
       {
