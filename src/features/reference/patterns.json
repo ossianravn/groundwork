@@ -1630,7 +1630,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Move work through status columns while keeping all views consistent.",
-    "implemented": "Pointer/keyboard dragging, menu moves, empty columns and retry; reopening preserves tasks.",
+    "implemented": "Pointer/keyboard dragging, menu moves, empty columns and retry; reopening preserves tasks. Cards are the shared ProjectCard in its compact density: the column names the status, and a click anywhere on a card opens the project.",
     "deferred": "Lane customization and alternative pipelines remain planned.",
     "examples": [
       {
@@ -1646,7 +1646,8 @@
     ],
     "sources": [
       "src/features/projects/project-board.tsx",
-      "src/features/projects/project-board-drag.tsx"
+      "src/features/projects/project-board-drag.tsx",
+      "src/features/projects/project-card.tsx"
     ]
   },
   {
@@ -1677,7 +1678,8 @@
     ],
     "sources": [
       "src/features/projects/project-view-toggle.tsx",
-      "src/features/projects/project-grid.tsx"
+      "src/features/projects/project-grid.tsx",
+      "src/features/projects/project-card.tsx"
     ]
   },
   {
@@ -3564,18 +3566,18 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show how far something is toward done, with the figure in the ring.",
-    "implemented": "Project cards in the Projects grid show completion as a ring in the project's hue with the percentage inside and \"24 of 32 tasks done\" beside it (kit RadialProgress, a meter with its value and label exposed).",
+    "implemented": "Kit RadialProgress, a meter with its value and label exposed, in the chart gallery's Radial family. Project cards showed it until 2026-10-17; they now show progress once, as a bar.",
     "deferred": "Billing has no plan limits (it charges per seat), so the planned usage ring there was not built rather than inventing a limit.",
     "examples": [
       {
-        "label": "Projects grid",
-        "href": "/app/demo/projects?view=grid",
-        "instruction": "Each card's ring shows its share of tasks done."
+        "label": "Chart gallery",
+        "href": "/reference/charts?family=radial",
+        "instruction": "The first variant shows a ring with the figure inside."
       }
     ],
     "sources": [
       "src/kit/ui/radial-progress.tsx",
-      "src/features/projects/project-grid.tsx"
+      "src/features/reference/charts/small-charts.tsx"
     ]
   },
   {

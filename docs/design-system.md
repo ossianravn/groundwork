@@ -181,6 +181,15 @@ A group's internal gap is always smaller than the gap around it (proximity). A d
 
 **Links, dates and activity.** Record links (a project, a person) are ink with no underline at rest and an underline on hover and focus; only links that leave Tandem carry ↗, and a row or card that opens a record carries no ↗ of its own. Lists show dates as "24 Sept". Every activity feed uses `ActivityRow` (`src/components/activity-row.tsx`): avatar, one sentence (the name in ink, the action muted, then the project after its colour mark) and the date at the end of the first line, muted and tabular, never on a line of its own. A feed grouped under day headings leaves the date out, and the heading shares its first event's line. Rows are `--gap-item` apart, without dividers.
 
+**Record cards.** A project card (`ProjectCard`, `src/features/projects/project-card.tsx`) is the same in the cards view and on the board. From the top:
+- the mark and the name, with card actions at the end; a checkbox takes the mark's place on hover, on focus, when the card is selected and while any card is (always on touch screens);
+- the status and due date on one line;
+- the description, clamped to two lines (cards view only);
+- one progress bar with its count and percentage;
+- the owner.
+
+The board's compact density leaves out the description and the status, which its column names. The name's link covers the card, so a click anywhere opens the project, and Ctrl/⌘-click opens the full page; checkboxes and actions sit above that link. Hover darkens the border, focus on the name rings the whole card, and a selected card takes the brand's soft tint.
+
 The page's top and side insets use the same `--inset-page`. Its opening heading uses `text-box: trim-start cap alphabetic` so font leading does not add a visible extra band above the title. Preserve normal line spacing within wrapped headings and below them; do not compensate by reducing page padding or adding font-specific offsets. This is a progressive enhancement: older browsers without [text-box trimming](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box-trim) retain normal heading leading.
 
 Metadata remains readable supporting information. Consequential feedback and Appearance choices use the body role. Long user-entered project titles wrap in the activity feed and details sheet; the table may truncate the name because opening the record exposes its complete value.

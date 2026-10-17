@@ -13,6 +13,11 @@ interface ProjectLinkProps {
   style?: CSSProperties
   /** An element on the project page to scroll to, such as a comment. */
   hash?: string
+  /**
+   * Opens the project in place (its quick view) on a plain click; a click
+   * with a modifier, or a middle click, still opens the full page.
+   */
+  onOpen?: () => void
 }
 
 export function ProjectDetailLink(props: ProjectLinkProps) {
@@ -31,6 +36,7 @@ function ProjectRouteLink({
   title,
   style,
   hash,
+  onOpen,
   to,
 }: ProjectLinkProps & {
   to: "/app/demo/projects/$projectId" | "/app/demo/projects/$projectId/edit"
@@ -53,7 +59,10 @@ function ProjectRouteLink({
           !event.shiftKey &&
           !event.altKey
         ) {
-          onOpenDetail(origin)
+          if (!onOpen) return onOpenDetail(origin)
+
+          event.preventDefault()
+          onOpen()
         }
       }}
       className={cn(className)}

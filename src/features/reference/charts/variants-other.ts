@@ -70,7 +70,6 @@ export const radialVariants: ChartVariant[] = [
     title: "Progress ring with the figure inside",
     description:
       "How far toward done, as a meter; the number is in the ring and in its label.",
-    usedIn: { label: "Projects › grid", href: "/app/demo/projects?view=grid" },
     Component: RadialRing,
   },
   {

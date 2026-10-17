@@ -231,6 +231,7 @@ const sources = import.meta.glob<string>(
     "../features/projects/project-details.tsx",
     "../features/projects/project-form.tsx",
     "../features/projects/project-grid.tsx",
+    "../features/projects/project-card.tsx",
     "../features/projects/project-page.tsx",
     "../features/projects/project-progress.tsx",
     "../features/projects/project-search.tsx",
