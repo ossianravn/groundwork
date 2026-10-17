@@ -8,6 +8,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 - `ai` (prompt input): a textarea `onPaste` that calls `preventDefault()` now keeps pasted files out of the composer's own attachments, as `onKeyDown` already does for Enter. Before, files a host took over also landed in the composer's list.
 - `ai` (message response): `MessageResponse` takes `plugins`, `remarkPlugins` and `rehypePlugins` and passes them to Streamdown, for math (`@streamdown/math`) or to change how markdown and HTML are read. A list you pass replaces Streamdown's default for it. The reference example shows model-written HTML as text.
 - `ai` (reasoning): `Reasoning` takes `open` and `onOpenChange` for a host that keeps its openness, a `label` in place of Thinking… and Thought for… (such as a duration stored with a restored reply), and children other than markdown text, which render as given.
+- `ai` (tool): `ToolHeader` takes a `status` node that replaces the state badge, for your own word for an outcome, such as Retried for a failed call the assistant tried again.
 
 ## v0.5.0 — 2026-10-13
 

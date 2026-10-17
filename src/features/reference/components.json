@@ -478,7 +478,8 @@
     "purpose": "Show a tool call's state, parameters and result.",
     "notes": [
       "The header names the tool and shows the AI SDK part state as a labelled badge: Preparing, Running, Needs approval, Done, Failed or Denied.",
-      "Closed by default, since the reply usually says what the call found; open it for failures. Pass a rendering of the result as children, or it shows JSON."
+      "Closed by default, since the reply usually says what the call found; open it for failures. Pass a rendering of the result as children, or it shows JSON.",
+      "Pass status to ToolHeader to put your own word for the outcome in place of the badge, such as Retried for a failed call the assistant tried again."
     ],
     "context": "Assistant replies",
     "href": "/app/demo/assistant",
