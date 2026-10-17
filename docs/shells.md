@@ -31,12 +31,20 @@ Desktop sidebar supports expanded and icon modes. Narrow layouts use a Sheet. NA
 
 The App top bar stays sticky while the page scrolls, at a constant height. Its glass surface uses shared opacity/blur tokens with a solid fallback. Appearance offers Glass (the current demo default), Solid and System; System follows reduced-transparency preferences. Forced-colors mode always uses a solid surface. Anchor and keyboard scrolling must account for the header so destinations remain visible. This behavior is implemented in the overview's shared shell.
 
+**Top bar (2026-10-17).** The left holds the navigation toggle (the menu on phones) and the breadcrumb. Its current crumb is the page title, in semibold; parent crumbs keep the body weight. The right holds the page's actions, search and the bell, in that order:
+
+- **Page actions.** Primary actions show as buttons. Secondary actions (`PageActions more`, such as Import) are outline buttons on wide screens and fold into a ⋯ menu on phones.
+- **Search** (kit `TopbarSearch`) is a magnifier until it's used. Selecting it or pressing `Ctrl/⌘ K` expands it leftwards, over the actions beside it, into a field with the shortcut hint and the results below. Escape or a click outside collapses it, and Escape returns focus to the magnifier. On phones the open field covers the top bar and has a Close button.
+- **The bell** opens a popover: Mark all read, recent messages from others, and Open inbox.
+
+Appearance opens from the profile menu, as a panel, and from Settings › Appearance as a page; the top bar has no appearance control. The sidebar's brand row is as tall as the top bar, so the logo shares the breadcrumb's axis.
+
 Settings links: Profile, Appearance, Notifications, Security; Workspace, Team, Billing; API keys, Webhooks. Account and workspace sections are visibly grouped. Settings sections are routes with links and aria-current, not ARIA tabs unless they actually switch panels on one page.
 
 ## Shared overlay behavior
 
 - Search has grouped destinations/actions/records, loading, no results and failure states. Commands respect current workspace permissions. A visible button is always available.
-- Notification drawer has Unread/All tabs, mark-as-read actions and links to the underlying project or request. Failed updates remain retryable; unread counts reflect confirmed state.
+- Notification popover has Unread/All tabs, mark-as-read actions and links to the underlying project or request. Failed updates remain retryable; unread counts reflect confirmed state.
 - Workspace switching preserves the old scope until the new one loads, then clears selections and cached views that belong to the previous scope. Explain lost access with a usable next destination.
 - Shortcut help lists platform-specific keys. Single-character shortcuts require an off/remap option or focus-scoped activation; do not fire while typing. No workflow depends on shortcuts.
 - Contextual help opens relevant content and a contact action. It preserves form inputs and returns focus to its trigger when closed.

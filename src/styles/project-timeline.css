@@ -2,7 +2,7 @@
 .project-timeline-view {
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-timeline-view > * {
   justify-self: stretch;
@@ -43,7 +43,7 @@
   grid-column: 2;
   display: grid;
   grid-template-columns: repeat(calc(var(--timeline-days) / 7), 1fr);
-  padding-bottom: var(--control-gap);
+  padding-bottom: var(--gap-control);
   border-bottom: 1px solid var(--border);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
@@ -85,7 +85,7 @@
   z-index: 2;
   display: grid;
   gap: 0.125rem;
-  padding: var(--control-gap) var(--content-gap) var(--control-gap) 0;
+  padding: var(--gap-control) var(--gap-group) var(--gap-control) 0;
   background: var(--background);
 }
 .timeline-meta {
@@ -154,13 +154,13 @@
 /* Month */
 .month-calendar {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .month-calendar-heading {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .month-calendar-heading h3 {
   min-width: 9rem;
@@ -183,7 +183,7 @@
   padding-bottom: 0.25rem;
 }
 .month-weekdays span {
-  padding-inline: var(--control-gap);
+  padding-inline: var(--gap-control);
 }
 .month-grid {
   border-top: 1px solid var(--border);
@@ -194,7 +194,7 @@
   align-content: start;
   gap: 0.25rem;
   min-height: 6rem;
-  padding: var(--control-gap);
+  padding: var(--gap-control);
   border-inline-end: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   font-size: var(--text-meta);

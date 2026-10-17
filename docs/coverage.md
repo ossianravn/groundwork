@@ -345,7 +345,7 @@ The [Contact](pages/public/contact.md) and [legal](pages/public/legal.md) specif
 ## Inbox and notifications disposition — 2026-09-27
 
 - **TABL-07:** Flush responsive conversation workspace, URL selection/filter, keyboard resizing/reset, member-addressed Compose, threaded Reply, retained navigation drafts, explicit read/unread, empty/unavailable states and project return context. Pane collapse and asynchronous loading remain planned.
-- **SYS-04:** Shared notification Sheet, message links/View all, unread indicators and Mark all read. Fixture-backed session state and named read-action failure/retry; no push/email service.
+- **SYS-04:** Shared notification popover (a Sheet until 2026-10-17), message links/Open inbox, unread indicators and Mark all read. Fixture-backed session state and named read-action failure/retry; no push/email service.
 - **NAV-08:** Inbox selection/filter and useful focus survive the linked project round trip.
 
 The [Inbox specification](pages/app/inbox.md) owns exact scope and deferred variants.

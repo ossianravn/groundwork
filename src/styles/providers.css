@@ -1,25 +1,25 @@
 .provider-options {
   display: grid;
-  gap: var(--content-gap);
-  margin-bottom: var(--stack-gap);
+  gap: var(--gap-group);
+  margin-bottom: var(--gap-group);
 }
 .provider-buttons {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .provider-options [data-slot="field-separator-content"] {
   background: var(--card);
 }
 .provider-continuation {
   display: grid;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 .provider-account {
   display: flex;
   align-items: center;
-  gap: var(--content-gap);
-  padding: var(--content-gap);
+  gap: var(--gap-group);
+  padding: var(--gap-group);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
 }

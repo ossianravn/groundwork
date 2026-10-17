@@ -29,7 +29,7 @@
   min-height: 8rem;
   max-height: 24rem;
   overflow-y: auto;
-  padding: var(--item-padding);
+  padding: var(--inset-row);
   outline: none;
   font-size: var(--text-body);
 }
@@ -65,13 +65,13 @@
 }
 .editor-link-popover form {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .editor-link-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 @media (pointer: coarse) {
   .rich-text-input {

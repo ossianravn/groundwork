@@ -10,13 +10,13 @@ import {
 } from "@/kit/ui/dropdown-menu"
 import type { ShellLinkComponent } from "./shell-link"
 
-export interface AccountMenuItem<Destination extends string> {
-  destination: Destination
+/** A link to a destination, or an action such as opening a panel. */
+export type AccountMenuItem<Destination extends string> = {
   label: string
   icon: LucideIcon
   /** Starts a new group, separated from the items above it. */
   separated?: boolean
-}
+} & ({ destination: Destination } | { id: string; onSelect: () => void })
 
 export interface WorkspaceAccount<Destination extends string> {
   person: AvatarPerson
@@ -52,18 +52,36 @@ export function AccountMenu<Destination extends string>({
           <ChevronsUpDown aria-hidden="true" className="navigation-label" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="account-menu-content">
-          {items.map(({ destination, label, icon: Icon, separated }) => (
-            <Fragment key={destination}>
-              {separated && <DropdownMenuSeparator />}
-              <DropdownMenuItem
-                render={<LinkComponent destination={destination} />}
-                onClick={onNavigate}
-              >
+          {items.map((item) => {
+            const Icon = item.icon
+
+            const content = (
+              <>
                 <Icon aria-hidden="true" />
-                {label}
-              </DropdownMenuItem>
-            </Fragment>
-          ))}
+                {item.label}
+              </>
+            )
+
+            return (
+              <Fragment
+                key={"destination" in item ? item.destination : item.id}
+              >
+                {item.separated && <DropdownMenuSeparator />}
+                {"destination" in item ? (
+                  <DropdownMenuItem
+                    render={<LinkComponent destination={item.destination} />}
+                    onClick={onNavigate}
+                  >
+                    {content}
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem onClick={item.onSelect}>
+                    {content}
+                  </DropdownMenuItem>
+                )}
+              </Fragment>
+            )
+          })}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

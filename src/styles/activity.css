@@ -2,13 +2,13 @@
   gap: 0;
 }
 .activity-feed-toolbar {
-  padding-bottom: var(--content-gap);
+  padding-bottom: var(--gap-group);
   border-bottom: 1px solid var(--border);
 }
 .activity-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   align-items: center;
 }
 .activity-filters [data-slot="input-group"] {
@@ -21,15 +21,15 @@
 .activity-filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .activity-mobile-filters {
   display: none;
 }
 .activity-filter-drawer {
   display: grid;
-  gap: var(--item-padding);
-  padding: var(--item-padding) 1rem 1rem;
+  gap: var(--gap-item);
+  padding: var(--inset-row) 1rem 1rem;
 }
 .activity-filter-field {
   display: grid;
@@ -45,8 +45,8 @@
 .activity-day {
   display: grid;
   grid-template-columns: 6rem minmax(0, 1fr);
-  gap: var(--content-gap);
-  padding-block: var(--content-gap);
+  gap: var(--gap-group);
+  padding-block: var(--gap-group);
 }
 .activity-day + .activity-day {
   border-top: 1px solid var(--border);
@@ -59,12 +59,12 @@
 }
 .activity-day ol {
   display: grid;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
 }
 .activity-day li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
   align-items: start;
 }
 .activity-day li p {
@@ -116,13 +116,13 @@
 }
 .activity-changes {
   display: grid;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
 }
 .activity-changes > div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.375rem var(--item-padding);
-  padding-block: var(--control-gap);
+  gap: 0.375rem var(--gap-item);
+  padding-block: var(--gap-control);
   border-top: 1px solid var(--border);
 }
 .activity-changes dt {
@@ -152,10 +152,10 @@
   }
   .activity-day {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .activity-day li {
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .activity-event-details > span {
     display: none;
@@ -176,16 +176,16 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--content-gap) var(--section-gap);
+  gap: var(--gap-group) var(--gap-zone);
   max-width: 60rem;
-  padding-bottom: var(--section-gap);
+  padding-bottom: var(--gap-zone);
   border-bottom: 1px solid var(--border);
 }
 .activity-heatmap h2 {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-weight: 600;
 }
 .activity-heatmap-total {

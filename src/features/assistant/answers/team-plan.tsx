@@ -39,7 +39,7 @@ export function TeamPlan({
       <section
         data-slot="team-plan"
         aria-label="Plan for the team"
-        className="grid min-w-0 gap-(--section-gap)"
+        className="grid min-w-0 gap-(--gap-zone)"
       >
         {children}
       </section>

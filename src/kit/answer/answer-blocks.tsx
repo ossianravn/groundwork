@@ -18,7 +18,7 @@ import type {
 function AnswerHeading({ props }: AnswerComponentProps<AnswerHeadingProps>) {
   return (
     <header data-slot="answer-heading" className="grid gap-1">
-      <h2 className="font-heading text-lg leading-snug font-semibold text-balance">
+      <h2 className="font-heading text-base leading-snug font-semibold text-balance">
         {props.text}
       </h2>
       {props.detail && (
@@ -104,7 +104,7 @@ function AnswerCallout({ props }: AnswerComponentProps<AnswerCalloutProps>) {
       data-slot="answer-callout"
       data-tone={props.tone}
       className={cn(
-        "grid grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 gap-y-1 rounded-lg border p-(--item-padding) ps-3 text-sm",
+        "grid grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 gap-y-1 rounded-lg border p-(--inset-row) ps-3 text-sm",
         attention
           ? "border-transparent bg-(--warning-soft)"
           : "border-border bg-background",

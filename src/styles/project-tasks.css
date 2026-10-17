@@ -5,14 +5,14 @@
 .project-tasks {
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-tasks-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   width: 100%;
 }
 .task-status-count {
@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
-  column-gap: var(--content-gap);
+  column-gap: var(--gap-group);
   min-height: var(--control-height);
   padding-block: 0.125rem;
 }
@@ -71,14 +71,14 @@
   color: var(--muted-foreground);
 }
 .task-row[data-open] {
-  padding-bottom: var(--content-gap);
+  padding-bottom: var(--gap-group);
 }
 /* The description sits under the title, across the rest of the row. */
 .task-description {
   grid-column: 2 / -1;
   display: grid;
   justify-items: start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 70ch;
   color: var(--muted-foreground);
 }
@@ -91,7 +91,7 @@
 }
 .task-description-actions {
   display: flex;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .task-row[data-done] .task-title {
   color: var(--muted-foreground);
@@ -101,7 +101,7 @@
 /* The assignee reads as a quiet chip until hovered or focused. */
 .task-assignee {
   border-color: transparent;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .task-assignee:not(:hover, [data-popup-open]) {
   background-color: transparent;
@@ -122,7 +122,7 @@
   margin-inline-start: -0.375rem;
 }
 .task-empty {
-  padding-block: var(--item-padding);
+  padding-block: var(--inset-row);
 }
 @media (max-width: 767px) {
   /* Narrow rows keep the avatar; the name stays in the accessible label. */

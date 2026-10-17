@@ -14,12 +14,12 @@
   .assistant-history {
     display: flex;
     flex-direction: column;
-    gap: var(--control-gap);
+    gap: var(--gap-control);
     width: 16rem;
     flex-shrink: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: var(--section-gap) var(--item-padding);
+    padding: var(--gap-zone) var(--inset-row);
     border-inline-end: 1px solid var(--border);
     scrollbar-width: thin;
   }
@@ -34,10 +34,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .assistant-history-title {
-  padding-inline: var(--item-padding);
+  padding-inline: var(--inset-row);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
   font-weight: 500;
@@ -47,7 +47,7 @@
   gap: 1px;
 }
 .assistant-history-sheet .assistant-history-list {
-  padding: 0 var(--item-padding) var(--item-padding);
+  padding: 0 var(--inset-row) var(--inset-row);
 }
 .assistant-history-list li {
   display: flex;
@@ -63,7 +63,7 @@
   flex: 1;
   min-width: 0;
   min-height: var(--control-height-sm);
-  padding: var(--control-padding-block) var(--item-padding);
+  padding: var(--control-padding-block) var(--inset-row);
   overflow: hidden;
   border-radius: inherit;
   font-size: var(--text-body);
@@ -99,13 +99,13 @@
 }
 .assistant-conversation [data-slot="message-scroller-content"] {
   width: 100%;
-  max-width: calc(var(--assistant-width) + 2 * var(--page-padding));
+  max-width: calc(var(--assistant-width) + 2 * var(--inset-page));
   margin-inline: auto;
-  padding: var(--section-gap) var(--page-padding);
-  gap: calc(var(--section-gap) * 1.5);
+  padding: var(--gap-zone) var(--inset-page);
+  gap: calc(var(--gap-zone) * 1.5);
 }
 .assistant-checkpoint {
-  margin-bottom: var(--content-gap);
+  margin-bottom: var(--gap-group);
 }
 .assistant-prompt [data-slot="bubble"] {
   max-width: min(80%, 36rem);
@@ -114,7 +114,7 @@
   white-space: pre-wrap;
 }
 .assistant-reply [data-slot="message-content"] {
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .assistant-thinking {
   font-size: var(--text-body);
@@ -123,17 +123,17 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .assistant-composer {
-  width: calc(100% - 2 * var(--page-padding));
+  width: calc(100% - 2 * var(--inset-page));
   max-width: var(--assistant-width);
-  margin: 0 auto var(--content-gap);
+  margin: 0 auto var(--gap-group);
 }
 /* The working plan docks on the composer's top edge, inset from its
    rounded corners so it reads as a tray attached to it. */
 .assistant-plan-dock {
-  width: calc(100% - 2 * var(--page-padding) - 2.5rem);
+  width: calc(100% - 2 * var(--inset-page) - 2.5rem);
   max-width: calc(var(--assistant-width) - 2.5rem);
   margin-inline: auto;
 }
@@ -142,7 +142,7 @@
    conversation starts. */
 .assistant-page[data-empty] {
   justify-content: center;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   padding-bottom: 8vh;
 }
 .assistant-page[data-empty] .assistant-composer {
@@ -150,7 +150,7 @@
 }
 .assistant-start[data-slot="conversation-empty"] {
   margin: 0 auto;
-  padding: 0 var(--page-padding);
+  padding: 0 var(--inset-page);
 }
 .assistant-start h2 {
   font-size: var(--text-page);
@@ -158,7 +158,7 @@
   letter-spacing: -0.01em;
 }
 .assistant-start-suggestions {
-  width: calc(100% - 2 * var(--page-padding));
+  width: calc(100% - 2 * var(--inset-page));
   max-width: var(--assistant-width);
   margin: 0 auto;
 }
@@ -169,7 +169,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0 var(--control-gap);
+  gap: 0 var(--gap-control);
   padding-block: 0.375rem;
   border-bottom: 1px solid var(--border);
 }
@@ -191,9 +191,9 @@
   vertical-align: 0.1em;
 }
 .assistant-queue {
-  width: calc(100% - 2 * var(--page-padding));
+  width: calc(100% - 2 * var(--inset-page));
   max-width: var(--assistant-width);
-  margin: 0 auto var(--control-gap);
+  margin: 0 auto var(--gap-control);
 }
 /* The composer keeps its identity across the move from the start layout. */
 .assistant-composer {
@@ -206,12 +206,12 @@
 /* Settings › Assistant: the agent summary, then its controls. */
 .assistant-settings {
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   max-width: 44rem;
 }
 .assistant-settings-group {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .assistant-settings-group h3 {
   font-size: var(--text-body);
@@ -227,8 +227,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--content-gap);
-  padding-block: var(--row-padding);
+  gap: var(--gap-group);
+  padding-block: var(--inset-row);
   border-bottom: 1px solid var(--border);
 }
 .assistant-settings-tool > span {

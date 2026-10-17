@@ -39,7 +39,7 @@ export function ProjectPlan({
       <section
         data-slot="project-plan"
         aria-label={`Plan for ${props.projectName}`}
-        className="grid min-w-0 gap-(--section-gap)"
+        className="grid min-w-0 gap-(--gap-zone)"
       >
         {children}
       </section>

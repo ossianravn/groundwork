@@ -7,7 +7,7 @@
   container: project-heading / inline-size;
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-page-heading > .ui-button {
   padding-inline: 0;
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   width: 100%;
 }
 /* Progress and the project's actions close the title row; on narrow
@@ -25,13 +25,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   margin-inline-start: auto;
 }
 .project-header-progress {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
@@ -78,15 +78,15 @@
   /* The rail's second row (files) takes the rest of the main column's
      height, so the rail's hairline runs its full length. */
   grid-template-rows: auto 1fr;
-  column-gap: calc(var(--section-gap) * 2);
+  column-gap: calc(var(--gap-zone) * 2);
   align-items: start;
-  padding-top: var(--section-gap);
+  padding-top: var(--gap-zone);
   border-top: 1px solid var(--border);
 }
 .project-main {
   grid-column: 1;
   grid-row: 1 / span 2;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   min-width: 0;
 }
 /* The section tabs start at the content edge; counts are quiet. */
@@ -106,36 +106,36 @@
 .project-rail-files {
   grid-column: 2;
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   min-width: 0;
   /* The hairline sits midway across the column gap. */
-  padding-inline-start: var(--section-gap);
-  margin-inline-start: calc(-1 * var(--section-gap));
+  padding-inline-start: var(--gap-zone);
+  margin-inline-start: calc(-1 * var(--gap-zone));
   border-inline-start: 1px solid var(--border);
   align-self: stretch;
   align-content: start;
 }
 .project-rail {
   grid-row: 1;
-  padding-bottom: var(--section-gap);
+  padding-bottom: var(--gap-zone);
 }
 .project-rail-files {
   grid-row: 2;
 }
 .project-rail-files > * {
-  padding-top: var(--section-gap);
+  padding-top: var(--gap-zone);
   border-top: 1px solid var(--border);
 }
 /* Details: a heading with its one Edit action, like Files below it. */
 .project-properties-section {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-properties-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-properties-heading h2 {
   font-size: var(--text-section);
@@ -156,12 +156,12 @@
 }
 .project-details-form {
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .project-details-row[data-slot="field-group"] {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-task-dialog .project-details-row[data-slot="field-group"] {
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -175,14 +175,14 @@
 /* Properties read as label and value rows, labels in one quiet column. */
 .project-properties {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   align-content: start;
 }
 .project-properties > div {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
   align-items: center;
-  column-gap: var(--content-gap);
+  column-gap: var(--gap-group);
   min-height: var(--control-height-sm);
 }
 .project-properties dt,
@@ -193,7 +193,7 @@
 .project-properties dd {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 0;
 }
 .project-properties dd .project-tags,
@@ -208,9 +208,9 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
-  column-gap: var(--content-gap);
+  column-gap: var(--gap-group);
   row-gap: 0.125rem;
-  padding-block: var(--item-padding);
+  padding-block: var(--inset-row);
 }
 .project-event-list time {
   grid-column: 2;
@@ -230,7 +230,7 @@
   .project-page-grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
-    row-gap: calc(var(--section-gap) * 1.5);
+    row-gap: calc(var(--gap-zone) * 1.5);
   }
   .project-main,
   .project-rail,
@@ -246,7 +246,7 @@
     padding-block: 0;
   }
   .project-main {
-    padding-top: var(--section-gap);
+    padding-top: var(--gap-zone);
     border-top: 1px solid var(--border);
   }
 }
@@ -262,13 +262,13 @@
 @media (min-width: 40rem) and (max-width: 1023px) {
   .project-properties {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: calc(var(--section-gap) * 2);
+    column-gap: calc(var(--gap-zone) * 2);
   }
 }
 /* The burn-up heads the Activity tab: how the project got here, then the
    events that moved it. */
 .project-burn-up {
-  margin-bottom: var(--section-gap);
-  padding-bottom: var(--section-gap);
+  margin-bottom: var(--gap-zone);
+  padding-bottom: var(--gap-zone);
   border-bottom: 1px solid var(--border);
 }

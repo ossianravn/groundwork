@@ -1,15 +1,13 @@
-import { useRef, type ComponentProps } from "react"
+import { useRef, useState, type ComponentProps } from "react"
 import { Link } from "@tanstack/react-router"
 import { Bell } from "lucide-react"
 import { Button, buttonVariants } from "@/kit/ui/button"
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetFooter,
-  SheetClose,
-} from "@/kit/ui/sheet"
-import { PanelHeader } from "@/kit/panel-header"
+  Popover,
+  PopoverContent,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/kit/ui/popover"
 import { InboxList, type InboxLinkComponent } from "@/features/inbox/inbox-list"
 import { inboxMessages } from "@/demo/use-inbox"
 import { useDemoState } from "./demo-state"
@@ -20,23 +18,20 @@ function NotificationLink({
   ...props
 }: ComponentProps<InboxLinkComponent>) {
   return (
-    <SheetClose
-      nativeButton={false}
-      role="link"
-      render={
-        <Link
-          {...props}
-          to="/app/demo/inbox"
-          search={{ ...defaultInboxSearch, message: messageId }}
-        />
-      }
+    <Link
+      {...props}
+      to="/app/demo/inbox"
+      search={{ ...defaultInboxSearch, message: messageId }}
     />
   )
 }
 
+/** The bell's popover: recent messages from others, opening into the Inbox. */
 export function Notifications() {
   const { demo } = useDemoState()
+  const [open, setOpen] = useState(false)
   const navigated = useRef(false)
+  const list = useRef<HTMLDivElement>(null)
 
   const messages = inboxMessages(
     demo.inbox.entries
@@ -52,66 +47,89 @@ export function Notifications() {
     demo.workspace.currentUserId,
   ).sort((a, b) => b.date.localeCompare(a.date))
 
-  const unreadCount = messages.filter((message) => !message.read).length
+  const unread = messages.filter((message) => !message.read)
+
+  function navigate() {
+    navigated.current = true
+    setOpen(false)
+  }
 
   return (
-    <Sheet
-      onOpenChange={(open) => {
-        if (open) navigated.current = false
+    <Popover
+      open={open}
+      onOpenChange={(next) => {
+        if (next) navigated.current = false
+        setOpen(next)
       }}
-      onOpenChangeComplete={(open) => {
-        if (!open && navigated.current)
+      onOpenChangeComplete={(next) => {
+        if (!next && navigated.current)
           (
             document.getElementById("inbox-message-title") ??
             document.getElementById("main-content")
           )?.focus({ preventScroll: true })
       }}
     >
-      <SheetTrigger
+      <PopoverTrigger
         render={
           <Button
             variant="ghost"
             size="icon"
             className="notification-trigger"
-            aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ""}`}
+            aria-label={`Notifications${unread.length ? `, ${unread.length} unread` : ""}`}
           />
         }
       >
         <Bell aria-hidden="true" />
-        {!!unreadCount && (
+        {!!unread.length && (
           <span className="notification-dot" aria-hidden="true" />
         )}
-      </SheetTrigger>
-      <SheetContent
-        showCloseButton={false}
-        className="panel-sheet notification-sheet"
-        aria-describedby={undefined}
+      </PopoverTrigger>
+      <PopoverContent
+        align="end"
+        className="notification-popover"
         finalFocus={() => !navigated.current}
       >
-        <PanelHeader title="Notifications" />
-        <div className="panel-scroll notification-list">
+        <div className="notification-header">
+          <PopoverTitle className="notification-title">
+            Notifications
+          </PopoverTitle>
+          {!!unread.length && (
+            <Button
+              variant="ghost"
+              size="xs"
+              onClick={() => {
+                demo.inbox.setRead(
+                  unread.map((message) => message.id),
+                  true,
+                  "normal",
+                )
+                // The button goes away; keep focus in the popover.
+                list.current?.querySelector("a")?.focus()
+              }}
+            >
+              Mark all read
+            </Button>
+          )}
+        </div>
+        <div ref={list} className="notification-list">
           <InboxList
             messages={messages}
             unreadOnly={false}
             idPrefix="notification"
             LinkComponent={NotificationLink}
-            onNavigate={() => {
-              navigated.current = true
-            }}
+            onNavigate={navigate}
           />
         </div>
-        <SheetFooter className="panel-footer">
+        <div className="notification-footer">
           <NotificationLink
             messageId=""
-            onClick={() => {
-              navigated.current = true
-            }}
-            className={buttonVariants({ variant: "outline" })}
+            onClick={navigate}
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
           >
             Open inbox
           </NotificationLink>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+        </div>
+      </PopoverContent>
+    </Popover>
   )
 }

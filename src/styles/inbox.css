@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
-  padding: var(--item-padding) var(--card-padding);
+  gap: var(--gap-control);
+  padding: var(--inset-row) var(--inset-card);
   border-bottom: 1px solid var(--border);
 }
 .inbox-toolbar > [data-slot="toggle-group"] {
@@ -21,7 +21,7 @@
 .inbox-toolbar-actions {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .inbox-panes {
   flex: 1;
@@ -43,16 +43,16 @@
 /* Dividers start at the text, so avatars read as one column. */
 .inbox-list li + li {
   background: linear-gradient(var(--border), var(--border)) no-repeat
-    calc(var(--card-padding) + 2rem + var(--item-padding)) 0 / 100% 1px;
+    calc(var(--inset-card) + 2rem + var(--inset-row)) 0 / 100% 1px;
 }
 .inbox-row {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
-  gap: var(--item-padding);
-  padding: var(--item-padding) var(--card-padding);
+  gap: var(--gap-item);
+  padding: var(--inset-row) var(--inset-card);
   overflow-wrap: anywhere;
-  scroll-margin-block: var(--item-padding);
+  scroll-margin-block: var(--inset-row);
 }
 .inbox-row-content {
   display: grid;
@@ -62,7 +62,7 @@
 .inbox-row-from {
   display: flex;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 0;
 }
 .inbox-row-from > span:first-child {
@@ -98,7 +98,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .inbox-row-meta,
 .inbox-row-project {
@@ -116,7 +116,7 @@
   font-weight: 500;
 }
 .inbox-row-unread .inbox-row-title {
-  font-weight: 650;
+  font-weight: 600;
 }
 .inbox-unread-dot,
 .notification-dot {
@@ -145,19 +145,19 @@
   justify-content: center;
 }
 .inbox-back {
-  margin: 0 0 var(--control-gap) -0.5rem;
+  margin: 0 0 var(--gap-control) -0.5rem;
 }
 .inbox-message-heading {
   display: flex;
   align-items: start;
   justify-content: space-between;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .inbox-message-heading > .ui-button {
   flex-shrink: 0;
 }
 .inbox-message-header {
-  padding: var(--card-padding);
+  padding: var(--inset-card);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -171,9 +171,9 @@
 .inbox-project-context {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   flex-wrap: wrap;
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 .inbox-failure {
   border-radius: 0;
@@ -183,7 +183,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .notification-trigger {
   position: relative;
@@ -193,8 +193,34 @@
   top: 0.375rem;
   right: 0.375rem;
 }
-.notification-sheet .notification-list {
+/* The bell's popover: a header, the scrolling list, then a link to the Inbox. */
+.notification-popover {
+  width: min(24rem, calc(100vw - var(--space-4)));
   padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-control);
+  min-height: calc(var(--control-height-xs) + 2 * var(--inset-row));
+  padding: var(--inset-row) var(--inset-card);
+  border-bottom: 1px solid var(--border);
+}
+.notification-title {
+  font-weight: 600;
+}
+.notification-list {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  max-height: min(28rem, calc(var(--available-height, 100dvh) - 7rem));
+}
+.notification-footer {
+  display: grid;
+  padding: var(--space-1);
+  border-top: 1px solid var(--border);
 }
 @media (width >= 64rem) {
   .inbox-surface {

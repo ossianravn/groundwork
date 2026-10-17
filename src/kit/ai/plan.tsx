@@ -33,7 +33,7 @@ function Plan({
       aria-labelledby={id}
       aria-busy={streaming || undefined}
       className={cn(
-        "grid min-w-0 gap-3 rounded-lg border border-border bg-background p-(--item-padding) ps-3 text-sm",
+        "grid min-w-0 gap-3 rounded-lg border border-border bg-background p-(--inset-row) ps-3 text-sm",
         className,
       )}
     >

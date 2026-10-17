@@ -1,9 +1,9 @@
 .project-sheet-body {
-  padding: 0 var(--panel-padding) var(--panel-padding);
+  padding: 0 var(--inset-panel) var(--inset-panel);
 }
 .project-details {
   display: grid;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 .project-details > div {
   display: grid;
@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--panel-padding);
+  gap: var(--inset-panel);
 }
 .project-sheet-body > .status-badge {
   align-self: flex-start;
@@ -31,10 +31,10 @@
 .project-progress {
   display: flex;
   flex-direction: column;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
 }
 section.project-progress {
-  padding-top: var(--panel-padding);
+  padding-top: var(--inset-panel);
   border-top: 1px solid var(--border);
 }
 .project-progress-heading {
@@ -42,7 +42,7 @@ section.project-progress {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-progress-count {
   font-size: var(--text-metric);
@@ -65,8 +65,8 @@ section.project-progress {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
-  gap: var(--control-gap);
-  margin-top: var(--content-gap);
+  gap: var(--gap-control);
+  margin-top: var(--gap-group);
 }
 .project-completion .panel-feedback {
   font-size: var(--text-meta);

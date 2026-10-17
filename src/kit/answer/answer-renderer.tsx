@@ -156,7 +156,7 @@ function AnswerRenderer({
       <div
         data-slot="answer"
         aria-busy={streaming || undefined}
-        className={cn("grid min-w-0 gap-(--section-gap)", className)}
+        className={cn("grid min-w-0 gap-(--gap-zone)", className)}
       >
         {list.map((node, index) => (
           <AnswerNodeView

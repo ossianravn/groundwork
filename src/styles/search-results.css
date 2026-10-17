@@ -1,7 +1,7 @@
 /* Search results (SYS-10): a reading column of grouped results. */
 .search-page > .search-results {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   width: 100%;
   max-width: 52rem;
 }
@@ -33,14 +33,14 @@
 }
 .search-group {
   display: grid;
-  gap: var(--control-gap);
-  padding-top: var(--content-gap);
+  gap: var(--gap-control);
+  padding-top: var(--gap-group);
   border-top: 1px solid var(--border);
 }
 .search-group h2 {
   display: flex;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-size: var(--text-section);
   font-weight: 600;
 }
@@ -56,7 +56,7 @@
 .search-group li {
   display: grid;
   gap: 0.125rem;
-  padding-block: var(--control-gap);
+  padding-block: var(--gap-control);
 }
 .search-result-title {
   justify-self: start;

@@ -5,12 +5,12 @@
 }
 .project-import {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .import-steps {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap) var(--section-gap);
+  gap: var(--gap-control) var(--gap-zone);
   counter-reset: step;
   color: var(--muted-foreground);
   font-size: var(--text-meta);
@@ -18,7 +18,7 @@
 .import-steps li {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   counter-increment: step;
 }
 .import-steps li::before {
@@ -47,8 +47,8 @@
 .import-drop {
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
-  padding: var(--section-gap);
+  gap: var(--gap-group);
+  padding: var(--gap-zone);
   border: 1px dashed var(--input);
   border-radius: var(--radius-lg);
 }
@@ -65,10 +65,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .import-sample-link {
-  margin-inline-start: var(--control-gap);
+  margin-inline-start: var(--gap-control);
   font-size: var(--text-meta);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -85,15 +85,15 @@
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
   align-items: center;
-  gap: var(--control-gap) var(--content-gap);
-  padding-block: var(--control-gap);
+  gap: var(--gap-control) var(--gap-group);
+  padding-block: var(--gap-control);
   border-bottom: 1px solid var(--border);
 }
 .import-mapping dd {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap) var(--content-gap);
+  gap: var(--gap-control) var(--gap-group);
 }
 .import-mapping-select {
   min-width: 12rem;

@@ -164,7 +164,10 @@ npm run typecheck
 npm test
 npm run build
 npm run format:check
+npm run check:layout
 ```
+
+`npm run lint` includes `lint:spacing`, which reports raw spacing (Tailwind spacing numbers, literal CSS lengths, retired token names) in feature code and the demo stylesheets against a per-file baseline in `tools/spacing-baseline.json`; a file may not gain findings, and `node tools/lint-spacing.mjs --update` records the lower count after a migration. `npm run check:layout` needs the dev server (`npm run dev`) and checks the page anatomy in a browser; see [tools/verification](tools/verification/README.md#layout-contract).
 
 `registry.json` is generated from the kit: run `npm run registry` after adding, removing or re-importing kit files, and `npm test` fails while it is stale. To release, rename CHANGELOG.md's Unreleased section to the version and date and commit it on `main`. Then `npm run release -- <version>` tags a commit whose registry pins every dependency to that tag (shadcn does not pass a tag on to dependencies), then unpins `main` again. Push `main` and the tag to the public remote, and publish a GitHub release from the changelog section: `gh release create v<version> --notes-file <that section>`.
 

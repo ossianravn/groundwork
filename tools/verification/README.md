@@ -24,6 +24,10 @@ Choose an individual scenario for its risk; these are not a sequence to execute 
 
 Output defaults to `.artifacts/verification/browser/`; `VERIFY_ARTIFACT_DIR` overrides it. Inspect screenshots when visual correctness matters. Calibration fault arguments deliberately introduce known defects and should fail; use those only when maintaining a check's sensitivity.
 
+### Layout contract
+
+`npm run check:layout` renders the 27 workspace routes at 1440 and 390px and checks the page anatomy in [the design system](../../docs/design-system.md#type-and-spacing-baseline): no sideways scroll and the sidebar brand on the top bar's axis everywhere; and, on pages that mark their zones with `data-page-zone`, the first zone at `--inset-page` below the top bar, zones `--gap-zone` apart, peer sections `--gap-section` apart, every zone on the content edge (pane text for full-bleed panes), one control height per toolbar, and the type and weight ramps. Pages without zones are listed as pending; a page that adopts the anatomy is checked from then on. A route filter narrows the run (`npm run check:layout -- projects`). Reuse the Vite server on port 5173 (`VERIFY_URL` overrides it); the report is written to `.artifacts/verification/layout-contract/`. It reads rule values from the role tokens, so it follows density and breakpoint; it doesn't judge composition, hover and focus states, or open overlays.
+
 ### Style snapshot
 
 For a reorganization that must not change appearance (moving stylesheets, splitting components, renaming classes), record computed styles and geometry before and after, then compare:

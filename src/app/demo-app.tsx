@@ -134,9 +134,21 @@ export function DemoApp() {
       }}
     >
       <DemoWorkspaceShell
+        search={
+          <ProjectSearch
+            open={searchOpen}
+            onOpenChange={(open) =>
+              open ? showSearch() : setSearchOpen(false)
+            }
+            projects={demo.projects}
+            onSelect={(id) => openInspection(id)}
+            onSearchAll={(q) =>
+              void navigate({ to: "/app/demo/search", search: { q, type: "" } })
+            }
+          />
+        }
         notifications={<Notifications />}
         onCustomize={() => setThemeOpen(true)}
-        onSearch={showSearch}
         onHelp={help.show}
         onReset={() => {
           demo.reset()
@@ -211,18 +223,6 @@ export function DemoApp() {
           returnFocus={projectReturnFocus}
         />
       )}
-      <ProjectSearch
-        open={searchOpen}
-        onOpenChange={setSearchOpen}
-        projects={demo.projects}
-        finalFocus={inspect ? false : undefined}
-        onSelect={(id) => {
-          openInspection(id)
-        }}
-        onSearchAll={(q) =>
-          void navigate({ to: "/app/demo/search", search: { q, type: "" } })
-        }
-      />
     </WorkspaceContext>
   )
 }

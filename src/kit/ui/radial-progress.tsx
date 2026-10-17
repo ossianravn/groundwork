@@ -74,7 +74,7 @@ function RadialProgress({
       </svg>
       {children && (
         <span
-          className="relative text-[0.6875rem] font-semibold tabular-nums"
+          className="relative text-(length:--text-meta) font-semibold tabular-nums"
           aria-hidden="true"
         >
           {children}

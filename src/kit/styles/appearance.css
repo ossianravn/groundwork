@@ -4,8 +4,8 @@
   container-type: inline-size;
 }
 .appearance-section + .appearance-section {
-  margin-top: var(--panel-padding);
-  padding-top: var(--panel-padding);
+  margin-top: var(--inset-panel);
+  padding-top: var(--inset-panel);
   border-top: 1px solid var(--border);
 }
 .appearance-field [data-slot="field-legend"] {
@@ -153,7 +153,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-block: var(--item-padding);
+  padding-block: var(--inset-row);
 }
 .appearance-footer .panel-feedback {
   flex: 1 1 120px;

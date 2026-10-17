@@ -142,6 +142,11 @@
           "target": "~/src/kit/styles/toast.css"
         },
         {
+          "path": "src/kit/styles/topbar.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/topbar.css"
+        },
+        {
           "path": "src/kit/styles/workspace-switcher.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/workspace-switcher.css"
@@ -1948,12 +1953,16 @@
       "title": "Shell",
       "description": "Workspace and public layouts: navigation, collapsible rail, account menu and page actions.",
       "dependencies": [
+        "cmdk@^1.1.1",
+        "cn@^0.4.0",
         "lucide-react@^1.48.0"
       ],
       "registryDependencies": [
         "ossianravn/groundwork/base",
         "ossianravn/groundwork/button",
+        "ossianravn/groundwork/command",
         "ossianravn/groundwork/dropdown-menu",
+        "ossianravn/groundwork/input-group",
         "ossianravn/groundwork/kbd",
         "ossianravn/groundwork/member-avatar",
         "ossianravn/groundwork/sheet",
@@ -2024,6 +2033,11 @@
           "path": "src/kit/shell/shell-link.ts",
           "type": "registry:file",
           "target": "~/src/kit/shell/shell-link.ts"
+        },
+        {
+          "path": "src/kit/shell/topbar-search.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/shell/topbar-search.tsx"
         },
         {
           "path": "src/kit/shell/use-header-offset.ts",

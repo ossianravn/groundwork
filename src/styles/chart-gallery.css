@@ -2,7 +2,7 @@
    live preview, where Tandem uses it, and the code on request. */
 .chart-gallery {
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 /* One row from the content edge (as on the project page) that scrolls on
    narrow screens; the padding keeps the active line inside the scroller. */
@@ -28,7 +28,7 @@
 }
 .chart-gallery-family {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .chart-gallery-summary {
   color: var(--muted-foreground);
@@ -37,14 +37,14 @@
   display: grid;
   align-items: start;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .chart-gallery-card {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   min-width: 0;
-  padding: var(--card-padding);
+  padding: var(--inset-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   background: var(--card);
@@ -89,7 +89,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .chart-gallery-used {
   display: inline-flex;

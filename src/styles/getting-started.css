@@ -2,8 +2,8 @@
    Overview; a quiet framed panel that steps aside once hidden. */
 .getting-started {
   display: grid;
-  gap: var(--content-gap);
-  padding: var(--card-padding);
+  gap: var(--gap-group);
+  padding: var(--inset-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--card);
@@ -12,7 +12,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .getting-started-heading h2 {
   font-size: var(--text-section);
@@ -31,8 +31,8 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--content-gap);
-  padding-block: var(--item-padding);
+  gap: var(--gap-group);
+  padding-block: var(--inset-row);
   border-top: 1px solid var(--border);
 }
 .getting-started-icon {

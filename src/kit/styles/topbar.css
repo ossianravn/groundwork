@@ -1,0 +1,203 @@
+/* The workspace top bar: navigation toggle, breadcrumb, page actions, search
+   and utility actions. Phone rules are in responsive.css. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: var(--header-height);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-control);
+  padding: 0.25rem var(--inset-page);
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+@supports (backdrop-filter: blur(1px)) {
+  :root:not([data-header-surface="solid"]) .topbar {
+    background: color-mix(
+      in oklch,
+      var(--card) var(--header-opacity),
+      transparent
+    );
+    backdrop-filter: blur(var(--header-blur));
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root[data-header-surface="system"] .topbar {
+    background: var(--card);
+    backdrop-filter: none;
+  }
+}
+@media (forced-colors: active) {
+  :root[data-header-surface] .topbar {
+    background: var(--card);
+    backdrop-filter: none;
+  }
+}
+.breadcrumb {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  font-size: var(--text-body);
+  white-space: nowrap;
+}
+.breadcrumb-parent {
+  flex-shrink: 0;
+}
+/* Phones only: the parent crumbs are hidden, so the nearest one becomes a
+   back arrow before the page title (see responsive.css). */
+.breadcrumb-back {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--control-height);
+  height: var(--control-height);
+  margin-inline-end: -0.25rem;
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+}
+.breadcrumb-back:hover {
+  background: var(--accent);
+}
+.breadcrumb-back:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+.breadcrumb .breadcrumb-back svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  color: currentColor;
+}
+/* The current page is the page title; section pages keep an equivalent h1.
+   A class, not aria-current: router links mark a parent current too when it
+   leads to this page. */
+.breadcrumb .breadcrumb-current {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.breadcrumb-detail {
+  /* Long record names use remaining space; enlarged text may wrap the header. */
+  flex: 1 1 6rem;
+}
+.breadcrumb svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  color: var(--muted-foreground);
+}
+.topbar .text-muted-foreground {
+  /* Navigation must remain readable over the changing glass backdrop. */
+  color: var(--foreground);
+}
+.mobile-menu-button {
+  display: none;
+}
+/* The icon buttons at either end of the header line up their icon, not their
+   hit area, with the page's content edge (never closer than 4px to the
+   window). The icons are 1rem wide. */
+.desktop-menu-button,
+.mobile-menu-button {
+  margin-inline-start: max(
+    calc(4px - var(--inset-page)),
+    calc((1rem - var(--control-height)) / 2)
+  );
+}
+.topbar-actions {
+  margin-inline-end: max(
+    calc(4px - var(--inset-page)),
+    calc((1rem - var(--control-height)) / 2)
+  );
+}
+.desktop-menu-button:not(:hover) {
+  /* Expansion describes the sidebar, not a selected toolbar action. */
+  background-color: transparent;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  margin-left: auto;
+}
+.topbar button:not(.topbar-search-field *) {
+  min-width: var(--control-height);
+  min-height: var(--control-height);
+}
+/* Utility controls are quiet; a page's own actions keep their variant. */
+.topbar-actions button:not(.topbar-page-actions *) {
+  color: var(--muted-foreground);
+}
+.topbar-actions button:not(.topbar-page-actions *):hover {
+  color: var(--foreground);
+}
+.topbar-page-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  margin-inline-end: var(--gap-control);
+}
+.topbar-page-actions:empty {
+  display: none;
+}
+.page-actions-more {
+  display: none;
+}
+.page-meta {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  white-space: nowrap;
+  margin-inline-end: var(--gap-control);
+}
+/* Search stays a magnifier until it's used. Open, the field grows leftwards
+   from the magnifier over the actions beside it, so nothing else moves. */
+.topbar-search {
+  position: relative;
+  display: flex;
+}
+.topbar-search[data-open] .search-trigger {
+  visibility: hidden;
+}
+/* Visibility must switch at once: collapsing returns focus to the magnifier,
+   and a transition would keep it hidden (unfocusable) for its first frame. */
+.topbar-search .search-trigger {
+  transition-property: color, background-color;
+}
+.topbar-search-field {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  width: min(24rem, calc(100vw - var(--sidebar-width) - 8rem));
+  transition: width var(--motion-fast) var(--ease-standard);
+}
+@starting-style {
+  .topbar-search-field {
+    width: var(--control-height);
+  }
+}
+.topbar-search-field [data-slot="input-group"] {
+  background: var(--card);
+}
+.topbar-search-input {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  font-size: var(--control-font-size);
+  outline: none;
+}
+.topbar-search-hint {
+  display: flex;
+}
+.topbar-search-close {
+  display: none;
+}
+.topbar-search-results {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + var(--space-2));
+  width: max(100%, 22rem);
+  max-height: min(24rem, 70dvh);
+}

@@ -23,7 +23,7 @@ function ChartHeader({
     <div
       data-slot="chart-header"
       className={cn(
-        "flex flex-wrap items-center justify-between gap-(--content-gap)",
+        "flex flex-wrap items-center justify-between gap-(--gap-group)",
         className,
       )}
     >
@@ -36,7 +36,7 @@ function ChartHeader({
         )}
       </div>
       {children && (
-        <div className="flex max-w-full flex-wrap items-center gap-(--control-gap)">
+        <div className="flex max-w-full flex-wrap items-center gap-(--gap-control)">
           {children}
         </div>
       )}
@@ -60,7 +60,7 @@ function ChartTotal({
     <Heading
       data-slot="chart-total"
       className={cn(
-        "flex flex-wrap items-baseline gap-(--control-gap) font-heading text-base font-semibold",
+        "flex flex-wrap items-baseline gap-(--gap-control) font-heading text-base font-semibold",
         className,
       )}
     >

@@ -39,7 +39,7 @@
 .consent-banner-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 /* Phones: Reject and Accept share the first row at equal width. */
 @media (max-width: 30rem) {

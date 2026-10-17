@@ -1,16 +1,8 @@
 "use client"
 
-import { Kbd, KbdGroup } from "@/kit/ui/kbd"
 import { Fragment, useRef, useState, type ReactNode } from "react"
-import {
-  ChevronRight,
-  Menu,
-  PanelLeft,
-  Search,
-  SlidersHorizontal,
-  X,
-  ArrowLeft,
-} from "lucide-react"
+import { ArrowLeft, ChevronRight, Menu, PanelLeft, X } from "lucide-react"
+import { cn } from "cn"
 import { Button } from "@/kit/ui/button"
 import {
   Sheet,
@@ -39,16 +31,9 @@ interface WorkspaceShellProps<
   children: ReactNode
   /** The first entry names the workspace; the last is the current page. */
   breadcrumbs: Breadcrumb<Destination>[]
-  search?: {
-    label: string
-    accessibleLabel: string
-    keyShortcuts?: string
-    /** Keys shown beside the label on wide screens, e.g. ["Ctrl", "K"]. */
-    hint?: string[]
-    onOpen: () => void
-  }
+  /** A TopbarSearch, placed after the page's own actions. */
+  search?: ReactNode
   topbarActions?: ReactNode
-  onCustomize: () => void
 }
 
 export function WorkspaceShell<Destination extends string>({
@@ -56,7 +41,6 @@ export function WorkspaceShell<Destination extends string>({
   breadcrumbs,
   search,
   topbarActions,
-  onCustomize,
   ...navigation
 }: WorkspaceShellProps<Destination>) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -73,6 +57,12 @@ export function WorkspaceShell<Destination extends string>({
     .slice(0, -1)
     .reverse()
     .find((crumb) => crumb.destination !== undefined)
+
+  // Actions in the phone menu close it before opening their own overlay.
+  const closeMenuFirst = (select: () => void) => () => {
+    setMenuOpen(false)
+    select()
+  }
 
   return (
     <div className="app-shell" data-sidebar-collapsed={collapsed}>
@@ -119,15 +109,17 @@ export function WorkspaceShell<Destination extends string>({
             }}
             actions={navigation.actions.map((action) =>
               "onSelect" in action
-                ? {
-                    ...action,
-                    onSelect: () => {
-                      setMenuOpen(false)
-                      action.onSelect()
-                    },
-                  }
+                ? { ...action, onSelect: closeMenuFirst(action.onSelect) }
                 : action,
             )}
+            account={{
+              ...navigation.account,
+              items: navigation.account.items.map((item) =>
+                "onSelect" in item
+                  ? { ...item, onSelect: closeMenuFirst(item.onSelect) }
+                  : item,
+              ),
+            }}
           />
         </SheetContent>
       </Sheet>
@@ -191,7 +183,10 @@ export function WorkspaceShell<Destination extends string>({
                 {index === trail.length - 1 ? (
                   <span
                     aria-current="page"
-                    className={trail.length > 1 ? "truncate" : undefined}
+                    className={cn(
+                      "breadcrumb-current",
+                      trail.length > 1 && "truncate",
+                    )}
                   >
                     {crumb.label}
                   </span>
@@ -210,42 +205,8 @@ export function WorkspaceShell<Destination extends string>({
           </nav>
           <div className="topbar-actions">
             <div className="topbar-page-actions" ref={setActionsSlot} />
-            {search && (
-              <Button
-                variant="ghost"
-                className="search-trigger"
-                onClick={search.onOpen}
-                aria-label={search.accessibleLabel}
-                aria-keyshortcuts={search.keyShortcuts}
-              >
-                <Search aria-hidden="true" data-icon="inline-start" />
-                <span>{search.label}</span>
-                {search.hint && (
-                  <KbdGroup className="search-hint" aria-hidden="true">
-                    {search.hint.map((key) => (
-                      <Kbd key={key}>{key}</Kbd>
-                    ))}
-                  </KbdGroup>
-                )}
-              </Button>
-            )}
+            {search}
             {topbarActions}
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="appearance-trigger"
-                    aria-label="Customize appearance"
-                    onClick={onCustomize}
-                  />
-                }
-              >
-                <SlidersHorizontal aria-hidden="true" />
-              </TooltipTrigger>
-              <TooltipContent>Customize appearance</TooltipContent>
-            </Tooltip>
           </div>
         </header>
         <PageActionsSlotContext value={actionsSlot}>

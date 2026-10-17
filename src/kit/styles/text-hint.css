@@ -16,7 +16,7 @@
 }
 .text-hint-content {
   max-width: min(18rem, calc(100vw - 2rem));
-  padding: var(--item-padding);
+  padding: var(--inset-row);
 }
 .text-hint-content [data-slot="popover-description"] {
   color: var(--popover-foreground);

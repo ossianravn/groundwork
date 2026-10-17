@@ -31,7 +31,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 isolate z-50 bg-black/10 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "fixed inset-0 isolate z-50 bg-backdrop duration-100 data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className,
       )}
       {...props}
@@ -53,7 +53,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 grid max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 grid-cols-[minmax(0,1fr)] gap-4 overflow-y-auto rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none not-has-data-[slot=command]:gap-(--content-gap) not-has-data-[slot=command]:p-(--dialog-padding) not-has-data-[slot=command]:[--dialog-padding:var(--panel-padding)] max-md:max-h-[calc(100dvh-32px)] max-md:max-w-[calc(100%-32px)] max-md:not-has-data-[slot=command]:gap-(--control-gap) max-md:not-has-data-[slot=command]:pt-(--control-gap) max-md:not-has-data-[slot=command]:[--dialog-padding:16px] md:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "fixed top-1/2 left-1/2 z-50 grid max-h-[calc(100dvh-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 grid-cols-[minmax(0,1fr)] gap-4 overflow-y-auto rounded-xl bg-popover p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none not-has-data-[slot=command]:gap-(--gap-group) not-has-data-[slot=command]:p-(--dialog-padding) not-has-data-[slot=command]:[--dialog-padding:var(--inset-panel)] max-md:max-h-[calc(100dvh-32px)] max-md:max-w-[calc(100%-32px)] max-md:not-has-data-[slot=command]:gap-(--gap-control) max-md:not-has-data-[slot=command]:pt-(--gap-control) max-md:not-has-data-[slot=command]:[--dialog-padding:16px] md:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className,
         )}
         {...props}
@@ -90,7 +90,7 @@ function DialogHeader({
       data-slot="dialog-header"
       data-close-button={showCloseButton || undefined}
       className={cn(
-        "flex min-w-0 flex-col gap-2 data-close-button:grid data-close-button:grid-cols-[minmax(0,1fr)_auto] data-close-button:items-center data-close-button:gap-x-(--control-gap) [&_[data-slot=dialog-title]]:wrap-anywhere data-close-button:[&_[data-slot=dialog-description]]:col-span-full",
+        "flex min-w-0 flex-col gap-2 data-close-button:grid data-close-button:grid-cols-[minmax(0,1fr)_auto] data-close-button:items-center data-close-button:gap-x-(--gap-control) [&_[data-slot=dialog-title]]:wrap-anywhere data-close-button:[&_[data-slot=dialog-description]]:col-span-full",
         className,
       )}
       {...props}
@@ -121,7 +121,7 @@ function DialogFooter({
     <div
       data-slot="dialog-footer"
       className={cn(
-        "mx-[calc(-1*var(--dialog-padding,var(--panel-padding)))] mb-[calc(-1*var(--dialog-padding,var(--panel-padding)))] flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-[var(--dialog-padding,var(--panel-padding))] sm:flex-row sm:justify-end max-md:flex-row max-md:flex-wrap max-md:justify-end max-md:py-(--control-gap) max-md:[&>.ui-button]:max-w-full max-md:[&>.ui-button]:whitespace-normal",
+        "mx-[calc(-1*var(--dialog-padding,var(--inset-panel)))] mb-[calc(-1*var(--dialog-padding,var(--inset-panel)))] flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-[var(--dialog-padding,var(--inset-panel))] sm:flex-row sm:justify-end max-md:flex-row max-md:flex-wrap max-md:justify-end max-md:py-(--gap-control) max-md:[&>.ui-button]:max-w-full max-md:[&>.ui-button]:whitespace-normal",
         className,
       )}
       {...props}
