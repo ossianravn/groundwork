@@ -51,50 +51,35 @@
 .activity-day + .activity-day {
   border-top: 1px solid var(--border);
 }
+/* The day shares its first event's line. */
 .activity-day h2 {
   font-size: var(--text-meta);
   font-weight: 500;
-  padding-top: 0.4rem;
+  line-height: calc(var(--text-body) * 1.5);
   color: var(--muted-foreground);
 }
-.activity-day ol {
-  display: grid;
-  gap: var(--gap-item);
-}
-.activity-day li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: var(--gap-item);
-  align-items: start;
-}
-.activity-day li p {
-  padding-top: 0.2rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-/* Projects are named in ink after their colour mark, as in Inbox; a quiet
-   underline keeps them recognisable as links. */
-.activity-project-link,
-.activity-copy .activity-project {
+/* Projects are named in ink after their colour mark, as in Inbox: no
+   underline at rest, one on hover and focus (design-system.md, links). The
+   link may be a button that opens the project in place. */
+.activity-project-link {
   position: relative;
   margin-inline-start: 0.875rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
   font-weight: 500;
+  text-align: start;
   color: var(--foreground);
-  text-decoration: underline;
-  text-decoration-color: color-mix(
-    in oklch,
-    var(--foreground) 25%,
-    transparent
-  );
+  cursor: pointer;
   text-underline-offset: 0.2em;
 }
 .activity-project-link:hover,
-.activity-copy .activity-project:hover {
-  text-decoration-color: currentColor;
+.activity-project-link:focus-visible {
+  text-decoration: underline;
 }
-/* The mark sits just outside the underlined name. */
-.activity-project-link::before,
-.activity-copy .activity-project::before {
+/* The mark sits just before the name. */
+.activity-project-link::before {
   content: "";
   position: absolute;
   left: -0.75rem;
@@ -153,19 +138,6 @@
   .activity-day {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--gap-control);
-  }
-  .activity-day li {
-    gap: var(--gap-control);
-  }
-  .activity-event-details > span {
-    display: none;
-  }
-  .activity-event-details > svg {
-    display: block;
-  }
-  .activity-event-details.ui-button {
-    padding: 0;
-    width: var(--control-height);
   }
 }
 /* When the team ships (DVIZ-13): a calendar of completions above the feed,

@@ -1601,7 +1601,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Understand recent changes and reach the related project.",
-    "implemented": "Recent activity and full date-grouped workspace history share live events. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
+    "implemented": "Recent activity, a project's Activity tab and full date-grouped workspace history share live events and one ActivityRow: one sentence with the date at the end of the line. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
     "deferred": "Historical fixture events contain no invented before/after values. No remote pagination or trusted audit service.",
     "examples": [
       {
@@ -1616,6 +1616,7 @@
       }
     ],
     "sources": [
+      "src/components/activity-row.tsx",
       "src/features/overview/activity-list.tsx",
       "src/features/activity/activity-timeline.tsx",
       "src/features/activity/activity-detail.tsx",

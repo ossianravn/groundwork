@@ -185,8 +185,7 @@
   column-gap: var(--gap-group);
   min-height: var(--control-height-sm);
 }
-.project-properties dt,
-.project-event-list time {
+.project-properties dt {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
 }
@@ -199,30 +198,6 @@
 .project-properties dd .project-tags,
 .project-properties dd .project-links {
   margin: 0;
-}
-.project-event-list {
-  display: grid;
-}
-/* Dates read as metadata under each event, as in Overview's recent activity. */
-.project-event-list li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
-  column-gap: var(--gap-group);
-  row-gap: 0.125rem;
-  padding-block: var(--inset-row);
-}
-.project-event-list time {
-  grid-column: 2;
-}
-.project-event-list li + li {
-  border-top: 1px solid var(--border);
-}
-.project-event-list p {
-  overflow-wrap: anywhere;
-}
-.project-event-list strong {
-  font-weight: 500;
 }
 /* Narrower screens stack in reading order: properties and progress, the
    work, then files, each divided by a hairline. */
