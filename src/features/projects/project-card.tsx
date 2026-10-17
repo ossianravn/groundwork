@@ -9,13 +9,13 @@ import { ProjectStatus } from "@/components/project-status"
 import type { Member, Project } from "@/demo/model"
 
 /**
- * A project as a card (design-system.md, record cards): the mark, which a
- * checkbox replaces on hover or while selecting, and the name, which opens
- * the project and covers the whole card; status (left to the board's
- * columns) and due date on one line;
- * the description (cards density only); one progress bar; the owner. The
- * board uses the compact density, so a project looks the same in both.
- * The host supplies the container with the `project-card` class.
+ * A project as a card (design-system.md, record cards), as in Trello: every
+ * row is used to its end. The head holds the mark (a checkbox while
+ * selecting), the name, which covers the card and opens it, any actions and
+ * the owner; then the description (cards density only), one progress bar,
+ * and a footer with status and due date at the start and the task count at
+ * the end. The board uses the compact density and leaves the status to its
+ * columns. The host supplies the container with the `project-card` class.
  */
 export function ProjectCard({
   project,
@@ -31,7 +31,7 @@ export function ProjectCard({
   title: ReactNode
   density?: "cards" | "board"
   selection?: { selected: boolean; onChange: (selected: boolean) => void }
-  /** Card actions after the name, such as a menu. */
+  /** Card actions before the owner, such as a menu. */
   actions?: ReactNode
 }) {
   const percent = project.tasks
@@ -56,32 +56,42 @@ export function ProjectCard({
         </span>
         <Heading className="project-card-title">{title}</Heading>
         {actions && <div className="project-card-actions">{actions}</div>}
+        <span className="project-card-owner" title={owner.name}>
+          <span aria-hidden="true">
+            <MemberAvatar member={owner} size="sm" />
+          </span>
+          <span className="sr-only">Owner {owner.name}</span>
+        </span>
       </div>
-      <div className="project-card-meta">
+      {density === "cards" && (
+        <p className="project-card-description">
+          {description || (
+            <span className="text-muted-foreground">No description yet.</span>
+          )}
+        </p>
+      )}
+      <ProjectProgressBar
+        color={project.color}
+        value={percent}
+        label={`${project.name}: ${percent}% complete`}
+      />
+      <div className="project-card-footer">
         {/* On the board, the column names the status. */}
         {density === "cards" && <ProjectStatus status={project.status} />}
         <ProjectDueDate date={project.dueDate} />
-      </div>
-      {description && <p className="project-card-description">{description}</p>}
-      <div className="project-card-progress">
-        <ProjectProgressBar
-          color={project.color}
-          value={percent}
-          label={`${project.name}: ${percent}% complete`}
-        />
-        <span>
-          {project.completedTasks}/{project.tasks} · {percent}%
+        <span className="project-card-count">
+          {project.tasks ? (
+            <>
+              {project.completedTasks}/{project.tasks}
+              <span aria-hidden="true"> · </span>
+              <span className="sr-only">, </span>
+              {percent}%
+            </>
+          ) : (
+            "No tasks"
+          )}
         </span>
       </div>
-      <p className="project-card-owner">
-        <span aria-hidden="true">
-          <MemberAvatar member={owner} size="sm" />
-        </span>
-        <span>
-          <span className="sr-only">Owner </span>
-          {owner.name}
-        </span>
-      </p>
     </>
   )
 }

@@ -65,20 +65,17 @@
   overflow-y: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 17rem;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "main properties"
-    "main files";
+  grid-template-areas: "main rail";
   align-content: start;
   gap: var(--gap-zone) var(--gap-section);
   padding: var(--inset-panel);
 }
-.quick-view-properties {
-  grid-area: properties;
-}
-.quick-view-files {
-  grid-area: files;
-  align-self: start;
+.quick-view-rail {
+  grid-area: rail;
+  display: grid;
+  align-content: start;
+  gap: var(--gap-zone);
+  min-width: 0;
 }
 .quick-view-main {
   grid-area: main;
@@ -122,10 +119,18 @@
   }
   .quick-view-body {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
     grid-template-areas:
       "properties"
       "main"
       "files";
+  }
+  .quick-view-rail {
+    display: contents;
+  }
+  .quick-view-properties {
+    grid-area: properties;
+  }
+  .quick-view-files {
+    grid-area: files;
   }
 }

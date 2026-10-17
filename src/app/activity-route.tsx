@@ -20,7 +20,7 @@ import { MemberLink } from "./member-link"
 import { defaultActivitySearch } from "./activity-search"
 
 export function ActivityRoute() {
-  const { demo, rememberProjectOpener, onSelectProject } = useDemoWorkspace()
+  const { demo, rememberProjectOpener } = useDemoWorkspace()
   const search = useSearch({ from: "/app/demo/activity" })
   const navigate = useNavigate()
   useRouteFocus()
@@ -102,7 +102,6 @@ export function ActivityRoute() {
                 projectId={project.id}
                 className="activity-project-link"
                 style={projectColorStyle(project.color)}
-                onOpen={() => onSelectProject(project.id)}
               >
                 {project.name}
               </ProjectDetailLink>

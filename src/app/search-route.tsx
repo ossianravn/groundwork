@@ -17,7 +17,7 @@ const route = getRouteApi("/app/demo/search")
 export function SearchRoute() {
   const search = route.useSearch()
   const navigate = route.useNavigate()
-  const { demo, onSelectProject } = useDemoWorkspace()
+  const { demo } = useDemoWorkspace()
   useRouteFocus()
 
   const hits = searchWorkspace(search.q, {
@@ -85,9 +85,6 @@ export function SearchRoute() {
         projectId={hit?.projectId ?? item.id}
         className={className}
         hash={group.kind === "comment" ? `comment-${item.id}` : undefined}
-        onOpen={
-          group.kind === "project" ? () => onSelectProject(item.id) : undefined
-        }
       >
         {label}
       </ProjectDetailLink>

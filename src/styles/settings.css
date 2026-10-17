@@ -45,13 +45,16 @@
   display: grid;
   gap: var(--gap-group);
 }
+/* Trimmed to its capitals, like a page title, so the gap above the heading
+   equals the gap beside the page and its top meets the navigation's. */
 .settings-section-heading h2 {
+  text-box: trim-both cap alphabetic;
   font-size: var(--text-section);
   font-weight: 600;
 }
 .settings-section-heading p {
   color: var(--muted-foreground);
-  margin-top: 0.25rem;
+  margin-top: var(--gap-control);
 }
 .settings-photo,
 .settings-actions,

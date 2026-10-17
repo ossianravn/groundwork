@@ -175,7 +175,5 @@ function openRow(event: MouseEvent<HTMLTableRowElement>) {
   )
     return
 
-  event.currentTarget
-    .querySelector<HTMLElement>("[data-quick-view-id]")
-    ?.click()
+  event.currentTarget.querySelector<HTMLElement>("[data-record-link]")?.click()
 }

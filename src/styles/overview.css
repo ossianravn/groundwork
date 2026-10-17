@@ -77,7 +77,7 @@
 }
 .overview-middle {
   display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(17rem, 1fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(20rem, 1fr);
   align-items: stretch;
 }
 /* Chart and activity are open sections divided by one hairline. */
@@ -113,13 +113,18 @@
   gap: var(--gap-control);
   max-width: 100%;
 }
+/* As tall as the chart header's controls, so both titles share a line. */
 .activity-card > [data-slot="card-header"] {
-  min-height: var(--control-height-sm);
+  min-height: var(--control-height);
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--gap-control);
+}
+/* The link's label, not its padding, meets the column's edge. */
+.activity-card > [data-slot="card-header"] > .ui-button {
+  margin-inline-end: calc(var(--space-2) * -1);
 }
 .chart-total {
   font-size: var(--text-metric);
@@ -190,11 +195,31 @@
 .overview-card-footer > .ui-button:last-child:not(:only-child) {
   margin-inline-start: auto;
 }
+/* The feed is as tall as the chart beside it and scrolls within that. */
 .activity-body {
+  position: relative;
   flex: 1;
+  min-height: 18rem;
 }
-.activity-card > .overview-card-footer {
-  justify-content: center;
+.activity-viewport {
+  position: absolute;
+  inset: 0;
+}
+/* Its overflow variables fade an edge only while more history lies past
+   it (kit ScrollArea); the scrollbar keeps clear of the dates. */
+.activity-scroller {
+  padding-inline-end: var(--inset-row);
+  scroll-padding-block: var(--space-8);
+  --activity-edge-mask: linear-gradient(
+    to bottom,
+    transparent,
+    #000 min(var(--space-8), var(--scroll-area-overflow-y-start, 0px)),
+    #000
+      calc(100% - min(var(--space-12), var(--scroll-area-overflow-y-end, 0px))),
+    transparent
+  );
+  -webkit-mask-image: var(--activity-edge-mask);
+  mask-image: var(--activity-edge-mask);
 }
 .chart-legend {
   display: flex;

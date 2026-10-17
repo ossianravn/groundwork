@@ -1,6 +1,6 @@
 /* Needs attention (features/overview/needs-attention.tsx): Overview's work
-   list, a row per project with its mark, name and why, then its owner and
-   due date. */
+   list. The list is one grid and each row a subgrid of it, so the state,
+   owner and due date line up down the list whatever their widths. */
 .attention {
   display: grid;
   gap: var(--gap-item);
@@ -21,16 +21,26 @@
 }
 .attention-list {
   display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+  column-gap: var(--gap-zone);
 }
 .attention-row {
+  /* One line of the name, which the mark centres on. */
+  --name-line: 1.5em;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
   align-items: center;
-  gap: var(--gap-item);
   padding-block: var(--inset-row);
 }
 .attention-row + .attention-row {
   border-top: 1px solid var(--border);
+}
+/* The mark sits on the name's line, close to it. */
+.attention-row > .project-dot {
+  align-self: start;
+  margin-block-start: calc((var(--name-line) - var(--mark-size)) / 2);
+  margin-inline-end: calc(var(--gap-control) - var(--gap-zone));
 }
 .attention-text {
   display: grid;
@@ -44,16 +54,89 @@
   background: none;
   font: inherit;
   font-weight: 500;
+  line-height: var(--name-line);
   color: var(--foreground);
   text-align: start;
   text-underline-offset: 0.2em;
   cursor: pointer;
 }
-.attention-name:hover {
+.attention-name:hover,
+.attention-name:focus-visible {
   text-decoration: underline;
 }
-.attention-text p,
-.attention-row .project-due-date {
+.attention-text p {
   font-size: var(--text-meta);
   color: var(--muted-foreground);
+}
+/* The state names the most urgent reason in its tone. */
+.attention-state {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: var(--gap-inline);
+  padding: var(--gap-inline) var(--gap-control);
+  border-radius: 999px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.attention-state svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.attention-state[data-state="overdue"] {
+  background: color-mix(in oklab, var(--destructive) 12%, var(--background));
+  color: var(--destructive);
+}
+.attention-state[data-state="late"] {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.attention-owner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  font-size: var(--text-meta);
+  white-space: nowrap;
+}
+.attention-row .project-due-date {
+  justify-self: end;
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Narrow screens keep the name and why, with state, owner and due date on
+   a line under them. */
+@media (max-width: 47.99rem) {
+  .attention-list {
+    grid-template-columns: auto auto auto minmax(0, 1fr);
+    column-gap: var(--gap-item);
+  }
+  .attention-row {
+    row-gap: var(--gap-control);
+  }
+  .attention-row > .project-dot {
+    margin-inline-end: 0;
+  }
+  .attention-text {
+    grid-column: 2 / -1;
+  }
+  .attention-state {
+    grid-column: 2;
+  }
+  .attention-row .project-due-date {
+    justify-self: end;
+  }
+  /* The avatar names the owner here; the name stays for screen readers. */
+  .attention-owner-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }

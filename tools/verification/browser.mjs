@@ -77,11 +77,11 @@ function controls() {
   }
 }
 
-// The quick view opens over the Projects table without moving it.
+// A card's quick view opens over the Cards view without moving it.
 function scrollbar() {
   // Short enough that the page scrolls, so the native scrollbar shows.
   browser("set", "viewport", "1440", "560")
-  browser("open", base + "/app/demo/projects")
+  browser("open", base + "/app/demo/projects?view=grid")
   browser("wait", "#project-link-brand")
   evaluate(() =>
     document
@@ -117,7 +117,7 @@ function scrollbar() {
     window.verificationMeasure = () => ({
       root: document.querySelector("#root").getBoundingClientRect().width,
       status: document
-        .querySelector("#projects th:nth-child(2)")
+        .querySelector(".project-grid .project-card:nth-child(2)")
         .getBoundingClientRect().x,
       scroll: scrollY,
     })

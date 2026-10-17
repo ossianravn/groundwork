@@ -6,6 +6,8 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ### Tokens
 
+- `base`: `--sidebar` is a surface of its own, a shade under the work area in light and dark mode, with its own `--sidebar-border`; the shell draws the desktop sidebar's edge with it. Set `--sidebar: var(--background)` to keep one plane.
+- `rich-text`: read-only rich text uses a 1.5 line height, like body text (it was 1.6).
 - `base`: **Breaking:** the spacing aliases deprecated in v0.6.0 are gone. Replace `--control-gap` with `--gap-control`, `--content-gap` and `--stack-gap` with `--gap-group`, `--section-gap` with `--gap-zone`, `--item-padding` with `--gap-item`, and `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding` with `--inset-card`, `--inset-panel`, `--inset-page` and `--inset-row`. `npm run lint:spacing` reports any old name left in demo code.
 
 ## v0.6.0 — 2026-10-18

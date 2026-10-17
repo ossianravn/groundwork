@@ -1,6 +1,7 @@
 /* Activity rows (components/activity-row.tsx): avatar, one sentence, then the
    date at the end of its first line. Every feed uses this list. */
 .activity-rows {
+  container: activity-feed / inline-size;
   display: grid;
   gap: var(--gap-item);
 }
@@ -53,4 +54,35 @@
 .activity-row-details:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+/* A narrow feed (Overview's column) gives every event two even lines:
+   the name and date, then what happened, so rows keep one rhythm however
+   their sentences wrap. */
+@container activity-feed (max-width: 30rem) {
+  .activity-row {
+    grid-template-columns: auto auto minmax(0, 1fr);
+    grid-template-areas:
+      "avatar name date"
+      "avatar action action";
+    grid-auto-flow: row;
+  }
+  .activity-row > span:first-child {
+    grid-area: avatar;
+  }
+  .activity-row-text {
+    display: contents;
+  }
+  .activity-row-name {
+    grid-area: name;
+  }
+  .activity-row-action {
+    grid-area: action;
+    color: var(--muted-foreground);
+    overflow-wrap: anywhere;
+  }
+  .activity-row-date,
+  .activity-row-details {
+    grid-area: date;
+    justify-self: start;
+  }
 }

@@ -1335,7 +1335,7 @@
     "category": "System",
     "surface": "Shared",
     "summary": "Open a project, task or person, go to a page or start an action from anywhere in the workspace.",
-    "implemented": "The top bar's Ctrl/⌘ K menu (2026-10-17). Before typing: recent projects, actions (New project, Import projects, Invite a teammate, Settings, Keyboard shortcuts) and pages. Once typing: Search everything first, then matching projects (recent ones first), actions, pages, tasks and people; every word must match, as on the Search page. Projects and tasks open in the quick view.",
+    "implemented": "The top bar's Ctrl/⌘ K menu (2026-10-17). Before typing: recent projects, actions (New project, Import projects, Invite a teammate, Settings, Keyboard shortcuts) and pages. Once typing: Search everything first, then matching projects (recent ones first), actions, pages, tasks and people; every word must match, as on the Search page. Projects and tasks open the project page.",
     "deferred": "Recent searches and commands beyond these actions remain planned.",
     "examples": [
       {
@@ -1555,7 +1555,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Open a project in place, keep the list behind it, and step through the list.",
-    "implemented": "A click on a project's name, card, board card or timeline bar, a search result or an activity link opens the project as a dialog over the list, with its URL (?inspect=) so Back closes it and the link can be shared. It holds the name (renamed in place), status and properties, the description and progress, tasks, comments, activity and files; Open full page leads to the project page, and Ctrl/⌘-click on a name opens that page directly. J and K step through the list it was opened from, and closing returns focus to the last project shown. It replaced the side-panel inspector on 2026-10-17.",
+    "implemented": "A click on a project card, in the Cards view or on the board, opens the project as a dialog over the cards, as in Trello, with its URL (?inspect=) so Back closes it and the link can be shared; table rows and other links open the project page (2026-10-18). It holds the name (renamed in place), status and properties, the description and progress, tasks, comments, activity and files; Open full page leads to the project page, and Ctrl/⌘-click on a name opens that page directly. J and K step through the list it was opened from, and closing returns focus to the last project shown. It replaced the side-panel inspector on 2026-10-17.",
     "deferred": "No multi-project quick view or side-by-side comparison.",
     "examples": [
       {

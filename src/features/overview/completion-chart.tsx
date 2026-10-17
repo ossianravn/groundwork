@@ -201,10 +201,8 @@ export function CompletionChart({
         )}
       </CardContent>
       <CardFooter className="overview-card-footer">
-        <span className="chart-legend">
-          <span />
-          {series[shown].heading}
-        </span>
+        {/* The series picker above says which bars show; no legend repeats it. */}
+        <span />
         <Button
           variant="ghost"
           size="sm"

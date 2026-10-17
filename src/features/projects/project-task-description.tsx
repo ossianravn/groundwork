@@ -92,7 +92,7 @@ export function ProjectTaskDescription({
           id={editId}
           size="sm"
           variant="ghost"
-          className="task-description-edit"
+          className="inline-action"
           onClick={() => {
             setDraft(task.description ?? textDocument(""))
             focus(editorId)

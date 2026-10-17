@@ -56,6 +56,7 @@ export function ProjectDetailLink({
       }}
       className={cn(className)}
       id={id}
+      data-record-link=""
       data-quick-view-id={onOpen ? projectId : undefined}
       title={title}
       style={style}

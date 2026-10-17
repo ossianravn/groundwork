@@ -1,24 +1,36 @@
 import type { ReactNode } from "react"
+import { CircleAlert, CircleSlash, Clock, UserRoundX } from "lucide-react"
 import { MemberAvatar } from "@/kit/member-avatar"
 import { ProjectDueDate } from "@/components/project-due-date"
 import { ProjectMark } from "@/components/project-identity"
-import type { AttentionItem } from "@/demo/attention"
+import type { AttentionItem, AttentionState } from "@/demo/attention"
 import type { Member } from "@/demo/model"
+import type { ProjectLinkRenderer } from "./project-link"
+
+const states: Record<
+  AttentionState,
+  { label: string; icon: typeof CircleAlert }
+> = {
+  overdue: { label: "Overdue", icon: CircleAlert },
+  late: { label: "Running late", icon: Clock },
+  stalled: { label: "Stalled", icon: CircleSlash },
+  unowned: { label: "Unassigned work", icon: UserRoundX },
+}
 
 /**
- * Overview's work list: the active projects that need someone, each with
- * why (overdue, late at its pace, stalled, unowned work), its owner and due
- * date. A name opens the project; the Projects page has the full list.
+ * Overview's work list: the active projects that need someone, most urgent
+ * first. Each row names the project and why, then its state, owner and due
+ * date in columns shared by every row; the Projects page has the full list.
  */
 export function NeedsAttention({
   items,
   members,
-  onSelectProject,
+  renderProject,
   allProjectsLink,
 }: {
   items: AttentionItem[]
   members: Member[]
-  onSelectProject: (id: string) => void
+  renderProject: ProjectLinkRenderer
   allProjectsLink?: ReactNode
 }) {
   return (
@@ -26,7 +38,6 @@ export function NeedsAttention({
       id="projects"
       className="attention"
       aria-labelledby="attention-title"
-      data-quick-view-list=""
       data-page-zone="section"
       tabIndex={-1}
     >
@@ -36,31 +47,39 @@ export function NeedsAttention({
       </header>
       {items.length ? (
         <ul className="attention-list">
-          {items.map(({ project, reasons }) => {
+          {items.map(({ project, state, reasons }) => {
             const owner = members.find(
               (member) => member.id === project.ownerId,
             )
+
+            const { label, icon: Icon } = states[state]
 
             return (
               <li key={project.id} className="attention-row">
                 <ProjectMark color={project.color} />
                 <div className="attention-text">
-                  <button
-                    type="button"
-                    id={`project-link-${project.id}`}
-                    className="attention-name"
-                    data-quick-view-id={project.id}
-                    onClick={() => onSelectProject(project.id)}
-                  >
-                    {project.name}
-                  </button>
+                  {renderProject(project, {
+                    id: `project-link-${project.id}`,
+                    className: "attention-name",
+                    children: project.name,
+                  })}
                   <p>{reasons.join(" · ")}</p>
                 </div>
-                {owner && (
-                  <span className="attention-owner" title={owner.name}>
-                    <MemberAvatar member={owner} size="sm" />
-                  </span>
-                )}
+                <span className="attention-state" data-state={state}>
+                  <Icon aria-hidden="true" />
+                  {label}
+                </span>
+                <span className="attention-owner">
+                  {owner && (
+                    <>
+                      <span aria-hidden="true">
+                        <MemberAvatar member={owner} size="sm" />
+                      </span>
+                      <span className="sr-only">Owner </span>
+                      <span className="attention-owner-name">{owner.name}</span>
+                    </>
+                  )}
+                </span>
                 <ProjectDueDate date={project.dueDate} />
               </li>
             )

@@ -5,8 +5,9 @@ import { formatDate } from "@/demo/model"
 /**
  * One event in a feed: who did what, where, and when, as one sentence with
  * the date at the end of the row. Overview, a project's Activity tab and the
- * Activity page share it. With `details`, the date opens the event, as a
- * timestamp does in a chat or code review.
+ * Activity page share it. In a narrow feed the name and date share the
+ * first line and what happened takes the second. With `details`, the date
+ * opens the event, as a timestamp does in a chat or code review.
  */
 export function ActivityRow({
   person,
@@ -39,8 +40,10 @@ export function ActivityRow({
       </span>
       <p className="activity-row-text">
         <span className="activity-row-name">{name ?? person.name}</span>{" "}
-        {action}
-        {project && <> {project}</>}
+        <span className="activity-row-action">
+          {action}
+          {project && <> {project}</>}
+        </span>
       </p>
       {time && details ? (
         <button

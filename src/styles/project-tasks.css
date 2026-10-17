@@ -86,9 +86,6 @@
   width: 100%;
   color: var(--foreground);
 }
-.task-description-edit {
-  margin-inline-start: -0.625rem;
-}
 .task-description-actions {
   display: flex;
   justify-content: flex-end;

@@ -96,8 +96,8 @@ export function BreakdownCard({
         )}
       </CardContent>
       <CardFooter className="overview-card-footer">
+        {/* The title says what the bars count; only a comparison needs a key. */}
         <span className="analytics-legend-row text-xs text-muted-foreground">
-          Completed tasks
           {previous && (
             <span className="analytics-previous-bar">
               <span aria-hidden="true" />
