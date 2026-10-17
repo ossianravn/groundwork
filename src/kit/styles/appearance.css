@@ -65,14 +65,57 @@
   text-align: center;
   overflow-wrap: anywhere;
 }
-.appearance-choice-caption svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  stroke-width: 2.5;
+/* Segmented choices: one frame, the chosen segment filled as in a toggle
+   group, its label in medium weight. */
+.appearance-options[data-kind="segmented"] {
+  width: fit-content;
+  max-width: 100%;
+  gap: 0;
+  padding-top: 0;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.appearance-options[data-kind="segmented"] .appearance-choice {
+  flex: 0 1 auto;
+}
+.appearance-options[data-kind="segmented"] .appearance-choice-frame {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.appearance-options[data-kind="segmented"]
+  .appearance-choice
+  + .appearance-choice
+  .appearance-choice-frame {
+  border-inline-start: 1px solid var(--input);
+}
+.appearance-options[data-kind="segmented"]
+  .appearance-choice:has(input:checked)
+  .appearance-choice-frame {
+  border-color: var(--input);
+  box-shadow: none;
+  background: var(--muted);
+}
+.appearance-options[data-kind="segmented"]
+  .appearance-choice:has(input:focus-visible)
+  .appearance-choice-frame {
+  outline-offset: -2px;
 }
 .appearance-choice:has(input:checked) .appearance-choice-caption {
   font-weight: 500;
+}
+.appearance-options[data-kind="segmented"] .appearance-choice-caption {
+  padding-inline: var(--inset-row);
+}
+.appearance-swatch {
+  width: 0.625rem;
+  height: 0.625rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in oklch, var(--foreground) 12%, transparent);
 }
 /* Over a preview, the check is a small badge inside the top corner. */
 .appearance-choice-check {
@@ -93,60 +136,14 @@
   height: 10px;
   stroke-width: 3.5;
 }
-/* Accents are the colour itself: a swatch, ringed when selected. */
-.appearance-choice:has(.appearance-accent-preview) .appearance-choice-frame,
-.appearance-choice:has(.appearance-accent-preview):has(input:checked)
-  .appearance-choice-frame {
-  border: 0;
-  box-shadow: none;
-  background: none;
-  overflow: visible;
-}
-.appearance-accent-preview {
-  display: grid;
-  place-items: center;
-  min-height: 36px;
-}
-.appearance-accent-preview > span {
-  background: var(--brand);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1px
-    color-mix(in oklch, var(--foreground) 12%, transparent);
-  transition: box-shadow var(--motion-fast) var(--ease-standard);
-}
-.appearance-choice:hover .appearance-accent-preview > span {
-  box-shadow:
-    0 0 0 2px var(--background),
-    0 0 0 4px var(--input);
-}
-.appearance-choice:has(input:checked) .appearance-accent-preview > span {
-  box-shadow:
-    0 0 0 2px var(--background),
-    0 0 0 4px var(--foreground);
-}
-.appearance-choice:has(.appearance-accent-preview) .appearance-choice-check {
-  top: 50%;
-  right: 50%;
-  translate: 50% -50%;
-  background: none;
-  color: var(--brand-foreground);
-}
-.appearance-choice:has(.appearance-accent-preview)
-  .appearance-choice-check
-  svg {
-  width: 14px;
-  height: 14px;
-}
+/* The font picker stacks under its label like the other choices, at a
+   width for a font's name. */
 .appearance-settings [data-slot="field"] {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 12px;
+  gap: var(--gap-control);
 }
 .appearance-settings [data-slot="select-trigger"] {
-  width: 100%;
+  width: min(100%, 16rem);
 }
 [data-slot="sheet-footer"].appearance-footer {
   flex-direction: row;
@@ -163,10 +160,7 @@
   margin-left: auto;
 }
 @container (max-width: 330px) {
-  .appearance-settings [data-slot="field"] {
-    grid-template-columns: 1fr;
-  }
-  .appearance-options {
+  .appearance-options[data-kind="tiles"] {
     gap: 8px;
   }
   .appearance-choice-caption {
@@ -181,5 +175,11 @@
   }
   .appearance-choice:has(input:checked) .appearance-choice-frame {
     border-color: Highlight;
+  }
+  .appearance-options[data-kind="segmented"]
+    .appearance-choice:has(input:checked)
+    .appearance-choice-frame {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
   }
 }

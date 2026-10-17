@@ -188,7 +188,7 @@ export function layoutProbe() {
     for (const el of zone.querySelectorAll("*")) {
       if (
         el.closest(
-          "svg, pre, code, [data-slot=code-block], [data-slot=terminal]",
+          "svg, pre, code, [data-slot=code-block], [data-slot=snippet], [data-slot=terminal]",
         )
       )
         continue

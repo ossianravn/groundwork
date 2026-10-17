@@ -1,9 +1,6 @@
 .settings-layout[data-section="team"] {
   grid-template-columns: 11rem minmax(0, 48rem);
 }
-.settings-layout[data-section="workspace"] {
-  grid-template-columns: 11rem minmax(0, 28rem);
-}
 .workspace-name-field {
   max-width: 26rem;
 }
@@ -71,9 +68,6 @@
   color: var(--muted-foreground);
 }
 @media (max-width: 1023px) {
-  .settings-layout[data-section="workspace"] {
-    grid-template-columns: minmax(0, 28rem);
-  }
   .settings-layout[data-section="team"] {
     grid-template-columns: minmax(0, 48rem);
   }
