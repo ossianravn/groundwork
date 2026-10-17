@@ -24,6 +24,8 @@ The first steps of a layout pass: spacing tokens named for their role, checks th
 - `chart`: **Breaking:** `ChartHeader` is one anatomy for every chart. `title` now names what the chart shows and renders as a heading (h3, or `headingLevel="h2"` for a chart that is a page section of its own). The key figure moves to a new `figure` slot (a `ChartTotal` or a series picker), then come `description` (a one-line takeaway) and the scope controls. `ChartTotal` renders a paragraph unless `as` asks for a heading, and its unit is muted body text.
 - `dialog`: `DialogFooter` sits on the dialog's surface, without the grey band, rule or negative margins; its actions wrap and stay right-aligned, primary last.
 - `member-avatar`: initials sit on a soft tint of one of the six `--hue-*` hues, chosen from the person's name, so a person keeps one colour everywhere.
+- `dropdown-menu`: `DropdownMenuCheckboxItem`, an option that turns on and off and shows a check at the end of its row when on.
+- `toggle`: the small size's text is 14px (it was 12.8px, off the type ramp), which `toggle-group` items share.
 
 ### Menus, Select and AI components
 
@@ -37,6 +39,7 @@ The first steps of a layout pass: spacing tokens named for their role, checks th
 
 ### Repository
 
+- The layout contract counts a framed control group (`data-control-group`, like an input group) as one control when it checks a toolbar's heights.
 - `npm run lint` includes `lint:spacing`, which reports raw spacing in demo code against a per-file baseline, and `npm run check:layout` checks each workspace page's anatomy in a browser. See [Checks](README.md#checks).
 
 ## v0.5.0 — 2026-10-13
