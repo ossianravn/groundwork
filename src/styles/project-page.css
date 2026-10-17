@@ -175,8 +175,8 @@
 .project-properties dd .project-links {
   margin: 0;
 }
-/* Narrower screens stack in reading order: properties and progress, the
-   work, then files, each divided by a hairline. */
+/* Narrower screens stack in reading order: the work, then the details and
+   files, each divided by a hairline. */
 @media (max-width: 1023px) {
   .project-page-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -196,7 +196,9 @@
   .project-rail-files {
     padding-block: 0;
   }
-  .project-main {
+  /* The work comes first, then the details and files, each under a
+     hairline. */
+  .project-rail {
     padding-top: var(--gap-zone);
     border-top: 1px solid var(--border);
   }

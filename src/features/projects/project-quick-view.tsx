@@ -41,6 +41,7 @@ export function ProjectQuickView({
   onTaskChange,
   comments,
   onPostComment,
+  commentAuthor,
   files,
   tagOptions,
   notice,
@@ -60,6 +61,8 @@ export function ProjectQuickView({
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
+  /** The person commenting, beside the composer. */
+  commentAuthor?: Member
   files: ReactNode
   tagOptions: string[]
   /** The outcome that opened it, such as Project created. */
@@ -220,6 +223,7 @@ export function ProjectQuickView({
                 people={members}
                 members={assignableMembers}
                 onPost={onPostComment}
+                author={commentAuthor}
               />
             </section>
             <section aria-labelledby="quick-view-activity">

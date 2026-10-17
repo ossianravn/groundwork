@@ -103,6 +103,7 @@ export function ProjectTaskRow({
             size="sm"
             className="task-assignee"
             aria-label={`Assignee for ${task.title}: ${assignee?.name ?? "Unassigned"}`}
+            title={assignee?.name ?? "Unassigned"}
           >
             {/* Name first, so avatars line up at the column's edge. */}
             {assignee ? (
@@ -135,6 +136,7 @@ export function ProjectTaskRow({
       {!readOnly && (
         <DropdownMenu>
           <DropdownMenuTrigger
+            className="task-actions"
             render={<Button variant="ghost" size="icon-sm" />}
             aria-label={`Actions for ${task.title}`}
           >

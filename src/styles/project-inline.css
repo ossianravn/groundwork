@@ -99,6 +99,7 @@
   display: flex;
   flex: 1;
   align-items: center;
+  min-height: var(--control-height);
   gap: var(--gap-control);
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;

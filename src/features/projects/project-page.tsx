@@ -30,10 +30,9 @@ const isProjectTab = (value: unknown): value is ProjectTab =>
 
 /**
  * A project's page: its name, status and description as the heading; the
- * work (tasks, comments, activity) in the main column; and its properties,
- * progress and files in a rail beside it. Properties and progress come first
- * in reading order and files last, so narrow screens show who owns the
- * project and when it is due, then the tasks, then attachments.
+ * work (tasks, comments, activity) in the main column; and its properties
+ * and files in a rail beside it. The work comes first in reading order, so
+ * narrow screens show the tasks, then the details, then attachments.
  */
 export function ProjectPage({
   project,
@@ -48,6 +47,7 @@ export function ProjectPage({
   onTaskChange,
   comments,
   onPostComment,
+  commentAuthor,
   files,
   agent,
   tagOptions,
@@ -67,6 +67,8 @@ export function ProjectPage({
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
+  /** The person commenting, beside the composer. */
+  commentAuthor?: Member
   /** Attachments, shown under the details in the rail. */
   files?: ReactNode
   /** The agent's runs on the project; alert when one needs the person. */
@@ -119,15 +121,6 @@ export function ProjectPage({
         </p>
       )}
       <div className="project-page-grid" data-page-zone="content">
-        <aside className="project-rail" aria-labelledby="project-details-title">
-          <ProjectProperties
-            project={project}
-            owner={owner}
-            assignableMembers={assignableMembers}
-            tagOptions={tagOptions}
-            editing={editing}
-          />
-        </aside>
         <Tabs
           className="project-main"
           value={tab}
@@ -178,6 +171,7 @@ export function ProjectPage({
               people={members}
               members={assignableMembers}
               onPost={onPostComment}
+              author={commentAuthor}
             />
           </TabsContent>
           <TabsContent value="activity" keepMounted>
@@ -193,6 +187,15 @@ export function ProjectPage({
             {agent.panel}
           </TabsContent>
         </Tabs>
+        <aside className="project-rail" aria-labelledby="project-details-title">
+          <ProjectProperties
+            project={project}
+            owner={owner}
+            assignableMembers={assignableMembers}
+            tagOptions={tagOptions}
+            editing={editing}
+          />
+        </aside>
         {files && <div className="project-rail-files">{files}</div>}
       </div>
     </main>

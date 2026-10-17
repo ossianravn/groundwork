@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState } from "react"
+import {
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type Ref,
+} from "react"
 import { RotateCcw, Upload, X } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import { Progress, ProgressLabel, ProgressValue } from "@/kit/ui/progress"
@@ -16,18 +22,31 @@ const step = 12
 
 const tick = 90
 
+/** What the Files section asks of its uploads: choose files, or start dropped ones. */
+export interface FileUploadHandle {
+  choose: () => void
+  start: (files: FileList) => void
+}
+
 // Drop files or choose them (SETT-15). The demo stands in for a network
 // upload with timed progress; failFirst interrupts the first upload so the
 // Retry path can be seen. Oversized files are refused before they start.
 export function ProjectFileUpload({
   failFirst,
   onUploaded,
+  ref,
+  zone,
 }: {
   failFirst: boolean
   onUploaded: (file: File) => void
+  ref?: Ref<FileUploadHandle>
+  /**
+   * The drop zone shows while files are dragged over the section, and at
+   * rest only while there are none yet.
+   */
+  zone: "drag" | "rest" | "hidden"
 }) {
   const [uploads, setUploads] = useState<Upload[]>([])
-  const [dragging, setDragging] = useState(false)
   const [announcement, setAnnouncement] = useState("")
   const input = useRef<HTMLInputElement>(null)
   const failed = useRef(!failFirst)
@@ -109,6 +128,11 @@ export function ProjectFileUpload({
     commit([...latest.current, ...next])
   }
 
+  useImperativeHandle(ref, () => ({
+    choose: () => input.current?.click(),
+    start,
+  }))
+
   function update(id: string, patch: Partial<Upload> | null) {
     commit(
       latest.current.flatMap((upload) =>
@@ -119,40 +143,35 @@ export function ProjectFileUpload({
 
   return (
     <div className="file-upload">
-      <div
-        className="file-drop"
-        data-dragging={dragging || undefined}
-        onDragOver={(event) => {
-          event.preventDefault()
-          setDragging(true)
+      {zone !== "hidden" && (
+        <div className="file-drop" data-dragging={zone === "drag" || undefined}>
+          <Upload aria-hidden="true" className="file-drop-icon" />
+          {zone === "drag" ? (
+            <p>Drop to upload</p>
+          ) : (
+            <>
+              <p>Drop files here or</p>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => input.current?.click()}
+              >
+                Choose files
+              </Button>
+            </>
+          )}
+        </div>
+      )}
+      <input
+        ref={input}
+        type="file"
+        multiple
+        hidden
+        onChange={(event) => {
+          start(event.target.files)
+          event.target.value = ""
         }}
-        onDragLeave={() => setDragging(false)}
-        onDrop={(event) => {
-          event.preventDefault()
-          setDragging(false)
-          start(event.dataTransfer.files)
-        }}
-      >
-        <Upload aria-hidden="true" className="file-drop-icon" />
-        <p>Drop files here or</p>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => input.current?.click()}
-        >
-          Choose files
-        </Button>
-        <input
-          ref={input}
-          type="file"
-          multiple
-          hidden
-          onChange={(event) => {
-            start(event.target.files)
-            event.target.value = ""
-          }}
-        />
-      </div>
+      />
       {uploads.length > 0 && (
         <ul className="file-uploads" aria-label="Uploads">
           {uploads.map((upload) => (

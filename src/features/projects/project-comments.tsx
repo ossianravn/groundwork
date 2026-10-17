@@ -14,6 +14,7 @@ export function ProjectComments({
   people,
   members,
   onPost,
+  author,
 }: {
   /** This project's comments, oldest first. */
   comments: ProjectComment[]
@@ -22,6 +23,8 @@ export function ProjectComments({
   members: Member[]
   /** Returns false when the comment was empty. */
   onPost: (text: string) => boolean
+  /** The person commenting, shown beside the composer. */
+  author?: Member
 }) {
   const [draft, setDraft] = useState("")
   const [error, setError] = useState("")
@@ -57,7 +60,7 @@ export function ProjectComments({
                 <p className="comment-meta">
                   <strong>{author?.name ?? "Former member"}</strong>
                   <time dateTime={comment.date}>
-                    {formatDate(comment.date, { year: "numeric" })}
+                    {formatDate(comment.date)}
                   </time>
                 </p>
                 <p className="comment-body">
@@ -79,8 +82,15 @@ export function ProjectComments({
         <p className="text-muted-foreground">No comments yet.</p>
       )}
       <form className="comment-form" onSubmit={post} noValidate>
-        <Field data-invalid={!!error}>
-          <FieldLabel htmlFor="comment-draft">Add a comment</FieldLabel>
+        {author && (
+          <span aria-hidden="true">
+            <MemberAvatar member={author} size="sm" />
+          </span>
+        )}
+        <Field data-invalid={!!error} className="comment-composer">
+          <FieldLabel htmlFor="comment-draft" className="sr-only">
+            Add a comment
+          </FieldLabel>
           <MentionTextarea
             id="comment-draft"
             value={draft}
@@ -91,20 +101,23 @@ export function ProjectComments({
             }}
             members={members}
             onSubmit={() => post()}
-            rows={3}
+            rows={2}
+            placeholder="Add a comment…"
             aria-invalid={!!error}
             aria-describedby={
               error ? "comment-hint comment-error" : "comment-hint"
             }
           />
-          <FieldDescription id="comment-hint">
-            Type @ to mention a teammate. Ctrl or ⌘ + Enter posts.
-          </FieldDescription>
+          <div className="comment-composer-actions">
+            <FieldDescription id="comment-hint">
+              Type @ to mention a teammate. Ctrl or ⌘ + Enter posts.
+            </FieldDescription>
+            <Button type="submit" size="sm" className="comment-submit">
+              Comment
+            </Button>
+          </div>
           {error && <FieldError id="comment-error">{error}</FieldError>}
         </Field>
-        <Button type="submit" className="comment-submit">
-          Comment
-        </Button>
       </form>
       <p role="status" className="sr-only">
         {announcement}

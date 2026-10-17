@@ -26,6 +26,9 @@ export function projectRecord(
       scenario,
     ),
     members: workspace.workspace.people,
+    commentAuthor: workspace.workspace.people.find(
+      (person) => person.id === workspace.workspace.currentUserId,
+    ),
     assignableMembers: workspace.workspace.members,
     activity: workspace.activity,
     referenceDate: workspace.workspace.referenceDate,
