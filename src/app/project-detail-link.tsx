@@ -20,15 +20,7 @@ interface ProjectLinkProps {
   onOpen?: () => void
 }
 
-export function ProjectDetailLink(props: ProjectLinkProps) {
-  return <ProjectRouteLink {...props} to="/app/demo/projects/$projectId" />
-}
-
-export function ProjectEditLink(props: ProjectLinkProps) {
-  return <ProjectRouteLink {...props} to="/app/demo/projects/$projectId/edit" />
-}
-
-function ProjectRouteLink({
+export function ProjectDetailLink({
   projectId,
   children,
   className,
@@ -37,10 +29,7 @@ function ProjectRouteLink({
   style,
   hash,
   onOpen,
-  to,
-}: ProjectLinkProps & {
-  to: "/app/demo/projects/$projectId" | "/app/demo/projects/$projectId/edit"
-}) {
+}: ProjectLinkProps) {
   const href = useLocation({ select: (location) => location.href })
   const { returnTo } = useSearch({ strict: false })
   const { onOpenDetail } = useDemoWorkspace()
@@ -48,7 +37,7 @@ function ProjectRouteLink({
 
   return (
     <Link
-      to={to}
+      to="/app/demo/projects/$projectId"
       params={{ projectId }}
       search={{ returnTo: origin }}
       hash={hash}

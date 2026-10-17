@@ -131,3 +131,30 @@
     display: none;
   }
 }
+/* Rows stay quiet (design-system.md, task rows): the assignee is its avatar
+   (dashed when unassigned) with the name in its label and tooltip, the
+   description mark is muted, and the row's menu shows on hover or focus
+   with a fine pointer. */
+.task-assignee .task-assignee-name,
+.task-assignee > svg:last-child {
+  display: none;
+}
+.task-assignee {
+  padding-inline: var(--space-1);
+}
+.task-has-description {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+.task-row:hover .task-has-description {
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .task-row .task-actions {
+    opacity: 0;
+  }
+  .task-row:is(:hover, :focus-within) .task-actions,
+  .task-row .task-actions[data-popup-open] {
+    opacity: 1;
+  }
+}

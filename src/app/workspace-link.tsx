@@ -11,24 +11,11 @@ import { defaultAssistantSearch } from "./assistant-search"
 
 export function WorkspaceLink({ destination, ...props }: WorkspaceLinkProps) {
   const href = useLocation({ select: (location) => location.href })
-  const pathname = useLocation({ select: (location) => location.pathname })
   const searchStr = useLocation({ select: (location) => location.searchStr })
 
   if (destination === "return")
     return (
       <Link {...props} {...projectReturnDestination(returnToOf(searchStr))} />
-    )
-
-  if (destination === "project")
-    return (
-      <Link
-        {...props}
-        to="/app/demo/projects/$projectId"
-        params={{
-          projectId: decodeURIComponent(pathname.split("/")[4] ?? ""),
-        }}
-        search={{ returnTo: returnToOf(searchStr) }}
-      />
     )
 
   if (destination === "activity")

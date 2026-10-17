@@ -144,3 +144,12 @@
 .project-card-progress [data-slot="progress"] {
   flex: 1;
 }
+/* Phones show the compact card, so a screen holds more than two projects. */
+@container project-views (max-width: 26rem) {
+  .project-grid .project-card {
+    gap: var(--gap-control);
+  }
+  .project-grid .project-card-description {
+    display: none;
+  }
+}

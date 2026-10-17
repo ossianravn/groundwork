@@ -83,11 +83,9 @@ export function DemoWorkspaceShell({
     searchStr,
     workspaceName: demo.workspace.name,
     projectName: (path) =>
-      demo.projects.find((project) =>
-        [
-          `/app/demo/projects/${encodeURIComponent(project.id)}`,
-          `/app/demo/projects/${encodeURIComponent(project.id)}/edit`,
-        ].includes(path),
+      demo.projects.find(
+        (project) =>
+          path === `/app/demo/projects/${encodeURIComponent(project.id)}`,
       )?.name ?? "Project unavailable",
   })
 

@@ -23,17 +23,16 @@ it("names a project's origin as its parent crumb, which links back there", () =>
   ).toEqual({ label: "Assistant", destination: "return" })
 })
 
-it("links the editor back to its project and keeps list pages plain", () => {
+it("returns a project to its origin and keeps list pages plain", () => {
   expect(
     trail(
-      "/app/demo/projects/brand/edit",
+      "/app/demo/projects/brand",
       `?returnTo=${encodeURIComponent("/app/demo/overview?period=30")}`,
     ),
   ).toEqual([
     { label: "Studio North" },
     { label: "Overview", destination: "return" },
-    { label: "Brand refresh", destination: "project" },
-    { label: "Edit" },
+    { label: "Brand refresh" },
   ])
   expect(trail("/app/demo/projects/import")).toEqual([
     { label: "Studio North" },

@@ -36,6 +36,7 @@ export function ProjectSelectionMenu({
   return (
     <div
       className="project-selection-control"
+      data-control-group=""
       role="group"
       aria-label="Project selection"
     >

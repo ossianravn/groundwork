@@ -28,25 +28,6 @@
   gap: var(--gap-group);
   margin-inline-start: auto;
 }
-.project-header-progress {
-  display: flex;
-  align-items: center;
-  gap: var(--gap-control);
-  color: var(--muted-foreground);
-  font-size: var(--text-meta);
-  font-variant-numeric: tabular-nums;
-}
-.project-header-progress strong {
-  color: var(--foreground);
-  font-weight: 600;
-}
-.project-header-progress [data-slot="progress"] {
-  width: 7rem;
-}
-.project-header-percent {
-  min-width: 2.25rem;
-  text-align: end;
-}
 .project-page-title > .project-dot {
   width: 0.75rem;
   height: 0.75rem;
@@ -115,8 +96,11 @@
   align-self: stretch;
   align-content: start;
 }
+/* The rail's heading shares the tab row's centre line (42px tabs, a 24px
+   heading line). */
 .project-rail {
   grid-row: 1;
+  padding-top: calc(var(--space-2) + 1px);
   padding-bottom: var(--gap-zone);
 }
 .project-rail-files {
@@ -191,8 +175,8 @@
 .project-properties dd .project-links {
   margin: 0;
 }
-/* Narrower screens stack in reading order: properties and progress, the
-   work, then files, each divided by a hairline. */
+/* Narrower screens stack in reading order: the work, then the details and
+   files, each divided by a hairline. */
 @media (max-width: 1023px) {
   .project-page-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -212,7 +196,9 @@
   .project-rail-files {
     padding-block: 0;
   }
-  .project-main {
+  /* The work comes first, then the details and files, each under a
+     hairline. */
+  .project-rail {
     padding-top: var(--gap-zone);
     border-top: 1px solid var(--border);
   }

@@ -144,17 +144,20 @@ export function layoutProbe() {
         `${name(zone)} is ${Math.round(above)}px below ${previous ? "the zone above" : "the top bar"}, not ${expected}px`,
       )
 
-    // One control height per toolbar.
+    // One control height per toolbar. A framed group (an input group, or
+    // buttons sharing one frame) counts as one control.
     if (kind === "toolbar") {
+      const groups = "[data-slot=input-group], [data-control-group]"
+
       const controls = [
         ...zone.querySelectorAll(
-          "button, input:not([type=checkbox]):not([type=radio]), [data-slot=input-group]",
+          `button, input:not([type=checkbox]):not([type=radio]), ${groups}`,
         ),
       ].filter(
         (el) =>
           visible(el) &&
           box(el).height >= 24 &&
-          !el.parentElement?.closest("[data-slot=input-group]"),
+          !el.parentElement?.closest(groups),
       )
 
       const heights = [

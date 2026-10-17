@@ -9,8 +9,8 @@
       "The JSON document is the source of truth. Cards derive plain-text previews; details render the supported formatting.",
       "Save keeps this example’s content; Cancel discards edits. Project forms also retain drafts during navigation."
     ],
-    "context": "Project editing",
-    "href": "/app/demo/projects/brand/edit",
+    "context": "Project description",
+    "href": "/app/demo/projects/brand",
     "patterns": ["SETT-10"],
     "documentation": {
       "href": "https://tiptap.dev/docs/editor/getting-started/install/react",
@@ -54,8 +54,8 @@
       "Arrow keys move through options; Enter selects and Escape dismisses.",
       "Pass the items to Base UI so the trigger shows the label rather than an internal ID."
     ],
-    "context": "Project editor",
-    "href": "/app/demo/projects/brand/edit",
+    "context": "New project",
+    "href": "/app/demo/projects/new",
     "patterns": ["SETT-13"]
   },
   {
@@ -232,7 +232,7 @@
       "Pass labelledBy so the field name and the chosen date are both announced. Arrow keys move between days; Enter picks."
     ],
     "context": "Project due date",
-    "href": "/app/demo/projects/brand/edit",
+    "href": "/app/demo/projects/brand",
     "patterns": ["KIT-04"],
     "implementation": "src/kit/ui/date-picker.tsx"
   },

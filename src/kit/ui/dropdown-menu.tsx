@@ -73,6 +73,29 @@ function DropdownMenuRadioItem({
   )
 }
 
+/** An option that turns on and off; when on it shows a check at the end. */
+function DropdownMenuCheckboxItem({
+  className,
+  children,
+  ...props
+}: MenuPrimitive.CheckboxItem.Props) {
+  return (
+    <MenuPrimitive.CheckboxItem
+      data-slot="dropdown-menu-checkbox-item"
+      className={cn("dropdown-menu-item", className)}
+      {...props}
+    >
+      {children}
+      <MenuPrimitive.CheckboxItemIndicator
+        keepMounted
+        className="ms-auto flex size-4 shrink-0 items-center justify-center data-unchecked:invisible"
+      >
+        <CheckIcon aria-hidden="true" />
+      </MenuPrimitive.CheckboxItemIndicator>
+    </MenuPrimitive.CheckboxItem>
+  )
+}
+
 function DropdownMenuLabel({
   className,
   ...props
@@ -98,6 +121,7 @@ export {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuCheckboxItem,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,

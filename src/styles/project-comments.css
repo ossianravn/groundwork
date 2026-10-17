@@ -44,14 +44,56 @@
   color: var(--brand);
   font-weight: 500;
 }
+/* The composer: the commenter's avatar, then one framed box as wide as the
+   list, holding the field (which grows with its text), the hint and
+   Comment. */
 .comment-form {
   display: grid;
-  justify-items: start;
-  gap: var(--gap-control);
-  max-width: 40rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--gap-item);
 }
-.comment-form [data-slot="field"] {
-  width: 100%;
+.comment-form > span:first-child {
+  padding-top: var(--space-2);
+}
+.comment-composer[data-slot="field"] {
+  gap: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--motion-fast) var(--ease-standard);
+}
+.comment-composer[data-slot="field"]:focus-within {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 40%, transparent);
+}
+.comment-composer[data-invalid="true"] {
+  border-color: var(--destructive);
+}
+.comment-composer [data-slot="textarea"] {
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  resize: none;
+  field-sizing: content;
+}
+.comment-composer [data-slot="textarea"]:focus-visible {
+  box-shadow: none;
+}
+.comment-composer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-control);
+  padding-inline-start: var(--space-2);
+}
+.comment-composer-actions [data-slot="field-description"] {
+  font-size: var(--text-meta);
+}
+.comment-composer [data-slot="field-error"] {
+  padding-inline: var(--space-2);
 }
 /* Suggestions sit under the field so they never cover the text being typed. */
 .mention-field {

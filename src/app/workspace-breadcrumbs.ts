@@ -94,17 +94,7 @@ export function workspaceLocation({
 
     const name = projectName(pathname)
 
-    return {
-      page: "Projects",
-      breadcrumbs: record.endsWith("/edit")
-        ? [
-            root,
-            origin,
-            { label: name, destination: "project" },
-            { label: "Edit" },
-          ]
-        : [root, origin, { label: name }],
-    }
+    return { page: "Projects", breadcrumbs: [root, origin, { label: name }] }
   }
 
   const page = sectionPages.get(pathname) ?? "Overview"

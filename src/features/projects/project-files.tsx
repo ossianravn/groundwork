@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { Download, FileText, Trash2 } from "lucide-react"
+import { Download, FileText, Trash2, Upload } from "lucide-react"
 import { Button, buttonVariants } from "@/kit/ui/button"
 import {
   Dialog,
@@ -12,7 +12,7 @@ import {
 import { useToast } from "@/kit/ui/use-toast"
 import { formatDate, type Member, type ProjectFile } from "@/demo/model"
 import { formatBytes, isImageFile } from "@/demo/project-files"
-import { ProjectFileUpload } from "./project-file-upload"
+import { ProjectFileUpload, type FileUploadHandle } from "./project-file-upload"
 
 // Project attachments (SETT-15), beside progress. Images show a thumbnail
 // and open a larger preview; sample files without content say so.
@@ -32,6 +32,8 @@ export function ProjectFiles({
 }) {
   const toast = useToast()
   const [open, setOpen] = useState<ProjectFile | null>(null)
+  const upload = useRef<FileUploadHandle>(null)
+  const [dragging, setDragging] = useState(false)
   const opened = useRef("")
   const heading = useRef<HTMLHeadingElement>(null)
   const title = useRef<HTMLHeadingElement>(null)
@@ -56,12 +58,43 @@ export function ProjectFiles({
   }
 
   return (
-    <section className="project-files" aria-labelledby="project-files-title">
+    // The whole section takes dropped files; its zone shows while dragging.
+    <section
+      className="project-files"
+      aria-labelledby="project-files-title"
+      data-dragging={dragging || undefined}
+      onDragOver={(event) => {
+        event.preventDefault()
+        setDragging(true)
+      }}
+      onDragLeave={(event) => {
+        if (
+          !(event.relatedTarget instanceof Node) ||
+          !event.currentTarget.contains(event.relatedTarget)
+        )
+          setDragging(false)
+      }}
+      onDrop={(event) => {
+        event.preventDefault()
+        setDragging(false)
+        upload.current?.start(event.dataTransfer.files)
+      }}
+    >
       <header className="project-files-heading">
         <h2 id="project-files-title" ref={heading} tabIndex={-1}>
-          Files
+          Files <span className="project-tasks-count">{files.length}</span>
         </h2>
-        <p className="project-tasks-count">{files.length}</p>
+        {files.length > 0 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="project-files-upload"
+            onClick={() => upload.current?.choose()}
+          >
+            <Upload aria-hidden="true" data-icon="inline-start" />
+            Upload
+          </Button>
+        )}
       </header>
       {files.length > 0 && (
         <ul className="file-list">
@@ -94,7 +127,12 @@ export function ProjectFiles({
           ))}
         </ul>
       )}
-      <ProjectFileUpload failFirst={failFirstUpload} onUploaded={onUploaded} />
+      <ProjectFileUpload
+        ref={upload}
+        failFirst={failFirstUpload}
+        onUploaded={onUploaded}
+        zone={dragging ? "drag" : files.length ? "hidden" : "rest"}
+      />
       <Dialog open={!!open} onOpenChange={(next) => !next && setOpen(null)}>
         {open && (
           <DialogContent

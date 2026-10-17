@@ -10,14 +10,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/kit/ui/select"
+import { ProjectProgressBar } from "@/components/project-progress-bar"
 import { formatDate, type Member, type Project } from "@/demo/model"
 import type { ProjectValues } from "@/demo/project-form"
 import type { ProjectInlineEditing } from "./project-inline-editing"
+import { ProjectColorField } from "./project-color-field"
 import { ProjectLinkEditor } from "./project-link-editor"
 import { ProjectTagField } from "./project-tag-field"
 
 type Details = Partial<
-  Pick<ProjectValues, "ownerId" | "dueDate" | "tags" | "links">
+  Pick<ProjectValues, "ownerId" | "dueDate" | "tags" | "links" | "color">
 >
 
 function Property({
@@ -64,6 +66,10 @@ export function ProjectProperties({
     outcome: string
   } | null>(null)
 
+  const percent = project.tasks
+    ? Math.round((project.completedTasks / project.tasks) * 100)
+    : 0
+
   const items = assignableMembers.map((member) => ({
     value: member.id,
     label: member.name,
@@ -91,6 +97,22 @@ export function ProjectProperties({
         Project details
       </h2>
       <dl className="project-properties">
+        <Property id="project-progress-label" label="Progress">
+          {project.tasks ? (
+            <span className="project-progress-row">
+              <ProjectProgressBar
+                color={project.color}
+                value={percent}
+                label="Completed tasks"
+              />
+              <span>
+                {project.completedTasks} of {project.tasks} · {percent}%
+              </span>
+            </span>
+          ) : (
+            <span className="text-muted-foreground">No tasks yet</span>
+          )}
+        </Property>
         <Property id="project-owner-label" label="Owner">
           <Select
             items={items}
@@ -132,6 +154,15 @@ export function ProjectProperties({
                   { dueDate },
                   `Due date changed to ${formatDate(dueDate, { year: "numeric" })}.`,
                 )
+            }}
+          />
+        </Property>
+        <Property id="project-colour-label" label="Colour">
+          <ProjectColorField
+            hideLegend
+            value={project.color}
+            onChange={(color) => {
+              if (color !== project.color) save({ color }, "Colour changed.")
             }}
           />
         </Property>

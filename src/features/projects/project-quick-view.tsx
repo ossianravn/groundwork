@@ -1,7 +1,5 @@
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from "react"
 import { ChevronDown, ChevronUp, X } from "lucide-react"
-import { RichText } from "@/kit/rich-text/rich-text"
-import { documentText } from "@/kit/rich-text/document"
 import { Button } from "@/kit/ui/button"
 import { Dialog, DialogClose, DialogContent } from "@/kit/ui/dialog"
 import { ProjectMark } from "@/components/project-identity"
@@ -16,7 +14,8 @@ import type {
 import type { TaskChange } from "@/demo/project-tasks"
 import { ProjectActivity } from "./project-activity"
 import { ProjectComments } from "./project-comments"
-import { ProjectHeaderProgress } from "./project-header-progress"
+import { ProjectCompletion } from "./project-completion"
+import { ProjectDescription } from "./project-description"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectProperties } from "./project-properties"
@@ -37,10 +36,12 @@ export function ProjectQuickView({
   activity,
   editing,
   onComplete,
+  onReopen,
   tasks,
   onTaskChange,
   comments,
   onPostComment,
+  commentAuthor,
   files,
   tagOptions,
   notice,
@@ -55,10 +56,13 @@ export function ProjectQuickView({
   activity: Activity[]
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
+  onReopen: (id: string) => void
   tasks: ProjectTask[]
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
+  /** The person commenting, beside the composer. */
+  commentAuthor?: Member
   files: ReactNode
   tagOptions: string[]
   /** The outcome that opened it, such as Project created. */
@@ -163,6 +167,11 @@ export function ProjectQuickView({
                 </Button>
               </div>
             )}
+            <ProjectCompletion
+              project={project}
+              onComplete={onComplete}
+              onReopen={onReopen}
+            />
             {fullPage}
             <DialogClose
               className="quick-view-close"
@@ -189,17 +198,12 @@ export function ProjectQuickView({
                 {notice}
               </p>
             )}
-            {documentText(project.description) ? (
-              <div className="quick-view-description">
-                <RichText value={project.description} />
-              </div>
-            ) : (
-              <p className="text-muted-foreground">No description added.</p>
-            )}
-            <div className="quick-view-progress">
-              <ProjectHeaderProgress
-                project={project}
-                onComplete={onComplete}
+            <div className="quick-view-description">
+              <ProjectDescription
+                description={project.description}
+                onSave={(description) =>
+                  editing.saveDetails({ description }).kind === "saved"
+                }
               />
             </div>
             <section aria-labelledby="quick-view-tasks">
@@ -219,6 +223,7 @@ export function ProjectQuickView({
                 people={members}
                 members={assignableMembers}
                 onPost={onPostComment}
+                author={commentAuthor}
               />
             </section>
             <section aria-labelledby="quick-view-activity">

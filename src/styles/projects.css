@@ -154,12 +154,18 @@
   color: var(--muted-foreground);
 }
 /* On the Projects page the data view sits on the canvas, not in a card. */
+/* On a page of its own the view is two page zones, toolbar and results,
+   --gap-zone apart (design-system.md, page anatomy). */
 .projects-card[data-surface="plain"] {
   --card-spacing: 0px;
+  gap: var(--gap-zone);
   background: transparent;
   box-shadow: none;
   border-radius: 0;
   overflow: visible;
+}
+.projects-card[data-surface="plain"] .project-card-header {
+  padding-bottom: 0;
 }
 .projects-card[data-surface="plain"] .project-results-toolbar {
   flex: 1 1 30rem;
@@ -241,4 +247,8 @@
     opacity: 0;
     translate: 0 4px;
   }
+}
+/* A row opens its project on click, so it reads as one target. */
+.projects-card tbody [data-slot="table-row"]:has([data-quick-view-id]) {
+  cursor: pointer;
 }

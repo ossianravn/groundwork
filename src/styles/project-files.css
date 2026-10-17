@@ -1,18 +1,31 @@
-/* Project files (SETT-15): an open list beside progress, then the drop
-   zone. Thumbnails keep one size so names align. */
+/* Project files (SETT-15): an open list beside the details, with a drop
+   zone only while dragging or when there are no files. Thumbnails keep one size so names align. */
 .project-files {
   display: grid;
   gap: var(--gap-group);
 }
+/* Files and its count, then Upload; dragging files anywhere over the
+   section shows the drop zone. */
 .project-files-heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--gap-control);
+  min-height: var(--control-height-sm);
 }
 .project-files-heading h2 {
   font-size: var(--text-section);
   font-weight: 600;
+}
+.project-files-heading h2 .project-tasks-count {
+  margin-inline-start: var(--gap-inline);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.project-files-upload {
+  margin-inline-end: calc(var(--space-2) * -1);
+  color: var(--muted-foreground);
 }
 .file-list {
   display: grid;

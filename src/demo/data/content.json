@@ -299,6 +299,45 @@
   ],
   "releases": [
     {
+      "version": "0.15.0",
+      "date": "2026-10-17",
+      "title": "Tidier projects",
+      "summary": "The Projects list and each project page follow one layout: projects change where you see them, agents show what they'll do before they start, and phones get layouts of their own.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Change a project's description and colour where they are, like the rest of its details. The Edit project page is gone.",
+            "Each agent on a project's Agent tab shows what it will read and produce, when you approve, and how it last went, with every run listed below. You can schedule one for every Friday.",
+            "Month is a view of its own next to Timeline, among the other views."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Click anywhere on a project's row to open it. The table selects from the checkbox in its header, and on phones its rows stack instead of scrolling sideways.",
+            "The timeline fits the page, so every project shows whole, and today's marker no longer covers a date.",
+            "A project's title row holds its name, status and Mark complete, which becomes Reopen once the project is done; progress moves into Project details.",
+            "Task rows show who has them as an avatar and keep their menu until you point at them. Comments get a wider box with Comment inside it, and Files has Upload and shows where to drop files as you drag them over.",
+            "On phones, a project shows its tasks before its details."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Agent schedules are a demo setting and never run. Reopening a project keeps the tasks already done; everything resets on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.14.0",
       "date": "2026-10-17",
       "title": "Projects open in place",
