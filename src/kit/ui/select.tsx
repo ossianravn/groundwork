@@ -50,7 +50,10 @@ function SelectTrigger({
         render={
           <ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />
         }
-      />
+      >
+        {/* Replaces Base UI's default "▼" text, which would land inside the svg. */}
+        {null}
+      </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   )
 }

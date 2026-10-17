@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { RotateCcw } from "lucide-react"
+import { defaultRemarkPlugins } from "streamdown"
 import { Button } from "@/kit/ui/button"
 import { Shimmer } from "@/kit/ui/shimmer"
 import { MessageResponse } from "@/kit/ai/message-response"
@@ -13,11 +14,31 @@ const reply = `Two projects are due within a week:
 
 Both are on track. Filter the list with \`status:in-progress\`, or read the [help centre](/help).
 
+To show the board on your intranet, paste <iframe src="https://tandem.example/embed/brand"> where it should appear.
+
 \`\`\`bash
 curl "https://api.tandem.example/v1/projects?due=7d"
 \`\`\``
 
 const words = reply.match(/\s*\S+\s*/gu) ?? []
+
+type MarkdownNode = { type: string; children?: MarkdownNode[] }
+
+// HTML the model writes reads as text: sanitizing it would drop the iframe
+// from the sentence above. Streamdown's other remark plugins (GFM) stay.
+function htmlAsText() {
+  return (tree: MarkdownNode) => {
+    const visit = (node: MarkdownNode) => {
+      if (node.type === "html") node.type = "text"
+
+      node.children?.forEach(visit)
+    }
+
+    visit(tree)
+  }
+}
+
+const remarkPlugins = [...Object.values(defaultRemarkPlugins), htmlAsText]
 
 export function MessageResponseExample() {
   const [count, setCount] = useState(words.length)
@@ -46,7 +67,7 @@ export function MessageResponseExample() {
       {count === 0 ? (
         <Shimmer className="text-sm">Thinking…</Shimmer>
       ) : (
-        <MessageResponse streaming={streaming}>
+        <MessageResponse streaming={streaming} remarkPlugins={remarkPlugins}>
           {words.slice(0, count).join("")}
         </MessageResponse>
       )}

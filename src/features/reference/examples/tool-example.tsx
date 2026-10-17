@@ -1,3 +1,5 @@
+import { RotateCcw } from "lucide-react"
+import { Badge } from "@/kit/ui/badge"
 import {
   Tool,
   ToolContent,
@@ -29,11 +31,28 @@ export function ToolExample() {
           />
         </ToolContent>
       </Tool>
+      {/* The assistant tried again, so this failure reads as Retried. */}
       <Tool>
-        <ToolHeader title="Export report" state="output-error" />
+        <ToolHeader
+          title="Export report"
+          state="output-error"
+          status={
+            <Badge variant="outline" className="shrink-0 gap-1">
+              <RotateCcw className="size-3" aria-hidden="true" />
+              Retried
+            </Badge>
+          }
+        />
         <ToolContent>
           <ToolInput input={{ format: "csv" }} />
           <ToolOutput errorText="The export service didn't respond within 10 seconds." />
+        </ToolContent>
+      </Tool>
+      <Tool>
+        <ToolHeader title="Export report" state="output-available" />
+        <ToolContent>
+          <ToolInput input={{ format: "csv", timeoutSeconds: 30 }} />
+          <ToolOutput output={{ file: "projects-due.csv", rows: 2 }} />
         </ToolContent>
       </Tool>
     </div>

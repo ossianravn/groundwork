@@ -4,6 +4,13 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+- `select`: the trigger's text no longer ends in "▼". Base UI's Select icon renders that character by default, and it landed inside the chevron svg, so a trigger's text content read "Ava Morgan▼".
+- `ai` (prompt input): a textarea `onPaste` that calls `preventDefault()` now keeps pasted files out of the composer's own attachments, as `onKeyDown` already does for Enter. Before, files a host took over also landed in the composer's list.
+- `ai` (message response): `MessageResponse` takes `plugins`, `remarkPlugins` and `rehypePlugins` and passes them to Streamdown, for math (`@streamdown/math`) or to change how markdown and HTML are read. A list you pass replaces Streamdown's default for it. The reference example shows model-written HTML as text.
+- `ai` (reasoning): `Reasoning` takes `open` and `onOpenChange` for a host that keeps its openness, a `label` in place of Thinking… and Thought for… (such as a duration stored with a restored reply), and children other than markdown text, which render as given.
+- `ai` (tool): `ToolHeader` takes a `status` node that replaces the state badge, for your own word for an outcome, such as Retried for a failed call the assistant tried again.
+- `ai` (attachments): `Attachment` takes `onOpen`; the thumbnail, or the chip's icon and name, then becomes a button named "Open <name>" (its name underlines on hover), with the remove button still beside it. The reference example opens a preview.
+- `dropdown-menu`: `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`, for a choice among exclusive options; the chosen item shows a check at the end of its row. The item now brings `lucide-react`. `context-menu` re-exports them as `ContextMenuRadioGroup` and `ContextMenuRadioItem`. Tandem's board cards use them for Move to.
 - `slider` (new item): a slider on Base UI, adapted from shadcn's base-nova slider. Each value gets a thumb, so an array makes a range. `aria-label`, `aria-labelledby` and `aria-describedby` reach every thumb's input, the control assistive technology reads, and `getAriaValueText` says the value in words ("12 members"). Tandem's Pricing uses it for a team-size estimate; `/reference/components/slider` documents it (KIT-02).
 - `base` (styles): in forced colours, a slider's track keeps an outline, as a progress track does, and a focused thumb shows the Highlight outline.
 
