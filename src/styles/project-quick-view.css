@@ -13,6 +13,14 @@
   padding: 0;
   overflow: hidden;
 }
+/* It rises a little into place instead of the dialogs' zoom: the record
+   arrives from the list below it. Reduced motion removes it. */
+[data-slot="dialog-content"].project-quick-view[data-open] {
+  --tw-enter-scale: 1;
+  --tw-enter-translate-y: var(--space-2);
+  animation-duration: 200ms;
+  animation-timing-function: var(--ease-standard);
+}
 .quick-view-header {
   display: flex;
   flex-wrap: wrap;
