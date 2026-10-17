@@ -3,22 +3,22 @@
   padding-bottom: 0;
   gap: 0;
   --project-row-height: calc(
-    var(--control-height) + 2 * var(--row-padding) + 1px
+    var(--control-height) + 2 * var(--inset-row) + 1px
   );
 }
 .project-card-header {
-  padding-bottom: var(--card-padding);
+  padding-bottom: var(--inset-card);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 100%;
   flex-basis: 100%;
 }
@@ -52,10 +52,10 @@
 }
 .project-table th:first-child,
 .project-table td:first-child {
-  padding-left: var(--card-padding);
+  padding-left: var(--inset-card);
 }
 .project-table td {
-  padding-block: var(--row-padding);
+  padding-block: var(--inset-row);
   font-size: var(--text-body);
 }
 .project-name {
@@ -87,7 +87,7 @@
 .progress-cell {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 7rem;
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
@@ -176,7 +176,7 @@
    technology. Selection mode keeps its actions on the first line. */
 @container project-views (max-width: 26rem) {
   .projects-card[data-surface="plain"] .project-card-header {
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .projects-card[data-surface="plain"] .project-results-toolbar {
     display: contents;

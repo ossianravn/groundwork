@@ -99,7 +99,7 @@
 .consent-specimen-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .consent-categories {
   display: grid;
@@ -124,10 +124,10 @@
 .agent-specimen {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   max-width: 80rem;
   margin-inline: auto;
-  padding: 1.5rem var(--page-padding) 3rem;
+  padding: 1.5rem var(--inset-page) 3rem;
   outline: none;
 }
 .agent-specimen-header {
@@ -160,8 +160,8 @@
   border-radius: var(--radius-lg);
 }
 .agent-specimen-transcript [data-slot="message-scroller-content"] {
-  gap: var(--content-gap);
-  padding: var(--content-gap);
+  gap: var(--gap-group);
+  padding: var(--gap-group);
 }
 .agent-specimen-files {
   display: grid;

@@ -114,7 +114,7 @@ function ChartSeriesPicker({
             aria-pressed={on}
             onClick={() => onValueChange(item.key)}
             className={cn(
-              "flex items-baseline gap-(--control-gap) rounded-lg px-2 py-1 text-start outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50",
+              "flex items-baseline gap-(--gap-control) rounded-lg px-2 py-1 text-start outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50",
               on ? "text-foreground" : "text-muted-foreground",
             )}
           >

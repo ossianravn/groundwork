@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
   background: var(--sidebar);
-  padding: var(--section-gap) 0.875rem 0;
+  padding: var(--gap-zone) 0.875rem 0;
   overflow-y: auto;
 }
 .brand {
@@ -36,7 +36,7 @@
   padding: 0 0.625rem;
   width: fit-content;
   font-size: 1.55rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.07em;
 }
 .navigation-brand-row {
@@ -44,7 +44,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .mobile-sidebar .navigation-brand-row {
   container: navigation-heading / inline-size;
@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  margin: var(--section-gap) 0 var(--stack-gap);
+  margin: var(--gap-zone) 0 var(--gap-group);
   padding-inline: 0.45rem;
 }
 .workspace-monogram {
@@ -102,7 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: max(var(--navigation-height), var(--control-height));
   padding: var(--control-padding-block) 0.75rem;
   border-radius: var(--radius-md);
@@ -141,7 +141,7 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  padding: var(--content-gap) 0.625rem;
+  padding: var(--gap-group) 0.625rem;
   border-top: 1px solid var(--border);
 }
 .workspace-content {
@@ -156,8 +156,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
-  padding: 0.25rem var(--page-padding);
+  gap: var(--gap-control);
+  padding: 0.25rem var(--inset-page);
   border-bottom: 1px solid var(--border);
   background: var(--card);
 }
@@ -187,7 +187,7 @@
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-size: var(--text-body);
   white-space: nowrap;
 }
@@ -256,13 +256,13 @@
 .desktop-menu-button,
 .mobile-menu-button {
   margin-inline-start: max(
-    calc(4px - var(--page-padding)),
+    calc(4px - var(--inset-page)),
     calc((1rem - var(--control-height)) / 2)
   );
 }
 .topbar-actions {
   margin-inline-end: max(
-    calc(4px - var(--page-padding)),
+    calc(4px - var(--inset-page)),
     calc((1rem - var(--control-height)) / 2)
   );
 }
@@ -273,7 +273,7 @@
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   margin-left: auto;
 }
 .topbar button {
@@ -290,8 +290,8 @@
 .topbar-page-actions {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
-  margin-inline-end: var(--control-gap);
+  gap: var(--gap-control);
+  margin-inline-end: var(--gap-control);
 }
 .topbar-page-actions:empty {
   display: none;
@@ -300,7 +300,7 @@
   color: var(--muted-foreground);
   font-size: var(--text-meta);
   white-space: nowrap;
-  margin-inline-end: var(--control-gap);
+  margin-inline-end: var(--gap-control);
 }
 .account-menu-trigger {
   width: 100%;
@@ -309,7 +309,7 @@
   gap: 0.7rem;
   text-align: start;
   border-radius: var(--radius);
-  padding: var(--control-gap);
+  padding: var(--gap-control);
 }
 .account-menu-trigger:hover,
 .account-menu-trigger[data-popup-open] {

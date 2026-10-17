@@ -61,14 +61,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   margin-bottom: 2rem;
   text-align: center;
 }
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .pricing-card {
   border: 1px solid var(--border);
@@ -144,12 +144,12 @@
 }
 .pricing-comparison th,
 .pricing-comparison td {
-  padding: var(--item-padding) var(--card-padding);
+  padding: var(--inset-row) var(--inset-card);
   border-bottom: 1px solid var(--border);
   white-space: normal;
 }
 .pricing-comparison thead th {
-  padding-block: var(--card-padding);
+  padding-block: var(--inset-card);
   vertical-align: top;
 }
 .pricing-comparison thead th:not(:first-child),
@@ -182,7 +182,7 @@
   color: var(--muted-foreground);
 }
 .pricing-comparison-group th {
-  padding-block: var(--section-gap) var(--control-gap);
+  padding-block: var(--gap-zone) var(--gap-control);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
   font-weight: 600;
@@ -203,7 +203,7 @@
 }
 .pricing-comparison-group span {
   position: sticky;
-  left: var(--card-padding);
+  left: var(--inset-card);
 }
 .pricing-comparison td svg {
   width: 1rem;

@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-view-controls {
   margin-inline-start: auto;
@@ -19,7 +19,7 @@
   min-height: 0;
 }
 .project-grid-content {
-  padding: 0 var(--card-padding) var(--card-padding);
+  padding: 0 var(--inset-card) var(--inset-card);
 }
 .project-grid-controls {
   margin-inline-start: auto;
@@ -31,7 +31,7 @@
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-grid > li {
   min-width: 0;
@@ -51,7 +51,7 @@
   color: var(--foreground);
 }
 .project-grid-status {
-  margin-bottom: var(--control-gap);
+  margin-bottom: var(--gap-control);
 }
 .project-grid-card .project-name {
   display: inline;
@@ -65,15 +65,15 @@
 .project-grid-progress {
   display: flex;
   align-items: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   margin-top: auto;
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
 .project-grid-footer {
   flex-wrap: wrap;
-  gap: var(--control-gap);
-  padding-block: var(--control-gap);
+  gap: var(--gap-control);
+  padding-block: var(--gap-control);
   font-size: var(--text-meta);
 }
 .project-grid-footer .owner-cell {

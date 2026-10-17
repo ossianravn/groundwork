@@ -58,7 +58,7 @@ export function AnswerExample() {
   }
 
   return (
-    <div className="grid w-full max-w-2xl gap-(--section-gap)">
+    <div className="grid w-full max-w-2xl gap-(--gap-zone)">
       <div className="flex items-center justify-between gap-3">
         <p className="text-(length:--text-meta) text-muted-foreground">
           {streaming ? "Writing the answer…" : "Answer finished"}

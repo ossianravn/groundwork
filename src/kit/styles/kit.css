@@ -31,6 +31,8 @@
   --text-sm--line-height: var(--leading-body);
   --text-base: var(--text-section);
   --text-base--line-height: var(--leading-heading);
+  --text-xl: var(--text-feature);
+  --text-xl--line-height: var(--leading-heading);
   --text-3xl: var(--text-metric);
   --text-3xl--line-height: var(--leading-metric);
   --font-heading: var(--font-interface, system-ui, sans-serif);
@@ -73,9 +75,6 @@
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
@@ -87,5 +86,10 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Emphasis takes the ramp's heaviest weight, not the browser's bold. */
+  b,
+  strong {
+    font-weight: 600;
   }
 }

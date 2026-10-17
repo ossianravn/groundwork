@@ -1,10 +1,8 @@
 @media (max-width: 1199px) {
-  :root {
-    --sidebar-width: 13.5rem;
-    --page-padding: 1.5rem;
-  }
+  :root,
   :root[data-density="compact"] {
-    --page-padding: 1.25rem;
+    --sidebar-width: 13.5rem;
+    --inset-page: var(--space-6);
   }
 }
 @media (max-width: 1023px) {
@@ -26,26 +24,22 @@
     gap: 0;
   }
   .mobile-sidebar .workspace-navigation {
-    padding-top: var(--section-gap);
+    padding-top: var(--gap-zone);
   }
 }
 @media (max-width: 767px) {
   :root,
   :root[data-density="compact"] {
-    --page-padding: 1rem;
     --header-height: 3.5rem;
-    --text-page: 1.5rem;
-    --card-padding: 1rem;
-    --panel-padding: 1rem;
-  }
-  :root {
-    --section-gap: 1.25rem;
-  }
-  :root[data-density="compact"] {
-    --section-gap: 1rem;
+    --text-page: var(--text-feature);
+    --inset-page: var(--space-4);
+    --inset-card: var(--space-4);
+    --inset-panel: var(--space-4);
+    --gap-zone: var(--space-4);
+    --gap-section: var(--space-8);
   }
   .topbar {
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .breadcrumb {
     font-size: var(--text-section);

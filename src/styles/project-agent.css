@@ -2,12 +2,12 @@
    steps, at a reading width; before the first run, the work it can take. */
 .project-agent {
   display: grid;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
   max-width: 46rem;
 }
 .agent-run {
   display: grid;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 /* Step rows carry their own padding, so their marks start at the content
    edge with the summary above. */
@@ -24,7 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.25rem var(--content-gap);
+  gap: 0.25rem var(--gap-group);
   padding: 0.5rem 0.75rem;
 }
 .agent-run-tasks > li + li {
@@ -54,8 +54,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--content-gap);
-  padding-block: var(--item-padding);
+  gap: var(--gap-group);
+  padding-block: var(--inset-row);
 }
 .project-agent-workflows > li + li {
   border-top: 1px solid var(--border);

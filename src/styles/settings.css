@@ -5,11 +5,11 @@
   display: grid;
   grid-template-columns: 11rem minmax(0, 36rem);
   align-items: start;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .settings-navigation {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .settings-navigation-links {
   display: contents;
@@ -20,9 +20,9 @@
 .settings-navigation a {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: var(--control-height);
-  padding: var(--control-padding-block) var(--item-padding);
+  padding: var(--control-padding-block) var(--inset-row);
   border-radius: var(--radius);
   font-weight: 500;
 }
@@ -38,13 +38,13 @@
 .settings-section {
   min-width: 0;
   container-type: inline-size;
-  padding: var(--card-padding);
+  padding: var(--inset-card);
   border-radius: var(--radius-xl);
   background: var(--card);
 }
 .settings-form {
   display: grid;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 .settings-section-heading h2 {
   font-size: var(--text-section);
@@ -60,12 +60,12 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .settings-identity {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .settings-email > span {
   font-weight: 500;
@@ -82,7 +82,7 @@
 .settings-actions,
 .settings-appearance-footer {
   border-top: 1px solid var(--border);
-  padding-top: var(--content-gap);
+  padding-top: var(--gap-group);
 }
 .settings-appearance-footer {
   justify-content: space-between;
@@ -91,17 +91,17 @@
 .notification-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 3.5rem 3.5rem;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   align-items: center;
 }
 .notification-head {
   text-align: center;
   color: var(--muted-foreground);
   font-size: var(--text-meta);
-  padding-bottom: var(--control-gap);
+  padding-bottom: var(--gap-control);
 }
 .notification-row {
-  padding-block: var(--content-gap);
+  padding-block: var(--gap-group);
   border-bottom: 1px solid var(--border);
 }
 .notification-row:last-child {
@@ -119,7 +119,7 @@
 }
 .settings-error {
   color: var(--destructive);
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 @container (max-width: 28rem) {
   .settings-identity {
@@ -129,7 +129,7 @@
 @media (max-width: 1023px) {
   .settings-layout {
     grid-template-columns: minmax(0, 36rem);
-    gap: var(--content-gap);
+    gap: var(--gap-group);
   }
   .settings-navigation {
     display: flex;
@@ -142,7 +142,7 @@
 }
 @media (max-width: 767px) {
   .settings-navigation a {
-    padding-inline: var(--control-gap);
+    padding-inline: var(--gap-control);
     font-size: var(--text-meta);
   }
   .settings-navigation-links {
@@ -163,7 +163,7 @@
 /* Usage and delivery history (DVIZ-06, DVIZ-08) sit between a settings
    page's heading and its records, shorter than Analytics charts. */
 .settings-chart {
-  padding-bottom: var(--section-gap);
+  padding-bottom: var(--gap-zone);
   border-bottom: 1px solid var(--border);
 }
 .settings-chart .settings-chart-plot {

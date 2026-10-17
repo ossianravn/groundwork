@@ -52,11 +52,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: var(--panel-padding);
+  padding: var(--inset-panel);
 }
 .public-menu-links {
   display: grid;
-  padding-inline: var(--panel-padding);
+  padding-inline: var(--inset-panel);
 }
 .public-menu-links a {
   padding-block: 0.75rem;

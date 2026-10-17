@@ -6,17 +6,17 @@
   min-height: 6rem;
 }
 .inbox-thread [data-slot="message-scroller-content"] {
-  padding: var(--card-padding);
-  gap: var(--section-gap);
+  padding: var(--inset-card);
+  gap: var(--gap-zone);
 }
 .inbox-thread
   [data-slot="message-scroller-item"]
   + [data-slot="message-scroller-item"] {
   border-top: 1px solid var(--border);
-  padding-top: var(--section-gap);
+  padding-top: var(--gap-zone);
 }
 .inbox-post {
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .inbox-post [data-slot="message-avatar"] {
   align-self: flex-start;
@@ -24,7 +24,7 @@
 .inbox-post [data-slot="message-header"] {
   display: flex;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   flex-wrap: wrap;
   color: var(--muted-foreground);
   padding: 0;
@@ -41,7 +41,7 @@
   font-size: var(--text-body);
 }
 .inbox-reply {
-  padding: var(--card-padding);
+  padding: var(--inset-card);
   border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -52,8 +52,8 @@
 .inbox-reply-actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--control-gap);
-  margin-top: var(--control-gap);
+  gap: var(--gap-control);
+  margin-top: var(--gap-control);
 }
 [data-slot="dialog-content"].message-compose-dialog {
   width: 36rem;
@@ -62,12 +62,12 @@
   overflow-y: auto;
 }
 .message-compose-fields {
-  padding-block: var(--control-gap) var(--panel-padding);
+  padding-block: var(--gap-control) var(--inset-panel);
 }
 .message-compose-address {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .message-compose-address [data-slot="select-trigger"] {
   width: 100%;

@@ -6,7 +6,7 @@
 .pattern-source-toolbar {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   flex-wrap: wrap;
 }
 .pattern-results,
@@ -17,7 +17,7 @@
 .pattern-results {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
-  margin-block: calc(-1 * var(--control-gap));
+  margin-block: calc(-1 * var(--gap-control));
 }
 .pattern-list {
   border-block: 1px solid var(--border);
@@ -29,8 +29,8 @@
   display: grid;
   grid-template-columns: 9rem minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--content-gap);
-  padding: var(--content-gap) var(--control-gap);
+  gap: var(--gap-group);
+  padding: var(--gap-group) var(--gap-control);
 }
 .pattern-list a:hover {
   background: var(--muted);
@@ -57,21 +57,21 @@
 .pattern-row-status {
   display: flex;
   align-items: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .pattern-detail-meta {
-  margin-bottom: var(--control-gap);
+  margin-bottom: var(--gap-control);
 }
 .pattern-example-actions > [data-slot="select-trigger"] {
   max-width: 100%;
 }
 .pattern-example .pattern-preview-disclosure {
-  margin-top: var(--content-gap);
+  margin-top: var(--gap-group);
 }
 .pattern-preview-body {
   display: grid;
-  gap: var(--control-gap);
-  margin-top: var(--control-gap);
+  gap: var(--gap-control);
+  margin-top: var(--gap-control);
 }
 .pattern-preview-toolbar {
   align-items: flex-start;
@@ -89,16 +89,16 @@
   background: var(--background);
 }
 .pattern-related {
-  margin-top: var(--content-gap);
+  margin-top: var(--gap-group);
 }
 .pattern-sources > p {
-  margin-block: 0.5rem var(--content-gap);
+  margin-block: 0.5rem var(--gap-group);
   max-width: 65ch;
 }
 .pattern-source-file {
   min-width: 0;
   border-top: 1px solid var(--border);
-  padding-block: var(--control-gap);
+  padding-block: var(--gap-control);
 }
 .pattern-source-file summary {
   cursor: pointer;
@@ -108,18 +108,18 @@
 }
 .pattern-source-toolbar {
   justify-content: flex-end;
-  margin-bottom: var(--control-gap);
+  margin-bottom: var(--gap-control);
 }
 @media (max-width: 767px) {
   .pattern-list a {
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .pattern-row-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .pattern-row-content {
     grid-column: 1 / -1;

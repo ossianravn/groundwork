@@ -43,7 +43,7 @@ function ChartDataTable<Row>({
       role="region"
       aria-label={label}
       className={cn(
-        "h-full min-h-64 w-full overflow-auto rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50 [&_[data-slot=table-cell]]:py-(--row-padding)",
+        "h-full min-h-64 w-full overflow-auto rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50 [&_[data-slot=table-cell]]:py-(--inset-row)",
         className,
       )}
     >

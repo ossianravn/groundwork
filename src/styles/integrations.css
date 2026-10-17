@@ -1,13 +1,13 @@
 .integration-settings {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .integration-heading,
 .integration-record-heading {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .integration-heading {
   justify-content: space-between;
@@ -19,9 +19,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   row-gap: 0.25rem;
-  padding-block: var(--item-padding);
+  padding-block: var(--inset-row);
 }
 .integration-record {
   display: contents;
@@ -47,25 +47,25 @@
   overflow-wrap: anywhere;
 }
 .integration-event-choices {
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .webhook-history {
-  padding-bottom: var(--item-padding);
+  padding-bottom: var(--inset-row);
 }
 .webhook-history > summary {
   width: fit-content;
   cursor: pointer;
   font-size: var(--text-meta);
-  padding-block: var(--control-gap);
+  padding-block: var(--gap-control);
 }
 .webhook-history > summary > span {
   color: var(--muted-foreground);
-  margin-left: var(--control-gap);
+  margin-left: var(--gap-control);
 }
 .webhook-history-content {
   display: grid;
-  gap: var(--item-padding);
-  padding-top: var(--control-gap);
+  gap: var(--gap-item);
+  padding-top: var(--gap-control);
 }
 .delivery-list {
   max-height: 22rem;
@@ -73,14 +73,14 @@
 }
 .delivery-detail {
   border-top: 1px solid var(--border);
-  padding-block: var(--item-padding);
+  padding-block: var(--inset-row);
   font-size: var(--text-meta);
 }
 .delivery-detail > summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   cursor: pointer;
 }
 .delivery-detail > summary > .delivery-chevron + span {
@@ -101,15 +101,15 @@
   color: var(--muted-foreground);
 }
 .delivery-detail > p {
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
   color: var(--muted-foreground);
 }
 .delivery-detail .webhook-response {
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 .integration-usage {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 44rem;
 }
 .integration-usage h3 {

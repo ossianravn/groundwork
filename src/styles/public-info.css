@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
   align-items: start;
-  gap: var(--stack-gap) var(--content-gap);
+  gap: var(--gap-group) var(--gap-group);
 }
 .contact-fields [data-slot="field-label"] {
   flex-wrap: wrap;
@@ -29,7 +29,7 @@
 .contact-submit {
   display: grid;
   gap: 1rem;
-  margin-top: var(--stack-gap);
+  margin-top: var(--gap-group);
 }
 .contact-submit > p {
   color: var(--muted-foreground);

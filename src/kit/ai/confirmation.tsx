@@ -57,7 +57,7 @@ function Confirmation({
       data-decision={decision}
       aria-labelledby={id}
       className={cn(
-        "grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 gap-y-1 rounded-lg border p-(--item-padding) ps-3 text-sm",
+        "grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 gap-y-1 rounded-lg border p-(--inset-row) ps-3 text-sm",
         decision === "pending"
           ? "border-border bg-(--brand-soft)"
           : "border-border bg-background",
@@ -121,7 +121,7 @@ function ConfirmationActions({
   onDeny: () => void
 }) {
   return (
-    <div className="flex flex-wrap justify-end gap-(--control-gap)">
+    <div className="flex flex-wrap justify-end gap-(--gap-control)">
       <Button variant="outline" size="sm" onClick={onDeny}>
         {denyLabel}
       </Button>

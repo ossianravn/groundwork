@@ -9,7 +9,7 @@
   }
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: var(--section-gap);
+    row-gap: var(--gap-zone);
   }
   .metric-card:nth-child(odd) {
     padding-inline-start: 0;
@@ -17,7 +17,7 @@
   }
   .overview-middle {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--section-gap);
+    row-gap: var(--gap-zone);
   }
   .overview-middle > .completion-card {
     padding-inline-end: 0;
@@ -25,7 +25,7 @@
   .overview-middle > .activity-card {
     order: 1;
     padding-inline-start: 0;
-    padding-block-start: var(--section-gap);
+    padding-block-start: var(--gap-zone);
     border-inline-start: 0;
     border-block-start: 1px solid var(--border);
   }
