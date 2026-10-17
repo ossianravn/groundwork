@@ -1212,6 +1212,26 @@
       ]
     },
     {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Slider primitive, styled with Groundwork tokens.",
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.4.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/base"
+      ],
+      "files": [
+        {
+          "path": "src/kit/ui/slider.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/ui/slider.tsx"
+        }
+      ]
+    },
+    {
       "name": "snippet",
       "type": "registry:ui",
       "title": "Snippet",
@@ -2139,6 +2159,7 @@
         "ossianravn/groundwork/sheet",
         "ossianravn/groundwork/shimmer",
         "ossianravn/groundwork/skeleton",
+        "ossianravn/groundwork/slider",
         "ossianravn/groundwork/snippet",
         "ossianravn/groundwork/sparkline",
         "ossianravn/groundwork/spinner",

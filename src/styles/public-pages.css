@@ -62,8 +62,21 @@
   flex-direction: column;
   align-items: center;
   gap: var(--control-gap);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+}
+/* Team size sets the estimate in each card; it sits under the period. */
+.pricing-team {
+  display: grid;
+  width: min(100%, 20rem);
+  margin: 0 auto 2rem;
+}
+.pricing-team-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--control-gap);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 .pricing-grid {
   display: grid;
@@ -90,8 +103,13 @@
   letter-spacing: normal;
   color: var(--muted-foreground);
 }
-.pricing-basis {
+.pricing-team-price {
   margin-top: 0.5rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-basis {
+  margin-top: 0.25rem;
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
@@ -255,6 +273,9 @@
   .pricing-period {
     align-items: start;
     text-align: left;
+  }
+  .pricing-team {
+    margin-inline: 0;
   }
   .pricing-comparison [data-slot="table"] {
     min-width: 36rem;

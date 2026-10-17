@@ -1,6 +1,6 @@
 # Inventory coverage
 
-Status: **living inventory and demonstration map**, updated 2026-10-08. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 157 IDs: 156 have linked examples and 1 remains planned (see [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
+Status: **living inventory and demonstration map**, updated 2026-10-17. The original 73 patterns remain represented and are a starting point, not a completion target. The live catalogue now contains 157 IDs, all with linked examples (see [Slider delivery — 2026-10-17](#slider-delivery--2026-10-17), [AI and chat — 2026-09-30](#ai-and-chat--2026-09-30), [Expansion — 2026-09-29](#expansion--2026-09-29), [Foundations delivery — 2026-09-29](#foundations-delivery--2026-09-29) and [Date pickers delivery — 2026-09-29](#date-pickers-delivery--2026-09-29)). Example availability does not certify every recipe or variant. Current scope lives in `src/features/reference/patterns.json` and the owning page specifications; dated delivery notes below retain historical context and are superseded by later deliveries.
 
 Default means included in the proposed appropriate page/shell. Variant means explicitly selectable in reference or as a view. Conditional means enabled only when the deployment supports the capability. Policy decision means its consequential behavior needs agreement before implementation. None of these labels certifies a working backend.
 
@@ -125,7 +125,7 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
-| KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
+| KIT-02 | Slider | [Design system](design-system.md) | /pricing (team size); /reference/components/slider | Example |
 | KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
 | KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
@@ -211,6 +211,11 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | DEV-05 | Commit | [Design system](design-system.md) | /reference/specimens/coding-agent; /reference/components/commit | Example |
 | DEV-06 | Test results | [Design system](design-system.md) | /reference/specimens/coding-agent; /reference/components/test-results | Example |
 | DEV-07 | Stack trace | [Design system](design-system.md) | /reference/specimens/coding-agent; /reference/components/stack-trace | Example |
+
+## Slider delivery — 2026-10-17
+
+- **KIT-02, MKT-07:** the kit Slider adapts shadcn's base-nova slider on Base UI, with one thumb per value (a range takes an array). Its name, description and value text (`getAriaValueText`) reach each thumb's input, which is what assistive technology reads. Pricing gains a Team size slider (1–100 members, 10 to start) under the billing period; each plan's card states what that team pays per month or year, above the per-member basis. The estimate stays on the page and does not carry into sign-up.
+- The planned target was a seat count in billing plan selection. Billing charges per active member and its specification rules out quotas and entitlements, so a seat count would need a seat model first; Pricing's estimate uses the same per-member prices without one.
 
 ## Foundations delivery — 2026-09-29
 

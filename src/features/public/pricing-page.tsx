@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from "react"
+import { useState, type ComponentType, type ReactNode } from "react"
 import { Check } from "lucide-react"
 import {
   Card,
@@ -9,10 +9,12 @@ import {
   CardFooter,
 } from "@/kit/ui/card"
 import { ToggleGroup, ToggleGroupItem } from "@/kit/ui/toggle-group"
+import { Slider } from "@/kit/ui/slider"
 import { buttonVariants } from "@/kit/ui/button"
 import {
   plans,
   planPrice,
+  teamPrice,
   type BillingPeriod,
   type PlanSelection,
 } from "@/demo/billing"
@@ -35,6 +37,10 @@ export function PricingPage({
   onBillingChange: (value: BillingPeriod) => void
   PlanLink: ComponentType<PlanLinkProps>
 }) {
+  // An estimate for the visitor's team; it stays on this page.
+  const [members, setMembers] = useState(10)
+  const team = `${members} ${members === 1 ? "member" : "members"}`
+
   return (
     <main id="main-content" tabIndex={-1}>
       <header className="public-page-heading public-container">
@@ -66,6 +72,22 @@ export function PricingPage({
             Two months free with yearly billing
           </span>
         </div>
+        <div className="pricing-team">
+          <p className="pricing-team-label">
+            <span id="pricing-team-size">Team size</span>
+            <span aria-hidden="true">{team}</span>
+          </p>
+          <Slider
+            aria-labelledby="pricing-team-size"
+            min={1}
+            max={100}
+            value={members}
+            onValueChange={setMembers}
+            getAriaValueText={(_, value) =>
+              `${value} ${value === 1 ? "member" : "members"}`
+            }
+          />
+        </div>
         <div className="pricing-grid">
           {plans.map((plan) => {
             const price = planPrice(plan, billing)
@@ -86,6 +108,9 @@ export function PricingPage({
                   <p className="pricing-amount">
                     {price.monthly}
                     <span> / member / month</span>
+                  </p>
+                  <p className="pricing-team-price">
+                    {teamPrice(plan, billing, members)}
                   </p>
                   <p className="pricing-basis">{price.basis}</p>
                   <ul>
