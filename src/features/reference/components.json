@@ -132,7 +132,7 @@
       "A no-results state should let the person change or clear the filter.",
       "This preview starts with a nonmatching query against the same project fixture used by the demo."
     ],
-    "context": "Project search",
+    "context": "Command menu",
     "href": "/app/demo/projects?q=unmatched",
     "patterns": ["EDGE-02"]
   },

@@ -87,3 +87,25 @@
   justify-self: start;
   margin-inline-start: -0.375rem;
 }
+/* The top bar's command menu (features/search/workspace-command.tsx). A
+   project's mark takes an icon's place; a task names its project at the
+   end of the row. */
+.command-mark {
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.command-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* In the shortcut slot, which ends the row, as words rather than keys. */
+.command-detail {
+  flex-shrink: 0;
+  font-size: var(--text-meta);
+  letter-spacing: normal;
+}

@@ -1,20 +1,14 @@
 import type { ReactNode } from "react"
 import { useLocation } from "@tanstack/react-router"
 import {
-  Activity,
   Bell,
   Building2,
-  ChartNoAxesCombined,
   Check,
   CircleHelp,
-  FolderKanban,
-  Inbox,
   Layers2,
-  LayoutDashboard,
   LogOut,
   Palette,
   RotateCcw,
-  Sparkles,
   UserRound,
 } from "lucide-react"
 import { Button } from "@/kit/ui/button"
@@ -29,6 +23,7 @@ import { roleLabels } from "@/demo/team"
 import { useDemoState } from "./demo-state"
 import { useWorkspaceSwitcher } from "./use-workspace-switcher"
 import { WorkspaceLink } from "./workspace-link"
+import { workspacePages } from "./workspace-pages"
 import { workspaceLocation } from "./workspace-breadcrumbs"
 
 // Appearance opens the panel here; Settings › Appearance keeps the full page.
@@ -116,48 +111,20 @@ export function DemoWorkspaceShell({
           switcher: switcher.options,
         }}
         navigationLabel="Workspace"
-        items={[
-          {
-            id: "Overview",
-            destination: "overview",
-            label: "Overview",
-            icon: LayoutDashboard,
-          },
-          {
-            id: "Projects",
-            destination: "projects",
-            label: "Projects",
-            icon: FolderKanban,
+        items={workspacePages.map(({ id, destination, label, icon }) => ({
+          id,
+          destination,
+          label,
+          icon,
+          ...(id === "Projects" && {
             count: projectCount,
             accessibleLabel: `Projects (${projectCount})`,
-          },
-          {
-            id: "Inbox",
-            destination: "inbox",
-            label: "Inbox",
-            icon: Inbox,
+          }),
+          ...(id === "Inbox" && {
             count: unread || undefined,
             accessibleLabel: `Inbox (${unread} unread)`,
-          },
-          {
-            id: "Assistant",
-            destination: "assistant",
-            label: "Assistant",
-            icon: Sparkles,
-          },
-          {
-            id: "Analytics",
-            destination: "analytics",
-            label: "Analytics",
-            icon: ChartNoAxesCombined,
-          },
-          {
-            id: "Activity",
-            destination: "activity",
-            label: "Activity",
-            icon: Activity,
-          },
-        ]}
+          }),
+        }))}
         currentItem={page}
         actions={actions}
         notice={<DemoNotice resetDone={demo.resetDone} onReset={onReset} />}
