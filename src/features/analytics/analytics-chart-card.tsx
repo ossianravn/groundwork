@@ -5,13 +5,14 @@ import { ChartHeader } from "@/kit/ui/chart-header"
 import { ChartState } from "@/kit/ui/chart-state"
 
 /**
- * One Analytics chart: the result as its heading (with any controls that
- * set its scope), the chart (or its table, in the same space) and a footer
- * with the legend and Show data.
+ * One Analytics chart: the kit ChartHeader (its name, key figure, takeaway
+ * and scope controls), the chart (or its table, in the same space) and a
+ * footer with the legend and Show data.
  */
 export function AnalyticsChartCard({
   label,
-  heading,
+  title = label,
+  figure,
   description,
   controls,
   legend,
@@ -20,9 +21,13 @@ export function AnalyticsChartCard({
   empty = false,
   className,
 }: {
-  /** Names the chart for Show data's accessible label. */
+  /** Names the chart: its title, and Show data's accessible label. */
   label: string
-  heading: ReactNode
+  /** A shorter visible title, when controls name the rest. */
+  title?: ReactNode
+  /** The key figure, usually a ChartTotal. */
+  figure?: ReactNode
+  /** The takeaway, in one line. */
   description?: ReactNode
   /** Scope controls, such as which project it shows, at the header's end. */
   controls?: ReactNode
@@ -38,7 +43,7 @@ export function AnalyticsChartCard({
   return (
     <Card className={["analytics-chart", className].filter(Boolean).join(" ")}>
       <CardHeader>
-        <ChartHeader title={heading} description={description}>
+        <ChartHeader title={title} figure={figure} description={description}>
           {controls}
         </ChartHeader>
       </CardHeader>

@@ -73,9 +73,9 @@ export function BurnUpChart({
       label={`${project.name} burn-up`}
       className={["analytics-burn-up", className].filter(Boolean).join(" ")}
       empty={!points.length}
-      heading={
+      title="Burn-up"
+      figure={
         <ChartTotal
-          as="h3"
           value={`${project.completedTasks}/${project.tasks}`}
           unit="tasks done"
         />

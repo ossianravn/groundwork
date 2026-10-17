@@ -88,9 +88,7 @@ export function ThroughputChart({
       label="Tasks completed and added"
       className="analytics-throughput"
       empty={!totals.completed && !totals.added}
-      heading={
-        <ChartTotal as="h3" value={totals.completed} unit="tasks completed" />
-      }
+      figure={<ChartTotal value={totals.completed} unit="tasks completed" />}
       description={`${totals.added} added${change}`}
       legend={
         <span className="analytics-legend-row">

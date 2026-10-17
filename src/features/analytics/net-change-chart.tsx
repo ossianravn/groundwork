@@ -65,9 +65,7 @@ export function NetChangeChart({
     <AnalyticsChartCard
       label="Change in open tasks"
       empty={points.every((point) => !point.added && !point.completed)}
-      heading={
-        <ChartTotal as="h3" value={net ? signed(net) : 0} unit="open tasks" />
-      }
+      figure={<ChartTotal value={net ? signed(net) : 0} unit="open tasks" />}
       description={`${verdict}${change}.`}
       legend={
         <span className="analytics-poles">
