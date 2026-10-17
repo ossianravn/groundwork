@@ -56,9 +56,7 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
     },
   })
   const surface = useRef<HTMLDivElement>(null)
-  const selectedProject = demo.projects.find(
-    (project) => project.id === selected,
-  )
+  const selectedProject = demo.projects.find((item) => item.id === selected)
   const opener = useRef<HTMLElement | null>(null)
   const projects =
     scenario === "first-use"

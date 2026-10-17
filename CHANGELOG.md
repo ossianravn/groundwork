@@ -4,7 +4,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
-The first steps of a layout pass (spacing tokens named for their role, checks that keep pages on them, and a quieter workspace top bar), plus additions to menus, Select and the AI components.
+The first steps of a layout pass: spacing tokens named for their role, checks that keep pages on them, a quieter workspace top bar, and one anatomy for chart headers, dialog footers and avatars. Plus additions to menus, Select and the AI components.
 
 ### Tokens
 
@@ -18,6 +18,12 @@ The first steps of a layout pass (spacing tokens named for their role, checks th
 - `shell`: **Breaking:** `WorkspaceShell` no longer draws an appearance button or takes `onCustomize`; offer Appearance from the account menu instead. An `AccountMenuItem` can now be an action (`{ id, onSelect }`) as well as a link.
 - `shell`: `PageActions` takes secondary actions in `more` (buttons or router links). They show as outline buttons on wide screens and in a ⋯ menu on phones.
 - `shell`: the sidebar's brand row is as tall as the top bar, so the logo sits on the breadcrumb's axis; the brand link carries `data-slot="sidebar-brand"`. The current breadcrumb is styled by its `breadcrumb-current` class, so a parent link that the router marks `aria-current` keeps the parent weight. The top bar's styles moved from `shell.css` to a new `topbar.css`.
+
+### Patterns
+
+- `chart`: **Breaking:** `ChartHeader` is one anatomy for every chart. `title` now names what the chart shows and renders as a heading (h3, or `headingLevel="h2"` for a chart that is a page section of its own). The key figure moves to a new `figure` slot (a `ChartTotal` or a series picker), then come `description` (a one-line takeaway) and the scope controls. `ChartTotal` renders a paragraph unless `as` asks for a heading, and its unit is muted body text.
+- `dialog`: `DialogFooter` sits on the dialog's surface, without the grey band, rule or negative margins; its actions wrap and stay right-aligned, primary last.
+- `member-avatar`: initials sit on a soft tint of one of the six `--hue-*` hues, chosen from the person's name, so a person keeps one colour everywhere.
 
 ### Menus, Select and AI components
 

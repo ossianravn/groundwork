@@ -28,6 +28,7 @@ export function useMenuHandoff(onInspect: (id: string) => void) {
 
       if (open || !id) return
       pending.current = null
+
       // The quick view returns focus to the project's name, or to its card's
       // menu button when the name is no button of its own.
       const target =

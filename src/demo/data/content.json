@@ -299,6 +299,46 @@
   ],
   "releases": [
     {
+      "version": "0.14.0",
+      "date": "2026-10-17",
+      "title": "Projects open in place",
+      "summary": "Click any project to open it over the list you're in, step through your projects with J and K, and change a project's details right where they are.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Click a project anywhere (a row, a card, a board card, the timeline, a search result or an activity link) and it opens over the list, with its tasks, comments, activity, files and details. Open full page has the rest; Ctrl-click (⌘-click on a Mac) still goes straight to the page.",
+            "Press J and K in an open project to step to the next and previous project in the list you came from.",
+            "Change a project's details where they are: pick a new owner or due date, or add and remove tags and links. Each change saves straight away."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Cards and board cards share one design: the name, status and due date, a short description, one progress bar and the owner. Click anywhere on a card to open it; its checkbox appears when you hover or start selecting.",
+            "Activity reads as one line per event with its date at the end, on Overview, on a project's Activity tab and on the Activity page.",
+            "Every chart names what it shows, then its key figure and a one-line takeaway, with its controls beside the title.",
+            "People's avatars each take a soft colour of their own, so they're easier to tell apart.",
+            "Forms end with their main action on the right, after Cancel, and dialogs no longer have a grey band under them.",
+            "Each Overview metric explains itself on hover, and its figure matches the size used across the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Changes to a project's details reset on reload, like the rest of the demo. Add ?scenario=save-failure to a project's address to see a save fail once and Retry it."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.13.0",
       "date": "2026-10-17",
       "title": "A calmer top bar",
