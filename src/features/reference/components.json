@@ -402,7 +402,8 @@
     "purpose": "Render a model's markdown reply while it streams.",
     "notes": [
       "Streamdown keeps unfinished syntax readable mid-stream; every element uses kit typography, and fenced code uses the Code block.",
-      "Pass renderLink to route internal links with your router. Announce a finished reply once rather than letting a live region read each token."
+      "Pass renderLink to route internal links with your router. Announce a finished reply once rather than letting a live region read each token.",
+      "plugins, remarkPlugins and rehypePlugins go to Streamdown: add math with @streamdown/math through plugins, or change how markdown and HTML are read. A list you pass replaces Streamdown's default, so spread defaultRemarkPlugins or defaultRehypePlugins to keep them. This example shows HTML the model writes as text; sanitized, the iframe would vanish from its sentence."
     ],
     "context": "Assistant replies",
     "href": "/app/demo/assistant",
