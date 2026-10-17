@@ -3,6 +3,8 @@ import { rootRoute } from "./root-route"
 
 interface WorkspaceSearch {
   inspect?: string
+  /** Opens New project; save-failure rejects its first save. */
+  create?: "project" | "save-failure"
 }
 
 export const workspaceRoute = createRoute({
@@ -15,6 +17,12 @@ export const workspaceRoute = createRoute({
           search.inspect == null
             ? undefined
             : String(search.inspect) || undefined,
+        create:
+          search.create === "save-failure"
+            ? "save-failure"
+            : search.create == null
+              ? undefined
+              : "project",
       }
     } catch {
       // Uncoercible JSON query values do not identify a project.

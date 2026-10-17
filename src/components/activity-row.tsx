@@ -5,8 +5,8 @@ import { formatDate } from "@/demo/model"
 /**
  * One event in a feed: who did what, where, and when, as one sentence with
  * the date at the end of the row. Overview, a project's Activity tab and the
- * Activity page share it; a feed grouped under day headings leaves out
- * `date`.
+ * Activity page share it. With `details`, the date opens the event, as a
+ * timestamp does in a chat or code review.
  */
 export function ActivityRow({
   person,
@@ -14,7 +14,7 @@ export function ActivityRow({
   action,
   project,
   date,
-  trailing,
+  details,
 }: {
   person: AvatarPerson
   /** The name as shown, such as a link with a hover card. */
@@ -23,9 +23,15 @@ export function ActivityRow({
   /** The project the event belongs to, usually a link after its mark. */
   project?: ReactNode
   date?: string
-  /** A row action after the date, such as event details. */
-  trailing?: ReactNode
+  /** Makes the date a button that opens the event; `label` names it. */
+  details?: { id?: string; label: string; onOpen: () => void }
 }) {
+  const time = date && (
+    <time className="activity-row-date" dateTime={date}>
+      {formatDate(date)}
+    </time>
+  )
+
   return (
     <li className="activity-row">
       <span aria-hidden="true">
@@ -36,12 +42,20 @@ export function ActivityRow({
         {action}
         {project && <> {project}</>}
       </p>
-      {date && (
-        <time className="activity-row-date" dateTime={date}>
-          {formatDate(date)}
-        </time>
+      {time && details ? (
+        <button
+          type="button"
+          id={details.id}
+          className="activity-row-details"
+          aria-haspopup="dialog"
+          aria-label={details.label}
+          onClick={details.onOpen}
+        >
+          {time}
+        </button>
+      ) : (
+        time
       )}
-      {trailing}
     </li>
   )
 }

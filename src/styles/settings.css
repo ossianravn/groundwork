@@ -1,9 +1,11 @@
 .settings-page {
   align-content: start;
 }
+/* Every section sits on the canvas at one reading width; a table (Team)
+   may run wider. */
 .settings-layout {
   display: grid;
-  grid-template-columns: 11rem minmax(0, 36rem);
+  grid-template-columns: 11rem minmax(0, 40rem);
   align-items: start;
   gap: var(--gap-zone);
 }
@@ -38,9 +40,6 @@
 .settings-section {
   min-width: 0;
   container-type: inline-size;
-  padding: var(--inset-card);
-  border-radius: var(--radius-xl);
-  background: var(--card);
 }
 .settings-form {
   display: grid;
@@ -85,9 +84,14 @@
   padding-top: var(--gap-group);
 }
 /* Form footers end with the primary action, at the right (design-system.md,
-   form footers). */
+   form footers); the form's state leads the row. */
 .settings-actions {
   justify-content: flex-end;
+}
+.settings-actions-status {
+  margin-inline-end: auto;
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
 }
 .settings-appearance-footer {
   justify-content: space-between;
@@ -133,7 +137,7 @@
 }
 @media (max-width: 1023px) {
   .settings-layout {
-    grid-template-columns: minmax(0, 36rem);
+    grid-template-columns: minmax(0, 40rem);
     gap: var(--gap-group);
   }
   .settings-navigation {
@@ -155,9 +159,6 @@
   }
   .settings-mobile-navigation {
     display: block;
-  }
-  .settings-section {
-    padding: 16px;
   }
   .notification-head,
   .notification-row {

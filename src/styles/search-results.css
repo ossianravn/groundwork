@@ -58,15 +58,16 @@
   gap: 0.125rem;
   padding-block: var(--gap-control);
 }
+/* Record links: ink, underlined on hover and focus (design-system.md,
+   links). */
 .search-result-title {
   justify-self: start;
   font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
   text-underline-offset: 0.2em;
 }
-.search-result-title:hover {
-  text-decoration-color: currentColor;
+.search-result-title:hover,
+.search-result-title:focus-visible {
+  text-decoration: underline;
 }
 .search-result-detail {
   display: -webkit-box;

@@ -84,26 +84,34 @@ export function layoutProbe() {
   const bar = topbar ? box(topbar) : { bottom: box(main).top }
   const edge = box(main).left + inset
 
-  // The optical edge: the first visible text inside an element.
+  // The optical edge of a full-bleed pane: the leftmost text or framed
+  // control inside it (a control's frame, not its label, sits on the edge).
   const textLeft = (el) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
+    const lefts = []
     let node
 
     while ((node = walker.nextNode())) {
       if (
         !node.textContent.trim() ||
         !node.parentElement ||
-        !visible(node.parentElement)
+        !visible(node.parentElement) ||
+        node.parentElement.closest("button, [data-slot=input-group]")
       )
         continue
       const range = document.createRange()
       range.selectNodeContents(node)
       const rect = [...range.getClientRects()].find((r) => r.width > 0)
 
-      if (rect) return rect.left
+      if (rect) lefts.push(rect.left)
     }
 
-    return null
+    for (const control of el.querySelectorAll(
+      "button, [data-slot=input-group]",
+    ))
+      if (visible(control)) lefts.push(box(control).left)
+
+    return lefts.length ? Math.min(...lefts) : null
   }
 
   zones.forEach((zone, index) => {
@@ -180,7 +188,7 @@ export function layoutProbe() {
     for (const el of zone.querySelectorAll("*")) {
       if (
         el.closest(
-          "svg, pre, code, [data-slot=code-block], [data-slot=terminal]",
+          "svg, pre, code, [data-slot=code-block], [data-slot=snippet], [data-slot=terminal]",
         )
       )
         continue

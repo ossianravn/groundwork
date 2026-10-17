@@ -19,7 +19,9 @@
     flex-shrink: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: var(--gap-zone) var(--inset-row);
+    /* Item labels (inset by --inset-row) start on the content edge. */
+    padding: var(--gap-zone) var(--inset-row) var(--gap-zone)
+      calc(var(--inset-page) - var(--inset-row));
     border-inline-end: 1px solid var(--border);
     scrollbar-width: thin;
   }

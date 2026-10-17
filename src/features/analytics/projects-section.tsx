@@ -49,7 +49,11 @@ export function ProjectsSection({
   const shown = projects.find((project) => project.id === (projectId || picked))
 
   return (
-    <section className="analytics-section" aria-labelledby="analytics-projects">
+    <section
+      className="analytics-section"
+      aria-labelledby="analytics-projects"
+      data-page-zone="section"
+    >
       <header className="analytics-section-header">
         <h2 id="analytics-projects">Projects</h2>
         <p>How each project is moving, and where open work sits.</p>

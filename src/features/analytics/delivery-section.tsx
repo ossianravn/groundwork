@@ -66,7 +66,11 @@ export function DeliverySection({
   const dateLabel = bucket === "week" ? weekLabel : formatDay
 
   return (
-    <section className="analytics-section" aria-labelledby="analytics-delivery">
+    <section
+      className="analytics-section"
+      aria-labelledby="analytics-delivery"
+      data-page-zone="section"
+    >
       <header className="analytics-section-header">
         <h2 id="analytics-delivery">Delivery</h2>
         <p>

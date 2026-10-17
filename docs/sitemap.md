@@ -78,7 +78,7 @@ Every route inherits the components and states of its named [shell](shells.md), 
 | `/app/:workspace/overview` | App | DVIZ-05, DVIZ-01, DVIZ-02, TABL-08 | [Overview and analytics](pages/app/overview.md) |
 | `/app/:workspace/analytics` | App | DVIZ-05, DVIZ-02, DVIZ-03, DVIZ-04 | [Overview and analytics](pages/app/overview.md) |
 | `/app/:workspace/projects` | App | TABL-02, TABL-10, TABL-03, TABL-11, TABL-01, TABL-09, TABL-05, TABL-04, TABL-06 | [Projects data view](pages/app/projects.md) |
-| `/app/:workspace/projects/new` | App | SETT-11, SETT-10, SETT-03, SETT-12, SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
+| `/app/:workspace/projects/new` (redirects to the New project dialog, `?create=project`) | App | SETT-11, SETT-10, SETT-03, SETT-12, SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/projects/:projectId` | App | EDGE-04, TABL-08 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/projects/:projectId/edit` | App | SETT-02 | [Project detail, creation and editing](pages/app/project-editor.md) |
 | `/app/:workspace/inbox` | App | TABL-07, SYS-04 | [Inbox and master-detail review](pages/app/inbox.md) |

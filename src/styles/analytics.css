@@ -128,10 +128,22 @@
   padding-inline: 0.25rem;
   font-size: var(--text-body);
 }
+/* The filters lead the page with no rule under them; sections are
+   --gap-section apart, a hairline in the middle of each gap that never adds
+   to it (design-system.md, page anatomy). */
 .analytics-section {
   display: grid;
   gap: var(--gap-zone);
-  padding-top: var(--gap-zone);
+}
+.analytics-section + .analytics-section {
+  position: relative;
+  margin-top: calc(var(--gap-section) - var(--gap-zone));
+}
+.analytics-section + .analytics-section::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--gap-section) / -2);
   border-top: 1px solid var(--border);
 }
 .analytics-section-header h2 {

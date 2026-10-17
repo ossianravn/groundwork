@@ -18,7 +18,7 @@ Choose an individual scenario for its risk; these are not a sequence to execute 
 
 | Scenario | What it checks | Limit |
 | --- | --- | --- |
-| `controls` | Chart period, project search, Status and Owner heights at both densities | Four peers at default appearance; does not judge the whole composition |
+| `controls` | The Projects toolbar's search, Status, Owner and Advanced heights at both densities | Four peers at default appearance; does not judge the whole composition |
 | `scrollbar` | Native inset scrollbar; the project quick view's open/close background geometry and focus | Chromium on the current OS; an absent native scrollbar is an unexercised condition |
 | `overlay` | Appearance containment and reachable Close at 320px with 200% root text | Root text enlargement is not browser zoom or full accessibility coverage |
 

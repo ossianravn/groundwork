@@ -67,7 +67,11 @@ export function InboxLayout({
           onClick={onCompose}
         />
       </PageActions>
-      <section className="inbox-surface" aria-label="Inbox messages">
+      <section
+        className="inbox-surface"
+        aria-label="Inbox messages"
+        data-page-zone="pane"
+      >
         <div className="inbox-toolbar">
           <ToggleGroup
             variant="outline"

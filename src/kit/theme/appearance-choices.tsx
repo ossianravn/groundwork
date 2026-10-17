@@ -4,6 +4,12 @@ import { useId, type ReactNode } from "react"
 import { Check } from "lucide-react"
 import { FieldSet, FieldLegend } from "@/kit/ui/field"
 
+/**
+ * One appearance choice as radios. Options with a preview are tiles, ringed
+ * with a check badge when chosen; the others form one segmented control
+ * whose chosen segment takes the toggle group's fill. A `mark`, such as an
+ * accent swatch, leads a segment's label.
+ */
 export function AppearanceChoices<T extends string>({
   label,
   value,
@@ -12,20 +18,27 @@ export function AppearanceChoices<T extends string>({
 }: {
   label: string
   value: T
-  options: readonly { value: T; label: string; preview?: ReactNode }[]
+  options: readonly {
+    value: T
+    label: string
+    preview?: ReactNode
+    mark?: ReactNode
+  }[]
   onChange: (value: T) => void
 }) {
   const name = useId()
+  const tiles = options.some((option) => option.preview)
 
   return (
     <FieldSet className="appearance-field">
       <FieldLegend>{label}</FieldLegend>
-      <div className="appearance-options">
+      <div
+        className="appearance-options"
+        data-kind={tiles ? "tiles" : "segmented"}
+      >
         {options.map((option) => {
           const checked = value === option.value
 
-          // The check sits inside the choice: over a preview, or before a
-          // text-only label.
           return (
             <label className="appearance-choice" key={option.value}>
               <input
@@ -38,7 +51,7 @@ export function AppearanceChoices<T extends string>({
               <span className="appearance-choice-frame">
                 {option.preview ?? (
                   <span className="appearance-choice-caption">
-                    {checked && <Check aria-hidden="true" />}
+                    {option.mark}
                     {option.label}
                   </span>
                 )}

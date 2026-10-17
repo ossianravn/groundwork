@@ -1,6 +1,14 @@
 import { sameDocument, type RichTextDocument } from "@/kit/rich-text/document"
-import type { Activity, Member, Project, ProjectLink } from "./model"
+import {
+  formatDate,
+  type Activity,
+  type Member,
+  type Project,
+  type ProjectLink,
+} from "./model"
 import { sameProjectLinks } from "./project-links"
+import { weekStart } from "./project-timeline"
+import { dateOffset } from "./report-period"
 
 export const activityKinds = {
   tasks: "Task progress",
@@ -125,4 +133,41 @@ export function actionWithinProject(action: string) {
   const trimmed = action.replace(/\s+(?:in|of)$/u, "")
 
   return trimmed === action ? `${action} the project` : trimmed
+}
+
+export interface ActivityWeek {
+  /** The week's Monday. */
+  start: string
+  label: string
+  events: Activity[]
+}
+
+/**
+ * A feed's events under week headings, in the feed's order: "This week" and
+ * "Last week" relative to the snapshot date, then "Week of 1 Sept".
+ */
+export function activityWeeks(events: Activity[], reference: string) {
+  const current = weekStart(reference)
+  const previous = dateOffset(current, -7)
+  const weeks: ActivityWeek[] = []
+
+  for (const event of events) {
+    const start = weekStart(event.date)
+    const week = weeks.find((item) => item.start === start)
+
+    if (week) week.events.push(event)
+    else
+      weeks.push({
+        start,
+        label:
+          start === current
+            ? "This week"
+            : start === previous
+              ? "Last week"
+              : `Week of ${formatDate(start)}`,
+        events: [event],
+      })
+  }
+
+  return weeks
 }

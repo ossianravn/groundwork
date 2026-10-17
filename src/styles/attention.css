@@ -1,0 +1,59 @@
+/* Needs attention (features/overview/needs-attention.tsx): Overview's work
+   list, a row per project with its mark, name and why, then its owner and
+   due date. */
+.attention {
+  display: grid;
+  gap: var(--gap-item);
+}
+.attention-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-control);
+  min-height: var(--control-height-sm);
+}
+.attention-heading h2 {
+  font-size: var(--text-section);
+  font-weight: 600;
+}
+.attention-heading > .ui-button {
+  margin-inline-end: calc(var(--space-2) * -1);
+}
+.attention-list {
+  display: grid;
+}
+.attention-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--gap-item);
+  padding-block: var(--inset-row);
+}
+.attention-row + .attention-row {
+  border-top: 1px solid var(--border);
+}
+.attention-text {
+  display: grid;
+  gap: var(--gap-inline);
+  min-width: 0;
+}
+.attention-name {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--foreground);
+  text-align: start;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.attention-name:hover {
+  text-decoration: underline;
+}
+.attention-text p,
+.attention-row .project-due-date {
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}

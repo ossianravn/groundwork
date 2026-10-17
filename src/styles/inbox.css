@@ -244,3 +244,13 @@
     outline-offset: -2px;
   }
 }
+/* The Inbox is full-bleed: its list pane starts at the page's edge, so its
+   toolbar and rows start their content on the content edge (--inset-page)
+   like every other page (design-system.md, page anatomy). */
+.inbox-page .inbox-toolbar,
+.inbox-page .inbox-row {
+  padding-inline-start: var(--inset-page);
+}
+.inbox-page .inbox-list li + li {
+  background-position-x: calc(var(--inset-page) + 2rem + var(--gap-item));
+}

@@ -299,6 +299,45 @@
   ],
   "releases": [
     {
+      "version": "0.16.0",
+      "date": "2026-10-17",
+      "title": "What needs you, first",
+      "summary": "Overview opens on the projects that need someone, New project opens where you are, and Activity, Settings, Search, Import, Inbox, Assistant and Analytics now follow the same layout as the rest of the workspace.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Overview starts with Needs attention: the active projects that are overdue, running late at their recent pace, stalled for two weeks, or with tasks nobody owns, most urgent first. All projects is one click away.",
+            "New project opens over the page you're on. Close it and your draft waits for next time; create the project and it opens right there.",
+            "Activity groups events by week and shows, beside its calendar, the busiest day, who completed most and how many days saw work done. Click an event's date for its details."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Settings sit on the page at one reading width. Save is always available, with Unsaved changes beside it once you change something.",
+            "Appearance shows every choice the same way, and names each accent colour beside its swatch.",
+            "Search only offers filters for the kinds of result it found, and results read as plain links.",
+            "Import's drop zone lights up as you drag a file over it, and the sample download sits in its guidance.",
+            "Overview's recent activity matches every other feed, and its snapshot date moves under the metrics. Inbox, Assistant and Analytics line up with the rest of the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Needs attention reads the demo's snapshot date, 24 Sept 2026. New projects and settings changes reset on reload; appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.15.0",
       "date": "2026-10-17",
       "title": "Tidier projects",

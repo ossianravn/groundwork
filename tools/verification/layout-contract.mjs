@@ -29,7 +29,6 @@ const routes = [
   "/app/demo/projects/brand?tab=activity",
   "/app/demo/projects/brand?tab=agent",
   "/app/demo/projects/onboarding",
-  "/app/demo/projects/new",
   "/app/demo/projects/import",
   "/app/demo/inbox",
   "/app/demo/assistant",

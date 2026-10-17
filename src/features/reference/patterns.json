@@ -933,7 +933,7 @@
       {
         "label": "Top bar",
         "href": "/app/demo/overview",
-        "instruction": "Use search or appearance while keeping the current workspace context."
+        "instruction": "Use search or notifications while keeping the current workspace context."
       }
     ],
     "sources": ["src/kit/shell/workspace-shell.tsx"]
@@ -1023,13 +1023,13 @@
     "category": "Settings & forms",
     "surface": "Shared",
     "summary": "Navigate away from an unfinished form without losing your work.",
-    "implemented": "Drafts stay in memory during navigation. Save commits; Cancel discards; reload/reset clears.",
+    "implemented": "Drafts stay in memory: closing New project keeps its draft for next time. Create commits; Cancel discards; reload/reset clears.",
     "deferred": "No blocking leave prompt or persisted draft storage.",
     "examples": [
       {
         "label": "New project",
-        "href": "/app/demo/projects/new",
-        "instruction": "Change a value, leave via navigation, and return before saving or cancelling."
+        "href": "/app/demo/projects?create=project",
+        "instruction": "Change a value, close the dialog, and open New project again."
       },
       {
         "label": "Retain or discard a draft",
@@ -1280,12 +1280,12 @@
     "examples": [
       {
         "label": "Create project",
-        "href": "/app/demo/projects/new",
+        "href": "/app/demo/projects?create=project",
         "instruction": "Submit empty fields, correct the errors and save."
       },
       {
         "label": "Save failure",
-        "href": "/app/demo/projects/new?scenario=save-failure",
+        "href": "/app/demo/projects?create=save-failure",
         "instruction": "Submit valid values, then use Retry after the local rejection."
       },
       {
@@ -1603,13 +1603,13 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Understand recent changes and reach the related project.",
-    "implemented": "Recent activity, a project's Activity tab and full date-grouped workspace history share live events and one ActivityRow: one sentence with the date at the end of the line. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
+    "implemented": "Recent activity, a project's Activity tab and full workspace history under week headings share live events and one ActivityRow: one sentence with the date at the end of the line, where the date opens the event's details. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
     "deferred": "Historical fixture events contain no invented before/after values. No remote pagination or trusted audit service.",
     "examples": [
       {
         "label": "Recent activity",
         "href": "/app/demo/overview#activity",
-        "instruction": "Follow an activity link or expand the timeline."
+        "instruction": "Follow an activity link, or Show all activity."
       },
       {
         "label": "Workspace activity",
@@ -1748,7 +1748,7 @@
     "deferred": "Overflow menus for several actions remain planned.",
     "examples": [
       {
-        "label": "New project and snapshot date",
+        "label": "New project",
         "href": "/app/demo/overview",
         "instruction": "Use New project in the top bar; narrow the window to see the icon-only form."
       }
@@ -1892,7 +1892,7 @@
     "examples": [
       {
         "label": "Due date",
-        "href": "/app/demo/projects/new",
+        "href": "/app/demo/projects?create=project",
         "instruction": "Open Due date and choose a day."
       },
       {
@@ -2041,18 +2041,13 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Scroll a bounded region with themed, unobtrusive scrollbars.",
-    "implemented": "Kit ScrollArea on Base UI: native scrolling with a thin overlay scrollbar. The Inbox message list uses it (keeping scroll restoration on the viewport), and Overview's Recent activity uses its overflow variables to fade only the edges with more history, replacing hand-written scroll measuring.",
+    "implemented": "Kit ScrollArea on Base UI: native scrolling with a thin overlay scrollbar. The Inbox message list uses it, keeping scroll restoration on the viewport. (Overview's Recent activity used it until 2026-10-17; it now shows six plain rows.)",
     "deferred": "No horizontal scroll areas yet; wide tables keep native scrolling.",
     "examples": [
       {
         "label": "Inbox list",
         "href": "/app/demo/inbox",
         "instruction": "Make the window short and scroll the messages."
-      },
-      {
-        "label": "Recent activity",
-        "href": "/app/demo/overview",
-        "instruction": "Scroll the activity beside the chart."
       },
       {
         "label": "Scroll area reference",
@@ -2062,8 +2057,7 @@
     ],
     "sources": [
       "src/kit/ui/scroll-area.tsx",
-      "src/features/inbox/inbox-layout.tsx",
-      "src/features/overview/activity-list.tsx"
+      "src/features/inbox/inbox-layout.tsx"
     ]
   },
   {
@@ -2329,7 +2323,7 @@
     "category": "System",
     "surface": "Workspace",
     "summary": "Show grouped results across projects, people, messages and help.",
-    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; a project opened from it names Search in its breadcrumb, which returns to the results.",
+    "implemented": "Typing in Ctrl/⌘ K search offers Search everything first, so Enter opens /app/demo/search: grouped projects, tasks, comments, messages, people and help guides with counts, type filters for the kinds that have results, highlighted matches and links to each record (comments open at the comment). Query and type live in the URL; a project opened from it names Search in its breadcrumb, which returns to the results.",
     "deferred": "No ranking beyond title-first, fuzzy matching or recent searches.",
     "examples": [
       {
@@ -3589,7 +3583,7 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show rhythm over many days at once: when work happens.",
-    "implemented": "Activity opens with completed tasks per day since the history began, as a calendar in one hue (kit CalendarHeatmap): a grid you walk with the arrow keys (a day down, a week across), each day naming itself, with a detail line for the day in focus or under the pointer. It follows the feed's filters.",
+    "implemented": "Activity opens with completed tasks per day since the history began, as a calendar in one hue (kit CalendarHeatmap): a grid you walk with the arrow keys (a day down, a week across), each day naming itself, with a detail line for the day in focus or under the pointer. It follows the feed's filters, beside the busiest day, who completed most and the active days.",
     "deferred": "",
     "examples": [
       {

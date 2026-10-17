@@ -1,5 +1,4 @@
 import { useRef, useState, type ReactNode } from "react"
-import { FileSpreadsheet, Upload } from "lucide-react"
 import { Button } from "@/kit/ui/button"
 import type { Member } from "@/demo/model"
 import { parseCsv } from "@/demo/csv"
@@ -10,6 +9,7 @@ import {
   type ColumnMapping,
   type ImportRow,
 } from "@/demo/project-import"
+import { ImportDrop } from "./import-drop"
 import { ImportMapping } from "./import-mapping"
 import { ImportReview } from "./import-review"
 
@@ -45,7 +45,6 @@ export function ProjectImport({
   const [error, setError] = useState("")
   const [imported, setImported] = useState(0)
   const heading = useRef<HTMLHeadingElement>(null)
-  const input = useRef<HTMLInputElement>(null)
   const [headers = [], ...data] = table
 
   const rows =
@@ -86,7 +85,7 @@ export function ProjectImport({
   }
 
   return (
-    <div className="project-import">
+    <div className="project-import" data-page-zone="content">
       <ol className="import-steps" aria-label="Import steps">
         {steps.map((item) => (
           <li key={item} aria-current={item === step ? "step" : undefined}>
@@ -105,60 +104,18 @@ export function ProjectImport({
       </h2>
       {step === "Upload" && (
         <>
-          <div
-            className="import-drop"
-            onDragOver={(event) => event.preventDefault()}
-            onDrop={(event) => {
-              event.preventDefault()
-              const dropped = event.dataTransfer.files[0]
-
-              if (dropped)
-                void dropped.text().then((text) => load(dropped.name, text))
-            }}
-          >
-            <FileSpreadsheet aria-hidden="true" />
-            <p>
-              One project per row, with a header row. Name and due date are
-              required; owner, description and tags are optional.
-            </p>
-            <div className="import-actions">
-              <Button onClick={() => input.current?.click()}>
-                <Upload aria-hidden="true" data-icon="inline-start" />
-                Choose CSV file
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() =>
-                  void fetch(sample.url)
-                    .then((response) => response.text())
-                    .then((text) => load(sample.name, text))
-                    .catch(() =>
-                      setError(
-                        "The sample file could not be loaded. Try again.",
-                      ),
-                    )
-                }
-              >
-                Use the sample file
-              </Button>
-              <a href={sample.url} download className="import-sample-link">
-                Download the sample
-              </a>
-            </div>
-            <input
-              ref={input}
-              type="file"
-              accept=".csv,text/csv"
-              hidden
-              onChange={(event) => {
-                const chosen = event.target.files?.[0]
-
-                if (chosen)
-                  void chosen.text().then((text) => load(chosen.name, text))
-                event.target.value = ""
-              }}
-            />
-          </div>
+          <ImportDrop
+            sampleUrl={sample.url}
+            onFile={load}
+            onSample={() =>
+              void fetch(sample.url)
+                .then((response) => response.text())
+                .then((text) => load(sample.name, text))
+                .catch(() =>
+                  setError("The sample file could not be loaded. Try again."),
+                )
+            }
+          />
           {error && (
             <p role="alert" className="import-error">
               {error}

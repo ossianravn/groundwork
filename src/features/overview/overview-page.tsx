@@ -4,7 +4,6 @@ import { PageAction, PageActions } from "@/kit/shell/page-actions"
 import { ChartState } from "@/kit/ui/chart-state"
 import { snapshotHistory } from "@/demo/snapshot-history"
 import {
-  formatDate,
   type Activity,
   type Member,
   type Project,
@@ -14,7 +13,8 @@ import { reportWindow, type ReportPeriod } from "@/demo/report-period"
 import { CompletionPeriod } from "./completion-period"
 import { Metrics } from "./metrics"
 import { ActivityList } from "./activity-list"
-import { ProjectsTable, type ProjectTableControl } from "./projects-table"
+import { needsAttention } from "@/demo/attention"
+import { NeedsAttention } from "./needs-attention"
 
 const CompletionChart = lazy(() =>
   import("./completion-chart").then((module) => ({
@@ -34,14 +34,11 @@ export interface OverviewPageProps {
   onPeriodChange: (period: ReportPeriod) => void
   onNewProject: () => void
   onSelectProject: (id: string) => void
-  projectTableControl?: ProjectTableControl
   activityLink?: ReactNode
+  /** A link to the Projects page, after Needs attention. */
+  projectsLink?: ReactNode
   /** Shown before the metrics, such as a getting-started checklist. */
   intro?: ReactNode
-  activityExpansion?: {
-    expanded: boolean
-    onChange: (expanded: boolean) => void
-  }
 }
 
 export function OverviewPage({
@@ -55,24 +52,18 @@ export function OverviewPage({
   onPeriodChange,
   onNewProject,
   onSelectProject,
-  projectTableControl,
-  activityExpansion,
   activityLink,
+  projectsLink,
   intro,
 }: OverviewPageProps) {
   return (
-    <main id="main-content" className="page-content" tabIndex={-1}>
+    <main
+      id="main-content"
+      className="page-content overview-page"
+      tabIndex={-1}
+    >
       <h1 className="sr-only">Overview</h1>
-      <PageActions
-        meta={
-          <>
-            Snapshot{" "}
-            <time dateTime={referenceDate}>
-              {formatDate(referenceDate, { year: "numeric" })}
-            </time>
-          </>
-        }
-      >
+      <PageActions>
         <PageAction
           id="new-project"
           icon={Plus}
@@ -86,7 +77,7 @@ export function OverviewPage({
         referenceDate={referenceDate}
         history={snapshotHistory(projects, tasks, activity, referenceDate)}
       />
-      <div className="overview-middle">
+      <div className="overview-middle" data-page-zone="section">
         <Suspense
           fallback={
             <section className="chart-loading" aria-busy="true">
@@ -111,19 +102,17 @@ export function OverviewPage({
         </Suspense>
         <ActivityList
           allActivityLink={activityLink}
-          expansion={activityExpansion}
           activity={activity}
           projects={projects}
           members={activityMembers}
           onSelectProject={onSelectProject}
         />
       </div>
-      <ProjectsTable
-        onNewProject={onNewProject}
-        control={projectTableControl}
-        projects={projects}
+      <NeedsAttention
+        items={needsAttention(projects, tasks, referenceDate)}
         members={members}
-        onSelect={onSelectProject}
+        onSelectProject={onSelectProject}
+        allProjectsLink={projectsLink}
       />
     </main>
   )

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { buttonVariants } from "@/kit/ui/button"
 import { GettingStarted } from "@/features/overview/getting-started"
 import { useDemoState } from "./demo-state"
+import { useDemoWorkspace } from "./workspace-context"
 
 const action = buttonVariants({ variant: "outline", size: "sm" })
 
@@ -11,6 +12,7 @@ const action = buttonVariants({ variant: "outline", size: "sm" })
  */
 export function OverviewGettingStarted() {
   const { demo, access, results } = useDemoState()
+  const { onNewProject } = useDemoWorkspace()
 
   if (access.onboarding.step !== "complete" || results.gettingStartedHidden)
     return null
@@ -50,13 +52,9 @@ export function OverviewGettingStarted() {
           description: "Start one by hand or import a spreadsheet.",
           done: demo.projects.length > 0,
           action: (
-            <Link
-              to="/app/demo/projects/new"
-              search={{ returnTo: "/app/demo/overview", scenario: "normal" }}
-              className={action}
-            >
+            <button type="button" className={action} onClick={onNewProject}>
               New project
-            </Link>
+            </button>
           ),
         },
         {

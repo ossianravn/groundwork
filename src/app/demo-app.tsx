@@ -14,7 +14,7 @@ import { parseProjectsSearch } from "./projects-search"
 import { useDemoState } from "./demo-state"
 import { ProjectQuickViewHost } from "./project-quick-view-host"
 import { quickViewList } from "./quick-view-list"
-import { projectReturnTo } from "./project-return"
+import { NewProjectHost } from "./new-project-host"
 import { Notifications } from "./notifications"
 import { WorkspaceHelp } from "@/features/help/workspace-help"
 import { useWorkspaceHelp } from "./use-workspace-help"
@@ -35,7 +35,7 @@ export function DemoApp() {
 
   const navigate = useNavigate()
   const pathname = useLocation({ select: (location) => location.pathname })
-  const { inspect } = useSearch({ strict: false })
+  const { inspect, create } = useSearch({ strict: false })
   const [themeOpen, setThemeOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   // The list a project was opened from, for J and K in its quick view.
@@ -119,15 +119,10 @@ export function DemoApp() {
         },
         onNewProject: () => {
           rememberProjectOpener()
-
-          const returnTo = projectReturnTo(
-            window.location.pathname + window.location.search,
-          )
-
-          results.rememberFocus(returnTo, projectOpener.current)
           void navigate({
-            to: "/app/demo/projects/new",
-            search: { returnTo, scenario: "normal" },
+            to: ".",
+            search: (previous) => ({ ...previous, create: "project" }),
+            resetScroll: false,
           })
         },
       }}
@@ -182,6 +177,35 @@ export function DemoApp() {
         onRestore={appearance.restoreDefaults}
         onChange={appearance.updateTheme}
       />
+      {create && (
+        <NewProjectHost
+          demo={demo}
+          drafts={drafts}
+          scenario={create === "save-failure" ? "save-failure" : "normal"}
+          onClose={() =>
+            void navigate({
+              to: ".",
+              search: (previous) => ({ ...previous, create: undefined }),
+              resetScroll: false,
+              replace: true,
+            })
+          }
+          onCreated={(projectId) => {
+            setQuickOrder([])
+            void navigate({
+              to: ".",
+              search: (previous) => ({
+                ...previous,
+                create: undefined,
+                inspect: projectId,
+              }),
+              resetScroll: false,
+              replace: true,
+            })
+          }}
+          returnFocus={projectReturnFocus}
+        />
+      )}
       {selectedProject && (
         <ProjectQuickViewHost
           project={selectedProject}

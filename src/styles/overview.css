@@ -14,11 +14,26 @@
   gap: var(--gap-zone);
 }
 /* Direction A: the snapshot is one strip on the canvas, not four tiles. */
+/* Overview's sections are --gap-section apart, a hairline in the middle of
+   each gap that never adds to it (design-system.md, page anatomy). */
+.overview-page {
+  gap: var(--gap-section);
+}
+.overview-page > [data-page-zone="section"] + [data-page-zone="section"] {
+  position: relative;
+}
+.overview-page
+  > [data-page-zone="section"]
+  + [data-page-zone="section"]::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--gap-section) / -2);
+  border-top: 1px solid var(--border);
+}
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-bottom: 1px solid var(--border);
-  padding-bottom: var(--gap-zone);
 }
 .metric-card {
   --card-spacing: 0px;
@@ -27,6 +42,14 @@
   border-radius: 0;
   padding-inline: var(--gap-zone);
   border-inline-start: 1px solid var(--border);
+}
+/* The date the figures are from, under the strip at its end. */
+.metrics-caption {
+  grid-column: 1 / -1;
+  justify-self: end;
+  margin-top: var(--gap-item);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
 }
 .metric-card:first-child {
   padding-inline-start: 0;
@@ -168,29 +191,7 @@
   margin-inline-start: auto;
 }
 .activity-body {
-  position: relative;
   flex: 1;
-  min-height: 24rem;
-}
-/* A kit ScrollArea. Its overflow variables fade an edge only while more
-   history lies past it; the overlay scrollbar sits outside the mask. */
-.activity-viewport {
-  position: absolute;
-  inset: 0 var(--gap-control) 0 var(--inset-card);
-  font-size: var(--text-meta);
-}
-.activity-scroller {
-  scroll-padding-block: 2rem;
-  padding-inline-end: calc(var(--inset-card) - var(--gap-control));
-  --activity-edge-mask: linear-gradient(
-    to bottom,
-    transparent,
-    #000 min(2rem, var(--scroll-area-overflow-y-start, 0px)),
-    #000 calc(100% - min(2rem, var(--scroll-area-overflow-y-end, 0px))),
-    transparent
-  );
-  -webkit-mask-image: var(--activity-edge-mask);
-  mask-image: var(--activity-edge-mask);
 }
 .activity-card > .overview-card-footer {
   justify-content: center;
@@ -207,17 +208,4 @@
   height: 0.4rem;
   border-radius: 2px;
   background: var(--brand);
-}
-@media (width < 64rem) {
-  .activity-card[data-expanded="false"] .activity-body {
-    min-height: 0;
-  }
-  .activity-card[data-expanded="false"] .activity-viewport {
-    position: static;
-  }
-  .activity-card[data-expanded="false"] .activity-scroller {
-    padding-inline-end: 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
 }

@@ -2,6 +2,7 @@
 @import "../kit/styles/kit.css";
 @import "./shell-demo.css";
 @import "./overview.css";
+@import "./attention.css";
 @import "./open-sections.css";
 @import "./activity.css";
 @import "./activity-row.css";
