@@ -79,6 +79,9 @@ export function ProjectTableContent({
                   role="columnheader"
                   key={header.id}
                   scope="col"
+                  // The column keeps its name where the sort button is hidden
+                  // (phones sort from the toolbar).
+                  aria-label={header.column.getCanSort() ? label : undefined}
                   aria-sort={
                     header.column.getCanSort()
                       ? sort === "asc"

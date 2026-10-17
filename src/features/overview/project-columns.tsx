@@ -17,11 +17,11 @@ import {
 // column receives the remaining width; filtering never remeasures its content.
 export const projectColumnWidths = {
   selection: 3,
-  name: 15,
-  status: 9.5,
-  progress: 9.5,
-  owner: 7.5,
-  dueDate: 7,
+  name: 11,
+  status: 7.5,
+  progress: 8,
+  owner: 6.5,
+  dueDate: 7.5,
 }
 
 type ProjectColumnId = keyof typeof projectColumnWidths

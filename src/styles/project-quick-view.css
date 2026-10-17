@@ -23,12 +23,15 @@
   border-bottom: 1px solid var(--border);
 }
 .quick-view-title {
+  --title-line: calc(var(--text-feature) * 1.3);
   display: flex;
   flex: 1 1 18rem;
-  flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--gap-item);
   min-width: 0;
+}
+.quick-view-title > .project-dot {
+  margin-block-start: calc((var(--title-line) - var(--mark-size)) / 2);
 }
 .quick-view-title h1 {
   font-size: var(--text-feature);

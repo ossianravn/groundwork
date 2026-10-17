@@ -140,13 +140,13 @@
     grid-template-columns: minmax(0, 40rem);
     gap: var(--gap-group);
   }
+  /* Every section stays in view: the links wrap rather than scroll. */
   .settings-navigation {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
   }
-  .settings-navigation a {
-    flex-shrink: 0;
+  .settings-navigation-links {
+    display: contents;
   }
 }
 @media (max-width: 767px) {

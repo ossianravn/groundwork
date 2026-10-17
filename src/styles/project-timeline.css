@@ -85,6 +85,13 @@
   padding: var(--gap-control) var(--gap-group) var(--gap-control) 0;
   background: var(--background);
 }
+/* A long name keeps the row to two lines; the quick view has it whole. */
+.timeline-name > :first-child {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 .timeline-meta {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
