@@ -380,28 +380,29 @@
   },
   {
     "id": "EDGE-04",
-    "title": "Inline and dialog project editing",
+    "title": "Inline project editing",
     "originalName": "Inline Click-to-Edit Field",
     "category": "Feedback & recovery",
     "surface": "Workspace",
     "summary": "Edit project values in context with explicit save and cancel.",
-    "implemented": "The project name edits in place with Save/Cancel; owner, due date, tags and links edit together in a Details dialog from the rail's one Edit action. Both validate, handle a rejected save with retry, and record their actual change in Activity. The inline name keeps a navigation draft; the dialog starts from the saved project each time it opens.",
+    "implemented": "The project name edits in place with Save/Cancel. Project details change in place, in the project page's rail and the quick view: owner and due date save as soon as one is picked, tags as they change, links as one is added (a small form that checks the URL) or removed. A rejected save keeps the saved value and offers Retry, and every change is recorded in Activity. The inline name keeps a navigation draft. (2026-10-17: replaced the Details dialog.)",
     "deferred": "Description and colour use the full editor. No production concurrency or conflict-resolution service.",
     "examples": [
       {
         "label": "Edit project details",
         "href": "/app/demo/projects/brand",
-        "instruction": "Use the pencil beside the project name, or Edit beside Details to change the owner, due date, tags or links."
+        "instruction": "Use the pencil beside the project name, or change the owner, due date, tags or links in Project details."
       },
       {
         "label": "Rejected save",
         "href": "/app/demo/projects/brand?scenario=save-failure",
-        "instruction": "Open Edit beside Details, change the owner and save. The local simulation rejects the first save; Retry save keeps and saves the value."
+        "instruction": "Change the owner in Project details. The local simulation rejects the first save; Retry saves it."
       }
     ],
     "sources": [
       "src/features/projects/project-inline-field.tsx",
-      "src/features/projects/project-details-dialog.tsx",
+      "src/features/projects/project-properties.tsx",
+      "src/features/projects/project-link-editor.tsx",
       "src/features/projects/project-inline-editing.ts",
       "src/demo/project-draft.ts"
     ]
@@ -1552,7 +1553,7 @@
     "surface": "Workspace",
     "summary": "Open a project in place, keep the list behind it, and step through the list.",
     "implemented": "A click on a project's name, card, board card or timeline bar, a search result or an activity link opens the project as a dialog over the list, with its URL (?inspect=) so Back closes it and the link can be shared. It holds the name (renamed in place), status and properties, the description and progress, tasks, comments, activity and files; Open full page leads to the project page, and Ctrl/⌘-click on a name opens that page directly. J and K step through the list it was opened from, and closing returns focus to the last project shown. It replaced the side-panel inspector on 2026-10-17.",
-    "deferred": "Inline editing of owner, due date and tags in place of the details dialog remains planned.",
+    "deferred": "No multi-project quick view or side-by-side comparison.",
     "examples": [
       {
         "label": "Quick view",
@@ -1886,7 +1887,7 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Choose a date from a calendar that follows density and theme.",
-    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and the Details dialog.",
+    "implemented": "Kit Calendar (react-day-picker) and DatePicker with ISO values, Monday weeks, keyboard navigation and a name that includes the chosen date. Project due dates use it in the editor and in Project details.",
     "deferred": "No typed date entry or time of day.",
     "examples": [
       {
@@ -1895,9 +1896,9 @@
         "instruction": "Open Due date and choose a day."
       },
       {
-        "label": "Details dialog",
+        "label": "Project details",
         "href": "/app/demo/projects/brand",
-        "instruction": "Choose Edit beside Details, then open Due date."
+        "instruction": "Open the due date in Project details and choose a day."
       }
     ],
     "sources": [

@@ -126,29 +126,17 @@
   padding-top: var(--gap-zone);
   border-top: 1px solid var(--border);
 }
-/* Details: a heading with its one Edit action, like Files below it. */
+/* Details: a heading like Files below it, then rows changed in place. */
 .project-properties-section {
   display: grid;
   gap: var(--gap-control);
 }
-.project-properties-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--gap-control);
-}
-.project-properties-heading h2 {
+.project-properties-section h2 {
   font-size: var(--text-section);
   font-weight: 600;
 }
-/* The ghost action's label lines up with the rail's end. */
-.project-properties-heading > .ui-button {
-  margin-inline-end: calc(-1 * var(--control-padding-inline, 0.625rem));
-}
-/* The details dialog: owner and date share a row, then tags and links.
-   Add task shares its frame; its title takes the larger share of the row. */
-.project-task-dialog[data-slot="dialog-content"],
-.project-details-dialog[data-slot="dialog-content"] {
+/* Add task: the title takes the larger share of its row with the assignee. */
+.project-task-dialog[data-slot="dialog-content"] {
   width: 36rem;
   max-width: calc(100% - 32px);
   max-height: calc(100dvh - 32px);
@@ -181,11 +169,15 @@
 .project-properties > div {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
-  align-items: center;
+  align-items: start;
   column-gap: var(--gap-group);
   min-height: var(--control-height-sm);
 }
+/* A label sits on its value's first line, however many lines it takes. */
 .project-properties dt {
+  display: flex;
+  align-items: center;
+  min-height: var(--control-height);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
 }

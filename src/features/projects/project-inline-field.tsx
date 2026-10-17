@@ -181,7 +181,9 @@ export function ProjectInlineField({
       ) : (
         <div className="project-inline-value">
           {field === "name" ? (
-            <Heading id={headingId}>{children}</Heading>
+            <Heading id={headingId} tabIndex={headingId ? -1 : undefined}>
+              {children}
+            </Heading>
           ) : (
             children
           )}

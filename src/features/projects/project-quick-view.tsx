@@ -1,4 +1,4 @@
-import type { KeyboardEvent, ReactNode } from "react"
+import { useEffect, useRef, type KeyboardEvent, type ReactNode } from "react"
 import { ChevronDown, ChevronUp, X } from "lucide-react"
 import { RichText } from "@/kit/rich-text/rich-text"
 import { documentText } from "@/kit/rich-text/document"
@@ -78,6 +78,16 @@ export function ProjectQuickView({
     .filter((event) => event.projectId === project.id)
     .reverse()
 
+  // After J or K the next record replaces this one; reading starts at its
+  // name. The host shows the next project after it navigates.
+  const stepped = useRef(false)
+
+  useEffect(() => {
+    if (!stepped.current) return
+    stepped.current = false
+    document.getElementById("project-quick-view-title")?.focus()
+  }, [project.id])
+
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     const owned =
       event.target instanceof Element &&
@@ -87,6 +97,7 @@ export function ProjectQuickView({
 
     if (!step) return
     event.preventDefault()
+    stepped.current = true
     position.onStep(step)
   }
 
@@ -101,6 +112,8 @@ export function ProjectQuickView({
         className="project-quick-view"
         showCloseButton={false}
         aria-labelledby="project-quick-view-title"
+        // The record is long: focus starts on its name, not its first control.
+        initialFocus={() => document.getElementById("project-quick-view-title")}
         finalFocus={returnFocus}
         onKeyDown={onKeyDown}
       >
