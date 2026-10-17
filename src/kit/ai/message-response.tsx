@@ -102,20 +102,33 @@ const components: Components = {
   ),
 }
 
+type StreamdownProps = React.ComponentProps<typeof Streamdown>
+
 /**
  * Markdown from a model, rendered with kit typography. While streaming,
  * unfinished syntax (an open code fence, half a link) still renders cleanly.
+ * `plugins`, `remarkPlugins` and `rehypePlugins` go to Streamdown: add math
+ * with `@streamdown/math`, or change how markdown and HTML are read.
  */
 function MessageResponse({
   children,
   streaming = false,
   renderLink,
   className,
+  plugins,
+  remarkPlugins,
+  rehypePlugins,
 }: {
   children: string
   streaming?: boolean
   renderLink?: RenderResponseLink
   className?: string
+  /** Streamdown plugins, such as `{ math }` from `@streamdown/math`. */
+  plugins?: StreamdownProps["plugins"]
+  /** Replaces Streamdown's remark list; spread `defaultRemarkPlugins` to extend it. */
+  remarkPlugins?: StreamdownProps["remarkPlugins"]
+  /** Replaces Streamdown's rehype list (`defaultRehypePlugins`: raw, sanitize, harden). */
+  rehypePlugins?: StreamdownProps["rehypePlugins"]
 }) {
   const content = (
     <Streamdown
@@ -128,6 +141,9 @@ function MessageResponse({
       isAnimating={streaming}
       controls={false}
       lineNumbers={false}
+      plugins={plugins}
+      remarkPlugins={remarkPlugins}
+      rehypePlugins={rehypePlugins}
     >
       {children}
     </Streamdown>

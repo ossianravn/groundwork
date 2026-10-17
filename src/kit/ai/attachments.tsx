@@ -27,15 +27,19 @@ function formatSize(bytes: number) {
 
 /**
  * One attachment: a thumbnail for images, otherwise a chip with its name and
- * size. With `onRemove` it offers a remove button named after the file.
+ * size. With `onRemove` it offers a remove button named after the file;
+ * with `onOpen` the attachment itself is a button that opens it.
  */
 function Attachment({
   item,
   onRemove,
+  onOpen,
   className,
 }: {
   item: AttachmentItem
   onRemove?: () => void
+  /** Opens the file, such as in a preview; the event's button is the opener. */
+  onOpen?: (event: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
 }) {
   const image = item.mediaType?.startsWith("image/") && item.url
@@ -61,14 +65,36 @@ function Attachment({
       </Button>
     )
 
+  // With onOpen, the thumbnail or the chip's text becomes the open button.
+  const open = (content: React.ReactNode, layout: string) =>
+    onOpen ? (
+      <button
+        type="button"
+        aria-label={`Open ${item.name}`}
+        title={item.name}
+        className={cn(
+          "group/open rounded-md text-start outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+          layout,
+        )}
+        onClick={onOpen}
+      >
+        {content}
+      </button>
+    ) : (
+      content
+    )
+
   if (image)
     return (
       <li data-slot="attachment" className={cn("relative", className)}>
-        <img
-          src={item.url}
-          alt={item.name}
-          className="size-14 rounded-lg border border-border object-cover"
-        />
+        {open(
+          <img
+            src={item.url}
+            alt={item.name}
+            className="size-14 rounded-lg border border-border object-cover"
+          />,
+          "block rounded-lg",
+        )}
         {remove(true)}
       </li>
     )
@@ -81,17 +107,24 @@ function Attachment({
         className,
       )}
     >
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background text-muted-foreground">
-        {item.icon ?? <FileText className="size-4" aria-hidden="true" />}
-      </span>
-      <span className="grid min-w-0 flex-1">
-        <span className="truncate font-medium">{item.name}</span>
-        {detail && (
-          <span className="truncate text-xs text-muted-foreground">
-            {detail}
+      {open(
+        <>
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background text-muted-foreground">
+            {item.icon ?? <FileText className="size-4" aria-hidden="true" />}
           </span>
-        )}
-      </span>
+          <span className="grid min-w-0 flex-1">
+            <span className="truncate font-medium underline-offset-2 group-hover/open:underline">
+              {item.name}
+            </span>
+            {detail && (
+              <span className="truncate text-xs text-muted-foreground">
+                {detail}
+              </span>
+            )}
+          </span>
+        </>,
+        "-ms-1 my-1 flex min-w-0 flex-1 items-center gap-2 self-stretch px-1",
+      )}
       {remove(false)}
     </li>
   )

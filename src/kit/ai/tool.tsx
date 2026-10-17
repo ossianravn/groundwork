@@ -120,12 +120,15 @@ function ToolHeader({
   title,
   state,
   interrupted,
+  status,
   className,
 }: {
   title: string
   state: ToolState
   /** The reply ended before the call finished, for example when stopped. */
   interrupted?: boolean
+  /** Replaces the state badge, such as with your own word for an outcome. */
+  status?: React.ReactNode
   className?: string
 }) {
   return (
@@ -140,7 +143,7 @@ function ToolHeader({
         aria-hidden="true"
       />
       <span className="min-w-0 flex-1 truncate font-medium">{title}</span>
-      <ToolStatus state={state} interrupted={interrupted} />
+      {status ?? <ToolStatus state={state} interrupted={interrupted} />}
       <ChevronDown
         className="size-4 shrink-0 text-muted-foreground transition-transform group-data-panel-open/tool:rotate-180"
         aria-hidden="true"

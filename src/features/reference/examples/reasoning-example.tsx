@@ -8,8 +8,21 @@ const thought =
 
 const words = thought.match(/\S+\s*/gu) ?? []
 
+// An earlier reply, restored from history. Timing only runs while reasoning
+// streams, so the host stored the duration; it also keeps whether the
+// reasoning is open, and lists the summary's steps itself.
+const restored = {
+  seconds: 14,
+  steps: [
+    "Listed the projects due in the next two weeks.",
+    "Compared each due date with the share of tasks still open.",
+    "Mobile app leads: 4 of 16 tasks open, due in 6 days.",
+  ],
+}
+
 export function ReasoningExample() {
   const [count, setCount] = useState(words.length)
+  const [restoredOpen, setRestoredOpen] = useState(true)
   const streaming = count < words.length
 
   // Streams a word at a time; the block opens, then folds away when done.
@@ -32,6 +45,17 @@ export function ReasoningExample() {
         <RotateCcw data-icon="inline-start" aria-hidden="true" />
         Replay reasoning
       </Button>
+      <Reasoning
+        open={restoredOpen}
+        onOpenChange={setRestoredOpen}
+        label={`Thought for ${restored.seconds} seconds`}
+      >
+        <ol className="list-decimal ps-(--space-6) text-sm leading-relaxed [&_li+li]:mt-(--gap-inline)">
+          {restored.steps.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+      </Reasoning>
       <Reasoning streaming={streaming}>
         {words.slice(0, count).join("")}
       </Reasoning>

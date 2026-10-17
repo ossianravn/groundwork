@@ -207,7 +207,7 @@ function PromptInputTextarea({
       onPaste={(event) => {
         onPaste?.(event)
 
-        if (event.clipboardData.files.length) {
+        if (!event.defaultPrevented && event.clipboardData.files.length) {
           event.preventDefault()
           attachments.addFiles(event.clipboardData.files)
         }
