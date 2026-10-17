@@ -1,41 +1,67 @@
 import { useRef, useState } from "react"
-import { ChevronDown, Sparkles } from "lucide-react"
+import { ArrowLeft, FileText, ListPlus } from "lucide-react"
 import { Button } from "@/kit/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/kit/ui/dropdown-menu"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/kit/ui/select"
 import {
   isActiveRun,
   type AgentRun,
   type AgentWorkflow,
 } from "@/demo/agent-runs"
-import type { Project } from "@/demo/model"
+import { plural } from "@/demo/assistant/answer-format"
+import { formatDate, type Project } from "@/demo/model"
+import { AgentCard, type AgentDescription } from "./agent-card"
+import { AgentRunHistory } from "./agent-run-history"
+import { runOutcome, runTime } from "./agent-run-outcome"
 import { AgentRunView, type RunActions } from "./agent-run-view"
 
-const workflows: { id: AgentWorkflow; label: string; description: string }[] = [
-  {
-    id: "status-report",
-    label: "Write a status report",
-    description:
-      "Reads the week's tasks, activity and comments and drafts an update. You review it before it's posted.",
-  },
-  {
-    id: "launch-plan",
-    label: "Plan the launch",
-    description:
-      "Finds launch steps the task list doesn't cover yet and proposes tasks. You approve them before they're added.",
-  },
-]
+/** What the agents read, counted from the project's records now. */
+export interface AgentContext {
+  openTasks: number
+  doneTasks: number
+  doneThisWeek: number
+  comments: number
+  eventsThisWeek: number
+}
+
+const labels: Record<AgentWorkflow, string> = {
+  "status-report": "Status report",
+  "launch-plan": "Launch plan",
+}
+
+function agentsFor(
+  project: Project,
+  context: AgentContext,
+): Record<AgentWorkflow, AgentDescription> {
+  const total = context.openTasks + context.doneTasks
+  const percent = total ? Math.round((context.doneTasks / total) * 100) : 0
+
+  return {
+    "status-report": {
+      label: labels["status-report"],
+      icon: FileText,
+      promise: "Drafts this week's update from the work itself.",
+      reads: `${plural(context.openTasks, "open task")} · ${plural(context.comments, "comment")} · ${plural(context.eventsThisWeek, "event")} this week`,
+      produces: [
+        `Progress: ${context.doneTasks} of ${total} tasks (${percent}%)`,
+        `Done this week: ${plural(context.doneThisWeek, "task")}`,
+        `Next: ${plural(context.openTasks, "open task")}, due ${formatDate(project.dueDate)}`,
+      ],
+      policy: "You review the report before it's posted to Comments.",
+    },
+    "launch-plan": {
+      label: labels["launch-plan"],
+      icon: ListPlus,
+      promise: "Finds launch steps the task list doesn't cover yet.",
+      reads: `${plural(total, "task")} and who has them · due ${formatDate(project.dueDate)}`,
+      produces: [
+        "The missing launch steps, as tasks",
+        "A suggested owner for each, from who has room",
+      ],
+      policy: "You approve the tasks before they're added.",
+    },
+  }
+}
+
+const latest = "latest"
 
 const announcement = (run?: AgentRun) =>
   run?.status === "waiting"
@@ -47,13 +73,15 @@ const announcement = (run?: AgentRun) =>
         : ""
 
 /**
- * The project's agent: routine work it runs in the background, step by
- * step, stopping for approval before it changes anything. Starting a run
- * shows it here; earlier runs stay available from the run picker.
+ * The project's agents (design-system.md, agents): routine work that runs
+ * in the background, step by step, and stops for the person's approval
+ * before it changes anything. At rest the tab shows each agent and the
+ * runs so far; a run that is open, or needs the person, takes the tab.
  */
 export function ProjectAgent({
   project,
   runs,
+  context,
   nameOf,
   actions,
   onStart,
@@ -62,30 +90,44 @@ export function ProjectAgent({
   project: Project
   /** This project's runs, newest first. */
   runs: AgentRun[]
+  context: AgentContext
   /** A member's name as the reader would say it ("you"). */
   nameOf: (memberId: string) => string
   actions: RunActions
   onStart: (workflow: AgentWorkflow) => void
   onShowResult: (run: AgentRun) => void
 }) {
-  const [selected, setSelected] = useState<string>()
+  // The run shown: one opened from history, the latest after a start here,
+  // or none; a run that needs the person shows regardless.
+  const [opened, setOpened] = useState<string>()
+
+  // Scheduling is a demo flag: nothing runs on Fridays.
+  const [scheduled, setScheduled] = useState<AgentWorkflow[]>([])
   const heading = useRef<HTMLHeadingElement>(null)
-  const run = runs.find((item) => item.id === selected) ?? runs[0]
-  const busy = runs.some(isActiveRun)
+  const active = runs.find(isActiveRun)
+
+  const run =
+    (opened === latest ? runs[0] : runs.find((item) => item.id === opened)) ??
+    active
+
   const closed = project.status === "completed"
+  const agents = agentsFor(project, context)
 
   const unavailable = (workflow: AgentWorkflow) =>
-    busy
+    active
       ? "Finish or stop the current run first."
       : closed && workflow === "launch-plan"
         ? "Completed projects take no new tasks."
         : undefined
 
-  const start = (workflow: AgentWorkflow) => {
-    onStart(workflow)
-    setSelected(undefined)
-    requestAnimationFrame(() => heading.current?.focus())
+  const lastRun = (workflow: AgentWorkflow) => {
+    const last = runs.find((item) => item.workflow === workflow)
+
+    return last && `${runTime(last.startedAt)} · ${runOutcome(last)}`
   }
+
+  const focusHeading = () =>
+    requestAnimationFrame(() => heading.current?.focus())
 
   const status = (
     <p className="sr-only" role="status">
@@ -93,106 +135,77 @@ export function ProjectAgent({
     </p>
   )
 
-  if (!run)
+  if (run)
     return (
-      <section className="project-agent" aria-labelledby="project-agent-title">
-        <div className="project-agent-intro">
-          <h3 id="project-agent-title">Let the agent take routine work</h3>
-          <p>
-            It works in the background, so you can leave this page, and asks
-            before it posts or adds anything.
-          </p>
-        </div>
-        <ul className="project-agent-workflows">
-          {workflows.map((workflow) => (
-            <li key={workflow.id}>
-              <div>
-                <h4>{workflow.label}</h4>
-                <p>{unavailable(workflow.id) ?? workflow.description}</p>
-              </div>
+      <section className="project-agent" aria-label="Agent run">
+        <AgentRunView
+          key={run.id}
+          run={run}
+          startedBy={nameOf(run.startedBy)}
+          actions={actions}
+          headingRef={heading}
+          onShowResult={onShowResult}
+          aside={
+            !isActiveRun(run) && (
               <Button
-                variant="outline"
+                variant="ghost"
                 size="sm"
-                disabled={Boolean(unavailable(workflow.id))}
-                aria-label={`Start: ${workflow.label}`}
-                onClick={() => start(workflow.id)}
+                onClick={() => {
+                  setOpened(undefined)
+                  requestAnimationFrame(() =>
+                    document.getElementById(`agent-run-${run.id}`)?.focus(),
+                  )
+                }}
               >
-                Start
+                <ArrowLeft aria-hidden="true" data-icon="inline-start" />
+                All agents
               </Button>
-            </li>
-          ))}
-        </ul>
+            )
+          }
+        />
         {status}
       </section>
     )
 
   return (
-    <section className="project-agent" aria-label="Agent runs">
-      <AgentRunView
-        key={run.id}
-        run={run}
-        startedBy={nameOf(run.startedBy)}
-        actions={actions}
-        headingRef={heading}
-        onShowResult={onShowResult}
-        aside={
-          <>
-            {runs.length > 1 && (
-              <Select
-                items={runs.map((item) => ({
-                  value: item.id,
-                  label: runLabel(item),
-                }))}
-                value={run.id}
-                onValueChange={(value) => {
-                  if (value !== null) setSelected(value)
-                }}
-              >
-                <SelectTrigger aria-label="Run" size="sm">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {runs.map((item) => (
-                    <SelectItem key={item.id} value={item.id}>
-                      {runLabel(item)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={<Button variant="outline" size="sm" />}
-                className="project-agent-new"
-              >
-                <Sparkles data-icon="inline-start" aria-hidden="true" />
-                New run
-                <ChevronDown data-icon="inline-end" aria-hidden="true" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="project-agent-menu">
-                {workflows.map((workflow) => (
-                  <DropdownMenuItem
-                    key={workflow.id}
-                    disabled={Boolean(unavailable(workflow.id))}
-                    onClick={() => start(workflow.id)}
-                  >
-                    <span className="grid gap-0.5">
-                      <span className="font-medium">{workflow.label}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {unavailable(workflow.id) ?? workflow.description}
-                      </span>
-                    </span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        }
-      />
+    <section className="project-agent" aria-labelledby="project-agent-title">
+      <h3 id="project-agent-title" className="sr-only">
+        Agents
+      </h3>
+      <div className="agent-cards">
+        {(["status-report", "launch-plan"] as const).map((workflow) => (
+          <AgentCard
+            key={workflow}
+            agent={agents[workflow]}
+            lastRun={lastRun(workflow)}
+            unavailable={unavailable(workflow)}
+            scheduled={scheduled.includes(workflow)}
+            onScheduleChange={(on) =>
+              setScheduled((current) =>
+                on
+                  ? [...current, workflow]
+                  : current.filter((item) => item !== workflow),
+              )
+            }
+            onStart={() => {
+              onStart(workflow)
+              setOpened(latest)
+              focusHeading()
+            }}
+          />
+        ))}
+      </div>
+      {runs.length > 0 && (
+        <AgentRunHistory
+          runs={runs}
+          labelOf={(workflow) => labels[workflow]}
+          onOpen={(id) => {
+            setOpened(id)
+            focusHeading()
+          }}
+        />
+      )}
       {status}
     </section>
   )
 }
-
-const runLabel = (run: AgentRun) =>
-  `${run.title} · ${new Intl.DateTimeFormat("en-GB", { timeStyle: "short" }).format(run.startedAt)}`

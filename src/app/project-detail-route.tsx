@@ -9,7 +9,11 @@ import { useDemoState } from "./demo-state"
 import { useProjectRecord } from "./use-project-record"
 
 import { ProjectUnavailable } from "@/features/projects/project-unavailable"
-import { ProjectAgent } from "@/features/projects/project-agent"
+import {
+  ProjectAgent,
+  type AgentContext,
+} from "@/features/projects/project-agent"
+import { dateOffset } from "@/demo/report-period"
 import { isActiveRun } from "@/demo/agent-runs"
 import { startRun } from "@/demo/agent-run-plans"
 import type { Project } from "@/demo/model"
@@ -99,6 +103,7 @@ function ProjectRecordPage({
           <ProjectAgent
             project={project}
             runs={projectRuns}
+            context={agentContext(record, demo.workspace.referenceDate)}
             nameOf={(id) =>
               id === demo.workspace.currentUserId
                 ? "you"
@@ -136,4 +141,25 @@ function ProjectRecordPage({
       }}
     />
   )
+}
+
+/** What the project's agents read, counted from its records this week. */
+function agentContext(
+  record: ReturnType<typeof useProjectRecord>,
+  referenceDate: string,
+): AgentContext {
+  const weekStart = dateOffset(referenceDate, -6)
+  const done = record.tasks.filter((task) => task.done)
+
+  return {
+    openTasks: record.tasks.length - done.length,
+    doneTasks: done.length,
+    doneThisWeek: done.filter((task) => (task.completedAt ?? "") >= weekStart)
+      .length,
+    comments: record.comments.length,
+    eventsThisWeek: record.activity.filter(
+      (event) =>
+        event.projectId === record.project.id && event.date >= weekStart,
+    ).length,
+  }
 }
