@@ -95,3 +95,16 @@
   color: var(--destructive);
   font-size: var(--text-meta);
 }
+.project-progress-row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--gap-control);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.project-progress-row [data-slot="progress"] {
+  flex: 1;
+  max-width: 7rem;
+}

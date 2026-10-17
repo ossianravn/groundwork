@@ -16,7 +16,7 @@ import type {
 import type { TaskChange } from "@/demo/project-tasks"
 import { ProjectActivity } from "./project-activity"
 import { ProjectComments } from "./project-comments"
-import { ProjectHeaderProgress } from "./project-header-progress"
+import { ProjectCompletion } from "./project-completion"
 import { ProjectInlineField } from "./project-inline-field"
 import type { ProjectInlineEditing } from "./project-inline-editing"
 import { ProjectProperties } from "./project-properties"
@@ -37,6 +37,7 @@ export function ProjectQuickView({
   activity,
   editing,
   onComplete,
+  onReopen,
   tasks,
   onTaskChange,
   comments,
@@ -55,6 +56,7 @@ export function ProjectQuickView({
   activity: Activity[]
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
+  onReopen: (id: string) => void
   tasks: ProjectTask[]
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
@@ -163,6 +165,11 @@ export function ProjectQuickView({
                 </Button>
               </div>
             )}
+            <ProjectCompletion
+              project={project}
+              onComplete={onComplete}
+              onReopen={onReopen}
+            />
             {fullPage}
             <DialogClose
               className="quick-view-close"
@@ -196,12 +203,6 @@ export function ProjectQuickView({
             ) : (
               <p className="text-muted-foreground">No description added.</p>
             )}
-            <div className="quick-view-progress">
-              <ProjectHeaderProgress
-                project={project}
-                onComplete={onComplete}
-              />
-            </div>
             <section aria-labelledby="quick-view-tasks">
               <h2 id="quick-view-tasks">Tasks</h2>
               <ProjectTasks

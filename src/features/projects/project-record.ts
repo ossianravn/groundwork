@@ -35,6 +35,12 @@ export function projectRecord(
     onComplete: (id: string) => {
       workspace.completeProject(id)
     },
+    onReopen: (id: string) => {
+      workspace.bulkChangeProjects([id], {
+        kind: "move",
+        status: "in-progress",
+      })
+    },
     tasks: workspace.tasks.filter((task) => task.projectId === project.id),
     comments: workspace.comments.filter(
       (comment) => comment.projectId === project.id,

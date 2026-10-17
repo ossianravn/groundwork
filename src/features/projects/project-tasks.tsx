@@ -43,7 +43,10 @@ export function ProjectTasks({
   onChange: (change: TaskChange) => (() => void) | undefined
 }) {
   const toast = useToast()
-  const [status, setStatus] = useState<TaskStatus>("open")
+  // A completed project opens on what was done; it has nothing open.
+  const [status, setStatus] = useState<TaskStatus>(() =>
+    project.status === "completed" ? "completed" : "open",
+  )
   const [kept, setKept] = useState<string[]>([])
   const [showAll, setShowAll] = useState(false)
   const [announcement, setAnnouncement] = useState("")
@@ -175,11 +178,14 @@ export function ProjectTasks({
           ))}
         </ul>
       ) : (
-        <p className="task-empty text-muted-foreground">
-          {status === "open"
-            ? "No open tasks. Add one, or reopen a completed task."
-            : "No completed tasks yet."}
-        </p>
+        // A completed project's notice above already says what's possible.
+        !(readOnly && status === "open") && (
+          <p className="task-empty text-muted-foreground">
+            {status === "open"
+              ? "No open tasks. Add one, or reopen a completed task."
+              : "No completed tasks yet."}
+          </p>
+        )
       )}
       {list.length > visible.length && (
         <Button

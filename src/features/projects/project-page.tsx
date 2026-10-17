@@ -10,7 +10,7 @@ import type {
   ProjectTask,
 } from "@/demo/model"
 import type { TaskChange } from "@/demo/project-tasks"
-import { ProjectHeaderProgress } from "./project-header-progress"
+import { ProjectCompletion } from "./project-completion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/kit/ui/tabs"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectInlineField } from "./project-inline-field"
@@ -45,6 +45,7 @@ export function ProjectPage({
   notice,
   editing,
   onComplete,
+  onReopen,
   tasks,
   onTaskChange,
   comments,
@@ -64,6 +65,7 @@ export function ProjectPage({
   notice?: string
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
+  onReopen: (id: string) => void
   tasks: ProjectTask[]
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
@@ -90,7 +92,7 @@ export function ProjectPage({
 
   return (
     <main id="main-content" className="page-content project-page" tabIndex={-1}>
-      <header className="project-page-heading">
+      <header className="project-page-heading" data-page-zone="header">
         <div className="project-page-title">
           <ProjectMark color={project.color} />
           <ProjectInlineField field="name" editing={editing} members={members}>
@@ -98,7 +100,11 @@ export function ProjectPage({
           </ProjectInlineField>
           <ProjectStatus status={project.status} />
           <div className="project-header-side">
-            <ProjectHeaderProgress project={project} onComplete={onComplete} />
+            <ProjectCompletion
+              project={project}
+              onComplete={onComplete}
+              onReopen={onReopen}
+            />
             {editLink}
           </div>
         </div>
@@ -113,7 +119,7 @@ export function ProjectPage({
           {notice}
         </p>
       )}
-      <div className="project-page-grid">
+      <div className="project-page-grid" data-page-zone="content">
         <aside className="project-rail" aria-labelledby="project-details-title">
           <ProjectProperties
             project={project}
@@ -133,9 +139,7 @@ export function ProjectPage({
           <TabsList variant="line" aria-label="Project sections">
             <TabsTrigger value="tasks">
               Tasks{" "}
-              <span className="project-tab-count">
-                {tasks.filter((task) => !task.done).length}
-              </span>
+              <span className="project-tab-count">{taskCount(tasks)}</span>
             </TabsTrigger>
             <TabsTrigger value="comments">
               Comments{" "}
@@ -194,4 +198,11 @@ export function ProjectPage({
       </div>
     </main>
   )
+}
+
+/** Open tasks, or how many are done when none are open (not "0"). */
+function taskCount(tasks: ProjectTask[]) {
+  const open = tasks.filter((task) => !task.done).length
+
+  return open || !tasks.length ? open : `${tasks.length} done`
 }

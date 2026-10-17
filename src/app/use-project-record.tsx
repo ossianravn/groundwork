@@ -23,6 +23,7 @@ export function useProjectRecord(project: Project, scenario?: string) {
       scenario === "save-failure" ? "save-failure" : "normal",
     ),
     onComplete: undo.completeProject,
+    onReopen: undo.reopenProject,
     files: (
       <ProjectFiles
         files={files.files.filter((file) => file.projectId === project.id)}
