@@ -4,6 +4,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "./dropdown-menu"
 
@@ -46,5 +48,7 @@ export {
   DropdownMenuGroup as ContextMenuGroup,
   DropdownMenuItem as ContextMenuItem,
   DropdownMenuLabel as ContextMenuLabel,
+  DropdownMenuRadioGroup as ContextMenuRadioGroup,
+  DropdownMenuRadioItem as ContextMenuRadioItem,
   DropdownMenuSeparator as ContextMenuSeparator,
 }
