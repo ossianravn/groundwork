@@ -1340,7 +1340,7 @@
       {
         "label": "Project search",
         "href": "/app/demo/overview",
-        "instruction": "Open Find a project or use the command shortcut, then choose a result."
+        "instruction": "Select the magnifier in the top bar or press Ctrl K (⌘ K on a Mac), then choose a result."
       }
     ],
     "sources": ["src/features/projects/project-search.tsx"]
@@ -1997,7 +1997,7 @@
       {
         "label": "Search hint",
         "href": "/app/demo",
-        "instruction": "Find Ctrl K (⌘ K on a Mac) beside Find a project."
+        "instruction": "Open search from the top bar: Ctrl K (⌘ K on a Mac) shows in the field and the magnifier's tooltip."
       },
       {
         "label": "Shortcuts",

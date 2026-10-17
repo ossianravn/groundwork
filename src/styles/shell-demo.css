@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin: var(--gap-group) 0 var(--gap-control);
+  margin: var(--gap-item) 0;
   padding-inline: 0.7rem 0.25rem;
   font-size: var(--text-meta);
   color: var(--muted-foreground);
@@ -26,7 +26,7 @@
   [data-sidebar-collapsed="true"] .demo-note {
     justify-content: center;
     padding: 0;
-    margin: var(--gap-group) 0;
+    margin: var(--gap-item) 0;
   }
   [data-sidebar-collapsed="true"] .demo-note .ui-button {
     margin: 0;

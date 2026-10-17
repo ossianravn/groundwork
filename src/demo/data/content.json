@@ -299,6 +299,36 @@
   ],
   "releases": [
     {
+      "version": "0.13.0",
+      "date": "2026-10-17",
+      "title": "A calmer top bar",
+      "summary": "Search, notifications and appearance each have one place now, and the top bar keeps only what you use on every page.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Search waits as a magnifier until you need it. Select it or press Ctrl K (⌘ K on a Mac) and it opens into a field with results below; Escape puts it away.",
+            "Notifications open in a small panel under the bell, with Mark all read and a link to your Inbox.",
+            "Appearance lives in your account menu, at the bottom left, and in Settings. The top bar and the sidebar no longer repeat it.",
+            "On phones, less-used page actions such as Import move into a ⋯ menu, so the top bar keeps the main action, search and notifications.",
+            "The Tandem logo lines up with the page title, the sidebar footer keeps one even rhythm, and dialogs dim the page lightly instead of blurring it.",
+            "Badges, text weights and a few text sizes follow one scale: the first step of a wider tidy-up of spacing and alignment across the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Quick search still finds projects; Search everything opens the full results page. Notifications come from the sample workspace, and marking them read resets on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.12.0",
       "date": "2026-10-09",
       "title": "Balance the team",

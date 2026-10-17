@@ -2,6 +2,27 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+The first steps of a layout pass: spacing tokens named for their role, checks that keep pages on them, and a quieter workspace top bar.
+
+### Tokens
+
+- `base`: role spacing tokens on a 4px ramp (`--space-1` to `--space-12`): `--gap-inline`, `--gap-control`, `--gap-item`, `--gap-group`, `--gap-zone` and `--gap-section` between things, and `--inset-page`, `--inset-card`, `--inset-panel` and `--inset-row` inside them, with compact-density and phone values. The old names (`--control-gap`, `--content-gap`, `--stack-gap`, `--section-gap`, `--item-padding`, `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding`) remain as deprecated aliases until a later release removes them.
+- `base`: `--text-feature` (20px, Tailwind's `text-xl`) completes the type ramp of 12, 14, 16, 20, 28 and 32px, and `--control-height-xs` adds a 28px control (24px compact). Weights are 400, 500 and 600: `b` and `strong` are 600, and the shell's 650 is now 600. The `rounded-2xl` to `rounded-4xl` radii are gone, and `badge` is fully rounded.
+- `base`: `--backdrop` (Tailwind's `bg-backdrop`) dims the page behind `dialog`, `sheet` and `drawer`, which no longer blur it.
+
+### Shell
+
+- `shell`: `TopbarSearch` (new) is a magnifier that expands in place into a field, with results below. Escape or a click outside collapses it, and Escape returns focus to the magnifier. **Breaking:** `WorkspaceShell`'s `search` is now a slot for it; it was a `{ label, onOpen, … }` config for a button that opened a palette.
+- `shell`: **Breaking:** `WorkspaceShell` no longer draws an appearance button or takes `onCustomize`; offer Appearance from the account menu instead. An `AccountMenuItem` can now be an action (`{ id, onSelect }`) as well as a link.
+- `shell`: `PageActions` takes secondary actions in `more` (buttons or router links). They show as outline buttons on wide screens and in a ⋯ menu on phones.
+- `shell`: the sidebar's brand row is as tall as the top bar, so the logo sits on the breadcrumb's axis; the brand link carries `data-slot="sidebar-brand"`. The current breadcrumb is styled by its `breadcrumb-current` class, so a parent link that the router marks `aria-current` keeps the parent weight. The top bar's styles moved from `shell.css` to a new `topbar.css`.
+
+### Repository
+
+- `npm run lint` includes `lint:spacing`, which reports raw spacing in demo code against a per-file baseline, and `npm run check:layout` checks each workspace page's anatomy in a browser. See [Checks](README.md#checks).
+
 ## v0.5.0 — 2026-10-13
 
 The kit now runs in server-rendered React frameworks. It was checked in a Next.js 15 App Router app (Datastream): the workspace shell and theme panel render on the server, hydrate without mismatches, and a saved appearance applies before the first paint.

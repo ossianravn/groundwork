@@ -14,7 +14,6 @@ import {
   LogOut,
   Palette,
   RotateCcw,
-  SlidersHorizontal,
   Sparkles,
   UserRound,
 } from "lucide-react"
@@ -32,9 +31,17 @@ import { useWorkspaceSwitcher } from "./use-workspace-switcher"
 import { WorkspaceLink } from "./workspace-link"
 import { workspaceLocation } from "./workspace-breadcrumbs"
 
-const accountItems: AccountMenuItem<WorkspaceDestination>[] = [
+// Appearance opens the panel here; Settings › Appearance keeps the full page.
+const accountItems = (
+  onCustomize: () => void,
+): AccountMenuItem<WorkspaceDestination>[] => [
   { destination: "profile", label: "Profile", icon: UserRound },
-  { destination: "appearance", label: "Appearance", icon: Palette },
+  {
+    id: "appearance",
+    label: "Appearance",
+    icon: Palette,
+    onSelect: onCustomize,
+  },
   { destination: "notifications", label: "Notifications", icon: Bell },
   {
     destination: "workspace",
@@ -45,26 +52,19 @@ const accountItems: AccountMenuItem<WorkspaceDestination>[] = [
   { destination: "sign-in", label: "Sign out", icon: LogOut, separated: true },
 ]
 
-// The search shortcut hint follows the visitor's platform.
-const modifierKey =
-  typeof navigator !== "undefined" &&
-  /Mac|iPhone|iPad/.test(navigator.userAgent)
-    ? "⌘"
-    : "Ctrl"
-
 export function DemoWorkspaceShell({
   children,
   onCustomize,
-  onSearch,
   onHelp,
   onReset,
+  search,
   notifications,
 }: {
   children: ReactNode
   onCustomize: () => void
-  onSearch: () => void
   onHelp: () => void
   onReset: () => void
+  search: ReactNode
   notifications: ReactNode
 }) {
   const { demo } = useDemoState()
@@ -96,12 +96,6 @@ export function DemoWorkspaceShell({
 
   const actions: WorkspaceNavigationAction[] = [
     { id: "help", label: "Help", icon: CircleHelp, onSelect: onHelp },
-    {
-      id: "appearance",
-      label: "Appearance",
-      icon: SlidersHorizontal,
-      onSelect: onCustomize,
-    },
     {
       id: "source",
       label: "Template source",
@@ -176,18 +170,11 @@ export function DemoWorkspaceShell({
               demo.memberships.find((entry) => entry.memberId === member.id)
                 ?.role ?? "member"
             ],
-          items: accountItems,
+          items: accountItems(onCustomize),
         }}
         breadcrumbs={breadcrumbs}
-        search={{
-          label: "Find a project…",
-          accessibleLabel: "Find a project",
-          keyShortcuts: "Control+k Meta+k",
-          hint: [modifierKey, "K"],
-          onOpen: onSearch,
-        }}
+        search={search}
         topbarActions={notifications}
-        onCustomize={onCustomize}
       >
         {children}
       </WorkspaceShell>

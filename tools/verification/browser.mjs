@@ -1,11 +1,14 @@
 import assert from "node:assert/strict"
 import { createBrowser } from "./browser-driver.mjs"
+import { pageSteps } from "./page-steps.mjs"
 import { mkdirSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 
 const [scenario, fault] = process.argv.slice(2)
 
 const browser = createBrowser(fault)
+
+const { evaluate, inject, openAppearance } = pageSteps(browser)
 
 const output = resolve(
   process.env.VERIFY_ARTIFACT_DIR || ".artifacts/verification/browser",
@@ -18,14 +21,6 @@ const evidence = {
   screenshots: [],
 }
 
-function evaluate(fn, ...args) {
-  return browser(
-    "eval",
-    "--stdin",
-    `(${fn.toString()})(...${JSON.stringify(args)})`,
-  ).result
-}
-
 function capture(label) {
   evidence.screenshots.push(
     browser(
@@ -36,21 +31,12 @@ function capture(label) {
   )
 }
 
-function inject(css) {
-  evaluate((text) => {
-    const style = document.createElement("style")
-
-    style.textContent = text
-    document.head.append(style)
-  }, css)
-}
-
 function controls() {
   for (const [density, expected] of [
     ["Comfortable", 36],
     ["Compact", 32],
   ]) {
-    browser("click", ".appearance-trigger")
+    openAppearance()
     browser("find", "role", "radio", "click", "--name", density)
     browser("press", "Escape")
     browser("wait", "250")
@@ -182,7 +168,7 @@ function overlay() {
       requestAnimationFrame(() => requestAnimationFrame(done)),
     )
   })
-  browser("click", ".appearance-trigger")
+  openAppearance()
   browser("wait", "250")
 
   const bounds = evaluate(() => {
@@ -233,9 +219,10 @@ function overlay() {
     "--fn",
     `!document.querySelector('[data-slot="sheet-content"]')`,
   )
+  // Appearance opened from the closed navigation sheet: focus returns to it.
   assert.equal(
     evaluate(() => document.activeElement.getAttribute("aria-label")),
-    "Customize appearance",
+    "Open navigation",
   )
 }
 

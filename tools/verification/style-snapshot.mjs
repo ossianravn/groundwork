@@ -7,6 +7,7 @@ import {
 } from "node:fs"
 import { join, resolve } from "node:path"
 import { createBrowser } from "./browser-driver.mjs"
+import { routes, states } from "./style-snapshot-targets.mjs"
 
 // Records computed styles and geometry for representative routes and open
 // states, then compares two recordings to show a reorganization is neutral.
@@ -18,89 +19,6 @@ const base = process.env.VERIFY_URL || "http://127.0.0.1:5173"
 const output = resolve(
   process.env.VERIFY_ARTIFACT_DIR || ".artifacts/verification/style-snapshot",
 )
-
-const routes = [
-  "/",
-  "/product",
-  "/pricing",
-  "/blog",
-  "/changelog",
-  "/help",
-  "/contact",
-  "/privacy",
-  "/auth/sign-in",
-  "/auth/sign-up",
-  "/onboarding/workspace",
-  "/app/demo/overview",
-  "/app/demo/projects",
-  "/app/demo/projects?view=board",
-  "/app/demo/projects/brand",
-  "/app/demo/projects/brand/edit",
-  "/app/demo/inbox",
-  "/app/demo/analytics",
-  "/app/demo/activity",
-  "/app/demo/settings/profile",
-  "/app/demo/settings/appearance",
-  "/app/demo/settings/team",
-  "/app/demo/settings/billing",
-  "/app/demo/settings/webhooks",
-  "/reference",
-  "/reference/components",
-  "/reference/patterns",
-  "/reference/themes",
-  "/reference/states",
-]
-
-// Open overlays and popups, reached by one agent-browser action each. An
-// action unavailable at a width (for example a hidden trigger) is skipped.
-const states = [
-  ["search", "/app/demo/overview", "click", ".search-trigger"],
-  ["appearance", "/app/demo/overview", "click", ".appearance-trigger"],
-  ["project-sheet", "/app/demo/projects?inspect=brand"],
-  ["compose", "/app/demo/inbox", "click", 'button[aria-label="New message"]'],
-  [
-    "owner-filter",
-    "/app/demo/projects",
-    "find",
-    "role",
-    "button",
-    "click",
-    "--name",
-    "Owner",
-  ],
-  [
-    "font-select",
-    "/app/demo/settings/appearance",
-    "click",
-    '[data-slot="select-trigger"]',
-  ],
-  [
-    "tag-combobox",
-    "/app/demo/projects/brand/edit",
-    "click",
-    '[data-slot="combobox-chip-input"]',
-  ],
-  [
-    "invite",
-    "/app/demo/settings/team",
-    "find",
-    "role",
-    "button",
-    "click",
-    "--name",
-    "Invite member",
-  ],
-  [
-    "rename",
-    "/reference/components/dialog",
-    "find",
-    "role",
-    "button",
-    "click",
-    "--name",
-    "Rename",
-  ],
-]
 
 const settings = [
   { id: "light-comfortable-1440", width: 1440, height: 900, theme: {} },
@@ -206,7 +124,8 @@ function capture(name) {
 
         if (action.length) {
           try {
-            browser(...action)
+            for (const step of Array.isArray(action[0]) ? action : [action])
+              browser(...step)
             // Park the pointer so the trigger's hover state is not recorded.
             browser(
               "mouse",

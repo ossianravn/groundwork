@@ -23,9 +23,6 @@
     max-width: none;
     gap: 0;
   }
-  .mobile-sidebar .workspace-navigation {
-    padding-top: var(--gap-zone);
-  }
 }
 @media (max-width: 767px) {
   :root,
@@ -53,12 +50,29 @@
   .breadcrumb-back {
     display: inline-flex;
   }
-  .search-trigger span,
-  .search-hint {
+  /* Open search covers the whole top bar; touch keyboards have no Escape. */
+  .topbar-search {
+    position: static;
+  }
+  .topbar-search-field {
+    inset-inline: var(--inset-page);
+    width: auto;
+  }
+  .topbar-search-results {
+    width: 100%;
+  }
+  .topbar-search-hint {
     display: none;
   }
-  .page-meta {
+  .topbar-search-close {
+    display: inline-flex;
+  }
+  .page-meta,
+  .page-action-secondary {
     display: none;
+  }
+  .page-actions-more {
+    display: inline-flex;
   }
   .topbar-page-actions {
     margin-inline-end: 0;
@@ -73,8 +87,6 @@
     white-space: nowrap;
   }
   .topbar .page-action,
-  .topbar .search-trigger,
-  .topbar .appearance-trigger,
   .topbar .mobile-menu-button {
     width: var(--control-height);
     height: var(--control-height);

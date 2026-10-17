@@ -6,6 +6,7 @@
 @import "./rich-text.css";
 @import "./base.css";
 @import "./shell.css";
+@import "./topbar.css";
 @import "./navigation-rail.css";
 @import "./text-hint.css";
 @import "./data-table.css";
@@ -51,6 +52,7 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
+  --color-backdrop: var(--backdrop);
   --color-input: var(--input);
   --color-control-indicator: var(--control-indicator);
   --color-border: var(--border);
