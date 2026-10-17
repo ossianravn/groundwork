@@ -1,9 +1,11 @@
-.activity-feed-card {
-  gap: 0;
+/* Filters, calendar and feed share one reading width on the canvas. */
+.activity-page > * {
+  max-width: 60rem;
 }
-.activity-feed-toolbar {
-  padding-bottom: var(--gap-group);
-  border-bottom: 1px solid var(--border);
+.activity-more {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--gap-group);
 }
 .activity-filters {
   display: flex;
@@ -42,20 +44,18 @@
 .activity-filter-field [data-slot="select-trigger"] {
   width: 100%;
 }
-.activity-day {
+/* Week headings over the shared rows; each row keeps its date. */
+.activity-weeks {
   display: grid;
-  grid-template-columns: 6rem minmax(0, 1fr);
-  gap: var(--gap-group);
-  padding-block: var(--gap-group);
+  gap: var(--gap-zone);
 }
-.activity-day + .activity-day {
-  border-top: 1px solid var(--border);
+.activity-week {
+  display: grid;
+  gap: var(--gap-item);
 }
-/* The day shares its first event's line. */
-.activity-day h2 {
+.activity-week h2 {
   font-size: var(--text-meta);
   font-weight: 500;
-  line-height: calc(var(--text-body) * 1.5);
   color: var(--muted-foreground);
 }
 /* Projects are named in ink after their colour mark, as in Inbox: no
@@ -89,10 +89,6 @@
   translate: 0 -50%;
   border-radius: 0.15rem;
   background: var(--project-color);
-}
-/* The feed sits on the canvas at a reading width. */
-.activity-feed-card {
-  max-width: 60rem;
 }
 [data-slot="dialog-content"].activity-detail {
   max-width: min(36rem, calc(100% - 2rem));
@@ -135,23 +131,15 @@
   .activity-mobile-filters {
     display: inline-flex;
   }
-  .activity-day {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--gap-control);
-  }
 }
 /* When the team ships (DVIZ-13): a calendar of completions above the feed,
-   at the feed's reading width. */
+   its facts beside it. */
 .activity-heatmap {
   --heatmap-cell: 1.125rem;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--gap-group) var(--gap-zone);
-  max-width: 60rem;
-  padding-bottom: var(--gap-zone);
-  border-bottom: 1px solid var(--border);
+  gap: var(--gap-group) var(--gap-section);
 }
 .activity-heatmap h2 {
   display: flex;
@@ -168,8 +156,23 @@
 }
 .activity-heatmap header {
   display: grid;
-  gap: 0.25rem;
+  gap: var(--gap-group);
   max-width: 20rem;
+}
+.activity-facts {
+  display: grid;
+  gap: var(--gap-item);
+}
+.activity-facts dt {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.activity-facts dd {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 .activity-heatmap header p {
   color: var(--muted-foreground);

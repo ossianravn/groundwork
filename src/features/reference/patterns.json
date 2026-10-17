@@ -1603,7 +1603,7 @@
     "category": "Data views",
     "surface": "Workspace",
     "summary": "Understand recent changes and reach the related project.",
-    "implemented": "Recent activity, a project's Activity tab and full date-grouped workspace history share live events and one ActivityRow: one sentence with the date at the end of the line. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
+    "implemented": "Recent activity, a project's Activity tab and full workspace history under week headings share live events and one ActivityRow: one sentence with the date at the end of the line, where the date opens the event's details. Search/member/type/period filters and Load more are URL-backed; event details show captured before/after values for new edits and status/owner changes.",
     "deferred": "Historical fixture events contain no invented before/after values. No remote pagination or trusted audit service.",
     "examples": [
       {
@@ -3583,7 +3583,7 @@
     "category": "Data visualization",
     "surface": "Workspace",
     "summary": "Show rhythm over many days at once: when work happens.",
-    "implemented": "Activity opens with completed tasks per day since the history began, as a calendar in one hue (kit CalendarHeatmap): a grid you walk with the arrow keys (a day down, a week across), each day naming itself, with a detail line for the day in focus or under the pointer. It follows the feed's filters.",
+    "implemented": "Activity opens with completed tasks per day since the history began, as a calendar in one hue (kit CalendarHeatmap): a grid you walk with the arrow keys (a day down, a week across), each day naming itself, with a detail line for the day in focus or under the pointer. It follows the feed's filters, beside the busiest day, who completed most and the active days.",
     "deferred": "",
     "examples": [
       {

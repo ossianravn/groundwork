@@ -403,7 +403,7 @@ AUTH-02 now has local Google/GitHub choices, continuation, single-use callback, 
 
 ## Activity and contextual help - 2026-09-27
 
-- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. (2026-10-17: Overview, a project's Activity tab and the Activity page share one `ActivityRow`, a sentence with the date at the end of the line.) New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
+- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. (2026-10-17: Overview, a project's Activity tab and the Activity page share one `ActivityRow`, a sentence with the date at the end of the line; the Activity page groups it by week, and the date opens the event's details.) New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
 - **NAV-06 / SYS-05:** contextual Help via one sidebar action; existing guide disclosure, Help center/Contact destinations, and working search/help shortcuts.
 - **SYS-07:** dotted-underlined explanatory terms use the shared TextHint; hover and pointer/keyboard activation reveal the same content. Existing icon tooltips retain accessible names. The reference library now has eleven documented component examples.
 

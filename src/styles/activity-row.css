@@ -35,14 +35,22 @@
   color: var(--muted-foreground);
   white-space: nowrap;
 }
-/* A row action keeps the line's height where its hit area can overlap the
-   gap; touch targets keep their full size. */
-.activity-row > .ui-button {
-  align-self: start;
-  margin-block: calc((var(--text-body) * 1.5 - var(--control-height-sm)) / 2);
+/* A date that opens the event reads as the date, with a link's hover. */
+.activity-row-details {
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  text-underline-offset: 0.2em;
 }
-@media (pointer: coarse) {
-  .activity-row > .ui-button {
-    margin-block: 0;
-  }
+.activity-row-details:hover,
+.activity-row-details:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--muted-foreground);
+}
+.activity-row-details:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
