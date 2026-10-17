@@ -10,7 +10,24 @@ export const projectSelectionColumn: ColumnDef<
   id: "selection",
   enableSorting: false,
   enableHiding: false,
-  header: () => <span className="sr-only">Selection</span>,
+  // The table selects its page from its header, like a mail list.
+  header: ({ table }) => (
+    <Checkbox
+      aria-label={
+        table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected()
+          ? "Clear project selection"
+          : "Select all projects on this page"
+      }
+      checked={table.getIsAllPageRowsSelected()}
+      indeterminate={table.getIsSomePageRowsSelected()}
+      disabled={!table.getRowModel().rows.length}
+      onCheckedChange={() =>
+        table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected()
+          ? table.resetRowSelection(true)
+          : table.toggleAllPageRowsSelected(true)
+      }
+    />
+  ),
   cell: ({ row }) => (
     <Checkbox
       aria-label={`Select ${row.original.name}`}

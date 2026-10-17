@@ -72,10 +72,13 @@ export function ProjectToolbar({
           <Search aria-hidden="true" />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
+          {/* Clear shows once there is text; it keeps its space, so typing
+              never resizes the field. */}
           <InputGroupButton
             size="icon-xs"
             aria-label="Clear project search"
             disabled={!filters.query}
+            className={filters.query ? undefined : "invisible"}
             onClick={() => {
               onChange({ ...filters, query: "" })
               searchRef.current?.focus()

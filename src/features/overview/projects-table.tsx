@@ -79,7 +79,10 @@ export function ProjectsTableView({
   renderSelection?: (table: DataTable<Project>) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
   /** Timeline and month views; the host supplies dates from its records. */
-  renderTimeline?: (table: DataTable<Project>) => ReactNode
+  renderTimeline?: (
+    table: DataTable<Project>,
+    layout: "timeline" | "month",
+  ) => ReactNode
   /** Saved views control, shown before the view switch. */
   savedViews?: ReactNode
   allowViewSwitch?: boolean
@@ -172,7 +175,10 @@ export function ProjectsTableView({
       }),
     autoResetPageIndex: false,
     // Board and timeline show every matching project on one surface.
-    manualPagination: state.view === "board" || state.view === "timeline",
+    manualPagination:
+      state.view === "board" ||
+      state.view === "timeline" ||
+      state.view === "month",
     enableMultiSort: false,
     sortDescFirst: false,
   })
@@ -189,7 +195,11 @@ export function ProjectsTableView({
       data-surface={surface}
       data-quick-view-list=""
     >
-      <CardHeader className="project-card-header">
+      {/* On a page of its own the view is the page's toolbar and content. */}
+      <CardHeader
+        className="project-card-header"
+        data-page-zone={surface === "plain" ? "toolbar" : undefined}
+      >
         {surface === "plain" ? (
           <h2 id="projects-heading" className="sr-only">
             {heading}
@@ -216,12 +226,17 @@ export function ProjectsTableView({
           className="project-results-toolbar"
           data-selectable={!!renderSelection}
         >
-          {renderSelection && (
-            <ProjectSelectionMenu
-              table={table}
-              scope={state.view === "board" ? "board" : "page"}
-            />
-          )}
+          {/* The table's header selects its page; the selection menu leads
+              the toolbar once something is selected, and in views without
+              a header row. */}
+          {renderSelection &&
+            (state.view !== "table" ||
+              Object.values(rowSelection).some(Boolean)) && (
+              <ProjectSelectionMenu
+                table={table}
+                scope={state.view === "board" ? "board" : "page"}
+              />
+            )}
           {!Object.values(rowSelection).some(Boolean) && (
             <ProjectToolbar
               searchRef={searchRef}
@@ -233,18 +248,20 @@ export function ProjectsTableView({
               ownerCounts={ownerCounts}
               resultCount={rows.length}
             >
-              {state.view !== "table" && (
-                <ProjectGridControls
-                  table={table}
-                  board={state.view === "board"}
-                />
-              )}
+              {/* The table sorts from its headers; phones, where rows stack
+                  without them, use this Sort too. */}
+              <ProjectGridControls
+                table={table}
+                board={state.view === "board"}
+                tableView={state.view === "table"}
+              />
             </ProjectToolbar>
           )}
           {renderSelection?.(table)}
         </div>
       </CardHeader>
       <ProjectResults
+        pageZone={surface === "plain"}
         table={table}
         view={state.view}
         rowCount={projects.length}

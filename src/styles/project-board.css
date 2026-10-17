@@ -22,11 +22,12 @@
 .project-board-scroll:has([data-dragging="true"]) {
   scroll-snap-type: none;
 }
+/* Columns share the tallest one's height, so each is a full drop target. */
 .project-board {
   display: grid;
   grid-template-columns: repeat(3, minmax(min(100%, 19rem), 1fr));
   gap: var(--gap-group);
-  align-items: start;
+  align-items: stretch;
 }
 .project-board-column {
   min-width: 0;

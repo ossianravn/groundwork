@@ -67,7 +67,10 @@ export function parseProjectsSearch(raw: ProjectSearchInput): ProjectsSearch {
 
     const result: ProjectsSearch = {
       view:
-        raw.view === "grid" || raw.view === "board" || raw.view === "timeline"
+        raw.view === "grid" ||
+        raw.view === "board" ||
+        raw.view === "timeline" ||
+        raw.view === "month"
           ? raw.view
           : "table",
       q: String(raw.q ?? ""),

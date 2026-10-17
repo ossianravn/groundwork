@@ -1,3 +1,4 @@
+import type { CSSProperties, MouseEvent } from "react"
 import { flexRender } from "@tanstack/react-table"
 import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react"
 import type { DataTable } from "@/kit/data-table/table-features"
@@ -36,12 +37,16 @@ export function ProjectTableContent({
     return { id, minWidth: projectColumnWidths[id] }
   })
 
+  // The columns' minimum widths; stacked rows on phones need none.
+  const width: CSSProperties & Record<"--project-table-width", string> = {
+    "--project-table-width": `${visibleColumns.reduce((sum, column) => sum + column.minWidth, 0)}rem`,
+  }
+
   return (
     <Table
+      role="table"
       className="project-table"
-      style={{
-        minWidth: `${visibleColumns.reduce((sum, column) => sum + column.minWidth, 0)}rem`,
-      }}
+      style={width}
       containerProps={{
         id: "project-table-scroll",
         tabIndex: 0,
@@ -61,9 +66,9 @@ export function ProjectTableContent({
           />
         ))}
       </colgroup>
-      <TableHeader>
+      <TableHeader role="rowgroup">
         {table.getHeaderGroups().map((group) => (
-          <TableRow key={group.id}>
+          <TableRow key={group.id} role="row">
             {group.headers.map((header) => {
               const sort = header.column.getIsSorted()
               const label = String(header.column.columnDef.header)
@@ -71,6 +76,7 @@ export function ProjectTableContent({
 
               return (
                 <TableHead
+                  role="columnheader"
                   key={header.id}
                   scope="col"
                   aria-sort={
@@ -114,29 +120,34 @@ export function ProjectTableContent({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>
+      <TableBody role="rowgroup">
         {table.getRowModel().rows.map((row) => {
           const state = row.getIsSelected() ? "selected" : undefined
 
-          const cells = row
-            .getVisibleCells()
-            .map((cell) => (
-              <TableCell key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </TableCell>
-            ))
+          const cells = row.getVisibleCells().map((cell) => (
+            <TableCell key={cell.id} role="cell" data-column={cell.column.id}>
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </TableCell>
+          ))
 
           return rowActions ? (
             <ProjectRowMenu
               key={row.id}
               row={row}
-              rowElement={<TableRow data-state={state} />}
+              rowElement={
+                <TableRow role="row" data-state={state} onClick={openRow} />
+              }
               {...rowActions}
             >
               {cells}
             </ProjectRowMenu>
           ) : (
-            <TableRow key={row.id} data-state={state}>
+            <TableRow
+              key={row.id}
+              role="row"
+              data-state={state}
+              onClick={openRow}
+            >
               {cells}
             </TableRow>
           )
@@ -144,4 +155,24 @@ export function ProjectTableContent({
       </TableBody>
     </Table>
   )
+}
+
+// A plain click anywhere on a row opens its project, as its name does;
+// controls in the row, modified clicks and text selection keep their own.
+function openRow(event: MouseEvent<HTMLTableRowElement>) {
+  if (
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    window.getSelection()?.toString() ||
+    (event.target instanceof Element &&
+      event.target.closest("a, button, input, label, [role=checkbox]"))
+  )
+    return
+
+  event.currentTarget
+    .querySelector<HTMLElement>("[data-quick-view-id]")
+    ?.click()
 }

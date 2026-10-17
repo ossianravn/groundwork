@@ -1,4 +1,10 @@
-import { ChartGantt, Columns3, LayoutGrid, Table2 } from "lucide-react"
+import {
+  CalendarDays,
+  ChartGantt,
+  Columns3,
+  LayoutGrid,
+  Table2,
+} from "lucide-react"
 import { ToggleGroup, ToggleGroupItem } from "@/kit/ui/toggle-group"
 import {
   Select,
@@ -22,6 +28,7 @@ export function ProjectViewToggle({
     { value: "grid", label: "Cards", icon: LayoutGrid },
     { value: "board", label: "Board", icon: Columns3 },
     { value: "timeline", label: "Timeline", icon: ChartGantt },
+    { value: "month", label: "Month", icon: CalendarDays },
   ] as const
 
   const current = views.find((view) => view.value === value)!
@@ -59,6 +66,10 @@ export function ProjectViewToggle({
         >
           <ChartGantt aria-hidden="true" data-icon="inline-start" />
           <span className="project-view-label">Timeline</span>
+        </ToggleGroupItem>
+        <ToggleGroupItem value="month" aria-label="Month" title="Month">
+          <CalendarDays aria-hidden="true" data-icon="inline-start" />
+          <span className="project-view-label">Month</span>
         </ToggleGroupItem>
       </ToggleGroup>
       <Select
@@ -98,6 +109,7 @@ function isView(value: unknown): value is ProjectTableState["view"] {
     value === "table" ||
     value === "grid" ||
     value === "board" ||
-    value === "timeline"
+    value === "timeline" ||
+    value === "month"
   )
 }

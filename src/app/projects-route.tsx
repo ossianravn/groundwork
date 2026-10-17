@@ -141,8 +141,9 @@ export function ProjectsRoute() {
             }
           />
         )}
-        renderTimeline={(table) => (
+        renderTimeline={(table, layout) => (
           <ProjectTimelineView
+            layout={layout}
             projects={table
               .getPrePaginatedRowModel()
               .rows.map((row) => row.original)}
