@@ -2,6 +2,12 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+### Tokens
+
+- `base`: **Breaking:** the spacing aliases deprecated in v0.6.0 are gone. Replace `--control-gap` with `--gap-control`, `--content-gap` and `--stack-gap` with `--gap-group`, `--section-gap` with `--gap-zone`, `--item-padding` with `--gap-item`, and `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding` with `--inset-card`, `--inset-panel`, `--inset-page` and `--inset-row`. `npm run lint:spacing` reports any old name left in demo code.
+
 ## v0.6.0 — 2026-10-18
 
 A layout pass: spacing tokens named for their role, checks that keep pages on them, a quieter workspace top bar whose search can host a command menu, and one anatomy for chart headers, dialog footers, avatars and appearance choices. Plus additions to menus, Select and the AI components. Several shell and chart changes are breaking; each says what to change. The old spacing token names still work in this release and go in the next.
