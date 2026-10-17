@@ -181,11 +181,14 @@ export function ProjectTasks({
         </ul>
       ) : (
         // A completed project's notice above already says what's possible.
+        // Each empty list says what belongs in it and how it fills.
         !(readOnly && status === "open") && (
           <p className="task-empty text-muted-foreground">
-            {status === "open"
-              ? "No open tasks. Add one, or reopen a completed task."
-              : "No completed tasks yet."}
+            {status === "completed"
+              ? "No completed tasks yet. Tick a task when it's done and it moves here."
+              : tasks.length
+                ? "Every task is done. Add another, or reopen a completed one."
+                : "No tasks yet. Break the work into tasks: the project's progress follows them."}
           </p>
         )
       )}

@@ -6,7 +6,7 @@ import {
   useSearch,
 } from "@tanstack/react-router"
 import { DemoWorkspaceShell } from "./demo-workspace-shell"
-import { ProjectSearch } from "@/features/projects/project-search"
+import { WorkspaceCommandHost } from "./workspace-command-host"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { WorkspaceContext } from "./workspace-context"
 import { MissingProject } from "@/features/projects/missing-project"
@@ -41,6 +41,17 @@ export function DemoApp() {
   // The list a project was opened from, for J and K in its quick view.
   const [quickOrder, setQuickOrder] = useState<string[]>([])
   const projectOpener = useRef<HTMLElement | null>(null)
+
+  // Projects opened in the quick view, most recent first, for the menu.
+  const [recent, setRecent] = useState<{ last?: string; ids: string[] }>({
+    ids: [],
+  })
+
+  if (inspect && inspect !== recent.last)
+    setRecent({
+      last: inspect,
+      ids: [inspect, ...recent.ids.filter((id) => id !== inspect)].slice(0, 5),
+    })
 
   const rememberProjectOpener = useCallback(() => {
     projectOpener.current =
@@ -129,19 +140,20 @@ export function DemoApp() {
     >
       <DemoWorkspaceShell
         search={
-          <ProjectSearch
+          <WorkspaceCommandHost
             open={searchOpen}
             onOpenChange={(open) =>
               open ? showSearch() : setSearchOpen(false)
             }
-            projects={demo.projects}
-            onSelect={(id) => {
+            recentProjectIds={recent.ids}
+            onOpenProject={(id) => {
               setQuickOrder([])
               openInspection(id)
             }}
-            onSearchAll={(q) =>
-              void navigate({ to: "/app/demo/search", search: { q, type: "" } })
-            }
+            onShortcuts={() => {
+              help.setView("shortcuts")
+              help.setOpen(true)
+            }}
           />
         }
         notifications={<Notifications />}

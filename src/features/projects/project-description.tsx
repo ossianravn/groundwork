@@ -86,7 +86,10 @@ export function ProjectDescription({
   return (
     <div className="project-description">
       {empty ? (
-        <p className="text-muted-foreground">No description yet.</p>
+        <p className="text-muted-foreground">
+          No description yet. Say what the project delivers, for whoever opens
+          it next.
+        </p>
       ) : (
         <RichText value={description} />
       )}

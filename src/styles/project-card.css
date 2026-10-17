@@ -13,13 +13,21 @@
   background: var(--card);
   transition:
     border-color var(--motion-fast) var(--ease-standard),
-    background-color var(--motion-fast) var(--ease-standard);
+    background-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
 }
 .project-card[data-density="board"] {
   gap: var(--gap-control);
 }
 .project-card:hover {
   border-color: color-mix(in oklch, var(--foreground) 24%, var(--border));
+}
+/* A pointer lifts the card a little: a shadow, never a move, so text and
+   neighbours stay put. */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    box-shadow: var(--shadow-sm);
+  }
 }
 .project-card[data-selected] {
   border-color: color-mix(in oklch, var(--brand) 45%, var(--border));

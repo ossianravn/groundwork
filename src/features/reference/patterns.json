@@ -927,7 +927,7 @@
     "category": "Navigation",
     "surface": "Workspace",
     "summary": "Combine location and frequently used workspace tools.",
-    "implemented": "Breadcrumbs, project search, notifications and appearance use shared controls.",
+    "implemented": "Breadcrumbs, the command menu, notifications and appearance use shared controls.",
     "deferred": "Other command categories remain planned.",
     "examples": [
       {
@@ -1330,21 +1330,24 @@
   },
   {
     "id": "SYS-02",
-    "title": "Project command search",
+    "title": "Command menu",
     "originalName": "Global Command Menu (Cmd+K)",
     "category": "System",
     "surface": "Shared",
-    "summary": "Find and open a project from anywhere in the workspace.",
-    "implemented": "Keyboard-operable project results with command shortcut and empty recovery.",
-    "deferred": "Broader command categories and recent-search history remain planned.",
+    "summary": "Open a project, task or person, go to a page or start an action from anywhere in the workspace.",
+    "implemented": "The top bar's Ctrl/⌘ K menu (2026-10-17). Before typing: recent projects, actions (New project, Import projects, Invite a teammate, Settings, Keyboard shortcuts) and pages. Once typing: Search everything first, then matching projects (recent ones first), actions, pages, tasks and people; every word must match, as on the Search page. Projects and tasks open in the quick view.",
+    "deferred": "Recent searches and commands beyond these actions remain planned.",
     "examples": [
       {
-        "label": "Project search",
+        "label": "Command menu",
         "href": "/app/demo/overview",
-        "instruction": "Select the magnifier in the top bar or press Ctrl K (⌘ K on a Mac), then choose a result."
+        "instruction": "Press Ctrl K (⌘ K on a Mac) or select the magnifier, then type a task, a person or a page, or choose an action."
       }
     ],
-    "sources": ["src/features/projects/project-search.tsx"]
+    "sources": [
+      "src/features/search/workspace-command.tsx",
+      "src/app/workspace-command-host.tsx"
+    ]
   },
   {
     "id": "SYS-03",
@@ -1403,13 +1406,13 @@
     "category": "System",
     "surface": "Workspace",
     "summary": "Discover available keyboard commands in a focused overlay.",
-    "implemented": "Discover Ctrl/Command+K project search, ? shortcut help and Escape dismissal through the Help dialog. Global commands yield to editing and overlays.",
+    "implemented": "Discover the Ctrl/Command+K command menu, ? shortcut help and Escape dismissal through the Help dialog. Global commands yield to editing and overlays.",
     "deferred": "No custom bindings or navigation key sequences.",
     "examples": [
       {
         "label": "Keyboard shortcuts",
         "href": "/app/demo/overview",
-        "instruction": "Press ? outside an input, or open Help then Keyboard shortcuts. Ctrl/Command+K opens project search."
+        "instruction": "Press ? outside an input, or open Help then Keyboard shortcuts. Ctrl/Command+K opens the command menu."
       }
     ],
     "sources": [

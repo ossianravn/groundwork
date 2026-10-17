@@ -1,7 +1,7 @@
 import { Kbd, KbdGroup } from "@/kit/ui/kbd"
 
 const shortcuts = [
-  { action: "Find a project", keys: ["Ctrl", "K"] },
+  { action: "Search or jump to", keys: ["Ctrl", "K"] },
   { action: "Keyboard shortcuts", keys: ["?"] },
   { action: "Close an overlay", keys: ["Esc"] },
 ]

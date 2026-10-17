@@ -24,6 +24,8 @@ export interface TopbarSearchProps {
   /** The keys that open search, e.g. ["Ctrl", "K"]; the host handles them. */
   hint?: string[]
   keyShortcuts?: string
+  /** false when the host filters its own results (cmdk filters by default). */
+  shouldFilter?: boolean
   /** The results: CommandEmpty, CommandGroup and CommandItem elements. */
   children: ReactNode
 }
@@ -42,6 +44,7 @@ export function TopbarSearch({
   onQueryChange,
   hint,
   keyShortcuts,
+  shouldFilter = true,
   children,
 }: TopbarSearchProps) {
   const root = useRef<HTMLDivElement>(null)
@@ -123,7 +126,12 @@ export function TopbarSearch({
         </TooltipContent>
       </Tooltip>
       {open && (
-        <CommandPrimitive label={label} loop className="topbar-search-field">
+        <CommandPrimitive
+          label={label}
+          loop
+          shouldFilter={shouldFilter}
+          className="topbar-search-field"
+        >
           <InputGroup>
             <InputGroupAddon>
               <Search aria-hidden="true" />

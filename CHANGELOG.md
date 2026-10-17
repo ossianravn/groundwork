@@ -15,6 +15,7 @@ The first steps of a layout pass: spacing tokens named for their role, checks th
 ### Shell
 
 - `shell`: `TopbarSearch` (new) is a magnifier that expands in place into a field, with results below. Escape or a click outside collapses it, and Escape returns focus to the magnifier. **Breaking:** `WorkspaceShell`'s `search` is now a slot for it; it was a `{ label, onOpen, … }` config for a button that opened a palette.
+- `shell`: `TopbarSearch` takes `shouldFilter={false}` for a host that filters its own results, such as a menu that matches whole words or caps each group; by default cmdk still filters.
 - `shell`: **Breaking:** `WorkspaceShell` no longer draws an appearance button or takes `onCustomize`; offer Appearance from the account menu instead. An `AccountMenuItem` can now be an action (`{ id, onSelect }`) as well as a link.
 - `shell`: `PageActions` takes secondary actions in `more` (buttons or router links). They show as outline buttons on wide screens and in a ⋯ menu on phones.
 - `shell`: the sidebar's brand row is as tall as the top bar, so the logo sits on the breadcrumb's axis; the brand link carries `data-slot="sidebar-brand"`. The current breadcrumb is styled by its `breadcrumb-current` class, so a parent link that the router marks `aria-current` keeps the parent weight. The top bar's styles moved from `shell.css` to a new `topbar.css`.

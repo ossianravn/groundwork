@@ -299,6 +299,41 @@
   ],
   "releases": [
     {
+      "version": "0.17.0",
+      "date": "2026-10-17",
+      "title": "Jump anywhere",
+      "summary": "Press Ctrl K (⌘ K on a Mac) to open a project, task or person, go to a page, or start something new, without leaving where you are.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Ctrl K opens a command menu. Before you type, it lists the projects you opened recently, quick actions (New project, Import projects, Invite a teammate, Settings and Keyboard shortcuts) and every page.",
+            "Type to find projects, tasks, people and pages. Search everything is always first, for full results; projects and tasks open right where you are."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "A project opens with a gentle rise, and cards lift slightly under the pointer. If your device asks for less motion, nothing moves.",
+            "Empty lists say what goes in them: a new project explains its tasks, comments and description, and the Inbox explains what arrives there."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Recent projects are remembered until you reload the page."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.16.1",
       "date": "2026-10-17",
       "title": "Fits every screen",

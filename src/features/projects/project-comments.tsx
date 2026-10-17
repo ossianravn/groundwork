@@ -79,7 +79,10 @@ export function ProjectComments({
           })}
         </ol>
       ) : (
-        <p className="text-muted-foreground">No comments yet.</p>
+        <p className="text-muted-foreground">
+          No comments yet. Questions and updates about this project collect
+          here, newest last.
+        </p>
       )}
       <form className="comment-form" onSubmit={post} noValidate>
         {author && (
