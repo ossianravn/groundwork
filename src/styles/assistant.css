@@ -166,6 +166,18 @@
   max-width: var(--assistant-width);
   margin: 0 auto;
 }
+/* Four starting points read as a two-by-two set, never three and one. */
+@media (width >= 40rem) {
+  .assistant-start-suggestions > ul {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+  }
+  .assistant-start-suggestions [data-slot="suggestion"] {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .assistant-tool-results {
   display: grid;
 }

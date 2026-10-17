@@ -76,7 +76,7 @@ export function NeedsAttention({
                         <MemberAvatar member={owner} size="sm" />
                       </span>
                       <span className="sr-only">Owner </span>
-                      {owner.name}
+                      <span className="attention-owner-name">{owner.name}</span>
                     </>
                   )}
                 </span>

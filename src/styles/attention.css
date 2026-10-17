@@ -130,4 +130,13 @@
   .attention-row .project-due-date {
     justify-self: end;
   }
+  /* The avatar names the owner here; the name stays for screen readers. */
+  .attention-owner-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }

@@ -19,7 +19,7 @@ Choose an individual scenario for its risk; these are not a sequence to execute 
 | Scenario | What it checks | Limit |
 | --- | --- | --- |
 | `controls` | The Projects toolbar's search, Status, Owner and Advanced heights at both densities | Four peers at default appearance; does not judge the whole composition |
-| `scrollbar` | Native inset scrollbar; the project quick view's open/close background geometry and focus | Chromium on the current OS; an absent native scrollbar is an unexercised condition |
+| `scrollbar` | Native inset scrollbar; a card's quick view (Cards view) and its open/close background geometry and focus | Chromium on the current OS; an absent native scrollbar is an unexercised condition |
 | `overlay` | Appearance containment and reachable Close at 320px with 200% root text | Root text enlargement is not browser zoom or full accessibility coverage |
 
 Output defaults to `.artifacts/verification/browser/`; `VERIFY_ARTIFACT_DIR` overrides it. Inspect screenshots when visual correctness matters. Calibration fault arguments deliberately introduce known defects and should fail; use those only when maintaining a check's sensitivity.

@@ -11,6 +11,8 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--card);
+  /* A card rests a hair above the canvas and lifts under the pointer. */
+  box-shadow: var(--shadow-xs);
   transition:
     border-color var(--motion-fast) var(--ease-standard),
     background-color var(--motion-fast) var(--ease-standard),

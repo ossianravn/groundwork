@@ -299,6 +299,43 @@
   ],
   "releases": [
     {
+      "version": "0.18.0",
+      "date": "2026-10-18",
+      "title": "Cards that open in place",
+      "summary": "Cards open the way they do in Trello, and everything else takes you to the project. Overview, cards and pages are tidier, with a quieter look throughout.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Click a card, in Cards or on the board, and it opens over your cards so you can change it without leaving them. A row in the table, the timeline and links elsewhere open the project page."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Cards use their space: the owner sits at the top, the description always takes two lines, and the footer shows status and due date beside the task count.",
+            "On Overview, Needs attention lines up each project's state, owner and due date, and Recent activity scrolls again with a soft fade, two even lines per event.",
+            "Charts say what they count, such as Completed tasks by project, without extra labels underneath.",
+            "Page titles sit as far from the top as from the side, descriptions and comments keep an even rhythm, and the sidebar has a surface of its own.",
+            "The Assistant's history has even margins, and its starting suggestions sit two by two."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.17.0",
       "date": "2026-10-17",
       "title": "Jump anywhere",

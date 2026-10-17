@@ -64,11 +64,13 @@
   --border: oklch(0.916 0.006 270);
   --input: oklch(0.922 0 0);
   --control-indicator: oklch(0.66 0.009 270);
-  --sidebar: var(--background);
+  /* The sidebar is its own quiet surface, a shade under the work area, so
+     navigation and work read as two planes rather than one sheet of rules. */
+  --sidebar: oklch(0.979 0.003 270);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: oklch(0.925 0.005 270);
   --sidebar-ring: var(--ring);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -145,7 +147,7 @@
   --border: oklch(0.305 0.012 270);
   --input: oklch(1 0 0 / 15%);
   --control-indicator: oklch(0.62 0.014 270);
-  --sidebar: var(--background);
+  --sidebar: oklch(0.135 0.005 270);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
