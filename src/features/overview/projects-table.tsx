@@ -42,6 +42,7 @@ export function ProjectsTableView({
   state,
   onChange,
   renderName,
+  renderCardName,
   renderOwner,
   onOpenProject,
   heading = "Projects",
@@ -56,6 +57,8 @@ export function ProjectsTableView({
   state: ProjectTableState
   onChange: (state: ProjectTableState) => void
   renderName?: (project: Project) => ReactNode
+  /** The name on a card, when it opens differently from a table row. */
+  renderCardName?: (project: Project) => ReactNode
   /** An owner's name in the table, such as a link with a hover card. */
   renderOwner?: (owner: Member) => ReactNode
   /** Opens a project page; enables the table rows' context menu. */
@@ -253,6 +256,7 @@ export function ProjectsTableView({
         members={members}
         onSelect={onSelect}
         renderName={renderName}
+        renderCardName={renderCardName}
         renderBoard={renderBoard}
         renderTimeline={renderTimeline}
         rowActions={

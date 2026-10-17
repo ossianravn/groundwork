@@ -133,34 +133,42 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  margin-inline-end: calc(var(--space-2) * -1);
 }
-.project-card-meta,
-.project-card-progress,
+/* The owner ends the head row, on the name's first line. */
 .project-card-owner {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: var(--gap-control);
-  font-size: var(--text-meta);
-  color: var(--muted-foreground);
+  flex-shrink: 0;
+  height: var(--control-height-sm);
 }
-.project-card-meta {
-  flex-wrap: wrap;
-}
+/* Two lines, kept even when the text is shorter, so a row of cards lines
+   up its bars and footers. */
 .project-card-description {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  min-height: calc(2lh);
   overflow: hidden;
   color: var(--muted-foreground);
 }
-/* Progress and owner end every card in a row at the same line. */
-.project-card-progress {
+/* The bar and footer end every card at the same line. */
+.project-card > [data-slot="progress"] {
   margin-top: auto;
-  font-variant-numeric: tabular-nums;
 }
-.project-card-progress [data-slot="progress"] {
-  flex: 1;
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap-control) var(--gap-item);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.project-card-count {
+  margin-inline-start: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 /* Phones show the compact card, so a screen holds more than two projects. */
 @container project-views (max-width: 26rem) {

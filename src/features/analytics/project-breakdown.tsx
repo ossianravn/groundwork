@@ -39,7 +39,7 @@ export function ProjectBreakdown({
 
   return (
     <BreakdownCard
-      title="By project"
+      title="Completed tasks by project"
       nameLabel="Project"
       rows={rows}
       renderName={renderName}

@@ -35,7 +35,7 @@ export function ContributorBreakdown({
 
   return (
     <BreakdownCard
-      title="By contributor"
+      title="Completed tasks by contributor"
       nameLabel="Contributor"
       rows={rows}
       renderName={(row) => row.name}

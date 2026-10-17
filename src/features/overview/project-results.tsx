@@ -26,6 +26,7 @@ export function ProjectResults({
   members,
   onSelect,
   renderName,
+  renderCardName,
   renderBoard,
   renderTimeline,
   rowActions,
@@ -39,6 +40,8 @@ export function ProjectResults({
   members: Member[]
   onSelect: (id: string) => void
   renderName?: (project: Project) => ReactNode
+  /** The name on a card, when it opens differently from a table row. */
+  renderCardName?: (project: Project) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
   renderTimeline?: (
     table: DataTable<Project>,
@@ -71,7 +74,7 @@ export function ProjectResults({
           table={table}
           members={members}
           onInspect={onSelect}
-          renderName={renderName}
+          renderName={renderCardName ?? renderName}
         />
       ) : (
         <ProjectTableContent table={table} rowActions={rowActions} />

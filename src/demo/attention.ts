@@ -2,13 +2,19 @@ import { plural } from "./assistant/answer-format"
 import { formatDate, type Project, type ProjectTask } from "./model"
 import { burnUp } from "./workload"
 
+export type AttentionState = "overdue" | "late" | "stalled" | "unowned"
+
 export interface AttentionItem {
   project: Project
+  /** The most urgent reason, for a label. */
+  state: AttentionState
   /** Why it needs attention, most urgent first. */
   reasons: string[]
   /** Overdue, late at its pace, stalled, or only unassigned work. */
   rank: number
 }
+
+const states: AttentionState[] = ["overdue", "late", "stalled", "unowned"]
 
 /**
  * Active projects that need someone: past their due date, finishing after
@@ -51,7 +57,9 @@ export function needsAttention(
       if (unowned)
         reasons.push(`${plural(unowned, "open task")} without an owner`)
 
-      return reasons.length ? [{ project, reasons, rank }] : []
+      return reasons.length
+        ? [{ project, state: states[rank] ?? "unowned", reasons, rank }]
+        : []
     })
     .sort(
       (a, b) =>

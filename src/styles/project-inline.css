@@ -142,7 +142,22 @@
   justify-items: stretch;
   width: min(100%, 70ch);
 }
-.project-description-edit {
-  margin-inline-start: calc(var(--space-2) * -1);
+/* A quiet action under the text it acts on, such as Edit description: no
+   frame, so it keeps the text's left edge and line rhythm. Its hit area
+   stays 24px tall without adding space around it. */
+.inline-action.ui-button {
+  min-height: 0;
+  height: auto;
+  margin-block: calc(var(--gap-inline) * -1);
+  padding: var(--gap-inline) 0;
+  gap: var(--gap-inline);
   color: var(--muted-foreground);
+}
+.inline-action.ui-button:hover {
+  background: none;
+  color: var(--foreground);
+}
+.inline-action.ui-button svg {
+  width: 0.875rem;
+  height: 0.875rem;
 }

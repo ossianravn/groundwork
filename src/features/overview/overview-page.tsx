@@ -15,6 +15,7 @@ import { Metrics } from "./metrics"
 import { ActivityList } from "./activity-list"
 import { needsAttention } from "@/demo/attention"
 import { NeedsAttention } from "./needs-attention"
+import { projectButton, type ProjectLinkRenderer } from "./project-link"
 
 const CompletionChart = lazy(() =>
   import("./completion-chart").then((module) => ({
@@ -34,6 +35,8 @@ export interface OverviewPageProps {
   onPeriodChange: (period: ReportPeriod) => void
   onNewProject: () => void
   onSelectProject: (id: string) => void
+  /** Names a project in the lists, such as a link to its page. */
+  renderProject?: ProjectLinkRenderer
   activityLink?: ReactNode
   /** A link to the Projects page, after Needs attention. */
   projectsLink?: ReactNode
@@ -52,6 +55,7 @@ export function OverviewPage({
   onPeriodChange,
   onNewProject,
   onSelectProject,
+  renderProject = projectButton(onSelectProject),
   activityLink,
   projectsLink,
   intro,
@@ -105,13 +109,13 @@ export function OverviewPage({
           activity={activity}
           projects={projects}
           members={activityMembers}
-          onSelectProject={onSelectProject}
+          renderProject={renderProject}
         />
       </div>
       <NeedsAttention
         items={needsAttention(projects, tasks, referenceDate)}
         members={members}
-        onSelectProject={onSelectProject}
+        renderProject={renderProject}
         allProjectsLink={projectsLink}
       />
     </main>

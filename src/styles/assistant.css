@@ -19,9 +19,9 @@
     flex-shrink: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    /* Item labels (inset by --inset-row) start on the content edge. */
-    padding: var(--gap-zone) var(--inset-row) var(--gap-zone)
-      calc(var(--inset-page) - var(--inset-row));
+    /* Even gutters: labels (inset by --inset-row) start as far from the
+       left border as the hide button's icon ends from the right. */
+    padding: var(--gap-zone) var(--inset-row);
     border-inline-end: 1px solid var(--border);
     scrollbar-width: thin;
   }
@@ -37,6 +37,8 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--gap-control);
+  /* The button's icon sits 8px inside it; this evens it with the labels. */
+  padding-inline-end: var(--gap-inline);
 }
 .assistant-history-title {
   padding-inline: var(--inset-row);

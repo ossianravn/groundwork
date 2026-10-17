@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router"
 import { DemoWorkspaceShell } from "./demo-workspace-shell"
 import { WorkspaceCommandHost } from "./workspace-command-host"
+import { projectReturnTo } from "./project-return"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { WorkspaceContext } from "./workspace-context"
 import { MissingProject } from "@/features/projects/missing-project"
@@ -42,15 +43,19 @@ export function DemoApp() {
   const [quickOrder, setQuickOrder] = useState<string[]>([])
   const projectOpener = useRef<HTMLElement | null>(null)
 
-  // Projects opened in the quick view, most recent first, for the menu.
+  // Projects opened on their page or in a card's quick view, most recent
+  // first, for the command menu.
   const [recent, setRecent] = useState<{ last?: string; ids: string[] }>({
     ids: [],
   })
 
-  if (inspect && inspect !== recent.last)
+  const page = /^\/app\/demo\/projects\/([^/]+)$/u.exec(pathname)?.[1]
+  const viewed = inspect ?? (page === "import" ? undefined : page)
+
+  if (viewed && viewed !== recent.last)
     setRecent({
-      last: inspect,
-      ids: [inspect, ...recent.ids.filter((id) => id !== inspect)].slice(0, 5),
+      last: viewed,
+      ids: [viewed, ...recent.ids.filter((id) => id !== viewed)].slice(0, 5),
     })
 
   const rememberProjectOpener = useCallback(() => {
@@ -73,6 +78,23 @@ export function DemoApp() {
         to: ".",
         search: (previous) => ({ ...previous, inspect: id }),
         resetScroll: false,
+        replace,
+      })
+    },
+    [navigate],
+  )
+
+  // A project's page, returning to where it was opened from.
+  const openProjectPage = useCallback(
+    (id: string, replace = false) => {
+      void navigate({
+        to: "/app/demo/projects/$projectId",
+        params: { projectId: id },
+        search: {
+          returnTo: projectReturnTo(
+            window.location.pathname + window.location.search,
+          ),
+        },
         replace,
       })
     },
@@ -146,10 +168,7 @@ export function DemoApp() {
               open ? showSearch() : setSearchOpen(false)
             }
             recentProjectIds={recent.ids}
-            onOpenProject={(id) => {
-              setQuickOrder([])
-              openInspection(id)
-            }}
+            onOpenProject={openProjectPage}
             onShortcuts={() => {
               help.setView("shortcuts")
               help.setOpen(true)
@@ -202,19 +221,7 @@ export function DemoApp() {
               replace: true,
             })
           }
-          onCreated={(projectId) => {
-            setQuickOrder([])
-            void navigate({
-              to: ".",
-              search: (previous) => ({
-                ...previous,
-                create: undefined,
-                inspect: projectId,
-              }),
-              resetScroll: false,
-              replace: true,
-            })
-          }}
+          onCreated={(projectId) => openProjectPage(projectId, true)}
           returnFocus={projectReturnFocus}
         />
       )}

@@ -52,7 +52,26 @@ export function ProjectsRoute() {
     }
   }
 
+  // Table rows open the project's page; cards, on the grid and the board,
+  // open its quick view over the list, as in Trello.
   const renderName = useCallback(
+    (project: Project) => (
+      <ProjectDetailLink
+        projectId={project.id}
+        id={`project-link-${project.id}`}
+        title={project.name}
+        className={buttonVariants({
+          variant: "ghost",
+          className: "project-name",
+        })}
+      >
+        <span className="truncate">{project.name}</span>
+      </ProjectDetailLink>
+    ),
+    [],
+  )
+
+  const renderCardName = useCallback(
     (project: Project) => (
       <ProjectDetailLink
         projectId={project.id}
@@ -122,12 +141,13 @@ export function ProjectsRoute() {
         allowViewSwitch
         allowAdvanced
         savedViews={<ProjectSavedViews search={search} />}
+        renderCardName={renderCardName}
         renderBoard={(table) => (
           <ProjectBoard
             table={table}
             members={demo.workspace.members}
             onInspect={onSelectProject}
-            renderName={renderName}
+            renderName={renderCardName}
             onApply={applyChange}
             order={results.boardOrder}
             onOrderChange={(visible) =>
@@ -153,7 +173,6 @@ export function ProjectsRoute() {
               <ProjectDetailLink
                 projectId={project.id}
                 className="timeline-link"
-                onOpen={() => onSelectProject(project.id)}
               >
                 {project.name}
               </ProjectDetailLink>

@@ -185,14 +185,19 @@ export function ProjectQuickView({
           </div>
         </header>
         <div className="quick-view-body" key={project.id}>
-          <div className="quick-view-properties">
-            <ProjectProperties
-              project={project}
-              owner={owner}
-              assignableMembers={assignableMembers}
-              tagOptions={tagOptions}
-              editing={editing}
-            />
+          {/* Properties, then files, beside the work; phones read the
+              properties, the work, then the files. */}
+          <div className="quick-view-rail">
+            <div className="quick-view-properties">
+              <ProjectProperties
+                project={project}
+                owner={owner}
+                assignableMembers={assignableMembers}
+                tagOptions={tagOptions}
+                editing={editing}
+              />
+            </div>
+            <div className="quick-view-files">{files}</div>
           </div>
           <div className="quick-view-main">
             {notice && (
@@ -233,7 +238,6 @@ export function ProjectQuickView({
               <ProjectActivity events={events} members={members} />
             </section>
           </div>
-          <div className="quick-view-files">{files}</div>
         </div>
       </DialogContent>
     </Dialog>

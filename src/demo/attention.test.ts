@@ -28,6 +28,7 @@ it("calls a project overdue once its due date has passed", () => {
 
   expect(item?.rank).toBe(0)
   expect(item?.reasons[0]).toBe("Overdue since 1 Sept")
+  expect(item?.state).toBe("overdue")
 })
 
 it("counts open tasks nobody owns", () => {

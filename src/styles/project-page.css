@@ -13,7 +13,10 @@
   padding-inline: 0;
 }
 .project-page-title {
-  --title-line: calc(var(--text-page) * 1.25);
+  /* The title's cap height: text-box trims its line box to it, so the
+     capitals, not the leading, meet the page inset and the gap above the
+     title equals the gap beside it. Marks and actions centre on it. */
+  --title-line: calc(var(--text-page) * 0.71);
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -27,6 +30,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--gap-group);
+  margin-block-start: calc((var(--title-line) - var(--control-height)) / 2);
   margin-inline-start: auto;
 }
 .project-page-title > .project-dot {
@@ -35,6 +39,7 @@
   border-radius: 0.2rem;
 }
 .project-page-title h1 {
+  text-box: trim-both cap alphabetic;
   font-size: var(--text-page);
   font-weight: 600;
   letter-spacing: -0.04em;

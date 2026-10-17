@@ -97,7 +97,7 @@ export function ProjectDescription({
         id="project-description-edit"
         size="sm"
         variant="ghost"
-        className="project-description-edit"
+        className="inline-action"
         onClick={() => {
           setDraft(empty ? textDocument("") : description)
           focus("project-description-editor")

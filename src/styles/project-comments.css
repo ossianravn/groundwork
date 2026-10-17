@@ -4,19 +4,18 @@
   display: grid;
   gap: var(--gap-group);
 }
+/* One gap between comments and before the composer, without rules, so
+   the thread reads as one column of messages. */
 .comment-list {
   display: grid;
+  gap: var(--gap-group);
 }
 .comment-list li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  column-gap: var(--gap-group);
-  row-gap: 0.25rem;
-  padding-block: var(--inset-row);
+  column-gap: var(--gap-item);
+  row-gap: var(--gap-inline);
   scroll-margin-top: var(--gap-zone);
-}
-.comment-list li + li {
-  border-top: 1px solid var(--border);
 }
 .comment-meta,
 .comment-body {
