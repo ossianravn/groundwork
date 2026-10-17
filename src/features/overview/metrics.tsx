@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/kit/ui/card"
 import { projectSummary } from "@/demo/selectors"
-import type { Project } from "@/demo/model"
+import { formatDate, type Project } from "@/demo/model"
 import type { snapshotHistory } from "@/demo/snapshot-history"
 import { Sparkline } from "@/kit/ui/sparkline"
 import { trendLabel } from "@/kit/ui/sparkline-label"
@@ -52,7 +52,11 @@ export function Metrics({
   ] as const
 
   return (
-    <section className="metrics-grid" aria-label="Workspace snapshot">
+    <section
+      className="metrics-grid"
+      aria-label="Workspace snapshot"
+      data-page-zone="section"
+    >
       {metrics.map(({ label, key, value, detail, hint }) => (
         <Card key={label} className="metric-card">
           <CardContent>
@@ -78,6 +82,12 @@ export function Metrics({
           </CardContent>
         </Card>
       ))}
+      <p className="metrics-caption">
+        Snapshot on{" "}
+        <time dateTime={referenceDate}>
+          {formatDate(referenceDate, { year: "numeric" })}
+        </time>
+      </p>
     </section>
   )
 }

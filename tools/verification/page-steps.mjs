@@ -28,6 +28,7 @@ export function pageSteps(browser) {
 
     if (phone) browser("click", ".mobile-menu-button")
     browser("click", `${sidebar} .account-menu-trigger`)
+    browser("wait", "[role=menuitem]")
     browser("find", "role", "menuitem", "click", "--name", "Appearance")
   }
 

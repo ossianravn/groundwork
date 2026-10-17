@@ -10,6 +10,8 @@ const browser = createBrowser(fault)
 
 const { evaluate, inject, openAppearance } = pageSteps(browser)
 
+const base = process.env.VERIFY_URL || "http://127.0.0.1:5173"
+
 const output = resolve(
   process.env.VERIFY_ARTIFACT_DIR || ".artifacts/verification/browser",
 )
@@ -31,7 +33,11 @@ function capture(label) {
   )
 }
 
+// The Projects toolbar's peers share one height at each density.
 function controls() {
+  browser("open", base + "/app/demo/projects")
+  browser("wait", '[aria-label="Status: All"]')
+
   for (const [density, expected] of [
     ["Comfortable", 36],
     ["Compact", 32],
@@ -43,17 +49,17 @@ function controls() {
 
     if (fault === "small-control")
       inject(
-        '[aria-label="Task completion period"] {height:28px!important;min-height:28px!important}',
+        '[aria-label="Status: All"] {height:28px!important;min-height:28px!important}',
       )
 
     const sizes = evaluate(() => {
       const field = document.querySelector('[aria-label="Search projects"]')
 
       const peers = [
-        document.querySelector('[aria-label="Task completion period"]'),
         field.closest('[data-slot="input-group"]'),
         document.querySelector('[aria-label="Status: All"]'),
         document.querySelector('[aria-label="Owner: All"]'),
+        document.querySelector('[aria-label="Advanced filters"]'),
       ]
 
       return peers.map((element) => ({
@@ -71,7 +77,12 @@ function controls() {
   }
 }
 
+// The quick view opens over the Projects table without moving it.
 function scrollbar() {
+  // Short enough that the page scrolls, so the native scrollbar shows.
+  browser("set", "viewport", "1440", "560")
+  browser("open", base + "/app/demo/projects")
+  browser("wait", "#project-link-brand")
   evaluate(() =>
     document
       .querySelector("#project-link-brand")
@@ -234,11 +245,7 @@ try {
     ["controls", "scrollbar", "overlay"].includes(scenario),
     "Choose controls, scrollbar or overlay",
   )
-  browser(
-    "open",
-    process.env.VERIFY_URL ||
-      "http://127.0.0.1:5173/app/demo/overview?period=14",
-  )
+  browser("open", base + "/app/demo/overview?period=14")
   browser("set", "viewport", "1440", "900")
   browser("wait", '[aria-label="Task completion period"]')
   evaluate(async () => {

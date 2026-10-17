@@ -18,7 +18,6 @@ import { ProjectToolbar } from "./project-toolbar"
 import { projectColumns } from "./project-columns"
 import {
   boundedProjectPage,
-  initialProjectTableState,
   type ProjectTableState,
 } from "./project-table-state"
 import { ProjectResults } from "./project-results"
@@ -33,20 +32,6 @@ interface ProjectsTableProps {
   members: Member[]
   onSelect: (id: string) => void
   onNewProject: () => void
-}
-
-export interface ProjectTableControl {
-  state: ProjectTableState
-  onChange: (state: ProjectTableState) => void
-}
-
-export function ProjectsTable({
-  control,
-  ...props
-}: ProjectsTableProps & { control?: ProjectTableControl }) {
-  const [state, onChange] = useState(initialProjectTableState)
-
-  return <ProjectsTableView {...props} {...(control ?? { state, onChange })} />
 }
 
 export function ProjectsTableView({

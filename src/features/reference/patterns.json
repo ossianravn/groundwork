@@ -933,7 +933,7 @@
       {
         "label": "Top bar",
         "href": "/app/demo/overview",
-        "instruction": "Use search or appearance while keeping the current workspace context."
+        "instruction": "Use search or notifications while keeping the current workspace context."
       }
     ],
     "sources": ["src/kit/shell/workspace-shell.tsx"]
@@ -1609,7 +1609,7 @@
       {
         "label": "Recent activity",
         "href": "/app/demo/overview#activity",
-        "instruction": "Follow an activity link or expand the timeline."
+        "instruction": "Follow an activity link, or Show all activity."
       },
       {
         "label": "Workspace activity",
@@ -1748,7 +1748,7 @@
     "deferred": "Overflow menus for several actions remain planned.",
     "examples": [
       {
-        "label": "New project and snapshot date",
+        "label": "New project",
         "href": "/app/demo/overview",
         "instruction": "Use New project in the top bar; narrow the window to see the icon-only form."
       }
@@ -2041,18 +2041,13 @@
     "category": "Kit components",
     "surface": "Shared",
     "summary": "Scroll a bounded region with themed, unobtrusive scrollbars.",
-    "implemented": "Kit ScrollArea on Base UI: native scrolling with a thin overlay scrollbar. The Inbox message list uses it (keeping scroll restoration on the viewport), and Overview's Recent activity uses its overflow variables to fade only the edges with more history, replacing hand-written scroll measuring.",
+    "implemented": "Kit ScrollArea on Base UI: native scrolling with a thin overlay scrollbar. The Inbox message list uses it, keeping scroll restoration on the viewport. (Overview's Recent activity used it until 2026-10-17; it now shows six plain rows.)",
     "deferred": "No horizontal scroll areas yet; wide tables keep native scrolling.",
     "examples": [
       {
         "label": "Inbox list",
         "href": "/app/demo/inbox",
         "instruction": "Make the window short and scroll the messages."
-      },
-      {
-        "label": "Recent activity",
-        "href": "/app/demo/overview",
-        "instruction": "Scroll the activity beside the chart."
       },
       {
         "label": "Scroll area reference",
@@ -2062,8 +2057,7 @@
     ],
     "sources": [
       "src/kit/ui/scroll-area.tsx",
-      "src/features/inbox/inbox-layout.tsx",
-      "src/features/overview/activity-list.tsx"
+      "src/features/inbox/inbox-layout.tsx"
     ]
   },
   {
