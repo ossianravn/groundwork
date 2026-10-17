@@ -422,7 +422,8 @@
     "notes": [
       "Opens while the reasoning streams and closes when it ends, labelled with how long it took. Once the person opens or closes it, their choice stands.",
       "It never takes focus, so reading the conversation is not interrupted. Pass the reasoning part's text and whether it is streaming.",
-      "Pass onOpenDetails to show finished reasoning elsewhere, such as a side panel: the label then opens it instead of unfolding in place, with a panel icon and a spoken hint."
+      "Pass onOpenDetails to show finished reasoning elsewhere, such as a side panel: the label then opens it instead of unfolding in place, with a panel icon and a spoken hint.",
+      "For a reply restored from history, pass label with the duration you stored (timing only runs while it streams) and open with onOpenChange to keep its openness with the conversation. Children other than text render as given, such as a summary's steps."
     ],
     "context": "Assistant replies",
     "href": "/app/demo/assistant",
