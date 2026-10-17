@@ -292,7 +292,7 @@
     "category": "Overlays",
     "purpose": "Offer an item's actions where the pointer is, on right-click, long press or the context-menu key.",
     "notes": [
-      "Shares the dropdown menu's items and styling, so one action list can serve a visible menu button and the context menu.",
+      "Shares the dropdown menu's items and styling, so one action list can serve a visible menu button and the context menu. That includes radio items: a board card's Move to checks the project's current status.",
       "It is a shortcut: every action also needs a visible control, because long press and the context-menu key are not discoverable."
     ],
     "context": "Project board",

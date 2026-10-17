@@ -10,6 +10,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 - `ai` (reasoning): `Reasoning` takes `open` and `onOpenChange` for a host that keeps its openness, a `label` in place of Thinking… and Thought for… (such as a duration stored with a restored reply), and children other than markdown text, which render as given.
 - `ai` (tool): `ToolHeader` takes a `status` node that replaces the state badge, for your own word for an outcome, such as Retried for a failed call the assistant tried again.
 - `ai` (attachments): `Attachment` takes `onOpen`; the thumbnail, or the chip's icon and name, then becomes a button named "Open <name>" (its name underlines on hover), with the remove button still beside it. The reference example opens a preview.
+- `dropdown-menu`: `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`, for a choice among exclusive options; the chosen item shows a check at the end of its row. The item now brings `lucide-react`. `context-menu` re-exports them as `ContextMenuRadioGroup` and `ContextMenuRadioItem`. Tandem's board cards use them for Move to.
 
 ## v0.5.0 — 2026-10-13
 

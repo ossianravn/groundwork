@@ -8,6 +8,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/kit/ui/dropdown-menu"
 import {
@@ -84,24 +86,26 @@ function BoardActions({
         </DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
-      <DropdownMenuGroup>
+      {/* The current status is checked; choosing it again changes nothing. */}
+      <DropdownMenuRadioGroup
+        value={project.status}
+        onValueChange={(status: ProjectStatus) => {
+          if (status === project.status) return
+
+          onHandOff()
+          onMove(status)
+        }}
+      >
         <DropdownMenuLabel>Move to</DropdownMenuLabel>
         {projectStatuses.map((status) => (
-          <DropdownMenuItem
-            key={status}
-            disabled={status === project.status}
-            onClick={() => {
-              onHandOff()
-              onMove(status)
-            }}
-          >
+          <DropdownMenuRadioItem key={status} value={status} closeOnClick>
             {statusLabels[status]}
             {status === "completed" &&
               remaining > 0 &&
               ` · finish ${remaining} tasks`}
-          </DropdownMenuItem>
+          </DropdownMenuRadioItem>
         ))}
-      </DropdownMenuGroup>
+      </DropdownMenuRadioGroup>
     </>
   )
 }
