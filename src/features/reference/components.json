@@ -383,7 +383,8 @@
     "purpose": "Write a message to a model, with attachments and tools, and stop its reply.",
     "notes": [
       "A rounded surface: attachments, the text, then a row with the + menu (files, and any records you offer as context), your tools and the round send button. Files can also be dropped or pasted, within type, size and count limits that are explained when refused.",
-      "Enter sends and Shift+Enter adds a line; the keys live in the send button's tooltip rather than on screen. While the model works, the button becomes Stop and Enter queues the message when onQueue is given."
+      "Enter sends and Shift+Enter adds a line; the keys live in the send button's tooltip rather than on screen. While the model works, the button becomes Stop and Enter queues the message when onQueue is given.",
+      "The textarea runs your own onKeyDown and onPaste first: call preventDefault() in them to handle Enter or pasted files yourself, such as adding pasted files to your own attachment list."
     ],
     "context": "Assistant",
     "href": "/app/demo/assistant",

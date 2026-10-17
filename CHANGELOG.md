@@ -5,6 +5,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 ## Unreleased
 
 - `select`: the trigger's text no longer ends in "▼". Base UI's Select icon renders that character by default, and it landed inside the chevron svg, so a trigger's text content read "Ava Morgan▼".
+- `ai` (prompt input): a textarea `onPaste` that calls `preventDefault()` now keeps pasted files out of the composer's own attachments, as `onKeyDown` already does for Enter. Before, files a host took over also landed in the composer's list.
 
 ## v0.5.0 — 2026-10-13
 
