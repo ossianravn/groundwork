@@ -62,7 +62,7 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | NAV-06 | Contextual Help & Support Widget | [Shared shells ](shells.md) | App shell | Default |
 | NAV-07 | Mobile Bottom Tab Navigation | [Pattern library ](pages/reference/patterns.md) | /reference/specimens/mobile-tabs | Example |
 | SETT-01 | Vertical Tab Settings Layout | [Shared shells ](shells.md) | Settings shell | Default |
-| SETT-02 | Floating Unsaved Changes Warning | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
+| SETT-02 | Floating Unsaved Changes Warning | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
 | SETT-03 | Drag-and-Drop File / Avatar Uploader | [Account preferences and security ](pages/settings/account.md) | /app/:workspace/settings/profile | Default |
 | SETT-04 | Team Members & RBAC Manager | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/team | Default |
 | SETT-05 | Invite Member Dialog | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/team | Default |
@@ -70,9 +70,9 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | SETT-07 | Webhook Manager & Test Ping | [API keys and webhooks ](pages/settings/developers.md) | /app/:workspace/settings/webhooks | Default |
 | SETT-08 | Plan Usage Meter & Stripe Bridge | [Billing and invoices ](pages/settings/billing.md) | /app/:workspace/settings/billing | Default |
 | SETT-09 | Invoice History & PDF Download | [Billing and invoices ](pages/settings/billing.md) | /app/:workspace/settings/billing | Default |
-| SETT-10 | Rich Text / Markdown Editor | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
-| SETT-11 | Tag / Multi-select Input | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
-| SETT-12 | Dynamic Field Arrays | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
+| SETT-10 | Rich Text / Markdown Editor | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
+| SETT-11 | Tag / Multi-select Input | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
+| SETT-12 | Dynamic Field Arrays | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
 | SYS-01 | Theme Provider & Toggle | [Theme playground ](pages/reference/themes.md) | /reference/themes | Default |
 | SYS-02 | Global Command Menu (Cmd+K) | [Shared shells ](shells.md) | Shared shells | Default |
 | SYS-03 | Toast Notification System | [Shared shells ](shells.md) | Shared shells | Default |
@@ -127,7 +127,7 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | seat count in billing plan selection. | Planned |
 | KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and quick view | Example |
-| KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/new; Project details due date | Example |
+| KIT-04 | Calendar and date picker | [Design system](design-system.md) | New project dialog; Project details due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
 | KIT-06 | Hover card | [Design system](design-system.md) | owner names in the Projects table and people in Activity | Example |
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and Projects table rows | Example |

@@ -17,7 +17,7 @@ export const routes = [
   "/app/demo/projects",
   "/app/demo/projects?view=board",
   "/app/demo/projects/brand",
-  "/app/demo/projects/new",
+  "/app/demo/projects?create=project",
   "/app/demo/inbox",
   "/app/demo/analytics",
   "/app/demo/activity",
@@ -89,7 +89,7 @@ export const states = [
   ],
   [
     "tag-combobox",
-    "/app/demo/projects/new",
+    "/app/demo/projects?create=project",
     "click",
     '[data-slot="combobox-chip-input"]',
   ],

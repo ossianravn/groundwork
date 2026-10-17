@@ -55,7 +55,7 @@
       "Pass the items to Base UI so the trigger shows the label rather than an internal ID."
     ],
     "context": "New project",
-    "href": "/app/demo/projects/new",
+    "href": "/app/demo/projects?create=project",
     "patterns": ["SETT-13"]
   },
   {

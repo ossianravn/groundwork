@@ -26,7 +26,7 @@ Tags and links share the existing per-project navigation drafts, Cancel discard,
 
 ## Contextual editing on details
 
-The name has a labelled pencil action beside the title; activation reveals a bounded Input with explicit Save/Cancel. Blur does not save or discard; Enter submits and Escape cancels. **Since 2026-10-17 everything else edits in place too, and there is no edit page:** Edit description under the name opens the rich-text editor with Cancel and Save (Escape cancels), and Project details (on the page and in the quick view) changes owner, due date, colour, tags and links as they are picked, with Retry when a save fails (design-system.md, properties). `/projects/:id/edit` redirects to the project page, keeping its return context. The project form remains the New project page.
+The name has a labelled pencil action beside the title; activation reveals a bounded Input with explicit Save/Cancel. Blur does not save or discard; Enter submits and Escape cancels. **Since 2026-10-17 everything else edits in place too, and there is no edit page:** Edit description under the name opens the rich-text editor with Cancel and Save (Escape cancels), and Project details (on the page and in the quick view) changes owner, due date, colour, tags and links as they are picked, with Retry when a save fails (design-system.md, properties). `/projects/:id/edit` redirects to the project page, keeping its return context. **New project is a dialog since 2026-10-17** (`?create=project` on any workspace page, so Back closes it; `/projects/new` redirects to Projects with it open). Closing it keeps the draft for next time, Cancel discards it and returns focus to New project, and Create opens the new project's quick view, which says Project created. `?create=save-failure` rejects the first save.
 
 Inline and full editing share the same per-project draft. Navigation retains it and an Unsaved marker identifies unfinished inline fields. Saving commits only the active field against current saved values, leaving other draft fields untouched, even if those fields are invalid. Cancel/Escape restores only this field. A baseline reconciles untouched fields with newer saved values so returning to the full editor does not undo a completed inline save. Full-form Cancel still discards the entire project draft; reset/reload clears all drafts.
 
@@ -76,7 +76,7 @@ Files share the side column with progress (SETT-15); on narrow screens they foll
 
 | Route | Ordered page composition (in addition to shell) |
 | --- | --- |
-| `/app/:workspace/projects/new` | Page header; project form with name, status, owner, tags (SETT-11), description editor (SETT-10), optional attachment (SETT-03) and related-link rows (SETT-12); Create/Cancel; dirty-save feedback (SETT-02). |
+| `/app/:workspace/projects/new` | Redirects to Projects with the New project dialog open since 2026-10-17. The dialog holds the project form: name, owner, description editor (SETT-10), due date, colour, tags (SETT-11) and related-link rows (SETT-12); Cancel/Create; dirty-save feedback (SETT-02). |
 | `/app/:workspace/projects/:projectId` | Project header and actions; summary fields including an inline-edit example (EDGE-04); description; attachments/links; activity (TABL-08); Edit link. |
 | `/app/:workspace/projects/:projectId/edit` | Redirects to the project page since 2026-10-17; projects edit in place there. |
 

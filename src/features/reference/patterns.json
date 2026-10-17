@@ -1023,13 +1023,13 @@
     "category": "Settings & forms",
     "surface": "Shared",
     "summary": "Navigate away from an unfinished form without losing your work.",
-    "implemented": "Drafts stay in memory during navigation. Save commits; Cancel discards; reload/reset clears.",
+    "implemented": "Drafts stay in memory: closing New project keeps its draft for next time. Create commits; Cancel discards; reload/reset clears.",
     "deferred": "No blocking leave prompt or persisted draft storage.",
     "examples": [
       {
         "label": "New project",
-        "href": "/app/demo/projects/new",
-        "instruction": "Change a value, leave via navigation, and return before saving or cancelling."
+        "href": "/app/demo/projects?create=project",
+        "instruction": "Change a value, close the dialog, and open New project again."
       },
       {
         "label": "Retain or discard a draft",
@@ -1280,12 +1280,12 @@
     "examples": [
       {
         "label": "Create project",
-        "href": "/app/demo/projects/new",
+        "href": "/app/demo/projects?create=project",
         "instruction": "Submit empty fields, correct the errors and save."
       },
       {
         "label": "Save failure",
-        "href": "/app/demo/projects/new?scenario=save-failure",
+        "href": "/app/demo/projects?create=save-failure",
         "instruction": "Submit valid values, then use Retry after the local rejection."
       },
       {
@@ -1892,7 +1892,7 @@
     "examples": [
       {
         "label": "Due date",
-        "href": "/app/demo/projects/new",
+        "href": "/app/demo/projects?create=project",
         "instruction": "Open Due date and choose a day."
       },
       {

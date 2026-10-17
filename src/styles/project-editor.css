@@ -114,10 +114,6 @@
   }
 }
 @media (max-width: 767px) {
-  .project-editor-page {
-    --inset-page: 16px;
-    --inset-card: 16px;
-  }
   .project-editor-fields input[type="date"] {
     padding-inline: 10px;
   }
@@ -127,4 +123,16 @@
   .project-editor-actions {
     justify-content: flex-end;
   }
+}
+/* New project is a dialog at the form's reading width. */
+[data-slot="dialog-content"].new-project-dialog {
+  max-width: min(40rem, calc(100% - 2rem));
+}
+.new-project-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+}
+.new-project-body {
+  container-type: inline-size;
 }
