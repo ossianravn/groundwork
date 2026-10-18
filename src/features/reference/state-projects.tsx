@@ -48,6 +48,7 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
   const [creating, setCreating] = useState(false)
   const [createdIds, setCreatedIds] = useState<string[]>([])
   const [selected, setSelected] = useState("")
+
   const [table, setTable] = useState({
     ...initialProjectTableState,
     filters: {
@@ -55,13 +56,16 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
       query: scenario === "no-results" ? "Untitled expedition" : "",
     },
   })
+
   const surface = useRef<HTMLDivElement>(null)
   const selectedProject = demo.projects.find((item) => item.id === selected)
   const opener = useRef<HTMLElement | null>(null)
+
   const projects =
     scenario === "first-use"
       ? demo.projects.filter((project) => createdIds.includes(project.id))
       : demo.projects
+
   const failure =
     scenario === "forbidden" ||
     scenario === "not-found" ||
@@ -113,11 +117,13 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
                 values,
                 "normal",
               )
+
               if (result.kind === "saved") {
                 setCreatedIds((ids) => [...ids, result.projectId])
                 setCreating(false)
                 focusResults()
               }
+
               return result
             }}
           />

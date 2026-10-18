@@ -58,6 +58,7 @@ export function StateGallery({
     )
 
   const item = stateScenarios[scenario]
+
   const choices = Object.entries(stateScenarios).map(([value, entry]) => ({
     value,
     label: entry.label,

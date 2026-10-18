@@ -25,10 +25,12 @@ const categories = [
   { value: "", label: "All categories" },
   ...patternCategories.map((value) => ({ value, label: value })),
 ]
+
 const surfaces = [
   { value: "", label: "All surfaces" },
   ...patternSurfaces.map((value) => ({ value, label: value })),
 ]
+
 const availability = [
   { value: "all", label: "All patterns" },
   { value: "example", label: "With an example" },

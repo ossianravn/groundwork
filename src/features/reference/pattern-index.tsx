@@ -32,6 +32,7 @@ export function PatternIndex({
 }) {
   const input = useRef<HTMLInputElement>(null)
   const results = findPatterns(filters)
+
   const filtered = !!(
     filters.q ||
     filters.category ||

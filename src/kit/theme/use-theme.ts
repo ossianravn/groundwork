@@ -31,6 +31,7 @@ export function useTheme({
   defaults?: ThemeSettings
 } = {}) {
   const hydrated = useHydrated()
+
   // Server rendering and hydration use the defaults, so the markup matches;
   // the browser then reads the saved theme, which applyTheme (client-only
   // hosts) or themeScript (server-rendered hosts) already put on <html>.
@@ -38,11 +39,13 @@ export function useTheme({
     () => (hydrated ? readTheme(defaults) : null),
     [hydrated, defaults],
   )
+
   const [chosen, setChosen] = useState<ThemeSettings | null>(null)
   const [saved, setSaved] = useState(true)
   const [message, setMessage] = useState("")
   const current = chosen ?? stored
   const theme = current ?? defaults
+
   const feedback =
     message ||
     (hydrated && previewFrame() ? "Changes stay in this preview." : "")
