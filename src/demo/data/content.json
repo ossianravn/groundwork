@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.19.2",
+      "date": "2026-10-18",
+      "title": "A roomier inbox",
+      "summary": "The Inbox lines up: dates and unread marks have room to breathe, and both panes keep the same margins on every side.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Message dates and unread dots no longer crowd the scrollbar and the divider; the list keeps the same margin on both sides.",
+            "The message you're reading starts as far from the divider as the list does from the sidebar, and Mark read, dates, the reply box and Send reply share one right edge with the top bar."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.19.1",
       "date": "2026-10-18",
       "title": "Gentler reduced motion",
