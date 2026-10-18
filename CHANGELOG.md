@@ -2,7 +2,9 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
-## Unreleased
+## v0.8.0 — 2026-10-18
+
+Voice for chat: a new `voice` item adds dictation to the prompt input and a spoken conversation, full screen or as a bar in the composer's place, with an aura that moves with the sound and captions that light up as they are spoken. It runs on the browser's own speech recognition and voices; nothing else changes.
 
 ### Voice
 
