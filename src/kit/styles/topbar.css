@@ -170,13 +170,8 @@
   top: 50%;
   translate: 0 -50%;
   z-index: 1;
+  /* Opened from the keyboard many times a day, so it appears at once. */
   width: min(24rem, calc(100vw - var(--sidebar-width) - 8rem));
-  transition: width var(--motion-fast) var(--ease-standard);
-}
-@starting-style {
-  .topbar-search-field {
-    width: var(--control-height);
-  }
 }
 .topbar-search-field [data-slot="input-group"] {
   background: var(--card);

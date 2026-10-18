@@ -84,7 +84,7 @@
   line-height: 1.2;
   letter-spacing: -0.03em;
 }
-.pricing-amount span {
+.pricing-unit {
   font-size: var(--text-meta);
   font-weight: 400;
   letter-spacing: normal;
@@ -94,6 +94,28 @@
   margin-top: 0.5rem;
   font-size: var(--text-meta);
   color: var(--muted-foreground);
+}
+/* Switching the period brings each changed price in from the way it moved:
+   yearly prices drop in, monthly ones rise. */
+.pricing-figure {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pricing-grid[data-switched] :is(.pricing-figure, .pricing-basis) {
+    transition:
+      opacity 200ms var(--ease-standard),
+      translate 200ms var(--ease-standard);
+  }
+  @starting-style {
+    .pricing-grid[data-switched] :is(.pricing-figure, .pricing-basis) {
+      opacity: 0;
+      translate: 0 -0.25em;
+    }
+    .pricing-grid[data-switched][data-billing="monthly"]
+      :is(.pricing-figure, .pricing-basis) {
+      translate: 0 0.25em;
+    }
+  }
 }
 .pricing-card ul {
   display: grid;

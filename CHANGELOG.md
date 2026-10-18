@@ -8,7 +8,15 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 - `base`: `--sidebar` is a surface of its own, a shade under the work area in light and dark mode, with its own `--sidebar-border`; the shell draws the desktop sidebar's edge with it. Set `--sidebar: var(--background)` to keep one plane.
 - `rich-text`: read-only rich text uses a 1.5 line height, like body text (it was 1.6).
+- `base`: `--motion-slow` (400ms), for entrances seen once, such as a marketing hero.
 - `base`: **Breaking:** the spacing aliases deprecated in v0.6.0 are gone. Replace `--control-gap` with `--gap-control`, `--content-gap` and `--stack-gap` with `--gap-group`, `--section-gap` with `--gap-zone`, `--item-padding` with `--gap-item`, and `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding` with `--inset-card`, `--inset-panel`, `--inset-page` and `--inset-row`. `npm run lint:spacing` reports any old name left in demo code.
+
+### Motion
+
+- `tabs`: the line variant's underline is one `Tabs.Indicator` that slides to the selected tab over 200ms, instead of fading out under one tab and in under the next. It sits where the old underline did, inside the padding of a list that scrolls.
+- `checkbox`: the check mark scales in and out with the box over 120ms.
+- `button`, `toggle`, `badge`, `accordion`, `input-otp` and `tabs`: triggers transition the properties their states change (colour, background, border, ring, opacity and Button's press offset) instead of `transition-all`, so a padding or size change no longer animates.
+- `shell`: `TopbarSearch`'s field opens at full width at once instead of growing from the magnifier; it is opened from the keyboard many times a day.
 
 ## v0.6.0 — 2026-10-18
 

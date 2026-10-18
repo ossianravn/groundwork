@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from "react"
+import { useState, type ComponentType, type ReactNode } from "react"
 import { Check } from "lucide-react"
 import {
   Card,
@@ -35,6 +35,9 @@ export function PricingPage({
   onBillingChange: (value: BillingPeriod) => void
   PlanLink: ComponentType<PlanLinkProps>
 }) {
+  // Prices animate only once the period is switched, not on arrival.
+  const [switched, setSwitched] = useState(false)
+
   return (
     <main id="main-content" tabIndex={-1}>
       <header className="public-page-heading public-container">
@@ -53,8 +56,9 @@ export function PricingPage({
             multiple={false}
             value={[billing]}
             onValueChange={(value) => {
-              if (value[0] === "monthly" || value[0] === "annual")
-                onBillingChange(value[0])
+              if (value[0] !== "monthly" && value[0] !== "annual") return
+              setSwitched(true)
+              onBillingChange(value[0])
             }}
             variant="outline"
             spacing={0}
@@ -66,7 +70,11 @@ export function PricingPage({
             Two months free with yearly billing
           </span>
         </div>
-        <div className="pricing-grid">
+        <div
+          className="pricing-grid"
+          data-billing={billing}
+          data-switched={switched || undefined}
+        >
           {plans.map((plan) => {
             const price = planPrice(plan, billing)
 
@@ -84,10 +92,14 @@ export function PricingPage({
                 </CardHeader>
                 <CardContent>
                   <p className="pricing-amount">
-                    {price.monthly}
-                    <span> / member / month</span>
+                    <span key={price.monthly} className="pricing-figure">
+                      {price.monthly}
+                    </span>
+                    <span className="pricing-unit"> / member / month</span>
                   </p>
-                  <p className="pricing-basis">{price.basis}</p>
+                  <p key={price.basis} className="pricing-basis">
+                    {price.basis}
+                  </p>
                   <ul>
                     {plan.highlights.map((highlight) => (
                       <li key={highlight}>

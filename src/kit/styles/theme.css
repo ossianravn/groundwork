@@ -18,8 +18,10 @@
   --control-padding-block: 0.25rem;
   /* Text-entry size; responsive.css adjusts it by width and pointer. */
   --control-font-size: var(--text-section);
-  /* Motion: brief and consistent; responsive.css removes it for reduced motion. */
+  /* Motion: brief and consistent; responsive.css removes it for reduced
+     motion. --motion-slow is for entrances seen once, such as a hero. */
   --motion-fast: 150ms;
+  --motion-slow: 400ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   /* Spacing: one 4px ramp, and the roles layout takes from it. Feature
      code uses the roles only (docs/design-system.md, Spacing); density

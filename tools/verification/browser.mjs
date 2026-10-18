@@ -181,7 +181,12 @@ function overlay() {
     )
   })
   openAppearance()
-  browser("wait", "250")
+  // Measure once the navigation sheet has left and Appearance has settled.
+  browser(
+    "wait",
+    "--fn",
+    `document.querySelectorAll('[data-slot="sheet-content"]').length === 1 && !document.querySelector('[data-slot="sheet-content"]:is([data-starting-style], [data-ending-style])')`,
+  )
 
   const bounds = evaluate(() => {
     const dialog = document.querySelector('[data-slot="sheet-content"]')

@@ -5,7 +5,9 @@ import {
   KeyboardSensor,
   PointerSensor,
   closestCenter,
+  defaultDropAnimationSideEffects,
   pointerWithin,
+  type DropAnimation,
   useDroppable,
   useSensor,
   useSensors,
@@ -25,6 +27,17 @@ import {
 } from "@/demo/model"
 import { placeBoardProject } from "./board-order"
 import { ProjectBoardCardPreview } from "./project-board-card"
+
+// A dropped card glides into its slot and straightens while its placeholder
+// stays hidden; the curve is --ease-standard. Reduced motion drops it in place.
+const dropAnimation: DropAnimation = {
+  duration: 200,
+  easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
+  sideEffects: defaultDropAnimationSideEffects({
+    className: { dragOverlay: "project-board-dropping" },
+    styles: { active: { opacity: "0" } },
+  }),
+}
 
 export function ProjectBoardDrag({
   projects,
@@ -182,7 +195,13 @@ export function ProjectBoardDrag({
       >
         {children(displayed)}
       </div>
-      <DragOverlay dropAnimation={null}>
+      <DragOverlay
+        dropAnimation={
+          matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? null
+            : dropAnimation
+        }
+      >
         {dragged && (
           <ProjectBoardCardPreview
             project={dragged}

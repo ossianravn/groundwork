@@ -299,6 +299,35 @@
   ],
   "releases": [
     {
+      "version": "0.19.0",
+      "date": "2026-10-18",
+      "title": "Moves that make sense",
+      "summary": "Tandem now moves where it helps you follow along: the card you drag on the board, the tab you pick, the task you tick. Everything you use all day stays instant.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "On the board, a card you pick up tilts and lifts like a card in your hand. Drop it and it settles into its new place while the cards around it make room.",
+            "The underline on a project's tabs slides to the section you choose, and ticking a task fills its box with a quick check as its title fades.",
+            "Search in the top bar opens at once, however you open it.",
+            "On the website, the home page arrives in reading order, and prices visibly change when you switch between monthly and yearly billing.",
+            "When you finish setting up a workspace, its summary comes in line by line."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "If your device asks for reduced motion, Tandem keeps still. Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.18.0",
       "date": "2026-10-18",
       "title": "Cards that open in place",

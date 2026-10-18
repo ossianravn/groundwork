@@ -20,9 +20,11 @@ function Checkbox({
       )}
       {...props}
     >
+      {/* The mark settles in as the box fills, quick enough for a list
+          of ticks. */}
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="grid place-content-center text-current transition-none [&>svg]:size-3.5"
+        className="grid place-content-center text-current transition-[scale,opacity] duration-120 ease-(--ease-standard) data-ending-style:scale-75 data-ending-style:opacity-0 data-starting-style:scale-75 data-starting-style:opacity-0 [&>svg]:size-3.5"
       >
         {indeterminate ? <MinusIcon /> : <CheckIcon />}
       </CheckboxPrimitive.Indicator>

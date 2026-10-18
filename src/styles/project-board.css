@@ -65,9 +65,50 @@
 .project-board-drag-handle:active {
   cursor: grabbing;
 }
-.project-board-drag-preview {
-  box-shadow: var(--shadow-lg);
+/* A picked-up card tilts and lifts a little, as on a physical board, and
+   straightens as it settles into its slot on drop (project-board-drag.tsx).
+   The lifted shadow is its own layer, so only opacity and transforms move;
+   the double class outranks the card's own transition. */
+.project-card.project-board-drag-preview {
   cursor: grabbing;
+  rotate: 2deg;
+  scale: 1.02;
+  transition:
+    rotate var(--motion-fast) var(--ease-standard),
+    scale var(--motion-fast) var(--ease-standard);
+}
+.project-board-drag-preview::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+@starting-style {
+  .project-card.project-board-drag-preview {
+    rotate: 0deg;
+    scale: 1;
+  }
+  .project-board-drag-preview::before {
+    opacity: 0;
+  }
+}
+.project-board-dropping .project-board-drag-preview {
+  rotate: 0deg;
+  scale: 1;
+  transition-duration: 200ms;
+}
+.project-board-dropping .project-board-drag-preview::before {
+  opacity: 0;
+  transition-duration: 200ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-board-drag-preview {
+    rotate: none;
+    scale: none;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .project-board-drag-handle {
