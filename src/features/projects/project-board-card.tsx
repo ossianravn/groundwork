@@ -38,7 +38,11 @@ export function ProjectBoardCard({
     isDragging,
     transform,
     transition,
-  } = useSortable({ id: project.id })
+  } = useSortable({
+    id: project.id,
+    // Neighbours make room on the drop's curve (--ease-standard).
+    transition: { duration: 200, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" },
+  })
 
   const actions = { project, onInspect, onMove, onReorder, first, last }
 

@@ -88,6 +88,39 @@
   grid-column: 2;
   text-align: right;
 }
+/* The hero arrives in reading order: the headline's two lines, then the
+   copy and actions, while the product settles onto its stage. The product is
+   the page's largest image, so it is painted at once and only moves. It is
+   decorative and over in under a second; links work throughout. */
+@media (prefers-reduced-motion: no-preference) {
+  .public-hero-copy > h1 > span,
+  .public-hero-copy > :not(h1) {
+    animation: public-rise 600ms var(--ease-standard) both;
+  }
+  .public-product-preview {
+    animation: public-settle 600ms var(--ease-standard) 160ms both;
+  }
+  .public-hero-copy > h1 > span + span {
+    animation-delay: 80ms;
+  }
+  .public-hero-copy > :not(h1) {
+    animation-delay: 160ms;
+  }
+  .public-hero-copy > .public-note {
+    animation-delay: 240ms;
+  }
+}
+@keyframes public-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+@keyframes public-settle {
+  from {
+    translate: 0 12px;
+  }
+}
 /* The product sits on a colour stage and hangs below its bottom edge. The
    stage is its own element so the blurred shapes stay clipped to it while the
    screenshot is not. */
@@ -160,8 +193,10 @@
 .public-product-preview > a {
   transition: transform var(--motion-fast) var(--ease-standard);
 }
-.public-product-preview > a:hover {
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .public-product-preview > a:hover {
+    transform: translateY(-4px);
+  }
 }
 .public-product-preview figcaption {
   position: absolute;
@@ -220,8 +255,10 @@
 .help-topics a svg {
   transition: translate var(--motion-fast) var(--ease-standard);
 }
-.help-topics a:hover svg {
-  translate: 3px 0;
+@media (hover: hover) and (pointer: fine) {
+  .help-topics a:hover svg {
+    translate: 3px 0;
+  }
 }
 
 @media (width < 48rem) {

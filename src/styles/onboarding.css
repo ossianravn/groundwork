@@ -114,6 +114,32 @@
 .setup-complete-actions > .ui-button {
   width: 100%;
 }
+/* The finished workspace is summed up one line at a time, then the way in;
+   it is the end of setup, seen once. */
+@media (prefers-reduced-motion: no-preference) {
+  .setup-summary > div,
+  .setup-complete > :not(.setup-summary) {
+    animation: setup-rise var(--motion-slow) var(--ease-standard) both;
+  }
+  .setup-summary > div:nth-child(2) {
+    animation-delay: 50ms;
+  }
+  .setup-summary > div:nth-child(3) {
+    animation-delay: 100ms;
+  }
+  .setup-summary > div:nth-child(4) {
+    animation-delay: 150ms;
+  }
+  .setup-complete > :not(.setup-summary) {
+    animation-delay: 200ms;
+  }
+}
+@keyframes setup-rise {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
 @container (width < 25rem) {
   .setup-invite-row {
     grid-template-columns: minmax(0, 1fr);

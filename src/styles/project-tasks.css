@@ -53,6 +53,10 @@
   text-align: start;
   overflow-wrap: anywhere;
   cursor: pointer;
+  /* A ticked task's title fades to muted with its box. */
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
 }
 .task-title:hover {
   background: var(--accent);

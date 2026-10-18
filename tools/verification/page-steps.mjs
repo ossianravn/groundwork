@@ -26,7 +26,17 @@ export function pageSteps(browser) {
 
     const sidebar = phone ? ".mobile-sidebar" : ".desktop-sidebar"
 
-    if (phone) browser("click", ".mobile-menu-button")
+    // The sheet takes focus once open, which scrolls it to its start; a
+    // click measured before that lands on whatever scrolls into its place.
+    if (phone) {
+      browser("click", ".mobile-menu-button")
+      browser(
+        "wait",
+        "--fn",
+        `document.querySelector(".mobile-sidebar")?.contains(document.activeElement) && !document.querySelector(".mobile-sidebar[data-starting-style], .mobile-sidebar [data-starting-style]")`,
+      )
+    }
+
     browser("click", `${sidebar} .account-menu-trigger`)
     browser("wait", "[role=menuitem]")
     browser("find", "role", "menuitem", "click", "--name", "Appearance")
