@@ -2,7 +2,9 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
-## Unreleased
+## v0.7.0 — 2026-10-18
+
+A finishing pass: the sidebar becomes a surface of its own, motion goes where it helps (a sliding tab underline, a check mark that settles, transitions limited to the properties that change, and a command-menu search that opens at once), and reduced motion keeps fades instead of stopping everything. The spacing aliases deprecated in v0.6.0 are gone, which is breaking; the entry says what to replace.
 
 ### Tokens
 
@@ -16,7 +18,7 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 - `tabs`: the line variant's underline is one `Tabs.Indicator` that slides to the selected tab over 200ms, instead of fading out under one tab and in under the next. It sits where the old underline did, inside the padding of a list that scrolls.
 - `checkbox`: the check mark scales in and out with the box over 120ms.
 - `button`, `toggle`, `badge`, `accordion`, `input-otp` and `tabs`: triggers transition the properties their states change (colour, background, border, ring, opacity and Button's press offset) instead of `transition-all`, so a padding or size change no longer animates.
-- `base`: reduced motion keeps fades instead of stopping all motion. Transitions keep only their opacity, colour and shadow changes, and `tw-animate` enter and exit animations lose their zoom, slide and spin, so dialogs, popovers, menus and sheets fade in place; accordions open at once. Components with their own entrance keyframes can switch to the new `motion-fade-in` keyframes under `prefers-reduced-motion: reduce`.
+- `base`: reduced motion keeps fades instead of stopping all motion. Transitions keep only their opacity, colour and shadow changes, and `tw-animate` enter and exit animations lose their zoom, slide and spin, so dialogs, popovers, menus and sheets fade in place, and `accordion` opens at once. Components with their own entrance keyframes can switch to the new `motion-fade-in` keyframes under `prefers-reduced-motion: reduce`.
 - `toast`: with reduced motion a toast fades in and out where it stands; it used to appear and vanish at once.
 - `shell`: `TopbarSearch`'s field opens at full width at once instead of growing from the magnifier; it is opened from the keyboard many times a day.
 
