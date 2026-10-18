@@ -118,6 +118,7 @@ function Reasoning({
         />
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-1 border-s-2 border-border ps-3 text-muted-foreground">
+        {/* oxlint-disable-next-line anti-slop/no-runtime-typeof -- children is a ReactNode by contract: text renders as Markdown, any other node as given. */}
         {typeof children === "string" ? (
           <MessageResponse streaming={streaming}>{children}</MessageResponse>
         ) : (

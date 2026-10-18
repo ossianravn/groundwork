@@ -2,6 +2,12 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+### Tokens
+
+- `base` (theme): `applyTheme` takes any `ThemeRoot`, the parts of an element it writes (class list, style and dataset), and still defaults to `<html>`; `themeChoices` is typed by a named `ThemeChoices` interface. Both types are exported.
+
 ## v0.7.0 — 2026-10-18
 
 A finishing pass: the sidebar becomes a surface of its own, motion goes where it helps (a sliding tab underline, a check mark that settles, transitions limited to the properties that change, and a command-menu search that opens at once), and reduced motion keeps fades instead of stopping everything. The spacing aliases deprecated in v0.6.0 are gone, which is breaking; the entry says what to replace.

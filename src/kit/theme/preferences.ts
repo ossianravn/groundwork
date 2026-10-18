@@ -39,9 +39,16 @@ export const defaultTheme: ThemeSettings = {
 export const themeStorageKey = "groundwork.theme.v1"
 
 /** The values each saved preference may take; anything else falls back to the default. */
-export const themeChoices: {
-  [Key in keyof ThemeSettings]: readonly ThemeSettings[Key][]
-} = {
+export interface ThemeChoices {
+  appearance: readonly Appearance[]
+  accent: readonly Accent[]
+  radius: readonly Radius[]
+  density: readonly Density[]
+  headerSurface: readonly HeaderSurface[]
+  font: readonly InterfaceFont[]
+}
+
+export const themeChoices: ThemeChoices = {
   appearance: ["light", "dark", "system"],
   accent: accents.map((accent) => accent.value),
   radius: ["subtle", "rounded"],
@@ -50,6 +57,7 @@ export const themeChoices: {
   font: interfaceFonts.map((font) => font.value),
 }
 
+/* oxlint-disable anti-slop/no-unknown-parameters, anti-slop/no-unsafe-dictionary-type, anti-slop/no-runtime-typeof -- normalizeTheme is the public decoder for saved theme data; every choice is checked against themeChoices before it leaves. */
 /** Decodes each saved choice independently, keeping the host's default for any it cannot use. */
 export function normalizeTheme(
   saved: unknown,
@@ -77,6 +85,7 @@ export function normalizeTheme(
     font: pick("font"),
   }
 }
+/* oxlint-enable anti-slop/no-unknown-parameters, anti-slop/no-unsafe-dictionary-type, anti-slop/no-runtime-typeof */
 
 export function readTheme(
   defaults: ThemeSettings = defaultTheme,
@@ -100,9 +109,19 @@ export function readTheme(
   }
 }
 
+/** The parts of an element that applyTheme writes; `<html>` by default. */
+export interface ThemeRoot {
+  classList: Pick<DOMTokenList, "toggle">
+  style: Pick<
+    CSSStyleDeclaration,
+    "colorScheme" | "setProperty" | "removeProperty"
+  >
+  dataset: DOMStringMap
+}
+
 export function applyTheme(
   theme: ThemeSettings,
-  root = document.documentElement,
+  root: ThemeRoot = document.documentElement,
   colors?: ThemeColors,
 ) {
   const dark =

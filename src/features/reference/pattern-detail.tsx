@@ -40,6 +40,7 @@ export function PatternDetail({
   ContextLink: ReferenceContextLinkComponent
 }) {
   const item = patterns.find((pattern) => pattern.id === id)
+
   if (!item)
     return (
       <Empty>
@@ -60,9 +61,11 @@ export function PatternDetail({
 
   const selected = item.examples[exampleIndex] ? exampleIndex : 0
   const example = item.examples[selected]
+
   const related = components.filter((component) =>
     component.patterns.includes(id),
   )
+
   const choices = item.examples.map((entry, index) => ({
     value: index,
     label: entry.label,

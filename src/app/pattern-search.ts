@@ -1,3 +1,4 @@
+import { z } from "zod"
 import {
   defaultPatternFilters,
   patternCategories,
@@ -7,6 +8,9 @@ import {
 
 export { defaultPatternFilters }
 
+// The search text is whatever string the URL holds; anything else is none.
+const searchText = z.string().catch("")
+
 export function parsePatternSearch(raw: {
   q?: unknown
   category?: unknown
@@ -14,7 +18,7 @@ export function parsePatternSearch(raw: {
   availability?: unknown
 }) {
   return {
-    q: typeof raw.q === "string" ? raw.q : "",
+    q: searchText.parse(raw.q),
     category: patternCategories.find((value) => value === raw.category) ?? "",
     surface: patternSurfaces.find((value) => value === raw.surface) ?? "",
     availability:
@@ -26,6 +30,7 @@ export function parsePatternDetailSearch(
   raw: Parameters<typeof parsePatternSearch>[0] & { example?: unknown },
 ) {
   const example = Number(raw.example)
+
   return {
     ...parsePatternSearch(raw),
     example: Number.isInteger(example) && example >= 0 ? example : 0,

@@ -12,6 +12,7 @@ import { readPatternSource } from "./pattern-sources"
 export function PatternIndexRoute() {
   const search = useSearch({ from: "/reference/patterns" })
   const navigate = useNavigate({ from: "/reference/patterns" })
+
   return (
     <ReferencePage title="Patterns" active="patterns">
       <PatternIndex
@@ -30,6 +31,7 @@ export function PatternDetailRoute() {
   const search = useSearch({ from: "/reference/patterns/$patternId" })
   const navigate = useNavigate({ from: "/reference/patterns/$patternId" })
   const item = patterns.find((pattern) => pattern.id === patternId)
+
   return (
     <ReferencePage title={item?.title ?? "Pattern not found"} active="patterns">
       <div className="reference-back">
