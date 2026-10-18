@@ -2,7 +2,9 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
-## Unreleased
+## v0.7.1 — 2026-10-18
+
+A small typing release with no visual changes: `applyTheme` can theme any element-like target, and the theme's saved choices have a named type.
 
 ### Tokens
 
