@@ -16,6 +16,8 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 - `tabs`: the line variant's underline is one `Tabs.Indicator` that slides to the selected tab over 200ms, instead of fading out under one tab and in under the next. It sits where the old underline did, inside the padding of a list that scrolls.
 - `checkbox`: the check mark scales in and out with the box over 120ms.
 - `button`, `toggle`, `badge`, `accordion`, `input-otp` and `tabs`: triggers transition the properties their states change (colour, background, border, ring, opacity and Button's press offset) instead of `transition-all`, so a padding or size change no longer animates.
+- `base`: reduced motion keeps fades instead of stopping all motion. Transitions keep only their opacity, colour and shadow changes, and `tw-animate` enter and exit animations lose their zoom, slide and spin, so dialogs, popovers, menus and sheets fade in place; accordions open at once. Components with their own entrance keyframes can switch to the new `motion-fade-in` keyframes under `prefers-reduced-motion: reduce`.
+- `toast`: with reduced motion a toast fades in and out where it stands; it used to appear and vanish at once.
 - `shell`: `TopbarSearch`'s field opens at full width at once instead of growing from the magnifier; it is opened from the keyboard many times a day.
 
 ## v0.6.0 — 2026-10-18
