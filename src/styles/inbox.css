@@ -27,15 +27,14 @@
   flex: 1;
   min-height: 0;
 }
-/* The list uses the kit ScrollArea; the reading pane keeps native scrolling. */
+/* The list uses the kit ScrollArea; in the reading pane the thread scrolls
+   between a fixed header and reply form, so the pane itself never does. */
 .inbox-list-scroll {
   height: 100%;
 }
 .inbox-detail-scroll {
   height: 100%;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
+  overflow: hidden;
 }
 .inbox-list {
   padding: 0;
@@ -136,6 +135,7 @@
   overflow: hidden;
 }
 .inbox-detail {
+  container-type: inline-size;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -244,12 +244,24 @@
     outline-offset: -2px;
   }
 }
-/* The Inbox is full-bleed: its list pane starts at the page's edge, so its
-   toolbar and rows start their content on the content edge (--inset-page)
-   like every other page (design-system.md, page anatomy). */
+/* The Inbox is full-bleed: every pane keeps its text --inset-page from both
+   of its edges, so the divider has the room the page edges have and the
+   content edges match the top bar's (design-system.md, page anatomy). A
+   pane's scrollbar sits inside that inset, never on its text. Quiet icon
+   and text buttons at an edge put their ink on it, as in the top bar. */
 .inbox-page .inbox-toolbar,
-.inbox-page .inbox-row {
-  padding-inline-start: var(--inset-page);
+.inbox-page .inbox-row,
+.inbox-page .inbox-message-header,
+.inbox-page .inbox-reply {
+  padding-inline: var(--inset-page);
+}
+.inbox-page .inbox-toolbar-actions {
+  /* Icons are size-4 (--space-4); the button centres one in its square. */
+  margin-inline-end: calc((var(--space-4) - var(--control-height)) / 2);
+}
+/* Mark read's label ends on the edge; the button pads its end by 10px. */
+.inbox-page .inbox-message-heading > .ui-button {
+  margin-inline-end: calc(var(--space-2) * -1.25);
 }
 .inbox-page .inbox-list li + li {
   background-position-x: calc(var(--inset-page) + 2rem + var(--gap-item));

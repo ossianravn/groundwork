@@ -1,12 +1,14 @@
-.inbox-detail-scroll {
-  overflow: hidden;
-}
 .inbox-thread {
   flex: 1;
   min-height: 6rem;
 }
+/* The thread's native scrollbar keeps a gutter whose width depends on the
+   browser, so the messages are measured from the pane (.inbox-detail is the
+   container) and keep its inset on both sides whatever the gutter. */
 .inbox-thread [data-slot="message-scroller-content"] {
-  padding: var(--inset-card);
+  width: calc(100cqw - 2 * var(--inset-page));
+  margin-inline-start: var(--inset-page);
+  padding-block: var(--inset-card);
   gap: var(--gap-zone);
 }
 .inbox-thread
