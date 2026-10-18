@@ -1,0 +1,75 @@
+/* Voice mode. Full screen covers the chat column; the thread and composer
+   stay mounted underneath (the draft survives) but out of sight and out of
+   the tab order. The bar takes the composer's place and width. */
+.assistant-page {
+  position: relative;
+}
+.assistant-page:has(> .assistant-voice) > :not(.assistant-voice) {
+  visibility: hidden;
+}
+.assistant-voice {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  outline: none;
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+@starting-style {
+  .assistant-voice {
+    opacity: 0;
+  }
+}
+.assistant-voice {
+  --voice-aura-size: min(16rem, 56vw, 36dvh);
+}
+/* Back to the thread sits where page actions sit, on the content edge. */
+.assistant-voice-show-chat {
+  position: absolute;
+  top: var(--gap-group);
+  inset-inline-end: var(--inset-page);
+}
+/* On phones the controls sit at the bottom, within reach of a thumb. */
+@media (width < 40rem) {
+  .assistant-voice [data-slot="voice-session-visual"] {
+    margin-top: auto;
+  }
+  .assistant-voice [data-slot="voice-session-controls"] {
+    margin-top: auto;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+.assistant-voice-offer {
+  display: grid;
+  gap: var(--gap-control);
+  max-width: 28rem;
+  text-align: center;
+}
+.assistant-voice-offer h2 {
+  font-size: var(--text-feature);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.assistant-voice-offer p {
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+.assistant-voice-bar {
+  outline: none;
+}
+.assistant-voice-bar:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.assistant-voice-bar-text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+.assistant-voice-bar-text [data-slot="voice-session-caption"]:empty,
+.assistant-voice-bar-text [data-slot="voice-session-caption"]:has(> p:empty) {
+  display: none;
+}
+::view-transition-group(assistant-voice-aura) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--ease-standard);
+}

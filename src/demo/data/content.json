@@ -299,6 +299,34 @@
   ],
   "releases": [
     {
+      "version": "0.20.0",
+      "date": "2026-10-18",
+      "title": "Talk it through",
+      "summary": "Ask the assistant out loud: dictate a message, or talk with it in voice mode and hear it answer.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Dictate: press the microphone in the composer and your words appear as you speak, ready to edit or send. It works while the assistant is still replying, so you can ask your next question straight away.",
+            "Voice mode: with nothing written, the round button starts a spoken conversation. Ask, and the assistant answers aloud, with each word lighting up as it is said.",
+            "Show chat keeps the conversation going in a bar under the thread, so plans, figures and approvals stay in view. When a reply needs your decision, voice moves there by itself.",
+            "Press the orb or Space to interrupt, M to mute and Escape to end."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Voice uses your browser's own speech recognition and voices; in Chrome and Edge your browser's maker recognises the audio. Without a microphone, voice mode plays a sample conversation. Answers are still scripted, and conversations reset on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.19.2",
       "date": "2026-10-18",
       "title": "A roomier inbox",

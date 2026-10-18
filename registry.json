@@ -147,6 +147,11 @@
           "target": "~/src/kit/styles/topbar.css"
         },
         {
+          "path": "src/kit/styles/voice.css",
+          "type": "registry:file",
+          "target": "~/src/kit/styles/voice.css"
+        },
+        {
           "path": "src/kit/styles/workspace-switcher.css",
           "type": "registry:file",
           "target": "~/src/kit/styles/workspace-switcher.css"
@@ -2102,6 +2107,70 @@
       ]
     },
     {
+      "name": "voice",
+      "type": "registry:block",
+      "title": "Voice",
+      "description": "Voice for chat: dictation in the prompt input, a spoken-conversation session (full screen or a bar in place of the composer) with an aura that moves with the sound, captions that light up as they are spoken, and hooks for the browser's speech recognition, speech output and microphone level.",
+      "dependencies": [
+        "cn@^0.4.0",
+        "lucide-react@^1.48.0"
+      ],
+      "registryDependencies": [
+        "ossianravn/groundwork/ai",
+        "ossianravn/groundwork/base",
+        "ossianravn/groundwork/button",
+        "ossianravn/groundwork/kbd",
+        "ossianravn/groundwork/tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/kit/voice/audio-level.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/audio-level.ts"
+        },
+        {
+          "path": "src/kit/voice/prompt-input-speech.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/prompt-input-speech.tsx"
+        },
+        {
+          "path": "src/kit/voice/speech-output.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/speech-output.ts"
+        },
+        {
+          "path": "src/kit/voice/speech-recognition.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/speech-recognition.ts"
+        },
+        {
+          "path": "src/kit/voice/speech-text.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/speech-text.ts"
+        },
+        {
+          "path": "src/kit/voice/transcription.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/transcription.tsx"
+        },
+        {
+          "path": "src/kit/voice/voice-aura.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/voice-aura.tsx"
+        },
+        {
+          "path": "src/kit/voice/voice-session.tsx",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/voice-session.tsx"
+        },
+        {
+          "path": "src/kit/voice/voice-state.ts",
+          "type": "registry:file",
+          "target": "~/src/kit/voice/voice-state.ts"
+        }
+      ]
+    },
+    {
       "name": "kit",
       "type": "registry:item",
       "title": "Kit",
@@ -2177,7 +2246,8 @@
         "ossianravn/groundwork/panel-header",
         "ossianravn/groundwork/rich-text",
         "ossianravn/groundwork/shell",
-        "ossianravn/groundwork/theme-panel"
+        "ossianravn/groundwork/theme-panel",
+        "ossianravn/groundwork/voice"
       ],
       "files": []
     }

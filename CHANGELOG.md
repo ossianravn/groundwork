@@ -2,6 +2,18 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+### Voice
+
+- `voice` (new item): voice for chat, built on the browser's speech recognition and speech output.
+  - `PromptInputSpeech` dictates into a `PromptInput`, after what is written, while the model replies too. Typing or sending stops it. It is hidden where the browser cannot recognise speech, and failures reach `onError` in words.
+  - `VoiceSession` holds a spoken conversation, full (fills its container) or as a bar in a composer's place, with `VoiceSessionVisual`, `VoiceSessionCaption`, `VoiceSessionStatus` (a polite live region), `VoiceSessionControls`, `VoiceMuteButton`, `VoiceEndButton` and `VoiceTimer`. M mutes, Escape ends and Space interrupts.
+  - `VoiceAura` is an orb of light that drifts with a `VoiceState` and swells with a level from `useStreamLevel` (a microphone) or `usePulseLevel` (beats). It moves by transform alone, pauses off screen and holds still with reduced motion; colours come from `--voice-aura-1` to `-3` and size from `--voice-aura-size`.
+  - `Transcription` lights words up to a character position; `useSpeechOutput` speaks sentence by sentence and reports that position, at a steady pace where a voice reports no words; `sentences` and `sentenceAt` split text for captions.
+  - `useSpeechRecognition`, `speechRecognitionSupported` and `speechErrorMessage` wrap the recognizer.
+- `base`: `voice.css` holds the aura's styles and is imported by `kit.css`.
+
 ## v0.7.1 — 2026-10-18
 
 A small typing release with no visual changes: `applyTheme` can theme any element-like target, and the theme's saved choices have a named type.

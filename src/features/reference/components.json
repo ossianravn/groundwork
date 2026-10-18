@@ -800,6 +800,62 @@
     "implementation": "src/kit/answer/answer-renderer.tsx"
   },
   {
+    "id": "speech-input",
+    "name": "Speech input",
+    "category": "AI and chat",
+    "purpose": "Speak a message instead of typing it, even while the model replies.",
+    "notes": [
+      "PromptInputSpeech sits in the prompt input's footer. Words appear in the message as they are heard, after anything already written, and stay there to edit or send.",
+      "It keeps working while the model replies, so a spoken follow-up queues like a typed one. Typing or sending stops it; four bars follow the microphone while it listens.",
+      "It uses the browser's speech recognition (in Chrome and Edge the audio goes to the browser vendor's service) and is hidden where there is none, as in Firefox. Failures such as a blocked microphone reach onError in words to show."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-31"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/speech-input",
+      "label": "AI Elements Speech input"
+    },
+    "implementation": "src/kit/voice/prompt-input-speech.tsx"
+  },
+  {
+    "id": "voice-session",
+    "name": "Voice session",
+    "category": "AI and chat",
+    "purpose": "Hold a spoken conversation: listen, think and speak, with the thread in reach.",
+    "notes": [
+      "Full fills its container with an aura over the status, captions and controls; bar is a strip that takes the composer's place, so answers stay in view. M mutes, Escape ends and Space or pressing the aura interrupts a reply.",
+      "VoiceAura drifts with the state and swells with the sound (useStreamLevel for a microphone, usePulseLevel for audio the page cannot measure). It moves by transform alone, pauses off screen and holds still with reduced motion. Colours come from --voice-aura-1 to -3.",
+      "The status line is a polite live region. The host owns the conversation: in Tandem, voice messages land in the thread, and a reply that needs a decision moves the session to the bar."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-32"],
+    "documentation": {
+      "href": "https://hextaui.com/blocks/voice-mode",
+      "label": "HextaUI Voice mode (inspiration)"
+    },
+    "implementation": "src/kit/voice/voice-session.tsx"
+  },
+  {
+    "id": "transcription",
+    "name": "Transcription",
+    "category": "AI and chat",
+    "purpose": "Show words lighting up as they are spoken.",
+    "notes": [
+      "Pass the text and the characters reached; said words take the text colour and the rest stay muted. useSpeechOutput reports that position as it speaks, sentence by sentence.",
+      "Where a voice reports no word timings, or speech is silent, progress follows a steady speaking pace. sentenceAt shows one sentence at a time for captions."
+    ],
+    "context": "Assistant",
+    "href": "/app/demo/assistant",
+    "patterns": ["AI-33"],
+    "documentation": {
+      "href": "https://elements.ai-sdk.dev/components/transcription",
+      "label": "AI Elements Transcription"
+    },
+    "implementation": "src/kit/voice/transcription.tsx"
+  },
+  {
     "id": "terminal",
     "name": "Terminal",
     "category": "Data",
