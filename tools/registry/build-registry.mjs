@@ -42,6 +42,7 @@ const groups = {
   "data-table": ["data-table/"],
   "rich-text": ["rich-text/"],
   ai: ["ai/"],
+  voice: ["voice/"],
   answer: ["answer/"],
   shell: ["shell/"],
   "theme-panel": ["theme/*.tsx"],
@@ -50,6 +51,7 @@ const groups = {
 const descriptions = {
   base: "Tokens, stylesheets, the theme runtime and the cn utility. Every other item builds on it; import src/kit/styles/kit.css as the Tailwind entry.",
   ai: "Chat components for AI SDK UI: conversation, streaming markdown response, prompt input, suggestions and message actions. Presentational; pass status and handlers from useChat.",
+  voice: "Voice for chat: dictation in the prompt input, a spoken-conversation session (full screen or a bar in place of the composer) with an aura that moves with the sound, captions that light up as they are spoken, and hooks for the browser's speech recognition, speech output and microphone level.",
   answer:
     "Interactive answers: a renderer for answers a model composes from a library of components (as a display tool's streaming input), Zod-defined components with the tool's schema (a Standard Schema for tool APIs such as the AI SDK's, or JSON Schema) and a prompt description, answer state and actions, and generic blocks (heading, text, figures, section, callout, form).",
   "code-block":
@@ -68,8 +70,7 @@ const descriptions = {
     "Activity by day as a GitHub-style calendar in one hue; a keyboard grid (arrows move by day and week) with a detail line.",
   "uptime-strip":
     "A service's recent days as bars, good and incident days in status colours, with hover detail and the uptime and incident days in words.",
-  "rich-text":
-    "Tiptap editor, toolbar and static renderer for stored documents.",
+  "rich-text": "Tiptap editor, toolbar and static renderer for stored documents.",
   shell:
     "Workspace and public layouts: navigation, collapsible rail, account menu and page actions.",
   "theme-panel":

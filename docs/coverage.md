@@ -203,6 +203,9 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | AI-28 | Interactive answer | [Assistant](pages/app/assistant.md) | /app/demo/assistant; /reference/components/answer | Example |
 | AI-29 | Answer state carried forward | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-30 | Answer form | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-31 | Dictation | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/speech-input | Example |
+| AI-32 | Voice conversation | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/voice-session | Example |
+| AI-33 | Spoken captions | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/transcription | Example |
 | AI-24 | Coding agent session | [Reference patterns](pages/reference/patterns.md) | /reference/specimens/coding-agent (specimen only) | Example |
 | DEV-01 | Code block | [Design system](design-system.md) | /reference/components/code-block; assistant replies; webhook deliveries | Example |
 | DEV-02 | Snippet | [API keys and webhooks](pages/settings/developers.md) | /app/demo/settings/api-keys; /reference/components/snippet | Example |

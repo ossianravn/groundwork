@@ -4,6 +4,7 @@ const sources = import.meta.glob<string>(
     // Every AI and chat source, rather than one line per file.
     "../kit/ai/*.{ts,tsx}",
     "../kit/answer/*.{ts,tsx}",
+    "../kit/voice/*.{ts,tsx}",
     "!../kit/answer/*.test.{ts,tsx}",
     "../features/assistant/*.{ts,tsx}",
     "../features/assistant/answers/*.{ts,tsx}",

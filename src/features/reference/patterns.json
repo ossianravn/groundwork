@@ -3421,6 +3421,89 @@
     ]
   },
   {
+    "id": "AI-31",
+    "title": "Dictation",
+    "originalName": "Speech input",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "deferred": "",
+    "summary": "Speak a message into the composer instead of typing it, even while the model replies.",
+    "implemented": "A microphone in the composer's footer turns speech into text with the browser's recognizer. Words appear after what is already written as they are heard and stay there to edit or send; a spoken follow-up during a reply queues like a typed one. Four bars follow the microphone while it listens; typing or sending stops it; a blocked microphone is explained. Hidden where the browser has no speech recognition.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "Press the microphone beside the send button and ask a question aloud."
+      },
+      {
+        "label": "Speech input reference",
+        "href": "/reference/components/speech-input",
+        "instruction": "Press the microphone, speak, then send."
+      }
+    ],
+    "sources": [
+      "src/kit/voice/prompt-input-speech.tsx",
+      "src/kit/voice/speech-recognition.ts",
+      "src/kit/voice/audio-level.ts",
+      "src/features/assistant/assistant-composer.tsx"
+    ]
+  },
+  {
+    "id": "AI-32",
+    "title": "Voice conversation",
+    "originalName": "Voice mode",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "deferred": "",
+    "summary": "Talk with the assistant and hear it answer, with the thread one press away.",
+    "implemented": "With nothing written, the send button's place starts voice mode: an aura over the status, captions, Mute and End, listening for a question, sending it, speaking the reply and listening again. Show chat shrinks it into a bar in the composer's place so answers stay in view, and a reply that needs a decision moves it there. Space or pressing the aura interrupts, M mutes and Escape ends. Without a microphone it offers a sample conversation.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "With the composer empty, press the round voice button; without a microphone, choose Play a sample, then Show chat."
+      },
+      {
+        "label": "Voice session reference",
+        "href": "/reference/components/voice-session",
+        "instruction": "Switch between Listening, Thinking and Speaking, then choose In chat."
+      }
+    ],
+    "sources": [
+      "src/kit/voice/voice-session.tsx",
+      "src/kit/voice/voice-aura.tsx",
+      "src/features/assistant/assistant-voice.tsx",
+      "src/features/assistant/use-voice-conversation.ts"
+    ]
+  },
+  {
+    "id": "AI-33",
+    "title": "Spoken captions",
+    "originalName": "Transcription",
+    "category": "AI and chat",
+    "surface": "Shared",
+    "deferred": "",
+    "summary": "Show what is being said, one sentence at a time, with each word lighting up as it is spoken.",
+    "implemented": "Speech output speaks a reply sentence by sentence and reports how far it has got; the caption shows the current sentence with said words in the text colour and the rest muted. Where a voice reports no word timings, or speech is silent, progress follows a steady speaking pace.",
+    "examples": [
+      {
+        "label": "Assistant",
+        "href": "/app/demo/assistant",
+        "instruction": "In voice mode, watch the caption while the reply is spoken."
+      },
+      {
+        "label": "Transcription reference",
+        "href": "/reference/components/transcription",
+        "instruction": "Press Play."
+      }
+    ],
+    "sources": [
+      "src/kit/voice/transcription.tsx",
+      "src/kit/voice/speech-output.ts",
+      "src/kit/voice/speech-text.ts"
+    ]
+  },
+  {
     "id": "DVIZ-06",
     "title": "Area time series",
     "originalName": "Area time series",

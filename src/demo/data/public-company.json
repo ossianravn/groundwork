@@ -170,6 +170,14 @@
       "votes": 29
     },
     {
+      "id": "voice",
+      "stage": "Shipped",
+      "title": "Voice for the assistant",
+      "description": "Released in 0.20.0.",
+      "votes": 39,
+      "release": "0.20.0"
+    },
+    {
       "id": "agent-runs",
       "stage": "Shipped",
       "title": "Agent runs",
