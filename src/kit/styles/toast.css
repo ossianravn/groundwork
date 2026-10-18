@@ -158,10 +158,10 @@
   outline: 2px solid var(--ring);
   outline-offset: 1px;
 }
+/* With reduced motion a toast fades in and out where it stands. */
 @media (prefers-reduced-motion: reduce) {
-  .toast,
-  .toast-content {
-    transition: none;
+  .toast[data-starting-style] {
+    opacity: 0;
   }
 }
 @media (forced-colors: active) {

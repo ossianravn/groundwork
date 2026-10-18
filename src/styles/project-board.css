@@ -104,8 +104,9 @@
   opacity: 0;
   transition-duration: 200ms;
 }
+/* With reduced motion the card lifts by its shadow alone. */
 @media (prefers-reduced-motion: reduce) {
-  .project-board-drag-preview {
+  .project-card.project-board-drag-preview {
     rotate: none;
     scale: none;
   }

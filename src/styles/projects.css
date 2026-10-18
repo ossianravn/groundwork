@@ -236,10 +236,14 @@
 .projects-card[data-surface="plain"] .project-board-content {
   padding-inline: 0;
 }
-/* Switching Table, Cards and Board fades the new view in. */
-@media (prefers-reduced-motion: no-preference) {
+/* Switching Table, Cards and Board fades the new view in; with reduced
+   motion it fades without the rise. */
+.project-results > :first-child {
+  animation: project-view-in var(--motion-fast) var(--ease-standard);
+}
+@media (prefers-reduced-motion: reduce) {
   .project-results > :first-child {
-    animation: project-view-in var(--motion-fast) var(--ease-standard);
+    animation-name: motion-fade-in;
   }
 }
 @keyframes project-view-in {

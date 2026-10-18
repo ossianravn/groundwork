@@ -116,13 +116,33 @@
     min-height: 2.75rem;
   }
 }
+/* Reduced motion keeps the fades and colour changes that help a person
+   follow a change, and removes movement: nothing slides, scales, rotates,
+   grows or scrolls smoothly. Transitions keep only their fading properties,
+   and the tw-animate enter and exit animations (dialogs, popovers, menus)
+   become fades. Components with keyframes of their own handle them: an
+   entrance switches to motion-fade-in, and an accordion or a loop stops. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transition-property:
+      opacity, color, background-color, border-color, outline-color,
+      text-decoration-color, fill, stroke, box-shadow !important;
+    --tw-enter-translate-x: 0 !important;
+    --tw-enter-translate-y: 0 !important;
+    --tw-enter-scale: 1 !important;
+    --tw-enter-rotate: 0 !important;
+    --tw-exit-translate-x: 0 !important;
+    --tw-exit-translate-y: 0 !important;
+    --tw-exit-scale: 1 !important;
+    --tw-exit-rotate: 0 !important;
+  }
+}
+@keyframes motion-fade-in {
+  from {
+    opacity: 0;
   }
 }
 @media (forced-colors: active) {

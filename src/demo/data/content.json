@@ -299,6 +299,32 @@
   ],
   "releases": [
     {
+      "version": "0.19.1",
+      "date": "2026-10-18",
+      "title": "Gentler reduced motion",
+      "summary": "When your device asks for reduced motion, Tandem now fades things in and out instead of stopping every transition, so changes stay easy to follow without anything moving.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "With reduced motion, dialogs, menus, side panels and notifications fade in where they appear, with no zoom or slide.",
+            "Switching views, changing prices and ticking tasks fade too, while tabs, sections and dragged cards change place at once and nothing tilts."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Tandem follows your device's motion setting; there is no separate switch in the demo. Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.19.0",
       "date": "2026-10-18",
       "title": "Moves that make sense",

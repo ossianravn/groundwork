@@ -132,8 +132,3 @@
     grid-column: auto;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .public-feature-shot > span {
-    transition: none;
-  }
-}

@@ -91,23 +91,31 @@
 /* The hero arrives in reading order: the headline's two lines, then the
    copy and actions, while the product settles onto its stage. The product is
    the page's largest image, so it is painted at once and only moves. It is
-   decorative and over in under a second; links work throughout. */
-@media (prefers-reduced-motion: no-preference) {
+   decorative and over in under a second; links work throughout. With
+   reduced motion the copy only fades and the product stays put. */
+.public-hero-copy > h1 > span,
+.public-hero-copy > :not(h1) {
+  animation: public-rise 600ms var(--ease-standard) both;
+}
+.public-product-preview {
+  animation: public-settle 600ms var(--ease-standard) 160ms both;
+}
+.public-hero-copy > h1 > span + span {
+  animation-delay: 80ms;
+}
+.public-hero-copy > :not(h1) {
+  animation-delay: 160ms;
+}
+.public-hero-copy > .public-note {
+  animation-delay: 240ms;
+}
+@media (prefers-reduced-motion: reduce) {
   .public-hero-copy > h1 > span,
   .public-hero-copy > :not(h1) {
-    animation: public-rise 600ms var(--ease-standard) both;
+    animation-name: motion-fade-in;
   }
   .public-product-preview {
-    animation: public-settle 600ms var(--ease-standard) 160ms both;
-  }
-  .public-hero-copy > h1 > span + span {
-    animation-delay: 80ms;
-  }
-  .public-hero-copy > :not(h1) {
-    animation-delay: 160ms;
-  }
-  .public-hero-copy > .public-note {
-    animation-delay: 240ms;
+    animation: none;
   }
 }
 @keyframes public-rise {
@@ -276,11 +284,5 @@
   .public-hero-copy > .public-note {
     grid-column: 1;
     text-align: left;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .public-product-preview > a,
-  .help-topics a svg {
-    transition: none;
   }
 }
