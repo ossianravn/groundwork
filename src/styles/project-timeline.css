@@ -2,23 +2,19 @@
 .project-timeline-view {
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-timeline-view > * {
   justify-self: stretch;
 }
-.project-timeline-view > [data-slot="toggle-group"] {
-  justify-self: start;
-}
+/* Record links: ink, underlined on hover (design-system.md, links). */
 .timeline-link {
   font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
   text-underline-offset: 0.2em;
   overflow-wrap: anywhere;
 }
 .timeline-link:hover {
-  text-decoration-color: currentColor;
+  text-decoration: underline;
 }
 
 /* The scroller is the containing block, so nothing inside widens the page. */
@@ -29,13 +25,14 @@
 .timeline {
   --name-width: 13rem;
   position: relative;
-  /* Grow with the date columns so the snapshot line is placed against the
-     full chart width, not the visible part. */
+  /* The range fits the width, so every project shows whole; narrow
+     screens keep half a rem a day and scroll. The snapshot line is placed
+     against the full chart width, not the visible part. */
   width: max-content;
   min-width: 100%;
   display: grid;
   grid-template-columns: var(--name-width) minmax(
-      calc(var(--timeline-days) * 0.8rem),
+      calc(var(--timeline-days) * 0.5rem),
       1fr
     );
 }
@@ -43,7 +40,7 @@
   grid-column: 2;
   display: grid;
   grid-template-columns: repeat(calc(var(--timeline-days) / 7), 1fr);
-  padding-bottom: var(--control-gap);
+  padding-bottom: var(--gap-control);
   border-bottom: 1px solid var(--border);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
@@ -85,8 +82,15 @@
   z-index: 2;
   display: grid;
   gap: 0.125rem;
-  padding: var(--control-gap) var(--content-gap) var(--control-gap) 0;
+  padding: var(--gap-control) var(--gap-group) var(--gap-control) 0;
   background: var(--background);
+}
+/* A long name keeps the row to two lines; the quick view has it whole. */
+.timeline-name > :first-child {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .timeline-meta {
   color: var(--muted-foreground);
@@ -136,10 +140,12 @@
   border-inline-start: 1.5px solid var(--brand);
   pointer-events: none;
 }
+/* The snapshot's pill sits in the axis row, in place of the week label it
+   would cover. */
 .timeline-today span {
   position: absolute;
-  top: -0.125rem;
-  translate: -50% -100%;
+  top: 0;
+  translate: -50% 0;
   padding: 0 0.375rem;
   border-radius: 999px;
   background: var(--brand);
@@ -147,20 +153,17 @@
   font-size: var(--text-meta);
   white-space: nowrap;
 }
-.timeline-scroll:has(.timeline-today) {
-  padding-top: 1.5rem;
-}
 
 /* Month */
 .month-calendar {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .month-calendar-heading {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .month-calendar-heading h3 {
   min-width: 9rem;
@@ -183,7 +186,7 @@
   padding-bottom: 0.25rem;
 }
 .month-weekdays span {
-  padding-inline: var(--control-gap);
+  padding-inline: var(--gap-control);
 }
 .month-grid {
   border-top: 1px solid var(--border);
@@ -194,7 +197,7 @@
   align-content: start;
   gap: 0.25rem;
   min-height: 6rem;
-  padding: var(--control-gap);
+  padding: var(--gap-control);
   border-inline-end: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   font-size: var(--text-meta);

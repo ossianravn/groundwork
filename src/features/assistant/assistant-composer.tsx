@@ -1,4 +1,8 @@
 import type { ChatStatus } from "ai"
+import { AudioLines } from "lucide-react"
+import { Button } from "@/kit/ui/button"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/kit/ui/tooltip"
+import { useToast } from "@/kit/ui/use-toast"
 import {
   DropdownMenuGroup,
   DropdownMenuLabel,
@@ -19,6 +23,8 @@ import {
   PromptInputAddReference,
   PromptInputAttachments,
 } from "@/kit/ai/prompt-input-parts"
+import { usePromptInput } from "@/kit/ai/prompt-input-context"
+import { PromptInputSpeech } from "@/kit/voice/prompt-input-speech"
 import { ProjectMark } from "@/components/project-identity"
 import { formatDate, type Project } from "@/demo/model"
 
@@ -47,6 +53,7 @@ export function AssistantComposer({
   model,
   onModelChange,
   usage,
+  onVoice,
 }: {
   status: ChatStatus
   /** The latest reply waits for an answer or approval. */
@@ -62,7 +69,10 @@ export function AssistantComposer({
   model: string
   onModelChange: (id: string) => void
   usage?: ContextUsage
+  /** Starts a spoken conversation. */
+  onVoice: () => void
 }) {
+  const toast = useToast()
   const busy = status === "submitted" || status === "streaming"
   const color = (id: string) => projects.find((item) => item.id === id)?.color
 
@@ -127,8 +137,37 @@ export function AssistantComposer({
           value={model}
           onValueChange={onModelChange}
         />
-        <PromptInputSubmit />
+        <PromptInputSpeech onError={(title) => toast.add({ title })} />
+        <SendOrVoice onVoice={onVoice} />
       </PromptInputFooter>
     </PromptInput>
+  )
+}
+
+/** With nothing to send, the send button's place starts voice instead. */
+function SendOrVoice({ onVoice }: { onVoice: () => void }) {
+  const { value, busy, attachments } = usePromptInput()
+
+  if (busy || value.trim() || attachments.items.length)
+    return <PromptInputSubmit />
+
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button
+            id="assistant-voice-start"
+            type="button"
+            size="icon"
+            aria-label="Voice mode"
+            className="rounded-full"
+            onClick={onVoice}
+          />
+        }
+      >
+        <AudioLines aria-hidden="true" />
+      </TooltipTrigger>
+      <TooltipContent>Voice mode</TooltipContent>
+    </Tooltip>
   )
 }

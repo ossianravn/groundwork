@@ -1,6 +1,5 @@
-import { useId, type ReactNode, type RefObject } from "react"
+import type { ReactNode, RefObject } from "react"
 import { Button } from "@/kit/ui/button"
-import { Textarea } from "@/kit/ui/textarea"
 import {
   WorkflowRunSummary,
   WorkflowStep,
@@ -11,8 +10,8 @@ import {
   type AgentRun,
   type AgentRunStep,
 } from "@/demo/agent-runs"
-import { plainText } from "@/features/assistant/assistant-text"
 import { plural } from "@/demo/assistant/answer-format"
+import { AgentReportReview } from "./agent-report-review"
 
 export interface RunActions {
   approve: (id: string, report?: string) => void
@@ -80,11 +79,10 @@ export function AgentRunView({
   startedBy: string
   actions: RunActions
   headingRef: RefObject<HTMLHeadingElement | null>
-  /** The run picker and New run, at the end of the state line. */
+  /** Actions at the end of the state line, such as All agents. */
   aside: ReactNode
   onShowResult: (run: AgentRun) => void
 }) {
-  const formId = useId()
   const step = run.steps[currentStep(run)]
 
   const after = (act: () => void) => () => {
@@ -138,46 +136,21 @@ export function AgentRunView({
               </li>
             ))}
           </ul>
-          <div className="flex flex-wrap gap-2">
+          <div className="agent-run-actions">
+            {discard}
             <Button size="sm" onClick={after(() => actions.approve(run.id))}>
               Add {plural(run.tasks.length, "task")}
             </Button>
-            {discard}
           </div>
         </div>
       )
 
     return (
-      <form
-        id={formId}
-        className="grid gap-3"
-        onSubmit={(event) => {
-          event.preventDefault()
-          const report = new FormData(event.currentTarget).get("report")
-
-          after(() => actions.approve(run.id, String(report)))()
-        }}
-      >
-        <label className="grid gap-1.5">
-          <span className="text-sm font-medium">Report</span>
-          <Textarea
-            name="report"
-            required
-            rows={10}
-            defaultValue={plainText(run.report ?? "")}
-            aria-describedby={`${formId}-hint`}
-          />
-          <span id={`${formId}-hint`} className="text-xs text-muted-foreground">
-            Edit it if needed. It's posted to Comments under your name.
-          </span>
-        </label>
-        <div className="flex flex-wrap gap-2">
-          <Button size="sm" type="submit">
-            Post report
-          </Button>
-          {discard}
-        </div>
-      </form>
+      <AgentReportReview
+        report={run.report ?? ""}
+        discard={discard}
+        onPost={(text) => after(() => actions.approve(run.id, text))()}
+      />
     )
   }
 

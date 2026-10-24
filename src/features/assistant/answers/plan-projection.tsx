@@ -126,9 +126,7 @@ export function PlanProjection({ props }: AnswerComponentProps<PlanViewProps>) {
     <AnalyticsChartCard
       label={props.title ?? "Projection"}
       className="answer-plan-chart"
-      heading={
-        <ChartTotal as="h3" value={day(outcome.finish)} unit="with this plan" />
-      }
+      figure={<ChartTotal value={day(outcome.finish)} unit="with this plan" />}
       description={`As assigned ${day(assigned.finish)} · due ${day(plan.dueDate)}${outcome.unowned ? ` · ${outcome.unowned} without an owner, not counted` : ""}`}
       legend={
         <span className="analytics-legend-row">

@@ -1,14 +1,16 @@
-.activity-feed-card {
-  gap: 0;
+/* Filters, calendar and feed share one reading width on the canvas. */
+.activity-page > * {
+  max-width: 60rem;
 }
-.activity-feed-toolbar {
-  padding-bottom: var(--content-gap);
-  border-bottom: 1px solid var(--border);
+.activity-more {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--gap-group);
 }
 .activity-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   align-items: center;
 }
 .activity-filters [data-slot="input-group"] {
@@ -21,15 +23,15 @@
 .activity-filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .activity-mobile-filters {
   display: none;
 }
 .activity-filter-drawer {
   display: grid;
-  gap: var(--item-padding);
-  padding: var(--item-padding) 1rem 1rem;
+  gap: var(--gap-item);
+  padding: var(--inset-row) 1rem 1rem;
 }
 .activity-filter-field {
   display: grid;
@@ -42,59 +44,42 @@
 .activity-filter-field [data-slot="select-trigger"] {
   width: 100%;
 }
-.activity-day {
+/* Week headings over the shared rows; each row keeps its date. */
+.activity-weeks {
   display: grid;
-  grid-template-columns: 6rem minmax(0, 1fr);
-  gap: var(--content-gap);
-  padding-block: var(--content-gap);
+  gap: var(--gap-zone);
 }
-.activity-day + .activity-day {
-  border-top: 1px solid var(--border);
+.activity-week {
+  display: grid;
+  gap: var(--gap-item);
 }
-.activity-day h2 {
+.activity-week h2 {
   font-size: var(--text-meta);
   font-weight: 500;
-  padding-top: 0.4rem;
   color: var(--muted-foreground);
 }
-.activity-day ol {
-  display: grid;
-  gap: var(--item-padding);
-}
-.activity-day li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: var(--item-padding);
-  align-items: start;
-}
-.activity-day li p {
-  padding-top: 0.2rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-/* Projects are named in ink after their colour mark, as in Inbox; a quiet
-   underline keeps them recognisable as links. */
-.activity-project-link,
-.activity-copy .activity-project {
+/* Projects are named in ink after their colour mark, as in Inbox: no
+   underline at rest, one on hover and focus (design-system.md, links). The
+   link may be a button that opens the project in place. */
+.activity-project-link {
   position: relative;
   margin-inline-start: 0.875rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
   font-weight: 500;
+  text-align: start;
   color: var(--foreground);
-  text-decoration: underline;
-  text-decoration-color: color-mix(
-    in oklch,
-    var(--foreground) 25%,
-    transparent
-  );
+  cursor: pointer;
   text-underline-offset: 0.2em;
 }
 .activity-project-link:hover,
-.activity-copy .activity-project:hover {
-  text-decoration-color: currentColor;
+.activity-project-link:focus-visible {
+  text-decoration: underline;
 }
-/* The mark sits just outside the underlined name. */
-.activity-project-link::before,
-.activity-copy .activity-project::before {
+/* The mark sits just before the name. */
+.activity-project-link::before {
   content: "";
   position: absolute;
   left: -0.75rem;
@@ -105,10 +90,6 @@
   border-radius: 0.15rem;
   background: var(--project-color);
 }
-/* The feed sits on the canvas at a reading width. */
-.activity-feed-card {
-  max-width: 60rem;
-}
 [data-slot="dialog-content"].activity-detail {
   max-width: min(36rem, calc(100% - 2rem));
   max-height: calc(100dvh - 2rem);
@@ -116,13 +97,13 @@
 }
 .activity-changes {
   display: grid;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
 }
 .activity-changes > div {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.375rem var(--item-padding);
-  padding-block: var(--control-gap);
+  gap: 0.375rem var(--gap-item);
+  padding-block: var(--gap-control);
   border-top: 1px solid var(--border);
 }
 .activity-changes dt {
@@ -150,42 +131,21 @@
   .activity-mobile-filters {
     display: inline-flex;
   }
-  .activity-day {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--control-gap);
-  }
-  .activity-day li {
-    gap: var(--control-gap);
-  }
-  .activity-event-details > span {
-    display: none;
-  }
-  .activity-event-details > svg {
-    display: block;
-  }
-  .activity-event-details.ui-button {
-    padding: 0;
-    width: var(--control-height);
-  }
 }
 /* When the team ships (DVIZ-13): a calendar of completions above the feed,
-   at the feed's reading width. */
+   its facts beside it. */
 .activity-heatmap {
   --heatmap-cell: 1.125rem;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--content-gap) var(--section-gap);
-  max-width: 60rem;
-  padding-bottom: var(--section-gap);
-  border-bottom: 1px solid var(--border);
+  gap: var(--gap-group) var(--gap-section);
 }
 .activity-heatmap h2 {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-weight: 600;
 }
 .activity-heatmap-total {
@@ -196,8 +156,23 @@
 }
 .activity-heatmap header {
   display: grid;
-  gap: 0.25rem;
+  gap: var(--gap-group);
   max-width: 20rem;
+}
+.activity-facts {
+  display: grid;
+  gap: var(--gap-item);
+}
+.activity-facts dt {
+  color: var(--muted-foreground);
+  font-size: var(--text-meta);
+}
+.activity-facts dd {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 .activity-heatmap header p {
   color: var(--muted-foreground);

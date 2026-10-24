@@ -88,9 +88,8 @@
 .toast-content {
   display: flex;
   align-items: center;
-  gap: var(--item-padding);
-  padding: var(--item-padding) var(--item-padding) var(--item-padding)
-    var(--content-gap);
+  gap: var(--gap-item);
+  padding: var(--inset-row) var(--inset-row) var(--inset-row) var(--gap-group);
   overflow: hidden;
   transition: opacity 0.25s;
 }
@@ -159,10 +158,10 @@
   outline: 2px solid var(--ring);
   outline-offset: 1px;
 }
+/* With reduced motion a toast fades in and out where it stands. */
 @media (prefers-reduced-motion: reduce) {
-  .toast,
-  .toast-content {
-    transition: none;
+  .toast[data-starting-style] {
+    opacity: 0;
   }
 }
 @media (forced-colors: active) {

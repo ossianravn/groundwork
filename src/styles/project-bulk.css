@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   flex-basis: 100%;
   min-width: 0;
 }
@@ -72,7 +72,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 100%;
 }
 .project-bulk-outcome,
@@ -85,7 +85,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-bulk-outcome:has(.project-bulk-notice:empty) {
   display: none;
@@ -93,7 +93,7 @@
 .project-bulk-failures {
   display: grid;
   justify-items: start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-table [data-slot="checkbox"] {
   margin-inline: auto;
@@ -117,7 +117,7 @@
     flex-wrap: wrap;
     align-items: center;
     flex-basis: 100%;
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .project-results-toolbar .project-search {
     flex: 1;

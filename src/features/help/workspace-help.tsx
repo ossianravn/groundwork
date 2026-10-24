@@ -112,7 +112,7 @@ export function WorkspaceHelp({
           <>
             <dl className="shortcut-list">
               <div>
-                <dt>Find a project</dt>
+                <dt>Search or jump to</dt>
                 <dd>
                   <KbdGroup>
                     <Kbd>Ctrl / ⌘</Kbd>

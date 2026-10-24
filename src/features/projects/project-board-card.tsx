@@ -1,62 +1,11 @@
-import { ProjectProgressBar } from "@/components/project-progress-bar"
 import type { ReactNode } from "react"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
 import { GripVertical, Ellipsis } from "lucide-react"
-import { MemberAvatar } from "@/kit/member-avatar"
-import { ProjectDueDate } from "@/components/project-due-date"
 import { Button } from "@/kit/ui/button"
-import { Checkbox } from "@/kit/ui/checkbox"
 import type { Member, Project, ProjectStatus } from "@/demo/model"
+import { ProjectCard } from "./project-card"
 import { ProjectBoardContextMenu, ProjectBoardMenu } from "./project-board-menu"
-
-function BoardCardContent({
-  project,
-  owner,
-  name,
-  selection,
-  actions,
-}: {
-  project: Project
-  owner: Member
-  name: ReactNode
-  selection: ReactNode
-  actions: ReactNode
-}) {
-  const percent = project.tasks
-    ? Math.round((project.completedTasks / project.tasks) * 100)
-    : 0
-
-  return (
-    <>
-      <div className="project-board-card-heading">
-        {selection}
-        <h4>{name}</h4>
-        <div className="project-board-card-actions">{actions}</div>
-      </div>
-      <div className="project-board-progress">
-        <div>
-          <span>
-            {project.completedTasks} / {project.tasks} tasks
-          </span>
-          <span>{percent}%</span>
-        </div>
-        <ProjectProgressBar
-          color={project.color}
-          value={percent}
-          label={`${project.name}: ${percent}% complete`}
-        />
-      </div>
-      <footer>
-        <span className="owner-cell">
-          <MemberAvatar member={owner} size="sm" />
-          <span>{owner.name}</span>
-        </span>
-        <ProjectDueDate date={project.dueDate} />
-      </footer>
-    </>
-  )
-}
 
 export function ProjectBoardCard({
   project,
@@ -89,7 +38,11 @@ export function ProjectBoardCard({
     isDragging,
     transform,
     transition,
-  } = useSortable({ id: project.id })
+  } = useSortable({
+    id: project.id,
+    // Neighbours make room on the drop's curve (--ease-standard).
+    transition: { duration: 200, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" },
+  })
 
   const actions = { project, onInspect, onMove, onReorder, first, last }
 
@@ -99,24 +52,20 @@ export function ProjectBoardCard({
       card={
         <li
           ref={setNodeRef}
-          className="project-board-card"
-          data-selected={selected}
+          className="project-card project-board-card"
+          data-density="board"
+          data-selected={selected || undefined}
           data-dragging={isDragging}
           style={{ transform: CSS.Transform.toString(transform), transition }}
         />
       }
     >
-      <BoardCardContent
+      <ProjectCard
         project={project}
         owner={owner}
-        name={name}
-        selection={
-          <Checkbox
-            aria-label={`Select ${project.name}`}
-            checked={selected}
-            onCheckedChange={onSelect}
-          />
-        }
+        title={name}
+        density="board"
+        selection={{ selected, onChange: onSelect }}
         actions={
           <>
             <Button
@@ -151,14 +100,15 @@ export function ProjectBoardCardPreview({
 
   return (
     <div
-      className="project-board-card project-board-drag-preview"
+      className="project-card project-board-card project-board-drag-preview"
+      data-density="board"
       aria-hidden="true"
     >
-      <BoardCardContent
+      <ProjectCard
         project={project}
         owner={owner}
-        name={<span className="font-semibold">{project.name}</span>}
-        selection={<span className="project-board-checkbox-preview" />}
+        title={<span className="project-name">{project.name}</span>}
+        density="board"
         actions={<Ellipsis size={16} />}
       />
     </div>

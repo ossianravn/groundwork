@@ -1,27 +1,54 @@
 /* The only source of token values. Components consume these tokens, never
    palette literals; kit.css maps them to Tailwind utilities. */
 :root {
+  /* Type ramp: six sizes (docs/design-system.md, Type). */
   --text-meta: 0.75rem;
   --text-body: 0.875rem;
   --text-section: 1rem;
+  --text-feature: 1.25rem;
   --text-page: 1.75rem;
   --text-metric: 2rem;
   --leading-body: 1.5;
   --leading-heading: 1.375;
   --leading-metric: 1.2;
+  /* Control heights: 28 inline row actions, 32 compact and card controls,
+     36 toolbars and page actions; one height per row. */
+  --control-height-xs: 1.75rem;
   --control-height-sm: 2rem;
   --control-padding-block: 0.25rem;
   /* Text-entry size; responsive.css adjusts it by width and pointer. */
   --control-font-size: var(--text-section);
-  --control-gap: 0.5rem;
-  /* Motion: brief and consistent; responsive.css removes it for reduced motion. */
+  /* Motion: brief and consistent; responsive.css removes it for reduced
+     motion. --motion-slow is for entrances seen once, such as a hero. */
   --motion-fast: 150ms;
+  --motion-slow: 400ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --content-gap: 1rem;
-  --stack-gap: 1.25rem;
-  --item-padding: 0.75rem;
+  /* Spacing: one 4px ramp, and the roles layout takes from it. Feature
+     code uses the roles only (docs/design-system.md, Spacing); density
+     and responsive.css set the roles, never the ramp. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  /* Icon and label inside one element; between controls in a group;
+     between items in a list; heading and its content, fields in a form;
+     page header, toolbar and content; peer sections. */
+  --gap-inline: var(--space-1);
+  --gap-control: var(--space-2);
+  --gap-item: var(--space-3);
+  --gap-group: var(--space-4);
+  --gap-zone: var(--space-6);
+  --gap-section: var(--space-12);
+  /* The page's top and side inset are one value, so the first row sits
+     as far from the top bar as from the sidebar. */
+  --inset-page: var(--space-8);
+  --inset-card: var(--space-4);
+  --inset-panel: var(--space-6);
+  --inset-row: var(--space-3);
   --navigation-height: 2.5rem;
-  --card-padding: 1.25rem;
   --sidebar-rail-width: 4.5rem;
   --background: oklch(0.995 0.001 270);
   /* Direction A: ink for primary actions, neutral hover and selection. */
@@ -39,11 +66,13 @@
   --border: oklch(0.916 0.006 270);
   --input: oklch(0.922 0 0);
   --control-indicator: oklch(0.66 0.009 270);
-  --sidebar: var(--background);
+  /* The sidebar is its own quiet surface, a shade under the work area, so
+     navigation and work read as two planes rather than one sheet of rules. */
+  --sidebar: oklch(0.979 0.003 270);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: oklch(0.925 0.005 270);
   --sidebar-ring: var(--ring);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -94,15 +123,14 @@
   --syntax-token-deleted: var(--destructive);
   --syntax-token-changed: var(--syntax-token-constant);
   --syntax-token-string-expression: var(--syntax-token-string);
-  --page-padding: 2rem;
-  --section-gap: 1.5rem;
-  --row-padding: 0.75rem;
   --sidebar-width: 15rem;
   --header-height: 4rem;
   --header-opacity: 20%;
   --header-blur: 16px;
+  /* Behind modal dialogs and sheets: a light dim, no blur. Popovers and menus
+     have no backdrop. */
+  --backdrop: oklch(0.2 0.01 270 / 16%);
   --control-height: 2.25rem;
-  --panel-padding: 1.5rem;
 }
 
 .dark {
@@ -121,7 +149,7 @@
   --border: oklch(0.305 0.012 270);
   --input: oklch(1 0 0 / 15%);
   --control-indicator: oklch(0.62 0.014 270);
-  --sidebar: var(--background);
+  --sidebar: oklch(0.135 0.005 270);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
@@ -154,6 +182,7 @@
   --syntax-token-string: oklch(0.8 0.12 150);
   --syntax-token-function: oklch(0.8 0.1 250);
   --syntax-token-constant: oklch(0.82 0.11 60);
+  --backdrop: oklch(0 0 0 / 45%);
 }
 
 /* Accents set the brand colour: links, focus, the trend and brand marks.
@@ -212,18 +241,20 @@
 :root[data-radius="subtle"] {
   --radius: 0.3rem;
 }
+/* Compact density moves each role one step down the ramp. */
 :root[data-density="compact"] {
   --control-height: 2rem;
   --control-height-sm: 1.75rem;
+  --control-height-xs: 1.5rem;
   --control-padding-block: 0.125rem;
-  --content-gap: 0.75rem;
-  --stack-gap: 1rem;
-  --item-padding: 0.5rem;
   --navigation-height: 2.25rem;
-  --card-padding: 1rem;
-  --panel-padding: 1.25rem;
   --header-height: 3.5rem;
-  --page-padding: 1.5rem;
-  --section-gap: 1rem;
-  --row-padding: 0.5rem;
+  --gap-item: var(--space-2);
+  --gap-group: var(--space-3);
+  --gap-zone: var(--space-4);
+  --gap-section: var(--space-8);
+  --inset-page: var(--space-6);
+  --inset-card: var(--space-3);
+  --inset-panel: var(--space-4);
+  --inset-row: var(--space-2);
 }

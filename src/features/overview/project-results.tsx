@@ -26,10 +26,12 @@ export function ProjectResults({
   members,
   onSelect,
   renderName,
+  renderCardName,
   renderBoard,
   renderTimeline,
   rowActions,
   onClearFilters,
+  pageZone = false,
 }: {
   table: DataTable<Project>
   view: ProjectTableState["view"]
@@ -38,10 +40,17 @@ export function ProjectResults({
   members: Member[]
   onSelect: (id: string) => void
   renderName?: (project: Project) => ReactNode
+  /** The name on a card, when it opens differently from a table row. */
+  renderCardName?: (project: Project) => ReactNode
   renderBoard?: (table: DataTable<Project>) => ReactNode
-  renderTimeline?: (table: DataTable<Project>) => ReactNode
+  renderTimeline?: (
+    table: DataTable<Project>,
+    layout: "timeline" | "month",
+  ) => ReactNode
   rowActions?: ProjectRowActions
   onClearFilters: () => void
+  /** Marks the results as the page's content zone. */
+  pageZone?: boolean
 }) {
   const style: ProjectResultsStyle = {
     "--project-row-count": Math.min(rowCount, table.state.pagination.pageSize),
@@ -50,17 +59,22 @@ export function ProjectResults({
   const empty = table.getPrePaginatedRowModel().rows.length === 0
 
   return (
-    <div className="project-results" data-view={view} style={style}>
+    <div
+      className="project-results"
+      data-view={view}
+      data-page-zone={pageZone ? "content" : undefined}
+      style={style}
+    >
       {view === "board" && renderBoard ? (
         renderBoard(table)
-      ) : view === "timeline" && renderTimeline ? (
-        renderTimeline(table)
+      ) : (view === "timeline" || view === "month") && renderTimeline ? (
+        renderTimeline(table, view)
       ) : view === "grid" ? (
         <ProjectGrid
           table={table}
           members={members}
           onInspect={onSelect}
-          renderName={renderName}
+          renderName={renderCardName ?? renderName}
         />
       ) : (
         <ProjectTableContent table={table} rowActions={rowActions} />

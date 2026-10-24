@@ -10,8 +10,8 @@ export function SliderExample() {
   const [team, setTeam] = useState(10)
 
   return (
-    <div className="grid w-full max-w-xs gap-2 text-sm">
-      <p className="flex justify-between gap-2 font-medium tabular-nums">
+    <div className="grid w-full max-w-xs gap-(--gap-control) text-sm">
+      <p className="flex justify-between gap-(--gap-control) font-medium tabular-nums">
         <span id="example-team-size">Team size</span>
         {/* The thumb says the same in words through getAriaValueText. */}
         <span aria-hidden="true">{members(team)}</span>

@@ -6,6 +6,7 @@
 @import "./rich-text.css";
 @import "./base.css";
 @import "./shell.css";
+@import "./topbar.css";
 @import "./navigation-rail.css";
 @import "./text-hint.css";
 @import "./data-table.css";
@@ -18,6 +19,7 @@
 @import "./bottom-tab-bar.css";
 @import "./consent-banner.css";
 @import "./shimmer.css";
+@import "./voice.css";
 @import "./responsive.css";
 @import "./appearance.css";
 @import "./public-shell.css";
@@ -31,6 +33,8 @@
   --text-sm--line-height: var(--leading-body);
   --text-base: var(--text-section);
   --text-base--line-height: var(--leading-heading);
+  --text-xl: var(--text-feature);
+  --text-xl--line-height: var(--leading-heading);
   --text-3xl: var(--text-metric);
   --text-3xl--line-height: var(--leading-metric);
   --font-heading: var(--font-interface, system-ui, sans-serif);
@@ -49,6 +53,7 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
+  --color-backdrop: var(--backdrop);
   --color-input: var(--input);
   --color-control-indicator: var(--control-indicator);
   --color-border: var(--border);
@@ -73,9 +78,6 @@
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
@@ -87,5 +89,10 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Emphasis takes the ramp's heaviest weight, not the browser's bold. */
+  b,
+  strong {
+    font-weight: 600;
   }
 }

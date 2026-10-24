@@ -1,7 +1,7 @@
 /* Search results (SYS-10): a reading column of grouped results. */
 .search-page > .search-results {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   width: 100%;
   max-width: 52rem;
 }
@@ -33,14 +33,14 @@
 }
 .search-group {
   display: grid;
-  gap: var(--control-gap);
-  padding-top: var(--content-gap);
+  gap: var(--gap-control);
+  padding-top: var(--gap-group);
   border-top: 1px solid var(--border);
 }
 .search-group h2 {
   display: flex;
   align-items: baseline;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-size: var(--text-section);
   font-weight: 600;
 }
@@ -56,17 +56,18 @@
 .search-group li {
   display: grid;
   gap: 0.125rem;
-  padding-block: var(--control-gap);
+  padding-block: var(--gap-control);
 }
+/* Record links: ink, underlined on hover and focus (design-system.md,
+   links). */
 .search-result-title {
   justify-self: start;
   font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
   text-underline-offset: 0.2em;
 }
-.search-result-title:hover {
-  text-decoration-color: currentColor;
+.search-result-title:hover,
+.search-result-title:focus-visible {
+  text-decoration: underline;
 }
 .search-result-detail {
   display: -webkit-box;
@@ -85,4 +86,26 @@
 .search-group-more {
   justify-self: start;
   margin-inline-start: -0.375rem;
+}
+/* The top bar's command menu (features/search/workspace-command.tsx). A
+   project's mark takes an icon's place; a task names its project at the
+   end of the row. */
+.command-mark {
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.command-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* In the shortcut slot, which ends the row, as words rather than keys. */
+.command-detail {
+  flex-shrink: 0;
+  font-size: var(--text-meta);
+  letter-spacing: normal;
 }

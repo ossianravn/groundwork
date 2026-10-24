@@ -1,11 +1,16 @@
 import assert from "node:assert/strict"
 import { createBrowser } from "./browser-driver.mjs"
+import { pageSteps } from "./page-steps.mjs"
 import { mkdirSync, writeFileSync } from "node:fs"
 import { join, resolve } from "node:path"
 
 const [scenario, fault] = process.argv.slice(2)
 
 const browser = createBrowser(fault)
+
+const { evaluate, inject, openAppearance } = pageSteps(browser)
+
+const base = process.env.VERIFY_URL || "http://127.0.0.1:5173"
 
 const output = resolve(
   process.env.VERIFY_ARTIFACT_DIR || ".artifacts/verification/browser",
@@ -18,14 +23,6 @@ const evidence = {
   screenshots: [],
 }
 
-function evaluate(fn, ...args) {
-  return browser(
-    "eval",
-    "--stdin",
-    `(${fn.toString()})(...${JSON.stringify(args)})`,
-  ).result
-}
-
 function capture(label) {
   evidence.screenshots.push(
     browser(
@@ -36,38 +33,33 @@ function capture(label) {
   )
 }
 
-function inject(css) {
-  evaluate((text) => {
-    const style = document.createElement("style")
-
-    style.textContent = text
-    document.head.append(style)
-  }, css)
-}
-
+// The Projects toolbar's peers share one height at each density.
 function controls() {
+  browser("open", base + "/app/demo/projects")
+  browser("wait", '[aria-label="Status: All"]')
+
   for (const [density, expected] of [
     ["Comfortable", 36],
     ["Compact", 32],
   ]) {
-    browser("click", ".appearance-trigger")
+    openAppearance()
     browser("find", "role", "radio", "click", "--name", density)
     browser("press", "Escape")
     browser("wait", "250")
 
     if (fault === "small-control")
       inject(
-        '[aria-label="Task completion period"] {height:28px!important;min-height:28px!important}',
+        '[aria-label="Status: All"] {height:28px!important;min-height:28px!important}',
       )
 
     const sizes = evaluate(() => {
       const field = document.querySelector('[aria-label="Search projects"]')
 
       const peers = [
-        document.querySelector('[aria-label="Task completion period"]'),
         field.closest('[data-slot="input-group"]'),
         document.querySelector('[aria-label="Status: All"]'),
         document.querySelector('[aria-label="Owner: All"]'),
+        document.querySelector('[aria-label="Advanced filters"]'),
       ]
 
       return peers.map((element) => ({
@@ -85,10 +77,15 @@ function controls() {
   }
 }
 
+// A card's quick view opens over the Cards view without moving it.
 function scrollbar() {
+  // Short enough that the page scrolls, so the native scrollbar shows.
+  browser("set", "viewport", "1440", "560")
+  browser("open", base + "/app/demo/projects?view=grid")
+  browser("wait", "#project-link-brand")
   evaluate(() =>
     document
-      .querySelector('[aria-label="Inspect Brand refresh"]')
+      .querySelector("#project-link-brand")
       .scrollIntoView({ block: "center" }),
   )
   browser("wait", "250")
@@ -102,12 +99,13 @@ function scrollbar() {
 
   if (fault === "old-scroll-lock")
     inject(
-      "[data-sheet-viewport] body{width:auto} [data-sheet-viewport] #root{width:calc(100% - var(--sheet-page-gutter))}",
+      // Sheets keep the page width themselves; dialogs through a stable gutter.
+      "[data-sheet-viewport] body{width:auto} [data-sheet-viewport] #root{width:calc(100% - var(--sheet-page-gutter))} html{scrollbar-gutter:auto!important}",
     )
 
   const point = evaluate(() => {
     const rect = document
-      .querySelector('[aria-label="Inspect Brand refresh"]')
+      .querySelector("#project-link-brand")
       .getBoundingClientRect()
 
     return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 }
@@ -119,7 +117,7 @@ function scrollbar() {
     window.verificationMeasure = () => ({
       root: document.querySelector("#root").getBoundingClientRect().width,
       status: document
-        .querySelector("#projects th:nth-child(2)")
+        .querySelector(".project-grid .project-card:nth-child(2)")
         .getBoundingClientRect().x,
       scroll: scrollY,
     })
@@ -142,7 +140,7 @@ function scrollbar() {
   )
   browser("mouse", "down")
   browser("mouse", "up")
-  browser("wait", '[data-slot="sheet-content"]')
+  browser("wait", '[data-slot="dialog-content"]')
   browser("wait", "250")
   capture("open")
   browser("press", "Escape")
@@ -154,8 +152,8 @@ function scrollbar() {
     return {
       before: window.verificationBefore,
       frames: window.verificationFrames,
-      focused: document.activeElement.getAttribute("aria-label"),
-      sheetClosed: !document.querySelector('[data-slot="sheet-content"]'),
+      focused: document.activeElement.id,
+      closed: !document.querySelector('[data-slot="dialog-content"]'),
     }
   })
 
@@ -169,8 +167,8 @@ function scrollbar() {
     ),
     "Modal changed background geometry/scroll during its transition",
   )
-  assert.equal(measurements.focused, "Inspect Brand refresh")
-  assert.ok(measurements.sheetClosed, "Sheet did not dismiss")
+  assert.equal(measurements.focused, "project-link-brand")
+  assert.ok(measurements.closed, "Quick view did not dismiss")
 }
 
 function overlay() {
@@ -182,8 +180,13 @@ function overlay() {
       requestAnimationFrame(() => requestAnimationFrame(done)),
     )
   })
-  browser("click", ".appearance-trigger")
-  browser("wait", "250")
+  openAppearance()
+  // Measure once the navigation sheet has left and Appearance has settled.
+  browser(
+    "wait",
+    "--fn",
+    `document.querySelectorAll('[data-slot="sheet-content"]').length === 1 && !document.querySelector('[data-slot="sheet-content"]:is([data-starting-style], [data-ending-style])')`,
+  )
 
   const bounds = evaluate(() => {
     const dialog = document.querySelector('[data-slot="sheet-content"]')
@@ -233,9 +236,10 @@ function overlay() {
     "--fn",
     `!document.querySelector('[data-slot="sheet-content"]')`,
   )
+  // Appearance opened from the closed navigation sheet: focus returns to it.
   assert.equal(
     evaluate(() => document.activeElement.getAttribute("aria-label")),
-    "Customize appearance",
+    "Open navigation",
   )
 }
 
@@ -246,11 +250,7 @@ try {
     ["controls", "scrollbar", "overlay"].includes(scenario),
     "Choose controls, scrollbar or overlay",
   )
-  browser(
-    "open",
-    process.env.VERIFY_URL ||
-      "http://127.0.0.1:5173/app/demo/overview?period=14",
-  )
+  browser("open", base + "/app/demo/overview?period=14")
   browser("set", "viewport", "1440", "900")
   browser("wait", '[aria-label="Task completion period"]')
   evaluate(async () => {

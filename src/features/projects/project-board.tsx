@@ -150,7 +150,14 @@ export function ProjectBoard({
       </div>
       <ProjectBoardDrag projects={projects} members={members} onMove={move}>
         {(displayed) => (
-          <div className="project-board">
+          <div
+            className="project-board"
+            data-selecting={
+              table.getIsSomeRowsSelected() ||
+              table.getIsAllRowsSelected() ||
+              undefined
+            }
+          >
             {projectStatuses.map((status) => {
               const column = displayed.filter(
                 (project) => project.status === status,
@@ -222,7 +229,20 @@ export function ProjectBoard({
                                 ).map((item) => item.id),
                               )
                           }}
-                          name={renderName ? renderName(project) : project.name}
+                          name={
+                            renderName ? (
+                              renderName(project)
+                            ) : (
+                              <button
+                                type="button"
+                                className="project-name"
+                                data-quick-view-id={project.id}
+                                onClick={() => onInspect(project.id)}
+                              >
+                                {project.name}
+                              </button>
+                            )
+                          }
                         />
                       )
                     })}

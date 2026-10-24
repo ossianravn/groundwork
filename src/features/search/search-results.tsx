@@ -53,7 +53,7 @@ export function SearchResults({
   const terms = query.trim().toLowerCase().split(/\s+/u).filter(Boolean)
 
   return (
-    <div className="search-results">
+    <div className="search-results" data-page-zone="content">
       <form role="search" onSubmit={(event) => event.preventDefault()}>
         <div className="search-results-field">
           <Search aria-hidden="true" />
@@ -81,15 +81,14 @@ export function SearchResults({
           }
         >
           <ToggleGroupItem value="all">All {total}</ToggleGroupItem>
-          {groups.map((group) => (
-            <ToggleGroupItem
-              key={group.kind}
-              value={group.kind}
-              disabled={group.items.length === 0}
-            >
-              {group.label} {group.items.length}
-            </ToggleGroupItem>
-          ))}
+          {/* Kinds without results stay out of the way, unless chosen. */}
+          {groups
+            .filter((group) => group.items.length || group.kind === kind)
+            .map((group) => (
+              <ToggleGroupItem key={group.kind} value={group.kind}>
+                {group.label} {group.items.length}
+              </ToggleGroupItem>
+            ))}
         </ToggleGroup>
       )}
       <p role="status" className="search-results-summary">

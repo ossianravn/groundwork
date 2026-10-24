@@ -12,12 +12,15 @@ export function StateTeam() {
   const demo = useWorkspace()
   const [action, setAction] = useState<MemberAction | null>(null)
   const [feedback, setFeedback] = useState("")
+
   const [ownedIds] = useState(() =>
     demo.projects
       .filter((project) => project.ownerId === "leo")
       .map((project) => project.id),
   )
+
   const member = demo.workspace.members.find((person) => person.id === "leo")
+
   const membership = demo.memberships.find(
     (person) => person.memberId === "leo",
   )
@@ -82,8 +85,10 @@ export function StateTeam() {
           onClose={() => setAction(null)}
           onChange={(id, change) => {
             const result = demo.updateMember(id, change)
+
             if (result.ok)
               setFeedback("Member removed. Project ownership updated.")
+
             return result
           }}
         />

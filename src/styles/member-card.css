@@ -1,14 +1,13 @@
 /* A member's name as a link to the view filtered to them (KIT-06). It uses
    the activity project link's quiet underline, so both read as links. */
+/* Record links are ink with no underline at rest (design-system.md, links). */
 .member-link {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklch, currentColor 25%, transparent);
   text-underline-offset: 0.2em;
   border-radius: var(--radius-sm);
 }
 .member-link:hover {
-  text-decoration-color: currentColor;
+  text-decoration: underline;
 }
 .member-link:focus-visible {
   outline: 2px solid var(--ring);

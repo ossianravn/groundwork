@@ -22,9 +22,11 @@ import type { AssistantMessage } from "@/demo/assistant/assistant-types"
 import { AssistantPlanDock } from "./assistant-plan-dock"
 import { AssistantComposer } from "./assistant-composer"
 import { AssistantTurn } from "./assistant-message"
+import { AssistantVoice } from "./assistant-voice"
 import type { AnswerHost } from "./reply-part"
 import { announcement, awaitsPerson, messageText } from "./assistant-text"
 import { useMessageQueue } from "./use-message-queue"
+import { useVoiceConversation } from "./use-voice-conversation"
 
 export interface AssistantIntro {
   title: string
@@ -129,6 +131,14 @@ export function AssistantChat({
     focusPrompt()
   }
 
+  const voice = useVoiceConversation({
+    status,
+    messages,
+    send: (text) => send(textOnly(text)),
+    stop: onStop,
+    sample: intro.suggestions.slice(0, 2),
+  })
+
   const after =
     <T extends unknown[]>(action: (...args: T) => void) =>
     (...args: T) => {
@@ -154,6 +164,7 @@ export function AssistantChat({
       tabIndex={-1}
       className="assistant-page"
       data-empty={empty || undefined}
+      data-voice={voice.open || undefined}
     >
       <h1 className="sr-only">Assistant</h1>
       {!empty && (
@@ -262,15 +273,21 @@ export function AssistantChat({
         streaming={busy}
         stopped={stopped}
       />
-      <AssistantComposer
-        {...composer}
-        status={status}
-        waiting={awaiting}
-        draft={draft}
-        onDraftChange={setDraft}
-        onSubmit={send}
-        onQueue={(text) => queue.add(textOnly(text))}
-        onStop={onStop}
+      <AssistantVoice
+        voice={voice}
+        composer={
+          <AssistantComposer
+            {...composer}
+            status={status}
+            waiting={awaiting}
+            draft={draft}
+            onDraftChange={setDraft}
+            onSubmit={send}
+            onQueue={(text) => queue.add(textOnly(text))}
+            onStop={onStop}
+            onVoice={voice.start}
+          />
+        }
       />
       {empty && (
         <div className="assistant-start-suggestions">

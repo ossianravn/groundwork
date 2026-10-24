@@ -1,18 +1,31 @@
-/* Project files (SETT-15): an open list beside progress, then the drop
-   zone. Thumbnails keep one size so names align. */
+/* Project files (SETT-15): an open list beside the details, with a drop
+   zone only while dragging or when there are no files. Thumbnails keep one size so names align. */
 .project-files {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
+/* Files and its count, then Upload; dragging files anywhere over the
+   section shows the drop zone. */
 .project-files-heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
+  min-height: var(--control-height-sm);
 }
 .project-files-heading h2 {
   font-size: var(--text-section);
   font-weight: 600;
+}
+.project-files-heading h2 .project-tasks-count {
+  margin-inline-start: var(--gap-inline);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.project-files-upload {
+  margin-inline-end: calc(var(--space-2) * -1);
+  color: var(--muted-foreground);
 }
 .file-list {
   display: grid;
@@ -21,10 +34,10 @@
   display: grid;
   grid-template-columns: 2.5rem minmax(0, 1fr);
   align-items: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   width: 100%;
-  padding: var(--control-gap);
-  margin-inline: calc(-1 * var(--control-gap));
+  padding: var(--gap-control);
+  margin-inline: calc(-1 * var(--gap-control));
   box-sizing: content-box;
   border-radius: var(--radius-md);
   text-align: start;
@@ -66,8 +79,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
-  padding: var(--item-padding);
+  gap: var(--gap-control);
+  padding: var(--inset-row);
   border: 1px dashed var(--input);
   border-radius: var(--radius-lg);
   color: var(--muted-foreground);
@@ -89,11 +102,11 @@
 }
 .file-upload {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .file-uploads {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .file-uploads li {
   display: grid;
@@ -117,7 +130,7 @@
 .file-upload-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .file-preview-dialog {
   max-width: min(48rem, calc(100vw - 2rem));
@@ -130,7 +143,7 @@
   background: var(--muted);
 }
 .file-preview-empty {
-  padding: var(--section-gap) var(--item-padding);
+  padding: var(--gap-zone) var(--inset-row);
   border-radius: var(--radius-md);
   background: var(--muted);
   color: var(--muted-foreground);

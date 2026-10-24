@@ -39,6 +39,7 @@ export function projectReturnTo(value: string): string {
     return projectsPath
   const url = new URL(value, "https://workspace.local")
   url.searchParams.delete("inspect")
+  url.searchParams.delete("create")
 
   if (path === "/app/demo/activity") url.searchParams.delete("event")
 

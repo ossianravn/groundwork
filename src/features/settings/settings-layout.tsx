@@ -59,7 +59,11 @@ export function SettingsLayout({
       className="page-content settings-page"
     >
       <h1 className="sr-only">Settings</h1>
-      <div className="settings-layout" data-section={section}>
+      <div
+        className="settings-layout"
+        data-section={section}
+        data-page-zone="content"
+      >
         <nav aria-label="Settings" className="settings-navigation">
           <div className="settings-mobile-navigation">
             <DropdownMenu>

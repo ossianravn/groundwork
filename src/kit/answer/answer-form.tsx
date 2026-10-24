@@ -76,7 +76,7 @@ export function AnswerForm({
   return (
     <form
       data-slot="answer-form"
-      className="grid gap-4 rounded-lg border border-border bg-background p-(--item-padding) ps-3 text-sm"
+      className="grid gap-4 rounded-lg border border-border bg-background p-(--inset-row) ps-3 text-sm"
       onSubmit={(event) => {
         event.preventDefault()
 

@@ -41,10 +41,12 @@
   box-shadow:
     0 0 0 1px color-mix(in oklch, var(--foreground) 10%, transparent),
     0 18px 40px -18px oklch(0.2 0.05 268 / 35%);
-  transition: translate var(--motion-slow, 400ms) var(--ease-standard);
+  transition: translate var(--motion-slow) var(--ease-standard);
 }
-.public-feature-grid article:hover .public-feature-shot > span {
-  translate: -4px -4px;
+@media (hover: hover) and (pointer: fine) {
+  .public-feature-grid article:hover .public-feature-shot > span {
+    translate: -4px -4px;
+  }
 }
 .public-feature-shot[data-shot="overview"] > span {
   background-image: url("/images/tandem-overview.png");
@@ -128,10 +130,5 @@
   .public-questions > [data-slot="accordion"],
   .public-newsletter > div:first-child {
     grid-column: auto;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .public-feature-shot > span {
-    transition: none;
   }
 }

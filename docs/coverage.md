@@ -62,7 +62,7 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | NAV-06 | Contextual Help & Support Widget | [Shared shells ](shells.md) | App shell | Default |
 | NAV-07 | Mobile Bottom Tab Navigation | [Pattern library ](pages/reference/patterns.md) | /reference/specimens/mobile-tabs | Example |
 | SETT-01 | Vertical Tab Settings Layout | [Shared shells ](shells.md) | Settings shell | Default |
-| SETT-02 | Floating Unsaved Changes Warning | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
+| SETT-02 | Floating Unsaved Changes Warning | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
 | SETT-03 | Drag-and-Drop File / Avatar Uploader | [Account preferences and security ](pages/settings/account.md) | /app/:workspace/settings/profile | Default |
 | SETT-04 | Team Members & RBAC Manager | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/team | Default |
 | SETT-05 | Invite Member Dialog | [Workspace and team ](pages/settings/workspace.md) | /app/:workspace/settings/team | Default |
@@ -70,9 +70,9 @@ Default means included in the proposed appropriate page/shell. Variant means exp
 | SETT-07 | Webhook Manager & Test Ping | [API keys and webhooks ](pages/settings/developers.md) | /app/:workspace/settings/webhooks | Default |
 | SETT-08 | Plan Usage Meter & Stripe Bridge | [Billing and invoices ](pages/settings/billing.md) | /app/:workspace/settings/billing | Default |
 | SETT-09 | Invoice History & PDF Download | [Billing and invoices ](pages/settings/billing.md) | /app/:workspace/settings/billing | Default |
-| SETT-10 | Rich Text / Markdown Editor | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
-| SETT-11 | Tag / Multi-select Input | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
-| SETT-12 | Dynamic Field Arrays | [Project detail, creation and editing ](pages/app/project-editor.md) | /app/:workspace/projects/new; /app/:workspace/projects/:projectId/edit | Default |
+| SETT-10 | Rich Text / Markdown Editor | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
+| SETT-11 | Tag / Multi-select Input | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
+| SETT-12 | Dynamic Field Arrays | [Project detail, creation and editing ](pages/app/project-editor.md) | New project dialog (`?create=project`); project page | Default |
 | SYS-01 | Theme Provider & Toggle | [Theme playground ](pages/reference/themes.md) | /reference/themes | Default |
 | SYS-02 | Global Command Menu (Cmd+K) | [Shared shells ](shells.md) | Shared shells | Default |
 | SYS-03 | Toast Notification System | [Shared shells ](shells.md) | Shared shells | Default |
@@ -114,7 +114,7 @@ Implemented during the visual refinement and theme builder work; each has a live
 | ID | Pattern | Primary specification | Demonstration or target | Status |
 | --- | --- | --- | --- | --- |
 | NAV-09 | Page actions in the top bar | [Shared shells](shells.md) | /app/demo/overview | Example |
-| SETT-14 | Identity colour picker | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand/edit | Example |
+| SETT-14 | Identity colour picker | [Project detail, creation and editing](pages/app/project-editor.md) | /app/demo/projects/brand (Project details) | Example |
 | SYS-08 | Palette generator | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
 | SYS-09 | Theme export to shadcn | [Theme playground](pages/reference/themes.md) | /reference/themes | Example |
 
@@ -126,8 +126,8 @@ Primitives the kit lacks compared with shadcn. Each is added through the kit's s
 | --- | --- | --- | --- | --- |
 | KIT-01 | Switch | [Design system](design-system.md) | /app/demo/settings/notifications | Example |
 | KIT-02 | Slider | [Design system](design-system.md) | /pricing (team size); /reference/components/slider | Example |
-| KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and inspector | Example |
-| KIT-04 | Calendar and date picker | [Design system](design-system.md) | /app/demo/projects/brand/edit; inline due date | Example |
+| KIT-03 | Progress | [Design system](design-system.md) | /app/demo/projects; project page and quick view | Example |
+| KIT-04 | Calendar and date picker | [Design system](design-system.md) | New project dialog; Project details due date | Example |
 | KIT-05 | Date-range picker | [Design system](design-system.md) | /app/demo/analytics; /app/demo/overview | Example |
 | KIT-06 | Hover card | [Design system](design-system.md) | owner names in the Projects table and people in Activity | Example |
 | KIT-07 | Context menu | [Design system](design-system.md) | board cards and Projects table rows | Example |
@@ -203,6 +203,9 @@ Chat and code components modelled on the AI SDK's message model and Vercel's AI 
 | AI-28 | Interactive answer | [Assistant](pages/app/assistant.md) | /app/demo/assistant; /reference/components/answer | Example |
 | AI-29 | Answer state carried forward | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
 | AI-30 | Answer form | [Assistant](pages/app/assistant.md) | /app/demo/assistant | Example |
+| AI-31 | Dictation | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/speech-input | Example |
+| AI-32 | Voice conversation | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/voice-session | Example |
+| AI-33 | Spoken captions | [Assistant](pages/app/assistant.md#voice) | /app/demo/assistant; /reference/components/transcription | Example |
 | AI-24 | Coding agent session | [Reference patterns](pages/reference/patterns.md) | /reference/specimens/coding-agent (specimen only) | Example |
 | DEV-01 | Code block | [Design system](design-system.md) | /reference/components/code-block; assistant replies; webhook deliveries | Example |
 | DEV-02 | Snippet | [API keys and webhooks](pages/settings/developers.md) | /app/demo/settings/api-keys; /reference/components/snippet | Example |
@@ -264,10 +267,10 @@ Updated 2026-09-25 from the actual router, persistent workspace owner, reused ta
 | TABL-02 | Implemented subset: URL search, multi-value Status/Owner facets/counts, valid page reset and reload/history reconstruction | Detail/editor return verified, including changed filter membership |
 | TABL-03 | Implemented subset: reused column visibility survives inspection/query updates and detail navigation; session view state | Column reordering remains an optional later variant |
 | TABL-05 | Implemented subset: URL-backed page size/page, first/previous/next/last and Back; invalid pages clamp | Detail/editor round trip verified |
-| TABL-06 | Implemented subset: URL-backed live B Sheet, completion feedback and focus return, missing-record recovery | Full-detail and editor links verified |
+| TABL-06 | Implemented subset: URL-backed live B Sheet, completion feedback and focus return, missing-record recovery (2026-10-17: replaced by the project quick view, a dialog with the full record, J/K stepping and Open full page) | Full-detail and editor links verified |
 | TABL-08 | Implemented subset: workspace preview/expansion and newest-first project activity on detail; create/edit/completion are reflected immediately | Dedicated Activity page remains later |
 | NAV-02 | Implemented subset: active Overview/Projects navigation, page titles and shell context; mobile destination focus | Detail breadcrumb and explicit origin return implemented; dropdown variants remain later |
-| SYS-02, SYS-06 | Implemented subset: shared project search and skip link across both routes, inspector handoff and return focus | Broader command categories/history remain later |
+| SYS-02, SYS-06 | Command menu with recent projects, actions, pages, tasks and people (2026-10-17); skip link across both routes, quick-view handoff and return focus | Recent searches and further commands remain later |
 | SETT-02 | Implemented subset: approved in-session drafts survive navigation; dirty feedback, Cancel discard, save/reset/reload clearing | No blocking leave prompt or persistent draft storage; richer settings autosave remains later |
 | EDGE-02, EDGE-05 | Implemented subset: URL no-match clearing, unknown/reload-lost inspected project recovery and host error boundaries | Missing/reload-lost detail/editor recovery verified; named save rejection/retry implemented |
 | EDGE-07 | Ordinary and named rejected saves are synchronous; no artificial pending operation | Pending geometry remains later when an actual asynchronous workflow exists |
@@ -350,7 +353,7 @@ The [Contact](pages/public/contact.md) and [legal](pages/public/legal.md) specif
 ## Inbox and notifications disposition — 2026-09-27
 
 - **TABL-07:** Flush responsive conversation workspace, URL selection/filter, keyboard resizing/reset, member-addressed Compose, threaded Reply, retained navigation drafts, explicit read/unread, empty/unavailable states and project return context. Pane collapse and asynchronous loading remain planned.
-- **SYS-04:** Shared notification Sheet, message links/View all, unread indicators and Mark all read. Fixture-backed session state and named read-action failure/retry; no push/email service.
+- **SYS-04:** Shared notification popover (a Sheet until 2026-10-17), message links/Open inbox, unread indicators and Mark all read. Fixture-backed session state and named read-action failure/retry; no push/email service.
 - **NAV-08:** Inbox selection/filter and useful focus survive the linked project round trip.
 
 The [Inbox specification](pages/app/inbox.md) owns exact scope and deferred variants.
@@ -408,7 +411,7 @@ AUTH-02 now has local Google/GitHub choices, continuation, single-use callback, 
 
 ## Activity and contextual help - 2026-09-27
 
-- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
+- **TABL-08:** dedicated filtered Activity history, chronological groups, Load more, event details and project-return context. (2026-10-17: Overview, a project's Activity tab and the Activity page share one `ActivityRow`, a sentence with the date at the end of the line; the Activity page groups it by week, and the date opens the event's details.) New edits/owner/status changes capture actual before/after values; fixture events keep their known facts.
 - **NAV-06 / SYS-05:** contextual Help via one sidebar action; existing guide disclosure, Help center/Contact destinations, and working search/help shortcuts.
 - **SYS-07:** dotted-underlined explanatory terms use the shared TextHint; hover and pointer/keyboard activation reveal the same content. Existing icon tooltips retain accessible names. The reference library now has eleven documented component examples.
 

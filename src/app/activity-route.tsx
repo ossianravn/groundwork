@@ -1,6 +1,5 @@
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Button, buttonVariants } from "@/kit/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/kit/ui/card"
 import {
   Empty,
   EmptyHeader,
@@ -56,88 +55,89 @@ export function ActivityRoute() {
     >
       <title>{`Activity · ${demo.workspace.name}`}</title>
       <h1 className="sr-only">Activity</h1>
+      {/* The filters lead: they narrow the calendar and the feed alike. */}
+      <div className="activity-toolbar" data-page-zone="toolbar">
+        <ActivityFilters
+          value={search}
+          people={demo.workspace.people}
+          count={events.length}
+          onChange={(filters) => {
+            void navigate({
+              to: "/app/demo/activity",
+              search: { ...filters, page: 1, event: "" },
+              replace: true,
+              resetScroll: false,
+            })
+          }}
+        />
+      </div>
       <ActivityHeatmap
         events={events}
+        people={demo.workspace.people}
         start={demo.activity.reduce(
           (first, item) => (item.date < first ? item.date : first),
           demo.workspace.referenceDate,
         )}
         end={demo.workspace.referenceDate}
       />
-      <Card className="activity-feed-card">
-        <CardHeader className="activity-feed-toolbar">
-          <ActivityFilters
-            value={search}
+      <div className="activity-feed" data-page-zone="content">
+        {events.length ? (
+          <ActivityTimeline
+            events={visible}
             people={demo.workspace.people}
-            count={events.length}
-            onChange={(filters) => {
+            projects={demo.projects}
+            reference={demo.workspace.referenceDate}
+            renderPerson={(person) => (
+              <MemberLink
+                member={person}
+                view="activity"
+                className="member-link"
+              >
+                {person.name}
+              </MemberLink>
+            )}
+            renderProject={(project, eventId) => (
+              <ProjectDetailLink
+                id={`activity-link-${eventId}`}
+                projectId={project.id}
+                className="activity-project-link"
+                style={projectColorStyle(project.color)}
+              >
+                {project.name}
+              </ProjectDetailLink>
+            )}
+            onDetails={(event) => {
+              rememberProjectOpener()
               void navigate({
                 to: "/app/demo/activity",
-                search: { ...filters, page: 1, event: "" },
-                replace: true,
+                search: { ...search, event: event.id },
                 resetScroll: false,
               })
             }}
           />
-        </CardHeader>
-        <CardContent>
-          {events.length ? (
-            <ActivityTimeline
-              events={visible}
-              people={demo.workspace.people}
-              projects={demo.projects}
-              renderPerson={(person) => (
-                <MemberLink
-                  member={person}
-                  view="activity"
-                  className="member-link"
-                >
-                  {person.name}
-                </MemberLink>
-              )}
-              renderProject={(project, eventId) => (
-                <ProjectDetailLink
-                  id={`activity-link-${eventId}`}
-                  projectId={project.id}
-                  className="activity-project-link"
-                  style={projectColorStyle(project.color)}
-                >
-                  {project.name}
-                </ProjectDetailLink>
-              )}
-              onDetails={(event) => {
-                rememberProjectOpener()
-                void navigate({
-                  to: "/app/demo/activity",
-                  search: { ...search, event: event.id },
-                  resetScroll: false,
-                })
-              }}
-            />
-          ) : (
-            <Empty>
-              <EmptyHeader>
-                <EmptyTitle>
-                  {filtered ? "No matching events" : "No activity yet"}
-                </EmptyTitle>
-                <EmptyDescription>
-                  {filtered
-                    ? "Try another filter or search."
-                    : "Project changes will appear here."}
-                </EmptyDescription>
-              </EmptyHeader>
-              {filtered && (
-                <EmptyContent>
-                  <Button variant="outline" onClick={clear}>
-                    Clear filters
-                  </Button>
-                </EmptyContent>
-              )}
-            </Empty>
-          )}
-        </CardContent>
+        ) : (
+          <Empty>
+            <EmptyHeader>
+              <EmptyTitle>
+                {filtered ? "No matching events" : "No activity yet"}
+              </EmptyTitle>
+              <EmptyDescription>
+                {filtered
+                  ? "Try another filter or search."
+                  : "Project changes will appear here."}
+              </EmptyDescription>
+            </EmptyHeader>
+            {filtered && (
+              <EmptyContent>
+                <Button variant="outline" onClick={clear}>
+                  Clear filters
+                </Button>
+              </EmptyContent>
+            )}
+          </Empty>
+        )}
         {visible.length < events.length && (
-          <CardFooter className="justify-center">
+          <div className="activity-more">
             <Button
               variant="ghost"
               onClick={() => {
@@ -150,9 +150,9 @@ export function ActivityRoute() {
             >
               Load more
             </Button>
-          </CardFooter>
+          </div>
         )}
-      </Card>
+      </div>
       <ActivityDetail
         event={event}
         open={!!search.event}

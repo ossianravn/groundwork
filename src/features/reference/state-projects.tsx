@@ -12,9 +12,11 @@ import {
   EmptyContent,
 } from "@/kit/ui/empty"
 import { useWorkspace } from "@/demo/use-workspace"
+import { useProjectDrafts } from "@/demo/use-project-drafts"
 import { ProjectsTableView } from "@/features/overview/projects-table"
 import { initialProjectTableState } from "@/features/overview/project-table-state"
-import { ProjectDetails } from "@/features/projects/project-details"
+import { ProjectQuickView } from "@/features/projects/project-quick-view"
+import { projectRecord } from "@/features/projects/project-record"
 import { StateCreateProject } from "./state-create-project"
 import type { StateScenario } from "./state-catalog"
 
@@ -41,10 +43,12 @@ const failures = {
 
 export function StateProjects({ scenario }: { scenario: StateScenario }) {
   const demo = useWorkspace()
+  const drafts = useProjectDrafts()
   const [resolved, setResolved] = useState(false)
   const [creating, setCreating] = useState(false)
   const [createdIds, setCreatedIds] = useState<string[]>([])
   const [selected, setSelected] = useState("")
+
   const [table, setTable] = useState({
     ...initialProjectTableState,
     filters: {
@@ -52,12 +56,16 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
       query: scenario === "no-results" ? "Untitled expedition" : "",
     },
   })
+
   const surface = useRef<HTMLDivElement>(null)
+  const selectedProject = demo.projects.find((item) => item.id === selected)
   const opener = useRef<HTMLElement | null>(null)
+
   const projects =
     scenario === "first-use"
       ? demo.projects.filter((project) => createdIds.includes(project.id))
       : demo.projects
+
   const failure =
     scenario === "forbidden" ||
     scenario === "not-found" ||
@@ -109,11 +117,13 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
                 values,
                 "normal",
               )
+
               if (result.kind === "saved") {
                 setCreatedIds((ids) => [...ids, result.projectId])
                 setCreating(false)
                 focusResults()
               }
+
               return result
             }}
           />
@@ -169,14 +179,15 @@ export function StateProjects({ scenario }: { scenario: StateScenario }) {
           />
         )}
       </div>
-      <ProjectDetails
-        project={projects.find((project) => project.id === selected)}
-        created={false}
-        members={demo.workspace.members}
-        onClose={() => setSelected("")}
-        onComplete={demo.completeProject}
-        returnFocus={() => opener.current ?? surface.current}
-      />
+      {selectedProject && (
+        <ProjectQuickView
+          {...projectRecord(demo, drafts, selectedProject)}
+          files={null}
+          fullPage={null}
+          onClose={() => setSelected("")}
+          returnFocus={() => opener.current ?? surface.current}
+        />
+      )}
     </>
   )
 }

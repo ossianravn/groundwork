@@ -80,7 +80,7 @@
 }
 .customer-stories-controls {
   display: flex;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 
 .customers-page > .public-page-heading {

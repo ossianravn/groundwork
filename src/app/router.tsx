@@ -91,26 +91,36 @@ const inboxRoute = createRoute({
   component: lazyRouteComponent(() => import("./inbox-route"), "InboxRoute"),
 })
 
+// New project is a dialog; old links open it over Projects.
 const projectCreateRoute = createRoute({
   getParentRoute: () => workspaceRoute,
   path: "projects/new",
   validateSearch: parseProjectEditorSearch,
-  search: { middlewares: [stripSearchParams({ scenario: "normal" })] },
-  component: lazyRouteComponent(
-    () => import("./project-editor-route"),
-    "ProjectEditorRoute",
-  ),
+  beforeLoad: ({ search }) => {
+    throw redirect({
+      to: "/app/demo/projects",
+      search: {
+        ...defaultProjectsSearch,
+        create: search.scenario === "save-failure" ? "save-failure" : "project",
+      },
+      replace: true,
+    })
+  },
 })
 
+// Projects are edited in place; old editor links open the project.
 const projectEditRoute = createRoute({
   getParentRoute: () => workspaceRoute,
   path: "projects/$projectId/edit",
   validateSearch: parseProjectEditorSearch,
-  search: { middlewares: [stripSearchParams({ scenario: "normal" })] },
-  component: lazyRouteComponent(
-    () => import("./project-editor-route"),
-    "ProjectEditorRoute",
-  ),
+  beforeLoad: ({ params, search }) => {
+    throw redirect({
+      to: "/app/demo/projects/$projectId",
+      params,
+      search: { returnTo: search.returnTo },
+      replace: true,
+    })
+  },
 })
 
 const settingsIndexRoute = createRoute({

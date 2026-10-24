@@ -1,7 +1,7 @@
 .analytics-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 0;
 }
 .analytics-filters [data-slot="select-trigger"] {
@@ -12,15 +12,15 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .analytics-breakdown:first-child {
-  padding-inline-end: var(--section-gap);
+  padding-inline-end: var(--gap-zone);
 }
 .analytics-breakdown + .analytics-breakdown {
-  padding-inline-start: var(--section-gap);
+  padding-inline-start: var(--gap-zone);
   border-inline-start: 1px solid var(--border);
 }
 .analytics-breakdown {
   min-width: 0;
-  gap: var(--card-padding);
+  gap: var(--inset-card);
 }
 .analytics-breakdown > [data-slot="card-content"] {
   flex: 1;
@@ -46,7 +46,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .analytics-donut {
   position: relative;
@@ -76,13 +76,13 @@
 .analytics-legend {
   flex: 1 1 10rem;
   display: grid;
-  gap: var(--item-padding);
+  gap: var(--gap-item);
 }
 .analytics-legend li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .analytics-legend strong {
   font-weight: 500;
@@ -96,14 +96,14 @@
 @media (width < 64rem) {
   .analytics-breakdowns {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--section-gap);
+    row-gap: var(--gap-zone);
   }
   .analytics-breakdown:first-child {
     padding-inline-end: 0;
   }
   .analytics-breakdown + .analytics-breakdown {
     padding-inline-start: 0;
-    padding-top: var(--section-gap);
+    padding-top: var(--gap-zone);
     border-inline-start: 0;
     border-top: 1px solid var(--border);
   }
@@ -118,20 +118,32 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .analytics-compare {
   display: inline-flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: var(--control-height);
   padding-inline: 0.25rem;
   font-size: var(--text-body);
 }
+/* The filters lead the page with no rule under them; sections are
+   --gap-section apart, a hairline in the middle of each gap that never adds
+   to it (design-system.md, page anatomy). */
 .analytics-section {
   display: grid;
-  gap: var(--section-gap);
-  padding-top: var(--section-gap);
+  gap: var(--gap-zone);
+}
+.analytics-section + .analytics-section {
+  position: relative;
+  margin-top: calc(var(--gap-section) - var(--gap-zone));
+}
+.analytics-section + .analytics-section::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--gap-section) / -2);
   border-top: 1px solid var(--border);
 }
 .analytics-section-header h2 {
@@ -144,7 +156,7 @@
 }
 .analytics-chart {
   min-width: 0;
-  gap: var(--card-padding);
+  gap: var(--inset-card);
 }
 .analytics-plot {
   display: grid;
@@ -163,16 +175,16 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 .analytics-pair > :first-child {
-  padding-inline-end: var(--section-gap);
+  padding-inline-end: var(--gap-zone);
 }
 .analytics-pair > :last-child {
-  padding-inline-start: var(--section-gap);
+  padding-inline-start: var(--gap-zone);
   border-inline-start: 1px solid var(--border);
 }
 .analytics-poles {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
 }
@@ -189,14 +201,14 @@
 @media (width < 64rem) {
   .analytics-pair {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--section-gap);
+    row-gap: var(--gap-zone);
   }
   .analytics-pair > :first-child {
     padding-inline-end: 0;
   }
   .analytics-pair > :last-child {
     padding-inline-start: 0;
-    padding-top: var(--section-gap);
+    padding-top: var(--gap-zone);
     border-inline-start: 0;
     border-top: 1px solid var(--border);
   }
@@ -205,7 +217,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 /* Last period's completions: a dashed line, keyed the same way. */
 .analytics-previous-key {

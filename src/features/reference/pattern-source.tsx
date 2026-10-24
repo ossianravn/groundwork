@@ -53,6 +53,7 @@ function SourceFile({
   }
 
   if (state.status === "loading") return <p role="status">Loading source…</p>
+
   if (state.status === "error")
     return (
       <Alert variant="destructive">

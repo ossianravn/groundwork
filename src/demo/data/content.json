@@ -299,8 +299,8 @@
   ],
   "releases": [
     {
-      "version": "0.13.0",
-      "date": "2026-10-17",
+      "version": "0.21.0",
+      "date": "2026-10-24",
       "title": "Price your team",
       "summary": "Pricing shows what each plan costs your whole team: set your team size, and every plan's total follows, monthly or yearly.",
       "sections": [
@@ -317,7 +317,365 @@
           "title": "Demo boundaries",
           "paragraphs": [
             "Prices are the sample plans. The team size is an estimate on the page: it resets on reload and isn't carried into sign-up."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.20.0",
+      "date": "2026-10-18",
+      "title": "Talk it through",
+      "summary": "Ask the assistant out loud: dictate a message, or talk with it in voice mode and hear it answer.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Dictate: press the microphone in the composer and your words appear as you speak, ready to edit or send. It works while the assistant is still replying, so you can ask your next question straight away.",
+            "Voice mode: with nothing written, the round button starts a spoken conversation. Ask, and the assistant answers aloud, with each word lighting up as it is said.",
+            "Show chat keeps the conversation going in a bar under the thread, so plans, figures and approvals stay in view. When a reply needs your decision, voice moves there by itself.",
+            "Press the orb or Space to interrupt, M to mute and Escape to end."
           ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Voice uses your browser's own speech recognition and voices; in Chrome and Edge your browser's maker recognises the audio. Without a microphone, voice mode plays a sample conversation. Answers are still scripted, and conversations reset on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.19.2",
+      "date": "2026-10-18",
+      "title": "A roomier inbox",
+      "summary": "The Inbox lines up: dates and unread marks have room to breathe, and both panes keep the same margins on every side.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Message dates and unread dots no longer crowd the scrollbar and the divider; the list keeps the same margin on both sides.",
+            "The message you're reading starts as far from the divider as the list does from the sidebar, and Mark read, dates, the reply box and Send reply share one right edge with the top bar."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.19.1",
+      "date": "2026-10-18",
+      "title": "Gentler reduced motion",
+      "summary": "When your device asks for reduced motion, Tandem now fades things in and out instead of stopping every transition, so changes stay easy to follow without anything moving.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "With reduced motion, dialogs, menus, side panels and notifications fade in where they appear, with no zoom or slide.",
+            "Switching views, changing prices and ticking tasks fade too, while tabs, sections and dragged cards change place at once and nothing tilts."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Tandem follows your device's motion setting; there is no separate switch in the demo. Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.19.0",
+      "date": "2026-10-18",
+      "title": "Moves that make sense",
+      "summary": "Tandem now moves where it helps you follow along: the card you drag on the board, the tab you pick, the task you tick. Everything you use all day stays instant.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "On the board, a card you pick up tilts and lifts like a card in your hand. Drop it and it settles into its new place while the cards around it make room.",
+            "The underline on a project's tabs slides to the section you choose, and ticking a task fills its box with a quick check as its title fades.",
+            "Search in the top bar opens at once, however you open it.",
+            "On the website, the home page arrives in reading order, and prices visibly change when you switch between monthly and yearly billing.",
+            "When you finish setting up a workspace, its summary comes in line by line."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "If your device asks for reduced motion, Tandem keeps still. Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.18.0",
+      "date": "2026-10-18",
+      "title": "Cards that open in place",
+      "summary": "Cards open the way they do in Trello, and everything else takes you to the project. Overview, cards and pages are tidier, with a quieter look throughout.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Click a card, in Cards or on the board, and it opens over your cards so you can change it without leaving them. A row in the table, the timeline and links elsewhere open the project page."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Cards use their space: the owner sits at the top, the description always takes two lines, and the footer shows status and due date beside the task count.",
+            "On Overview, Needs attention lines up each project's state, owner and due date, and Recent activity scrolls again with a soft fade, two even lines per event.",
+            "Charts say what they count, such as Completed tasks by project, without extra labels underneath.",
+            "Page titles sit as far from the top as from the side, descriptions and comments keep an even rhythm, and the sidebar has a surface of its own.",
+            "The Assistant's history has even margins, and its starting suggestions sit two by two."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.17.0",
+      "date": "2026-10-17",
+      "title": "Jump anywhere",
+      "summary": "Press Ctrl K (⌘ K on a Mac) to open a project, task or person, go to a page, or start something new, without leaving where you are.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Ctrl K opens a command menu. Before you type, it lists the projects you opened recently, quick actions (New project, Import projects, Invite a teammate, Settings and Keyboard shortcuts) and every page.",
+            "Type to find projects, tasks, people and pages. Search everything is always first, for full results; projects and tasks open right where you are."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "A project opens with a gentle rise, and cards lift slightly under the pointer. If your device asks for less motion, nothing moves.",
+            "Empty lists say what goes in them: a new project explains its tasks, comments and description, and the Inbox explains what arrives there."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Recent projects are remembered until you reload the page."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.16.1",
+      "date": "2026-10-17",
+      "title": "Fits every screen",
+      "summary": "Long project names, tablets and phones get tidier layouts, and keyboard focus on phones skips controls you can't see.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Long project names wrap neatly. On a project's page and in its quick view, the name wraps beside its colour mark with the status below; cards and the timeline show two lines and the rest in the project itself.",
+            "The projects table fits a tablet's width without scrolling sideways.",
+            "On tablets, Settings shows every section, wrapping onto a second row instead of scrolling.",
+            "On phones, keyboard focus no longer lands on the table's hidden column headers; sort from the toolbar instead."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "These are layout changes only. Projects you create still reset on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.16.0",
+      "date": "2026-10-17",
+      "title": "What needs you, first",
+      "summary": "Overview opens on the projects that need someone, New project opens where you are, and Activity, Settings, Search, Import, Inbox, Assistant and Analytics now follow the same layout as the rest of the workspace.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Overview starts with Needs attention: the active projects that are overdue, running late at their recent pace, stalled for two weeks, or with tasks nobody owns, most urgent first. All projects is one click away.",
+            "New project opens over the page you're on. Close it and your draft waits for next time; create the project and it opens right there.",
+            "Activity groups events by week and shows, beside its calendar, the busiest day, who completed most and how many days saw work done. Click an event's date for its details."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Settings sit on the page at one reading width. Save is always available, with Unsaved changes beside it once you change something.",
+            "Appearance shows every choice the same way, and names each accent colour beside its swatch.",
+            "Search only offers filters for the kinds of result it found, and results read as plain links.",
+            "Import's drop zone lights up as you drag a file over it, and the sample download sits in its guidance.",
+            "Overview's recent activity matches every other feed, and its snapshot date moves under the metrics. Inbox, Assistant and Analytics line up with the rest of the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Needs attention reads the demo's snapshot date, 24 Sept 2026. New projects and settings changes reset on reload; appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.15.0",
+      "date": "2026-10-17",
+      "title": "Tidier projects",
+      "summary": "The Projects list and each project page follow one layout: projects change where you see them, agents show what they'll do before they start, and phones get layouts of their own.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Change a project's description and colour where they are, like the rest of its details. The Edit project page is gone.",
+            "Each agent on a project's Agent tab shows what it will read and produce, when you approve, and how it last went, with every run listed below. You can schedule one for every Friday.",
+            "Month is a view of its own next to Timeline, among the other views."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Click anywhere on a project's row to open it. The table selects from the checkbox in its header, and on phones its rows stack instead of scrolling sideways.",
+            "The timeline fits the page, so every project shows whole, and today's marker no longer covers a date.",
+            "A project's title row holds its name, status and Mark complete, which becomes Reopen once the project is done; progress moves into Project details.",
+            "Task rows show who has them as an avatar and keep their menu until you point at them. Comments get a wider box with Comment inside it, and Files has Upload and shows where to drop files as you drag them over.",
+            "On phones, a project shows its tasks before its details."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Agent schedules are a demo setting and never run. Reopening a project keeps the tasks already done; everything resets on reload."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.14.0",
+      "date": "2026-10-17",
+      "title": "Projects open in place",
+      "summary": "Click any project to open it over the list you're in, step through your projects with J and K, and change a project's details right where they are.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Click a project anywhere (a row, a card, a board card, the timeline, a search result or an activity link) and it opens over the list, with its tasks, comments, activity, files and details. Open full page has the rest; Ctrl-click (⌘-click on a Mac) still goes straight to the page.",
+            "Press J and K in an open project to step to the next and previous project in the list you came from.",
+            "Change a project's details where they are: pick a new owner or due date, or add and remove tags and links. Each change saves straight away."
+          ]
+        },
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Cards and board cards share one design: the name, status and due date, a short description, one progress bar and the owner. Click anywhere on a card to open it; its checkbox appears when you hover or start selecting.",
+            "Activity reads as one line per event with its date at the end, on Overview, on a project's Activity tab and on the Activity page.",
+            "Every chart names what it shows, then its key figure and a one-line takeaway, with its controls beside the title.",
+            "People's avatars each take a soft colour of their own, so they're easier to tell apart.",
+            "Forms end with their main action on the right, after Cancel, and dialogs no longer have a grey band under them.",
+            "Each Overview metric explains itself on hover, and its figure matches the size used across the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Changes to a project's details reset on reload, like the rest of the demo. Add ?scenario=save-failure to a project's address to see a save fail once and Retry it."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.13.0",
+      "date": "2026-10-17",
+      "title": "A calmer top bar",
+      "summary": "Search, notifications and appearance each have one place now, and the top bar keeps only what you use on every page.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Search waits as a magnifier until you need it. Select it or press Ctrl K (⌘ K on a Mac) and it opens into a field with results below; Escape puts it away.",
+            "Notifications open in a small panel under the bell, with Mark all read and a link to your Inbox.",
+            "Appearance lives in your account menu, at the bottom left, and in Settings. The top bar and the sidebar no longer repeat it.",
+            "On phones, less-used page actions such as Import move into a ⋯ menu, so the top bar keeps the main action, search and notifications.",
+            "The Tandem logo lines up with the page title, the sidebar footer keeps one even rhythm, and dialogs dim the page lightly instead of blurring it.",
+            "Badges, text weights and a few text sizes follow one scale: the first step of a wider tidy-up of spacing and alignment across the workspace."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Quick search still finds projects; Search everything opens the full results page. Notifications come from the sample workspace, and marking them read resets on reload."
+          ],
+          "bullets": []
         }
       ],
       "guide": "explore-and-reset"

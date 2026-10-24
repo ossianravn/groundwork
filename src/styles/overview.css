@@ -1,5 +1,5 @@
 .chart-data-table [data-slot="table-cell"] {
-  padding-block: var(--row-padding);
+  padding-block: var(--inset-row);
 }
 .chart-data-table [data-slot="table-head"] {
   height: max(var(--navigation-height), var(--control-height-sm));
@@ -9,24 +9,47 @@
 .page-content {
   max-width: 1600px;
   margin: 0;
-  padding: var(--page-padding);
+  padding: var(--inset-page);
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 /* Direction A: the snapshot is one strip on the canvas, not four tiles. */
+/* Overview's sections are --gap-section apart, a hairline in the middle of
+   each gap that never adds to it (design-system.md, page anatomy). */
+.overview-page {
+  gap: var(--gap-section);
+}
+.overview-page > [data-page-zone="section"] + [data-page-zone="section"] {
+  position: relative;
+}
+.overview-page
+  > [data-page-zone="section"]
+  + [data-page-zone="section"]::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--gap-section) / -2);
+  border-top: 1px solid var(--border);
+}
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-bottom: 1px solid var(--border);
-  padding-bottom: var(--section-gap);
 }
 .metric-card {
   --card-spacing: 0px;
   background: transparent;
   box-shadow: none;
   border-radius: 0;
-  padding-inline: var(--section-gap);
+  padding-inline: var(--gap-zone);
   border-inline-start: 1px solid var(--border);
+}
+/* The date the figures are from, under the strip at its end. */
+.metrics-caption {
+  grid-column: 1 / -1;
+  justify-self: end;
+  margin-top: var(--gap-item);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
 }
 .metric-card:first-child {
   padding-inline-start: 0;
@@ -37,7 +60,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .metric-trend {
   flex: 0 1 6.5rem;
@@ -45,8 +68,8 @@
   margin-bottom: 0.5rem;
 }
 .metric-value {
-  margin: var(--control-gap) 0 0.25rem;
-  font-size: calc(var(--text-metric) * 1.25);
+  margin: var(--gap-control) 0 var(--gap-inline);
+  font-size: var(--text-metric);
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: var(--leading-metric);
@@ -54,49 +77,54 @@
 }
 .overview-middle {
   display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(17rem, 1fr);
+  grid-template-columns: minmax(0, 1.6fr) minmax(20rem, 1fr);
   align-items: stretch;
 }
 /* Chart and activity are open sections divided by one hairline. */
 .overview-middle > .completion-card {
-  padding-inline-end: var(--section-gap);
+  padding-inline-end: var(--gap-zone);
 }
 .overview-middle > .activity-card {
-  padding-inline-start: var(--section-gap);
+  padding-inline-start: var(--gap-zone);
   border-inline-start: 1px solid var(--border);
 }
 .completion-card,
 .activity-card {
   min-width: 0;
-  gap: var(--card-padding);
+  gap: var(--inset-card);
 }
 .chart-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .chart-heading {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .chart-period {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 100%;
 }
+/* As tall as the chart header's controls, so both titles share a line. */
 .activity-card > [data-slot="card-header"] {
-  min-height: var(--control-height-sm);
+  min-height: var(--control-height);
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
+}
+/* The link's label, not its padding, meets the column's edge. */
+.activity-card > [data-slot="card-header"] > .ui-button {
+  margin-inline-end: calc(var(--space-2) * -1);
 }
 .chart-total {
   font-size: var(--text-metric);
@@ -110,7 +138,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .completion-range {
   color: var(--muted-foreground);
@@ -129,7 +157,7 @@
 }
 .chart-loading {
   min-height: 24rem;
-  padding: var(--card-padding);
+  padding: var(--inset-card);
   background: var(--card);
   border-radius: var(--radius-xl);
 }
@@ -137,7 +165,7 @@
   font-weight: 600;
 }
 .chart-loading [data-slot="chart-state"] {
-  margin-top: var(--card-padding);
+  margin-top: var(--inset-card);
 }
 /* The table takes the chart's place at the chart's size and scrolls. */
 .chart-body:has(> .chart-data-table) {
@@ -152,7 +180,7 @@
 .overview-card-footer {
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   /* The card's own spacing, so frameless sections stay on the content edge. */
   padding: 0 var(--card-spacing) var(--card-spacing);
   background: transparent;
@@ -167,38 +195,36 @@
 .overview-card-footer > .ui-button:last-child:not(:only-child) {
   margin-inline-start: auto;
 }
+/* The feed is as tall as the chart beside it and scrolls within that. */
 .activity-body {
   position: relative;
   flex: 1;
-  min-height: 24rem;
+  min-height: 18rem;
 }
-/* A kit ScrollArea. Its overflow variables fade an edge only while more
-   history lies past it; the overlay scrollbar sits outside the mask. */
 .activity-viewport {
   position: absolute;
-  inset: 0 var(--control-gap) 0 var(--card-padding);
-  font-size: var(--text-meta);
+  inset: 0;
 }
+/* Its overflow variables fade an edge only while more history lies past
+   it (kit ScrollArea); the scrollbar keeps clear of the dates. */
 .activity-scroller {
-  scroll-padding-block: 2rem;
-  padding-inline-end: calc(var(--card-padding) - var(--control-gap));
+  padding-inline-end: var(--inset-row);
+  scroll-padding-block: var(--space-8);
   --activity-edge-mask: linear-gradient(
     to bottom,
     transparent,
-    #000 min(2rem, var(--scroll-area-overflow-y-start, 0px)),
-    #000 calc(100% - min(2rem, var(--scroll-area-overflow-y-end, 0px))),
+    #000 min(var(--space-8), var(--scroll-area-overflow-y-start, 0px)),
+    #000
+      calc(100% - min(var(--space-12), var(--scroll-area-overflow-y-end, 0px))),
     transparent
   );
   -webkit-mask-image: var(--activity-edge-mask);
   mask-image: var(--activity-edge-mask);
 }
-.activity-card > .overview-card-footer {
-  justify-content: center;
-}
 .chart-legend {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
@@ -207,65 +233,4 @@
   height: 0.4rem;
   border-radius: 2px;
   background: var(--brand);
-}
-.activity-list {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--stack-gap);
-}
-.activity-list li {
-  display: flex;
-  min-width: 0;
-  gap: 0.75rem;
-  position: relative;
-}
-.activity-list li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 0.71875rem;
-  top: 2rem;
-  bottom: calc(0.25rem - var(--stack-gap));
-  width: 1px;
-  background: var(--border);
-}
-.activity-copy {
-  overflow-wrap: anywhere;
-  font-size: var(--text-body);
-  line-height: 1.5;
-  color: var(--muted-foreground);
-}
-.activity-copy .activity-project {
-  display: inline;
-  padding: 0;
-  min-height: 0;
-  height: auto;
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-align: left;
-  justify-content: flex-start;
-  font-size: var(--text-body);
-  font-weight: 500;
-}
-.activity-project svg {
-  display: inline;
-  margin-inline-start: 0.25em;
-  vertical-align: -0.125em;
-}
-.activity-list time {
-  margin-top: 0.15rem;
-  font-size: var(--text-meta);
-}
-@media (width < 64rem) {
-  .activity-card[data-expanded="false"] .activity-body {
-    min-height: 0;
-  }
-  .activity-card[data-expanded="false"] .activity-viewport {
-    position: static;
-  }
-  .activity-card[data-expanded="false"] .activity-scroller {
-    padding-inline-end: 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
 }

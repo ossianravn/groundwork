@@ -1,10 +1,8 @@
 @media (max-width: 1199px) {
-  :root {
-    --sidebar-width: 13.5rem;
-    --page-padding: 1.5rem;
-  }
+  :root,
   :root[data-density="compact"] {
-    --page-padding: 1.25rem;
+    --sidebar-width: 13.5rem;
+    --inset-page: var(--space-6);
   }
 }
 @media (max-width: 1023px) {
@@ -25,27 +23,20 @@
     max-width: none;
     gap: 0;
   }
-  .mobile-sidebar .workspace-navigation {
-    padding-top: var(--section-gap);
-  }
 }
 @media (max-width: 767px) {
   :root,
   :root[data-density="compact"] {
-    --page-padding: 1rem;
     --header-height: 3.5rem;
-    --text-page: 1.5rem;
-    --card-padding: 1rem;
-    --panel-padding: 1rem;
-  }
-  :root {
-    --section-gap: 1.25rem;
-  }
-  :root[data-density="compact"] {
-    --section-gap: 1rem;
+    --text-page: var(--text-feature);
+    --inset-page: var(--space-4);
+    --inset-card: var(--space-4);
+    --inset-panel: var(--space-4);
+    --gap-zone: var(--space-4);
+    --gap-section: var(--space-8);
   }
   .topbar {
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .breadcrumb {
     font-size: var(--text-section);
@@ -59,12 +50,29 @@
   .breadcrumb-back {
     display: inline-flex;
   }
-  .search-trigger span,
-  .search-hint {
+  /* Open search covers the whole top bar; touch keyboards have no Escape. */
+  .topbar-search {
+    position: static;
+  }
+  .topbar-search-field {
+    inset-inline: var(--inset-page);
+    width: auto;
+  }
+  .topbar-search-results {
+    width: 100%;
+  }
+  .topbar-search-hint {
     display: none;
   }
-  .page-meta {
+  .topbar-search-close {
+    display: inline-flex;
+  }
+  .page-meta,
+  .page-action-secondary {
     display: none;
+  }
+  .page-actions-more {
+    display: inline-flex;
   }
   .topbar-page-actions {
     margin-inline-end: 0;
@@ -79,8 +87,6 @@
     white-space: nowrap;
   }
   .topbar .page-action,
-  .topbar .search-trigger,
-  .topbar .appearance-trigger,
   .topbar .mobile-menu-button {
     width: var(--control-height);
     height: var(--control-height);
@@ -110,13 +116,33 @@
     min-height: 2.75rem;
   }
 }
+/* Reduced motion keeps the fades and colour changes that help a person
+   follow a change, and removes movement: nothing slides, scales, rotates,
+   grows or scrolls smoothly. Transitions keep only their fading properties,
+   and the tw-animate enter and exit animations (dialogs, popovers, menus)
+   become fades. Components with keyframes of their own handle them: an
+   entrance switches to motion-fade-in, and an accordion or a loop stops. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transition-property:
+      opacity, color, background-color, border-color, outline-color,
+      text-decoration-color, fill, stroke, box-shadow !important;
+    --tw-enter-translate-x: 0 !important;
+    --tw-enter-translate-y: 0 !important;
+    --tw-enter-scale: 1 !important;
+    --tw-enter-rotate: 0 !important;
+    --tw-exit-translate-x: 0 !important;
+    --tw-exit-translate-y: 0 !important;
+    --tw-exit-scale: 1 !important;
+    --tw-exit-rotate: 0 !important;
+  }
+}
+@keyframes motion-fade-in {
+  from {
+    opacity: 0;
   }
 }
 @media (forced-colors: active) {

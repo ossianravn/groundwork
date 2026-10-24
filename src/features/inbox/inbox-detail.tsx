@@ -45,7 +45,7 @@ export function InboxDetail({
             <EmptyDescription>
               {missing
                 ? "It may belong to a previous demo session."
-                : "Select a conversation to read it here."}
+                : "Select a message to read and reply to it here. Mentions, assignments and project updates arrive in the list."}
             </EmptyDescription>
           </EmptyHeader>
           {missing && (

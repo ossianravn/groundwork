@@ -3,7 +3,7 @@
   max-width: min(24rem, var(--available-width));
   max-height: var(--available-height);
   overflow-y: auto;
-  padding: var(--control-gap);
+  padding: var(--gap-control);
   background: var(--popover);
   color: var(--popover-foreground);
   border: 1px solid var(--border);
@@ -14,9 +14,9 @@
 .dropdown-menu-item {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: var(--control-height);
-  padding: 0 var(--control-gap);
+  padding: 0 var(--gap-control);
   border-radius: var(--radius-md);
   font-size: var(--text-body);
   cursor: default;
@@ -40,12 +40,12 @@
   opacity: 0.5;
 }
 .dropdown-menu-label {
-  padding: var(--control-gap);
+  padding: var(--gap-control);
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
 .dropdown-menu-separator {
   height: 1px;
   background: var(--border);
-  margin-block: var(--control-gap);
+  margin-block: var(--gap-control);
 }

@@ -1,0 +1,49 @@
+/* Voice aura: three blurred lights in the brand's family, drifting by
+   transform (set each frame by VoiceAura). Size it with --voice-aura-size;
+   the blur scales with it, so a small orb is as soft as a large one. */
+:root {
+  --voice-aura-1: var(--brand);
+  --voice-aura-2: color-mix(in oklch, var(--brand) 30%, var(--chart-4));
+  --voice-aura-3: color-mix(in oklch, var(--brand) 30%, var(--chart-5));
+}
+.voice-aura {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--voice-aura-size, 15rem);
+  aspect-ratio: 1;
+  isolation: isolate;
+  opacity: 0.9;
+  transition: opacity var(--motion-slow) var(--ease-standard);
+}
+.voice-aura[data-state="idle"],
+.voice-aura[data-state="connecting"] {
+  opacity: 0.7;
+}
+.voice-aura[data-state="error"] {
+  opacity: 0.35;
+}
+.voice-aura-blob {
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 45% 42%,
+    color-mix(in oklch, var(--blob) 90%, transparent) 0%,
+    color-mix(in oklch, var(--blob) 40%, transparent) 45%,
+    transparent 72%
+  );
+  filter: blur(calc(var(--voice-aura-size, 15rem) * 0.08));
+  will-change: transform;
+}
+.voice-aura-blob:nth-child(1) {
+  --blob: var(--voice-aura-1);
+  transform: translate(-6%, -4%);
+}
+.voice-aura-blob:nth-child(2) {
+  --blob: var(--voice-aura-2);
+  transform: translate(6%, 2%) scale(0.92);
+}
+.voice-aura-blob:nth-child(3) {
+  --blob: var(--voice-aura-3);
+  transform: translate(-2%, 7%) scale(0.86);
+}

@@ -1,0 +1,81 @@
+/* The projects table (features/overview/project-table-content.tsx) keeps its
+   columns' minimum widths on wide views. Narrow views stack each row in two
+   lines, the name and due date, then status, progress and owner, so nothing
+   scrolls sideways; Sort replaces the hidden column headers. The table's
+   ARIA roles keep its semantics while rows are laid out as grids. */
+.project-table {
+  min-width: var(--project-table-width);
+}
+.project-grid-controls[data-table-view] {
+  display: none;
+}
+@container project-views (max-width: 40rem) {
+  .project-grid-controls[data-table-view] {
+    display: flex;
+  }
+  .project-table {
+    display: block;
+    min-width: 0;
+  }
+  .project-table colgroup {
+    display: none;
+  }
+  .project-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  /* Headers stay for screen readers; sorting is in the toolbar, so the
+     hidden sort buttons leave the tab order. */
+  .project-table thead .table-sort {
+    visibility: hidden;
+  }
+  .project-table tbody {
+    display: grid;
+  }
+  .project-table tbody tr {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "selection name name due"
+      ". status progress owner";
+    align-items: center;
+    gap: var(--gap-inline) var(--gap-control);
+    height: auto;
+    padding-block: var(--inset-row);
+  }
+  .project-table tbody td {
+    padding: 0;
+  }
+  .project-table [data-column="selection"] {
+    grid-area: selection;
+  }
+  .project-table [data-column="name"] {
+    grid-area: name;
+    min-width: 0;
+  }
+  .project-table [data-column="dueDate"] {
+    grid-area: due;
+    font-size: var(--text-meta);
+  }
+  .project-table [data-column="status"] {
+    grid-area: status;
+    justify-self: start;
+  }
+  .project-table [data-column="progress"] {
+    grid-area: progress;
+  }
+  .project-table [data-column="owner"] {
+    grid-area: owner;
+  }
+  /* The owner shows as their avatar; the name stays for assistive tech. */
+  .project-table [data-column="owner"] .owner-cell > :last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}

@@ -32,6 +32,13 @@ export function ProjectTimeline({
       scroller.scrollLeft = line.offsetLeft - scroller.clientWidth * 0.75
   }, [])
 
+  // A label takes about the first five days of its week.
+  const covered = (week: string) => {
+    const offset = daysBetween(week, referenceDate)
+
+    return offset >= -1 && offset < 6
+  }
+
   const style: TimelineStyle = {
     "--timeline-days": range.days,
     "--timeline-today": daysBetween(range.start, referenceDate) + 0.5,
@@ -43,7 +50,10 @@ export function ProjectTimeline({
         <span className="timeline-corner" aria-hidden="true" />
         <div className="timeline-axis" aria-hidden="true">
           {range.weeks.map((week) => (
-            <span key={week}>{formatDate(week)}</span>
+            <span key={week}>
+              {/* The snapshot's pill replaces a label it would cover. */}
+              {!covered(week) && formatDate(week)}
+            </span>
           ))}
         </div>
         <ol className="timeline-rows" aria-label="Projects by date">

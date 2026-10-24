@@ -6,6 +6,7 @@ import {
   EmptyHeader,
   EmptyTitle,
   EmptyContent,
+  EmptyDescription,
   EmptyMedia,
 } from "@/kit/ui/empty"
 
@@ -25,6 +26,10 @@ export function EmptyProjects({ onCreate }: { onCreate: () => void }) {
           <EmptyTitle>
             <h2 id="projects-heading">No projects yet</h2>
           </EmptyTitle>
+          <EmptyDescription>
+            A project holds the tasks, files and conversation for one piece of
+            work. Start one here, or bring a spreadsheet in with Import.
+          </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button onClick={onCreate}>

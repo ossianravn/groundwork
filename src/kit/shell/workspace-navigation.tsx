@@ -97,6 +97,7 @@ export function WorkspaceNavigation<Destination extends string>({
           <LinkComponent
             destination={home.destination}
             className="brand"
+            data-slot="sidebar-brand"
             onClick={onNavigate}
             aria-label={home.label}
           >

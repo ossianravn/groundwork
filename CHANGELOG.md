@@ -4,6 +4,82 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 
 ## Unreleased
 
+### Slider
+
+- `slider` (new item): a slider on Base UI, adapted from shadcn's base-nova slider. Each value gets a thumb, so an array makes a range. `aria-label`, `aria-labelledby` and `aria-describedby` reach every thumb's input, the control assistive technology reads, and `getAriaValueText` says the value in words ("12 members"). Tandem's Pricing uses it for a team-size estimate; `/reference/components/slider` documents it (KIT-02).
+- `base` (styles): in forced colours, a slider's track keeps an outline, as a progress track does, and a focused thumb shows the Highlight outline.
+
+## v0.8.0 — 2026-10-18
+
+Voice for chat: a new `voice` item adds dictation to the prompt input and a spoken conversation, full screen or as a bar in the composer's place, with an aura that moves with the sound and captions that light up as they are spoken. It runs on the browser's own speech recognition and voices; nothing else changes.
+
+### Voice
+
+- `voice` (new item): voice for chat, built on the browser's speech recognition and speech output.
+  - `PromptInputSpeech` dictates into a `PromptInput`, after what is written, while the model replies too. Typing or sending stops it. It is hidden where the browser cannot recognise speech, and failures reach `onError` in words.
+  - `VoiceSession` holds a spoken conversation, full (fills its container) or as a bar in a composer's place, with `VoiceSessionVisual`, `VoiceSessionCaption`, `VoiceSessionStatus` (a polite live region), `VoiceSessionControls`, `VoiceMuteButton`, `VoiceEndButton` and `VoiceTimer`. M mutes, Escape ends and Space interrupts.
+  - `VoiceAura` is an orb of light that drifts with a `VoiceState` and swells with a level from `useStreamLevel` (a microphone) or `usePulseLevel` (beats). It moves by transform alone, pauses off screen and holds still with reduced motion; colours come from `--voice-aura-1` to `-3` and size from `--voice-aura-size`.
+  - `Transcription` lights words up to a character position; `useSpeechOutput` speaks sentence by sentence and reports that position, at a steady pace where a voice reports no words; `sentences` and `sentenceAt` split text for captions.
+  - `useSpeechRecognition`, `speechRecognitionSupported` and `speechErrorMessage` wrap the recognizer.
+- `base`: `voice.css` holds the aura's styles and is imported by `kit.css`.
+
+## v0.7.1 — 2026-10-18
+
+A small typing release with no visual changes: `applyTheme` can theme any element-like target, and the theme's saved choices have a named type.
+
+### Tokens
+
+- `base` (theme): `applyTheme` takes any `ThemeRoot`, the parts of an element it writes (class list, style and dataset), and still defaults to `<html>`; `themeChoices` is typed by a named `ThemeChoices` interface. Both types are exported.
+
+## v0.7.0 — 2026-10-18
+
+A finishing pass: the sidebar becomes a surface of its own, motion goes where it helps (a sliding tab underline, a check mark that settles, transitions limited to the properties that change, and a command-menu search that opens at once), and reduced motion keeps fades instead of stopping everything. The spacing aliases deprecated in v0.6.0 are gone, which is breaking; the entry says what to replace.
+
+### Tokens
+
+- `base`: `--sidebar` is a surface of its own, a shade under the work area in light and dark mode, with its own `--sidebar-border`; the shell draws the desktop sidebar's edge with it. Set `--sidebar: var(--background)` to keep one plane.
+- `rich-text`: read-only rich text uses a 1.5 line height, like body text (it was 1.6).
+- `base`: `--motion-slow` (400ms), for entrances seen once, such as a marketing hero.
+- `base`: **Breaking:** the spacing aliases deprecated in v0.6.0 are gone. Replace `--control-gap` with `--gap-control`, `--content-gap` and `--stack-gap` with `--gap-group`, `--section-gap` with `--gap-zone`, `--item-padding` with `--gap-item`, and `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding` with `--inset-card`, `--inset-panel`, `--inset-page` and `--inset-row`. `npm run lint:spacing` reports any old name left in demo code.
+
+### Motion
+
+- `tabs`: the line variant's underline is one `Tabs.Indicator` that slides to the selected tab over 200ms, instead of fading out under one tab and in under the next. It sits where the old underline did, inside the padding of a list that scrolls.
+- `checkbox`: the check mark scales in and out with the box over 120ms.
+- `button`, `toggle`, `badge`, `accordion`, `input-otp` and `tabs`: triggers transition the properties their states change (colour, background, border, ring, opacity and Button's press offset) instead of `transition-all`, so a padding or size change no longer animates.
+- `base`: reduced motion keeps fades instead of stopping all motion. Transitions keep only their opacity, colour and shadow changes, and `tw-animate` enter and exit animations lose their zoom, slide and spin, so dialogs, popovers, menus and sheets fade in place, and `accordion` opens at once. Components with their own entrance keyframes can switch to the new `motion-fade-in` keyframes under `prefers-reduced-motion: reduce`.
+- `toast`: with reduced motion a toast fades in and out where it stands; it used to appear and vanish at once.
+- `shell`: `TopbarSearch`'s field opens at full width at once instead of growing from the magnifier; it is opened from the keyboard many times a day.
+
+## v0.6.0 — 2026-10-18
+
+A layout pass: spacing tokens named for their role, checks that keep pages on them, a quieter workspace top bar whose search can host a command menu, and one anatomy for chart headers, dialog footers, avatars and appearance choices. Plus additions to menus, Select and the AI components. Several shell and chart changes are breaking; each says what to change. The old spacing token names still work in this release and go in the next.
+
+### Tokens
+
+- `base`: role spacing tokens on a 4px ramp (`--space-1` to `--space-12`): `--gap-inline`, `--gap-control`, `--gap-item`, `--gap-group`, `--gap-zone` and `--gap-section` between things, and `--inset-page`, `--inset-card`, `--inset-panel` and `--inset-row` inside them, with compact-density and phone values. The old names (`--control-gap`, `--content-gap`, `--stack-gap`, `--section-gap`, `--item-padding`, `--card-padding`, `--panel-padding`, `--page-padding` and `--row-padding`) remain as deprecated aliases until a later release removes them.
+- `base`: `--text-feature` (20px, Tailwind's `text-xl`) completes the type ramp of 12, 14, 16, 20, 28 and 32px, and `--control-height-xs` adds a 28px control (24px compact). Weights are 400, 500 and 600: `b` and `strong` are 600, and the shell's 650 is now 600. The `rounded-2xl` to `rounded-4xl` radii are gone, and `badge` is fully rounded.
+- `base`: `--backdrop` (Tailwind's `bg-backdrop`) dims the page behind `dialog`, `sheet` and `drawer`, which no longer blur it.
+
+### Shell
+
+- `shell`: `TopbarSearch` (new) is a magnifier that expands in place into a field, with results below. Escape or a click outside collapses it, and Escape returns focus to the magnifier. **Breaking:** `WorkspaceShell`'s `search` is now a slot for it; it was a `{ label, onOpen, … }` config for a button that opened a palette.
+- `shell`: `TopbarSearch` takes `shouldFilter={false}` for a host that filters its own results, such as a menu that matches whole words or caps each group; by default cmdk still filters.
+- `shell`: **Breaking:** `WorkspaceShell` no longer draws an appearance button or takes `onCustomize`; offer Appearance from the account menu instead. An `AccountMenuItem` can now be an action (`{ id, onSelect }`) as well as a link.
+- `shell`: `PageActions` takes secondary actions in `more` (buttons or router links). They show as outline buttons on wide screens and in a ⋯ menu on phones.
+- `shell`: the sidebar's brand row is as tall as the top bar, so the logo sits on the breadcrumb's axis; the brand link carries `data-slot="sidebar-brand"`. The current breadcrumb is styled by its `breadcrumb-current` class, so a parent link that the router marks `aria-current` keeps the parent weight. The top bar's styles moved from `shell.css` to a new `topbar.css`.
+
+### Patterns
+
+- `chart`: **Breaking:** `ChartHeader` is one anatomy for every chart. `title` now names what the chart shows and renders as a heading (h3, or `headingLevel="h2"` for a chart that is a page section of its own). The key figure moves to a new `figure` slot (a `ChartTotal` or a series picker), then come `description` (a one-line takeaway) and the scope controls. `ChartTotal` renders a paragraph unless `as` asks for a heading, and its unit is muted body text.
+- `dialog`: `DialogFooter` sits on the dialog's surface, without the grey band, rule or negative margins; its actions wrap and stay right-aligned, primary last.
+- `member-avatar`: initials sit on a soft tint of one of the six `--hue-*` hues, chosen from the person's name, so a person keeps one colour everywhere.
+- `dropdown-menu`: `DropdownMenuCheckboxItem`, an option that turns on and off and shows a check at the end of its row when on.
+- `toggle`: the small size's text is 14px (it was 12.8px, off the type ramp), which `toggle-group` items share.
+- `theme-panel`: appearance choices have two selected states. Choices with a preview (Theme, Density) are tiles with an ink edge and a check badge; the others (Accent colour, Corners, Header surface) form one segmented control whose chosen segment takes the toggle group's fill. `AppearanceChoices` options take a `mark` to lead a segment's label, which accents use for their swatch, and the label now reads Accent colour. The font picker stacks under its label at a font name's width.
+
+### Menus, Select and AI components
+
 - `select`: the trigger's text no longer ends in "▼". Base UI's Select icon renders that character by default, and it landed inside the chevron svg, so a trigger's text content read "Ava Morgan▼".
 - `ai` (prompt input): a textarea `onPaste` that calls `preventDefault()` now keeps pasted files out of the composer's own attachments, as `onKeyDown` already does for Enter. Before, files a host took over also landed in the composer's list.
 - `ai` (message response): `MessageResponse` takes `plugins`, `remarkPlugins` and `rehypePlugins` and passes them to Streamdown, for math (`@streamdown/math`) or to change how markdown and HTML are read. A list you pass replaces Streamdown's default for it. The reference example shows model-written HTML as text.
@@ -11,8 +87,12 @@ Releases of Groundwork, the kit and its shadcn registry. Install a release by it
 - `ai` (tool): `ToolHeader` takes a `status` node that replaces the state badge, for your own word for an outcome, such as Retried for a failed call the assistant tried again.
 - `ai` (attachments): `Attachment` takes `onOpen`; the thumbnail, or the chip's icon and name, then becomes a button named "Open <name>" (its name underlines on hover), with the remove button still beside it. The reference example opens a preview.
 - `dropdown-menu`: `DropdownMenuRadioGroup` and `DropdownMenuRadioItem`, for a choice among exclusive options; the chosen item shows a check at the end of its row. The item now brings `lucide-react`. `context-menu` re-exports them as `ContextMenuRadioGroup` and `ContextMenuRadioItem`. Tandem's board cards use them for Move to.
-- `slider` (new item): a slider on Base UI, adapted from shadcn's base-nova slider. Each value gets a thumb, so an array makes a range. `aria-label`, `aria-labelledby` and `aria-describedby` reach every thumb's input, the control assistive technology reads, and `getAriaValueText` says the value in words ("12 members"). Tandem's Pricing uses it for a team-size estimate; `/reference/components/slider` documents it (KIT-02).
-- `base` (styles): in forced colours, a slider's track keeps an outline, as a progress track does, and a focused thumb shows the Highlight outline.
+
+### Repository
+
+- The layout contract counts a framed control group (`data-control-group`, like an input group) as one control when it checks a toolbar's heights.
+- The layout contract checks a code snippet's 13px monospace as code, like code blocks and terminals, rather than against the type ramp.
+- `npm run lint` includes `lint:spacing`, which reports raw spacing in demo code against a per-file baseline, and `npm run check:layout` checks each workspace page's anatomy in a browser. See [Checks](README.md#checks).
 
 ## v0.5.0 — 2026-10-13
 

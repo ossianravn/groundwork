@@ -2,12 +2,14 @@
 @import "../kit/styles/kit.css";
 @import "./shell-demo.css";
 @import "./overview.css";
+@import "./attention.css";
 @import "./open-sections.css";
 @import "./activity.css";
+@import "./activity-row.css";
 @import "./help.css";
 @import "./projects.css";
+@import "./project-rows.css";
 @import "./controls.css";
-@import "./project-details.css";
 @import "./project-page.css";
 @import "./project-tasks.css";
 @import "./project-comments.css";
@@ -21,6 +23,8 @@
 @import "./project-query.css";
 @import "./project-grid.css";
 @import "./project-board.css";
+@import "./project-card.css";
+@import "./project-quick-view.css";
 @import "./project-timeline.css";
 @import "./search-results.css";
 @import "./project-import.css";
@@ -32,6 +36,7 @@
 @import "./access.css";
 @import "./public.css";
 @import "./public-pages.css";
+@import "./pricing-team.css";
 @import "./product-features.css";
 @import "./resources.css";
 @import "./resource-reader.css";
@@ -47,6 +52,7 @@
 @import "./inbox-messaging.css";
 @import "./assistant.css";
 @import "./assistant-inspector.css";
+@import "./assistant-voice.css";
 @import "./analytics.css";
 @import "./integrations.css";
 @import "./billing.css";

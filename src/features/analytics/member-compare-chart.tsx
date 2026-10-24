@@ -81,12 +81,9 @@ export function MemberCompareChart({
     <AnalyticsChartCard
       label="Compare people"
       empty={!totals[0] && !totals[1]}
-      heading={
-        <h3 className="font-heading text-base font-semibold">Compare people</h3>
-      }
       description={`Tasks completed in the period by project tag (${names[0]} ${totals[0]}, ${names[1]} ${totals[1]}). A project with two tags counts in both.`}
-      legend={
-        <span className="analytics-legend-row">
+      controls={
+        <>
           <SeriesSelect
             label="First person"
             value={pair[0]}
@@ -99,7 +96,7 @@ export function MemberCompareChart({
             options={optionsBesides(pair[0])}
             onChange={(id) => setPair([pair[0], id])}
           />
-        </span>
+        </>
       }
       table={
         <ChartDataTable

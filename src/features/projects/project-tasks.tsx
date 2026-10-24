@@ -43,7 +43,12 @@ export function ProjectTasks({
   onChange: (change: TaskChange) => (() => void) | undefined
 }) {
   const toast = useToast()
-  const [status, setStatus] = useState<TaskStatus>("open")
+
+  // A completed project opens on what was done; it has nothing open.
+  const [status, setStatus] = useState<TaskStatus>(() =>
+    project.status === "completed" ? "completed" : "open",
+  )
+
   const [kept, setKept] = useState<string[]>([])
   const [showAll, setShowAll] = useState(false)
   const [announcement, setAnnouncement] = useState("")
@@ -175,11 +180,17 @@ export function ProjectTasks({
           ))}
         </ul>
       ) : (
-        <p className="task-empty text-muted-foreground">
-          {status === "open"
-            ? "No open tasks. Add one, or reopen a completed task."
-            : "No completed tasks yet."}
-        </p>
+        // A completed project's notice above already says what's possible.
+        // Each empty list says what belongs in it and how it fills.
+        !(readOnly && status === "open") && (
+          <p className="task-empty text-muted-foreground">
+            {status === "completed"
+              ? "No completed tasks yet. Tick a task when it's done and it moves here."
+              : tasks.length
+                ? "Every task is done. Add another, or reopen a completed one."
+                : "No tasks yet. Break the work into tasks: the project's progress follows them."}
+          </p>
+        )
       )}
       {list.length > visible.length && (
         <Button

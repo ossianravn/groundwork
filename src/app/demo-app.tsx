@@ -6,18 +6,16 @@ import {
   useSearch,
 } from "@tanstack/react-router"
 import { DemoWorkspaceShell } from "./demo-workspace-shell"
-import { ProjectDetails } from "@/features/projects/project-details"
-import { ProjectSearch } from "@/features/projects/project-search"
+import { WorkspaceCommandHost } from "./workspace-command-host"
+import { projectReturnTo } from "./project-return"
 import { ThemePanel } from "@/kit/theme/theme-panel"
 import { WorkspaceContext } from "./workspace-context"
 import { MissingProject } from "@/features/projects/missing-project"
 import { parseProjectsSearch } from "./projects-search"
-import { ArrowUpRight } from "lucide-react"
-import { buttonVariants } from "@/kit/ui/button"
-import { ProjectDetailLink, ProjectEditLink } from "./project-detail-link"
 import { useDemoState } from "./demo-state"
-import { useProjectUndo } from "./use-project-undo"
-import { projectReturnTo } from "./project-return"
+import { ProjectQuickViewHost } from "./project-quick-view-host"
+import { quickViewList } from "./quick-view-list"
+import { NewProjectHost } from "./new-project-host"
 import { Notifications } from "./notifications"
 import { WorkspaceHelp } from "@/features/help/workspace-help"
 import { useWorkspaceHelp } from "./use-workspace-help"
@@ -36,13 +34,29 @@ export function DemoApp() {
     runs,
   } = useDemoState()
 
-  const undo = useProjectUndo()
   const navigate = useNavigate()
   const pathname = useLocation({ select: (location) => location.pathname })
-  const { inspect } = useSearch({ strict: false })
+  const { inspect, create } = useSearch({ strict: false })
   const [themeOpen, setThemeOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  // The list a project was opened from, for J and K in its quick view.
+  const [quickOrder, setQuickOrder] = useState<string[]>([])
   const projectOpener = useRef<HTMLElement | null>(null)
+
+  // Projects opened on their page or in a card's quick view, most recent
+  // first, for the command menu.
+  const [recent, setRecent] = useState<{ last?: string; ids: string[] }>({
+    ids: [],
+  })
+
+  const page = /^\/app\/demo\/projects\/([^/]+)$/u.exec(pathname)?.[1]
+  const viewed = inspect ?? (page === "import" ? undefined : page)
+
+  if (viewed && viewed !== recent.last)
+    setRecent({
+      last: viewed,
+      ids: [viewed, ...recent.ids.filter((id) => id !== viewed)].slice(0, 5),
+    })
 
   const rememberProjectOpener = useCallback(() => {
     projectOpener.current =
@@ -70,9 +84,27 @@ export function DemoApp() {
     [navigate],
   )
 
+  // A project's page, returning to where it was opened from.
+  const openProjectPage = useCallback(
+    (id: string, replace = false) => {
+      void navigate({
+        to: "/app/demo/projects/$projectId",
+        params: { projectId: id },
+        search: {
+          returnTo: projectReturnTo(
+            window.location.pathname + window.location.search,
+          ),
+        },
+        replace,
+      })
+    },
+    [navigate],
+  )
+
   const selectProject = useCallback(
     (id: string) => {
       rememberProjectOpener()
+      setQuickOrder(quickViewList())
       openInspection(id)
     },
     [rememberProjectOpener, openInspection],
@@ -120,23 +152,31 @@ export function DemoApp() {
         },
         onNewProject: () => {
           rememberProjectOpener()
-
-          const returnTo = projectReturnTo(
-            window.location.pathname + window.location.search,
-          )
-
-          results.rememberFocus(returnTo, projectOpener.current)
           void navigate({
-            to: "/app/demo/projects/new",
-            search: { returnTo, scenario: "normal" },
+            to: ".",
+            search: (previous) => ({ ...previous, create: "project" }),
+            resetScroll: false,
           })
         },
       }}
     >
       <DemoWorkspaceShell
+        search={
+          <WorkspaceCommandHost
+            open={searchOpen}
+            onOpenChange={(open) =>
+              open ? showSearch() : setSearchOpen(false)
+            }
+            recentProjectIds={recent.ids}
+            onOpenProject={openProjectPage}
+            onShortcuts={() => {
+              help.setView("shortcuts")
+              help.setOpen(true)
+            }}
+          />
+        }
         notifications={<Notifications />}
         onCustomize={() => setThemeOpen(true)}
-        onSearch={showSearch}
         onHelp={help.show}
         onReset={() => {
           demo.reset()
@@ -168,36 +208,47 @@ export function DemoApp() {
         onRestore={appearance.restoreDefaults}
         onChange={appearance.updateTheme}
       />
-      <ProjectDetails
-        project={selectedProject}
-        created={
-          inspect === demo.saveNotice?.projectId &&
-          demo.saveNotice?.message === "Project created."
-        }
-        members={demo.workspace.members}
-        onClose={() => openInspection(undefined, true)}
-        onComplete={undo.completeProject}
-        returnFocus={projectReturnFocus}
-        detailLink={
-          selectedProject && (
-            <div className="project-sheet-actions">
-              <ProjectDetailLink
-                projectId={selectedProject.id}
-                className={buttonVariants({ variant: "outline" })}
-              >
-                Open project
-                <ArrowUpRight aria-hidden="true" />
-              </ProjectDetailLink>
-              <ProjectEditLink
-                projectId={selectedProject.id}
-                className={buttonVariants({ variant: "outline" })}
-              >
-                Edit project
-              </ProjectEditLink>
-            </div>
-          )
-        }
-      />
+      {create && (
+        <NewProjectHost
+          demo={demo}
+          drafts={drafts}
+          scenario={create === "save-failure" ? "save-failure" : "normal"}
+          onClose={() =>
+            void navigate({
+              to: ".",
+              search: (previous) => ({ ...previous, create: undefined }),
+              resetScroll: false,
+              replace: true,
+            })
+          }
+          onCreated={(projectId) => openProjectPage(projectId, true)}
+          returnFocus={projectReturnFocus}
+        />
+      )}
+      {selectedProject && (
+        <ProjectQuickViewHost
+          project={selectedProject}
+          order={
+            quickOrder.includes(selectedProject.id)
+              ? quickOrder
+              : demo.projects.map((project) => project.id)
+          }
+          created={
+            inspect === demo.saveNotice?.projectId &&
+            demo.saveNotice?.message === "Project created."
+          }
+          onOpen={(id) => {
+            // Closing returns to the project last shown, where it is listed.
+            projectOpener.current =
+              document.querySelector<HTMLElement>(
+                `#main-content [data-quick-view-id="${CSS.escape(id)}"]`,
+              ) ?? projectOpener.current
+            openInspection(id, true)
+          }}
+          onClose={() => openInspection(undefined, true)}
+          returnFocus={projectReturnFocus}
+        />
+      )}
       {inspect && !selectedProject && (
         <MissingProject
           onClose={() => openInspection(undefined, true)}
@@ -211,18 +262,6 @@ export function DemoApp() {
           returnFocus={projectReturnFocus}
         />
       )}
-      <ProjectSearch
-        open={searchOpen}
-        onOpenChange={setSearchOpen}
-        projects={demo.projects}
-        finalFocus={inspect ? false : undefined}
-        onSelect={(id) => {
-          openInspection(id)
-        }}
-        onSearchAll={(q) =>
-          void navigate({ to: "/app/demo/search", search: { q, type: "" } })
-        }
-      />
     </WorkspaceContext>
   )
 }

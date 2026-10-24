@@ -5,12 +5,12 @@
 }
 .project-import {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .import-steps {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--control-gap) var(--section-gap);
+  gap: var(--gap-control) var(--gap-zone);
   counter-reset: step;
   color: var(--muted-foreground);
   font-size: var(--text-meta);
@@ -18,7 +18,7 @@
 .import-steps li {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   counter-increment: step;
 }
 .import-steps li::before {
@@ -44,13 +44,31 @@
   font-size: var(--text-section);
   font-weight: 600;
 }
+/* The drop zone is as wide as its guidance, and lights up as the drop
+   target while a file is dragged over it. */
 .import-drop {
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
-  padding: var(--section-gap);
+  gap: var(--gap-group);
+  max-width: 40rem;
+  padding: var(--inset-panel);
   border: 1px dashed var(--input);
   border-radius: var(--radius-lg);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+.import-drop[data-dragging] {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+.import-drop-text {
+  display: grid;
+  gap: var(--gap-inline);
+}
+.import-drop .import-drop-title {
+  color: var(--foreground);
+  font-weight: 500;
 }
 .import-drop > svg {
   width: 1.5rem;
@@ -65,11 +83,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .import-sample-link {
-  margin-inline-start: var(--control-gap);
-  font-size: var(--text-meta);
+  color: var(--foreground);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -85,15 +102,15 @@
   display: grid;
   grid-template-columns: 12rem minmax(0, 1fr);
   align-items: center;
-  gap: var(--control-gap) var(--content-gap);
-  padding-block: var(--control-gap);
+  gap: var(--gap-control) var(--gap-group);
+  padding-block: var(--gap-control);
   border-bottom: 1px solid var(--border);
 }
 .import-mapping dd {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap) var(--content-gap);
+  gap: var(--gap-control) var(--gap-group);
 }
 .import-mapping-select {
   min-width: 12rem;

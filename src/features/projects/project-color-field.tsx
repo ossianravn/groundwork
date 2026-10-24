@@ -18,15 +18,23 @@ const names: Record<ProjectColor, string> = {
 export function ProjectColorField({
   value,
   onChange,
+  hideLegend = false,
 }: {
   value: ProjectColor
   onChange: (color: ProjectColor) => void
+  /** For a row that shows its label beside the swatches. */
+  hideLegend?: boolean
 }) {
   const name = useId()
 
   return (
     <FieldSet className="project-color-field">
-      <FieldLegend variant="label">Colour</FieldLegend>
+      <FieldLegend
+        variant="label"
+        className={hideLegend ? "sr-only" : undefined}
+      >
+        Colour
+      </FieldLegend>
       <div className="project-color-options">
         {projectColors.map((color) => (
           <label

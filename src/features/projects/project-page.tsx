@@ -1,5 +1,3 @@
-import { RichText } from "@/kit/rich-text/rich-text"
-import { documentText } from "@/kit/rich-text/document"
 import type { ReactNode } from "react"
 import { ProjectStatus } from "@/components/project-status"
 import type {
@@ -10,7 +8,8 @@ import type {
   ProjectTask,
 } from "@/demo/model"
 import type { TaskChange } from "@/demo/project-tasks"
-import { ProjectHeaderProgress } from "./project-header-progress"
+import { ProjectCompletion } from "./project-completion"
+import { ProjectDescription } from "./project-description"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/kit/ui/tabs"
 import { ProjectMark } from "@/components/project-identity"
 import { ProjectInlineField } from "./project-inline-field"
@@ -31,24 +30,24 @@ const isProjectTab = (value: unknown): value is ProjectTab =>
 
 /**
  * A project's page: its name, status and description as the heading; the
- * work (tasks, comments, activity) in the main column; and its properties,
- * progress and files in a rail beside it. Properties and progress come first
- * in reading order and files last, so narrow screens show who owns the
- * project and when it is due, then the tasks, then attachments.
+ * work (tasks, comments, activity) in the main column; and its properties
+ * and files in a rail beside it. The work comes first in reading order, so
+ * narrow screens show the tasks, then the details, then attachments.
  */
 export function ProjectPage({
   project,
   members,
   assignableMembers,
   activity,
-  editLink,
   notice,
   editing,
   onComplete,
+  onReopen,
   tasks,
   onTaskChange,
   comments,
   onPostComment,
+  commentAuthor,
   files,
   agent,
   tagOptions,
@@ -60,14 +59,16 @@ export function ProjectPage({
   members: Member[]
   assignableMembers: Member[]
   activity: Activity[]
-  editLink: ReactNode
   notice?: string
   editing: ProjectInlineEditing
   onComplete: (id: string) => void
+  onReopen: (id: string) => void
   tasks: ProjectTask[]
   onTaskChange: (change: TaskChange) => (() => void) | undefined
   comments: ProjectComment[]
   onPostComment: (text: string) => boolean
+  /** The person commenting, beside the composer. */
+  commentAuthor?: Member
   /** Attachments, shown under the details in the rail. */
   files?: ReactNode
   /** The agent's runs on the project; alert when one needs the person. */
@@ -90,39 +91,42 @@ export function ProjectPage({
 
   return (
     <main id="main-content" className="page-content project-page" tabIndex={-1}>
-      <header className="project-page-heading">
+      <header className="project-page-heading" data-page-zone="header">
         <div className="project-page-title">
           <ProjectMark color={project.color} />
-          <ProjectInlineField field="name" editing={editing} members={members}>
-            {project.name}
-          </ProjectInlineField>
-          <ProjectStatus status={project.status} />
+          <div className="record-title-name">
+            <ProjectInlineField
+              field="name"
+              editing={editing}
+              members={members}
+            >
+              {project.name}
+            </ProjectInlineField>
+            <ProjectStatus status={project.status} />
+          </div>
           <div className="project-header-side">
-            <ProjectHeaderProgress project={project} onComplete={onComplete} />
-            {editLink}
+            <ProjectCompletion
+              project={project}
+              onComplete={onComplete}
+              onReopen={onReopen}
+            />
           </div>
         </div>
-        {documentText(project.description) && (
-          <div className="project-page-lead">
-            <RichText value={project.description} />
-          </div>
-        )}
+        <div className="project-page-lead">
+          <ProjectDescription
+            description={project.description}
+            onSave={(description) =>
+              editing.saveDetails({ description }).kind === "saved"
+            }
+          />
+        </div>
       </header>
       {notice && (
         <p role="status" className="project-save-notice">
           {notice}
         </p>
       )}
-      <div className="project-page-grid">
-        <aside className="project-rail" aria-labelledby="project-details-title">
-          <ProjectProperties
-            project={project}
-            owner={owner}
-            assignableMembers={assignableMembers}
-            tagOptions={tagOptions}
-            editing={editing}
-          />
-        </aside>
+      <div className="project-page-grid" data-page-zone="content">
         <Tabs
           className="project-main"
           value={tab}
@@ -133,9 +137,7 @@ export function ProjectPage({
           <TabsList variant="line" aria-label="Project sections">
             <TabsTrigger value="tasks">
               Tasks{" "}
-              <span className="project-tab-count">
-                {tasks.filter((task) => !task.done).length}
-              </span>
+              <span className="project-tab-count">{taskCount(tasks)}</span>
             </TabsTrigger>
             <TabsTrigger value="comments">
               Comments{" "}
@@ -175,6 +177,7 @@ export function ProjectPage({
               people={members}
               members={assignableMembers}
               onPost={onPostComment}
+              author={commentAuthor}
             />
           </TabsContent>
           <TabsContent value="activity" keepMounted>
@@ -190,8 +193,24 @@ export function ProjectPage({
             {agent.panel}
           </TabsContent>
         </Tabs>
+        <aside className="project-rail" aria-labelledby="project-details-title">
+          <ProjectProperties
+            project={project}
+            owner={owner}
+            assignableMembers={assignableMembers}
+            tagOptions={tagOptions}
+            editing={editing}
+          />
+        </aside>
         {files && <div className="project-rail-files">{files}</div>}
       </div>
     </main>
   )
+}
+
+/** Open tasks, or how many are done when none are open (not "0"). */
+function taskCount(tasks: ProjectTask[]) {
+  const open = tasks.filter((task) => !task.done).length
+
+  return open || !tasks.length ? open : `${tasks.length} done`
 }

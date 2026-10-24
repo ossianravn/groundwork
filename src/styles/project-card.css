@@ -1,0 +1,183 @@
+/* Project cards (features/projects/project-card.tsx) in the cards view and on
+   the board. The name's link covers the card, so the whole card opens the
+   project; the checkbox and actions sit above that link. */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-item);
+  min-width: 0;
+  padding: var(--inset-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  /* A card rests a hair above the canvas and lifts under the pointer. */
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+.project-card[data-density="board"] {
+  gap: var(--gap-control);
+}
+.project-card:hover {
+  border-color: color-mix(in oklch, var(--foreground) 24%, var(--border));
+}
+/* A pointer lifts the card a little: a shadow, never a move, so text and
+   neighbours stay put. */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    box-shadow: var(--shadow-sm);
+  }
+}
+.project-card[data-selected] {
+  border-color: color-mix(in oklch, var(--brand) 45%, var(--border));
+  background: color-mix(in srgb, var(--brand-soft) 60%, var(--card));
+}
+/* Focus on the name rings the whole card it stands for. */
+.project-card:has(.project-card-title :focus-visible) {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.project-card-title :focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+/* The mark, the name's first line and the menu share one row; a long
+   name wraps under itself, up to two lines. */
+.project-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-control);
+  min-height: var(--control-height-sm);
+}
+/* The mark and the checkbox share one place: the checkbox shows on hover,
+   on focus, when the card is selected and while any card is. */
+.project-card-lead {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: var(--control-height-sm);
+}
+.project-card-lead > * {
+  grid-area: 1 / 1;
+}
+.project-card-lead [data-slot="checkbox"] {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
+.project-card:is(:hover, :focus-within, [data-selected])
+  .project-card-lead
+  [data-slot="checkbox"],
+[data-selecting] .project-card-lead [data-slot="checkbox"] {
+  opacity: 1;
+}
+.project-card:is(:hover, :focus-within, [data-selected])
+  .project-card-lead:has([data-slot="checkbox"])
+  > .project-dot,
+[data-selecting] .project-card-lead:has([data-slot="checkbox"]) > .project-dot {
+  opacity: 0;
+}
+@media (hover: none) {
+  .project-card-lead [data-slot="checkbox"] {
+    opacity: 1;
+  }
+  .project-card-lead:has([data-slot="checkbox"]) > .project-dot {
+    opacity: 0;
+  }
+}
+.project-card-title {
+  flex: 1;
+  min-width: 0;
+  /* One line of the name, centred in the head row. */
+  --title-line: 1.4em;
+  display: -webkit-box;
+  margin-block: calc((var(--control-height-sm) - var(--title-line)) / 2);
+  overflow: hidden;
+  font-size: var(--text-section);
+  font-weight: 600;
+  line-height: var(--title-line);
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.project-card[data-density="board"] .project-card-title {
+  font-size: var(--text-body);
+}
+.project-card-title .project-name {
+  display: inline;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  white-space: normal;
+  cursor: pointer;
+}
+.project-card-title .project-name .truncate {
+  white-space: normal;
+}
+.project-card-title .project-name::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.project-card-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+/* The owner ends the head row, on the name's first line. */
+.project-card-owner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: var(--control-height-sm);
+}
+/* Two lines, kept even when the text is shorter, so a row of cards lines
+   up its bars and footers. */
+.project-card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  min-height: calc(2lh);
+  overflow: hidden;
+  color: var(--muted-foreground);
+}
+/* The bar and footer end every card at the same line. */
+.project-card > [data-slot="progress"] {
+  margin-top: auto;
+}
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap-control) var(--gap-item);
+  font-size: var(--text-meta);
+  color: var(--muted-foreground);
+}
+.project-card-count {
+  margin-inline-start: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* Phones show the compact card, so a screen holds more than two projects. */
+@container project-views (max-width: 26rem) {
+  .project-grid .project-card {
+    gap: var(--gap-control);
+  }
+  .project-grid .project-card-description {
+    display: none;
+  }
+}

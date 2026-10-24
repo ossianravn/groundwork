@@ -1,12 +1,12 @@
 .billing-current {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .billing-current-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   flex-wrap: wrap;
 }
 .billing-current-heading h3 {
@@ -24,7 +24,7 @@
 }
 .billing-workspace-counts {
   display: flex;
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 .billing-workspace-counts > div {
   display: flex;
@@ -40,11 +40,11 @@
 }
 .billing-invoices {
   border-top: 1px solid var(--border);
-  padding-top: var(--content-gap);
+  padding-top: var(--gap-group);
 }
 .billing-invoices h3 {
   font-weight: 600;
-  margin-bottom: var(--control-gap);
+  margin-bottom: var(--gap-control);
 }
 .billing-invoice-id,
 .billing-invoice-amount {
@@ -84,9 +84,9 @@
 .billing-plan-total {
   display: flex;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   border-top: 1px solid var(--border);
-  padding-top: var(--content-gap);
+  padding-top: var(--gap-group);
 }
 .billing-plan-total strong {
   text-align: end;

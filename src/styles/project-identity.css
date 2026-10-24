@@ -1,7 +1,8 @@
 .project-dot {
+  --mark-size: 0.5rem;
   flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: var(--mark-size);
+  height: var(--mark-size);
   border-radius: 0.15rem;
   background: var(--project-color, var(--muted-foreground));
 }

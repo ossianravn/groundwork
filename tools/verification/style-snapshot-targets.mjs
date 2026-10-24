@@ -1,0 +1,116 @@
+// What the style snapshot records: representative routes, and open states
+// reached from a route by one or more agent-browser actions.
+
+export const routes = [
+  "/",
+  "/product",
+  "/pricing",
+  "/blog",
+  "/changelog",
+  "/help",
+  "/contact",
+  "/privacy",
+  "/auth/sign-in",
+  "/auth/sign-up",
+  "/onboarding/workspace",
+  "/app/demo/overview",
+  "/app/demo/projects",
+  "/app/demo/projects?view=board",
+  "/app/demo/projects/brand",
+  "/app/demo/projects?create=project",
+  "/app/demo/inbox",
+  "/app/demo/analytics",
+  "/app/demo/activity",
+  "/app/demo/settings/profile",
+  "/app/demo/settings/appearance",
+  "/app/demo/settings/team",
+  "/app/demo/settings/billing",
+  "/app/demo/settings/webhooks",
+  "/reference",
+  "/reference/components",
+  "/reference/patterns",
+  "/reference/themes",
+  "/reference/states",
+]
+
+// Open overlays and popups, reached by one agent-browser action each, or by
+// a list of actions. A state whose action is unavailable at a width (for
+// example a hidden trigger) is skipped.
+const appearanceItem = [
+  "find",
+  "role",
+  "menuitem",
+  "click",
+  "--name",
+  "Appearance",
+]
+
+export const states = [
+  ["search", "/app/demo/overview", "click", ".search-trigger"],
+  [
+    "appearance",
+    "/app/demo/overview",
+    ["click", ".desktop-sidebar .account-menu-trigger"],
+    appearanceItem,
+  ],
+  [
+    "appearance-phone",
+    "/app/demo/overview",
+    ["click", ".mobile-menu-button"],
+    ["click", ".mobile-sidebar .account-menu-trigger"],
+    appearanceItem,
+  ],
+  ["project-quick-view", "/app/demo/projects?inspect=brand"],
+  [
+    "compose",
+    "/app/demo/inbox",
+    "find",
+    "role",
+    "button",
+    "click",
+    "--name",
+    "New message",
+  ],
+  [
+    "owner-filter",
+    "/app/demo/projects",
+    "find",
+    "role",
+    "button",
+    "click",
+    "--name",
+    "Owner",
+  ],
+  [
+    "font-select",
+    "/app/demo/settings/appearance",
+    "click",
+    '[data-slot="select-trigger"]',
+  ],
+  [
+    "tag-combobox",
+    "/app/demo/projects?create=project",
+    "click",
+    '[data-slot="combobox-chip-input"]',
+  ],
+  [
+    "invite",
+    "/app/demo/settings/team",
+    "find",
+    "role",
+    "button",
+    "click",
+    "--name",
+    "Invite member",
+  ],
+  [
+    "rename",
+    "/reference/components/dialog",
+    "find",
+    "role",
+    "button",
+    "click",
+    "--name",
+    "Rename",
+  ],
+]

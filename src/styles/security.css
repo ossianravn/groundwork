@@ -1,18 +1,18 @@
 .security-settings {
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .security-section + .security-section,
 .security-activity {
   border-top: 1px solid var(--border);
-  padding-top: var(--content-gap);
+  padding-top: var(--gap-group);
 }
 .security-method {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
-  padding-block: var(--item-padding);
+  gap: var(--gap-control);
+  padding-block: var(--inset-row);
 }
 .security-method h3 {
   font-weight: 500;
@@ -33,15 +33,15 @@
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--control-gap);
-  padding-block: var(--item-padding);
+  gap: var(--gap-control);
+  padding-block: var(--inset-row);
   font-size: var(--text-meta);
 }
 .security-activity time {
   color: var(--muted-foreground);
 }
 .verification-form > .ui-button[type="submit"] {
-  margin-top: var(--content-gap);
+  margin-top: var(--gap-group);
 }
 .verification-form [data-slot="input-otp-slot"] {
   width: var(--control-height);
@@ -58,7 +58,7 @@
 .recovery-codes {
   display: grid;
   justify-items: start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .recovery-code-list {
   font-family: ui-monospace, monospace;

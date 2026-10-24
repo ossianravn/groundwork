@@ -15,8 +15,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--content-gap) var(--section-gap);
-  padding: var(--content-gap) var(--card-padding);
+  gap: var(--gap-group) var(--gap-zone);
+  padding: var(--gap-group) var(--inset-card);
   border-top: 1px solid var(--border);
   font-size: var(--text-meta);
 }
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .table-page-number {
   margin-right: 0.5rem;
@@ -78,7 +78,7 @@
 }
 @media (max-width: 767px) {
   .table-pagination {
-    gap: var(--control-gap) var(--content-gap);
+    gap: var(--gap-control) var(--gap-group);
   }
   .table-range {
     flex: 1 1 7rem;
@@ -128,13 +128,13 @@
   display: grid;
   gap: 1.25rem;
   min-height: 0;
-  padding: var(--item-padding) 1rem;
+  padding: var(--inset-row) 1rem;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 .facet-drawer-footer {
   flex-direction: row;
   justify-content: space-between;
-  padding-top: var(--item-padding);
+  padding-top: var(--inset-row);
   border-top: 1px solid var(--border);
 }

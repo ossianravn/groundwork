@@ -58,6 +58,12 @@ import { WorkflowRunExample } from "@/features/reference/examples/workflow-run-e
 import workflowRunSource from "@/features/reference/examples/workflow-run-example?raw"
 import { TerminalExample } from "@/features/reference/examples/terminal-example"
 import terminalSource from "@/features/reference/examples/terminal-example?raw"
+import { SpeechInputExample } from "@/features/reference/examples/speech-input-example"
+import speechInputSource from "@/features/reference/examples/speech-input-example?raw"
+import { VoiceSessionExample } from "@/features/reference/examples/voice-session-example"
+import voiceSessionSource from "@/features/reference/examples/voice-session-example?raw"
+import { TranscriptionExample } from "@/features/reference/examples/transcription-example"
+import transcriptionSource from "@/features/reference/examples/transcription-example?raw"
 import { FileTreeExample } from "@/features/reference/examples/file-tree-example"
 import fileTreeSource from "@/features/reference/examples/file-tree-example?raw"
 import { CommitExample } from "@/features/reference/examples/commit-example"
@@ -226,5 +232,20 @@ export const referenceExamples = [
       answerSource,
     ].join("\n"),
     Guide: AnswerGuide,
+  },
+  {
+    id: "speech-input",
+    Component: SpeechInputExample,
+    source: speechInputSource,
+  },
+  {
+    id: "voice-session",
+    Component: VoiceSessionExample,
+    source: voiceSessionSource,
+  },
+  {
+    id: "transcription",
+    Component: TranscriptionExample,
+    source: transcriptionSource,
   },
 ]

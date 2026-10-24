@@ -6,6 +6,7 @@ import {
   ChartTooltipContent,
 } from "@/kit/ui/chart"
 import { ChartDataTable } from "@/kit/ui/chart-data-table"
+import { ChartTotal } from "@/kit/ui/chart-header"
 import { hueColor } from "@/kit/ui/chart-colors"
 import { useChartTypography } from "@/kit/ui/use-chart-typography"
 import { CompletionDateAxis } from "@/features/overview/completion-date-axis"
@@ -58,12 +59,13 @@ export function OpenShareChart({
     <AnalyticsChartCard
       label="Open work by project"
       empty={!open}
-      heading={
-        <h3 className="font-heading text-base font-semibold">
-          {largest
-            ? `${largest.name} holds ${percent(count(largest) / open)} of open work`
-            : "Open work by project"}
-        </h3>
+      figure={
+        largest && (
+          <ChartTotal
+            value={percent(count(largest) / open)}
+            unit={`of open work is in ${largest.name}`}
+          />
+        )
       }
       description={`${open} open tasks at ${formatDate(range.end)}, by the share each project held each week.`}
       legend={

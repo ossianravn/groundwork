@@ -23,9 +23,12 @@ const sortOptions = [
 export function ProjectGridControls({
   table,
   board = false,
+  tableView = false,
 }: {
   table: DataTable<Project>
   board?: boolean
+  /** In the table, Sort shows only where its rows stack (phones). */
+  tableView?: boolean
 }) {
   const sort = table.state.sorting[0]
 
@@ -36,7 +39,10 @@ export function ProjectGridControls({
   )
 
   return (
-    <div className="project-grid-controls">
+    <div
+      className="project-grid-controls"
+      data-table-view={tableView || undefined}
+    >
       <div className="project-grid-sort">
         <Select
           items={options}

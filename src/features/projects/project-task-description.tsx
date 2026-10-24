@@ -64,6 +64,9 @@ export function ProjectTaskDescription({
           onChange={setDraft}
         />
         <div className="task-description-actions">
+          <Button size="sm" variant="ghost" onClick={close}>
+            Cancel
+          </Button>
           <Button
             size="sm"
             onClick={() => {
@@ -72,9 +75,6 @@ export function ProjectTaskDescription({
             }}
           >
             Save
-          </Button>
-          <Button size="sm" variant="ghost" onClick={close}>
-            Cancel
           </Button>
         </div>
       </div>
@@ -92,7 +92,7 @@ export function ProjectTaskDescription({
           id={editId}
           size="sm"
           variant="ghost"
-          className="task-description-edit"
+          className="inline-action"
           onClick={() => {
             setDraft(task.description ?? textDocument(""))
             focus(editorId)

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react"
 import type { useWorkspace } from "@/demo/use-workspace"
 import type { useResultsMemory } from "./use-results-memory"
-import type { useProjectDrafts } from "./use-project-drafts"
+import type { useProjectDrafts } from "@/demo/use-project-drafts"
 import type { useTheme } from "@/kit/theme/use-theme"
 
 interface WorkspaceContextValue {

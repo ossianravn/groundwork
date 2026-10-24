@@ -1,6 +1,6 @@
 # Assistant
 
-Status: implemented, awaiting review (2026-09-30). Shell: App. Inventory: AI-01 to AI-23, DEV-01, DEV-02. The developer components (DEV-03 to DEV-07) are shown in the coding-agent specimen (AI-24, `/reference/specimens/coding-agent`), not here, because Tandem's assistant works on projects rather than code.
+Status: implemented, awaiting review (2026-09-30; voice 2026-10-18). Shell: App. Inventory: AI-01 to AI-23, AI-31 to AI-33, DEV-01, DEV-02. The developer components (DEV-03 to DEV-07) are shown in the coding-agent specimen (AI-24, `/reference/specimens/coding-agent`), not here, because Tandem's assistant works on projects rather than code.
 
 ## User goal and composition
 
@@ -17,7 +17,8 @@ A rounded surface holds any attachments, then the text, then a row of tools:
 - **+ menu:** add photos and files, or one of the open projects as context.
 - **Context ring:** once a reply has reported usage, it opens the window used, the last input and output tokens, and an estimated cost for the conversation.
 - **Model:** Fast (quicker, no visible reasoning), Balanced or Thorough (slower).
-- **Send:** a round button whose tooltip carries the keys, Enter to send and Shift+Enter for a new line. It becomes Stop during a reply.
+- **Dictate** (AI-31): a microphone; see [Voice](#voice).
+- **Send:** a round button whose tooltip carries the keys, Enter to send and Shift+Enter for a new line. It becomes Stop during a reply. With nothing written or attached, its place starts [voice mode](#voice) instead.
 
 Files can also be dropped or pasted. Up to five images, PDFs, text or CSV files of at most 10 MB each are accepted; anything else is refused with the reason. Sent attachments appear as chips above the question. Files travel as AI SDK file parts and projects as data parts. An attached project counts as named in the question, so "Add a launch checklist" with Mobile app attached plans for Mobile app. The scripted assistant says plainly that it cannot read file contents.
 
@@ -107,6 +108,17 @@ Each help guide offers Ask about this guide. Ask the Tandem Assistant opens the 
 
 The person's own choice to open or close reasoning or steps is kept. Nothing here takes focus. Copied text and the spoken reply leave citation markers out.
 
+## Voice
+
+Speech uses the browser's own recognition and voices, with no service of Tandem's; in Chrome and Edge the browser vendor recognises the audio. Where the browser has no speech recognition, as in Firefox, Dictate is hidden.
+
+- **Dictate** (AI-31): the words appear in the message as they are heard, after anything already written, and stay there to edit or send. It keeps working while a reply streams, so a spoken follow-up queues like a typed one. Four bars follow the microphone while it listens. Typing or sending stops it. A blocked or missing microphone is explained in a toast.
+- **Voice mode** (AI-32): the round button in Send's place opens a session over the chat: an aura that drifts with the state and swells with the sound, a status line (Listening, Thinking, Speaking, Muted), captions and Mute and End. It listens for a question, sends it as a message, speaks the reply and listens again; the turns land in the thread like typed ones. Show chat shrinks the session into a bar in the composer's place, with the aura, status, a line of caption, the time, Full screen, Mute and End, so answers stay in view. The aura keeps its identity between the two with a view transition.
+- **What it says:** a reply's prose, without citation markers. An answer without prose is introduced by its first line, then "The details are in the chat." A reply that needs an answer or approval says so and moves the session to the bar; deciding in the chat continues the conversation aloud.
+- **Captions** (AI-33): the reply is shown one sentence at a time, its words lighting up as they are spoken. Where a voice reports no word timings, the captions follow a steady speaking pace.
+- **Interrupt:** press the aura or Space while it thinks or speaks; it stops and listens. M mutes and Escape ends; ending returns focus to the voice button. On phones the controls sit at the bottom.
+- **No microphone:** without speech recognition, or when the microphone is refused, the session says "Voice needs a microphone" and offers Play a sample: two starting questions are asked a word at a time, sent, answered and spoken. Not now closes it.
+
 ## Interaction and accessibility
 
 - Enter sends and Shift+Enter adds a line; Enter is left to an input method while it composes. While a reply streams, Enter does nothing, so a follow-up can be drafted, and the send button becomes Stop. The button is never disabled; an empty send returns focus to the text.
@@ -117,4 +129,4 @@ The person's own choice to open or close reasoning or steps is kept. Nothing her
 
 ## Scope and limits
 
-Conversations last until reload. Token counts are estimated from text length and prices are illustrative. Only createTasks needs approval; the project search is read-only. Added tasks have no Undo in the assistant; remove them from the project. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).
+Conversations last until reload. Token counts are estimated from text length and prices are illustrative. Only createTasks needs approval; the project search is read-only. Added tasks have no Undo in the assistant; remove them from the project. There is no model and no network: answers cover three topics. The API in the answer is illustrative and does not respond. Screen-reader output was checked through the status text, not with a screen reader. Voice was verified with a scripted recognizer and a synthetic microphone and with the sample; a real microphone and spoken output were not exercised by automation. Inherits the [quality contract](../../quality.md), [density rules](../../density.md), [shared shells](../../shells.md) and [demo data contract](../../demo-data.md).

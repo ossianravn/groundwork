@@ -3,6 +3,7 @@ import {
   applyTheme,
   defaultTheme,
   readTheme,
+  type ThemeRoot,
   type ThemeSettings,
 } from "./preferences"
 import { themeScript } from "./theme-script"
@@ -15,19 +16,29 @@ afterEach(() => {
 // The parts of <html> that applyTheme and the script write.
 function fakeRoot() {
   const classes = new Set<string>()
-  const properties = new Map<string, string>()
+  const properties = new Map<string, string | null>()
 
-  const root = {
+  const root: ThemeRoot = {
     classList: {
-      toggle: (name: string, on: boolean) =>
-        on ? classes.add(name) : classes.delete(name),
+      toggle: (name, on) => {
+        if (on) classes.add(name)
+        else classes.delete(name)
+
+        return Boolean(on)
+      },
     },
     style: {
       colorScheme: "",
-      setProperty: (name: string, value: string) => properties.set(name, value),
-      removeProperty: (name: string) => properties.delete(name),
+      setProperty: (name, value) => {
+        properties.set(name, value)
+      },
+      removeProperty: (name) => {
+        properties.delete(name)
+
+        return ""
+      },
     },
-    dataset: {} as Record<string, string>,
+    dataset: {},
   }
 
   const state = () => ({
@@ -97,8 +108,7 @@ it.each([
 
     const fromRuntime = fakeRoot()
     vi.stubGlobal("document", { documentElement: fromRuntime.root })
-    // SAFETY: the fake implements every member applyTheme uses.
-    applyTheme(readTheme(defaults), fromRuntime.root as unknown as HTMLElement)
+    applyTheme(readTheme(defaults), fromRuntime.root)
 
     expect(fromScript.state()).toEqual(fromRuntime.state())
   },

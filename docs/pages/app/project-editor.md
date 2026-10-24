@@ -26,11 +26,11 @@ Tags and links share the existing per-project navigation drafts, Cancel discard,
 
 ## Contextual editing on details
 
-The name has a labelled pencil action beside the title; activation reveals a bounded Input with explicit Save/Cancel. Blur does not save or discard; Enter submits and Escape cancels. The properties rail has one **Edit** action beside its Details heading: a dialog edits owner, due date, tags and links together (the same Select, DatePicker, tag and link fields as the full editor) and saves them at once. Cancel, Escape or the close button discard the dialog's changes, and each opening starts from the saved project; focus returns to Edit and "Details saved." is announced. The full editor remains the entry point for description and colour. Only active workspace members are assignable.
+The name has a labelled pencil action beside the title; activation reveals a bounded Input with explicit Save/Cancel. Blur does not save or discard; Enter submits and Escape cancels. **Since 2026-10-17 everything else edits in place too, and there is no edit page:** Edit description under the name opens the rich-text editor with Cancel and Save (Escape cancels), and Project details (on the page and in the quick view) changes owner, due date, colour, tags and links as they are picked, with Retry when a save fails (design-system.md, properties). `/projects/:id/edit` redirects to the project page, keeping its return context. **New project is a dialog since 2026-10-17** (`?create=project` on any workspace page, so Back closes it; `/projects/new` redirects to Projects with it open). Closing it keeps the draft for next time, Cancel discards it and returns focus to New project, and Create opens the new project's quick view, which says Project created. `?create=save-failure` rejects the first save.
 
 Inline and full editing share the same per-project draft. Navigation retains it and an Unsaved marker identifies unfinished inline fields. Saving commits only the active field against current saved values, leaving other draft fields untouched, even if those fields are invalid. Cancel/Escape restores only this field. A baseline reconciles untouched fields with newer saved values so returning to the full editor does not undo a completed inline save. Full-form Cancel still discards the entire project draft; reset/reload clears all drafts.
 
-Validation errors stay beside the field and focus it. A fresh `?scenario=save-failure` detail draft rejects its first changed save (inline name or details dialog), retains input and offers Retry save. The simulation applies to each newly created draft; normal local saves remain synchronous. Unchanged saves produce no Activity event. A successful change updates shared records/history, returns focus to its pencil action and announces the result to assistive technology; the changed value is the visible feedback, with no inserted success banner. Production concurrency/conflict handling is not implemented.
+Validation errors stay beside the field and focus it. A fresh `?scenario=save-failure` detail draft rejects its first changed save (the inline name, or a property in Project details), retains input or keeps the saved value, and offers Retry. The simulation applies to each newly created draft; normal local saves remain synchronous. Unchanged saves produce no Activity event. A successful change updates shared records/history, returns focus to its pencil action and announces the result to assistive technology; the changed value is the visible feedback, with no inserted success banner. Production concurrency/conflict handling is not implemented.
 
 ## Tasks
 
@@ -56,7 +56,7 @@ The Activity tab opens with the project's burn-up (DVIZ-07): scope as a step lin
 
 ## Agent
 
-The project's **Agent** tab (AI-27) hands routine work to an agent that runs in the background. Before the first run it lists what the agent can do; afterwards New run starts another, and a run picker shows earlier ones. One run at a time per project.
+The project's **Agent** tab (AI-27) hands routine work to an agent that runs in the background. At rest it shows a card per agent (what it reads, counted from the project now; what it produces; when the person approves; its last run) with Start and an Every Friday schedule, which is a demo flag that runs nothing, then the runs so far, each opening its run; a run started here stays open until All agents. A run that needs the person takes the tab. The status report's review shows the report formatted, with Edit for its text, and Discard then Post report. One run at a time per project.
 
 - **Write a status report** reads the tasks, the week's activity and the comments, writes a report, then stops at **Review the report**: the report is an editable field, posted to Comments under the person's name only with Post report. **Plan the launch** reads the brief and open tasks, finds checklist steps the project lacks and stops at **Approve the tasks** (Add 5 tasks); when nothing is missing it finishes without a review. Completed projects cannot take a launch plan.
 - The summary shows the state (Running, Needs you, Needs attention, Completed, Cancelled), when and by whom it started or how long it took, what it is doing or did, progress labelled by the current step, and Stop run while it works or Show in Comments / Show tasks once it has made its change. Each step says what it found and how long it took; review time is the person's and is not shown.
@@ -76,9 +76,9 @@ Files share the side column with progress (SETT-15); on narrow screens they foll
 
 | Route | Ordered page composition (in addition to shell) |
 | --- | --- |
-| `/app/:workspace/projects/new` | Page header; project form with name, status, owner, tags (SETT-11), description editor (SETT-10), optional attachment (SETT-03) and related-link rows (SETT-12); Create/Cancel; dirty-save feedback (SETT-02). |
+| `/app/:workspace/projects/new` | Redirects to Projects with the New project dialog open since 2026-10-17. The dialog holds the project form: name, owner, description editor (SETT-10), due date, colour, tags (SETT-11) and related-link rows (SETT-12); Cancel/Create; dirty-save feedback (SETT-02). |
 | `/app/:workspace/projects/:projectId` | Project header and actions; summary fields including an inline-edit example (EDGE-04); description; attachments/links; activity (TABL-08); Edit link. |
-| `/app/:workspace/projects/:projectId/edit` | Project identity/header; same form composition as creation with loaded data; Save/Cancel; unsaved-change feedback (SETT-02). |
+| `/app/:workspace/projects/:projectId/edit` | Redirects to the project page since 2026-10-17; projects edit in place there. |
 
 ## Actions and outcomes
 

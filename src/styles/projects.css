@@ -3,22 +3,22 @@
   padding-bottom: 0;
   gap: 0;
   --project-row-height: calc(
-    var(--control-height) + 2 * var(--row-padding) + 1px
+    var(--control-height) + 2 * var(--inset-row) + 1px
   );
 }
 .project-card-header {
-  padding-bottom: var(--card-padding);
+  padding-bottom: var(--inset-card);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   max-width: 100%;
   flex-basis: 100%;
 }
@@ -52,10 +52,10 @@
 }
 .project-table th:first-child,
 .project-table td:first-child {
-  padding-left: var(--card-padding);
+  padding-left: var(--inset-card);
 }
 .project-table td {
-  padding-block: var(--row-padding);
+  padding-block: var(--inset-row);
   font-size: var(--text-body);
 }
 .project-name {
@@ -87,7 +87,7 @@
 .progress-cell {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 7rem;
   font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
@@ -154,12 +154,18 @@
   color: var(--muted-foreground);
 }
 /* On the Projects page the data view sits on the canvas, not in a card. */
+/* On a page of its own the view is two page zones, toolbar and results,
+   --gap-zone apart (design-system.md, page anatomy). */
 .projects-card[data-surface="plain"] {
   --card-spacing: 0px;
+  gap: var(--gap-zone);
   background: transparent;
   box-shadow: none;
   border-radius: 0;
   overflow: visible;
+}
+.projects-card[data-surface="plain"] .project-card-header {
+  padding-bottom: 0;
 }
 .projects-card[data-surface="plain"] .project-results-toolbar {
   flex: 1 1 30rem;
@@ -176,7 +182,7 @@
    technology. Selection mode keeps its actions on the first line. */
 @container project-views (max-width: 26rem) {
   .projects-card[data-surface="plain"] .project-card-header {
-    gap: var(--control-gap);
+    gap: var(--gap-control);
   }
   .projects-card[data-surface="plain"] .project-results-toolbar {
     display: contents;
@@ -230,10 +236,14 @@
 .projects-card[data-surface="plain"] .project-board-content {
   padding-inline: 0;
 }
-/* Switching Table, Cards and Board fades the new view in. */
-@media (prefers-reduced-motion: no-preference) {
+/* Switching Table, Cards and Board fades the new view in; with reduced
+   motion it fades without the rise. */
+.project-results > :first-child {
+  animation: project-view-in var(--motion-fast) var(--ease-standard);
+}
+@media (prefers-reduced-motion: reduce) {
   .project-results > :first-child {
-    animation: project-view-in var(--motion-fast) var(--ease-standard);
+    animation-name: motion-fade-in;
   }
 }
 @keyframes project-view-in {
@@ -241,4 +251,8 @@
     opacity: 0;
     translate: 0 4px;
   }
+}
+/* A row opens its project on click, so it reads as one target. */
+.projects-card tbody [data-slot="table-row"]:has([data-quick-view-id]) {
+  cursor: pointer;
 }

@@ -2,17 +2,17 @@
   width: min(100%, 34rem);
 }
 .setup-progress {
-  margin-block: var(--section-gap);
+  margin-block: var(--gap-zone);
 }
 .setup-progress ol {
   display: flex;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   justify-content: space-between;
 }
 .setup-progress li {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   font-size: var(--text-meta);
   color: var(--muted-foreground);
 }
@@ -44,12 +44,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .setup-role-actions {
   display: flex;
   align-items: end;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .setup-role-actions > [data-slot="field"] {
   width: 8rem;
@@ -60,24 +60,24 @@
 }
 .access-card .setup-invitations > .ui-button {
   width: auto;
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 .setup-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: var(--control-gap);
-  margin-top: var(--section-gap);
+  gap: var(--gap-control);
+  margin-top: var(--gap-zone);
 }
 .setup-summary {
   display: grid;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .setup-summary > div {
   display: grid;
   grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .setup-summary dt,
 .setup-invitation-details li > span:last-child {
@@ -87,32 +87,62 @@
   overflow-wrap: anywhere;
 }
 .setup-invitation-details {
-  margin-top: var(--content-gap);
+  margin-top: var(--gap-group);
 }
 .setup-invitation-details summary {
   cursor: pointer;
   font-weight: 500;
 }
 .setup-invitation-details ul {
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 .setup-invitation-details li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: var(--control-gap);
-  padding-block: var(--control-gap);
+  gap: var(--gap-control);
+  padding-block: var(--gap-control);
   border-top: 1px solid var(--border);
   overflow-wrap: anywhere;
 }
 .setup-complete-actions {
   display: grid;
   justify-items: center;
-  gap: var(--content-gap);
-  margin-top: var(--section-gap);
+  gap: var(--gap-group);
+  margin-top: var(--gap-zone);
 }
 .setup-complete-actions > .ui-button {
   width: 100%;
+}
+/* The finished workspace is summed up one line at a time, then the way in;
+   it is the end of setup, seen once. Reduced motion fades without the rise. */
+.setup-summary > div,
+.setup-complete > :not(.setup-summary) {
+  animation: setup-rise var(--motion-slow) var(--ease-standard) both;
+}
+.setup-summary > div:nth-child(2) {
+  animation-delay: 50ms;
+}
+.setup-summary > div:nth-child(3) {
+  animation-delay: 100ms;
+}
+.setup-summary > div:nth-child(4) {
+  animation-delay: 150ms;
+}
+.setup-complete > :not(.setup-summary) {
+  animation-delay: 200ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .setup-summary > div,
+  .setup-complete > :not(.setup-summary) {
+    animation-name: motion-fade-in;
+  }
+}
+@keyframes setup-rise {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
 }
 @container (width < 25rem) {
   .setup-invite-row {

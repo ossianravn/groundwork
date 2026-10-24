@@ -12,8 +12,8 @@
      colour stay together beside it. */
   grid-template-rows: auto auto 1fr;
   align-items: start;
-  padding: 0 0 var(--section-gap);
-  gap: var(--stack-gap) var(--content-gap);
+  padding: 0 0 var(--gap-zone);
+  gap: var(--gap-group) var(--gap-group);
 }
 /* Due date and colour stack beside the taller description. */
 .project-description-field {
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: var(--control-height);
 }
 .project-color-option {
@@ -76,8 +76,8 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
-  padding: var(--section-gap) 0 0;
+  gap: var(--gap-control);
+  padding: var(--gap-zone) 0 0;
   border-top: 1px solid var(--border);
 }
 .project-editor-actions > span {
@@ -91,15 +91,6 @@
   flex-basis: 100%;
   color: var(--destructive);
 }
-.project-sheet-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--control-gap);
-}
-.project-sheet-actions {
-  padding-top: var(--panel-padding);
-  border-top: 1px solid var(--border);
-}
 .project-page-title {
   width: 100%;
 }
@@ -109,7 +100,7 @@
 .project-save-notice {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 @container (max-width: 28rem) {
   .project-editor-fields {
@@ -123,10 +114,6 @@
   }
 }
 @media (max-width: 767px) {
-  .project-editor-page {
-    --page-padding: 16px;
-    --card-padding: 16px;
-  }
   .project-editor-fields input[type="date"] {
     padding-inline: 10px;
   }
@@ -136,4 +123,16 @@
   .project-editor-actions {
     justify-content: flex-end;
   }
+}
+/* New project is a dialog at the form's reading width. */
+[data-slot="dialog-content"].new-project-dialog {
+  max-width: min(40rem, calc(100% - 2rem));
+}
+.new-project-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-control);
+}
+.new-project-body {
+  container-type: inline-size;
 }

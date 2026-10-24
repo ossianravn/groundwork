@@ -60,7 +60,7 @@ function Question({
   const input = React.useRef<HTMLInputElement>(null)
 
   const frame = cn(
-    "grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 rounded-lg border border-border bg-background p-(--item-padding) ps-3 text-sm",
+    "grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] gap-x-2.5 rounded-lg border border-border bg-background p-(--inset-row) ps-3 text-sm",
     className,
   )
 

@@ -50,7 +50,7 @@ export function ReasoningExample() {
         onOpenChange={setRestoredOpen}
         label={`Thought for ${restored.seconds} seconds`}
       >
-        <ol className="list-decimal ps-5 text-sm leading-relaxed [&_li+li]:mt-1">
+        <ol className="list-decimal ps-(--space-6) text-sm leading-relaxed [&_li+li]:mt-(--gap-inline)">
           {restored.steps.map((step) => (
             <li key={step}>{step}</li>
           ))}

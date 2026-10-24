@@ -52,9 +52,14 @@ export function projectInlineEditing(
         errors: { ...draft.errors, [field]: undefined },
       }),
     cancel: (field: InlineProjectField) => finish(field, saved),
-    /** The details dialog saves its fields together; its form owns drafts. */
+    /** Properties save as each one changes, without a draft of their own. */
     saveDetails: (
-      changes: Pick<ProjectValues, "ownerId" | "dueDate" | "tags" | "links">,
+      changes: Partial<
+        Pick<
+          ProjectValues,
+          "ownerId" | "dueDate" | "tags" | "links" | "description" | "color"
+        >
+      >,
     ): ProjectSaveResult => {
       const values = { ...saved, ...changes }
 

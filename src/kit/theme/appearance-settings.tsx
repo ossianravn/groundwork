@@ -30,14 +30,16 @@ export function AppearanceSettings({
           onChange={(appearance) => onChange({ ...theme, appearance })}
         />
         <AppearanceChoices
-          label="Accent color"
+          label="Accent colour"
           value={theme.accent}
           options={accents.map((option) => ({
             ...option,
-            preview: (
-              <span className="appearance-accent-preview" aria-hidden="true">
-                <span data-accent={option.value} />
-              </span>
+            mark: (
+              <span
+                className="appearance-swatch"
+                data-accent={option.value}
+                aria-hidden="true"
+              />
             ),
           }))}
           onChange={(accent) => onChange({ ...theme, accent })}

@@ -13,7 +13,7 @@ function Agent({ className, ...props }: React.ComponentProps<"section">) {
     <section
       data-slot="agent"
       className={cn(
-        "grid min-w-0 gap-4 rounded-lg border border-border bg-card p-(--card-padding) text-sm",
+        "grid min-w-0 gap-4 rounded-lg border border-border bg-card p-(--inset-card) text-sm",
         className,
       )}
       {...props}

@@ -56,7 +56,7 @@ export function MemberLoadChart({
     <AnalyticsChartCard
       label="Open tasks by person"
       empty={!total}
-      heading={<ChartTotal as="h3" value={total} unit="open tasks" />}
+      figure={<ChartTotal value={total} unit="open tasks" />}
       description={`Assigned now, across open projects${unassigned ? `; ${unassigned} unassigned` : ""}.`}
       legend={
         <ChartSeriesToggle

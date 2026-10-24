@@ -1,5 +1,5 @@
-import { MemberAvatar } from "@/kit/member-avatar"
-import { formatDate, type Activity, type Member } from "@/demo/model"
+import { ActivityRow } from "@/components/activity-row"
+import type { Activity, Member } from "@/demo/model"
 import { actionWithinProject } from "@/demo/activity"
 
 /**
@@ -17,7 +17,7 @@ export function ProjectActivity({
     return <p className="text-muted-foreground">No activity yet.</p>
 
   return (
-    <ol className="project-event-list" aria-label="Activity">
+    <ol className="activity-rows" aria-label="Activity">
       {events.map((event) => {
         const member = members.find((item) => item.id === event.memberId)
 
@@ -25,15 +25,12 @@ export function ProjectActivity({
           throw new Error(`Activity ${event.id} has an unknown member`)
 
         return (
-          <li key={event.id}>
-            <MemberAvatar member={member} size="sm" />
-            <p>
-              <strong>{member.name}</strong> {actionWithinProject(event.action)}
-            </p>
-            <time dateTime={event.date}>
-              {formatDate(event.date, { year: "numeric" })}
-            </time>
-          </li>
+          <ActivityRow
+            key={event.id}
+            person={member}
+            action={actionWithinProject(event.action)}
+            date={event.date}
+          />
         )
       })}
     </ol>

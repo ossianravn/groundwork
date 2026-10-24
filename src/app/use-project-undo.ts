@@ -32,5 +32,16 @@ export function useProjectUndo() {
 
       offerUndo(`${name} marked complete`, demo.completeProject(id))
     },
+    /** Reopening keeps the tasks done so far. */
+    reopenProject(id: string) {
+      const name = demo.projects.find((project) => project.id === id)?.name
+
+      const result = demo.bulkChangeProjects([id], {
+        kind: "move",
+        status: "in-progress",
+      })
+
+      offerUndo(`${name} reopened`, result.undo ?? null)
+    },
   }
 }

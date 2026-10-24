@@ -1,6 +1,8 @@
 import { getRouteApi, Link } from "@tanstack/react-router"
 import { buttonVariants } from "@/kit/ui/button"
 import { defaultActivitySearch } from "./activity-search"
+import { ProjectDetailLink } from "./project-detail-link"
+import { defaultProjectsSearch } from "./projects-search"
 import { OverviewPage } from "@/features/overview/overview-page"
 import { useDemoWorkspace } from "./workspace-context"
 import { useRouteFocus } from "./use-route-focus"
@@ -12,7 +14,7 @@ const route = getRouteApi("/app/demo/overview")
 export function OverviewRoute() {
   const search = route.useSearch()
   const navigate = route.useNavigate()
-  const { demo, onNewProject, onSelectProject, results } = useDemoWorkspace()
+  const { demo, onNewProject, onSelectProject } = useDemoWorkspace()
   useRouteFocus()
 
   return (
@@ -26,13 +28,18 @@ export function OverviewRoute() {
             search={defaultActivitySearch}
             className={buttonVariants({ variant: "ghost", size: "sm" })}
           >
-            Show all activity
+            All activity
           </Link>
         }
-        projectTableControl={{
-          state: results.overviewTable,
-          onChange: results.setOverviewTable,
-        }}
+        projectsLink={
+          <Link
+            to="/app/demo/projects"
+            search={defaultProjectsSearch}
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+          >
+            All projects
+          </Link>
+        }
         projects={demo.projects}
         activity={demo.activity}
         tasks={demo.tasks}
@@ -41,6 +48,11 @@ export function OverviewRoute() {
         referenceDate={demo.workspace.referenceDate}
         onNewProject={onNewProject}
         onSelectProject={onSelectProject}
+        renderProject={(project, { children, ...props }) => (
+          <ProjectDetailLink projectId={project.id} {...props}>
+            {children}
+          </ProjectDetailLink>
+        )}
         period={reportPeriodOf(search)}
         onPeriodChange={(next) => {
           void navigate({

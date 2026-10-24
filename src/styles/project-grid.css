@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .project-view-controls {
   margin-inline-start: auto;
@@ -19,7 +19,7 @@
   min-height: 0;
 }
 .project-grid-content {
-  padding: 0 var(--card-padding) var(--card-padding);
+  padding: 0 var(--inset-card) var(--inset-card);
 }
 .project-grid-controls {
   margin-inline-start: auto;
@@ -31,56 +31,7 @@
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: var(--content-gap);
-}
-.project-grid > li {
-  min-width: 0;
-  display: flex;
-}
-.project-grid-card {
-  container: project-card / inline-size;
-  width: 100%;
-  border: 1px solid var(--border);
-  box-shadow: none;
-}
-.project-grid-card[data-selected="true"] {
-  background: var(--muted);
-}
-.project-grid-status,
-.project-grid-progress [data-slot="radial-progress"] {
-  color: var(--foreground);
-}
-.project-grid-status {
-  margin-bottom: var(--control-gap);
-}
-.project-grid-card .project-name {
-  display: inline;
-  white-space: normal;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-.project-grid-card .project-name .truncate {
-  white-space: normal;
-}
-.project-grid-progress {
-  display: flex;
-  align-items: center;
-  gap: var(--content-gap);
-  margin-top: auto;
-  font-size: var(--text-meta);
-  color: var(--muted-foreground);
-}
-.project-grid-footer {
-  flex-wrap: wrap;
-  gap: var(--control-gap);
-  padding-block: var(--control-gap);
-  font-size: var(--text-meta);
-}
-.project-grid-footer .owner-cell {
-  margin-inline-end: auto;
-}
-.project-grid-due {
-  color: var(--muted-foreground);
+  gap: var(--gap-group);
 }
 /* With four views and saved views, labels give way before the row wraps;
    each option keeps its accessible name and a title. */
@@ -100,21 +51,5 @@
 @container project-views (max-width: 22rem) {
   .project-view-current {
     display: none;
-  }
-}
-@container project-card (max-width: 17.5rem) {
-  .project-grid-footer {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .project-grid-footer .owner-cell {
-    grid-column: 1;
-  }
-  .project-grid-due {
-    grid-column: 1;
-  }
-  .project-grid-footer .ui-button {
-    grid-column: 2;
-    grid-row: 1 / span 2;
   }
 }

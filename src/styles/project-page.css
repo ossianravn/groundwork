@@ -7,16 +7,20 @@
   container: project-heading / inline-size;
   display: grid;
   justify-items: start;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-page-heading > .ui-button {
   padding-inline: 0;
 }
 .project-page-title {
+  /* The title's cap height: text-box trims its line box to it, so the
+     capitals, not the leading, meet the page inset and the gap above the
+     title equals the gap beside it. Marks and actions centre on it. */
+  --title-line: calc(var(--text-page) * 0.71);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
   width: 100%;
 }
 /* Progress and the project's actions close the title row; on narrow
@@ -25,34 +29,17 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--content-gap);
+  gap: var(--gap-group);
+  margin-block-start: calc((var(--title-line) - var(--control-height)) / 2);
   margin-inline-start: auto;
 }
-.project-header-progress {
-  display: flex;
-  align-items: center;
-  gap: var(--control-gap);
-  color: var(--muted-foreground);
-  font-size: var(--text-meta);
-  font-variant-numeric: tabular-nums;
-}
-.project-header-progress strong {
-  color: var(--foreground);
-  font-weight: 600;
-}
-.project-header-progress [data-slot="progress"] {
-  width: 7rem;
-}
-.project-header-percent {
-  min-width: 2.25rem;
-  text-align: end;
-}
 .project-page-title > .project-dot {
-  width: 0.75rem;
-  height: 0.75rem;
+  --mark-size: 0.75rem;
+  margin-block-start: calc((var(--title-line) - var(--mark-size)) / 2);
   border-radius: 0.2rem;
 }
 .project-page-title h1 {
+  text-box: trim-both cap alphabetic;
   font-size: var(--text-page);
   font-weight: 600;
   letter-spacing: -0.04em;
@@ -78,15 +65,15 @@
   /* The rail's second row (files) takes the rest of the main column's
      height, so the rail's hairline runs its full length. */
   grid-template-rows: auto 1fr;
-  column-gap: calc(var(--section-gap) * 2);
+  column-gap: calc(var(--gap-zone) * 2);
   align-items: start;
-  padding-top: var(--section-gap);
+  padding-top: var(--gap-zone);
   border-top: 1px solid var(--border);
 }
 .project-main {
   grid-column: 1;
   grid-row: 1 / span 2;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   min-width: 0;
 }
 /* The section tabs start at the content edge; counts are quiet. */
@@ -106,49 +93,40 @@
 .project-rail-files {
   grid-column: 2;
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
   min-width: 0;
   /* The hairline sits midway across the column gap. */
-  padding-inline-start: var(--section-gap);
-  margin-inline-start: calc(-1 * var(--section-gap));
+  padding-inline-start: var(--gap-zone);
+  margin-inline-start: calc(-1 * var(--gap-zone));
   border-inline-start: 1px solid var(--border);
   align-self: stretch;
   align-content: start;
 }
+/* The rail's heading shares the tab row's centre line (42px tabs, a 24px
+   heading line). */
 .project-rail {
   grid-row: 1;
-  padding-bottom: var(--section-gap);
+  padding-top: calc(var(--space-2) + 1px);
+  padding-bottom: var(--gap-zone);
 }
 .project-rail-files {
   grid-row: 2;
 }
 .project-rail-files > * {
-  padding-top: var(--section-gap);
+  padding-top: var(--gap-zone);
   border-top: 1px solid var(--border);
 }
-/* Details: a heading with its one Edit action, like Files below it. */
+/* Details: a heading like Files below it, then rows changed in place. */
 .project-properties-section {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
-.project-properties-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--control-gap);
-}
-.project-properties-heading h2 {
+.project-properties-section h2 {
   font-size: var(--text-section);
   font-weight: 600;
 }
-/* The ghost action's label lines up with the rail's end. */
-.project-properties-heading > .ui-button {
-  margin-inline-end: calc(-1 * var(--control-padding-inline, 0.625rem));
-}
-/* The details dialog: owner and date share a row, then tags and links.
-   Add task shares its frame; its title takes the larger share of the row. */
-.project-task-dialog[data-slot="dialog-content"],
-.project-details-dialog[data-slot="dialog-content"] {
+/* Add task: the title takes the larger share of its row with the assignee. */
+.project-task-dialog[data-slot="dialog-content"] {
   width: 36rem;
   max-width: calc(100% - 32px);
   max-height: calc(100dvh - 32px);
@@ -156,12 +134,12 @@
 }
 .project-details-form {
   display: grid;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .project-details-row[data-slot="field-group"] {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--content-gap);
+  gap: var(--gap-group);
 }
 .project-task-dialog .project-details-row[data-slot="field-group"] {
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -175,62 +153,41 @@
 /* Properties read as label and value rows, labels in one quiet column. */
 .project-properties {
   display: grid;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   align-content: start;
 }
 .project-properties > div {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
-  align-items: center;
-  column-gap: var(--content-gap);
+  align-items: start;
+  column-gap: var(--gap-group);
   min-height: var(--control-height-sm);
 }
-.project-properties dt,
-.project-event-list time {
+/* A label sits on its value's first line, however many lines it takes. */
+.project-properties dt {
+  display: flex;
+  align-items: center;
+  min-height: var(--control-height);
   color: var(--muted-foreground);
   font-size: var(--text-meta);
 }
 .project-properties dd {
   display: flex;
   align-items: center;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-width: 0;
 }
 .project-properties dd .project-tags,
 .project-properties dd .project-links {
   margin: 0;
 }
-.project-event-list {
-  display: grid;
-}
-/* Dates read as metadata under each event, as in Overview's recent activity. */
-.project-event-list li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
-  column-gap: var(--content-gap);
-  row-gap: 0.125rem;
-  padding-block: var(--item-padding);
-}
-.project-event-list time {
-  grid-column: 2;
-}
-.project-event-list li + li {
-  border-top: 1px solid var(--border);
-}
-.project-event-list p {
-  overflow-wrap: anywhere;
-}
-.project-event-list strong {
-  font-weight: 500;
-}
-/* Narrower screens stack in reading order: properties and progress, the
-   work, then files, each divided by a hairline. */
+/* Narrower screens stack in reading order: the work, then the details and
+   files, each divided by a hairline. */
 @media (max-width: 1023px) {
   .project-page-grid {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
-    row-gap: calc(var(--section-gap) * 1.5);
+    row-gap: calc(var(--gap-zone) * 1.5);
   }
   .project-main,
   .project-rail,
@@ -245,8 +202,10 @@
   .project-rail-files {
     padding-block: 0;
   }
-  .project-main {
-    padding-top: var(--section-gap);
+  /* The work comes first, then the details and files, each under a
+     hairline. */
+  .project-rail {
+    padding-top: var(--gap-zone);
     border-top: 1px solid var(--border);
   }
 }
@@ -262,13 +221,13 @@
 @media (min-width: 40rem) and (max-width: 1023px) {
   .project-properties {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: calc(var(--section-gap) * 2);
+    column-gap: calc(var(--gap-zone) * 2);
   }
 }
 /* The burn-up heads the Activity tab: how the project got here, then the
    events that moved it. */
 .project-burn-up {
-  margin-bottom: var(--section-gap);
-  padding-bottom: var(--section-gap);
+  margin-bottom: var(--gap-zone);
+  padding-bottom: var(--gap-zone);
   border-bottom: 1px solid var(--border);
 }

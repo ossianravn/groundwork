@@ -6,7 +6,7 @@ import type {
 import { emptyProjectFilters, type ProjectFilters } from "./project-filtering"
 
 export interface ProjectTableState {
-  view: "table" | "grid" | "board" | "timeline"
+  view: "table" | "grid" | "board" | "timeline" | "month"
   filters: ProjectFilters
   pagination: PaginationState
   sorting: SortingState

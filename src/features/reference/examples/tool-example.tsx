@@ -37,7 +37,7 @@ export function ToolExample() {
           title="Export report"
           state="output-error"
           status={
-            <Badge variant="outline" className="shrink-0 gap-1">
+            <Badge variant="outline" className="shrink-0 gap-(--gap-inline)">
               <RotateCcw className="size-3" aria-hidden="true" />
               Retried
             </Badge>

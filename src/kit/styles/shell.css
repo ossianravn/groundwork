@@ -18,7 +18,7 @@
   position: fixed;
   inset: 0 auto 0 0;
   width: var(--sidebar-width);
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--sidebar-border);
   z-index: 30;
 }
 .workspace-navigation {
@@ -26,7 +26,7 @@
   display: flex;
   flex-direction: column;
   background: var(--sidebar);
-  padding: var(--section-gap) 0.875rem 0;
+  padding: 0 0.875rem;
   overflow-y: auto;
 }
 .brand {
@@ -36,15 +36,17 @@
   padding: 0 0.625rem;
   width: fit-content;
   font-size: 1.55rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.07em;
 }
+/* As tall as the top bar, so the brand shares the breadcrumb's axis. */
 .navigation-brand-row {
+  min-height: var(--header-height);
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .mobile-sidebar .navigation-brand-row {
   container: navigation-heading / inline-size;
@@ -72,7 +74,7 @@
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  margin: var(--section-gap) 0 var(--stack-gap);
+  margin: var(--gap-zone) 0 var(--gap-group);
   padding-inline: 0.45rem;
 }
 .workspace-monogram {
@@ -102,7 +104,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
   min-height: max(var(--navigation-height), var(--control-height));
   padding: var(--control-padding-block) 0.75rem;
   border-radius: var(--radius-md);
@@ -141,166 +143,13 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  padding: var(--content-gap) 0.625rem;
+  /* The sidebar footer (actions, notice, account) keeps one rhythm. */
+  padding: var(--gap-item) 0.625rem;
   border-top: 1px solid var(--border);
 }
 .workspace-content {
   margin-left: var(--sidebar-width);
   min-width: 0;
-}
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  min-height: var(--header-height);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--control-gap);
-  padding: 0.25rem var(--page-padding);
-  border-bottom: 1px solid var(--border);
-  background: var(--card);
-}
-@supports (backdrop-filter: blur(1px)) {
-  :root:not([data-header-surface="solid"]) .topbar {
-    background: color-mix(
-      in oklch,
-      var(--card) var(--header-opacity),
-      transparent
-    );
-    backdrop-filter: blur(var(--header-blur));
-  }
-}
-@media (prefers-reduced-transparency: reduce) {
-  :root[data-header-surface="system"] .topbar {
-    background: var(--card);
-    backdrop-filter: none;
-  }
-}
-@media (forced-colors: active) {
-  :root[data-header-surface] .topbar {
-    background: var(--card);
-    backdrop-filter: none;
-  }
-}
-.breadcrumb {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: var(--control-gap);
-  font-size: var(--text-body);
-  white-space: nowrap;
-}
-.breadcrumb-parent {
-  flex-shrink: 0;
-}
-/* Phones only: the parent crumbs are hidden, so the nearest one becomes a
-   back arrow before the page title (see responsive.css). */
-.breadcrumb-back {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: var(--control-height);
-  height: var(--control-height);
-  margin-inline-end: -0.25rem;
-  border-radius: var(--radius-md);
-  color: var(--foreground);
-}
-.breadcrumb-back:hover {
-  background: var(--accent);
-}
-.breadcrumb-back:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: -2px;
-}
-.breadcrumb .breadcrumb-back svg {
-  display: block;
-  width: 1rem;
-  height: 1rem;
-  color: currentColor;
-}
-/* The current page is the page title; section pages keep an equivalent h1. */
-.breadcrumb [aria-current="page"] {
-  color: var(--foreground);
-  font-weight: 600;
-}
-.breadcrumb-detail {
-  /* Long record names use remaining space; enlarged text may wrap the header. */
-  flex: 1 1 6rem;
-}
-.breadcrumb svg {
-  width: 0.8rem;
-  height: 0.8rem;
-  color: var(--muted-foreground);
-}
-.topbar .text-muted-foreground,
-.topbar .search-trigger {
-  /* Navigation must remain readable over the changing glass backdrop. */
-  color: var(--foreground);
-}
-.search-trigger {
-  color: var(--muted-foreground);
-  font-weight: 400;
-  gap: 0.5rem;
-}
-.search-hint {
-  margin-inline-start: 1rem;
-}
-.mobile-menu-button {
-  display: none;
-}
-/* The icon buttons at either end of the header line up their icon, not their
-   hit area, with the page's content edge (never closer than 4px to the
-   window). The icons are 1rem wide. */
-.desktop-menu-button,
-.mobile-menu-button {
-  margin-inline-start: max(
-    calc(4px - var(--page-padding)),
-    calc((1rem - var(--control-height)) / 2)
-  );
-}
-.topbar-actions {
-  margin-inline-end: max(
-    calc(4px - var(--page-padding)),
-    calc((1rem - var(--control-height)) / 2)
-  );
-}
-.desktop-menu-button:not(:hover) {
-  /* Expansion describes the sidebar, not a selected toolbar action. */
-  background-color: transparent;
-}
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--control-gap);
-  margin-left: auto;
-}
-.topbar button {
-  min-width: var(--control-height);
-  min-height: var(--control-height);
-}
-/* Utility controls are quiet; a page's own actions keep their variant. */
-.topbar-actions button:not(.topbar-page-actions *) {
-  color: var(--muted-foreground);
-}
-.topbar-actions button:not(.topbar-page-actions *):hover {
-  color: var(--foreground);
-}
-.topbar-page-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--control-gap);
-  margin-inline-end: var(--control-gap);
-}
-.topbar-page-actions:empty {
-  display: none;
-}
-.page-meta {
-  color: var(--muted-foreground);
-  font-size: var(--text-meta);
-  white-space: nowrap;
-  margin-inline-end: var(--control-gap);
 }
 .account-menu-trigger {
   width: 100%;
@@ -309,7 +158,7 @@
   gap: 0.7rem;
   text-align: start;
   border-radius: var(--radius);
-  padding: var(--control-gap);
+  padding: var(--gap-control);
 }
 .account-menu-trigger:hover,
 .account-menu-trigger[data-popup-open] {

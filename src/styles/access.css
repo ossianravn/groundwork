@@ -5,7 +5,7 @@
   min-height: 100svh;
   display: grid;
   align-items: center;
-  padding: clamp(1rem, 5vh, 3rem) var(--page-padding);
+  padding: clamp(1rem, 5vh, 3rem) var(--inset-page);
   background: var(--background);
 }
 .access-column {
@@ -16,14 +16,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--control-gap);
-  margin-bottom: var(--section-gap);
+  gap: var(--gap-control);
+  margin-bottom: var(--gap-zone);
 }
 .access-brand-row .brand {
   padding: 0;
 }
 .access-card {
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .access-card h1 {
   font-size: var(--text-page);
@@ -32,17 +32,17 @@
   line-height: var(--leading-heading);
 }
 .access-card [data-slot="field-group"] {
-  gap: var(--stack-gap);
+  gap: var(--gap-group);
 }
 .access-card form > .ui-button {
   width: 100%;
-  margin-top: var(--section-gap);
+  margin-top: var(--gap-zone);
 }
 .access-label-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: var(--control-gap);
+  gap: var(--gap-control);
 }
 .access-link {
   text-underline-offset: 3px;
@@ -51,24 +51,24 @@
   text-decoration: underline;
 }
 .access-footer {
-  padding: var(--content-gap) var(--card-padding);
+  padding: var(--gap-group) var(--inset-card);
   justify-content: center;
   text-align: center;
 }
 .access-disclosure {
   color: var(--muted-foreground);
   font-size: var(--text-meta);
-  margin-top: var(--section-gap);
+  margin-top: var(--gap-zone);
   line-height: var(--leading-body);
 }
 .access-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--section-gap);
+  gap: var(--gap-zone);
 }
 .access-alternative {
   width: 100%;
-  margin-top: var(--control-gap);
+  margin-top: var(--gap-control);
 }
 .access-email {
   overflow-wrap: anywhere;

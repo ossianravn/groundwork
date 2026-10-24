@@ -1,5 +1,5 @@
 import { expect, it } from "vitest"
-import { actionWithinProject, filterActivity } from "./activity"
+import { actionWithinProject, activityWeeks, filterActivity } from "./activity"
 import { initialActivity } from "./activity-fixtures"
 import { parseActivitySearch } from "@/app/activity-search"
 import { projectReturnDestination, projectReturnTo } from "@/app/project-return"
@@ -62,4 +62,28 @@ it("drops the project from actions shown on the project's own page", () => {
     "requested a review",
   )
   expect(actionWithinProject("finished")).toBe("finished the project")
+})
+
+it("groups a feed under week headings relative to the snapshot", () => {
+  const event = (id: string, date: string) => ({
+    ...initialActivity[0],
+    id,
+    date,
+  })
+
+  const weeks = activityWeeks(
+    [
+      event("a", "2026-09-24"),
+      event("b", "2026-09-21"),
+      event("c", "2026-09-20"),
+      event("d", "2026-09-03"),
+    ],
+    "2026-09-24",
+  )
+
+  expect(weeks.map((week) => [week.label, week.events.length])).toEqual([
+    ["This week", 2],
+    ["Last week", 1],
+    ["Week of 31 Aug", 1],
+  ])
 })
