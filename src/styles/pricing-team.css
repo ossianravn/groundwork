@@ -1,0 +1,23 @@
+/* Team size sets the estimate in each card; it sits under the period. */
+.pricing-team {
+  display: grid;
+  width: min(100%, 20rem);
+  margin: 0 auto var(--gap-zone);
+}
+.pricing-team-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap-control);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.pricing-team-price {
+  margin-top: var(--gap-control);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+@media (width < 48rem) {
+  .pricing-team {
+    margin-inline: 0;
+  }
+}

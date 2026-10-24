@@ -6,7 +6,7 @@ Status: core implementation awaiting review (2026-09-27). Shell: Public. Primary
 
 The user approved illustrative USD Starter ($0), Team ($12/member/month or $120/year) and Business ($24/member/month or $240/year). `src/demo/data/billing.json` owns prices, highlights, sample comparison and FAQ; `src/demo/billing.ts` owns selection and price formatting. Feature packaging is illustrative and imposes no restrictions on the demo.
 
-The three-column cards adapt [Shadcnblocks Pricing 1](https://www.shadcnblocks.com/block/pricing1), using existing primitives and shared tokens. The exclusive monthly/yearly choice is a ToggleGroup, not Tabs. Yearly displays $10/$20 per month alongside $120/$240 per member billed yearly. Compare all features reveals a semantic table in a keyboard-focusable horizontal scroll region on narrow screens.
+The three-column cards adapt [Shadcnblocks Pricing 1](https://www.shadcnblocks.com/block/pricing1), using existing primitives and shared tokens. The exclusive monthly/yearly choice is a ToggleGroup, not Tabs. Yearly displays $10/$20 per month alongside $120/$240 per member billed yearly. A Team size slider (KIT-02, 1–100 members, 10 to start) sits under the billing period; each card states that team's total for the chosen period ("$120 a month for 10 members") between the price and the per-member basis. The team size is a local estimate: it resets on reload and does not travel into sign-up. Compare all features reveals a semantic table in a keyboard-focusable horizontal scroll region on narrow screens.
 
 Plan and period travel in sign-up search parameters, appear in sign-up/workspace setup, and are retained in the new workspace identity. Change plan returns to the chosen billing period. Ordinary sign-up has no imposed plan. Reload/Reset restore the existing fixture. Billing settings, checkout, Enterprise/sales contact, tax calculation, currency switching and enforced feature entitlements are not implemented. No missing Contact destination is advertised.
 
@@ -22,7 +22,7 @@ Compare plans and understand the actual billing basis before choosing a next act
 
 ## Actions and outcomes
 
-Changing billing period updates price, billing frequency and total consistently. Selecting a plan carries that choice into sign-up; enterprise leads to Contact. Use a labelled exclusive-choice control; Tabs only if switching actual tab panels. Currency selection is conditional on supported pricing.
+Changing billing period updates price, billing frequency and total consistently. Changing team size, by dragging or with the arrow, Page and Home/End keys, updates every plan's total at once. Selecting a plan carries that choice into sign-up; enterprise leads to Contact. Use a labelled exclusive-choice control; Tabs only if switching actual tab panels. Currency selection is conditional on supported pricing.
 
 ## States to demonstrate
 

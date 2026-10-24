@@ -108,3 +108,10 @@ export function planPrice(plan: Plan, billing: BillingPeriod) {
         : `${currency.format(plan[billing])} per member, billed ${billing === "annual" ? "yearly" : "monthly"}`,
   }
 }
+
+/** What a team pays for a plan each billing period, for Pricing's estimate. */
+export function teamPrice(plan: Plan, billing: BillingPeriod, members: number) {
+  const amount = workspacePlanAmount({ plan: plan.id, billing }, members)
+
+  return `${currency.format(amount)} a ${billing === "annual" ? "year" : "month"} for ${members} ${members === 1 ? "member" : "members"}`
+}

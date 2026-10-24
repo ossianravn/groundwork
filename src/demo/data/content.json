@@ -299,6 +299,31 @@
   ],
   "releases": [
     {
+      "version": "0.21.0",
+      "date": "2026-10-24",
+      "title": "Price your team",
+      "summary": "Pricing shows what each plan costs your whole team: set your team size, and every plan's total follows, monthly or yearly.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Drag Team size on Pricing, or use the arrow keys, and each plan shows what your team would pay a month, or a year with yearly billing."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Prices are the sample plans. The team size is an estimate on the page: it resets on reload and isn't carried into sign-up."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.20.0",
       "date": "2026-10-18",
       "title": "Talk it through",

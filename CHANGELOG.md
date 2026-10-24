@@ -2,6 +2,13 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+### Slider
+
+- `slider` (new item): a slider on Base UI, adapted from shadcn's base-nova slider. Each value gets a thumb, so an array makes a range. `aria-label`, `aria-labelledby` and `aria-describedby` reach every thumb's input, the control assistive technology reads, and `getAriaValueText` says the value in words ("12 members"). Tandem's Pricing uses it for a team-size estimate; `/reference/components/slider` documents it (KIT-02).
+- `base` (styles): in forced colours, a slider's track keeps an outline, as a progress track does, and a focused thumb shows the Highlight outline.
+
 ## v0.8.0 — 2026-10-18
 
 Voice for chat: a new `voice` item adds dictation to the prompt input and a spoken conversation, full screen or as a bar in the composer's place, with an aura that moves with the sound and captions that light up as they are spoken. It runs on the browser's own speech recognition and voices; nothing else changes.

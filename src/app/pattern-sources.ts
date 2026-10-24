@@ -116,6 +116,7 @@ const sources = import.meta.glob<string>(
     "../kit/ui/button.tsx",
     "../kit/shell/route-progress.tsx",
     "../kit/ui/switch.tsx",
+    "../kit/ui/slider.tsx",
     "../features/settings/notification-settings.tsx",
     "../kit/ui/progress.tsx",
     "../components/project-progress-bar.tsx",
