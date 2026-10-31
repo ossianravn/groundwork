@@ -177,6 +177,21 @@
     "implementation": "src/kit/ui/switch.tsx"
   },
   {
+    "id": "slider",
+    "name": "Slider",
+    "category": "Forms",
+    "purpose": "Set a number along a range and see its effect as it changes.",
+    "notes": [
+      "Name it with aria-labelledby or aria-label and show the value as text beside the label. The name and any aria-describedby reach each thumb, and getAriaValueText says the value in words (12 members).",
+      "Arrow keys move one step, Page Up and Page Down ten steps (largeStep), Home and End to either end. An array value makes a range, with one thumb per value.",
+      "Use it where the effect shows while the value changes, such as an estimate. For an exact figure someone types, use an input."
+    ],
+    "context": "Pricing",
+    "href": "/pricing",
+    "patterns": ["KIT-02", "MKT-07"],
+    "implementation": "src/kit/ui/slider.tsx"
+  },
+  {
     "id": "progress",
     "name": "Progress",
     "category": "Feedback",

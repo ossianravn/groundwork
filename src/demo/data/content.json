@@ -299,7 +299,7 @@
   ],
   "releases": [
     {
-      "version": "0.20.1",
+      "version": "0.21.1",
       "date": "2026-10-31",
       "title": "Easier reading",
       "summary": "Help guides, blog posts, release notes and assistant replies now keep their lines to a comfortable length.",
@@ -320,6 +320,31 @@
           "title": "Demo boundaries",
           "paragraphs": [
             "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
+      "version": "0.21.0",
+      "date": "2026-10-24",
+      "title": "Price your team",
+      "summary": "Pricing shows what each plan costs your whole team: set your team size, and every plan's total follows, monthly or yearly.",
+      "sections": [
+        {
+          "id": "new",
+          "title": "New",
+          "paragraphs": [],
+          "bullets": [
+            "Drag Team size on Pricing, or use the arrow keys, and each plan shows what your team would pay a month, or a year with yearly billing."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Prices are the sample plans. The team size is an estimate on the page: it resets on reload and isn't carried into sign-up."
           ],
           "bullets": []
         }
