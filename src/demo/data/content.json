@@ -299,6 +299,34 @@
   ],
   "releases": [
     {
+      "version": "0.20.1",
+      "date": "2026-10-31",
+      "title": "Easier reading",
+      "summary": "Help guides, blog posts, release notes and assistant replies now keep their lines to a comfortable length.",
+      "sections": [
+        {
+          "id": "improved",
+          "title": "Improved",
+          "paragraphs": [],
+          "bullets": [
+            "Help guides and blog posts read in a narrower column, about 75 characters a line, with paragraphs a full line apart and the contents beside them.",
+            "Release notes keep their summary and list to one comfortable width.",
+            "Assistant replies wrap their sentences sooner, while tables and plans still use the whole width.",
+            "On phones, long text is set a little tighter, so more of it fits without crowding."
+          ]
+        },
+        {
+          "id": "demo-boundaries",
+          "title": "Demo boundaries",
+          "paragraphs": [
+            "Everything you change still resets on reload; your appearance choices stay on this device."
+          ],
+          "bullets": []
+        }
+      ],
+      "guide": "explore-and-reset"
+    },
+    {
       "version": "0.20.0",
       "date": "2026-10-18",
       "title": "Talk it through",

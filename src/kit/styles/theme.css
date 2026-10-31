@@ -11,6 +11,11 @@
   --leading-body: 1.5;
   --leading-heading: 1.375;
   --leading-metric: 1.2;
+  /* Running text: --measure keeps a line about 75 characters at any size
+     (36 font sizes wide; comfortable is 34-42), and --leading-prose is the
+     line height for text at that width (responsive.css lowers it on phones). */
+  --measure: 36em;
+  --leading-prose: 1.625;
   /* Control heights: 28 inline row actions, 32 compact and card controls,
      36 toolbars and page actions; one height per row. */
   --control-height-xs: 1.75rem;

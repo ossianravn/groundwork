@@ -28,8 +28,9 @@
   line-height: var(--leading-heading);
 }
 .reference-heading > p,
-.reference-prose p {
-  max-width: 65ch;
+.reference-prose p,
+.reference-prose ul {
+  max-width: var(--measure);
   color: var(--muted-foreground);
   margin-top: 0.5rem;
 }

@@ -63,9 +63,10 @@ function BlockCode({ className, children }: ElementProps<"code">) {
   )
 }
 
-// Defined once: Streamdown memoizes on the identity of this map.
+// Running text stops at the measure; tables, code and answers keep the
+// full width. Defined once: Streamdown memoizes on this map's identity.
 const components: Components = {
-  p: element("p", ""),
+  p: element("p", "max-w-(--measure)"),
   h1: element("h3", "text-base font-semibold"),
   h2: element("h3", "text-base font-semibold"),
   h3: element("h3", "text-base font-semibold"),
@@ -73,12 +74,12 @@ const components: Components = {
   h5: element("h5", "font-semibold"),
   h6: element("h6", "font-semibold"),
   strong: element("strong", "font-semibold"),
-  ul: element("ul", "list-disc ps-5 [&_li+li]:mt-1"),
-  ol: element("ol", "list-decimal ps-5 [&_li+li]:mt-1"),
+  ul: element("ul", "max-w-(--measure) list-disc ps-5 [&_li+li]:mt-1"),
+  ol: element("ol", "max-w-(--measure) list-decimal ps-5 [&_li+li]:mt-1"),
   li: element("li", "ps-0.5 [&>p]:inline"),
   blockquote: element(
     "blockquote",
-    "border-s-2 border-border ps-3 text-muted-foreground",
+    "max-w-(--measure) border-s-2 border-border ps-3 text-muted-foreground",
   ),
   hr: element("hr", "border-border"),
   table: (props: ElementProps<"table">) => (
@@ -134,7 +135,7 @@ function MessageResponse({
     <Streamdown
       data-slot="message-response"
       className={cn(
-        "min-w-0 space-y-3 text-sm leading-relaxed wrap-break-word",
+        "min-w-0 space-y-3 text-sm leading-(--leading-prose) wrap-break-word",
         className,
       )}
       components={components}

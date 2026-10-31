@@ -2,6 +2,16 @@
 
 Releases of Groundwork, the kit and its shadcn registry. Install a release by its tag, such as `npx shadcn add ossianravn/groundwork/kit#v0.4.0`; every part an item brings is pinned to the same release. Tandem's own release notes, part of the demo, live in `src/demo/data/content.json`. Changes merged since the last release collect under an Unreleased heading at the top.
 
+## Unreleased
+
+### Tokens
+
+- `base`: `--measure` (36em) keeps running text at a readable line length, about 75 characters at any font size, and `--leading-prose` (1.625, 1.55 below 40rem) is its line height.
+
+### Chat
+
+- `ai`: `MessageResponse` stops paragraphs, lists and quotes at `--measure` and sets them at `--leading-prose`; tables and code blocks keep the full width. Replies in a wide column no longer run past 100 characters a line.
+
 ## v0.8.0 — 2026-10-18
 
 Voice for chat: a new `voice` item adds dictation to the prompt input and a spoken conversation, full screen or as a bar in the composer's place, with an aura that moves with the sound and captions that light up as they are spoken. It runs on the browser's own speech recognition and voices; nothing else changes.

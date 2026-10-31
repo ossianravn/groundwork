@@ -1,5 +1,6 @@
+/* As wide as its grid: the prose measure, the gap and the contents. */
 .resource-reader {
-  max-width: 68rem;
+  max-width: calc(36rem + 4rem + 14rem + 2 * clamp(1rem, 3vw, 2rem));
   padding-block: var(--inset-page) clamp(2rem, 5vw, 4rem);
 }
 .resource-back {
@@ -20,14 +21,15 @@
 }
 .resource-reading-grid {
   display: grid;
-  grid-template-columns: minmax(0, 44rem) minmax(10rem, 1fr);
+  /* The prose track is the measure at the prose's 16px. */
+  grid-template-columns: minmax(0, 36rem) minmax(10rem, 14rem);
   gap: 4rem;
   align-items: start;
 }
 .resource-prose {
   min-width: 0;
   font-size: 1rem;
-  line-height: 1.75;
+  line-height: var(--leading-prose);
   overflow-wrap: break-word;
 }
 .resource-prose .resource-heading h1 {
@@ -36,21 +38,23 @@
   text-wrap: pretty;
 }
 .resource-prose h2 {
-  font-size: 1.375rem;
+  font-size: var(--text-feature);
   line-height: 1.35;
   letter-spacing: -0.02em;
   text-wrap: pretty;
 }
+/* Paragraphs sit one line apart and sections a golden step (1.618 lines)
+   apart, so the spacing follows the line height. */
 .resource-prose > section {
-  margin-top: 2rem;
+  margin-top: calc(1.618 * 1lh);
 }
 .resource-prose section p {
-  margin-top: 1rem;
+  margin-top: 1lh;
 }
 .resource-prose ul,
 .resource-prose ol {
   padding-left: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1lh;
 }
 .resource-prose ul {
   list-style: disc;
