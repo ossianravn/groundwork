@@ -5,6 +5,13 @@
     --inset-page: var(--space-6);
   }
 }
+/* A phone's reading column is about 21 font sizes wide, where a line
+   height of 1.55 reads as evenly as 1.625 does at the full measure. */
+@media (width < 40rem) {
+  :root {
+    --leading-prose: 1.55;
+  }
+}
 @media (max-width: 1023px) {
   .desktop-sidebar {
     display: none;
